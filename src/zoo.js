@@ -29,7 +29,7 @@ function employeeByName(employeeName) {
 
   // filter the employee, returns the object within the array or the empty obj
   const employeeObject = data.employees
-  .filter(({ firstName, lastName }) =>(firstName === employeeName || lastName === employeeName));
+  .filter(({ firstName, lastName }) => (firstName === employeeName || lastName === employeeName));
   if (employeeObject.length !== 0) {
     output = employeeObject[0];
   }
