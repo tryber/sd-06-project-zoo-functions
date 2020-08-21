@@ -10,7 +10,6 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-//  const { animals } = require('./data');
 
 //  Caso receba nenhum parâmetro, necessário retornar um array vazio
 //  Ao receber como parâmetro um único id, retorna os animais com este id
@@ -37,9 +36,9 @@ function employeeByName(employeeName) {
   if (employeeName === undefined) {
     return {};
   }
-  // seu código aqui
+  const employFilter =  data.employees.find(employ => employ.firstName === employeeName || employ.lastName === employeeName);
+  return employFilter;
 }
-console.log(employeeByName());
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
 }
