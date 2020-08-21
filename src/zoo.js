@@ -102,16 +102,24 @@ function entryCalculator(entrants = 0) {
   );
 }
 
+function buildStructure() {
+  return (
+    data
+      .animals
+      .reduce((start, next) => {
+        const loc = next.location;
+        const locObj = {};
+        locObj[loc] = [];
+        start = { ...start, ...locObj }
+        return start;
+      }, {})
+  )
+}
+
 function animalMap(options = {}) {
   const { includeNames, sorted, sex } = options;
   // builds structure
-  const possibleLocs = data.animals.reduce((start, next) => {
-    const loc = next.location;
-    const locObj = {};
-    locObj[loc] = [];
-    start = {...start, ...locObj}
-    return start;
-  }, {});
+  const possibleLocs = buildStructure();
 
   return (
     data
@@ -119,28 +127,27 @@ function animalMap(options = {}) {
       .reduce((locations, next) => {
         if (!includeNames) {
           locations[next.location].push(next.name);
-          return locations
-        } else {
-          const objAnimal = {}
-          const animal = next.name;
-          objAnimal[animal] = (
-            next
-              .residents
-              .filter(res => (sex) ? res.sex === sex : true)
-              .map(res => res.name)
-          )
-          if (sorted) {
-            objAnimal[animal].sort();
-          }
-          locations[next.location].push(objAnimal);
-          return locations
+          return locations;
         }
-    }, possibleLocs)
+
+        const objAnimal = {};
+        const animal = next.name;
+        objAnimal[animal] = (
+          next
+            .residents
+            .filter(res => (sex) ? (res.sex === sex) : true)
+            .map(res => res.name)
+        );
+
+        if (sorted) {
+          objAnimal[animal].sort();
+        }
+
+        locations[next.location].push(objAnimal);
+        return locations;
+      }, possibleLocs)
   );
-
 }
-
-console.log(animalMap())
 
 function schedule(dayName) {
   // seu código aqui
