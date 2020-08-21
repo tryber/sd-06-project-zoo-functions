@@ -26,7 +26,7 @@ function animalsByIds(...ids) { // Agrupando em um array com rest
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
-  const species = animals.filter(specieReceveid =>  specieReceveid.name === animal);
+  const species = animals.filter(specieReceveid => specieReceveid.name === animal);
   const ages = species[0].residents.every(ageReceveid => ageReceveid.age >= age);
   return ages;
 }
