@@ -60,7 +60,15 @@ function isManager(id) {
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+  let newEmployee = { id: '', firstName: '', lastName: '', managers: [], responsibleFor: [] };
+  (id !== '') ? newEmployee.id = id : '';
+  (firstName !== '') ? newEmployee.firstName = firstName : '';
+  (lastName !== '') ? newEmployee.lastName = lastName : '';
+
+  // had to check if they were array
+  (Array.isArray(managers)) ? newEmployee.managers = managers : [] ;
+  (Array.isArray(responsibleFor)) ? newEmployee.responsibleFor = responsibleFor : [];
+  data.employees.push(newEmployee);
 }
 
 function animalCount(species) {
