@@ -47,7 +47,7 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(id) {
   const { employees } = data;
-  const managers = employees.reduce((managers, curr) => managers.concat(curr.managers), []);
+  const managers = employees.reduce((managers, curr) => managerList.concat(curr.managers), []);
   return managers.some(managerId => managerId === id);
 }
 
