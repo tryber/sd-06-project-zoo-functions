@@ -27,12 +27,19 @@ function employeeByName(employeeName) {
   if (!employeeName) {
     return [];
   }
-  return data.employees.filter((person) =>{
-    employeeName === person.firstName || employeeName === person.lastName});
+  return data.employees.filter((person) => {
+    return employeeName === person.firstName || employeeName === person.lastName 
+  });
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  const {id, firstName, lastName} = personalInfo;
+  const {managers, responsibleFor} = associatedWith;
+  const employee = {
+  id, firstName, lastName,
+  managers, responsibleFor
+ }
+ return employee;
 }
 
 function isManager(id) {
