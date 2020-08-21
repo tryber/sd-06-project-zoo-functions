@@ -46,7 +46,7 @@ console.log('-----------');
 function animalsOlderThan(animal, age) {
   const testedAnimals = animals.find(element => element.name === animal);
   const testedResidents = testedAnimals.residents;
-  const checkAnimalsAge = testedResidents.every(selement => element.age > age);
+  const checkAnimalsAge = testedResidents.every(element => element.age > age);
   return checkAnimalsAge;
 }
 
