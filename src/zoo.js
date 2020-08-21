@@ -76,8 +76,8 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 function animalCount(species) {
   // seu código aqui
-  if(!species) {
-    return animals.reduce((ac, at) => ({ ...ac, [at.name]: at.residents.length }) , {});    
+  if (!species) {
+    return animals.reduce((ac, at) => ({ ...ac, [at.name]: at.residents.length }), {});
   }
   return animals.find(animal => animal.name === species).residents.length;
 }
