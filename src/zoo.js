@@ -14,8 +14,8 @@ const { animals } = require('./data');
 
 function animalsByIds(...ids) {
   return ids
-  .flatMap((idIndex) => animals
-  .filter((animal) => animal.id === idIndex));
+  .flatMap(idIndex => animals
+  .filter(animal => animal.id === idIndex));
 }
 
 function animalsOlderThan(animal, age) {
