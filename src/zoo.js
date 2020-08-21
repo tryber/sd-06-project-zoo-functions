@@ -50,7 +50,7 @@ function createEmployee(personalInfo, associatedWith) {
 
   // data.employees.push(newEmployee);
   return newEmployee;
-};
+}
 
 function isManager(id) {
   // seu código aqui
