@@ -33,15 +33,15 @@ function employeeByName(employeeName) {
   return empl;
 }
 
-function createEmployee({id, firstName, lastName}, {managers, responsibleFor}) {
+function createEmployee({ id, firstName, lastName }, { managers, responsibleFor }) {
   const total = {
     id,
     firstName,
     lastName,
     managers,
-    responsibleFor
-  }
-  return total
+    responsibleFor,
+  };
+  return total;
 }
 
 function isManager(id) {
