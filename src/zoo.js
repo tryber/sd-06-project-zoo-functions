@@ -16,14 +16,16 @@ function animalsByIds(ids) {
   const animalById = [];
   animals.find(animal => {
     if (animal.id === ids) {
-      return animalById.push(animal)
+      return animalById.push(animal);
     }
   });
   return animalById;
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  return animals
+    .find(animalOfZoo => animal === animalOfZoo.name).residents
+    .every(animalOfZoo => animalOfZoo.age > age);
 }
 
 function employeeByName(employeeName) {
