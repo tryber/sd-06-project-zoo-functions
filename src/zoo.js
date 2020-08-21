@@ -32,8 +32,9 @@ function animalsByIds(...ids) {
         }
       });
     });
-    return [];
+    return output;
   }
+  return [];
 }
 
 // console.log(animalsByIds());
