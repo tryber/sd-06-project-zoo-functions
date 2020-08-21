@@ -13,7 +13,6 @@ const data = require('./data');
 
 function animalsByIds(ids) {
   // seu código aqui
-  //subindo pr
 }
 
 function animalsOlderThan(animal, age) {
