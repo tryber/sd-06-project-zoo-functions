@@ -31,13 +31,13 @@ function employeeByName(employeeName) {
 }
 
 
-function createEmployee({id, firstName, lastName}, {managers, responsibleFor}) {
+function createEmployee({ id, firstName, lastName }, { managers, responsibleFor }) {
   return {
     id,
     firstName,
     lastName,
     managers,
-    responsibleFor
+    responsibleFor,
   };
 }
 
