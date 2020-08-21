@@ -15,7 +15,7 @@ const { animals } = require('./data');
 function animalsByIds(...ids) {
   const idsAnimals = [];
   ids.forEach((animalId) => {
-    idsAnimals.push(animals.find((animal) => animal.id === animalId));
+    idsAnimals.push(animals.find(animal => animal.id === animalId));
   });
   return idsAnimals;
 }
