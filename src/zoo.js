@@ -187,8 +187,7 @@ function oldestFromFirstSpecies(id) {
     data
       .employees
       .find(employee => employee.id === id)
-      .responsibleFor
-      [0]
+      .responsibleFor[0]
   );
   return (
     Object
@@ -197,7 +196,7 @@ function oldestFromFirstSpecies(id) {
           .animals
           .find(animal => animal.id === animalId)
           .residents
-          .sort((a, b) => b.age - a.age)[0]
+          .sort((a, b) => b.age - a.age)[0],
       )
   );
 }
@@ -205,28 +204,30 @@ function oldestFromFirstSpecies(id) {
 function increasePrices(percentage) {
   const priceTiers = Object.keys(data.prices);
 
+  priceTiers.forEach((tier) => {
+    const oldPrice = data.prices[tier];
+    const newPrice = (Math.round((oldPrice * ((percentage / 100) + 1)) * 100) / 100).toFixed(2);
+    data.prices[tier] = Number(newPrice);
+  })
+}
+
+function addAnimalsNamesToEmployeeData() {
   return (
-    priceTiers.map((tier) => {
-      const oldPrice = data.prices[tier];
-      const newPrice = (Math.round((oldPrice * ((percentage / 100) + 1)) * 100) / 100).toFixed(2);
-      data.prices[tier] = Number(newPrice);
+    data
+    .employees
+    .map((emp) => {
+      const animalList = (
+        emp
+          .responsibleFor
+          .map(anID => data.animals.find(animal => animal.id === anID).name)
+      );
+      return { ...emp, responsibleFor: animalList };
     })
-  );
+  )
 }
 
 function employeeCoverage(idOrName) {
-  const employesAndAnimals = (
-    data
-      .employees
-      .map((emp) => {
-        const animalList = (
-          emp
-            .responsibleFor
-            .map(anID => data.animals.find(animal => animal.id === anID).name)
-        );
-        return { ...emp, responsibleFor: animalList };
-      })
-  );
+  const employesAndAnimals = addAnimalsNamesToEmployeeData();
 
   if (idOrName) {
     const searchedEmp = (
