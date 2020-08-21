@@ -149,7 +149,7 @@ console.log('-----8------');
 function entryCalculator(entrants) {
   if (!entrants || Object.keys(entrants).length === 0) {
     return 0;
-  };
+  }
   const entrantKeys = Object.keys(entrants);
   const entrantValues = Object.values(entrants);
   const toPay = entrantKeys.reduce((acc, current, index) => {
@@ -161,7 +161,7 @@ function entryCalculator(entrants) {
 
 console.log(entryCalculator());
 console.log(entryCalculator({}));
-console.log(entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 }));
+console.log(entryCalculator({ Adult: 2, Child: 3, Senior: 1 }));
 
 function animalMap(options) {
   // seu código aqui
