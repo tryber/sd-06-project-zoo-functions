@@ -32,7 +32,7 @@ function animalsOlderThan(animal, age) {
   return myAnimal.residents.every(one => one.age >= 7);
 }
 
-//console.log(animalsOlderThan('otters', 7));
+// console.log(animalsOlderThan('otters', 7));
 console.log(data);
 
 function employeeByName(employeeName) {
