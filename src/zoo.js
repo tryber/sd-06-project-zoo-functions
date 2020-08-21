@@ -16,9 +16,13 @@ function animalsByIds(...ids) {
   return animals.filter(element => ids.includes(element.id));
 }
 
-function animalsOlderThan(animal, age) {
-  // seu código aqui
+function animalsOlderThan(animal, idade) {
+  return animals.find(element => element.name === animal).residents.every(element => 
+    element.age >= idade)
 }
+
+
+console.log(animalsOlderThan('penguins', 10))
 
 function employeeByName(employeeName) {
   // seu código aqui
