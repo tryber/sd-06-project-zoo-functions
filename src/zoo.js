@@ -39,7 +39,7 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  
+
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
