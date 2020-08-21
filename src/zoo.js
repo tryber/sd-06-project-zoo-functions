@@ -32,8 +32,16 @@ function employeeByName(employeeName) {
     .employees.find(item => (item.firstName === employeeName || item.lastName === employeeName));
 }
 
-function createEmployee(personalInfo, associatedWith) {
+function createEmployee({ id, firstName, lastName }, { managers, responsibleFor }) {
   // seu código aqui
+  const createdEmployee = {
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  };
+  return createdEmployee;
 }
 
 function isManager(id) {
