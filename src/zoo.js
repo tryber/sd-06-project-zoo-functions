@@ -13,13 +13,7 @@ const data = require('./data');
 
 const { animals, employees } = data;
 
-const animalsByIds = (...ids) => {
-  if (ids.length === 0) {
-    return [];
-  }
-  return ids.length === 1 ? animals.filter(a => a.id === ids[0])
-  : ids.map(id => animals.find(a => a.id === id));
-};
+const animalsByIds = (...ids) => ids.map(id => animals.find(a => a.id === id));
 
 const animalsOlderThan = (animal, age) => animals.find(a => a.name === animal)
   .residents.every(a => a.age > age);
@@ -34,7 +28,7 @@ const employeeByName = (employeeName) => {
 const createEmployee = (personalInfo, associatedWith) =>
   Object.assign(personalInfo, associatedWith);
 
-function isManager(id) {
+const isManager = (id) => {
   // seu código aqui
 }
 
