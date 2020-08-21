@@ -23,13 +23,16 @@ function animalsByIds(...ids) {
 function animalsOlderThan(animal, age) {
   return data.animals.filter(animal2 => animal2.name === animal)
   .some(animal3 => animal3.residents
-    .every(animal4 => animal4.age > age));
+    .every(idade => idade.age > age));
 }
 
 function employeeByName(employeeName) {
-  // seu código aqui
+  if (employeeName === undefined) {
+    return {};
+  }
+  return data.employees.filter(funcionario => (
+    funcionario.firstName === employeeName || funcionario.lastName === employeeName))[0];
 }
-
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
 }
