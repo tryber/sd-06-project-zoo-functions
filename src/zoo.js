@@ -77,12 +77,10 @@ function animalCount(species = 'allOfThem') {
 }
 
 function verifyPrices(type) {
-  let sum = 0;
   const { Adult: adultPrice, Senior: seniorPrice, Child: childPrice } = data.prices;
-  (type === 'Adult') ? sum = adultPrice : sum;
-  (type === 'Senior') ? sum = seniorPrice : sum;
-  (type === 'Child') ? sum = childPrice : sum;
-  return sum;
+  if (type === 'Adult') return adultPrice;
+  if (type === 'Senior') return seniorPrice;
+  if (type === 'Child') return childPrice;
 }
 
 function entryCalculator(entrants = 0) {
