@@ -1,4 +1,3 @@
-// Git
 module.exports = {
   animals: [
     {
