@@ -30,7 +30,8 @@ function employeeByName(employeeName) {
     return {};
   }
   return data.employees.filter((emp) => {
-    return (emp.firstName === employeeName || emp.lastName === employeeName); 
+    const emplo = employeeName;
+    return (emp.firstName === emplo || emp.lastName === emplo);
   })[0];
 }
 
