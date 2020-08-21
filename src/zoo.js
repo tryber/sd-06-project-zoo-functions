@@ -16,11 +16,11 @@ function animalsByIds(...ids) {
   return data.animals.filter(({ id }, index) => id === ids[index]);
 }
 
-// filtrei os animais, flatMap MAGICO aqui para acessar de forma mais facil os residents e testar a idade de TODOS
+// filter para os animais, flatMap MAGICO para acessar os residents e every para testar a idade
 function animalsOlderThan(animal, age) {
   return data.animals
   .filter(item => item.name === animal)
-  .flatMap((item) => item.residents)
+  .flatMap(item => item.residents)
   .every(item => item.age > age);
 }
 
