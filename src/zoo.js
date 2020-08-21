@@ -21,14 +21,21 @@ function animalsByIds(...ids) {
     );
     return array;
   };
-  if (ids.length) {
-    return ids.reduce(findAnimals, [])
-  }
-  return [] ;
+  return (ids.length)
+    ? ids.reduce(findAnimals, [])
+    : [] ;
 }
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
+  const getResidentsAge = (array, resident) => {
+    array.push(resident.age);
+    return array;
+  };
+  const ageArray = data.animals
+    .find(element => element.name === animal)
+    .residents.reduce(getResidentsAge, []);
+  return ageArray.every(residentAge => residentAge >= age);
 }
 
 function employeeByName(employeeName) {
