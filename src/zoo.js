@@ -27,7 +27,8 @@ function employeeByName(employeeName) {
   if (!employeeName) {
     return [];
   }
-  return data.employees.filter(({firstName, lastName}) => eName === firstName || eName === lastName);
+  return data.employees
+  .filter(({firstName, lastName}) => eName === firstName || eName === lastName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -38,9 +39,9 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  //data.employees
+  return data.employees.find(element => id === element.managers);
 }
-
+console.log(isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
 }
