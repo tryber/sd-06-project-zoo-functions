@@ -51,7 +51,8 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(id) {
   // seu código aqui
-  const verifyManager = employees.some(searchManager => searchManager.managers // reforço: some retorna true ou false
+  const verifyManager = employees.some(searchManager => searchManager.managers
+    // reforço: some retorna true ou false por isso coloquei a HOF find na saída dela
     .find(managerId => managerId === id));
   return verifyManager;
 }
