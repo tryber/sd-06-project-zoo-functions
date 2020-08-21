@@ -22,34 +22,33 @@ function animalsOlderThan(animal, ages) {
   const datas = animals
     .filter(elem => elem.name === animal)
     .flatMap(elem => elem.residents)
-    .every(elem => elem.age >= ages)
+    .every(elem => elem.age >= ages);
   return datas;
 }
 
 function employeeByName(employeeName) {
   // seu código aqui
-  if(employeeName === undefined) {
+  if (employeeName === undefined) {
     return {};
   }
   const employee = data.employees
     .filter(elem => elem.firstName === employeeName || elem.lastName === employeeName)
-    .reduce((acc, curr) => acc + curr)
+    .reduce((acc, curr) => acc + curr);
   return employee;
 }
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
-  return {...personalInfo, ...associatedWith};
+  return { ...personalInfo, ...associatedWith };
 }
 
 function isManager(id) {
   // seu código aqui
-  return data.employees.some((elem, i) => elem.managers[i] == id);
+  return data.employees.some((elem, i) => elem.managers[i] === id);
 }
 
 function addEmployee(...info) {
   // seu código aqui
-  
 }
 
 function animalCount(species) {
