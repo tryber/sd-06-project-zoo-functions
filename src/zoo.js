@@ -49,19 +49,23 @@ function isManager(id) {
   return data.employees.some(employee => employee.managers.some(itemId => itemId === id));
 }
 
-function addEmployee(id, firstName, lastName, managers) {
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // seu código aqui
   const createdEmployee = {
     id,
     firstName,
     lastName,
     managers,
+    responsibleFor,
   };
   return data.employees.push(createdEmployee);
 }
 
 function animalCount(species) {
   // seu código aqui
+  if (!species) {
+    return data.animals.reduce((acc, curr) => acc + curr.residents.length, 0);
+  }
 }
 
 function entryCalculator(entrants) {
