@@ -10,7 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { animals } = require('./data');
+//  const { animals } = require('./data');
 
 //  Caso receba nenhum parâmetro, necessário retornar um array vazio
 //  Ao receber como parâmetro um único id, retorna os animais com este id
@@ -21,21 +21,16 @@ function animalsByIds(...ids) {
   }
   const animalsWithId1 = data.animals.filter(animal => animal.id === ids[0]);
   const animalsWithId2 = data.animals.filter(animal => animal.id === ids[1]);
-  const animalsWithId =animalsWithId1.concat(animalsWithId2);
+  const animalsWithId = animalsWithId1.concat(animalsWithId2);
   return animalsWithId;
-
-  //for (let i in ids) {
-  //  animalsWithId = data.animals.filter(animal => animal.id === ids[i])
-  //}
-  //return animalsWithId
 }
-
-console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce', 'e8481c1d-42ea-4610-8e11-1752cfc05a46'));
-
+//  Ao passar o nome de uma espécie e uma idade, testa se todos os animais desta espécie possuem a idade mínima especificada
 function animalsOlderThan(animal, age) {
   // seu código aqui
 }
-
+//  Sem parâmetros, retorna um objeto vazio
+//  Quando provido o primeiro nome do funcionário, retorna o objeto do funcionário
+//  Quando provido o último nome do funcionário, retorna o objeto do funcionário
 function employeeByName(employeeName) {
   // seu código aqui
 }
