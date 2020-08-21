@@ -37,7 +37,7 @@ function employeeByName(employeeName) {
   if (!employeeName) {
     return {};
   }
-  const selectedEmployee = employees.find((employee) => {
+  const selectedEmployee = employees.find(function (employee) {
     return employeeName === employee.firstName || employeeName === employee.lastName;
   });
   return selectedEmployee;
