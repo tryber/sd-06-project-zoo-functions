@@ -22,7 +22,7 @@ function animalsByIds(...ids) {
 
 function animalsOlderThan(animal, age) {
   return data.animals.filter(allAnimals => allAnimals.name === animal)
-  .some(pets => pets.residents.every(pet => pet.age > age));
+  .some(pets => pets.residents.every(pet => pet.age >= age));
 }
 
 function employeeByName(employeeName) {
@@ -48,7 +48,7 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  // seu código aqui
+  return data.employees.some(emplo => (emplo.managers[0] === id || emplo.managers[0] === id));
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
