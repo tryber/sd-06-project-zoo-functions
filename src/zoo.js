@@ -14,7 +14,7 @@ const { animals } = require('./data');
 
 function animalsByIds(...ids) {
   // seu código aqui
-  let emptyArray = []
+  const emptyArray = [];
   if (ids.length === 0) return emptyArray;
   if (ids.length === 1) {
     return animals.filter(singleId => singleId.id === ids[0]);
@@ -22,10 +22,12 @@ function animalsByIds(...ids) {
   if (ids.length > 1) {
     return animals.filter(moreThanOneId => ids.includes(moreThanOneId.id));
   }
+  return undefined;
 }
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
+
 }
 
 function employeeByName(employeeName) {
