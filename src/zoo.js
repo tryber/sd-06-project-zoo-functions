@@ -50,16 +50,13 @@ function animalsOlderThan(animal, age) {
   // da idade especificada. Nesse caso, pra ter segurança, faremos implementação considerando...
   // mais de um objeto contendo a espécie. Para cada objeto verificaremos a idade de seus...
   // residentes.
-  const compareAge = (obj) => {
-    let response = true;
-    let i = 0;
-    while (response && i < obj.residents.length){
-      response = obj.residents[i].age >= age ? true : false;  
-      i += 1;
-    }
-    return response;
+  let response = true;
+  let i = 0;
+  while (response && i < objThatInc.residents.length) {
+    response = objThatInc.residents[i].age >= age;
+    i += 1;
   }
-  return compareAge(objThatInc);
+  return response;
 }
 
 function employeeByName(employeeName) {
