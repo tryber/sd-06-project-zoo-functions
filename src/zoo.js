@@ -10,14 +10,14 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { animals, employees, prices, hours } = data;
+
+const { animals, employees, prices } = data;
 
 function animalsByIds(...ids) {
   if (!ids) return [];
   const animalsByIdList = [];
-  for (id of ids) {
-    animalsByIdList.push(animals.find(animal => animal.id === id));
-  }
+  ids.forEach(value =>
+  animalsByIdList.push(animals.find(animal => animal.id === value)));
   return animalsByIdList;
 }
 
@@ -29,18 +29,19 @@ function animalsOlderThan(animal, age) {
 
 function employeeByName(employeeName) {
   if (!employeeName) return {};
-  return employees.find(person => person.firstName === employeeName || person.lastName === employeeName);
+  return employees.find(person => 
+    person.firstName === employeeName || person.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  const { id, firstName, lastName } = personalInfo;
-  const { managers, responsibleFor } = associatedWith;
+  const { id:a, firstName:b, lastName:c } = personalInfo;
+  const { managers:d, responsibleFor:e } = associatedWith;
   return {
-    id: id,
-    firstName: firstName,
-    lastName: lastName,
-    managers: managers,
-    responsibleFor: responsibleFor
+    id: a,
+    firstName: b,
+    lastName: c,
+    managers: d,
+    responsibleFor: e,
   };
 }
 
@@ -61,7 +62,7 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  if(!entrants || Object.keys(entrants).length === 0) return 0;
+  if (!entrants || Object.keys(entrants).length === 0) return 0;
   const { Adult = 0, Senior = 0, Child = 0 } = entrants;
   let price = 0;
   price += Adult * prices.Adult;
