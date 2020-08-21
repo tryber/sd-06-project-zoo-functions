@@ -83,32 +83,33 @@ function animalCount(species) {
     return ({ ...obj, [current.name]: current.residents.length });
   };
 
-  (!species) && data.animals.reduce(countAnimals, {});
-
-  return data.animals.find(animal => animal.name === species).residents.length;
+  if (!species) {
+    return data.animals.reduce(countAnimals, {});
+  }
+  return (data.animals
+    .find(animal => animal.name === species)
+      .residents.length);
 }
 
 function entryCalculator(entrants) {
   // seu código aqui
   const { Adult: priceAdult, Senior: priceSenior, child: priceChild } = data.prices;
   let totalCost = 0;
-  if (!entrants || Object.keys(entrants).length === 0) return totalCost;
-  totalCost = entrants.reduce((sum, element) => {
-    switch (element) {
-      case 'Adult' || 'adult':
-        sum + (priceAdult * entrants[element].value);
+  (!entrants || Object.keys(entrants).length === 0)
+    ? totalCost
+    : totalCost = entrants.reduce((sum, element) => {
+        switch (element) {
+          case 'Adult' || 'adult':
+            return (sum + (priceAdult * entrants[element].value));
+          case 'Senior' || 'senior':
+            return (sum + (priceSenior * entrants[element].value));
+          case 'Child' || 'child':
+            return (sum + (priceChild * entrants[element].value));
+          default:
+            break;
+        }
         return sum;
-      case 'Senior' || 'senior':
-        sum + (priceSenior * entrants[element].value);
-        return sum;
-      case 'Child' || 'child':
-        sum + (priceChild * entrants[element].value);
-        return sum;
-      default:
-        break;
-    }
-    return sum;
-  });
+    });
   return totalCost;
 }
 
