@@ -58,8 +58,6 @@ function isManager(id) {
   if (myEmployee.managers.length < 2) {
     // É um gerente!!!
     return true;
-  } else {
-    return false;
   }
 }
 // console.log(isManager('9e7d4524-363c-416a-8759-8aa7e50c0992'));
