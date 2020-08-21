@@ -24,10 +24,12 @@ function animalsByIds(...ids) {
   return animalsWithId;
 }
 
-
 function animalsOlderThan(animal, age) {
   // seu código aqui
-}
+  const animalsWithName = animals.filter(aniName => aniName.name === animal);
+  const residents = animalsWithName.flatMap(animal => animal.residents);
+  return residents.every(resident => resident.age >= age);
+} 
 
 function employeeByName(employeeName) {
   // seu código aqui
