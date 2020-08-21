@@ -76,8 +76,19 @@ function animalCount(species = 'allOfThem') {
   return animals.filter(animal => animal.name === species)[0].residents.length;
 }
 
-function entryCalculator(entrants) {
-  // seu código aqui
+function verifyPrices(type) {
+  let sum = 0;
+  const { Adult: adultPrice, Senior: seniorPrice, Child: childPrice } = data.prices;
+  (type === 'Adult') ? sum = adultPrice : sum;
+  (type === 'Senior') ? sum = seniorPrice : sum;
+  (type === 'Child') ? sum = childPrice : sum;
+  return sum;
+}
+
+function entryCalculator(entrants = 0) {
+  if (entrants.length === 0 || entrants === 0) return 0;
+  return Object.keys(entrants)
+  .reduce((acc, curr, index) => acc + (Object.values(entrants)[index] * verifyPrices(curr)), 0);
 }
 
 function animalMap(options) {
