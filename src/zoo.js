@@ -10,37 +10,64 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
+const { animals, employees, prices, hours } = data;
 
-function animalsByIds(ids) {
-  // seu código aqui
+function animalsByIds(...ids) {
+  if (!ids) return [];
+  const animalsByIdList = [];
+  for (id of ids) {
+    animalsByIdList.push(animals.find(animal => animal.id === id));
+  }
+  return animalsByIdList;
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  return animals
+  .find(names => names.name === animal).residents
+  .every(ages => ages.age >= age);
 }
 
 function employeeByName(employeeName) {
-  // seu código aqui
+  if (!employeeName) return {};
+  return employees.find(person => person.firstName === employeeName || person.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  const { id, firstName, lastName } = personalInfo;
+  const { managers, responsibleFor } = associatedWith;
+  return {
+    id: id,
+    firstName: firstName,
+    lastName: lastName,
+    managers: managers,
+    responsibleFor: responsibleFor
+  };
 }
 
 function isManager(id) {
-  // seu código aqui
+  return employees.map(value => value.managers).toString().includes(id);
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  const newEmployee = createEmployee({ id, firstName, lastName }, { managers, responsibleFor });
+  employees.push(newEmployee);
 }
 
 function animalCount(species) {
-  // seu código aqui
+  const animalsList = {};
+  animals.forEach(value => (animalsList[value.name] = value.residents.length));
+  if (!species) return animalsList;
+  return animalsList[species];
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  if(!entrants || Object.keys(entrants).length === 0) return 0;
+  const { Adult = 0, Senior = 0, Child = 0 } = entrants;
+  let price = 0;
+  price += Adult * prices.Adult;
+  price += Senior * prices.Senior;
+  price += Child * prices.Child;
+  return price;
 }
 
 function animalMap(options) {
