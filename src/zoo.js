@@ -34,7 +34,7 @@ function employeeByName(employeeName) {
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
-  const newEmployee = Object.assign({}, personalInfo, associatedWith );
+  const newEmployee = Object.assign({}, personalInfo, associatedWith);
   return newEmployee;
 }
 
