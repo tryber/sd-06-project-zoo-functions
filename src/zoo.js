@@ -20,9 +20,7 @@ function animalsByIds(...ids) {
   }
 
   for (let i = 0; i < ids.length; i += 1) {
-    const animalsMap = animals.filter((animal) => {
-      return animal.id === ids[i];
-    });
+    const animalsMap = animals.filter(animal => animal.id === ids[i]);
     result[i] = animalsMap[0];
   }
   return result;
