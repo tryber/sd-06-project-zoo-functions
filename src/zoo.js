@@ -33,11 +33,11 @@ function employeeByName(employeeName) {
   // seu código aqui
   const firstNameEmployee = employees.find(firstN => firstN.firstName === employeeName);
   const lastNameEmployee = employees.find(lastN => lastN.lastName === employeeName);
-  if(firstNameEmployee) {
+  if (firstNameEmployee) {
     return firstNameEmployee;
-  } else if(lastNameEmployee){
+  } else if (lastNameEmployee) {
     return lastNameEmployee;
-  } return {}
+  } return {};
 }
 
 
