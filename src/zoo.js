@@ -15,15 +15,13 @@ function animalsByIds(...ids) {
   // seu código aqui
   const findAnimals = (array, animalId) => {
     array.push(
-      data.animals.find(
-        animalObj => animalObj.id === animalId
-      )
+      data.animals.find(animalObj => animalObj.id === animalId)
     );
     return array;
   };
   return (ids.length)
     ? ids.reduce(findAnimals, [])
-    : [] ;
+    : [];
 }
 
 function animalsOlderThan(animal, age) {
@@ -42,27 +40,30 @@ function employeeByName(employeeName) {
   // seu código aqui
   return (employeeName)
   ? data.employees.find(person => (
-    person.firstName === employeeName || person.lastName === employeeName)
+      person.firstName === employeeName || person.lastName === employeeName)
     )
   : {};
 }
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
-  let employee = { ...personalInfo, ...associatedWith };
+  const employee = { ...personalInfo, ...associatedWith };
   return employee;
 }
 
 function isManager(id) {
   // seu código aqui
-  let idIsManager = false; 
+  let idIsManager = false;
   data.employees
-    .forEach(person => {
-      (person.managers
+    .forEach((person) => {
+      if (person.managers
         .find(managerId => managerId === id)
-        )
-        ? idIsManager = true
-        : idIsManager;
+        ) {
+        idIsManager = true;
+      } else {
+          return idIsManager;
+      }
+      return idIsManager;
     });
     return idIsManager;
 }
@@ -95,8 +96,7 @@ function entryCalculator(entrants) {
   // seu código aqui
   const { Adult: priceAdult, Senior: priceSenior, child: priceChild } = data.prices;
   let totalCost = 0;
-  
-  if (!entrants || Object.keys(entrants).length === 0) { 
+  if (!entrants || Object.keys(entrants).length === 0) {
     return totalCost;
   };
 
@@ -116,7 +116,6 @@ function entryCalculator(entrants) {
     }
     return sum;
   });
-  
   return totalCost;
 }
 
