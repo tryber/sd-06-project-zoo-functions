@@ -19,12 +19,12 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  const creatures = animals.find(creatures => creatures.name === animal).residents;
+  const creatures = animals.find(creature => creature.name === animal).residents;
   const arrayOfAges = [];
 
-  creatures.forEach(element => arrayOfAges.push(element.age))
+  creatures.forEach(element => arrayOfAges.push(element.age));
 
-  return arrayOfAges.every(old => old >= age)
+  return arrayOfAges.every(old => old >= age);
 }
 
 function employeeByName(employeeName) {
