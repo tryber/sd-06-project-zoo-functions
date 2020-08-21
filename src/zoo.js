@@ -23,9 +23,9 @@ function animalsByIds(...ids) { // Agrupando em um array com rest
 // tentar fazer com filter
 console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce'));
 
-
 function animalsOlderThan(animal, age) {
   // seu código aqui
+
 }
 
 function employeeByName(employeeName) {
@@ -34,6 +34,8 @@ function employeeByName(employeeName) {
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
+  const newEmployee = Object.assign({}, personalInfo, associatedWith );
+  return newEmployee;
 }
 
 function isManager(id) {
