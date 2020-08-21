@@ -123,7 +123,7 @@ function addOptedAnimals(sex, sorted, currentAnimal) {
         }
         return true;
       })
-      .map((res) => res.name)
+      .map(res => res.name)
       .sort((a, b) => {
         if (sorted) {
           return a.localeCompare(b);
@@ -147,7 +147,7 @@ function animalMap(options = {}) {
           return locations;
         }
 
-        const objAnimal = {[next.name]: addOptedAnimals(sex, sorted, next)};
+        const objAnimal = { [next.name]: addOptedAnimals(sex, sorted, next) };
 
         locations[next.location].push(objAnimal);
         return locations;
@@ -173,11 +173,11 @@ function schedule(dayName) {
 
         start = { ...start, [day]: phrase };
         return start;
-      } , {})
-  )
+      }, {})
+  );
 
   if (dayName) {
-    return {[dayName]: fullSchedule[dayName]}
+    return { [dayName]: fullSchedule[dayName] };
   }
   return fullSchedule;
 }
@@ -197,8 +197,7 @@ function oldestFromFirstSpecies(id) {
           .animals
           .find(animal => animal.id === animalId)
           .residents
-          .sort((a, b) => b.age - a.age)
-          [0]
+          .sort((a, b) => b.age - a.age)[0]
       )
   );
 }
@@ -207,23 +206,27 @@ function increasePrices(percentage) {
   const priceTiers = Object.keys(data.prices);
 
   return (
-    priceTiers.map(tier => {
-      oldPrice = data.prices[tier];
-      newPrice = (Math.round((oldPrice * ((percentage / 100) + 1.)) * 100) / 100).toFixed(2);
+    priceTiers.map((tier) => {
+      const oldPrice = data.prices[tier];
+      const newPrice = (Math.round((oldPrice * ((percentage / 100) + 1)) * 100) / 100).toFixed(2);
       data.prices[tier] = Number(newPrice);
     })
-  )
+  );
 }
 
 function employeeCoverage(idOrName) {
   const employesAndAnimals = (
     data
       .employees
-      .map(emp => {
-        const animalList = emp.responsibleFor.map(anID => data.animals.find(animal => animal.id === anID).name);
+      .map((emp) => {
+        const animalList = (
+          emp
+            .responsibleFor
+            .map(anID => data.animals.find(animal => animal.id === anID).name)
+        );
         return { ...emp, responsibleFor: animalList };
       })
-  )
+  );
 
   if (idOrName) {
     const searchedEmp = (
