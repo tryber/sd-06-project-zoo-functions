@@ -10,25 +10,26 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { animals } = require('./data');
+const { animals, employees } = require('./data');
+
 
 // ====================================
 // 1- Implemente a função animalsByIds:
 // Caso receba nenhum parâmetro, necessário retornar um array vazio
 // Ao receber como parâmetro um único id, retorna os animais com este id
 // Ao receber mais de um id, retorna os animais que têm um desses ids
-// ==========
+
 const animalsByIds = (...ids) => animals.filter(item => ids.includes(item.id));
 // const id1 = '0938aa23-f153-4937-9f88-4858b24d6bce';
 // const id2 = 'e8481c1d-42ea-4610-8e11-1752cfc05a46';
 // console.log(animalsByIds(id1, id2));
-// ==========
+
 
 // ====================================
 // 2- Implemente a função animalsOlderThan:
 // Ao passar o nome de uma espécie e uma idade, testa se todos os animais desta espécie
 // possuem a idade mínima especificada
-// ==========
+
 const animalsOlderThan = (animal, age) => {
   const allResidents = animals
     .find(item => item.name === animal).residents;
@@ -37,12 +38,25 @@ const animalsOlderThan = (animal, age) => {
 };
 // console.log(animalsOlderThan('otters', 7)); //true
 // console.log(animalsOlderThan('penguins', 10)); //false
-// ==========
 
+
+// ====================================
+// 3- Implemente a função employeeByName:
+// Sem parâmetros, retorna um objeto vazio
+// Quando provido o primeiro nome do funcionário, retorna o objeto do funcionário
+// Quando provido o último nome do funcionário, retorna o objeto do funcionário
 function employeeByName(employeeName) {
-
+  if (employeeName === undefined) {
+    return {};
+  }
+  return employees.find(item => item.firstName === employeeName || item.lastName === employeeName);
 }
+// console.log(employeeByName());
+// console.log(employeeByName('Emery'));
+// console.log(employeeByName('Wishart'));
 
+
+// ====================================
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
 }
