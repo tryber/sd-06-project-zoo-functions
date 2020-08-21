@@ -12,11 +12,11 @@ eslint no-unused-vars: [
 const data = require('./data');
 const { animals } = require('./data');
 
-function animalsByIds(...ids) { //Agrupando em um array com rest
+function animalsByIds(...ids) { // Agrupando em um array com rest
   // seu código aqui
   const consultedIds = [];// aqui já irá fornecer o array vazio
   ids.forEach(idOfAnimal => consultedIds // correndo com forEach o array
-    .push(animals //preenchendo o array com a informação dos animais encontrados com o find
+    .push(animals // preenchendo o array com a informação dos animais encontrados com o find
     .find(animal => animal.id === idOfAnimal)));
   return consultedIds;
 }
