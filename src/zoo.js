@@ -10,7 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { animals } = require('./data');
+const { animals, employees } = require('./data');
 
 function animalsByIds(id1 = '', ...ids) {
   if (id1 === '') {
@@ -28,8 +28,9 @@ function employeeByName(employeeName = '') {
   if (employeeName === '') {
     return {};
   }
-  return animals
-  .find(element => element.firstName === employeeName || element.lastName === employeeName);
+  return employees
+  .find(employee => console.log(employee) ||
+  employee.firstName === employeeName || employee.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
