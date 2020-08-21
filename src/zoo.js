@@ -66,10 +66,11 @@ function animalCount(species) {
   if (!species) {
     return animals.reduce((result, animal) => {
       result[animal.name] = animal.residents.length;
-      return result
+      return result;
     }, {});
   }
-  return animals.filter(animal => animal.name === species).reduce((result, animal) => result + animal.residents.length, 0);
+  return animals.filter(animal => animal.name === species)
+  .reduce((result, animal) => result + animal.residents.length, 0);
 }
 
 function entryCalculator(entrants) {
