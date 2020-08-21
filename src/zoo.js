@@ -152,9 +152,11 @@ function entryCalculator(entrants) {
   };
   const entrantKeys = Object.keys(entrants);
   const entrantValues = Object.values(entrants);
-  const toPay = 0;
-  console.log(prices);
-  console.log(`${entrantKeys} and ${entrantValues}`);
+  const toPay = entrantKeys.reduce((acc, current, index) => {
+    const currentCalc = prices[current] * entrantValues[index];
+    return acc + currentCalc;
+  }, 0);
+  return toPay;
 }
 
 console.log(entryCalculator());
