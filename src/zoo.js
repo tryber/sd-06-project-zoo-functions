@@ -72,9 +72,8 @@ function animalCount(species = 'allOfThem') {
       animalList[`${name}`] = residents.length;
     });
     return animalList;
-  } else {
-    return animals.filter(animal => animal.name === species)[0].residents.length;
   }
+  return animals.filter(animal => animal.name === species)[0].residents.length;
 }
 
 function entryCalculator(entrants) {
