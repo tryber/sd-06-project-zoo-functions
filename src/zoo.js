@@ -37,10 +37,10 @@ function employeeByName(employeeName) {
   if (!employeeName) {
     return {};
   }
-  const selectedEmployee = employees.find(employee => {
-   employeeName === employee.firstName || employeeName === employee.lastName
+  const selectedEmployee = employees.find((employee) => {
+    employeeName === employee.firstName || employeeName === employee.lastName;
   });
-  return selectedEmployee;  
+  return selectedEmployee;
 }
 
 function createEmployee(personalInfo, associatedWith) {
