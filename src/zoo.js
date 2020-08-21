@@ -14,13 +14,15 @@ const { animals } = require('./data');
 
 function animalsByIds(...ids) {
   // seu código aqui
-  if (ids.length === 0) {return ids};
-  let thisAnimals = [];
-  ids.forEach(id => animals.filter(animal => {
-    if (animal.id === id) {
-      thisAnimals.push(animal)
+  if (ids.length === 0) { return ids; }
+  const thisAnimals = [];
+  ids.forEach(id => {
+    animals.filter(animal => {
+      if (animal.id === id) {
+        thisAnimals.push(animal);
+      }
     }
-  }))
+  )});
   return thisAnimals;
 }
 
