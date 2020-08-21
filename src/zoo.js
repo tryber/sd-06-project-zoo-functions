@@ -18,10 +18,9 @@ function animalsByIds(...ids) {
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
-  //Ao passar o nome de uma espécie e uma idade, testa se todos os animais desta espécie possuem a idade mínima especificada
-  const {residents: selectedsAnimal} = data.animals.find(item => item.name === animal);
-  
-  return selectedsAnimal.every(animal => animal.age >= age);
+  const { residents: selectedsAnimal } = data.animals.find(item => item.name === animal);
+
+  return selectedsAnimal.every(item => item.age >= age);
 }
 
 function employeeByName(employeeName) {
@@ -29,7 +28,8 @@ function employeeByName(employeeName) {
   if (!employeeName) {
     return {};
   }
-  return data.employees.find(item => (item.firstName === employeeName || item.lastName === employeeName));
+  return data
+    .employees.find(item => (item.firstName === employeeName || item.lastName === employeeName));
 }
 
 function createEmployee(personalInfo, associatedWith) {
