@@ -37,7 +37,9 @@ function animalsOlderThan(animal, age) {
 function employeeByName(employeeName) {
   // seu código aqui
   return (employeeName)
-    ? data.employees.find(person => person.firstName === employeeName || person.lastName === employeeName)
+    ? data.employees
+      .find(person => person.firstName === employeeName
+        || person.lastName === employeeName)
     : {};
 }
 
@@ -97,18 +99,18 @@ function entryCalculator(entrants) {
   let totalCost = 0;
   (!entrants || Object.keys(entrants).length === 0)
     ? totalCost
-    : totalCost = entrants.reduce((sum, element) => {
-        switch (element) {
-          case 'Adult' || 'adult':
-            return (sum + (priceAdult * entrants[element].value));
-          case 'Senior' || 'senior':
-            return (sum + (priceSenior * entrants[element].value));
-          case 'Child' || 'child':
-            return (sum + (priceChild * entrants[element].value));
-          default:
-            break;
-        }
-        return sum;
+    : entrants.reduce((sum, element) => {
+      switch (element) {
+        case 'Adult' || 'adult':
+          return (sum + (priceAdult * entrants[element].value));
+        case 'Senior' || 'senior':
+          return (sum + (priceSenior * entrants[element].value));
+        case 'Child' || 'child':
+          return (sum + (priceChild * entrants[element].value));
+        default:
+          break;
+      }
+      return sum;
     });
   return totalCost;
 }
