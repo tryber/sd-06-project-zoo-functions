@@ -46,11 +46,35 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  // seu código aqui
+  // fazer
 }
 
-function entryCalculator(entrants) {
-  // seu código aqui
+function entryCalculator(entrants = {}) {
+  if (entrants === {}) {
+    return 0;
+  }
+  let total = 0;
+
+  let adults = 0;
+
+  if (entrants.Adult) {
+    adults = entrants.Adult * 49.99;
+  }
+
+  let seniors = 0;
+  if (entrants.Senior) {
+    seniors = entrants.Senior * 24.99;
+  }
+
+  let children = 0;
+
+  if (entrants.Child) {
+    children = entrants.Child * 20.99;
+  }
+
+  total = adults + seniors + children;
+
+  return total;
 }
 
 function animalMap(options) {
