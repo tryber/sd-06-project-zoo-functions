@@ -25,7 +25,11 @@ function animalsOlderThan(animal, age) {
   );
 }
 
-function employeeByName(employeeName = {}) {
+function employeeByName(employeeName) {
+  if (!employeeName) {
+    return {};
+  }
+
   return (
     data
       .employees
@@ -98,9 +102,45 @@ function entryCalculator(entrants = 0) {
   );
 }
 
-function animalMap(options) {
-  // seu código aqui
+function animalMap(options = {}) {
+  const { includeNames, sorted, sex } = options;
+  // builds structure
+  const possibleLocs = data.animals.reduce((start, next) => {
+    const loc = next.location;
+    const locObj = {};
+    locObj[loc] = [];
+    start = {...start, ...locObj}
+    return start;
+  }, {});
+
+  return (
+    data
+      .animals
+      .reduce((locations, next) => {
+        if (!includeNames) {
+          locations[next.location].push(next.name);
+          return locations
+        } else {
+          const objAnimal = {}
+          const animal = next.name;
+          objAnimal[animal] = (
+            next
+              .residents
+              .filter(res => (sex) ? res.sex === sex : true)
+              .map(res => res.name)
+          )
+          if (sorted) {
+            objAnimal[animal].sort();
+          }
+          locations[next.location].push(objAnimal);
+          return locations
+        }
+    }, possibleLocs)
+  );
+
 }
+
+console.log(animalMap())
 
 function schedule(dayName) {
   // seu código aqui
