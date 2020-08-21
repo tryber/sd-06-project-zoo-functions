@@ -99,10 +99,18 @@ function createEmployee(personal, associated) {
 }
 
 console.log(createEmployee(personalInfo, associatedWith));
+console.log('-----5------');
 
 function isManager(id) {
-  // seu código aqui
+  const managersIds = employees.flatMap(element => element.managers);
+  if (managersIds.includes(id)) {
+    return true;
+  } else {
+    return false;
+  }
 }
+
+console.log(isManager());
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
