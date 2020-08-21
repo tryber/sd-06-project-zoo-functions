@@ -24,7 +24,9 @@ function animalsByIds(...ids) {
   const animalsWithId = animalsWithId1.concat(animalsWithId2);
   return animalsWithId;
 }
-//  Ao passar o nome de uma espécie e uma idade, testa se todos os animais desta espécie possuem a idade mínima especificada
+//  Ao passar o nome de uma espécie e uma idade,
+//  testa se todos os animais desta espécie possuem
+//  a idade mínima especificada
 function animalsOlderThan(animal, age) {
   // seu código aqui
 }
@@ -32,9 +34,12 @@ function animalsOlderThan(animal, age) {
 //  Quando provido o primeiro nome do funcionário, retorna o objeto do funcionário
 //  Quando provido o último nome do funcionário, retorna o objeto do funcionário
 function employeeByName(employeeName) {
+  if (employeeName === undefined) {
+    return {};
+  }
   // seu código aqui
 }
-
+console.log(employeeByName());
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
 }
