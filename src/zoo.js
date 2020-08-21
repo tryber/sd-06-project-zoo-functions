@@ -12,6 +12,8 @@ eslint no-unused-vars: [
 const data = require('./data');
 
 const animals = data.animals;
+const employees = data.employees;
+
 
 function animalsByIds(...ids) {
   if (ids.length === 0) {
@@ -41,7 +43,7 @@ function animalsByIds(...ids) {
 console.log(animalsByIds());
 console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce'));
 console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce', 'e8481c1d-42ea-4610-8e11-1752cfc05a46'));
-console.log('-----------');
+console.log('-----2------');
 
 function animalsOlderThan(animal, age) {
   const testedAnimals = animals.find(element => element.name === animal);
@@ -51,10 +53,24 @@ function animalsOlderThan(animal, age) {
 }
 
 console.log(animalsOlderThan('otters', 7));
+console.log('-----3------');
 
-function employeeByName(employeeName) {
-  // seu código aqui
+function employeeByName(employee) {
+  const employeesFirstName = employees.map(element => element.firstName);
+  const employeesLastName = employees.map(element => element.lastName);
+  if (!employee) {
+    return {};
+  } else if (employeesFirstName.includes(employee)){
+    return employees.find(element => element.firstName === employee);
+  } else if (employeesLastName.includes(employee)){
+    return employees.find(element => element.lastName === employee);
+  }
+  return {};
 }
+
+console.log(employeeByName());
+console.log(employeeByName('Nigel'));
+console.log(employeeByName('Wishart'));
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
