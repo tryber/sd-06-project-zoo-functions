@@ -13,29 +13,31 @@ const data = require('./data');
 const { employees } = require('./data');
 
 function animalsByIds(...ids) {
-  return ids.map(ele => data.animals.find(el => el.id === ele))
+  return ids.map(ele => data.animals.find(el => el.id === ele));
 }
 
 function animalsOlderThan(animal, age) {
-  let registro = data.animals.find(animals => animals.name === animal).residents
+  const registro = data.animals.find(animals => animals.name === animal).residents
   .map(element => element.age)
   .every((ages => ages >= age));
   return registro;
 }
 
 function employeeByName(employeeName) {
-  return (employeeName) ? data.employees.find(el => el.firstName === employeeName || el.lastName === employeeName) : {}
+  return (employeeName) ? data.employees.find(el => {
+    el.firstName === employeeName || el.lastName === employeeName
+  }) : {};
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  let newObj = Object.assign(personalInfo, associatedWith)
-  return newObj
+  const newObj = Object.assign(personalInfo, associatedWith);
+  return newObj;
 }
 
 function isManager(id) {
   return data.employees.map(el => el.managers)
   .reduce((acc, actual) => acc.concat(actual))
-  .some(element => element === id)
+  .some(element => element === id);
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
@@ -44,27 +46,27 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
     firstName,
     lastName,
     managers,
-    responsibleFor
-  }
-  return data.employees 
+    responsibleFor,
+  };
+  return data.employees;
 }
 
 function animalCount(species) {
-  
- /* let info = data.animals.map(el => {
+
+  /*let info = data.animals.map(el => {
     return `${[el.name]}: ${el.residents.length}`
-    
   })
   return (species) ? data.animals.find(el => el.name === species).residents.length : info*/
 }
 
 function entryCalculator(entrants) {
-  /*if (entrants) {
-    let total = (entrants.Adult * data.prices.Adult) + (entrants.Senior * data.prices.Senior) + (entrants.Child * data.prices.Child) 
+  /*  if (entrants) {
+    let total = (entrants.Adult * data.prices.Adult) + (entrants.Senior * data.prices.Senior)
+     + (entrants.Child * data.prices.Child)
     return total
   } else {
     return 0
-  }*/
+  } */
 }
 
 function animalMap(options) {
