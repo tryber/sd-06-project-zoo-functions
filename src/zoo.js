@@ -112,7 +112,7 @@ function isManager(id) {
 console.log(isManager());
 console.log('-----6------');
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   const newEmployee = {
     id,
     firstName,
