@@ -58,6 +58,8 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(id) {
   // seu código aqui
+  const managerIds = employees.flatMap(employee => employee.managers);
+  return managerIds.includes(id);
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
