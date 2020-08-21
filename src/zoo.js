@@ -21,8 +21,8 @@ function animalsByIds(...ids) {
       if (animal.id === id) {
         thisAnimals.push(animal);
       }
-    }
-    );
+      return undefined;
+    });
   });
   return thisAnimals;
 }
