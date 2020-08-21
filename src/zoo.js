@@ -70,8 +70,14 @@ function animalCount(species = 'all') {
   return searchedAnimal.residents.length;
 }
 
-function entryCalculator(entrants) {
-  // seu código aqui
+function entryCalculator(entrants = {}) {
+  if (entrants === {}) return 0;
+  const { Adult: adultPrice, Senior: seniorPrice, Child: childPrice } = data.prices;
+  const { Adult: adults = 0, Child: children = 0, Senior: seniors = 0 } = entrants;
+  const adultEntry = adults * adultPrice;
+  const seniorEntry = seniors * seniorPrice;
+  const childEntry = children * childPrice;
+  return (adultEntry + seniorEntry + childEntry);
 }
 
 function animalMap(options) {
