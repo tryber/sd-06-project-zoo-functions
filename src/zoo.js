@@ -63,11 +63,20 @@ function animalCount(species) {
   }
   return data.animals.find(specie => specie.name === species).residents.length;
 }
-// console.log(animalCount('tigers'));
+// console.log(animalCount());
 
-function entryCalculator(entrants) {
+function entryCalculator(entrants = {}) {
   // seu código aqui
+  let { Adult, Child, Senior } = entrants;
+  const priceAdult = data.prices.Adult;
+  const priceChild = data.prices.Child;
+  const priceSenior = data.prices.Senior;
+  if (!Adult) { Adult = 0 }
+  if (!Child) { Child = 0 }
+  if (!Senior) { Senior = 0 }
+  return Adult * priceAdult + Child * priceChild + Senior * priceSenior;
 }
+// console.log(entryCalculator());
 
 function animalMap(options) {
   // seu código aqui
