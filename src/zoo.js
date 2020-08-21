@@ -30,7 +30,8 @@ function employeeByName(employeeName) {
 console.log(employeeByName('Emery'));
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  // Object.assign copia todas as propriedade de um ou mais objetos para outro objeto de destino
+  return Object.assign(personalInfo, associatedWith);
 }
 
 function isManager(id) {
