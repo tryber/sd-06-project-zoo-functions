@@ -28,11 +28,14 @@ function employeeByName(employeeName) {
   let output = {};
 
   // filter the employee, returns the object within the array or the empty obj
-  data.employees.filter(({ firstName, lastName }) => 
-  (firstName === employeeName || lastName === employeeName))
-  .forEach(object => ((object) ? output = object : output));
+  const employeeObject = data.employees.filter(({ firstName, lastName }) => (firstName === employeeName || lastName === employeeName));
+  if (employeeObject.length !== 0) {
+    output = employeeObject[0];
+  }
   return output;
 }
+
+console.log(employeeByName());
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
