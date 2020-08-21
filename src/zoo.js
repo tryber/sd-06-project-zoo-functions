@@ -74,7 +74,7 @@ function entryCalculator(entrants = {}) {
   if (!Adult) { Adult = 0; }
   if (!Child) { Child = 0; }
   if (!Senior) { Senior = 0; }
-  return (Adult * priceAdult + Child * priceChild + Senior * priceSenior);
+  return ((Adult * priceAdult) + (Child * priceChild) + (Senior * priceSenior));
 }
 // console.log(entryCalculator());
 
