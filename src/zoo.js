@@ -32,12 +32,17 @@ function animalsOlderThan(animal, age) {
   return myAnimal.residents.every(one => one.age >= 7);
 }
 
-// console.log(animalsOlderThan('otters', 7));
-console.log(data);
-
 function employeeByName(employeeName) {
   // seu código aqui
+  if (employeeName === undefined || employeeName === '') {
+    return {};
+  }
+  // supondo que não tem pessoas com o mesmo primeiro nome né
+  const myEmployee = data.employees
+    .find(employee => employee.firstName === employeeName || employee.lastName === employeeName);
+  return myEmployee;
 }
+//console.log(employeeByName('Elser'));
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
