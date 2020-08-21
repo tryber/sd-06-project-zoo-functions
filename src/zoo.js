@@ -18,14 +18,16 @@ function animalsByIds(ids, id) {
     return []
   }
  const result = animals
- .filter((element)  => element.id === ids || element.id === id)
+ .filter((animal)  => animal.id === ids || animal.id === id)
   return result
- 
 }
-console.log(animalsByIds())
+
 function animalsOlderThan(animal, age) {
   // seu código aqui
+  const filteredAnimal = animals.find((nameAnimal) => nameAnimal.name === animal)
+  return filteredAnimal.residents.every((animal) => animal.age > age)
 }
+console.log(animalsOlderThan('otters', 7))
 
 function employeeByName(employeeName) {
   // seu código aqui
