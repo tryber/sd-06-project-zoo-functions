@@ -45,7 +45,7 @@ function createEmployee({ id, firstName, lastName }, { managers, responsibleFor 
 }
 
 function isManager(id) {
-  return employees.some(employee => employee.managers.find(employee => employee === id));
+  return employees.some(employee => employee.managers.find(manager => manager === id));
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
