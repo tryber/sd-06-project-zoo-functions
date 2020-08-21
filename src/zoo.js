@@ -34,11 +34,11 @@ function employeeByName(employeeName = '') {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  return {  }
+  return {};
 }
 
 function isManager(id) {
-  return employees.some(employee => employee.managers.includes(id))
+  return employees.some(employee => employee.managers.includes(id));
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
