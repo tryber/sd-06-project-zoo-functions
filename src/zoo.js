@@ -10,37 +10,61 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
+const { employees } = require('./data');
 
-function animalsByIds(ids) {
-  // seu código aqui
+function animalsByIds(...ids) {
+  return ids.map(ele => data.animals.find(el => el.id === ele))
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  let registro = data.animals.find(animals => animals.name === animal).residents
+  .map(element => element.age)
+  .every((ages => ages >= age));
+  return registro;
 }
 
 function employeeByName(employeeName) {
-  // seu código aqui
+  return (employeeName) ? data.employees.find(el => el.firstName === employeeName || el.lastName === employeeName) : {}
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  let newObj = Object.assign(personalInfo, associatedWith)
+  return newObj
 }
 
 function isManager(id) {
-  // seu código aqui
+  return data.employees.map(el => el.managers)
+  .reduce((acc, actual) => acc.concat(actual))
+  .some(element => element === id)
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  data.employees[employees.length] = {
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor
+  }
+  return data.employees 
 }
 
 function animalCount(species) {
-  // seu código aqui
+  
+ /* let info = data.animals.map(el => {
+    return `${[el.name]}: ${el.residents.length}`
+    
+  })
+  return (species) ? data.animals.find(el => el.name === species).residents.length : info*/
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  /*if (entrants) {
+    let total = (entrants.Adult * data.prices.Adult) + (entrants.Senior * data.prices.Senior) + (entrants.Child * data.prices.Child) 
+    return total
+  } else {
+    return 0
+  }*/
 }
 
 function animalMap(options) {
