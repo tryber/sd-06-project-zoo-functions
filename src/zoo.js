@@ -20,13 +20,16 @@ function animalsByIds(id1 = '', ...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  animals.filter(element => element.name === animal)
-  .every(element => element.residents.age >= age);
+  return animals.find(element => element.name === animal)
+  .residents.every(element2 => element2.age >= age);
 }
 
-
-function employeeByName(employeeName) {
-  // seu código aqui
+function employeeByName(employeeName = '') {
+  if (employeeName === '') {
+    return {};
+  }
+  return animals
+  .find(element => element.firstName === employeeName || element.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
