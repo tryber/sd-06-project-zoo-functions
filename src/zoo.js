@@ -19,7 +19,7 @@ function animalsByIds(...ids) {
     return animals.filter(animalId => animalId.id === ids[0]);
   }
   return animals.filter(animalId => ids.includes(animalId.id));
-};
+}
 
 function animalsOlderThan(animal, age) {
 
