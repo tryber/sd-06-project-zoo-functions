@@ -27,6 +27,13 @@ function animalsByIds(...ids) {
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
+  // Recebe uma espécie e uma idade
+  // Se todos os animais de uma espécie tiverem acima da idade especificada
+  // retorna true
+  // Caso contrário retorna false
+  const species = animals.find(specie => specie.name === animal);
+  const animalsAge = species.residents.every(specie => specie.age >= age);
+  return animalsAge;
 }
 
 function employeeByName(employeeName) {
