@@ -51,18 +51,20 @@ const addEmployee = () => {};
 const animalCount = (species) => {
   const animalCounts = {};
   if (!species) {
-    animals.forEach(({ name, residents }) => {
-      animalCounts[name] = residents.length;
-    });
+    animals.forEach(({ name, residents }) => animalCounts[name] = residents.length);
   } else {
     return animals.find(({ name }) => name === species).residents.length;
   }
-  return animalCount;
+  return animalCounts;
 };
 
-function entryCalculator(entrants) {
-  // seu código aqui
-}
+const entryCalculator = (entrants) => {
+  if (!entrants || entrants === {}) {
+    return 0;
+  }
+  const { Adult = 0, Child = 0, Senior = 0 } = entrants;
+  return `${Adult * 49.99 + Child * 20.99 + Senior * 24.99}`;
+};
 
 function animalMap(options) {
   // seu código aqui
