@@ -15,13 +15,12 @@ const animalsByIds = (...ids) => {
   if (ids.length === 0) {
     return [];
   }
-  return ids.length === 1 ? data.animals.filter(animal => animal.id === ids[0])
-  : ids.map(id => data.animals.find(animal => animal.id === id));
+  return ids.length === 1 ? data.animals.filter(a => a.id === ids[0])
+  : ids.map(id => data.animals.find(a => a.id === id));
 };
 
-function animalsOlderThan(animal, age) {
-  // seu código aqui
-}
+const animalsOlderThan = (animal, age) => data.animals.find(a => a.name === animal)
+  .residents.every(a => a.age > age);
 
 function employeeByName(employeeName) {
   // seu código aqui
