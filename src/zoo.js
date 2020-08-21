@@ -18,12 +18,10 @@ const animalsByIds = (...ids) => ids.map(id => animals.find(a => a.id === id));
 const animalsOlderThan = (animal, age) => animals.find(a => a.name === animal)
   .residents.every(a => a.age > age);
 
-const employeeByName = (employeeName) => {
-  if (!employeeName) {
-    return {};
-  }
-  return employees.find(e => e.firstName === employeeName || e.lastName === employeeName);
-};
+const employeeByName = employeeName => (
+  (employeeName === undefined) ? {} :
+    employees.find(e => e.firstName === employeeName || e.lastName === employeeName)
+);
 
 const createEmployee = (personalInfo, associatedWith) =>
   Object.assign(personalInfo, associatedWith);
@@ -33,9 +31,9 @@ const isManager = id => employees.some(e => e.managers.includes(id));
 const addEmployee = (id, firstName, lastName, managers = [], responsibleFor = []) => data.employees
   .push({ id, firstName, lastName, managers, responsibleFor });
 
-function animalCount(species) {
+const animalCount = (species) => {
   // seu código aqui
-}
+};
 
 function entryCalculator(entrants) {
   // seu código aqui
