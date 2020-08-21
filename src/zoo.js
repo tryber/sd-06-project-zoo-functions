@@ -26,7 +26,7 @@ function employeeByName(employeeName) {
   let result = employees
   .find(person => person.firstName === employeeName || person.lastName === employeeName);
   if (result === undefined) {
-   result = {};
+    result = {};
   }
   return result;
 }
