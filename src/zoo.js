@@ -15,11 +15,11 @@ function animalsByIds(...ids) {
   if (ids === []) {
     return [];
   } else if (ids.length === 1) {
-    return data.animals.filter((animal) => animal.id === ids[0])
+    return data.animals.filter(animal => animal.id === ids[0]);
   }
-  return data.animals.filter((animal) => ids.some(id => (animal.id === id)))
+  return data.animals.filter(animal => ids.some(id => (animal.id === id)));
 }
-console.log(animalsByIds());
+
 function animalsOlderThan(animal, age) {
   // seu código aqui
 }
