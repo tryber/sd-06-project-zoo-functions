@@ -15,6 +15,10 @@ function animalsByIds(ids) {
   if (ids === undefined) {
     return [];
   }
+  else{
+    return 0;
+  }
+
 }
 
 function animalsOlderThan(animal, age) {
