@@ -60,9 +60,9 @@ function employeeByName(employee) {
   const employeesLastName = employees.map(element => element.lastName);
   if (!employee) {
     return {};
-  } else if (employeesFirstName.includes(employee)){
+  } else if (employeesFirstName.includes(employee)) {
     return employees.find(element => element.firstName === employee);
-  } else if (employeesLastName.includes(employee)){
+  } else if (employeesLastName.includes(employee)) {
     return employees.find(element => element.lastName === employee);
   }
   return {};
