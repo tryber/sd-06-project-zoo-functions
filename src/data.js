@@ -319,4 +319,3 @@ module.exports = {
     'Child': 20.99
   }
 };
-const animalsByIds = () => {}
