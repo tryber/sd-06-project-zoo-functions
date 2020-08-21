@@ -46,15 +46,14 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(id) {
   const managersList = employeeList.map(employee => employee.managers);
-  const isAManager = managersList.find(managers => managers.includes(id))
+  const isAManager = managersList.find(managers => managers.includes(id));
   if (isAManager === undefined) return false;
   return true;
 }
 
-console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
-
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  const addedEmployee = { id, firstName, lastName, managers, responsibleFor };
+  employeeList.push(addedEmployee);
 }
 
 function animalCount(species) {
