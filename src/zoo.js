@@ -59,10 +59,10 @@ function isManager(id) {
         ) {
         idIsManager = true;
       } else {
-          return idIsManager;
+        return idIsManager;
       }
-    return idIsManager;
-  });
+      return idIsManager;
+    });
   return idIsManager;
 }
 
@@ -82,11 +82,11 @@ function animalCount(species) {
   // seu código aqui
   // SOURCE: encontrei dicas sensacionais de uso do reduce em https://jrsinclair.com/articles/2019/functional-js-do-more-with-reduce/
   const countAnimals = (obj, current) => {
-    return ({ ...obj, [current.name]: current.residents.length })
+    return ({ ...obj, [current.name]: current.residents.length });
   };
-  if (!species) {
-    return data.animals.reduce(countAnimals, {})
-  };
+
+  (!species) && data.animals.reduce(countAnimals, {});
+
   return data.animals.find(animal => animal.name === species).residents.length;
 }
 
@@ -96,7 +96,7 @@ function entryCalculator(entrants) {
   let totalCost = 0;
   if (!entrants || Object.keys(entrants).length === 0) return totalCost;
   totalCost = entrants.reduce((sum, element) => {
-    switch(element) {
+    switch (element) {
       case 'Adult' || 'adult':
         sum + (priceAdult * entrants[element].value);
         return sum;
