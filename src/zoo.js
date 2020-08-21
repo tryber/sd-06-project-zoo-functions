@@ -10,13 +10,14 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
+const { employees } = require('./data');
 
-// destructuring para verificar os ids, spread para receber valor indefinido de arrays
+// destructuring to verify ids, spread to receive n number of arrays
 function animalsByIds(...ids) {
   return data.animals.filter(({ id }, index) => id === ids[index]);
 }
 
-// filter para os animais, flatMap MAGICO para acessar os residents e every para testar a idade
+// filter for the animals, MAGIC flatMap to access residents and every to test age
 function animalsOlderThan(animal, age) {
   return data.animals
   .filter(item => item.name === animal)
@@ -24,10 +25,13 @@ function animalsOlderThan(animal, age) {
   .every(item => item.age > age);
 }
 
-console.log(animalsOlderThan('otters', 7));
-
 function employeeByName(employeeName) {
-  // seu código aqui
+  let output = {};
+
+  // filter the employee, returns the object within the array
+  data.employees.filter(({ firstName, lastName }) => (firstName === employeeName || lastName === employeeName))
+  .forEach(object => ((object) ? output = object : output));
+  return output;
 }
 
 function createEmployee(personalInfo, associatedWith) {
