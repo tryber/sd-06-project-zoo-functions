@@ -49,16 +49,16 @@ const isManager = id => employees.some(({ managers }) => managers.includes(id));
 const addEmployee = () => {};
 
 const animalCount = (species) => {
-  const animalCount = {};
+  const animalCounts = {};
   if (!species) {
     animals.forEach(({ name, residents }) => {
-      animalCount[name] = residents.length;
+      animalCounts[name] = residents.length;
     });
   } else {
     return animals.find(({ name }) => name === species).residents.length;
   }
   return animalCount;
-}
+};
 
 function entryCalculator(entrants) {
   // seu código aqui
