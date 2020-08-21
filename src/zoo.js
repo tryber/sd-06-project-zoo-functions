@@ -71,10 +71,10 @@ function entryCalculator(entrants = {}) {
   const priceAdult = data.prices.Adult;
   const priceChild = data.prices.Child;
   const priceSenior = data.prices.Senior;
-  if (!Adult) { Adult = 0 }
-  if (!Child) { Child = 0 }
-  if (!Senior) { Senior = 0 }
-  return Adult * priceAdult + Child * priceChild + Senior * priceSenior;
+  if (!Adult) { Adult = 0; }
+  if (!Child) { Child = 0; }
+  if (!Senior) { Senior = 0; }
+  return (Adult * priceAdult + Child * priceChild + Senior * priceSenior);
 }
 // console.log(entryCalculator());
 
