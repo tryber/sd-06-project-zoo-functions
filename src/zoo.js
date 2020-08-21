@@ -14,9 +14,7 @@ const data = require('./data');
 function animalsByIds(...ids) {
   // seu código aqui
   const findAnimals = (array, animalId) => {
-    array.push(
-      data.animals.find(animalObj => animalObj.id === animalId)
-    );
+    array.push(data.animals.find(animalObj => animalObj.id === animalId));
     return array;
   };
   return (ids.length)
@@ -42,7 +40,7 @@ function employeeByName(employeeName) {
   ? data.employees.find(person => (
       person.firstName === employeeName || person.lastName === employeeName)
     )
-  : {};
+    : {};
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -63,9 +61,9 @@ function isManager(id) {
       } else {
           return idIsManager;
       }
-      return idIsManager;
-    });
     return idIsManager;
+  });
+  return idIsManager;
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
@@ -88,7 +86,7 @@ function animalCount(species) {
   };
   if (!species) {
     return data.animals.reduce(countAnimals, {})
-  }
+  };
   return data.animals.find(animal => animal.name === species).residents.length;
 }
 
@@ -96,10 +94,7 @@ function entryCalculator(entrants) {
   // seu código aqui
   const { Adult: priceAdult, Senior: priceSenior, child: priceChild } = data.prices;
   let totalCost = 0;
-  if (!entrants || Object.keys(entrants).length === 0) {
-    return totalCost;
-  };
-
+  if (!entrants || Object.keys(entrants).length === 0) return totalCost;
   totalCost = entrants.reduce((sum, element) => {
     switch(element) {
       case 'Adult' || 'adult':
