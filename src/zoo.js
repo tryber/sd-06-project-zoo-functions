@@ -22,8 +22,6 @@ function animalsOlderThan(animal, age) {
     .every(resident => resident.age > age);
 }
 
-console.log(animalsOlderThan('otters', 7))
-
 function employeeByName(employeeName) {
   // seu código aqui
 }
