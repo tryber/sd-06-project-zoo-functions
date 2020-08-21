@@ -51,13 +51,7 @@ function isManager(id) {
   return data.employees.some(emplo => (emplo.managers[0] === id || emplo.managers[1] === id));
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  if (managers === undefined) {
-    managers = [];
-  }
-  if (responsibleFor === undefined) {
-    responsibleFor = [];
-  }
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   return data.employees.push({
     id,
     firstName,
@@ -80,7 +74,20 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  if (!entrants) {
+    return 0;
+  }
+  let result = 0;
+  if (entrants.Adult) {
+    result = entrants.Adult * data.prices.Adult;
+  }
+  if (entrants.Child) {
+    result += entrants.Child * data.prices.Child;
+  }
+  if (entrants.Senior) {
+    result += entrants.Senior * data.prices.Senior;
+  }
+  return result;
 }
 
 function animalMap(options) {
