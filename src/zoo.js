@@ -10,7 +10,6 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { employees } = require('./data');
 
 // destructuring to verify ids, spread to receive n number of arrays
 function animalsByIds(...ids) {
@@ -28,8 +27,9 @@ function animalsOlderThan(animal, age) {
 function employeeByName(employeeName) {
   let output = {};
 
-  // filter the employee, returns the object within the array
-  data.employees.filter(({ firstName, lastName }) => (firstName === employeeName || lastName === employeeName))
+  // filter the employee, returns the object within the array or the empty obj
+  data.employees.filter(({ firstName, lastName }) => 
+  (firstName === employeeName || lastName === employeeName))
   .forEach(object => ((object) ? output = object : output));
   return output;
 }
