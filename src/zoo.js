@@ -23,10 +23,12 @@ function animalsByIds(...ids) { // Agrupando em um array com rest
   return consultedIds;
 }
 // tentar fazer com filter
-console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce'));
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
+  const species = animals.filter(specieReceveid =>  specieReceveid.name === animal);
+  const ages = species[0].residents.every(ageReceveid => ageReceveid.age >= age);
+  return ages;
 }
 
 function employeeByName(employeeName) {
