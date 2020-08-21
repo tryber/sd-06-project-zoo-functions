@@ -48,11 +48,23 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  return data.employees.some(emplo => (emplo.managers[0] === id || emplo.managers[0] === id));
+  return data.employees.some(emplo => (emplo.managers[0] === id || emplo.managers[1] === id));
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+  if (managers === undefined) {
+    managers = [];
+  }
+  if (responsibleFor === undefined) {
+    responsibleFor = [];
+  }
+  return data.employees.push({
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  });
 }
 
 function animalCount(species) {
