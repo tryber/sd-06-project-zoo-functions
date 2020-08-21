@@ -38,9 +38,9 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  let { id, firstName, lastName } = personalInfo;
-  let { managers, responsibleFor } = associatedWith;
-  const newEmployee = {id, firstName, lastName, managers, responsibleFor};
+  const { id, firstName, lastName } = personalInfo;
+  const { managers, responsibleFor } = associatedWith;
+  const newEmployee = { id, firstName, lastName, managers, responsibleFor };
   return newEmployee;
 }
 
