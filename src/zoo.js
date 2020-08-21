@@ -103,14 +103,14 @@ function entryCalculator(entrants) {
   entrants.reduce((sum, element) => {
     switch(element) {
       case 'Adult' || 'adult':
-        sum + (priceAdult * entrants[element].value);
-        return sum;
+        totalCost += priceAdult * entrants[element].value;
+        return totalCost;
       case 'Senior' || 'senior':
-        sum + (priceSenior * entrants[element].value);
-        return sum;
+        totalCost += priceSenior * entrants[element].value;
+        return totalCost;
       case 'Child' || 'child':
-        sum + (priceChild * entrants[element].value);
-        return sum;
+        totalCost += priceChild * entrants[element].value;
+        return totalCost;
       default:
         break;
     }
