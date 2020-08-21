@@ -21,7 +21,7 @@ function animalsByIds(...ids) {
   // OBS: se mais de um grupo de animais possuir um mesmo id, ambos os grupos serão retornados...
   // nessa implementação.
   const crossAnmArrSearching = (id) => {
-    const vfyAnmGrp = (grpsWithId, anmGrp) => { 
+    const vfyAnmGrp = (grpsWithId, anmGrp) => {
       const comparison = anmGrp.id === id ? anmGrp : grpsWithId;
       return comparison;
     };
