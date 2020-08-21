@@ -57,12 +57,12 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  if (species == undefined) {
-    let obj = {};
+  if (species === undefined) {
+    const obj = {};
     animals.map(element => obj[element.name] = element.residents.length);
-    return obj
+    return obj;
   }
-  return animals.find(element => element.name === species).residents.length;
+  return animals.find(animais => animais.name === species).residents.length;
 }
 
 function entryCalculator(entrants) {
