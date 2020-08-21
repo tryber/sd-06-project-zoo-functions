@@ -36,9 +36,10 @@ function employeeByName(employeeName) {
     .reduce((acc, curr) => acc + curr)
   return employee;
 }
-console.log(employeeByName())
+
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
+  return {...personalInfo, ...associatedWith};
 }
 
 function isManager(id) {
