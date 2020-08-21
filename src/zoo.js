@@ -17,9 +17,10 @@ function animalsByIds(...ids) {
     console.log('teste 0 ids');
     return [];
   } else if (ids.length === 1) {
+    const uniqueId = ids[0];
     console.log('----------');
     console.log(`teste 1 ID: ${ids}`);
-    return animals.filter(element => element.id === ids);
+    return animals.filter(element => element.id === uniqueId);
   } else if (ids.length > 1) {
     console.log('----------');
     console.log(`teste +1 ID: ${ids}`);
@@ -33,11 +34,12 @@ function animalsByIds(...ids) {
     });
     return output;
   }
-  return [];
 }
 
 // console.log(animalsByIds());
-// console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce'));
+console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce'));
+console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce', 'e8481c1d-42ea-4610-8e11-1752cfc05a46'));
+
 // console.log("-----------");
 
 function animalsOlderThan(animal, age) {
