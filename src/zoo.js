@@ -61,16 +61,15 @@ function animalCount(species = '') {
   // seu código aqui
   const allCounts = {};
   if (species !== '') {
-    return animals.filter((pet) => { pet.name === species[0].residents.length; })
+    return animals.find(pet => pet.name === species).residents.length;
   }
-  animals.forEach((pet) => { allCounts[pet.name] = pet.residents.length; })
+  animals.forEach(pet => allCounts[pet.name] = pet.residents.length);
   return allCounts;
 }
 console.log(animalCount());
 
 function entryCalculator(entrants = 0) {
   // seu código aqui
-  //const adultCalc = entrants
 }
 
 function animalMap(options) {
