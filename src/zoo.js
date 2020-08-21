@@ -28,14 +28,15 @@ function animalsOlderThan(animal, age) {
     .every(ageArray => ageArray.age >= age);
 }
 
-function employeeByName(employeeByName) {
-    // Caso receba nenhum parâmetro
-    if (employeeByName === undefined) return {};
-    
-    return employees.find(employee => employee.firstName === employeeByName  || employee.lastName === employeeByName)
-    
+function employeeByName(employeesByName) {
+  // Caso receba nenhum parâmetro
+  if (employeesByName === undefined) return {};
+  // Caso receba o fistName ou LastName
+  return employees
+    .find(employee => (employee.firstName === employeesByName ||
+    employee.lastName === employeesByName));
 }
-console.log(employeeByName('Wishart'))
+
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
 }
