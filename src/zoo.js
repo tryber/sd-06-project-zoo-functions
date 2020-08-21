@@ -64,10 +64,10 @@ function employeeByName(employeeName) {
   // Tendo o input, precisamos percorrer cada objeto do array employees contido em data...
   // e verificar se o firstName ou o lastName do objeto é igual ao input, caso seja, retornamos...
   // o objeto que satisfaz a condição, senão, retornamos um objeto vazio.
-  const {employees} = data;
+  const { employees } = data;
   const name = employeeName;
   const identify = employees.find(obj => obj.firstName === name || obj.lastName === name);
-  return identify ? identify : {};
+  return identify || {};
 }
 
 function createEmployee(personalInfo, associatedWith) {
