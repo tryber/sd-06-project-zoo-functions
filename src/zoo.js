@@ -29,9 +29,7 @@ function employeeByName(employeeName) {
   return (employeeName) ? data.employees
   .find((employee) => {
     const { firstName, lastName } = employee;
-    if (firstName === employeeName || lastName === employeeName) {
-      return employee
-    };
+    return firstName === employeeName || lastName === employeeName;
   }) : {};
 }
 
