@@ -8,13 +8,15 @@ eslint no-unused-vars: [
   }
 ]
 */
-
+// ----------------------------------------------------------------------------------------
+// Convenção de abreviações
+// anm = animal | anms = animals | grp = group | grps = groups | arr= array | vfy = verify
+// rsd = residents | obj = object
+// ----------------------------------------------------------------------------------------
 const data = require('./data');
 
 function animalsByIds(...ids) {
   // seu código aqui
-  // Convenção de abreviações
-  // anm = animal | anms = animals | grp = group | grps = groups | arr= array | vfy = verify
   // crossAnmArraySearchingId: dado um id a função percorre todo o array data.animals...
   // passando por cada grupo de animal e verificando se o grupo possui o id passado, ...
   // se der match esse grupo é retornados dentro do acumulador grpsWithId.
@@ -38,6 +40,26 @@ function animalsByIds(...ids) {
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
+  // Tendo vários objetos em animals, precisamos do objeto que engloba a espécie definida em animal
+  // No caso sabemos que só tem um objeto para cada espécie, então basta achar o primeiro objeto...
+  // que satisfaz a condição de conter a espécie com o find
+  // objThatInc (Object That Includes Species)
+  const objThatInc = data.animals.find(obj => obj.name === animal);
+
+  // Tendo o objeto basta verificarmos quais animas (residents) tem idade acima igual ou acima...
+  // da idade especificada. Nesse caso, pra ter segurança, faremos implementação considerando...
+  // mais de um objeto contendo a espécie. Para cada objeto verificaremos a idade de seus...
+  // residentes.
+  const compareAge = (obj) => {
+    let response = true;
+    let i = 0;
+    while (response && i < obj.residents.length){
+      response = obj.residents[i].age >= age ? true : false;  
+      i += 1;
+    }
+    return response;
+  }
+  return compareAge(objThatInc);
 }
 
 function employeeByName(employeeName) {
