@@ -61,13 +61,13 @@ function isManager(id) {
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   const newEmployee = { id: '', firstName: '', lastName: '', managers: [], responsibleFor: [] };
-  if (id !== '') { newEmployee.id = id };
-  if (firstName !== '') { newEmployee.firstName = firstName } ;
-  if (lastName !== '') { newEmployee.lastName = lastName } ;
+  if (id !== '') { newEmployee.id = id; }
+  if (firstName !== '') { newEmployee.firstName = firstName; }
+  if (lastName !== '') { newEmployee.lastName = lastName; }
 
   // had to check if they were array
-  if (Array.isArray(managers)) { newEmployee.managers = managers } ;
-  if (Array.isArray(responsibleFor)) { newEmployee.responsibleFor = responsibleFor } ;
+  if (Array.isArray(managers)) { newEmployee.managers = managers; }
+  if (Array.isArray(responsibleFor)) { newEmployee.responsibleFor = responsibleFor; }
   data.employees.push(newEmployee);
 }
 
