@@ -110,9 +110,29 @@ function buildStructure() {
         const loc = next.location;
         const locObj = {};
         locObj[loc] = [];
-        start = { ...start, ...locObj }
+        start = { ...start, ...locObj };
         return start;
       }, {})
+  );
+}
+
+function addOptedAnimals(sex, sorted, currentAnimal) {
+  return (
+    currentAnimal
+      .residents
+      .filter(res => {
+        if (sex) {
+          return res.sex === sex;
+        }
+        return true;
+      })
+      .map(res => res.name)
+      .sort((a, b) => {
+        if (sorted) {
+          return a.localeCompare(b);
+        }
+        return 0;
+      })
   )
 }
 
@@ -132,22 +152,16 @@ function animalMap(options = {}) {
 
         const objAnimal = {};
         const animal = next.name;
-        objAnimal[animal] = (
-          next
-            .residents
-            .filter(res => (sex) ? (res.sex === sex) : true)
-            .map(res => res.name)
-        );
-
-        if (sorted) {
-          objAnimal[animal].sort();
-        }
+        objAnimal[animal] = addOptedAnimals(sex, sorted, next);
 
         locations[next.location].push(objAnimal);
         return locations;
       }, possibleLocs)
   );
 }
+
+const options = { includeNames: true, sex: 'female', sorted: true }
+console.log(animalMap(options))
 
 function schedule(dayName) {
   // seu código aqui
