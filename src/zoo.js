@@ -11,13 +11,20 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
+// destructuring para verificar os ids, spread para receber valor indefinido de arrays
 function animalsByIds(...ids) {
   return data.animals.filter(({ id }, index) => id === ids[index]);
 }
 
+// filtrei os animais, flatMap MAGICO aqui para acessar de forma mais facil os residents e testar a idade de TODOS
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  return data.animals
+  .filter(item => item.name === animal)
+  .flatMap((item) => item.residents)
+  .every(item => item.age > age);
 }
+
+console.log(animalsOlderThan('otters', 7));
 
 function employeeByName(employeeName) {
   // seu código aqui
