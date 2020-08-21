@@ -10,6 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
+const { employees } = require('./data');
 
 function animalsByIds(...ids) {
   // seu código aqui
@@ -46,6 +47,7 @@ function createEmployee({ id, firstName, lastName }, { managers, responsibleFor 
 
 function isManager(id) {
   // seu código aqui
+  return data.employees.some(employee => employee.managers.some(itemId => itemId === id));
 }
 
 function addEmployee(id, firstName, lastName, managers) {
