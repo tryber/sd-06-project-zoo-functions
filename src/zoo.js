@@ -24,23 +24,33 @@ function animalsOlderThan(animal, age) {
   .every(item => item.age > age);
 }
 
+
 function employeeByName(employeeName) {
-  let output = {};
+  let employee = {};
 
   // filter the employee, returns the object within the array or the empty obj
+  // returns only the first, gotta check this later, too specific
   const employeeObject = data.employees
   .filter(({ firstName, lastName }) => (firstName === employeeName || lastName === employeeName));
   if (employeeObject.length !== 0) {
-    output = employeeObject[0];
+    employee = employeeObject[0];
   }
-  return output;
+  return employee;
 }
-
-console.log(employeeByName());
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
-}
+  const newEmployee = {};
+  const { id, firstName, lastName } = personalInfo;
+  const { managers, responsibleFor } = associatedWith;
+  newEmployee.id = id;
+  newEmployee.firstName = firstName;
+  newEmployee.lastName = lastName;
+  newEmployee.managers = managers;
+  newEmployee.responsibleFor = responsibleFor;
+
+  // data.employees.push(newEmployee);
+  return newEmployee;
+};
 
 function isManager(id) {
   // seu código aqui
