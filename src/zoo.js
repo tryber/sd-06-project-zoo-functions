@@ -208,7 +208,7 @@ function increasePrices(percentage) {
     const oldPrice = data.prices[tier];
     const newPrice = (Math.round((oldPrice * ((percentage / 100) + 1)) * 100) / 100).toFixed(2);
     data.prices[tier] = Number(newPrice);
-  })
+  });
 }
 
 function addAnimalsNamesToEmployeeData() {
@@ -223,7 +223,7 @@ function addAnimalsNamesToEmployeeData() {
       );
       return { ...emp, responsibleFor: animalList };
     })
-  )
+  );
 }
 
 function employeeCoverage(idOrName) {
