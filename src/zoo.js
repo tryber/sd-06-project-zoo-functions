@@ -48,7 +48,7 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  // seu código aquis
 }
 
 function oldestFromFirstSpecies(id) {
