@@ -14,30 +14,30 @@ const { animals, employees } = require('./data');
 
 function animalsByIds(...ids) {
   // seu código aqui
- return animals.filter(({ id }, i) => id === ids[i]);
+  return animals.filter(({ id }, i) => id === ids[i]);
 }
 
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
-   return animals.filter((entry) => entry.name === animal).some((pet) => pet.residents.every((pet) => pet.age >= age));
+  return animals.filter(entry => entry.name === animal).some(pet => (
+    pet.residents.every(pet2 => pet2.age >= age)
+    ));
 }
 
 function employeeByName(employeeName) {
   // seu código aqui
   if (employeeName == undefined) return {};
-  return employees.find((name) => (name.firstName === employeeName || name.lastName === employeeName));
+  return employees.find(name => (name.firstName === employeeName || name.lastName === employeeName));
 }
-
-console.log(employeeByName());
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
+
 }
 
 function isManager(id) {
   // seu código aqui
-  const findID = employees.find((employe) => employe.id === id);
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
