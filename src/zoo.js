@@ -32,7 +32,7 @@ function animalsByIds(...ids) {
         }
       });
     });
-    return output;
+    return [];
   }
 }
 
