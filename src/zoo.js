@@ -14,20 +14,19 @@ const { animals } = require('./data');
 
 function animalsByIds(ids, id) {
   // seu código aqui..
-  if (ids == [''] ) {
-    return []
+  if (ids === ['']) {
+    return [];
   }
- const result = animals
- .filter((animal)  => animal.id === ids || animal.id === id)
-  return result
+  const result = animals.filter((animal) => animal.id === ids || animal.id === id);
+  return result;
 }
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
-  const filteredAnimal = animals.find((nameAnimal) => nameAnimal.name === animal)
-  return filteredAnimal.residents.every((animal) => animal.age > age)
+  const filteredAnimal = animals.find(
+    (nameAnimal) => nameAnimal.name === animal);
+  return filteredAnimal.residents.every((animal) => animal.age > age);
 }
-console.log(animalsOlderThan('otters', 7))
 
 function employeeByName(employeeName) {
   // seu código aqui
