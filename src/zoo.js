@@ -14,6 +14,10 @@ const { animals } = require('./data');
 function animalsByIds(...ids) {
   // Caso receba nenhum parâmetro
   if (ids.length === 0) return [];
+  // Caso receba um ou dois pârametros
+  // O método includes analisa dentro de animal.id
+  // tem os valores do ids e o filter faz retornar eles.
+  return animals.filter(animal => ids.includes(animal.id));
 }
 
 
