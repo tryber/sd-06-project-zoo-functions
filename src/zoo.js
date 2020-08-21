@@ -22,11 +22,12 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-
+  const nameAnimals = animals.find(nameAnimal => nameAnimal.name === animal);
+  return nameAnimals.residents.every(animal => animal.age > age);
 }
 
 function employeeByName(employeeName) {
-  // seu código aqui
+
 }
 
 function createEmployee(personalInfo, associatedWith) {
