@@ -105,9 +105,8 @@ function isManager(id) {
   const managersIds = employees.flatMap(element => element.managers);
   if (managersIds.includes(id)) {
     return true;
-  } else {
+  } 
     return false;
-  }
 }
 
 console.log(isManager());
