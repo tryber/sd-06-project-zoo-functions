@@ -61,6 +61,19 @@ function addEmployee(...info) {
 
 function animalCount(species) {
   // seu código aqui
+  if (!species) {
+    const obj = {};
+    for (let i = 0; i < animals.length; i += 1) {
+      const { name, residents } = animals[i];
+      obj[name] = residents.length;
+    }
+    return obj;
+  }
+  const animal = animals
+    .filter(elem => elem.name === species)
+    .map(elem => elem.residents.length);
+  const [first] = animal;
+  return first;
 }
 
 function entryCalculator(entrants) {
