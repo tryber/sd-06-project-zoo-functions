@@ -14,14 +14,16 @@ const data = require('./data');
 function animalsByIds(...ids) {
   // seu código aqui
   //Convenção de abreviações
-  //rc = received | anm = animal | anms = animals | grp = group | grps = groups | arr= array
+  //rec = received | anm = animal | anms = animals | grp = group | grps = groups | arr= array
+  //vrfy = verify
   // crossAnmArraySearchingId: dado um id a função percorre todo o array data.animals...
   // passando por cada grupo de animal e verificando se o grupo possui o id passado, ...
   // se der match esse grupo é retornados dentro do acumulador grpsWithId.
   // OBS: se mais de um grupo de animais possuir um mesmo id, ambos os grupos serão retornados...
   // nessa implementação.
-  const crossAnmArrSearching = rcId => {
-    return data.animals.reduce((grpsWithId, anmGrp) => (anmGrp.id === rcId) ? anmGrp : grpsWithId);
+  const crossAnmArrSearching = (recId) => {
+    const vrfyAnmGrp = (grpsWithId, anmGrp) => {return anmGrp.id === recId ? anmGrp : grpsWithId};
+    return data.animals.reduce(vrfyAnmGrp);
   };
   
   // Se soubessemos que só tem um id para procuramos, a função acima bastaria para fazer isso...
