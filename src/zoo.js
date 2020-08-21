@@ -131,8 +131,8 @@ function animalCount(species = 0) {
     const output = {};
     animals.forEach((animal) => {
       const animalName = animal.name;
-      const animalCount = animal.residents.length;
-      output[animalName] = animalCount;
+      const animalCounter = animal.residents.length;
+      output[animalName] = animalCounter;
     });
     return output;
   }
@@ -146,9 +146,20 @@ console.log(animalCount('lions'));
 console.log('-----8------');
 
 
-function entryCalculator(entrants = 0) {
-  // seu código aqui
+function entryCalculator(entrants) {
+  if (!entrants || Object.keys(entrants).length === 0) {
+    return 0;
+  };
+  const entrantKeys = Object.keys(entrants);
+  const entrantValues = Object.values(entrants);
+  const toPay = 0;
+  console.log(prices);
+  console.log(`${entrantKeys} and ${entrantValues}`);
 }
+
+console.log(entryCalculator());
+console.log(entryCalculator({}));
+console.log(entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 }));
 
 function animalMap(options) {
   // seu código aqui
