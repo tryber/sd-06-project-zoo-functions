@@ -22,7 +22,7 @@ function animalsOlderThan(animal, age) {
       .find(anim => anim.name === animal)
       .residents
       .every(resident => resident.age >= age)
-  )
+  );
 }
 
 function employeeByName(employeeName = {}) {
@@ -30,7 +30,7 @@ function employeeByName(employeeName = {}) {
     data
       .employees
       .find(emp => emp.firstName === employeeName || emp.lastName === employeeName)
-  )
+  );
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -43,7 +43,7 @@ function createEmployee(personalInfo, associatedWith) {
     lastName,
     managers,
     responsibleFor,
-  }
+  };
 }
 
 function isManager(id) {
@@ -51,7 +51,7 @@ function isManager(id) {
     data
       .employees
       .some(employee => employee.managers.includes(id))
-  )
+  );
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
@@ -61,7 +61,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
     lastName,
     managers,
     responsibleFor,
-  }
+  };
 
   data.employees = [...data.employees, newEmployee];
 }
@@ -74,7 +74,7 @@ function animalCount(species) {
         .find(animal => animal.name === species)
         .residents
         .length
-    )
+    );
   }
 
   return (
@@ -83,10 +83,10 @@ function animalCount(species) {
       .reduce((start, next) => {
         const specie = next.name;
         const count = next.residents.length;
-        start[specie] = count
-        return start
+        start[specie] = count;
+        return start;
       }, {})
-  )
+  );
 }
 
 function entryCalculator(entrants = 0) {
@@ -94,8 +94,8 @@ function entryCalculator(entrants = 0) {
 
   return (
     possible
-      .reduce((start, next) => start + data.prices[next] * (entrants[next] || 0), 0)
-  )
+      .reduce((start, next) => start + (data.prices[next] * (entrants[next] || 0)), 0)
+  );
 }
 
 function animalMap(options) {
