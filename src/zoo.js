@@ -88,14 +88,14 @@ function entryCalculator(entrants) {
     return 0;
   }
   let totalPrice = 0;
-  if (entrants['Adult']) {
-    totalPrice += entrants['Adult'] * data.prices.Adult;
+  if (entrants.Adult) {
+    totalPrice += entrants.Adult * data.prices.Adult;
   }
-  if (entrants['Senior']) {
-    totalPrice += entrants['Senior'] * data.prices.Senior;
+  if (entrants.Senior) {
+    totalPrice += entrants.Senior * data.prices.Senior;
   }
-  if (entrants['Child']) {
-    totalPrice += entrants['Child'] * data.prices.Child;
+  if (entrants.Child) {
+    totalPrice += entrants.Child * data.prices.Child;
   }
   return totalPrice;
 }
