@@ -32,7 +32,11 @@ const addEmployee = (id, firstName, lastName, managers = [], responsibleFor = []
   .push({ id, firstName, lastName, managers, responsibleFor });
 
 const animalCount = (species) => {
-  // seu código aqui
+  if (!species) {
+    return animals.map(a => ({ [a.name]: a.residents.length })).reduce((acc, i) =>
+      Object.assign(acc, i));
+  }
+  return animals.find(a => a.name === species).residents.length;
 };
 
 function entryCalculator(entrants) {
