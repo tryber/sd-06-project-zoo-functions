@@ -52,8 +52,11 @@ function createEmployee(personalInfo, associatedWith) {
   return newEmployee;
 }
 
+// get the manager ids and filters it
 function isManager(id) {
-  // seu código aqui
+  return data.employees
+  .flatMap(employee => employee.managers)
+  .some(item => item === id);
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
