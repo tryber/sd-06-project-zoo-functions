@@ -44,15 +44,14 @@ function isManager(id) {
   return data.employees.some(idCheck => idCheck.managers.some(idManager => idManager === id));
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   const newEmployee = {};
   newEmployee.id = id;
   newEmployee.firstName = firstName;
   newEmployee.lastName = lastName;
   newEmployee.managers = managers;
   newEmployee.responsibleFor = responsibleFor;
-  Object.assign(data.employees, newEmployee);
-  return data.employees;
+  return data.employees.push(newEmployee);
 }
 
 function animalCount(species) {
