@@ -12,9 +12,7 @@ eslint no-unused-vars: [
 const data = require('./data');
 
 function animalsByIds(...ids) {
-
-  // Ainda pegando a manha, refatorei varias vezes para chegar nessa linha.. forEach, map, reduce, for com for enfim nem acreditei quando isso deu certo
-  return data.animals.filter(({id}, index) => id === ids[index]);
+  return data.animals.filter(({ id }, index) => id === ids[index]);
 }
 
 function animalsOlderThan(animal, age) {
