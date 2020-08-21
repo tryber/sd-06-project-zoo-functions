@@ -26,4 +26,3 @@ const carol = data[1];
 const result = Object.assign({ bob }, { carol });
 
 console.log(result);
-
