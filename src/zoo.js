@@ -13,6 +13,7 @@ const data = require('./data');
 
 const animals = data.animals;
 const employees = data.employees;
+const prices = data.prices;
 
 
 function animalsByIds(...ids) {
@@ -126,9 +127,9 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 console.log('-----7------');
 
 function animalCount(species = 0) {
-  if (species === 0){
+  if (species === 0) {
     const output = {};
-    animals.forEach(animal => {
+    animals.forEach((animal) => {
       const animalName = animal.name;
       const animalCount = animal.residents.length;
       output[animalName] = animalCount;
@@ -142,8 +143,10 @@ function animalCount(species = 0) {
 
 console.log(animalCount());
 console.log(animalCount('lions'));
+console.log('-----8------');
 
-function entryCalculator(entrants) {
+
+function entryCalculator(entrants = 0) {
   // seu código aqui
 }
 
