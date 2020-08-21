@@ -100,20 +100,21 @@ function entryCalculator(entrants) {
     return totalCost;
   };
 
-  entrants.reduce((sum, element) => {
+  totalCost = entrants.reduce((sum, element) => {
     switch(element) {
       case 'Adult' || 'adult':
-        totalCost += priceAdult * entrants[element].value;
-        return totalCost;
+        sum + (priceAdult * entrants[element].value);
+        return sum;
       case 'Senior' || 'senior':
-        totalCost += priceSenior * entrants[element].value;
-        return totalCost;
+        sum + (priceSenior * entrants[element].value);
+        return sum;
       case 'Child' || 'child':
-        totalCost += priceChild * entrants[element].value;
-        return totalCost;
+        sum + (priceChild * entrants[element].value);
+        return sum;
       default:
         break;
     }
+    return sum;
   });
   
   return totalCost;
