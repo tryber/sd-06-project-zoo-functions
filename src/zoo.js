@@ -17,16 +17,17 @@ function animalsByIds(ids, id) {
   if (ids === ['']) {
     return [];
   }
-  const result = animals.filter((animal) => animal.id === ids || animal.id === id);
+  const result = animals
+  .filter(filteredAnimal => filteredAnimal.id === ids || filteredAnimal.id === id);
   return result;
 }
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
-  const filteredAnimal = animals.find(
-    (nameAnimal) => nameAnimal.name === animal);
-  return filteredAnimal.residents.every((animal) => animal.age > age);
+  const filteredAnimal = animals.find(nameAnimal => nameAnimal.name === animal);
+  return filteredAnimal.residents.every(olderAnimal => olderAnimal.age > age);
 }
+
 
 function employeeByName(employeeName) {
   // seu código aqui
