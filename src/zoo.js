@@ -18,6 +18,7 @@ function animalsByIds(...ids) {
         return true;
       }
     }
+    return false;
   });
 }
 
