@@ -33,8 +33,15 @@ function employeeByName(employeeName) {
   return empl;
 }
 
-function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+function createEmployee({id, firstName, lastName}, {managers, responsibleFor}) {
+  const total = {
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor
+  }
+  return total
 }
 
 function isManager(id) {
