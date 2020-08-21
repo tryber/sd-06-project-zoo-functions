@@ -20,12 +20,16 @@ function animalsOlderThan(animal, age) {
   // seu código aqui
   //Ao passar o nome de uma espécie e uma idade, testa se todos os animais desta espécie possuem a idade mínima especificada
   const {residents: selectedsAnimal} = data.animals.find(item => item.name === animal);
-  //console.log(selectedsAnimal);
+  
   return selectedsAnimal.every(animal => animal.age >= age);
 }
-animalsOlderThan('lions', 6);
+
 function employeeByName(employeeName) {
   // seu código aqui
+  if (!employeeName) {
+    return {};
+  }
+  return data.employees.find(item => (item.firstName === employeeName || item.lastName === employeeName));
 }
 
 function createEmployee(personalInfo, associatedWith) {
