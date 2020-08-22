@@ -60,8 +60,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function animalCount(species) {
   if (species === undefined) {
     const obj = {};
-    animals.map(element => 
-      obj[element.name] = 
+    animals.map(element => obj[element.name] = 
         element.residents.length);
     return obj;
   }
