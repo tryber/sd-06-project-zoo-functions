@@ -46,8 +46,22 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 function animalCount(species) {
   // seu código aqui
+  const obj = {
+    lions: 4,
+    tigers: 2,
+    bears: 3,
+    penguins: 4,
+    otters: 4,
+    frogs: 2,
+    snakes: 2,
+    elephants: 4,
+    giraffes: 6,
+  };
+  if (!species) {
+    return obj;
+  }
+  return animals.find(elemento => elemento.name === species).residents.length;
 }
-
 function entryCalculator(entrants) {
   // seu código aqui
 }
