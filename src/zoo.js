@@ -13,7 +13,7 @@ const data = require('./data');
 const { animals, employees, prices } = require('./data');
 
 function animalsByIds(...ids) {
-  if (typeof ids) {
+  if (ids) {
     return data.animals
       .filter(element => element.id === ids[0])
       .concat(data.animals.filter(element => element.id === ids[1]));
