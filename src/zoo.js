@@ -79,9 +79,9 @@ function animalMap(options) {
   locationOption.forEach(index => initialList[index] = animals.filter(value =>
     value.location === index).map(animal => animal.name));
   if (!options) return initialList;
-  locationOption.forEach(index => {
+  locationOption.forEach((index) => {
     locationList[index] = animals
-    .filter(value => value.location === index).map(animal => {
+    .filter((value) => value.location === index).map(animal => {
       const newObject = {};
       newObject[animal.name] = animal.residents;
       if (options.sex === 'female' || options.sex === 'male') {
