@@ -171,8 +171,7 @@ function animalMap(options) {
     const { includeNames = false, sorted = false, sex = ''} = options;
     if (includeNames === true) {
       locations.forEach(region => {output[region] = animals
-          .filter(animal => animal.location === region)
-          .map(animalObject => {
+          .filter(animal => animal.location === region).map(animalObject => {
             const animalsBySpecie = {};
             let resAnimal = animalObject.residents;
             if (sex !== "") resAnimal = resAnimal.filter(resident => resident.sex === sex);
@@ -181,7 +180,8 @@ function animalMap(options) {
             return animalsBySpecie;
           });
       });
-    } else {
+    };
+    if (includeNames === false) {
       locations.forEach(region => {
       output[region] = animals.filter(animal => animal.location === region).map(mA => mA.name)});
     }
