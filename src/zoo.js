@@ -44,16 +44,11 @@ function isManager(id) {
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   return data.employees.push({
-    id: id,
-    firstName: firstName,
-    lastName: lastName,
-    managers: managers,
-    responsibleFor: responsibleFor
+    id, firstName, lastName, managers, responsibleFor,
   });
 }
 
 function animalCount(species) {
-  // seu código aqui
 }
 
 function entryCalculator(entrants) {
