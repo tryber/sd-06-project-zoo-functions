@@ -68,7 +68,7 @@ function animalCount(species = animals.map(animal => animal.name)) {
   }
   const animalsCounted = {};
   animals.filter(animal => species.some(eachAnimalName => eachAnimalName === animal.name))
-  .map(animalName => animalsCounted[animalName.name] = animalName.residents.length);
+  .map(function(animalName) {return animalsCounted[animalName.name] = animalName.residents.length});
   return animalsCounted;
 }
 
