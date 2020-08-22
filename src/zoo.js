@@ -263,14 +263,6 @@ function increasePrices(percentage) {
   return data.prices;
 }
 
-// function increasePrices(percentage) {
-//   const increase = (percentage / 100) + 1;
-//   data.prices.Adult = (Math.round(data.prices.Adult * increase * 100) / 100);
-//   data.prices.Senior = (Math.round(data.prices.Senior * increase * 100) / 100);
-//   data.prices.Child = (Math.round(data.prices.Child * increase * 100) / 100);
-//   return data.prices;
-// }
-
 console.log('-----13------');
 
 function employeeCoverage(idOrName) {
