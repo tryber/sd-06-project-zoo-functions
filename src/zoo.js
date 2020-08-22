@@ -265,17 +265,10 @@ function increasePrices(percentage) {
 
 console.log('-----13------');
 
-function employeeCoverage(idOrName) {
-  if (idOrName === undefined) {
-    return employeeCoverageEmpty();
-  }
-  return 'teste';
-}
-
-function employeeCoverageEmpty (){
+function employeeCoverageEmpty() {
   const employeesNames = employees.map(employee => employee.firstName);
   const employeesLastNames = employees.map(employee => employee.lastName);
-    const employeesFullNames = [];
+  const employeesFullNames = [];
   employeesNames.forEach((employee, index) => {
     employeesFullNames[index] = `${employeesNames[index]} ${employeesLastNames[index]}`;
   })
@@ -301,6 +294,13 @@ function employeeCoverageEmpty (){
     output[employee] = employeeResponsability[index];
   });
   return output;
+}
+
+function employeeCoverage(idOrName) {
+  if (idOrName === undefined) {
+    return employeeCoverageEmpty();
+  }
+  return 'teste';
 }
 
 console.log(employeeCoverage());
