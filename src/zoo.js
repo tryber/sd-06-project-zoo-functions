@@ -221,14 +221,14 @@ function increasePrices(percentage) {
 
 console.log('-----13------');
 
-function employeeCoverageEmpty() {
-  const employeesNames = employees.map(employee => employee.firstName);
-  const employeesLastNames = employees.map(employee => employee.lastName);
-  const employeesFullNames = [];
-  employeesNames.forEach((employee, index) => {
-    employeesFullNames[index] = `${employeesNames[index]} ${employeesLastNames[index]}`;
-  });
+const employeesNames = employees.map(employee => employee.firstName);
+const employeesLastNames = employees.map(employee => employee.lastName);
+const employeesFullNames = [];
+employeesNames.forEach((employee, index) => {
+  employeesFullNames[index] = `${employeesNames[index]} ${employeesLastNames[index]}`;
+});
 
+function employeeCoverageEmpty() {
   const employeeResponsability = employees.map(employee => employee.responsibleFor);
 
   employeeResponsability.forEach((responsibilities, index) => {
@@ -246,13 +246,10 @@ function employeeCoverageEmpty() {
 }
 
 function employeeCoverage(idOrName) {
-  const employeesNames = employees.map(employee => employee.firstName);
-  const employeesLastNames = employees.map(employee => employee.lastName);
-  const employeesFullNames = [];
-
   if (idOrName === undefined) {
     return employeeCoverageEmpty();
   }
+
   return 'teste';
 }
 
