@@ -159,9 +159,8 @@ function structurer(paramFn, sex) {
   structuredResult.SW = paramFn('SW', sex);
   return structuredResult;
 }
-
+let result = {};
 function resultSelector(includeNames, sorted, sex) {
-  let result = {};
   if (includeNames && sorted && sex === 'any') {
     result = structurer(createSortedAnimalResidentsList, sex);
   } else if (includeNames && sex !== 'any' && sorted) {
