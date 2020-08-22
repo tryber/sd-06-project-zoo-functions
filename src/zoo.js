@@ -205,7 +205,7 @@ console.log(animalMap({ includeNames: true, sex: 'female', sorted: true }));
 console.log('---sex = female---');
 console.log(animalMap({ sex: 'female', sorted: true }));
 
-console.log('-----10------')
+console.log('-----10------');
 
 function schedule(dayName) {
   let output = {};
@@ -213,13 +213,13 @@ function schedule(dayName) {
   const calendarValues = Object.values(calendar);
   if (calendarValues[0].close > 12) {
     calendarValues.forEach((key, index) => {
-      calendarValues[index].close = calendarValues[index].close - 12;
+      calendarValues[index].close -= - 12;
     });
   }
   calendarKeys.forEach((key, index) => {
-    output[key] = `Open from ${calendarValues[index].open}am until ${calendarValues[index].close}pm`
+    output[key] = `Open from ${calendarValues[index].open}am until ${calendarValues[index].close}pm`;
     if (calendarValues[index].open <= 0 && calendarValues[index].open <= 0) {
-      output[key] = 'CLOSED'
+      output[key] = 'CLOSED';
     }
   });
   if (dayName !== undefined) {
