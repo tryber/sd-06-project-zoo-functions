@@ -92,16 +92,17 @@ function animalMap(options) {
 
   const locals = ['NE', 'NW', 'SE', 'SW'];
   const result = {};
+  const {includeNames, sorted, sex} = options || {};
 
   locals.forEach((local) => {
     result[local] = [];
     searchByLocation(local).forEach((specie) => {
-      if (!options || !options.includeNames) {
+      if (!includeNames) {
         result[local].push(specie);
-      } else if (options.includeNames === true && options.sorted === true) {
-        result[local].push({ [specie]: search(options.sex, specie).sort() });
-      } else if (options.includeNames === true) {
-        result[local].push({ [specie]: search(options.sex, specie) });
+      } else if (sorted === true) {
+        result[local].push({ [specie]: search(sex, specie).sort() });
+      } else {
+        result[local].push({ [specie]: search(sex, specie) });
       }
     });
   });
