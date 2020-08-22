@@ -97,7 +97,7 @@ function createAnimalListByLocation(location) {
   .flatMap(filteredAnimal => filteredAnimal.name);
 }
 
-function createAnimalResidentsList (location) {
+function createAnimalResidentsList(location) {
   return animals
   .filter(animal => animal.location === location)
   .map((animal) => {
@@ -153,17 +153,15 @@ function parameterChecker(options) {
 
 function structurer(paramFn, sex) {
   const structuredResult = {};
-  structuredResult['NE'] = paramFn('NE', sex);
-  structuredResult['NW'] = paramFn('NW', sex);
-  structuredResult['SE'] = paramFn('SE', sex);
-  structuredResult['SW'] = paramFn('SW', sex);
+  structuredResult.NE = paramFn('NE', sex);
+  structuredResult.NW = paramFn('NW', sex);
+  structuredResult.SE = paramFn('SE', sex);
+  structuredResult.SW = paramFn('SW', sex);
   return structuredResult;
 }
 
-function animalMap(options) {
-  const { includeNames, sorted, sex } = parameterChecker(options);
+function resultSelector(includeNames, sorted, sex) {
   let result = {};
-
   if (includeNames && sorted && sex === 'any') {
     result = structurer(createSortedAnimalResidentsList, sex);
   } else if (includeNames && sex !== 'any' && sorted) {
@@ -176,6 +174,11 @@ function animalMap(options) {
     result = structurer(createAnimalListByLocation);
   }
   return result;
+}
+
+function animalMap(options) {
+  const { includeNames, sorted, sex } = parameterChecker(options);
+  return resultSelector(includeNames, sorted, sex);
 }
 
 function schedule(dayName) {
