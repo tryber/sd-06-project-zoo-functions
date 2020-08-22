@@ -47,8 +47,6 @@ function employeeByName(employeeName) {
   }
   return lastNameEmployee;
 }
-employeeByName('Emery');
-
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
@@ -57,10 +55,13 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(id) {
   // seu código aqui
+  // const nameManager = employees.find
+
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // seu código aqui
+  employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
 function animalCount(species) {
