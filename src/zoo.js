@@ -11,6 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 const { animals } = require('./data');
+const { employees } = require('./data');
 
 function animalsByIds(...ids) {
   const listOfAnimals = animals.filter(animal => ids.filter(id => id === animal.id).length > 0);
@@ -27,13 +28,22 @@ function employeeByName(employeeName) {
   // seu código aqui
 }
 
-function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+function createEmployee(id, firtsname, lastname, managers = [], responsibleFor = []) {
+  const newEmployee1 = {//concat??
+    id,
+    firtsname,
+    lastname,
+    managers,
+    responsibleFor,
+  };
+  employees.push(newEmployee);
 }
 
 function isManager(id) {
-  // seu código aqui
+  const teste = employees.filter(empregado => empregado.managers.some(manager => manager === id));
+  return (teste > 0);  
 }
+console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
