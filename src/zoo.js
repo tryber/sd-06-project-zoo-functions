@@ -246,6 +246,10 @@ function employeeCoverageEmpty() {
 }
 
 function employeeCoverage(idOrName) {
+  const employeesNames = employees.map(employee => employee.firstName);
+  const employeesLastNames = employees.map(employee => employee.lastName);
+  const employeesFullNames = [];
+
   if (idOrName === undefined) {
     return employeeCoverageEmpty();
   }
