@@ -43,8 +43,13 @@ function employeeByName(employeeName) {
     .find(employ => employ.firstName === employeeName || employ.lastName === employeeName);
   return employFilter;
 }
+//  Cria um novo colaborador a partir de objetos contendo informações
+//  pessoais e gerentes e animais gerenciados.
+//  https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
+
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  const newEmployee = Object.assign(personalInfo, associatedWith);
+  return newEmployee;
 }
 
 function isManager(id) {
