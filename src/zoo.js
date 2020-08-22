@@ -164,13 +164,11 @@ console.log(entryCalculator({}));
 console.log(entryCalculator({ Adult: 2, Child: 3, Senior: 1 }));
 console.log('-----9------');
 
-  
-  // Pq o map dentro do filter retorna um array flat???
 function animalMap(options) {
   const locations = ['NE', 'NW', 'SE', 'SW'];
   const output = {};
+  const { includeNames = false, sorted = false, sex = ''} = options === undefined ? { includeNames: false, sorted: false, sex: ''} : options;
   if (options) {
-    const { includeNames = false, sorted = false, sex = ''} = options;
     if (includeNames === true) {
       locations.forEach(region => {output[region] = animals
           .filter(animal => animal.location === region)
@@ -183,15 +181,13 @@ function animalMap(options) {
             return animalsBySpecie;
           });
       });
-      return output;
     };
   };
-  const includeNames = false;
   if (!options || includeNames === false) {
     locations.forEach(region => {
       output[region] = animals.filter(animal => animal.location === region).map(mA => mA.name)});
-    return output;
   };
+  return output;
 }
 
 console.log('Animal Map');
