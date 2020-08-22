@@ -89,21 +89,21 @@ const sexSearch = (gender, animalName) => animals.find(animal => animal.name ===
 const locals = ['NE', 'NW', 'SE', 'SW'];
 const result = {};
 function animalMap(options) {
-  locals.forEach((coor) => {
-    result[coor] = [];
-    animalSearch(coor).forEach((specie) => {
+  locals.forEach((local) => {
+    result[local] = [];
+    animalSearch(local).forEach((specie) => {
       if (options === undefined) {
-        result[coor].push(specie);
+        result[local].push(specie);
       } else if (options.includeNames === true && (options.sex === 'male' || options.sex === 'female') && options.sorted === true) {
-          result[coor].push({ [specie]: sexSearch(options.sex, specie).sort() });
+        result[local].push({ [specie]: sexSearch(options.sex, specie).sort() });
       } else if (options.includeNames === true && options.sorted === true) {
-          result[coor].push({ [specie]: nameSearch(specie).sort() });
+        result[local].push({ [specie]: nameSearch(specie).sort() });
       } else if (options.includeNames === true && (options.sex === 'male' || options.sex === 'female')) {
-          result[coor].push({ [specie]: sexSearch(options.sex, specie) });
+        result[local].push({ [specie]: sexSearch(options.sex, specie) });
       } else if (options.includeNames === true) {
-          result[coor].push({ [specie]: nameSearch(specie) });
+        result[local].push({ [specie]: nameSearch(specie) });
       } else if (options.sex === 'male' || options.sex === 'female') {
-          result[coor].push(specie);
+        result[local].push(specie);
       }
     });
   });
