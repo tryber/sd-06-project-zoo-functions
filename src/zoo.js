@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 // ----------------------------------------------------------------------------------------
 // Convenção de abreviações
 // anm = animal | anms = animals | grp = group | grps = groups | arr= array | vfy = verify
-// rsd = residents | obj = object
+// rsd = residents | obj = object | res = result
 // ----------------------------------------------------------------------------------------
 const data = require('./data');
 
@@ -46,7 +46,7 @@ function animalsOlderThan(animal, age) {
   // objThatInc (Object That Includes Species)
   const objThatInc = data.animals.find(obj => obj.name === animal);
 
-  // Tendo o objeto basta verificarmos se todos os animas (residents) tem idade acima igual ou acima...
+  // Tendo o objeto basta verificarmos se todos os animas (residents) tem idade igual ou acima...
   // da idade especificada.
   const response = objThatInc.residents.every(eachRsd => eachRsd.age >= age);
   return response;
@@ -82,7 +82,15 @@ function addEmployee(id = [], firstName = [], lastName = [], managers = [], resp
 
 function animalCount(species) {
   // seu código aqui
+  // console.log(species)
+  // const meanObj = species ? data.animals.find(obj => obj.name === species) : data.animals;
+  // const counter = { 
+  //   countAll: () => meanObj.reduce((res, obj) => res.concat(`${obj.name}: ${obj.residents.length}`), []).sort(),
+  //   countOne: () => `${meanObj.residents.length}`,
+  // };
+  // return (meanObj.length > 1) ? counter.countAll() : counter.countOne();
 }
+
 
 function entryCalculator(entrants) {
   // seu código aqui
