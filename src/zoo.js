@@ -81,11 +81,10 @@ function entryCalculator(entrants = 0) {
 }
 const animalSearch = region => animals.filter(animal => animal.location === region)
 .map(element => element.name);
-const nameSearch = animalName => animals.find(animal => animal.name === animalName)
-.residents.map(element => element.name);
-const sexSearch = (gender, animalName) => animals.find(animal => animal.name === animalName)
-.residents.filter(element => element.sex === gender)
-.map(item => item.name);
+const search = (gender, animalName) => animals
+  .find(animal => animal.name === animalName).residents
+  .filter(element => element.sex === gender || !gender)
+  .map(item => item.name);
 const locals = ['NE', 'NW', 'SE', 'SW'];
 const result = {};
 function animalMap(options) {
@@ -95,13 +94,11 @@ function animalMap(options) {
       if (options === undefined) {
         result[local].push(specie);
       } else if (options.includeNames === true && (options.sex === 'male' || options.sex === 'female') && options.sorted === true) {
-        result[local].push({ [specie]: sexSearch(options.sex, specie).sort() });
+        result[local].push({ [specie]: search(options.sex, specie).sort() });
       } else if (options.includeNames === true && options.sorted === true) {
-        result[local].push({ [specie]: nameSearch(specie).sort() });
-      } else if (options.includeNames === true && (options.sex === 'male' || options.sex === 'female')) {
-        result[local].push({ [specie]: sexSearch(options.sex, specie) });
+        result[local].push({ [specie]: search(options.sex, specie).sort() });
       } else if (options.includeNames === true) {
-        result[local].push({ [specie]: nameSearch(specie) });
+        result[local].push({ [specie]: search(options.sex, specie) });
       } else if (options.sex === 'male' || options.sex === 'female') {
         result[local].push(specie);
       }
