@@ -86,7 +86,7 @@ function animalCount(species) {
   const counter = {
     countAll: () => {
       const objToReturn = {};
-      meanObj.map((obj) => objToReturn[obj.name] = obj.residents.length)
+      meanObj.map((obj) => objToReturn[obj.name] = obj.residents.length);
       return objToReturn;
     },
     countOne: () => `${meanObj.residents.length}`,
@@ -109,7 +109,16 @@ function animalMap(options) {
 
 function schedule(dayName) {
   // seu código aqui
-  //return data[hours][dayName]: `Open from ${data.hours[dayName].open}am until ${data.hours[dayName].open}pm`;
+  const objToReturn = {};
+  const objKeys = (dayName !== undefined && dayName !== '') ? [dayName] : Object.keys(data.hours);
+  objKeys.map(key => {
+    let {open, close} = data.hours[key];
+    close = (close > 12) ? close -12 : close;
+    open = (open > 12) ? open -12 : open;
+    const value = (open !== 0 && close !== 0) ? `Open from ${open}am until ${close}pm` : `CLOSED`;
+    objToReturn[key] = value;
+  });
+  return objToReturn;
 }
 
 function oldestFromFirstSpecies(id) {
