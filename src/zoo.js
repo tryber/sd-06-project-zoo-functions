@@ -164,44 +164,34 @@ console.log(entryCalculator({}));
 console.log(entryCalculator({ Adult: 2, Child: 3, Senior: 1 }));
 console.log('-----9------');
 
-
-function animalMap(options) {
-  const locations = ['NE', 'NW', 'SE', 'SW'];
-  const animalsByLocation = {};
   
   // Pq o map dentro do filter retorna um array flat???
+function animalMap(options) {
+  const locations = ['NE', 'NW', 'SE', 'SW'];
+  const output = {};
   if (options) {
     const { includeNames = false, sorted = false, sex = ''} = options;
-    const output = {};
     if (includeNames === true) {
-      locations.forEach(region => {
-        output[region] = animals
+      locations.forEach(region => {output[region] = animals
           .filter(animal => animal.location === region)
           .map(animalObject => {
             const animalsBySpecie = {};
-            let residentAnimalsBySpecie = animalObject.residents;
-            if (sex !== "") {
-              residentAnimalsBySpecie = residentAnimalsBySpecie.filter(resident => resident.sex === sex);
-              // console.log(residentAnimalsBySpecie);
-            }
-            animalsBySpecie[animalObject.name] = residentAnimalsBySpecie.map(subject => subject.name);
+            let resAnimal = animalObject.residents;
+            if (sex !== "") resAnimal = resAnimal.filter(resident => resident.sex === sex);
+            animalsBySpecie[animalObject.name] = resAnimal.map(subject => subject.name);
             if (sorted === true) animalsBySpecie[animalObject.name].sort();
             return animalsBySpecie;
           });
       });
-      console.log(`O Array dentro da chave lions no NE é ${output.NE[0].lions}`);
       return output;
     };
   };
   const includeNames = false;
   if (!options || includeNames === false) {
     locations.forEach(region => {
-      animalsByLocation[region] = animals
-      .filter(animal => animal.location === region)
-      .map(mapAnimal => mapAnimal.name); 
-    });
-    return animalsByLocation;
-  }; 
+      output[region] = animals.filter(animal => animal.location === region).map(mA => mA.name)});
+    return output;
+  };
 }
 
 console.log('Animal Map');
