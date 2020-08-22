@@ -14,6 +14,7 @@ const data = require('./data');
 const animals = data.animals;
 const employees = data.employees;
 const prices = data.prices;
+const calendar = data.hours;
 
 
 function animalsByIds(...ids) {
@@ -204,10 +205,31 @@ console.log(animalMap({ includeNames: true, sex: 'female', sorted: true }));
 console.log('---sex = female---');
 console.log(animalMap({ sex: 'female', sorted: true }));
 
+console.log('-----10------')
 
 function schedule(dayName) {
-  // seu código aquis
+  let output = {};
+  const calendarKeys = Object.keys(calendar);
+  const calendarValues = Object.values(calendar);
+  if (calendarValues[0].close > 12) {
+    calendarValues.forEach((key, index) => {
+      calendarValues[index].close = calendarValues[index].close - 12;
+    });
+  }
+  calendarKeys.forEach((key, index) => {
+    output[key] = `Open from ${calendarValues[index].open}am until ${calendarValues[index].close}pm`
+    if (calendarValues[index].open <= 0 && calendarValues[index].open <= 0) {
+      output[key] = 'CLOSED'
+    }
+  });
+  if (dayName !== undefined) {
+    output = { [dayName]: output[dayName] };
+  }
+  return output;
 }
+
+console.log(schedule());
+console.log(schedule('Monday'));
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
