@@ -9,14 +9,14 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals } = require('./data');
+const { animals, prices } = require('./data');
 
 function animalsByIds(...ids) {
-  return animals.filter(animal => animal.id === ids || ids.includes(animal.id));
+  return animals.filter(animal => ids.includes(animal.id));
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  return animals.filter(kind => (kind.name === animal))[0].residents.every(animal => animal.age > age);
 }
 
 function employeeByName(employeeName) {
@@ -56,7 +56,9 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+   return Object.values(prices).map((price) => {
+     return (price = price * ( 1 + percentage /100)).toFixed(2);
+  });
 }
 
 function employeeCoverage(idOrName) {
