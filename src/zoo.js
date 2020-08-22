@@ -13,12 +13,21 @@ const data = require('./data');
 const { animals } = require('./data');
 
 function animalsByIds(...ids) {
-  const animalsCalled = ids.map(item => animals.find(animal => animal.id === item));
-  return animalsCalled;
+  return ids.map(item => animals.find(animal => animal.id === item));
 }
 
 function animalsOlderThan(animal, age) {
+  const animalName = animals.find(parmAnimal => parmAnimal.name === animal);
+  const minimumAge = animalName.residents.map(animalObject => animalObject.age > age);
+  const ageFalse = minimumAge.find(parmAge => parmAge === false)
+  if (ageFalse === false) {
+    return false;
+  } else {
+    return true;
+  }
 }
+
+console.log(animalsOlderThan('penguins', 1));
 
 function employeeByName(employeeName) {
   // seu código aqui
