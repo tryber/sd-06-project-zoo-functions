@@ -19,15 +19,12 @@ function animalsByIds(...ids) {
 function animalsOlderThan(animal, age) {
   const animalName = animals.find(parmAnimal => parmAnimal.name === animal);
   const minimumAge = animalName.residents.map(animalObject => animalObject.age > age);
-  const ageFalse = minimumAge.find(parmAge => parmAge === false)
+  const ageFalse = minimumAge.find(parmAge => parmAge === false);
   if (ageFalse === false) {
     return false;
-  } else {
-    return true;
   }
+  return true;
 }
-
-console.log(animalsOlderThan('penguins', 1));
 
 function employeeByName(employeeName) {
   // seu código aqui
