@@ -75,19 +75,18 @@ function animalMap(options) {
   const locationList = {};
   const initialList = {};
   const locationOption = animals.map(where =>
-    where.location).reduce((acc, value) =>
-    acc.includes(value) ? acc : [...acc , value], []); //Referência: https://medium.com/dailyjs/how-to-remove-array-duplicates-in-es6-5daa8789641c
+    where.location).reduce((acc, value) => acc.includes(value) ? acc : [...acc, value], []); // Referência: https://medium.com/dailyjs/how-to-remove-array-duplicates-in-es6-5daa8789641c
   locationOption.forEach(index => initialList[index] = animals.filter(value =>
     value.location === index).map(animal => animal.name));
   if (!options) return initialList;
   locationOption.forEach(index => {
     locationList[index] = animals
-    .filter(value =>value.location === index)
-    .map(animal => {
+    .filter(value => value.location === index).map(animal => {
       const newObject = {};
       newObject[animal.name] = animal.residents;
       if (options.sex === 'female' || options.sex === 'male') {
-        newObject[animal.name] = newObject[animal.name].filter(theSex => theSex.sex === options.sex);
+        newObject[animal.name] = newObject[animal.name].filter(theSex =>
+        theSex.sex === options.sex);
       }
       if (options.includeNames === true) {
         newObject[animal.name] = newObject[animal.name].map(theName => theName.name);
@@ -96,7 +95,7 @@ function animalMap(options) {
       return newObject;
     });
   });
-  if (!options.includeNames) return initialList; //Resolvendo problema teste 06/06
+  if (!options.includeNames) return initialList; // Resolvendo problema teste 06/06
   return locationList;
 }
 
