@@ -126,7 +126,7 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código 
+  // seu código
   const anmGrpId = data.employees.find(obj => obj.id === id).responsibleFor[0];
   const anmGrp = data.animals.find(obj => obj.id === anmGrpId);
   let oldest = anmGrp.residents[0];
