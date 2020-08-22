@@ -1,26 +1,26 @@
 /*
 eslint no-unused-vars: [
-  "error",
+  'error',
   {
-    "args": "none",
-    "vars": "local",
-    "varsIgnorePattern": "data"
+    'args': 'none',
+    'vars': 'local',
+    'varsIgnorePattern': 'data'
   }
 ]
 */
 
-const data = require("./data");
-const { animals, employees } = require("./data");
+const data = require('./data');
+const { animals, employees } = require('./data');
 
 function animalsByIds(...ids) {
   const animalsGroup = [];
   if (ids.length === 0) {
     return animalsGroup;
   }
-  ids.forEach((id) =>
-    animals.filter((animal) => {
+  ids.forEach(id =>
+    animals.filter(animal => {
       if (animal.id === id) {
-        return animalsGroup.push(animal);
+        animalsGroup.push(animal);
       }
     })
   );
@@ -30,8 +30,8 @@ function animalsByIds(...ids) {
 // id == animals.id ? animals : [])
 function animalsOlderThan(animal, age) {
   return animals
-    .filter((oneAnimal) => animal === oneAnimal.name)[0]
-    .residents.every((element) => element.age > age);
+    .filter(oneAnimal => animal === oneAnimal.name)[0]
+    .residents.every(element => element.age > age);
 }
 
 function employeeByName(employeeName) {
@@ -39,7 +39,7 @@ function employeeByName(employeeName) {
     return {};
   }
   return employees
-    .filter((employee) => employee.firstName === employeeName || employee.lastName === employeeName)[0]
+    .filter(employee => employee.firstName === employeeName || employee.lastName === employeeName)[0]
 }
 
 function createEmployee(personalInfo, associatedWith) {
