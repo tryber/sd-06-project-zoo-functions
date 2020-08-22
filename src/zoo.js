@@ -159,15 +159,24 @@ function structurer(paramFn, sex) {
   structuredResult.SW = paramFn('SW', sex);
   return structuredResult;
 }
-let result = {};
-function resultSelector(includeNames, sorted, sex) {
+
+function firstSelector(includeNames, sorted, sex) {
+  let result = {};
   if (includeNames && sorted && sex === 'any') {
     result = structurer(createSortedAnimalResidentsList, sex);
   } else if (includeNames && sex !== 'any' && sorted) {
     result = structurer(createSortedAnimalResidentsListBySex, sex);
   } else if (includeNames && sex !== 'any') {
     result = structurer(createAnimalResidentsListBySex, sex);
-  } else if (includeNames) {
+  } else {
+    result = false;
+  }
+  return result;
+}
+
+function lastSelector(includeNames) {
+  let result = {};
+  if (includeNames) {
     result = structurer(createAnimalResidentsList);
   } else {
     result = structurer(createAnimalListByLocation);
@@ -177,7 +186,11 @@ function resultSelector(includeNames, sorted, sex) {
 
 function animalMap(options) {
   const { includeNames, sorted, sex } = parameterChecker(options);
-  return resultSelector(includeNames, sorted, sex);
+  let result = firstSelector(includeNames, sorted, sex);
+  if (result === false) {
+    result = lastSelector(includeNames);
+  }
+  return result;
 }
 
 function schedule(dayName) {
