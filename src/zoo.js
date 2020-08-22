@@ -37,10 +37,11 @@ function employeeByName(employeeName) {
   if (!employeeName) return {};
 
   const providedName = employees
-  .filter(name => name.firstName === employeeName || name.lastName === employeeName)
+  .filter(name => name.firstName === employeeName || name.lastName === employeeName);
   return providedName[0];
-  // return employees.find(name => name.firstName === employeeName || name.lastName === employeeName);
 }
+  // return employees
+  //.find(name => name.firstName === employeeName || name.lastName === employeeName);
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
