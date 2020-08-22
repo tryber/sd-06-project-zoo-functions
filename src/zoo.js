@@ -22,7 +22,7 @@ function animalsByIds(...ids) {
 }
 function animalsOlderThan(animalName, age) {
   return animals
-    .filter((animal) => animal.name === animalName)[0]
+    .filter(animal => animal.name === animalName)[0]
     .residents.every(element => element.age > age);
 }
 
@@ -31,7 +31,7 @@ function employeeByName(employeeName) {
     employees.filter(
       employee =>
         employee.firstName === employeeName ||
-        employee.lastName === employeeName
+        employee.lastName === employeeName,
     )[0] || {}
   );
 }
@@ -59,8 +59,8 @@ function addEmployee(
   employees.push(createEmployee(personalInfo, associatedWith));
 }
 
-function animalCount(species = animals.map((animal) => animal.name)) {
-  if (typeof species === "string") {
+function animalCount(species = animals.map(animal => animal.name)) {
+  if (typeof species === 'string') {
     return animals
       .filter(animal => animal.name === species)
       .map(animal => animal.residents.length)
@@ -69,7 +69,7 @@ function animalCount(species = animals.map((animal) => animal.name)) {
   const animalsCounted = {};
   animals
     .filter(animal =>
-      species.some(eachAnimalName => (eachAnimalName = animal.name))
+      species.some(eachAnimalName => (eachAnimalName = animal.name,))
     )
     .map(animal => {
       animalsCounted[animal.name] = animal.residents.length;
