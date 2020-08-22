@@ -10,7 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { animals, employees } = require('./data');
+const { animals, employees, prices } = require('./data');
 
 
 // ====================================
@@ -133,9 +133,30 @@ const animalCount = (species) => {
 
 
 // ====================================
-function entryCalculator(entrants) {
-  // seu código aqui
-}
+// 8- Implemente a função entryCalculator:
+// Retorna 0 se nenhum argumento for passado
+// Retorna 0 se um objeto vazio for passado
+// Retorna o preço total a ser cobrado dado o número de adultos, crianças e idosos
+const verifyTotal = (myEntries) => {
+  let total = 0;
+  myEntries.forEach((item) => {
+    total += (prices[item[0]] * item[1]);
+  });
+  return total;
+};
+const entryCalculator = (entrants) => {
+  if (entrants === undefined || entrants === {}) {
+    return 0;
+  }
+  const myEntries = Object.entries(entrants);
+  return verifyTotal(myEntries);
+};
+// console.log(entryCalculator()); // 0
+// console.log(entryCalculator({})); // 0
+// console.log(entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 })); // 187.94
+// console.log(entryCalculator({ 'Adult': 1 })); // 49.99
+// console.log(entryCalculator({ 'Child': 1 })); // 20.99
+// console.log(entryCalculator({ 'Child': 1, 'Senior': 1 })); // 45.98
 
 
 // ====================================
