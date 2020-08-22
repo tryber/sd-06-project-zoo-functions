@@ -9,27 +9,27 @@ eslint no-unused-vars: [
 ]
 */
 
-const data = require("./data");
-const { animals, employees, prices } = require("./data");
+const data = require('./data');
+const { animals, employees, prices } = require('./data');
 
 function animalsByIds(...ids) {
-  if (typeof ids !== null) {
+  if (typeof(ids) !== null) {
     return data.animals
-      .filter((element) => element.id === ids[0])
-      .concat(data.animals.filter((element) => element.id === ids[1]));
+      .filter(element => element.id === ids[0])
+      .concat(data.animals.filter(element => element.id === ids[1]));
   }
   return [];
 }
 function animalsOlderThan(animalName, age) {
   return animals
     .filter((animal) => animal.name === animalName)[0]
-    .residents.every((element) => element.age > age);
+    .residents.every(element => element.age > age);
 }
 
 function employeeByName(employeeName) {
   return (
     employees.filter(
-      (employee) =>
+      employee =>
         employee.firstName === employeeName ||
         employee.lastName === employeeName
     )[0] || {}
@@ -43,8 +43,8 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(employeeId) {
   return employees
-    .flatMap((employee) => employee.managers)
-    .some((managerId) => managerId === employeeId);
+    .flatMap(employee => employee.managers)
+    .some(managerId => managerId === employeeId);
 }
 
 function addEmployee(
@@ -52,7 +52,7 @@ function addEmployee(
   firstName,
   lastName,
   managers = [],
-  responsibleFor = []
+  responsibleFor = [],
 ) {
   const personalInfo = { id, firstName, lastName };
   const associatedWith = { managers, responsibleFor };
@@ -62,16 +62,16 @@ function addEmployee(
 function animalCount(species = animals.map((animal) => animal.name)) {
   if (typeof species === "string") {
     return animals
-      .filter((animal) => animal.name === species)
-      .map((animal) => animal.residents.length)
+      .filter(animal => animal.name === species)
+      .map(animal => animal.residents.length)
       .toString();
   }
   const animalsCounted = {};
   animals
-    .filter((animal) =>
-      species.some((eachAnimalName) => (eachAnimalName = animal.name))
+    .filter(animal =>
+      species.some(eachAnimalName => (eachAnimalName = animal.name))
     )
-    .map((animal) => {
+    .map(animal => {
       animalsCounted[animal.name] = animal.residents.length;
     });
   return animalsCounted;
@@ -96,7 +96,7 @@ function oldestFromFirstSpecies(id) {
 function increasePrices(percentage) {
   Object.entries(prices).forEach((entries) => {
     prices[entries[0]] =
-      Math.ceil(entries[1] * (1 + percentage / 100) * 100) / 100;
+      Math.ceil(entries[1] * (1 + (percentage / 100)) * 100) / 100;
   });
 }
 
