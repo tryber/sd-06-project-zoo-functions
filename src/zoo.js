@@ -72,7 +72,7 @@ function isManager(id) {
   // seu código aqui
   // Precisamos achar dentro de employees contido em data, o objeto que tem id igual ao input
   // Encontrado esse objeto precisamos verificar se a propriedade responsibleFor é vazia ou nao.
-  data.employees.some(obj => obj.managers.includes(id));
+  return data.employees.some(obj => obj.managers.includes(id));
 }
 
 function addEmployee(id = [], firstName = [], lastName = [], managers = [], responsibleFor = []) {
