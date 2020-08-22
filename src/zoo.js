@@ -60,15 +60,14 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function animalCount(species) {
   if (species === undefined) {
     const obj = {};
-    animals.map(element => obj[element.name] = 
-        element.residents.length);
+    animals.forEach(element => obj[element.name] = element.residents.length);
     return obj;
   }
   return animals.find(animais => animais.name === species).residents.length;
 }
 
 // function entryCalculator({Adult = 0, Child = 0, Senior = 0}) {
-//   if (entrants === {} || entrants === undefined) 0;
+//   if (!{Adult = 0, Child = 0, Senior = 0} === undefined) 0;
 //   const total = (Adult * prices.Adult) + (Child * prices.Child) + (Senior * prices.Senior);
 //   return total;
 // }
