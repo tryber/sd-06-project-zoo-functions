@@ -213,7 +213,7 @@ function schedule(dayName) {
   const calendarValues = Object.values(calendar);
   if (calendarValues[0].close > 12) {
     calendarValues.forEach((key, index) => {
-      calendarValues[index].close -= - 12;
+      calendarValues[index].close -= -12;
     });
   }
   calendarKeys.forEach((key, index) => {
