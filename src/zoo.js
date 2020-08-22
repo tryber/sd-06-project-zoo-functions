@@ -10,34 +10,42 @@ eslint no-unused-vars: [
 */
 
 
-const { animals } = require('./data');
+const { animals, employees } = require('./data');
+const data = require('./data');
 
-const animalsByIds = (...ids) => {
-  return animals.filter((animal)=> animal.id === ids || ids.includes(animal.id))
+const animalsByIds = (...ids) => animals
+  .filter(animal => animal.id === ids || ids.includes(animal.id));
+
+
+const animalsOlderThan = (animal, age) => {
+  const species = animals.find(an => an.name === animal);
+  return species.residents.every(resident => resident.age >= age);
 };
 
-const animalsOlderThan = (animal, age) => { 
- return animals.filter((especies)=> especies.name === especies.age > 10)
-  
-}
 
-console.log(animalsOlderThan('penguins'))
+const employeeByName = (employeeName) => {
+  if (employeeName) {
+    return employees.find(nameEmploy => nameEmploy.firstName === employeeName
+      || nameEmploy.lastName === employeeName);
+  }
+  return {};
+};
+const createEmployee = (personalInfo, associatedWith) => ({ ...personalInfo, ...associatedWith });
 
-function employeeByName(employeeName) {
+const isManager = (id) => {
+  let resultado = false;
+  const idManagers = employees.map(managers => managers.managers);
+  idManagers.forEach((element) => {
+    if (element.some(item => item === id)) {
+      resultado = true;
+    }
+  });
+  return resultado;
+};
+
+const addEmployee = (id, firstName, lastName, managers, responsibleFor) => {
   // seu código aqui
-}
-
-function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
-}
-
-function isManager(id) {
-  // seu código aqui
-}
-
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
-}
+};
 
 function animalCount(species) {
   // seu código aqui
@@ -81,4 +89,4 @@ module.exports = {
   oldestFromFirstSpecies,
   increasePrices,
   createEmployee,
-}
+};
