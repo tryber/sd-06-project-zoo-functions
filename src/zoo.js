@@ -109,7 +109,10 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aquxi
+  const idAnimal = employees.find(element => element.id === id).responsibleFor[0];
+  const animalsResidents = animals.find(element => element.id === idAnimal).residents;
+  const onlyValues = animalsResidents.map(element => Object.values(element));
+  return onlyValues.sort((a, b) => b[2] - a[2])[0];
 }
 
 function increasePrices(percentage) {
