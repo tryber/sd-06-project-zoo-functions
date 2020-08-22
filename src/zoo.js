@@ -52,12 +52,23 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   } else {
     employees.push({ id, firstName, lastName, managers, responsibleFor });
   }
-
-  return employees.length;
 }
 
 function animalCount(species) {
-  // seu código aqui
+  const animalObj = {};
+  if (species !== undefined) {
+    return animals
+    .find(animal => animal.name === species)
+    .residents.length;
+  }
+  animals
+  .filter(animal => animal)
+  .forEach((obj) => {
+    const number = obj.residents.length;
+    const name = obj.name;
+    animalObj[name] = number;
+  });
+  return animalObj;
 }
 
 function entryCalculator(entrants) {
