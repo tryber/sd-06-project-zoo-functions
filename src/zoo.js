@@ -12,7 +12,7 @@ eslint no-unused-vars: [
 const data = require('./data');
 const { animals } = require('./data');
 const { employees } = require('./data');
-// const { prices } = require('./data');
+const { prices } = require('./data');
 
 function animalsByIds(...ids) {
   return animals.filter(element => ids.find(param => param === element.id));
@@ -58,22 +58,24 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  if (species === undefined) {
-    const obj = {};
-    animals.forEach(element => obj[element.name] = 
-      element.residents.length);
-    return obj;
-  }
-  return animals.find(animais => animais.name === species).residents.length;
+  // if (species === undefined) {
+  //   const obj = {};
+  //   animals.forEach(element => obj[element.name] = element.residents.length);
+  //   return obj;
+  // }
+  // return animals.find(animais => animais.name === species).residents.length;
 }
+// console.log(animalCount())
 
-// function entryCalculator({Adult = 0, Child = 0, Senior = 0}) {
-//   if (!{Adult = 0, Child = 0, Senior = 0} === undefined) 0;
-//   const total = (Adult * prices.Adult) + (Child * prices.Child) + (Senior * prices.Senior);
-//   return total;
-// }
-// let entrants = { 'Child': 1, 'Senior': 1 };
-// console.log(entryCalculator())
+
+function entryCalculator(entrants) {
+  let total = 0;
+  if (entrants === undefined) return total;
+  if (entrants.Adult) total += entrants.Adult * prices.Adult;
+  if (entrants.Senior) total += entrants.Senior * prices.Senior;
+  if (entrants.Child) total += entrants.Child * prices.Child;
+  return total;
+}
 
 function animalMap(options) {
   // seu código aqui
@@ -96,7 +98,7 @@ function employeeCoverage(idOrName) {
 }
 
 module.exports = {
-  // entryCalculator,
+  entryCalculator,
   schedule,
   animalCount,
   animalMap,
