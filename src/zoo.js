@@ -68,15 +68,18 @@ function animalCount(species) {
   // seu código aqui
   let myAnimals = [];
   let animalAmount = [];
-  
-  animals.forEach(animal => myAnimals.push(animal.name,));
+  animals.forEach(animal => myAnimals.push(animal.name));
   animals.forEach(animal => animalAmount.push(animal.residents.length))
- 
   var total = {}
   myAnimals.forEach((animal, index) => total[animal] = animalAmount[index]);
-  return total;
+  
+  if (species != null) {
+    const thisAnimal =  animals.find(animal => animal.name === species);
+    return thisAnimal.residents.length;
+  } return total;
 }
 
+console.log(animalCount('giraffes'))
 
 function entryCalculator(entrants) {
   // seu código aqui
