@@ -92,12 +92,12 @@ function animalMap(options) {
 
   const locals = ['NE', 'NW', 'SE', 'SW'];
   const result = {};
-  const {includeNames, sorted, sex} = options || {};
+  const { includeNames, sorted, sex } = options || {};
 
   locals.forEach((local) => {
     result[local] = [];
     searchByLocation(local).forEach((specie) => {
-      if (!includeNames) {
+      if (includeNames !== true) {
         result[local].push(specie);
       } else if (sorted === true) {
         result[local].push({ [specie]: search(sex, specie).sort() });
