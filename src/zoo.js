@@ -256,8 +256,8 @@ function increasePrices(percentage) {
   const increase = parseFloat(`1.${percentage}`);
   // console.log(increase);
   newPricesKeys.forEach((key, index) => {
-    newPrices[key] = Math.round((newPrices[key] * increase)*100)/100;
-  })
+    newPrices[key] = Math.round((newPrices[key] * increase) * 100)/100;
+  });
   data.prices = newPrices;
   // console.log(newPricesKeys);
   return data.prices;
@@ -268,7 +268,8 @@ console.log('-----13------');
 function employeeCoverage(idOrName) {
   if (idOrName === undefined) {
     return employeeCoverageEmpty();
-}
+  }
+};
 
 function employeeCoverageEmpty () {
   const employeesNames = employees.map(employee => employee.firstName);
@@ -300,7 +301,6 @@ function employeeCoverageEmpty () {
     })
     return output;
   }
-}
 
 console.log(employeeCoverage());
 
