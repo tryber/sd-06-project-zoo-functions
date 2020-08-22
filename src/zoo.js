@@ -10,9 +10,12 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
+const { animals, employees, hours, prices } = require('./data');
+
+console.log(animals[0])
 
 function animalsByIds(...ids) {
-  return data.animals.filter((animal) => {
+  return animals.filter((animal) => {
     for (let i = 0; i < ids.length; i += 1) {
       if (animal.id === ids[i]) {
         return true;
@@ -23,13 +26,13 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  const groupOfAnimal = data.animals.find(specie => specie.name === animal);
+  const groupOfAnimal = animals.find(specie => specie.name === animal);
 
   return groupOfAnimal.residents.every(resident => resident.age > age);
 }
 
 function employeeByName(employeeName) {
-  const name = data.employees.find(employee =>
+  const name = employees.find(employee =>
     employee.firstName === employeeName || employee.lastName === employeeName);
 
   if (name) {
@@ -43,7 +46,7 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  return data.employees
+  return employees
     .some(employee => employee.managers
     .some(managerId => managerId === id));
 }
@@ -54,10 +57,10 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 
 function animalCount(species) {
   if (species) {
-    return data.animals.find(animal => animal.name === species).residents.length;
+    return animals.find(animal => animal.name === species).residents.length;
   }
-  const count = data.animals.map(animal => animal.residents.length);
-  species = data.animals.map(animal => animal.name);
+  const count = animals.map(animal => animal.residents.length);
+  species = animals.map(animal => animal.name);
 
   const creatArrayAnimals = {};
 
