@@ -10,7 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { animals, employees } = require('./data');
+const { animals, employees, hours, prices } = require('./data');
 
 function animalsByIds(...ids) {
   return ids.map(id => animals.find(animal => animal.id === id));
@@ -47,7 +47,7 @@ function isManager(id) {
 
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  return data.employees.push({
+  return employees.push({
     id,
     firstName,
     lastName,
@@ -57,19 +57,32 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  // seu código aqui
+  if (species !== undefined) {
+    return animals.find(animal => animal.name === species).residents.length;
+  }
+  return animals.reduce((animalsList, eachAnimal) =>
+    ({ ...animalsList, [eachAnimal.name]: eachAnimal.residents.length })
+  , {});
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  if (entrants === {} || entrants === undefined) {
+    return 0;
+  }
+
+  const { Adult: adultPrice, Senior: seniorPrice, Child: childPrice } = prices;
+  const { Adult = 0, Senior = 0, Child = 0 } = entrants;
+
+  return (adultPrice * Adult) + (seniorPrice * Senior) + (childPrice * Child);
 }
+
 
 function animalMap(options) {
   // seu código aqui
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  return hours.map();
 }
 
 function oldestFromFirstSpecies(id) {
