@@ -90,8 +90,28 @@ function animalCount(species) {
   return speciesCount[0];
 }
 
+// got the keys to be able to use length
 function entryCalculator(entrants) {
-  // seu código aqui
+  if (entrants === undefined || Object.keys(entrants).length === 0) {
+    return 0;
+  }
+  const keys = Object.keys(entrants);
+  const values = Object.values(entrants);
+  let totalSum = 0;
+  for (let index = 0; index < keys.length; index += 1) {
+    switch (keys[index]) {
+      case 'Adult':
+        totalSum += (data.prices.Adult * values[index]);
+        break;
+      case 'Senior':
+        totalSum += (data.prices.Senior * values[index]);
+        break;
+      case 'Child':
+        totalSum += (data.prices.Child * values[index]);
+        break;
+    }
+  }
+  return totalSum;
 }
 
 function animalMap(options) {
