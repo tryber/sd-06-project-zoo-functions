@@ -79,17 +79,16 @@ function entryCalculator(entrants = 0) {
   });
   return sum;
 }
-
+const animalSearch = (region) => animals.filter(animal => animal.location === region)
+.map(element => element.name);
+const nameSearch = (animalName) => animals.find(animal => animal.name === animalName)
+.residents.map(element => element.name);
+const sexSearch = (gender, animalName) => animals.find(animal => animal.name === animalName)
+.residents.filter(element => element.sex === gender)
+.map(item => item.name);
+const locals = ['NE', 'NW', 'SE', 'SW'];
+const result = {};
 function animalMap(options) {
-  const animalSearch = (region) => animals.filter(animal => animal.location === region)
-    .map(element => element.name);
-  const nameSearch = (animalName) => animals.find(animal => animal.name === animalName)
-    .residents.map(element => element.name);
-  const sexSearch = (gender, animalName) => animals.find(animal => animal.name === animalName)
-    .residents.filter(element => element.sex === gender)
-    .map(item => item.name);
-  const locals = ['NE', 'NW', 'SE', 'SW'];
-  const result = {};
   locals.forEach(coor => {
     result[coor] = [];
     if (options === undefined) {
