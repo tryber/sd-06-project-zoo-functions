@@ -91,8 +91,104 @@ function entryCalculator(entrants = 0) {
   .reduce((acc, curr, index) => acc + (Object.values(entrants)[index] * verifyPrices(curr)), 0);
 }
 
+function createAnimalListByLocation(location) {
+  return animals
+  .filter(animal => animal.location === location)
+  .flatMap(filteredAnimal => filteredAnimal.name);
+}
+
+function createAnimalResidentsList (location) {
+  return animals
+  .filter(animal => animal.location === location)
+  .map(animal => {
+    const animalObject = {};
+    animalObject[`${animal.name}`] = animal.residents
+    .map(resident => resident.name);
+    return animalObject;  
+  });
+}
+
+function createSortedAnimalResidentsList (location) {
+  return animals
+  .filter(animal => animal.location === location)
+  .map(animal => {
+    const animalObject = {};
+    animalObject[`${animal.name}`] = animal.residents
+    .map(resident => resident.name).sort();
+    return animalObject;  
+  });
+}
+
+function createAnimalResidentsListBySex (location, sex) {
+  return animals
+  .filter(animal => animal.location === location)
+  .map(animal => {
+    const animalObject = {};
+    animalObject[`${animal.name}`] = animal.residents
+    .filter(resident => resident.sex === sex)
+    .map(resident => resident.name);
+    return animalObject;  
+  });
+}
+
+function createSortedAnimalResidentsListBySex (location, sex) {
+  return animals
+  .filter(animal => animal.location === location)
+  .map(animal => {
+    const animalObject = {};
+    animalObject[`${animal.name}`] = animal.residents
+    .filter(resident => resident.sex === sex)
+    .map(resident => resident.name).sort();
+    return animalObject;  
+  });
+}
+
 function animalMap(options) {
-  // seu código aqui
+  if (options === undefined) options = {};
+  if (options.includeNames === undefined) options.includeNames = false;
+  if (options.sorted === undefined) options.sorted = false;
+  if (options.sex === undefined) options.sex = 'any';
+
+  const { includeNames, sorted, sex } = options;
+  const result = {};
+
+  if (includeNames && sorted && sex === 'any') {
+    result['NE'] = createSortedAnimalResidentsList('NE');
+    result['NW'] = createSortedAnimalResidentsList('NW');
+    result['SE'] = createSortedAnimalResidentsList('SE');
+    result['SW'] = createSortedAnimalResidentsList('SW');
+  } else if (includeNames && sex === 'female' && sorted) {
+    result['NE'] = createSortedAnimalResidentsListBySex('NE', sex);
+    result['NW'] = createSortedAnimalResidentsListBySex('NW', sex);
+    result['SE'] = createSortedAnimalResidentsListBySex('SE', sex);
+    result['SW'] = createSortedAnimalResidentsListBySex('SW', sex);
+  } else if (includeNames && sex === 'male' && sorted) {
+    result['NE'] = createSortedAnimalResidentsListBySex('NE', sex);
+    result['NW'] = createSortedAnimalResidentsListBySex('NW', sex);
+    result['SE'] = createSortedAnimalResidentsListBySex('SE', sex);
+    result['SW'] = createSortedAnimalResidentsListBySex('SW', sex);
+  } else if (includeNames && sex === 'female') {
+    result['NE'] = createAnimalResidentsListBySex('NE', sex);
+    result['NW'] = createAnimalResidentsListBySex('NW', sex);
+    result['SE'] = createAnimalResidentsListBySex('SE', sex);
+    result['SW'] = createAnimalResidentsListBySex('SW', sex);
+  } else if (includeNames && sex === 'male') {
+    result['NE'] = createAnimalResidentsListBySex('NE', sex);
+    result['NW'] = createAnimalResidentsListBySex('NW', sex);
+    result['SE'] = createAnimalResidentsListBySex('SE', sex);
+    result['SW'] = createAnimalResidentsListBySex('SW', sex);
+  } else if (includeNames) {
+    result['NE'] = createAnimalResidentsList('NE');
+    result['NW'] = createAnimalResidentsList('NW');
+    result['SE'] = createAnimalResidentsList('SE');
+    result['SW'] = createAnimalResidentsList('SW');
+  } else {
+    result['NE'] = createAnimalListByLocation('NE');
+    result['NW'] = createAnimalListByLocation('NW');
+    result['SE'] = createAnimalListByLocation('SE');
+    result['SW'] = createAnimalListByLocation('SW');
+  }
+  return result;
 }
 
 function schedule(dayName) {
