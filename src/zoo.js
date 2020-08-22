@@ -100,7 +100,6 @@ function animalMap(options) {
 // console.log(animalMap());
 // console.log(animalMap());
 function schedule(dayName) {
-  // 'Tuesday': 'Open from 8am until 6pm',
   const hours = Object.entries(data.hours);
   if (!dayName) {
     const name = {};
@@ -124,21 +123,44 @@ function schedule(dayName) {
     };
   })[0];
 }
-console.log(schedule());
-console.log(schedule('Monday'));
-console.log(schedule('Tuesday'));
+
 function oldestFromFirstSpecies(id) {
   // seu código aqui
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  let { Adult, Child, Senior } = data.prices;
+  Adult = Math.round((Adult * ((percentage / 100) + 1)) * 100) / 100;
+  Child = Math.round((Child * ((percentage / 100) + 1)) * 100) / 100;
+  Senior = Math.round((Senior * ((percentage / 100) + 1)) * 100) / 100;
+  data.prices.Adult = Adult;
+  data.prices.Child = Child;
+  data.prices.Senior = Senior;
+  return {
+    Adult,
+    Senior,
+    Child,
+  };
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  if (!idOrName) {
+    const objAnimal = data.employees.flatMap((emp) => {
+      const ani = data.animals.filter(animal => emp.responsibleFor
+        .some(id => id === animal.id))
+        .map(animal => animal.name);
+      const name = `${emp.firstName} ${emp.lastName}`;
+      return {
+        [name]: ani,
+      };
+    });
+    const obj = {};
+    objAnimal.forEach(e => Object.assign(obj, e));
+    return obj;
+  }
+  return 'ok'; // Retorno provisorio
 }
-
+// console.log(employeeCoverage());
 module.exports = {
   entryCalculator,
   schedule,
