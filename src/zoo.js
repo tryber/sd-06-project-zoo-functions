@@ -79,16 +79,20 @@ function entryCalculator(entrants = 0) {
   });
   return sum;
 }
-const searchByLocation = region => animals
-  .filter(animal => animal.location === region)
-  .map(element => element.name);
-const search = (gender, animalName) => animals
-  .find(animal => animal.name === animalName).residents
-  .filter(element => element.sex === gender || !gender)
-  .map(item => item.name);
-const locals = ['NE', 'NW', 'SE', 'SW'];
-const result = {};
+
 function animalMap(options) {
+  const searchByLocation = region => animals
+    .filter(animal => animal.location === region)
+    .map(element => element.name);
+
+  const search = (gender, animalName) => animals
+    .find(animal => animal.name === animalName).residents
+    .filter(element => element.sex === gender || !gender)
+    .map(item => item.name);
+
+  const locals = ['NE', 'NW', 'SE', 'SW'];
+  const result = {};
+
   locals.forEach((local) => {
     result[local] = [];
     searchByLocation(local).forEach((specie) => {
@@ -101,6 +105,7 @@ function animalMap(options) {
       }
     });
   });
+  
   return result;
 }
 
