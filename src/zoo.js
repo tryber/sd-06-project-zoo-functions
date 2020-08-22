@@ -77,8 +77,18 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   });
 }
 
-function animalCount(species) {
-  // seu código aqui
+//  7- Sem parâmetros, retorna animais e suas quantidades
+// Com o nome de uma espécie de animal, retorna somente a quantidade
+
+function animalCount(species = '') {
+  if (species === '') {
+    const animalsCount = animals.reduce((acc, cur) => {
+      acc[cur.name] = cur.residents.length;
+      return acc;
+    }, {});
+    return animalsCount;
+  }
+  return animals.find(lookedSpecie => lookedSpecie.name === species).residents.length;
 }
 
 function entryCalculator(entrants) {
