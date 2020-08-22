@@ -79,16 +79,15 @@ function animalCount(species) {
   // seu código aqui
   if (species === undefined || species === '') {
     const myAnimals = {};
-    animals.map((animal) => {
+    animals.forEach((animal) => {
       const animalName = animal.name;
       const animalNumber = animal.residents.length;
       myAnimals[animalName] = animalNumber;
     });
     return myAnimals;
-  } else {
-    const findTheAnimal = animals.find(animal => animal.name === species);
-    return findTheAnimal.residents.length;
   }
+  const findTheAnimal = animals.find(animal => animal.name === species);
+  return findTheAnimal.residents.length;
 }
 // console.log(animals[0]);
 // console.log(animalCount('otters'));
