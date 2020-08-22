@@ -18,8 +18,7 @@ function animalsByIds(...ids) {
   // Caso receba um ou dois pârametros
   // O método includes analisa se a array ids
   // tem os valores do animal.id e o filter faz retornar eles.
-  //return animals.filter(animal => ids.includes(animal.id));
-  return animals.filter(animals => animals.id.includes(...ids))
+  return animals.filter(animal => ids.includes(animal.id));
 }
 
 
