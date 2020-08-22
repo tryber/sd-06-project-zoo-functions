@@ -72,8 +72,6 @@ function animalCount(species = animals.map(animal => animal.name)) {
   return animalsCounted;
 }
 
-console.log(animalCount('lions'))
-
 function entryCalculator(entrants) {
 
 }
