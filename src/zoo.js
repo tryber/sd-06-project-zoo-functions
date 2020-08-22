@@ -124,21 +124,7 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  const obj = {};
-  // const geral = employees.map(element => element.filter(element.responsibleFor.))
-  // console.log(geral)
-  // const resp = animals.find(element => geral.includes(element.id));
-  // console.log(resp)
-  if (idOrName === undefined) {
-      employees.forEach(element => {
-      const nomes = element.firstName +' '+ element.lastName;
-      const responsavel = element.responsibleFor;
-      const respFind = responsavel.flatMap((animalId) => {
-        if (animalId.includes(animals.id)) return animals.name
-      });
-      obj[nomes] = respFind;});
-    return obj
-  }
+
 }
 
 module.exports = {
