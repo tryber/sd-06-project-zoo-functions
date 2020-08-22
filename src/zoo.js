@@ -10,7 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { animals, employees, prices } = require('./data');
+const { animals, employees, prices, hours } = require('./data');
 
 function animalsByIds(...ids) {
   return animals.filter((animal, index) => animal.id === ids[index]);
@@ -91,9 +91,31 @@ function animalMap(options) {
   // seu código aqui
 }
 
-function schedule(dayName) {
-  // seu código aqui
+function schedule(dayName = 0) {
+  const { Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday } = hours;
+
+  const tueWed = `Open from ${Tuesday.open}am until ${Wednesday.close - 12}pm`;
+  const thuFri = `Open from ${Thursday.open}am until ${Friday.close - 12}pm`;
+  const satu = `Open from ${Saturday.open}am until ${Saturday.close - 12}pm`;
+  const sund = `Open from ${Sunday.open}am until ${Sunday.close - 12}pm`;
+
+  const mySchedule = {
+    Tuesday: tueWed,
+    Wednesday: tueWed,
+    Thursday: thuFri,
+    Friday: thuFri,
+    Saturday: satu,
+    Sunday: sund,
+    Monday: 'CLOSED' };
+
+  if (dayName === 0) {
+    return mySchedule;
+  }
+  const daySchedule = { [dayName]: mySchedule[dayName] };
+  return daySchedule;
 }
+
+console.log(schedule('Monday'));
 
 function oldestFromFirstSpecies(id) {
   const getIds = employees
@@ -115,8 +137,6 @@ function oldestFromFirstSpecies(id) {
 
   return returnArr;
 }
-
-console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
 
 function increasePrices(percentage) {
   // seu código aqui
