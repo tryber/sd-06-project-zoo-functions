@@ -15,6 +15,7 @@ const { employees } = require('./data');
 const { prices } = require('./data');
 const { hours } = require('./data');
 
+
 function animalsByIds(...ids) {
   return animals.filter(element => ids.find(param => param === element.id));
 }
@@ -116,11 +117,12 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  const perc = percentage / 100;
+  Object.keys(prices).forEach((valor) => prices[valor] = Math.round((prices[valor] + (prices[valor]* perc)) * 100) / 100);
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+
 }
 
 module.exports = {
