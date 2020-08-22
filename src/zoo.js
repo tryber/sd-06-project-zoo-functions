@@ -137,13 +137,14 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
+  const reduction = (acc, curr) => {
+    return (acc.age > curr.age) ? acc : curr;
+  };
   const animalId = employees
     .find(employee => employee.id === id).responsibleFor[0];
   const oldAnimal = animals
     .find(animal => animal.id === animalId).residents
-    .reduce((acc, curr) => {
-      return (acc.age > curr.age) ? acc : curr;
-    });
+    .reduce(reduction);
   return Object.values(oldAnimal);
 }
 
