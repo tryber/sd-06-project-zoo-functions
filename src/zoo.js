@@ -75,7 +75,7 @@ function animalCount(species) {
 function entryCalculator(entrants = 0) {
   let sum = 0;
   Object.keys(entrants).forEach((element, index) => {
-    sum += prices[element] * Object.values(entrants)[index];    
+    sum += prices[element] * Object.values(entrants)[index];
   });
   return sum;
 }
