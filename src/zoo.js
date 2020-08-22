@@ -71,7 +71,7 @@ function animalCount(species) {
   const animalAmount = [];
   animals.forEach(animal => myAnimals.push(animal.name));
   animals.forEach(animal => animalAmount.push(animal.residents.length));
-  myAnimals.forEach( function(animal, index) {
+  myAnimals.forEach(function (animal, index) {
     total[animal] = animalAmount[index];
   });
   if (species != null) {
