@@ -66,20 +66,19 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 
 function animalCount(species) {
   // seu código aqui
-  let myAnimals = [];
-  let animalAmount = [];
+  const total = {};
+  const myAnimals = [];
+  const animalAmount = [];
   animals.forEach(animal => myAnimals.push(animal.name));
-  animals.forEach(animal => animalAmount.push(animal.residents.length))
-  var total = {}
-  myAnimals.forEach((animal, index) => total[animal] = animalAmount[index]);
-  
+  animals.forEach(animal => animalAmount.push(animal.residents.length));
+  myAnimals.forEach( function (animal, index) {
+    total[animal] = animalAmount[index];
+  });
   if (species != null) {
-    const thisAnimal =  animals.find(animal => animal.name === species);
+    const thisAnimal = animals.find(animal => animal.name === species);
     return thisAnimal.residents.length;
   } return total;
 }
-
-console.log(animalCount('giraffes'))
 
 function entryCalculator(entrants) {
   // seu código aqui
