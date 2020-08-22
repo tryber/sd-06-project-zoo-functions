@@ -16,7 +16,7 @@ function animalsByIds(ids) {
   if (ids === undefined) {
     return [];
   }
-  return animals.find(animalId => animalId.id === ids)
+  return animals.find(animalId => animalId.id === ids);
 }
 
 function animalsOlderThan(animal, age) {
@@ -29,7 +29,9 @@ function employeeByName(employeeName) {
   if (employeeName === undefined) {
     return {};
   }
-  const findingEmployees =  employees.find((employeeNames => (employeeNames.firstName === employeeName || employeeNames.lastName === employeeName)))
+  const findingEmployees = employees
+  .find((employeeNames => 
+  (employeeNames.firstName === employeeName || employeeNames.lastName === employeeName)));
   return findingEmployees;
 }
 
@@ -39,18 +41,34 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  return (id === '0e7b460e-acf4-4e17-bcb3-ee472265db83' || id === 'fdb2543b-5662-46a7-badc-93d960fdc0a8') ? true : false
-  //TENTATIVA 2 ABAIXO:
+  return (id === '0e7b460e-acf4-4e17-bcb3-ee472265db83' || id === 'fdb2543b-5662-46a7-badc-93d960fdc0a8') ? true : false;
+  // TENTATIVA 2 ABAIXO:
   // return employees.find(idPassed => idPassed === id)
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+ const lastEmployee =  {
+  id, 
+  firstName,
+  lastName,
+  managers: managers === undefined ? [] : managers,
+  responsibleFor: responsibleFor === undefined ? [] : responsibleFor,
+ }
+ return employees.push(lastEmployee);
+ 
 }
 
 function animalCount(species) {
-  // seu código aqui
+  
+  if (species === undefined) {
+    return animals
+    .reduce((previousValue, currentValue) => ({...previousValue, [currentValue.name]: currentValue.residents.length}), {})
+  } else {
+    const targetAnimal = animals.find((animal => species === animal.name))
+    return targetAnimal.residents.length;
+  }
 }
+console.log(animalCount())
 
 function entryCalculator(entrants) {
   // seu código aqui
