@@ -13,6 +13,7 @@ const data = require('./data');
 const { animals } = require('./data');
 const { employees } = require('./data');
 const { prices } = require('./data');
+const { hours } = require('./data');
 
 function animalsByIds(...ids) {
   return animals.filter(element => ids.find(param => param === element.id));
@@ -85,7 +86,26 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  const obj = {};
+  const hora = Object.entries(hours);
+  if (dayName === undefined) {
+    hora.map((dia) => {
+      if (dia.includes('Monday')) {
+        obj.Monday = 'CLOSED';
+        return obj;
+      }
+      return obj[dia[0]] = `Open from ${dia[1].open}am until ${dia[1].close -12}pm`;
+    });
+      return obj;
+  };
+  return hora.filter(name => name[0] === dayName).map((dia) => {
+    if (dayName === 'Monday') {
+      obj[dayName] = 'CLOSED';
+      return obj;
+    }
+      obj[dayName] = `Open from ${dia[1].open}am until ${dia[1].close - 12}pm`;
+      return obj;
+  })[0];
 }
 
 function oldestFromFirstSpecies(id) {
