@@ -78,6 +78,17 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   // seu código aqui
+  // if para retornar 0 caso o parâmetro não seja definido
+  if (entrants === undefined) {
+    return 0;
+  }
+  // destructuring a estrutura entrants e colocando 0 como retorno padrão, caso um objeto vazio for passado
+  const { Adult = 0, Senior = 0, Child = 0 } = entrants;
+  let total = 0;
+  total = Adult * prices.Adult;
+  total += Senior * prices.Senior;
+  total += Child * prices.Child;
+  return total;
 }
 
 function animalMap(options) {
