@@ -10,7 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { animals, employees } = require('./data');
+const { animals, employees, hours, prices } = require('./data');
 
 function animalsByIds(id1 = '', ...ids) {
   if (id1 === '') {
@@ -46,7 +46,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  // fazer
+  // seu código aqui
 }
 
 function entryCalculator(entrants = {}) {
@@ -81,16 +81,30 @@ function animalMap(options) {
   // seu código aqui
 }
 
-function schedule(dayName) {
-  // seu código aqui
+function schedule(dayName = '') {
+  
+  if (dayName === '') {
+    return `Tuesday: Open from ${hours.Tuesday.open}am until ${hours.Tuesday.close}pm,
+    Wednesday: Open from ${hours.Wednesday.open}am until ${hours.Wednesday.close}pm,
+    Thursday: Open from ${hours.Thursday.open}am until ${hours.Thursday.close}pm,
+    Friday: Open from ${hours.Friday.open}am until ${hours.Friday.close}pm,
+    Saturday: Open from ${hours.Saturday.open}am until ${hours.Saturday.close}pm,
+    Sunday: Open from ${hours.Sunday.open}am until ${hours.Sunday.close}pm,
+    Monday: CLOSED`
+  }
 }
+
+// console.log(schedule())
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  const percentageDivided = percentage / 100;
+  prices.Adult = Math.round((prices.Adult + prices.Adult * percentageDivided) * 100) / 100;
+  prices.Senior = Math.round((prices.Senior + prices.Senior * percentageDivided) * 100) / 100;
+  prices.Child = Math.round((prices.Child + prices.Child * percentageDivided) * 100) / 100;
 }
 
 function employeeCoverage(idOrName) {
