@@ -54,9 +54,34 @@ const entryCalculator = (entrants) => {
   return sum;
 };
 
-function animalMap(options) {
-  // seu código aqui
-}
+const sortAnimalByLocation = () => animals.sort((a1, a2) => {
+  if (a1.location < a2.location) {
+    return -1;
+  }
+  return 1;
+});
+
+const animalMap = ({ includeNames = false, sorted = false, sex } = 0) => {
+  const animalsSortedByLocation = sortAnimalByLocation();
+
+  if (includeNames) {
+    return animalsSortedByLocation.reduce((acc, a) => ({
+      ...acc,
+      [a.location]: animals.filter(animal => animal.location === a.location).map((ani => ({
+        [ani.name]: sorted ? ani.residents.map(res => res.name).sort() :
+        ani.residents.map(res => res.name),
+      }))),
+    }), {});
+  }
+
+  return animalsSortedByLocation.reduce((acc, a) => ({
+    ...acc,
+    [a.location]: animals.filter(ani => ani.location === a.location).map(animal => animal.name),
+  }), {});
+};
+
+const options = { includeNames: true };
+console.log(animalMap(options));
 
 function schedule(dayName) {
   // seu código aqui
