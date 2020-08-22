@@ -109,6 +109,8 @@ function entryCalculator(entrants) {
       case 'Child':
         totalSum += (data.prices.Child * values[index]);
         break;
+      default:
+        break;
     }
   }
   return totalSum;
