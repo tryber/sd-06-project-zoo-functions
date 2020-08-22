@@ -86,7 +86,7 @@ function animalCount(species) {
   const counter = {
     countAll: () => {
       const objToReturn = {};
-      meanObj.map((obj) => {
+      meanObj.forEach((obj) => {
         const key = obj.name;
         const value = obj.residents.length;
         objToReturn[key] = value;
