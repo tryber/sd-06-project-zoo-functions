@@ -13,7 +13,7 @@ const data = require('./data');
 const { animals, employees, prices } = require('./data');
 
 function animalsByIds(...ids) {
-  if (typeof(ids) !== null) {
+  if (typeof ids !== null) {
     return data.animals
       .filter(element => element.id === ids[0])
       .concat(data.animals.filter(element => element.id === ids[1]));
@@ -69,7 +69,7 @@ function animalCount(species = animals.map(animal => animal.name)) {
   const animalsCounted = {};
   animals
     .filter(animal =>
-      species.some(eachAnimalName => (eachAnimalName = animal.name)
+      species.some(eachAnimalName => eachAnimalName = animal.name
     ).map(animal => animalsCounted[animal.name] = animal.residents.length
     ));
   return animalsCounted;
