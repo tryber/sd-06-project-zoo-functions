@@ -19,16 +19,11 @@ const calendar = data.hours;
 
 function animalsByIds(...ids) {
   if (ids.length === 0) {
-    console.log('teste 0 ids');
     return [];
   } else if (ids.length === 1) {
     const uniqueId = ids[0];
-    console.log('----------');
-    console.log(`teste 1 ID: ${ids}`);
     return animals.filter(element => element.id === uniqueId);
   } else if (ids.length > 1) {
-    console.log('----------');
-    console.log(`teste +1 ID: ${ids}`);
     const output = [];
     animals.forEach((animal) => {
       ids.forEach((id) => {
@@ -42,9 +37,6 @@ function animalsByIds(...ids) {
   return [];
 }
 
-console.log(animalsByIds());
-console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce'));
-console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce', 'e8481c1d-42ea-4610-8e11-1752cfc05a46'));
 console.log('-----2------');
 
 function animalsOlderThan(animal, age) {
@@ -54,7 +46,6 @@ function animalsOlderThan(animal, age) {
   return checkAnimalsAge;
 }
 
-console.log(animalsOlderThan('otters', 7));
 console.log('-----3------');
 
 function employeeByName(employee) {
@@ -70,11 +61,7 @@ function employeeByName(employee) {
   return {};
 }
 
-console.log(employeeByName());
-console.log(employeeByName('Nigel'));
-console.log(employeeByName('Wishart'));
 console.log('-----4------');
-
 
 const personalInfo = {
   id: '7ed1c9bb-8570-44f6-b718-0666b869573a',
@@ -100,7 +87,6 @@ function createEmployee(personal, associated) {
   return newEmployee;
 }
 
-console.log(createEmployee(personalInfo, associatedWith));
 console.log('-----5------');
 
 function isManager(id) {
@@ -111,7 +97,6 @@ function isManager(id) {
   return false;
 }
 
-console.log(isManager());
 console.log('-----6------');
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
@@ -142,10 +127,7 @@ function animalCount(species = 0) {
   return requiredAnimalCount;
 }
 
-console.log(animalCount());
-console.log(animalCount('lions'));
 console.log('-----8------');
-
 
 function entryCalculator(entrants) {
   if (!entrants || Object.keys(entrants).length === 0) {
@@ -159,11 +141,6 @@ function entryCalculator(entrants) {
   }, 0);
   return toPay;
 }
-
-console.log(entryCalculator());
-console.log(entryCalculator({}));
-console.log(entryCalculator({ Adult: 2, Child: 3, Senior: 1 }));
-console.log('-----9------');
 
 function animalMap(options) {
   const locations = ['NE', 'NW', 'SE', 'SW'];
@@ -214,9 +191,6 @@ function schedule(dayName) {
   return output;
 }
 
-console.log(schedule());
-console.log(schedule('Monday'));
-
 console.log('-----11------');
 
 function oldestFromFirstSpecies(id) {
@@ -232,20 +206,16 @@ function oldestFromFirstSpecies(id) {
   return output;
 }
 
-console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
-
 console.log('-----12------');
 
 function increasePrices(percentage) {
   const newPrices = data.prices;
   const newPricesKeys = Object.keys(newPrices);
   const increase = parseFloat(`1.${percentage}`);
-  // console.log(increase);
   newPricesKeys.forEach((key, index) => {
     newPrices[key] = Math.round((newPrices[key] * increase) * 100) / 100;
   });
   data.prices = newPrices;
-  // console.log(newPricesKeys);
   return data.prices;
 }
 
@@ -258,22 +228,15 @@ function employeeCoverageEmpty() {
   employeesNames.forEach((employee, index) => {
     employeesFullNames[index] = `${employeesNames[index]} ${employeesLastNames[index]}`;
   });
-  // console.log(employeesFullNames);
 
   const employeeResponsability = employees.map(employee => employee.responsibleFor);
-  // console.log(employeeResponsability);
 
   employeeResponsability.forEach((responsibilities, index) => {
-    // console.log(responsibilities);
-    // console.log(index);
     employeeResponsability[index] = [];
     responsibilities.forEach((animalId) => {
       const animalName = animals.find(animal => animal.id === animalId).name;
       employeeResponsability[index].push(animalName);
-      // console.log(animalName);
-      // console.log(employeeResponsability[index]);
     });
-    // console.log(employeeResponsability);
   });
   const output = {};
   employeesFullNames.forEach((employee, index) => {
