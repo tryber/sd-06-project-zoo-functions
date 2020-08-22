@@ -237,11 +237,11 @@ function employeeCoverage(idOrName) {
   if (employeesNames.includes(idOrName) || employeesLastNames.includes(idOrName)) {
     if (employeesNames.includes(idOrName)) {
       employeeInputName = idOrName;
-      employeesNames.find((employee, index) => {
+      employeesNames.forEach((employee, index) => {
         if (employee === employeeInputName) {
           employeeIndex = index;
         }
-      })
+      });
     } else {
       employeeInputName = idOrName;
     }
