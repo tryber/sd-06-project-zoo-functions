@@ -30,7 +30,15 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  return employees.push(personalInfo);
+  const { id, firstName, lastName } = personalInfo;
+  const { managers, responsibleFor } = associatedWith;
+  return {
+    id, 
+    firstName,
+    lastName, 
+    managers,
+    responsibleFor
+  };
 }
 
 function isManager(id) {
@@ -38,8 +46,14 @@ function isManager(id) {
 }
 
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  return data.employees.push({
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor
+  });
 }
 
 function animalCount(species) {
