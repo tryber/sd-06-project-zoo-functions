@@ -70,16 +70,17 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 
-//  requisito7 - não deu certo
-function animalCount(species) {
-  const listAnimal = animals.filter(animal => animal.name === species);
-  const list = listAnimal.reduce((acc, currentValue) => {
-    if (listAnimal === species) {
-      return acc + currentValue;
-    }
-  });
-};
-//  console.log(animalCount('lions'))
+//  requisito7 - ok
+function animalCount(specie) {
+  if (specie == null) {
+    const grupoAnimais = {};
+    animals.forEach((animal) => { grupoAnimais[animal.name] = animal.residents.length; });
+    return grupoAnimais;
+  }
+  const quantSpecie = animals.find(animal => animal.name === specie).residents;
+  return quantSpecie.length;
+}
+
 
 function entryCalculator(entrants) {
   // seu código aqui
