@@ -16,9 +16,10 @@ function animalsByIds(...ids) {
   // Caso receba nenhum parâmetro
   if (ids.length === 0) return [];
   // Caso receba um ou dois pârametros
-  // O método includes analisa dentro de animal.id
-  // tem os valores do ids e o filter faz retornar eles.
-  return animals.filter(animal => ids.includes(animal.id));
+  // O método includes analisa se a array ids
+  // tem os valores do animal.id e o filter faz retornar eles.
+  //return animals.filter(animal => ids.includes(animal.id));
+  return animals.filter(animals => animals.id.includes(...ids))
 }
 
 
@@ -43,7 +44,9 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  // seu código aqui
+  // metodo include olha se os valores de manager.managers
+  // tem os id passados e some retorne true ou false
+  return employees.some(manager => manager.managers.includes(id))
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
