@@ -105,7 +105,7 @@ function animalMap(options) {
       }
     });
   });
-  
+
   return result;
 }
 
