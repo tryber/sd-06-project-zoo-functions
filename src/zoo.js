@@ -126,35 +126,31 @@ function animalMap(options) {
   statesWithRedundance.forEach((st) => { if (!allStates.includes(st)) allStates.push(st); });
 
   // Passo 4 - Essa é a parte que varia conforma os inputs recebidos
-  const animalsObjConstructor = (anmGrp) => {
-    let animalsObj;
+  const anmsObjConstruct = (anmGrp) => {
+    let animalsObj = {};
     const concatNames = (anmNames, anm) => anmNames.concat(anm.name);
     const filterSex = anm => (anm.sex === sex);
     // Caso 2 - includeNames === true
     if (includeNames && !sex && !sorted) {
-      animalsObj = {};
       animalsObj[anmGrp.name] = anmGrp.residents.reduce(concatNames, []);
       // Caso 1 - nenhum parâmetro
     } else if (!includeNames && !sex && !sorted) {
       animalsObj = anmGrp.name;
       // Caso 3 - sorted === true e includeNames === true
     } else if (includeNames && !sex && sorted) {
-      animalsObj = {};
       animalsObj[anmGrp.name] = anmGrp.residents.reduce(concatNames, []).sort();
       // Caso 4 - sex === 'male'/'female' e includeNames === true
     } else if (includeNames && sex && !sorted) {
-      animalsObj = {};
       animalsObj[anmGrp.name] = anmGrp.residents.filter(filterSex).reduce(concatNames, []);
       // Caso 5 - sex === 'male'/'female' e includeNames === true e sorted === true
     } else if (includeNames && sex && sorted) {
-      animalsObj = {};
       animalsObj[anmGrp.name] = anmGrp.residents.filter(filterSex).reduce(concatNames, []).sort();
       // Caso 6 - includeNames === false
     } else if (!includeNames) {
       animalsObj = anmGrp.name;
     }
     return animalsObj;
-  };  
+  };
   // Passo 2
   // Aqui nós percorremos todo o array de estados (allStates), e para cada estado (state),...
   // percorremos todo o array data.animals para ver quais grupos de animais possuem localização...
@@ -162,7 +158,8 @@ function animalMap(options) {
   const objToReturn = {};
   allStates.forEach((state) => {
     objToReturn[state] = data.animals.reduce((anmInSt, anmGrp) => {
-      return (anmGrp.location === state) ? anmInSt.concat(animalsObjConstructor(anmGrp)) :anmInSt;
+      const res = (anmGrp.location === state) ? anmInSt.concat(anmsObjConstruct(anmGrp)) : anmInSt;
+      return res;
     }, []);
   });
   // Gran finale - retorna o objeto construido conforme o input
