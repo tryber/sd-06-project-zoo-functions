@@ -28,7 +28,7 @@ function employeeByName(employeeName) {
     return {};
   }
   return data.employees
-  .filter(employee => employee.firstName === employeeName || employee.lastName === employeeName);
+  .find(employee => employee.firstName === employeeName || employee.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
