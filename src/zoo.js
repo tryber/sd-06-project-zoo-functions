@@ -50,15 +50,14 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 
-//  requisito5 - logica?
+//  requisito5 - ok
 function isManager(id) {
   const teste = employees.filter(empregado => empregado.managers.some(manager => manager === id));
-  return (teste > 0);
+  return (teste.length > 0);
 }
-//  console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
 
 
-//  requisito6
+//  requisito6 - ok
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   const newEmployee = {
     id,
