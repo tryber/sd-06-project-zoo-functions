@@ -12,11 +12,9 @@ eslint no-unused-vars: [
 const data = require('./data');
 
 function animalsByIds(...ids) {
-
   const agoraVaiEmNomeDoPai = ids
     .map(idAtual => data.animals
       .find(animal => animal.id === idAtual));
-
   return agoraVaiEmNomeDoPai;
 }
 
