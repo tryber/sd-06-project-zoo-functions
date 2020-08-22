@@ -64,6 +64,17 @@ const sortAnimalByLocation = () => animals.sort((a1, a2) => {
 const animalMap = ({ includeNames = false, sorted = false, sex } = 0) => {
   const animalsSortedByLocation = sortAnimalByLocation();
 
+  if (includeNames && sex) {
+    return animalsSortedByLocation.reduce((acc, a) => ({
+      ...acc,
+      [a.location]: animals.filter(animal => animal.location === a.location).map((ani => ({
+        [ani.name]: sorted ? ani.residents.filter(res => res.sex === sex)
+        .map(res => res.name).sort() :
+        ani.residents.filter(res => res.sex === sex).map(res => res.name),
+      }))),
+    }), {});
+  }
+
   if (includeNames) {
     return animalsSortedByLocation.reduce((acc, a) => ({
       ...acc,
@@ -79,9 +90,6 @@ const animalMap = ({ includeNames = false, sorted = false, sex } = 0) => {
     [a.location]: animals.filter(ani => ani.location === a.location).map(animal => animal.name),
   }), {});
 };
-
-const options = { includeNames: true };
-console.log(animalMap(options));
 
 function schedule(dayName) {
   // seu código aqui
