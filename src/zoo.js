@@ -86,7 +86,11 @@ function animalCount(species) {
   const counter = {
     countAll: () => {
       const objToReturn = {};
-      meanObj.map((obj) => objToReturn[obj.name] = obj.residents.length);
+      meanObj.map((obj) => {
+        const key = obj.name;
+        const value = obj.residents.length;
+        objToReturn[key] = value;
+      });
       return objToReturn;
     },
     countOne: () => `${meanObj.residents.length}`,
@@ -111,11 +115,11 @@ function schedule(dayName) {
   // seu código aqui
   const objToReturn = {};
   const objKeys = (dayName !== undefined && dayName !== '') ? [dayName] : Object.keys(data.hours);
-  objKeys.map(key => {
-    let {open, close} = data.hours[key];
-    close = (close > 12) ? close -12 : close;
-    open = (open > 12) ? open -12 : open;
-    const value = (open !== 0 && close !== 0) ? `Open from ${open}am until ${close}pm` : `CLOSED`;
+  objKeys.map((key) => {
+    let { open, close } = data.hours[key];
+    close = (close > 12) ? close - 12 : close;
+    open = (open > 12) ? open - 12 : open;
+    const value = (open !== 0 && close !== 0) ? `Open from ${open}am until ${close}pm` : 'CLOSED';
     objToReturn[key] = value;
   });
   return objToReturn;
