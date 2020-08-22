@@ -80,7 +80,7 @@ function entryCalculator(entrants) {
   if (entrants.Senior) total += entrants.Senior * prices.Senior;
   if (entrants.Child) total += entrants.Child * prices.Child;
   return total;
-  }
+}
 
 function animalMap(options) {
   // seu código aqui
