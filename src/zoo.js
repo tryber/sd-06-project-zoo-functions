@@ -45,8 +45,6 @@ function isManager(id) {
     .some(finder => finder === true);
 }
 
-// console.log(isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
-
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   const objAdd = {
     id,
@@ -59,7 +57,15 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  // seu código aqui
+  if (!species) {
+    const obj = {};
+    const resp = animalsObject.map((element) => {
+      obj[element.name] = element.residents.length;
+      return obj;
+    });
+    return resp[0];
+  }
+  return animalsObject.find(element => element.name === species).residents.length;
 }
 
 function entryCalculator(entrants) {
