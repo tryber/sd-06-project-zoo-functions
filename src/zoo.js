@@ -12,14 +12,13 @@ eslint no-unused-vars: [
 const data = require('./data');
 const { animals, employees } = require('./data');
 
-function animalsByIds(...ids) {
+function animalsByIds(ids, id) {
   // seu código aqui..
-  const validaParametroFuncaoAnimalsByIds = [];
-  if (ids.length === validaParametroFuncaoAnimalsByIds.length) {
+  if (ids === '' && id === '') {
     return [];
   }
   const result = animals
-  .filter(filteredAnimal => filteredAnimal.id === ids);
+  .filter(filteredAnimal => filteredAnimal.id === ids || filteredAnimal.id === id);
   return result;
 }
 
