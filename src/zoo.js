@@ -109,16 +109,15 @@ function animalMap(options) {
 
   return result;
 }
-
+const amPm = (time) => {
+  let moment = time;
+  if (time > 12) {
+    moment -= 12;
+  }
+  return moment;
+};
 function schedule(dayName) {
   const result = {};
-  const amPm = (time) => {
-    let moment = time;
-    if (time > 12) {
-      moment -= 12;
-    }
-    return moment;
-  };
   const response = (day) => {
     const { open, close } = hours[day];
     if (open === 0 && close === 0) {
