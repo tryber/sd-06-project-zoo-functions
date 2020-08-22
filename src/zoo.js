@@ -33,11 +33,11 @@ function createEmployee(personalInfo, associatedWith) {
   const { id, firstName, lastName } = personalInfo;
   const { managers, responsibleFor } = associatedWith;
   return {
-    id, 
+    id,
     firstName,
-    lastName, 
+    lastName,
     managers,
-    responsibleFor
+    responsibleFor,
   };
 }
 
@@ -52,7 +52,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
     firstName,
     lastName,
     managers,
-    responsibleFor
+    responsibleFor,
   });
 }
 
