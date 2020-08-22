@@ -58,8 +58,38 @@ function entryCalculator({ Adult = 0, Child = 0, Senior = 0 } = 0) {
   return (pAdult * Adult) + (pChild * Child) + (pSenior * Senior);
 }
 
-function animalMap(options) {
-  // seu código aqui
+function animalMap({ includeNames = false, sorted = false, sex } = 0) {
+  if (includeNames && sex) {
+    return animals.reduce((acc, animal) => ({
+      ...acc,
+      [animal.location]: animals
+        .filter(a => a.location === animal.location)
+        .map(a => ({ [a.name]: sorted ?
+            a.residents.filter(an => an.sex === sex)
+            .map(an => an.name).sort() :
+            a.residents
+            .filter(an => an.sex === sex)
+            .map(an => an.name) })),
+    }), { NE: [], NW: [], SE: [], SW: [] });
+  }
+
+  if (includeNames) {
+    return animals.reduce((acc, animal) => ({
+      ...acc,
+      [animal.location]: animals
+        .filter(a => a.location === animal.location)
+        .map(a => ({ [a.name]: sorted ?
+            a.residents.map(an => an.name).sort() :
+            a.residents.map(an => an.name) })),
+    }), { NE: [], NW: [], SE: [], SW: [] });
+  }
+
+  return animals.reduce((acc, animal) => ({
+    ...acc,
+    [animal.location]: animals
+      .filter(a => a.location === animal.location)
+      .map(a => a.name),
+  }), { NE: [], NW: [], SE: [], SW: [] });
 }
 
 function schedule(dayName) {
