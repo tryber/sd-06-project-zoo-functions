@@ -95,28 +95,27 @@ function animalMap(options) {
       result[coor] = animalSearch(coor);
     } else if (options.includeNames === true && (options.sex === 'male' || options.sex === 'female') && options.sorted === true) {
       animalSearch(coor).forEach((specie) => {
-      result[coor].push({[specie]: sexSearch(options.sex, specie).sort()});
-      })
+        result[coor].push({ [specie]: sexSearch(options.sex, specie).sort() });
+      });
     } else if (options.includeNames === true && options.sorted === true) {
       animalSearch(coor).forEach((specie) => {
-        result[coor].push({[specie]: nameSearch(specie).sort()});
-      })
+        result[coor].push({ [specie]: nameSearch(specie).sort() });
+      });
     } else if (options.includeNames === true && (options.sex === 'male' || options.sex === 'female')) {
       animalSearch(coor).forEach((specie) => {
-      result[coor].push({[specie]: sexSearch(options.sex, specie)});
-      })
+        result[coor].push({ [specie]: sexSearch(options.sex, specie) });
+      });
     } else if (options.includeNames === true) {
       animalSearch(coor).forEach((specie) => {
-      result[coor].push({[specie]: nameSearch(specie)});
-      })
+        result[coor].push({ [specie]: nameSearch(specie) });
+      });
     } else if (options.sex === 'male' || options.sex === 'female') {
       result[coor] = animalSearch(coor);
     }
   });
   return result;
 }
-const options = { includeNames: true, sex: 'female', sorted: true }
-console.log(animalMap(options).NE);
+
 function schedule(dayName) {
   // seu código aqui
 }
