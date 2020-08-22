@@ -55,7 +55,9 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  return !entrants || Object.entries(entrants).length === 0 ? 0 :
+  Object.keys(entrants).reduce((totalPrice, current) => totalPrice + (entrants[current] * data.prices[current])
+  , 0)
 }
 
 function animalMap(options) {
