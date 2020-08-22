@@ -14,7 +14,6 @@ eslint no-unused-vars: [
 // rsd = residents | obj = object | res = result | per = person | sts = states | st = state
 // ----------------------------------------------------------------------------------------
 const data = require('./data');
-const { prices } = require('./data');
 
 function animalsByIds(...ids) {
   // seu código aqui
@@ -109,9 +108,7 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-  // seu código aqui
-  // Passo 3
-  // Desconstrução do input
+  // Passo 3 - Desconstrução do input
   const keysOfInput = (options !== undefined) ? Object.keys(options) : [];
   const includeNames = keysOfInput.includes('includeNames') ? options.includeNames : false;
   const sex = keysOfInput.includes('sex') ? options.sex : false;
@@ -126,60 +123,50 @@ function animalMap(options) {
   // que ele não possui ainda.
   const statesWithRedundance = data.animals.reduce((sts, obj) => sts.concat(obj.location), []);
   const allStates = [];
-  statesWithRedundance.forEach(st => { if (!allStates.includes(st)) allStates.push(st) });
+  statesWithRedundance.forEach((st) => { if (!allStates.includes(st)) allStates.push(st); });
 
-  // Passo 4
-  // Essa é a parte que varia conforma os inputs recebidos
+  // Passo 4 - Essa é a parte que varia conforma os inputs recebidos
   const animalsObjConstructor = (anmGrp) => {
     let animalsObj;
     const concatNames = (anmNames, anm) => anmNames.concat(anm.name);
-    const filterSex = anm => { return anm.sex === sex };
-
-    //Caso 2 - includeNames === true
+    const filterSex = anm => (anm.sex === sex);
+    // Caso 2 - includeNames === true
     if (includeNames && !sex && !sorted) {
       animalsObj = {};
       animalsObj[anmGrp.name] = anmGrp.residents.reduce(concatNames, []);
-
-      //Caso 1 - nenhum parâmetro
+      // Caso 1 - nenhum parâmetro
     } else if (!includeNames && !sex && !sorted) {
       animalsObj = anmGrp.name;
-
-      //Caso 3 - sorted === true e includeNames === true
+      // Caso 3 - sorted === true e includeNames === true
     } else if (includeNames && !sex && sorted) {
       animalsObj = {};
       animalsObj[anmGrp.name] = anmGrp.residents.reduce(concatNames, []).sort();
-
-      //Caso 4 - sex === 'male'/'female' e includeNames === true
+      // Caso 4 - sex === 'male'/'female' e includeNames === true
     } else if (includeNames && sex && !sorted) {
       animalsObj = {};
       animalsObj[anmGrp.name] = anmGrp.residents.filter(filterSex).reduce(concatNames, []);
-
-      //Caso 5 - sex === 'male'/'female' e includeNames === true e sorted === true
+      // Caso 5 - sex === 'male'/'female' e includeNames === true e sorted === true
     } else if (includeNames && sex && sorted) {
       animalsObj = {};
       animalsObj[anmGrp.name] = anmGrp.residents.filter(filterSex).reduce(concatNames, []).sort();
-
-      //Caso 6 - includeNames === false
+      // Caso 6 - includeNames === false
     } else if (!includeNames) {
       animalsObj = anmGrp.name;
     }
     return animalsObj;
-  };
-  
+  };  
   // Passo 2
   // Aqui nós percorremos todo o array de estados (allStates), e para cada estado (state),...
   // percorremos todo o array data.animals para ver quais grupos de animais possuem localização...
   // igual ao estado (location === state).
-  let objToReturn = {};
-  allStates.forEach(state => {
-    objToReturn[state] = data.animals.reduce((anmInState, anmGrp) => {
-      if (anmGrp.location === state) return anmInState.concat(animalsObjConstructor(anmGrp));
-      return anmInState;
+  const objToReturn = {};
+  allStates.forEach((state) => {
+    objToReturn[state] = data.animals.reduce((anmInSt, anmGrp) => {
+      return (anmGrp.location === state) ? anmInSt.concat(animalsObjConstructor(anmGrp)) :anmInSt;
     }, []);
   });
-
-//Gran finale - retorna o objeto construido conforme o input  
-return objToReturn;
+  // Gran finale - retorna o objeto construido conforme o input
+  return objToReturn;
 }
 
 function schedule(dayName) {
