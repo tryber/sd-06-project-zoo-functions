@@ -46,11 +46,11 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 
 function animalCount(species) {
   if (!species) {
-    return Object.fromEntries(animals.map(animal => [animal.name, animal.residents.length] ));
+    return Object.fromEntries(animals.map(animal => [animal.name, animal.residents.length]));
   }
-  return animals.reduce((acc, animal) => {
-      return animal.name === species ? acc + animal.residents.length : acc;
-    }, 0);
+  return animals.reduce((acc, animal) =>
+    animal.name === species ? acc + animal.residents.length : acc, 
+  0);
 }
 
 function entryCalculator(entrants) {
