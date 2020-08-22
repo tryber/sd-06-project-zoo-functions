@@ -27,7 +27,10 @@ function animalsByIds(...ids) {
 //  testa se todos os animais desta espécie possuem
 //  a idade mínima especificada
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  const animalPassed = data.animals
+    .find(item => item.name === animal).residents
+    .every(item => item.age > age);
+  return animalPassed;
 }
 //  Sem parâmetros, retorna um objeto vazio
 //  Quando provido o primeiro nome do funcionário, retorna o objeto do funcionário
