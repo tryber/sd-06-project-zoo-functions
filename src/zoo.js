@@ -44,11 +44,10 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 function animalCount(species = animals) {
   if (species !== animals) {
     const { residents } = animals.find(item => item.name === species);
-    return residents.length
+    return residents.length;
   }
   return species.reduce((acc, { name, residents }) => (
-    Object.assign(acc, { [name]: residents.length }
-    )), {});
+    Object.assign(acc, { [name]: residents.length, })), {});
 }
 
 /* console.log(animalCount('snakes')); */
