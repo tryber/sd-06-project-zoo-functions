@@ -89,12 +89,27 @@ function animalCount(species) {
   const findTheAnimal = animals.find(animal => animal.name === species);
   return findTheAnimal.residents.length;
 }
-// console.log(animals[0]);
-// console.log(animalCount('otters'));
 
 function entryCalculator(entrants) {
   // seu código aqui
+  if (entrants === undefined || entrants === '' || Object.keys(entrants).length === 0) {
+    return 0;
+  }
+  let entryPrice = 0;
+  if (entrants.Adult) {
+    entryPrice += (entrants.Adult * data.prices.Adult);
+  }
+  if (entrants.Child) {
+    entryPrice += (entrants.Child * data.prices.Child);
+  }
+  if (entrants.Senior) {
+    entryPrice += (entrants.Senior * data.prices.Senior);
+  }
+  return entryPrice;
 }
+
+// let entrants = { 'Senior': 1 };
+// console.log(entryCalculator(entrants));
 
 function animalMap(options) {
   // seu código aqui
