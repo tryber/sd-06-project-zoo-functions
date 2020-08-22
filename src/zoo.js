@@ -146,10 +146,9 @@ function increasePrices(percentage) {
 function employeeCoverage(idOrName) {
   // seu código aqui
   let objEmployees;
+  const input = idOrName;
   if (idOrName !== undefined && idOrName !== '') {
-    const vfy = (obj) => {
-      return obj.id === idOrName || obj.firstName === idOrName || obj.lastName === idOrName;
-    };
+    const vfy = (obj) => obj.id === input || obj.firstName === input || obj.lastName === input;;
     objEmployees = [data.employees.find(obj => vfy(obj))];
   } else {
     objEmployees = data.employees;
@@ -158,7 +157,7 @@ function employeeCoverage(idOrName) {
   objEmployees.forEach((objEmployee) => {
     const idsOfAnimalsCovered = objEmployee.responsibleFor;
     const key = `${objEmployee.firstName} ${objEmployee.lastName}`;
-    const anmGrpName = (id) => data.animals.find(obj => obj.id === id).name;
+    const anmGrpName = id => data.animals.find(obj => obj.id === id).name;
     const value = idsOfAnimalsCovered.reduce((res, id) => res.concat(anmGrpName(id)), []);
     objToReturn[key] = value;
   });
