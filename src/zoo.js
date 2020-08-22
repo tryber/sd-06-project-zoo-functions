@@ -34,7 +34,6 @@ function employeeByName(employeeName) {
     if (employeeName.includes(employee.firstName) || employeeName.includes(employee.lastName)) {
       return this;
     }
-    return {};
   });
   return employeeData;
 }
@@ -59,8 +58,15 @@ function isManager(id) {
 
 
 //  requisito6
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  const newEmployee = {
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  }
+  return employees.push(newEmployee);
 }
 
 function animalCount(species) {
