@@ -94,17 +94,17 @@ function schedule(dayName) {
         obj.Monday = 'CLOSED';
         return obj;
       }
-      return obj[dia[0]] = `Open from ${dia[1].open}am until ${dia[1].close -12}pm`;
+      obj[dia[0]] = `Open from ${ dia[1].open }am until ${ dia[1].close -12 }pm`;
     });
-      return obj;
-  };
+    return obj;
+  }
   return hora.filter(name => name[0] === dayName).map((dia) => {
     if (dayName === 'Monday') {
       obj[dayName] = 'CLOSED';
       return obj;
     }
-      obj[dayName] = `Open from ${dia[1].open}am until ${dia[1].close - 12}pm`;
-      return obj;
+    obj[dayName] = `Open from ${dia[1].open}am until ${dia[1].close - 12}pm`;
+    return obj;
   })[0];
 }
 
