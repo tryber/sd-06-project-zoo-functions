@@ -46,8 +46,8 @@ function animalCount(species = animals) {
     const { residents } = animals.find(item => item.name === species);
     return residents.length;
   }
-  return species.reduce((acc, { name, residents }) => (
-    Object.assign(acc, { [name]: residents.length, })), {});
+  return species.reduce((acc, { name, residents, }) =>
+    (Object.assign(acc, { [name]: residents.length, })), {});
 }
 
 /* console.log(animalCount('snakes')); */
