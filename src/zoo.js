@@ -256,7 +256,7 @@ function increasePrices(percentage) {
   const increase = parseFloat(`1.${percentage}`);
   // console.log(increase);
   newPricesKeys.forEach((key, index) => {
-    newPrices[key] = Math.round((newPrices[key] * increase) * 100)/100;
+    newPrices[key] = Math.round((newPrices[key] * increase) * 100) / 100;
   });
   data.prices = newPrices;
   // console.log(newPricesKeys);
@@ -269,38 +269,39 @@ function employeeCoverage(idOrName) {
   if (idOrName === undefined) {
     return employeeCoverageEmpty();
   }
-};
+  return 'teste';
+}
 
-function employeeCoverageEmpty () {
+function employeeCoverageEmpty (){
   const employeesNames = employees.map(employee => employee.firstName);
-    const employeesLastNames = employees.map(employee => employee.lastName);
+  const employeesLastNames = employees.map(employee => employee.lastName);
     const employeesFullNames = [];
-    employeesNames.forEach((employee, index) => {
-      employeesFullNames[index] = `${employeesNames[index]} ${employeesLastNames[index]}`
-    })
-    // console.log(employeesFullNames);
+  employeesNames.forEach((employee, index) => {
+    employeesFullNames[index] = `${employeesNames[index]} ${employeesLastNames[index]}`;
+  })
+  // console.log(employeesFullNames);
 
-    const employeeResponsability = employees.map(employee => employee.responsibleFor);
-    // console.log(employeeResponsability);
+  const employeeResponsability = employees.map(employee => employee.responsibleFor);
+  // console.log(employeeResponsability);
 
-    employeeResponsability.forEach((responsibilities, index) => {
-      // console.log(responsibilities);
-      // console.log(index);
-      employeeResponsability[index] = [];
-      responsibilities.forEach(animalId => {
-        const animalName = animals.find(animal => animal.id === animalId).name;
-        employeeResponsability[index].push(animalName);
-        // console.log(animalName);
-        // console.log(employeeResponsability[index]);
-      });
-      // console.log(employeeResponsability);
+  employeeResponsability.forEach((responsibilities, index) => {
+    // console.log(responsibilities);
+    // console.log(index);
+    employeeResponsability[index] = [];
+    responsibilities.forEach((animalId) => {
+      const animalName = animals.find(animal => animal.id === animalId).name;
+      employeeResponsability[index].push(animalName);
+      // console.log(animalName);
+      // console.log(employeeResponsability[index]);
     });
-    const output = {};
-    employeesFullNames.forEach((employee, index) => {
-      output[employee] = employeeResponsability[index];
-    })
-    return output;
-  }
+    // console.log(employeeResponsability);
+  });
+  const output = {};
+  employeesFullNames.forEach((employee, index) => {
+    output[employee] = employeeResponsability[index];
+  });
+  return output;
+}
 
 console.log(employeeCoverage());
 
