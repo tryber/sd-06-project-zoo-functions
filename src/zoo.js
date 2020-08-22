@@ -45,7 +45,7 @@ function createEmployee(personalInfo, associatedWith) {
 function isManager(id) {
   // metodo include olha se os valores de manager.managers
   // tem os id passados e some retorne true ou false
-  return employees.some(manager => manager.managers.includes(id))
+  return employees.some(manager => manager.managers.includes(id));
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
