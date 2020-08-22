@@ -123,8 +123,6 @@ function increasePrices(percentage) {
   prices.Child = Math.round((prices.Child + (prices.Child * perc)) * 100) / 100;
 }
 
-console.log(increasePrices(50))
-
 function employeeCoverage(idOrName) {
   const obj = {};
   // const geral = employees.map(element => element.filter(element.responsibleFor.))
