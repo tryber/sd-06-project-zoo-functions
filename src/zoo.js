@@ -167,8 +167,8 @@ console.log('-----9------');
 function animalMap(options) {
   const locations = ['NE', 'NW', 'SE', 'SW'];
   const output = {};
-  const { includeNames = false, sorted = false, sex = ''} = options === undefined ? { includeNames: false, sorted: false, sex: ''} : options;
   if (options) {
+    const { includeNames = false, sorted = false, sex = ''} = options;
     if (includeNames === true) {
       locations.forEach(region => {output[region] = animals
           .filter(animal => animal.location === region)
@@ -181,11 +181,14 @@ function animalMap(options) {
             return animalsBySpecie;
           });
       });
-    };
-  };
-  if (!options || includeNames === false) {
-    locations.forEach(region => {
+    } else {
+      locations.forEach(region => {
       output[region] = animals.filter(animal => animal.location === region).map(mA => mA.name)});
+    }
+  };
+  if (!options) {
+    locations.forEach(region => {
+    output[region] = animals.filter(animal => animal.location === region).map(mA => mA.name)});
   };
   return output;
 }
@@ -197,11 +200,11 @@ console.log('---IncludeNames = true---');
 console.log(animalMap({includeNames: true}));
 console.log('---IncludeNames = true, sorted = true---');
 console.log(animalMap({includeNames: true, sorted: true}));
-console.log('---IncludeNames = true, sex = male---');
+console.log('---IncludeNames = true, sex = female---');
 console.log(animalMap({includeNames: true, sex: 'female'}));
 console.log('---IncludeNames = true, sex = male, sorted: true---');
 console.log(animalMap({includeNames: true, sex: 'female', sorted: true}));
-console.log('---sex = male---');
+console.log('---sex = female---');
 console.log(animalMap({sex: 'female', sorted: true}));
 
 
