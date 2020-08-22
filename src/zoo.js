@@ -117,11 +117,30 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  const perc = percentage / 100;
+  prices.Adult = Math.round((prices.Adult + (prices.Adult * perc)) * 100) / 100;
+  prices.Senior = Math.round((prices.Senior + (prices.Senior * perc)) * 100) / 100;
+  prices.Child = Math.round((prices.Child + (prices.Child * perc)) * 100) / 100;
 }
 
+console.log(increasePrices(50))
+
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  const obj = {};
+  // const geral = employees.map(element => element.filter(element.responsibleFor.))
+  // console.log(geral)
+  // const resp = animals.find(element => geral.includes(element.id));
+  // console.log(resp)
+  if (idOrName === undefined) {
+      employees.forEach(element => {
+      const nomes = element.firstName +' '+ element.lastName;
+      const responsavel = element.responsibleFor;
+      const respFind = responsavel.flatMap((animalId) => {
+        if (animalId.includes(animals.id)) return animals.name
+      });
+      obj[nomes] = respFind;});
+    return obj
+  }
 }
 
 module.exports = {
