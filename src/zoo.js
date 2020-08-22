@@ -231,9 +231,24 @@ function schedule(dayName) {
 console.log(schedule());
 console.log(schedule('Monday'));
 
+console.log('-----11------');
+
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const targetAnimalId = employees.find(emp => emp.id === id).responsibleFor[0];
+  const targetSpecieResidents = animals.find(animal => animal.id === targetAnimalId).residents;
+  const targetAnimalAge = targetSpecieResidents.reduce((acc, animal, index) => {
+    if (animal.age > acc.age) {
+      return animal.age;
+    } else {
+      return acc;
+    }
+  });
+  const targetAnimalObj = targetSpecieResidents.find(animal => animal.age === targetAnimalAge);
+  const output = Object.values(targetAnimalObj);
+  return output;
 }
+
+console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
 
 function increasePrices(percentage) {
   // seu código aqui
