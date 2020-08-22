@@ -167,27 +167,23 @@ console.log('-----9------');
 function animalMap(options) {
   const locations = ['NE', 'NW', 'SE', 'SW'];
   const output = {};
-  if (options) {
-    const { includeNames = false, sorted = false, sex = ''} = options;
-    if (includeNames === true) {
-      locations.forEach(region => {output[region] = animals
-          .filter(animal => animal.location === region).map(animalObject => {
-            const animalsBySpecie = {};
-            let resAnimal = animalObject.residents;
-            if (sex !== "") resAnimal = resAnimal.filter(resident => resident.sex === sex);
-            animalsBySpecie[animalObject.name] = resAnimal.map(subject => subject.name);
-            if (sorted === true) animalsBySpecie[animalObject.name].sort();
-            return animalsBySpecie;
-          });
-      });
-    } 
-    else if (includeNames === false) {
-      locations.forEach(region => {
-      output[region] = animals.filter(animal => animal.location === region).map(a => a.name)});
-    }
-  } else if (!options) {
-    locations.forEach(region => {
-    output[region] = animals.filter(animal => animal.location === region).map(mA => mA.name)});
+  const { includeNames = false, sorted = false, sex = '' } =
+  options === undefined ? { includeNames: false, sorted: false, sex: '' } : options;
+  if (includeNames === true) {
+    locations.forEach(region => {output[region] = animals
+        .filter(animal => animal.location === region).map(animalObject => {
+          const animalsBySpecie = {};
+          let resAnimal = animalObject.residents;
+          if (sex !== "") resAnimal = resAnimal.filter(resident => resident.sex === sex);
+          animalsBySpecie[animalObject.name] = resAnimal.map(subject => subject.name);
+          if (sorted === true) animalsBySpecie[animalObject.name].sort();
+          return animalsBySpecie;
+        });
+    });
+  } 
+  if (!options || includeNames === false) {
+  locations.forEach(region => {
+  output[region] = animals.filter(animal => animal.location === region).map(mA => mA.name)});
   };
   return output;
 }
