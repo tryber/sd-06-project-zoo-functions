@@ -41,18 +41,21 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  const manager1 = '0e7b460e-acf4-4e17-bcb3-ee472265db83'
-  const manager2 = 'fdb2543b-5662-46a7-badc-93d960fdc0a8'
-  return (id === manager1 || id === manager2) ? true : false;
+  const manager1 = '0e7b460e-acf4-4e17-bcb3-ee472265db83';
+  const manager2 = 'fdb2543b-5662-46a7-badc-93d960fdc0a8';
+  if (id === manager1 || id === manager2) {
+    return true; 
+  }
+  return false;
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   const lastEmployee = {
-   id,
-   firstName,
-   lastName,
-   managers: managers === undefined ? [] : managers,
-   responsibleFor: responsibleFor === undefined ? [] : responsibleFor,
+    id,
+    firstName,
+    lastName,
+    managers: managers === undefined ? [] : managers,
+    responsibleFor: responsibleFor === undefined ? [] : responsibleFor,
   };
   return employees.push(lastEmployee);
 }
@@ -77,15 +80,14 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-
   if (options === undefined) {
     return Object.keys(hours).reduce((acc, key, index) =>({...acc,
       [key]: `Open from ${Object.values(hours)[index].open}am until ${Object.values(hours)[index].close - 12}pm`
     } 
-  ), {})}
+  ),{})}
   return Object.keys(hours).find(options => options === ({[options]: `Open from ${options} until ${options}`
   }))
-} 
+}
 
 function schedule(dayName) {
   // seu código aqui
@@ -96,11 +98,15 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  const increasedPrices = Object.values(prices).reduce((acc, key, index) => ({...acc, [Object.keys(prices)[index]]: (Math.round(((Object.values(prices)[index])*(1 + percentage/100))*100)/100)
-  }), {});
-
-  return increasedPrices;
-} 
+  const updatedPrices = data.prices;
+  const pricesKeys = Object.keys(updatedPrices);
+  const pricesValues = Object.values(updatedPrices);
+  const multiplier = 1 + percentage / 100;
+  pricesValues.forEach((key, index) => {
+    updatedPrices[pricesKeys[index]] = Math.round((key * multiplier) * 100) / 100;
+  });
+  data.prices = updatedPrices;
+}
 
 function employeeCoverage(idOrName) {
   // seu código aqui
