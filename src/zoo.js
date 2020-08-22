@@ -104,17 +104,24 @@ const schedule = (dayName) => {
   }), {});
 };
 
-function oldestFromFirstSpecies(id) {
-  // seu código aqui
-}
+const oldestFromFirstSpecies = (id) => {
+  const animalId = employees.find(employee => employee.id === id).responsibleFor[0];
+  return Object.values(animals.find(animal => animal.id === animalId).residents
+    .sort((a, b) => b.age - a.age)[0]);
+};
 
-function increasePrices(percentage) {
-  // seu código aqui
-}
+const increasePrices = (percentage) => {
+  data.prices.Adult = Number((Math.ceil((1 + (percentage / 100)) * 100 * data.prices.Adult) / 100)
+    .toFixed(2));
+  data.prices.Senior = Number((Math.ceil((1 + (percentage / 100)) * 100 * data.prices.Senior) / 100)
+    .toFixed(2));
+  data.prices.Child = Number((Math.ceil((1 + (percentage / 100)) * 100 * data.prices.Child) / 100)
+    .toFixed(2));
+};
 
-function employeeCoverage(idOrName) {
+const employeeCoverage = (idOrName) => {
   // seu código aqui
-}
+};
 
 module.exports = {
   entryCalculator,
