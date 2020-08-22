@@ -9,30 +9,54 @@ eslint no-unused-vars: [
 ]
 */
 
-const data = require('./data');
+const data = require("./data");
+const { animals, employees, prices } = require("./data");
 
-function animalsByIds(ids) {
-
+function animalsByIds(...ids) {
+  if (typeof ids !== null) {
+    return data.animals
+      .filter((element) => element.id === ids[0])
+      .concat(data.animals.filter((element) => element.id === ids[1]));
+  }
+  return [];
 }
-
-function animalsOlderThan(animal, age) {
-  // seu código aqui
+function animalsOlderThan(animalName, age) {
+  return animals
+    .filter((animal) => animal.name === animalName)[0]
+    .residents.every((element) => element.age > age);
 }
 
 function employeeByName(employeeName) {
-  // seu código aqui
+  return (
+    employees.filter(
+      (employee) =>
+        employee.firstName === employeeName ||
+        employee.lastName === employeeName
+    )[0] || {}
+  );
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  const employee = {};
+  return Object.assign(employee, personalInfo, associatedWith);
 }
 
-function isManager(id) {
-  // seu código aqui
+function isManager(employeeId) {
+  return employees
+    .flatMap((employee) => employee.managers)
+    .some((managerId) => managerId === employeeId);
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function addEmployee(
+  id,
+  firstName,
+  lastName,
+  managers = [],
+  responsibleFor = []
+) {
+  const personalInfo = { id, firstName, lastName };
+  const associatedWith = { managers, responsibleFor };
+  employees.push(createEmployee(personalInfo, associatedWith));
 }
 
 function animalCount(species) {
@@ -56,7 +80,10 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  Object.entries(prices).forEach((entries) => {
+    prices[entries[0]] =
+      Math.ceil(entries[1] * (1 + percentage / 100) * 100) / 100;
+  });
 }
 
 function employeeCoverage(idOrName) {
