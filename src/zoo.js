@@ -13,6 +13,7 @@ const data = require('./data');
 
 const { animals } = data;
 const { employees } = data;
+const { hours } = data;
 
 function animalsByIds(...ids) {
   if (animalsByIds.arguments.length === 0) {
@@ -86,9 +87,63 @@ function animalMap(options) {
   // seu código aqui
 }
 
-function schedule(dayName) {
-  // seu código aqui
+const formatWorkingHours = (day) => {
+  const closed = 'CLOSED';
+  const openingTime = day[1].open;
+
+  if (openingTime === 0) {
+    return closed;
+  }
+
+  const closingTime = day[1].close - 12;
+
+  return `Open from ${openingTime}am until ${closingTime}pm`;
 }
+
+function schedule(dayName) {
+  const closed = 'CLOSED';
+
+
+  if (schedule.arguments.length === 0) {
+    const entries = Object.entries(hours);
+    const allSchedule = {};
+    const twelveHourClock = entries.map(entry => formatWorkingHours(entry))
+    // const twelveHourClock = entries.map(entry => {
+    //   const openingTime = entry[1].open;
+    //   const closingTime = entry[1].close - 12;
+
+    //   if (openingTime === 0) {
+    //     return closed;
+    //   }
+
+    //   return `Open from ${openingTime}am until ${closingTime}pm`;
+    // })
+
+    entries.forEach((daySchedule, index) => {
+      allSchedule[daySchedule[0]] = twelveHourClock[index]
+    });
+
+    return allSchedule;
+  } else {
+    const day = Object.entries(hours).find(day => day[0] === dayName);
+
+    let openingTime2;
+
+    if (day[0] === 'Monday') {
+      openingTime2 = closed;
+    } else {
+      openingTime2 = `Open from ${day[1].open}am until ${day[1].close - 12}pm`;
+    }
+    const object = {}
+    object[day[0]] = openingTime2
+
+    return object
+  }
+
+
+}
+
+schedule('Tuesday');
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
