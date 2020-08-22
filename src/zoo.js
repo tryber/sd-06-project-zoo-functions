@@ -111,17 +111,23 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  let result = {};
-  const amPm = time => time > 12 ? time -= 12 : time;
+  const result = {};
+  const amPm = time => {
+    let moment = time;
+    if (time > 12) {
+      moment -= 12
+    }
+    return moment;
+  };
   const response = (day) => {
-  let { open, close } = hours[day];
-  if (open, close === 0) {
-    result[day] = 'CLOSED';
-  } else {
-    result[day] = `Open from ${amPm(open)}am until ${amPm(close)}pm`;
-  }
-  return result;
-  }
+    const { open, close } = hours[day];
+    if (open, close === 0) {
+      result[day] = 'CLOSED';
+    } else {
+      result[day] = `Open from ${amPm(open)}am until ${amPm(close)}pm`;
+    }
+    return result;
+  };
   if (!dayName) {
     Object.keys(hours).forEach(hour => response(hour));
   } else {
