@@ -166,13 +166,9 @@ function animalMap(options) {
 
   if (includeNames && sorted && sex === 'any') {
     result = structurer(createSortedAnimalResidentsList, sex);
-  } else if (includeNames && sex === 'female' && sorted) {
+  } else if (includeNames && sex !== 'any' && sorted) {
     result = structurer(createSortedAnimalResidentsListBySex, sex);
-  } else if (includeNames && sex === 'male' && sorted) {
-    result = structurer(createSortedAnimalResidentsListBySex, sex);
-  } else if (includeNames && sex === 'female') {
-    result = structurer(createAnimalResidentsListBySex, sex);
-  } else if (includeNames && sex === 'male') {
+  } else if (includeNames && sex !== 'any') {
     result = structurer(createAnimalResidentsListBySex, sex);
   } else if (includeNames) {
     result = structurer(createAnimalResidentsList);
