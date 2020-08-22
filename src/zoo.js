@@ -196,9 +196,9 @@ function animalMap(options) {
 function hourConverter(hour) {
   let result = '';
   if (hour > 12) {
-    result = `${hour - 12}pm`
+    result = `${hour - 12}pm`;
   } else {
-    result = `${hour}am`
+    result = `${hour}am`;
   }
   return result;
 }
@@ -210,7 +210,7 @@ function createDayTime() {
 
   for (let i = 0; i < daysList.length; i += 1) {
     const open = hourConverter(hours[`${daysList[i]}`].open);
-    const close = hourConverter(hours[`${daysList[i]}`].close)
+    const close = hourConverter(hours[`${daysList[i]}`].close);
     result[`${daysList[i]}`] = `Open from ${open} until ${close}`;
   }
   result.Monday = 'CLOSED';
