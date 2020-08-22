@@ -9,26 +9,40 @@ eslint no-unused-vars: [
 ]
 */
 
-const data = require('./data');
+const { employees, animals, prices } = require('./data');
 
-function animalsByIds(ids) {
-  // seu código aqui
+function animalsByIds(...ids) {
+  if (typeof ids != null){
+    return animals
+    .filter(animal => animal.id === ids[0])
+    .concat(animals.filter(animal => animal.id === ids[1]));
+  }
+  return []
 }
 
-function animalsOlderThan(animal, age) {
-  // seu código aqui
+function animalsOlderThan(animalName, age) {
+  return animals.every(animal => animal.name === animalName && animal.age > age)
 }
+
 
 function employeeByName(employeeName) {
-  // seu código aqui
+  return employees
+  .filter(worker => worker.firstName === employeeName ||
+  worker.lastName === employeeName,)[0] || {}
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  const newEmployee = {}
+  function personalInfo(id, firstName, lastName){
+    //código
+  }
+  function associatedWith(managers, responsibleFor){
+    //código
+  }
 }
 
 function isManager(id) {
-  // seu código aqui
+  return employees.some(worker => worker.managers[0] === id)
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
@@ -36,11 +50,12 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 }
 
 function animalCount(species) {
-  // seu código aqui
+  //seu código aqui
 }
 
 function entryCalculator(entrants) {
   // seu código aqui
+  
 }
 
 function animalMap(options) {
@@ -56,8 +71,9 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
-}
+  const ticketsPrices = prices.forEach((newPrice) => newPrice * (1 + percentage/100))
+  return ticketsPrices
+} 
 
 function employeeCoverage(idOrName) {
   // seu código aqui
