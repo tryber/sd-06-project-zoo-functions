@@ -84,8 +84,9 @@ function animalCount(species) {
   // seu código aqui
   // console.log(species)
   // const meanObj = species ? data.animals.find(obj => obj.name === species) : data.animals;
-  // const counter = { 
-  //   countAll: () => meanObj.reduce((res, obj) => res.concat(`${obj.name}: ${obj.residents.length}`), []).sort(),
+  // const counter = {
+  //   countAll: () => meanObj.reduce((res, obj) => 
+  //   res.concat(`${obj.name}: ${obj.residents.length}`), []).sort(),
   //   countOne: () => `${meanObj.residents.length}`,
   // };
   // return (meanObj.length > 1) ? counter.countAll() : counter.countOne();
