@@ -23,6 +23,7 @@ function animalsByIds(...ids) {
   const animalsWithId = animalsWithId1.concat(animalsWithId2);
   return animalsWithId;
 }
+
 //  Ao passar o nome de uma espécie e uma idade,
 //  testa se todos os animais desta espécie possuem
 //  a idade mínima especificada
@@ -32,6 +33,7 @@ function animalsOlderThan(animal, age) {
     .every(item => item.age > age);
   return animalPassed;
 }
+
 //  Sem parâmetros, retorna um objeto vazio
 //  Quando provido o primeiro nome do funcionário, retorna o objeto do funcionário
 //  Quando provido o último nome do funcionário, retorna o objeto do funcionário
@@ -43,6 +45,7 @@ function employeeByName(employeeName) {
     .find(employ => employ.firstName === employeeName || employ.lastName === employeeName);
   return employFilter;
 }
+
 //  Cria um novo colaborador a partir de objetos contendo informações
 //  pessoais e gerentes e animais gerenciados.
 //  https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
@@ -52,8 +55,20 @@ function createEmployee(personalInfo, associatedWith) {
   return newEmployee;
 }
 
+//  Testa se o id passado é de um gerente
+//  Fusão de dois arrays
+//  https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/push
 function isManager(id) {
-  // seu código aqui
+  const arrayManagers = data.employees.map(employ => employ.managers);
+  const newArray = [];
+  for (let i = 0; i < arrayManagers.length; i += 0) {
+    Array.prototype.push.apply(newArray, arrayManagers[i]);
+  }
+  const managerFinder = newArray.find(item => item === id);
+  if (managerFinder !== undefined) {
+    return true;
+  }
+  return false;
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
