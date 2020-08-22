@@ -125,7 +125,10 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const func = data.employees.filter(emp => emp.id === id);
+  const resp = data.animals.filter(animal => animal.id === func[0].responsibleFor[0]);
+  const result = resp[0].residents.reduce((acc, curr) => (acc.age > curr.age ? acc : curr));
+  return Object.values(result);
 }
 
 function increasePrices(percentage) {
