@@ -79,7 +79,9 @@ function animalCount(species) {
 
     // had the idea, learned how to do it in here:
     // https://stackoverflow.com/questions/39127989/creating-a-javascript-object-from-two-arrays
-    animals.map((animal, index) => output[animal] = count[index]);
+    for (let index = 0; index < animals.length; index += 1) {
+      output[animals[index]] = count[index];
+    }
     return output;
   }
   const speciesCount = data.animals
