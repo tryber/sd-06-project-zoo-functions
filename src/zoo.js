@@ -95,24 +95,11 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   // seu código aqui
-  const { Adult: priceAdult, Senior: priceSenior, child: priceChild } = data.prices;
-  let totalCost = 0;
-  (!entrants || Object.keys(entrants).length === 0)
-    ? totalCost
-    : entrants.reduce((sum, element) => {
-      switch (element) {
-        case 'Adult' || 'adult':
-          return (sum + (priceAdult * entrants[element].value));
-        case 'Senior' || 'senior':
-          return (sum + (priceSenior * entrants[element].value));
-        case 'Child' || 'child':
-          return (sum + (priceChild * entrants[element].value));
-        default:
-          break;
-      }
-      return sum;
-    });
-  return totalCost;
+  const prices = Object.assign({}, data.prices);
+  const sumEntries = (sum, current) => sum + (prices[current] * entrants[current]);
+  return (!entrants || Object.keys(entrants).length === 0)
+    ? 0
+    : Object.keys(entrants).reduce(sumEntries, 0);
 }
 
 function animalMap(options) {
