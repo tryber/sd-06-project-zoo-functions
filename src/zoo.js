@@ -73,9 +73,7 @@ function animalCount(species) {
 
 function entryCalculator(entrants = 0) {
   let sum = 0;
-
   const { Adult, Child, Senior } = prices;
-
   Object.keys(entrants).forEach((person, index) => {
     const numberOfTickets = Object.values(entrants)[index];
     if (person === 'Adult') {
@@ -98,8 +96,27 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const getIds = employees
+  .filter(person => person.id === id)
+  .map(items => items.responsibleFor[0]);
+
+  const oldestAnimal = animals
+  .find(animal => animal.id === getIds[0])
+  .residents
+  .reduce((acc, curr) => {
+    if (acc.age > curr.age) {
+      return acc;
+    }
+    return curr;
+  }, 0);
+
+  const { name, sex, age } = oldestAnimal;
+  const returnArr = [name, sex, age];
+
+  return returnArr;
 }
+
+console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
 
 function increasePrices(percentage) {
   // seu código aqui
