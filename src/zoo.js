@@ -162,10 +162,62 @@ function entryCalculator(entrants) {
 console.log(entryCalculator());
 console.log(entryCalculator({}));
 console.log(entryCalculator({ Adult: 2, Child: 3, Senior: 1 }));
+console.log('-----9------');
+
 
 function animalMap(options) {
-  // seu código aqui
+  const locations = ['NE', 'NW', 'SE', 'SW'];
+  const animalsByLocation = {};
+  
+  // Pq o map dentro do filter retorna um array flat???
+  if (options) {
+    const { includeNames = false, sorted = false, sex = ''} = options;
+    const output = {};
+    if (includeNames === true) {
+      locations.forEach(region => {
+        output[region] = animals
+          .filter(animal => animal.location === region)
+          .map(animalObject => {
+            const animalsBySpecie = {};
+            let residentAnimalsBySpecie = animalObject.residents;
+            if (sex !== "") {
+              residentAnimalsBySpecie = residentAnimalsBySpecie.filter(resident => resident.sex === sex);
+              // console.log(residentAnimalsBySpecie);
+            }
+            animalsBySpecie[animalObject.name] = residentAnimalsBySpecie.map(subject => subject.name);
+            if (sorted === true) animalsBySpecie[animalObject.name].sort();
+            return animalsBySpecie;
+          });
+      });
+      console.log(`O Array dentro da chave lions no NE é ${output.NE[0].lions}`);
+      return output;
+    };
+  };
+  const includeNames = false;
+  if (!options || includeNames === false) {
+    locations.forEach(region => {
+      animalsByLocation[region] = animals
+      .filter(animal => animal.location === region)
+      .map(mapAnimal => mapAnimal.name); 
+    });
+    return animalsByLocation;
+  }; 
 }
+
+console.log('Animal Map');
+console.log('---NO OPTIONS---');
+console.log(animalMap());
+console.log('---IncludeNames = true---');
+console.log(animalMap({includeNames: true}));
+console.log('---IncludeNames = true, sorted = true---');
+console.log(animalMap({includeNames: true, sorted: true}));
+console.log('---IncludeNames = true, sex = male---');
+console.log(animalMap({includeNames: true, sex: 'female'}));
+console.log('---IncludeNames = true, sex = male, sorted: true---');
+console.log(animalMap({includeNames: true, sex: 'female', sorted: true}));
+console.log('---sex = male---');
+console.log(animalMap({sex: 'female', sorted: true}));
+
 
 function schedule(dayName) {
   // seu código aquis
