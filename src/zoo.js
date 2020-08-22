@@ -133,8 +133,8 @@ function animalMap(options) {
     // Caso 2 - includeNames === true
     if (includeNames && !sex && !sorted) {
       animalsObj[anmGrp.name] = anmGrp.residents.reduce(concatNames, []);
-      // Caso 1 - nenhum parâmetro
-    } else if (!includeNames && !sex && !sorted) {
+      // Caso 1 - nenhum parâmetro | // Caso 6 - includeNames === false
+    } else if (!includeNames) {
       animalsObj = anmGrp.name;
       // Caso 3 - sorted === true e includeNames === true
     } else if (includeNames && !sex && sorted) {
@@ -145,9 +145,6 @@ function animalMap(options) {
       // Caso 5 - sex === 'male'/'female' e includeNames === true e sorted === true
     } else if (includeNames && sex && sorted) {
       animalsObj[anmGrp.name] = anmGrp.residents.filter(filterSex).reduce(concatNames, []).sort();
-      // Caso 6 - includeNames === false
-    } else if (!includeNames) {
-      animalsObj = anmGrp.name;
     }
     return animalsObj;
   };
