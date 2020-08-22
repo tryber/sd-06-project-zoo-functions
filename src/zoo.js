@@ -82,14 +82,16 @@ function addEmployee(id = [], firstName = [], lastName = [], managers = [], resp
 
 function animalCount(species) {
   // seu código aqui
-  // console.log(species)
-  // const meanObj = species ? data.animals.find(obj => obj.name === species) : data.animals;
-  // const counter = {
-  //   countAll: () => meanObj.reduce((res, obj) =>
-  //   res.concat(`${obj.name}: ${obj.residents.length}`), []).sort(),
-  //   countOne: () => `${meanObj.residents.length}`,
-  // };
-  // return (meanObj.length > 1) ? counter.countAll() : counter.countOne();
+  const meanObj = species ? data.animals.find(obj => obj.name === species) : data.animals;
+  const counter = {
+    countAll: () => {
+      const objToReturn = {};
+      meanObj.map((obj) => objToReturn[obj.name] = obj.residents.length)
+      return objToReturn;
+    },
+    countOne: () => `${meanObj.residents.length}`,
+  };
+  return (meanObj.length > 1) ? counter.countAll() : counter.countOne();
 }
 
 
@@ -107,6 +109,7 @@ function animalMap(options) {
 
 function schedule(dayName) {
   // seu código aqui
+  //return data[hours][dayName]: `Open from ${data.hours[dayName].open}am until ${data.hours[dayName].open}pm`;
 }
 
 function oldestFromFirstSpecies(id) {
