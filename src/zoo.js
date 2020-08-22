@@ -232,10 +232,28 @@ function employeeCoverage(idOrName) {
     return employeeCoverageEmpty();
   }
 
-  return 'teste';
+  let employeeInputName = '';
+  let employeeIndex = 0;
+  if (employeesNames.includes(idOrName) || employeesLastNames.includes(idOrName)) {
+    if (employeesNames.includes(idOrName)) {
+      employeeInputName = idOrName;
+      employeesNames.find((employee, index) => {
+        if (employee === employeeInputName) {
+          employeeIndex = index;
+        }
+      })
+    } else {
+      employeeInputName = idOrName;
+    }
+    console.log(employeeInputName);
+    console.log(employeeIndex);
+  }
+  return employeeIndex;
 }
 
 console.log(employeeCoverage());
+console.log(employeeCoverage('Stephanie'));
+// console.log(employeeCoverage('Azevado'));
 
 module.exports = {
   entryCalculator,
