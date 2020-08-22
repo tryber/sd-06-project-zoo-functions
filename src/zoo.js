@@ -32,24 +32,9 @@ function employeeByName(employeeName) {
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
-  const dadosPesoais = {
-    id: 'c5b83dy3-a451-49e2-tr38-ff3f54hxe7l1',
-      firstName: 'Leonardo',
-      lastName: 'Benedito',
-  }
-  const gerenciamento = {
-    managers: ['b0dc644a-5335-489b-8a2c-4e086c7819a2',
-        '4b40a139-d4dc-4f09-822d-ec25e819a5ad'],
-      responsibleFor: ['01422318-ca2d-46b8-b66c-3e9e188244ed',
-        '78460a91-f4da-4dea-a469-86fd2b8ccc84']
-  }
-  const newEmployeee =  employees.map(novo => {
-    novo.Object.assign(dadosPesoais, gerenciamento)
-    
-  })
+  const newEmployeee = { ...personalInfo, ...associatedWith };
   return newEmployeee;
-}///
-console.log(createEmployee())
+}
 function isManager(id) {
   // seu código aqui
 }
