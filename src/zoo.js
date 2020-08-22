@@ -30,8 +30,10 @@ function employeeByName(employeeName) {
   if (employeeName === undefined) {
     return {};
   }
-  const firstName = employees.find(employeeFirstName => employeeFirstName.firstName === employeeName);
-  const lastName = employees.find(employeeLastName => employeeLastName.lastName === employeeName);
+  const firstName = employees
+    .find(employeeFirstName => employeeFirstName.firstName === employeeName);
+  const lastName = employees
+    .find(employeeLastName => employeeLastName.lastName === employeeName);
   return firstName || lastName;
 }
 
