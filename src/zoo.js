@@ -59,8 +59,22 @@ function addEmployee(
   employees.push(createEmployee(personalInfo, associatedWith));
 }
 
-function animalCount(species) {
-  // seu código aqui
+function animalCount(species = animals.map((animal) => animal.name)) {
+  if (typeof species === "string") {
+    return animals
+      .filter((animal) => animal.name === species)
+      .map((animal) => animal.residents.length)
+      .toString();
+  }
+  const animalsCounted = {};
+  animals
+    .filter((animal) =>
+      species.some((eachAnimalName) => (eachAnimalName = animal.name))
+    )
+    .map((animal) => {
+      animalsCounted[animal.name] = animal.residents.length;
+    });
+  return animalsCounted;
 }
 
 function entryCalculator(entrants) {
