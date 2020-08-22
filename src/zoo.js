@@ -16,7 +16,8 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  return animals.filter(kind => (kind.name === animal))[0].residents.every(animal => animal.age > age);
+  return animals.filter(kind => 
+    (kind.name === animal))[0].residents.every(animalAge => animalAge.age > age);
 }
 
 function employeeByName(employeeName) {
@@ -56,9 +57,7 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-   return Object.values(prices).map((price) => {
-     return (price = price * ( 1 + percentage /100)).toFixed(2);
-  });
+
 }
 
 function employeeCoverage(idOrName) {
