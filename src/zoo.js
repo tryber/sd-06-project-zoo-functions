@@ -239,9 +239,7 @@ function oldestFromFirstSpecies(id) {
   const targetAnimalAge = targetSpecieResidents.reduce((acc, animal, index) => {
     if (animal.age > acc.age) {
       return animal.age;
-    } else {
-      return acc;
-    }
+    } return acc;
   });
   const targetAnimalObj = targetSpecieResidents.find(animal => animal.age === targetAnimalAge);
   const output = Object.values(targetAnimalObj);
