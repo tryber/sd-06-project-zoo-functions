@@ -45,7 +45,10 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 }
 
 function animalCount(species) {
-  // seu código aqui
+  return !species ? Object.fromEntries(animals.map(animal => [animal.name, animal.residents.length])):
+  animals.reduce((acc, animal) => {
+    return animal.name === species ? acc + animal.residents.length : acc
+  }, 0)
 }
 
 function entryCalculator(entrants) {
