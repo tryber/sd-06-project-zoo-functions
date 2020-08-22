@@ -109,7 +109,13 @@ function animalMap(options) {
 
   return result;
 }
-const amPm = (time) => (time > 12) ? time -= 12 : time;
+const amPm = (time) => {
+  let moment = time;
+  if (time > 12) {
+    moment -= 12;
+  }
+  return moment;
+};
 const response = (day, object) => {
   const { open, close } = hours[day];
   if (open === 0 && close === 0) {
@@ -135,7 +141,9 @@ function oldestFromFirstSpecies(id) {
     .find(employee => employee.id === id).responsibleFor[0];
   const oldAnimal = animals
     .find(animal => animal.id === animalId).residents
-    .reduce((acc, curr) => (acc.age > curr.age) ? acc : curr);
+    .reduce((acc, curr) => { 
+      return (acc.age > curr.age) ? acc : curr; 
+    });
   return Object.values(oldAnimal);
 }
 
