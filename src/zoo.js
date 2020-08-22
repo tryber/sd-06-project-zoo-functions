@@ -105,29 +105,24 @@ const formatWorkingHours = (day) => {
 };
 
 function schedule(dayName) {
+  const scheduleObject = {};
+  const scheduleEntries = Object.entries(hours);
+  let workingHours;
+
   if (schedule.arguments.length === 0) {
-    const entries = Object.entries(hours);
-    const allSchedule = {};
-    const twelveHourClock = entries.map(entry => formatWorkingHours(entry));
+    workingHours = scheduleEntries.map(entry => formatWorkingHours(entry));
 
-    entries.forEach((daySchedule, index) => {
-      allSchedule[daySchedule[0]] = twelveHourClock[index];
+    scheduleEntries.forEach((daySchedule, index) => {
+      scheduleObject[daySchedule[0]] = workingHours[index];
     });
-
-    return allSchedule;
+  } else {
+    const toBeFormattedDay = scheduleEntries.find(day => day[0] === dayName);
+    workingHours = formatWorkingHours(toBeFormattedDay);
+    scheduleObject[toBeFormattedDay[0]] = workingHours;
   }
 
-  const toBeFormattedDay = Object.entries(hours).find(day => day[0] === dayName);
-  const openingTime2 = formatWorkingHours(toBeFormattedDay);
-
-  const object = {};
-  object[toBeFormattedDay[0]] = openingTime2;
-
-  return object;
+  return scheduleObject;
 }
-
-// schedule('Tuesday');
-// schedule();
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
