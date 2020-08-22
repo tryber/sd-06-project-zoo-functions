@@ -46,16 +46,9 @@ function animalsOlderThan(animal, age) {
   // objThatInc (Object That Includes Species)
   const objThatInc = data.animals.find(obj => obj.name === animal);
 
-  // Tendo o objeto basta verificarmos quais animas (residents) tem idade acima igual ou acima...
-  // da idade especificada. Nesse caso, pra ter segurança, faremos implementação considerando...
-  // mais de um objeto contendo a espécie. Para cada objeto verificaremos a idade de seus...
-  // residentes.
-  let response = true;
-  let i = 0;
-  while (response && i < objThatInc.residents.length) {
-    response = objThatInc.residents[i].age >= age;
-    i += 1;
-  }
+  // Tendo o objeto basta verificarmos se todos os animas (residents) tem idade acima igual ou acima...
+  // da idade especificada.
+  const response = objThatInc.residents.every(eachRsd => eachRsd.age >= age);
   return response;
 }
 
@@ -72,6 +65,7 @@ function employeeByName(employeeName) {
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
+  return {...personalInfo, ...associatedWith};
 }
 
 function isManager(id) {
