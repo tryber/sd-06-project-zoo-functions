@@ -124,6 +124,8 @@ function schedule(dayName) {
   return scheduleObject;
 }
 
+// Create array using reduce as seen on: https://stackoverflow.com/questions/39127989/creating-a-javascript-object-from-two-arrays/39128144#39128144
+
 function oldestFromFirstSpecies(id) {
   const animalGroupsInfo = employees.find(employee => employee.id === id).responsibleFor[0];
   const firstGroupInfo = animals.find(animalGroup => animalGroup.id === animalGroupsInfo);
