@@ -28,15 +28,15 @@ function animalsOlderThan(specie, age) {
 }
 
 
-//  requisito3 - falta passar no teste vazio
+//  requisito3 - ok
 function employeeByName(employeeName) {
-  const employeeData = employees.find((employee) => {
-    if (employeeName.includes(employee.firstName) || employeeName.includes(employee.lastName)) {
-      return this;
-    }
+  if (employeeName == null) {
     return {};
-  });
-  return employeeData;
+  }
+  const employee = employees.find(emp =>
+  (emp.firstName === employeeName) || (emp.lastName === employeeName));
+
+  return employee;
 }
 
 
@@ -70,9 +70,17 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   return employees.push(newEmployee);
 }
 
+
+//  requisito7 - não deu certo
 function animalCount(species) {
-  // seu código aqui
-}
+  const listAnimal = animals.filter(animal => animal.name === species);
+  const list = listAnimal.reduce((acc, currentValue) => {
+    if (listAnimal === species) {
+      return acc + currentValue;
+    }
+  });
+};
+//  console.log(animalCount('lions'))
 
 function entryCalculator(entrants) {
   // seu código aqui
