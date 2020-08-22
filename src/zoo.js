@@ -11,9 +11,10 @@ eslint no-unused-vars: [
 // ----------------------------------------------------------------------------------------
 // Convenção de abreviações
 // anm = animal | anms = animals | grp = group | grps = groups | arr= array | vfy = verify
-// rsd = residents | obj = object | res = result | per = person
+// rsd = residents | obj = object | res = result | per = person | sts = states | st = state
 // ----------------------------------------------------------------------------------------
 const data = require('./data');
+const { prices } = require('./data');
 
 function animalsByIds(...ids) {
   // seu código aqui
@@ -109,6 +110,76 @@ function entryCalculator(entrants) {
 
 function animalMap(options) {
   // seu código aqui
+  // Passo 3
+  // Desconstrução do input
+  const keysOfInput = (options !== undefined) ? Object.keys(options) : [];
+  const includeNames = keysOfInput.includes('includeNames') ? options.includeNames : false;
+  const sex = keysOfInput.includes('sex') ? options.sex : false;
+  const sorted = keysOfInput.includes('sorted') ? options.sorted : false;
+
+  // Passo 1
+  // Primeiro passo é encontrar quais são os estados para depois verificarmos quais grupos de ...
+  // animais estão localizados no estado, e posteriormente retornarmos os animais conforme as ...
+  // especificações recebidas como options. Nessa implementação percorremos o array data.animals...
+  // e pegamos todos os valores de location. Porém pode haver repetições de um mesmo estado,...
+  // então para tirar essa redundância passamos para um novo array (allStates) apenas os valores...
+  // que ele não possui ainda.
+  const statesWithRedundance = data.animals.reduce((sts, obj) => sts.concat(obj.location), []);
+  const allStates = [];
+  statesWithRedundance.forEach(st => { if (!allStates.includes(st)) allStates.push(st) });
+
+  // Passo 4
+  // Essa é a parte que varia conforma os inputs recebidos
+  const animalsObjConstructor = (anmGrp) => {
+    let animalsObj;
+    const concatNames = (anmNames, anm) => anmNames.concat(anm.name);
+    const filterSex = anm => { return anm.sex === sex };
+
+    //Caso 2 - includeNames === true
+    if (includeNames && !sex && !sorted) {
+      animalsObj = {};
+      animalsObj[anmGrp.name] = anmGrp.residents.reduce(concatNames, []);
+
+      //Caso 1 - nenhum parâmetro
+    } else if (!includeNames && !sex && !sorted) {
+      animalsObj = anmGrp.name;
+
+      //Caso 3 - sorted === true e includeNames === true
+    } else if (includeNames && !sex && sorted) {
+      animalsObj = {};
+      animalsObj[anmGrp.name] = anmGrp.residents.reduce(concatNames, []).sort();
+
+      //Caso 4 - sex === 'male'/'female' e includeNames === true
+    } else if (includeNames && sex && !sorted) {
+      animalsObj = {};
+      animalsObj[anmGrp.name] = anmGrp.residents.filter(filterSex).reduce(concatNames, []);
+
+      //Caso 5 - sex === 'male'/'female' e includeNames === true e sorted === true
+    } else if (includeNames && sex && sorted) {
+      animalsObj = {};
+      animalsObj[anmGrp.name] = anmGrp.residents.filter(filterSex).reduce(concatNames, []).sort();
+
+      //Caso 6 - includeNames === false
+    } else if (!includeNames) {
+      animalsObj = anmGrp.name;
+    }
+    return animalsObj;
+  };
+  
+  // Passo 2
+  // Aqui nós percorremos todo o array de estados (allStates), e para cada estado (state),...
+  // percorremos todo o array data.animals para ver quais grupos de animais possuem localização...
+  // igual ao estado (location === state).
+  let objToReturn = {};
+  allStates.forEach(state => {
+    objToReturn[state] = data.animals.reduce((anmInState, anmGrp) => {
+      if (anmGrp.location === state) return anmInState.concat(animalsObjConstructor(anmGrp));
+      return anmInState;
+    }, []);
+  });
+
+//Gran finale - retorna o objeto construido conforme o input  
+return objToReturn;
 }
 
 function schedule(dayName) {
