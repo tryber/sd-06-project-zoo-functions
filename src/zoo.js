@@ -74,19 +74,15 @@ function entryCalculator(entrants) {
 function animalMap(options) {
   const locationList = {};
   const initialList = {};
-
   const locationOption = animals.map(where =>
     where.location).reduce((acc, value) =>
-    acc.includes(value) ? acc : [...acc , value], []
-  ); //Referência: https://medium.com/dailyjs/how-to-remove-array-duplicates-in-es6-5daa8789641c
-  
+    acc.includes(value) ? acc : [...acc , value], []); //Referência: https://medium.com/dailyjs/how-to-remove-array-duplicates-in-es6-5daa8789641c
   locationOption.forEach(index => initialList[index] = animals.filter(value =>
-    value.location === index).map(animal => animal.name)
-  );
+    value.location === index).map(animal => animal.name));
   if (!options) return initialList;
   locationOption.forEach(index => {
     locationList[index] = animals
-    .filter(value =>value.location === index) 
+    .filter(value =>value.location === index)
     .map(animal => {
       const newObject = {};
       newObject[animal.name] = animal.residents;
@@ -96,9 +92,7 @@ function animalMap(options) {
       if (options.includeNames === true) {
         newObject[animal.name] = newObject[animal.name].map(theName => theName.name);
       }
-      if (options.sorted === true) {
-        newObject[animal.name].sort();
-      }
+      if (options.sorted === true) newObject[animal.name].sort();
       return newObject;
     });
   });
