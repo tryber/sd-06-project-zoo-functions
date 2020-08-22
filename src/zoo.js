@@ -41,7 +41,7 @@ function employeeByName(employeeName) {
   return providedName[0];
 }
   // return employees
-  //.find(name => name.firstName === employeeName || name.lastName === employeeName);
+  // .find(name => name.firstName === employeeName || name.lastName === employeeName);
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
