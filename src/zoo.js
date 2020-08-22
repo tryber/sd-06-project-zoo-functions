@@ -71,8 +71,15 @@ function animalCount(species) {
   return animals.find(animalGroup => animalGroup.name === species).residents.length;
 }
 
+// Checking for empty object as seen on: https://stackoverflow.com/questions/679915/how-do-i-test-for-an-empty-javascript-object
+
 function entryCalculator(entrants) {
-  // seu código aqui
+  const noArguments = entryCalculator.arguments.length === 0;
+  const emptyObject = noArguments ? undefined : Object.keys(entrants).length === 0 && entrants.constructor === Object;
+
+  if (noArguments || emptyObject) {
+    return 0;
+  }
 }
 
 function animalMap(options) {
