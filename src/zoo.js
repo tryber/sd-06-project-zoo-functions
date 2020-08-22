@@ -191,20 +191,6 @@ function animalMap(options) {
   return output;
 }
 
-console.log('Animal Map');
-console.log('---NO OPTIONS---');
-console.log(animalMap());
-console.log('---IncludeNames = true---');
-console.log(animalMap({ includeNames: true }));
-console.log('---IncludeNames = true, sorted = true---');
-console.log(animalMap({ includeNames: true, sorted: true }));
-console.log('---IncludeNames = true, sex = female---');
-console.log(animalMap({ includeNames: true, sex: 'female' }));
-console.log('---IncludeNames = true, sex = male, sorted: true---');
-console.log(animalMap({ includeNames: true, sex: 'female', sorted: true }));
-console.log('---sex = female---');
-console.log(animalMap({ sex: 'female', sorted: true }));
-
 console.log('-----10------');
 
 function schedule(dayName) {
@@ -271,7 +257,7 @@ function employeeCoverageEmpty() {
   const employeesFullNames = [];
   employeesNames.forEach((employee, index) => {
     employeesFullNames[index] = `${employeesNames[index]} ${employeesLastNames[index]}`;
-  })
+  });
   // console.log(employeesFullNames);
 
   const employeeResponsability = employees.map(employee => employee.responsibleFor);
