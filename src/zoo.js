@@ -125,11 +125,11 @@ function animalMap(options) {
   const allStates = [];
   statesWithRedundance.forEach((st) => { if (!allStates.includes(st)) allStates.push(st); });
 
-  const concatNames = (anmNames, anm) => anmNames.concat(anm.name);
-  const filterSex = anm => (anm.sex === sex);
   // Passo 4 - Essa é a parte que varia conforma os inputs recebidos
   const anmsObjConstruct = (anmGrp) => {
     let animalsObj = {};
+    const concatNames = (anmNames, anm) => anmNames.concat(anm.name);
+    const filterSex = anm => (anm.sex === sex);
     // Caso 2 - includeNames === true
     if (includeNames && !sex && !sorted) {
       animalsObj[anmGrp.name] = anmGrp.residents.reduce(concatNames, []);
