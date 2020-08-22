@@ -248,13 +248,69 @@ function oldestFromFirstSpecies(id) {
 
 console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
 
+console.log('-----12------');
+
 function increasePrices(percentage) {
-  // seu código aqui
+  const newPrices = data.prices;
+  const newPricesKeys = Object.keys(newPrices);
+  const increase = parseFloat(`1.${percentage}`);
+  // console.log(increase);
+  newPricesKeys.forEach((key, index) => {
+    newPrices[key] = Math.round((newPrices[key] * increase)*100)/100;
+  })
+  data.prices = newPrices;
+  // console.log(newPricesKeys);
+  return data.prices;
 }
 
+// function increasePrices(percentage) {
+//   const increase = (percentage / 100) + 1;
+//   data.prices.Adult = (Math.round(data.prices.Adult * increase * 100) / 100);
+//   data.prices.Senior = (Math.round(data.prices.Senior * increase * 100) / 100);
+//   data.prices.Child = (Math.round(data.prices.Child * increase * 100) / 100);
+//   return data.prices;
+// }
+
+console.log('-----13------');
+
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  if (idOrName === undefined) {
+    return employeeCoverageEmpty();
 }
+
+function employeeCoverageEmpty () {
+  const employeesNames = employees.map(employee => employee.firstName);
+    const employeesLastNames = employees.map(employee => employee.lastName);
+    const employeesFullNames = [];
+    employeesNames.forEach((employee, index) => {
+      employeesFullNames[index] = `${employeesNames[index]} ${employeesLastNames[index]}`
+    })
+    // console.log(employeesFullNames);
+
+    const employeeResponsability = employees.map(employee => employee.responsibleFor);
+    // console.log(employeeResponsability);
+
+    employeeResponsability.forEach((responsibilities, index) => {
+      // console.log(responsibilities);
+      // console.log(index);
+      employeeResponsability[index] = [];
+      responsibilities.forEach(animalId => {
+        const animalName = animals.find(animal => animal.id === animalId).name;
+        employeeResponsability[index].push(animalName);
+        // console.log(animalName);
+        // console.log(employeeResponsability[index]);
+      });
+      // console.log(employeeResponsability);
+    });
+    const output = {};
+    employeesFullNames.forEach((employee, index) => {
+      output[employee] = employeeResponsability[index];
+    })
+    return output;
+  }
+}
+
+console.log(employeeCoverage());
 
 module.exports = {
   entryCalculator,
