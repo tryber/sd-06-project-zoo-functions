@@ -115,7 +115,7 @@ function schedule(dayName) {
   // seu código aqui
   const objToReturn = {};
   const objKeys = (dayName !== undefined && dayName !== '') ? [dayName] : Object.keys(data.hours);
-  objKeys.map((key) => {
+  objKeys.forEach((key) => {
     let { open, close } = data.hours[key];
     close = (close > 12) ? close - 12 : close;
     open = (open > 12) ? open - 12 : open;
