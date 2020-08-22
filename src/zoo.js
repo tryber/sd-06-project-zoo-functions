@@ -13,8 +13,8 @@ const data = require('./data');
 
 function animalsByIds(...ids) {
   // seu código aqui
-  return (ids === undefined) ? [] :
-  ids.map(idex => data.animals.find(animal => animal.idex === idex));
+  if (ids === undefined) return [];
+  return ids.map(index => data.animals.find(animal => animal.id === index));
 }
 
 function animalsOlderThan(animal, age) {
