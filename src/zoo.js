@@ -48,7 +48,7 @@ function animalCount(species) {
   if (!species) {
     return Object.fromEntries(animals.map(animal => [animal.name, animal.residents.length]));
   }
-  return animals.reduce( function(acc, animal) {
+  return animals.reduce(function (acc, animal) {
     return animal.name === species ? acc + animal.residents.length : acc;
   }
   , 0);
