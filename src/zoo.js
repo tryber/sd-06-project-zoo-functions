@@ -34,6 +34,7 @@ function employeeByName(employeeName) {
     if (employeeName.includes(employee.firstName) || employeeName.includes(employee.lastName)) {
       return this;
     }
+    return {};
   });
   return employeeData;
 }
@@ -65,7 +66,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
     lastName,
     managers,
     responsibleFor,
-  }
+  };
   return employees.push(newEmployee);
 }
 
