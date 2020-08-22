@@ -13,12 +13,14 @@ const data = require('./data');
 const { animals } = require('./data');
 
 function animalsByIds(...ids) {
-  const listOfAnimals = animals.filter((animal) => ids.filter((id) => id === animal.id).length > 0);
+  const listOfAnimals = animals.filter(animal => ids.filter(id => id === animal.id).length > 0);
   return listOfAnimals;
 }
 
-function animalsOlderThan(animal, age) {
-  // seu código aqui
+function animalsOlderThan(specie, age) {
+  const list = animals.filter(animal => animal.name === specie);
+  const residents = list.filter(zoo => zoo.residents.every(resident => resident.age > age));
+  return (residents.length > 0);
 }
 
 function employeeByName(employeeName) {
