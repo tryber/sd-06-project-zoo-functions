@@ -112,16 +112,16 @@ function animalMap(options) {
 
 function schedule(dayName) {
   const result = {};
-  const amPm = time => {
+  const amPm = (time) => {
     let moment = time;
     if (time > 12) {
-      moment -= 12
+      moment -= 12;
     }
     return moment;
   };
   const response = (day) => {
     const { open, close } = hours[day];
-    if (open, close === 0) {
+    if (open === 0 && close === 0) {
       result[day] = 'CLOSED';
     } else {
       result[day] = `Open from ${amPm(open)}am until ${amPm(close)}pm`;
