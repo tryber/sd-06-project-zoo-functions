@@ -100,93 +100,84 @@ function createAnimalListByLocation(location) {
 function createAnimalResidentsList (location) {
   return animals
   .filter(animal => animal.location === location)
-  .map(animal => {
+  .map((animal) => {
     const animalObject = {};
     animalObject[`${animal.name}`] = animal.residents
     .map(resident => resident.name);
-    return animalObject;  
+    return animalObject;
   });
 }
 
-function createSortedAnimalResidentsList (location) {
+function createSortedAnimalResidentsList(location) {
   return animals
   .filter(animal => animal.location === location)
-  .map(animal => {
+  .map((animal) => {
     const animalObject = {};
     animalObject[`${animal.name}`] = animal.residents
     .map(resident => resident.name).sort();
-    return animalObject;  
+    return animalObject;
   });
 }
 
-function createAnimalResidentsListBySex (location, sex) {
+function createAnimalResidentsListBySex(location, sex) {
   return animals
   .filter(animal => animal.location === location)
-  .map(animal => {
+  .map((animal) => {
     const animalObject = {};
     animalObject[`${animal.name}`] = animal.residents
     .filter(resident => resident.sex === sex)
     .map(resident => resident.name);
-    return animalObject;  
+    return animalObject;
   });
 }
 
-function createSortedAnimalResidentsListBySex (location, sex) {
+function createSortedAnimalResidentsListBySex(location, sex) {
   return animals
   .filter(animal => animal.location === location)
-  .map(animal => {
+  .map((animal) => {
     const animalObject = {};
     animalObject[`${animal.name}`] = animal.residents
     .filter(resident => resident.sex === sex)
     .map(resident => resident.name).sort();
-    return animalObject;  
+    return animalObject;
   });
 }
 
-function animalMap(options) {
+function parameterChecker(options) {
   if (options === undefined) options = {};
   if (options.includeNames === undefined) options.includeNames = false;
   if (options.sorted === undefined) options.sorted = false;
   if (options.sex === undefined) options.sex = 'any';
+  return options;
+}
 
-  const { includeNames, sorted, sex } = options;
-  const result = {};
+function structurer(paramFn, sex) {
+  const structuredResult = {};
+  structuredResult['NE'] = paramFn('NE', sex);
+  structuredResult['NW'] = paramFn('NW', sex);
+  structuredResult['SE'] = paramFn('SE', sex);
+  structuredResult['SW'] = paramFn('SW', sex);
+  return structuredResult;
+}
+
+function animalMap(options) {
+  const { includeNames, sorted, sex } = parameterChecker(options);
+  let result = {};
 
   if (includeNames && sorted && sex === 'any') {
-    result['NE'] = createSortedAnimalResidentsList('NE');
-    result['NW'] = createSortedAnimalResidentsList('NW');
-    result['SE'] = createSortedAnimalResidentsList('SE');
-    result['SW'] = createSortedAnimalResidentsList('SW');
+    result = structurer(createSortedAnimalResidentsList, sex);
   } else if (includeNames && sex === 'female' && sorted) {
-    result['NE'] = createSortedAnimalResidentsListBySex('NE', sex);
-    result['NW'] = createSortedAnimalResidentsListBySex('NW', sex);
-    result['SE'] = createSortedAnimalResidentsListBySex('SE', sex);
-    result['SW'] = createSortedAnimalResidentsListBySex('SW', sex);
+    result = structurer(createSortedAnimalResidentsListBySex, sex);
   } else if (includeNames && sex === 'male' && sorted) {
-    result['NE'] = createSortedAnimalResidentsListBySex('NE', sex);
-    result['NW'] = createSortedAnimalResidentsListBySex('NW', sex);
-    result['SE'] = createSortedAnimalResidentsListBySex('SE', sex);
-    result['SW'] = createSortedAnimalResidentsListBySex('SW', sex);
+    result = structurer(createSortedAnimalResidentsListBySex, sex);
   } else if (includeNames && sex === 'female') {
-    result['NE'] = createAnimalResidentsListBySex('NE', sex);
-    result['NW'] = createAnimalResidentsListBySex('NW', sex);
-    result['SE'] = createAnimalResidentsListBySex('SE', sex);
-    result['SW'] = createAnimalResidentsListBySex('SW', sex);
+    result = structurer(createAnimalResidentsListBySex, sex);
   } else if (includeNames && sex === 'male') {
-    result['NE'] = createAnimalResidentsListBySex('NE', sex);
-    result['NW'] = createAnimalResidentsListBySex('NW', sex);
-    result['SE'] = createAnimalResidentsListBySex('SE', sex);
-    result['SW'] = createAnimalResidentsListBySex('SW', sex);
+    result = structurer(createAnimalResidentsListBySex, sex);
   } else if (includeNames) {
-    result['NE'] = createAnimalResidentsList('NE');
-    result['NW'] = createAnimalResidentsList('NW');
-    result['SE'] = createAnimalResidentsList('SE');
-    result['SW'] = createAnimalResidentsList('SW');
+    result = structurer(createAnimalResidentsList);
   } else {
-    result['NE'] = createAnimalListByLocation('NE');
-    result['NW'] = createAnimalListByLocation('NW');
-    result['SE'] = createAnimalListByLocation('SE');
-    result['SW'] = createAnimalListByLocation('SW');
+    result = structurer(createAnimalListByLocation);
   }
   return result;
 }
