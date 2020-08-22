@@ -98,7 +98,7 @@ function increasePrices(percentage) {
   // toFixed não deu certo arredonda para baixo
   // usei Math.round o *100)/100 é erro arredond devido inacurácia de aritmética de pto flutuante
   prices.Senior = Math.round(prices.Senior * valuePercentage * 100) / 100;
-  prices.Adult = Math.round(prices.Adult * valuePercentage * 100) / 100; 
+  prices.Adult = Math.round(prices.Adult * valuePercentage * 100) / 100;
   prices.Child = Math.round(prices.Child * valuePercentage * 100) / 100;
 }
 
