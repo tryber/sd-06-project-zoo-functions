@@ -81,9 +81,43 @@ function entryCalculator(entrants = 0) {
 }
 
 function animalMap(options) {
-  // seu código aqui
+  const animalSearch = (region) => animals.filter(animal => animal.location === region)
+    .map(element => element.name);
+  const nameSearch = (animalName) => animals.find(animal => animal.name === animalName)
+    .residents.map(element => element.name);
+  const sexSearch = (gender, animalName) => animals.find(animal => animal.name === animalName)
+    .residents.filter(element => element.sex === gender)
+    .map(item => item.name);
+  const locals = ['NE', 'NW', 'SE', 'SW'];
+  const result = {};
+  locals.forEach(coor => {
+    result[coor] = [];
+    if (options === undefined) {
+      result[coor] = animalSearch(coor);
+    } else if (options.includeNames === true && (options.sex === 'male' || options.sex === 'female') && options.sorted === true) {
+      animalSearch(coor).forEach(specie => {
+      result[coor].push({[specie]: sexSearch(options.sex, specie).sort()});
+      })
+    } else if (options.includeNames === true && options.sorted === true) {
+      animalSearch(coor).forEach(specie => {
+        result[coor].push({[specie]: nameSearch(specie).sort()});
+      })
+    } else if (options.includeNames === true && (options.sex === 'male' || options.sex === 'female')) {
+      animalSearch(coor).forEach(specie => {
+      result[coor].push({[specie]: sexSearch(options.sex, specie)});
+      })
+    } else if (options.includeNames === true) {
+      animalSearch(coor).forEach(specie => {
+      result[coor].push({[specie]: nameSearch(specie)});
+      })
+    } else if (options.sex === 'male' || options.sex === 'female') {
+      result[coor] = animalSearch(coor);
+    }
+  });
+  return result;
 }
-
+const options = { includeNames: true, sex: 'female', sorted: true }
+console.log(animalMap(options).NE);
 function schedule(dayName) {
   // seu código aqui
 }
