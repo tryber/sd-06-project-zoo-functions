@@ -125,6 +125,7 @@ const response = (day, object) => {
   }
   return object;
 };
+
 function schedule(dayName) {
   const result = {};
   if (!dayName) {
@@ -134,16 +135,16 @@ function schedule(dayName) {
   }
   return result;
 }
-console.log(schedule('Monday'));
+
 function oldestFromFirstSpecies(id) {
   // seu código aqui
 }
 
 function increasePrices(percentage) {
   const percent = number => Math.round((number + (number * percentage * 0.01)) * 100) / 100;
-  prices.Adult = percent(prices.Adult);
-  prices.Senior = percent(prices.Senior);
-  prices.Child = percent(prices.Child);
+  Object.keys(prices).forEach((element) => {
+    prices[element] = percent(prices[element]);
+  });
 }
 
 function employeeCoverage(idOrName) {
