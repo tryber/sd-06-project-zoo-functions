@@ -10,7 +10,7 @@ eslint no-unused-vars: [
 */
 const data = require('./data');
 
-const { animals, employees } = data;
+const { animals, employees, prices, hours } = data;
 
 function animalsByIds(...ids) {
   return ids.map(item => animals.find(animal => animal.id === item));
@@ -54,8 +54,6 @@ function animalCount(species = animals) {
     (Object.assign(acc, { [name]: residents.length })), {});
 }
 
-/* console.log(animalCount('snakes')); */
-
 function entryCalculator(entrants) {
   if (entrants === undefined) return 0;
 
@@ -65,15 +63,35 @@ function entryCalculator(entrants) {
   }, 0);
 }
 
-/* let entrants = { 'Adult': 2, 'Child': 3, 'Senior': 1 };
-console.log(entryCalculator(entrants)); */
-
 function animalMap(options) {
   // seu código aqui
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  if (dayName !== undefined) {
+    const dayFiltered = Object.entries(hours).find(item => item[0] === dayName);
+    const [day, obj] = dayFiltered;
+    const { open, close } = obj;
+    let msg = `Open from ${open}am until ${close - 12}pm`;
+
+    if (day === 'Monday') {
+      msg = 'CLOSED';
+    }
+
+    return { [day]: msg };
+  }
+
+  return Object.entries(hours).reduce((obj, entry) => {
+    const [key, value] = entry;
+    const { open, close } = value;
+    let msg = `Open from ${open}am until ${close - 12}pm`;
+
+    if (key === 'Monday') {
+      msg = 'CLOSED';
+    }
+
+    return Object.assign(obj, { [key]: msg });
+  }, {});
 }
 
 function oldestFromFirstSpecies(id) {
@@ -81,7 +99,10 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  Object.entries(prices).forEach(entry => {
+    const [key, value] = entry;
+    key = Math.round(value * ((percentage / 100) + 1) * 100) / 100;
+  });
 }
 
 function employeeCoverage(idOrName) {
