@@ -74,12 +74,16 @@ function animalCount(species = animals.map(animal => animal.name)) {
   return animalsCounted;
 }
 
-function entryCalculator(entrants) {
-
+function entryCalculator(entrants = {}) {
+  if (Object.keys(entrants).toString() !== '') {
+    return Object.entries(entrants).map(element => prices[element[0]] * element[1])
+    .reduce((acc, element) => element + acc)
+  }
+  return 0
 }
 
 function animalMap(options) {
-  // seu código aqui
+
 }
 
 function schedule(dayName) {
