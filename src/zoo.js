@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 // ----------------------------------------------------------------------------------------
 // Convenção de abreviações
 // anm = animal | anms = animals | grp = group | grps = groups | arr= array | vfy = verify
-// rsd = residents | obj = object | res = result
+// rsd = residents | obj = object | res = result | per = person
 // ----------------------------------------------------------------------------------------
 const data = require('./data');
 
@@ -95,6 +95,11 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   // seu código aqui
+  if (entrants !== undefined && Object.keys(entrants).length > 0) {
+    return Object.keys(entrants).reduce((sum, per) => sum += data.prices[per] * entrants[per], 0);
+  } else {
+    return 0;
+  }
 }
 
 function animalMap(options) {
