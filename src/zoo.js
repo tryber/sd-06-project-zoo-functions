@@ -72,7 +72,20 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 }
 
 function animalCount(species) {
-  // seu código aqui
+  if (species === undefined) {
+    const animals = data.animals.map(animal => animal.name);
+    const count = data.animals.map(animal => animal.residents.length);
+    let output = {};
+
+    // had the idea, learned how to do it in here:
+    // https://stackoverflow.com/questions/39127989/creating-a-javascript-object-from-two-arrays
+    animals.forEach((animal, index) => output[animal] = count[index]);
+    return output;
+  }
+  const speciesCount = data.animals
+  .filter(animal => animal.name === species)
+  .map(animal => animal.residents.length);
+  return speciesCount[0];
 }
 
 function entryCalculator(entrants) {
