@@ -100,7 +100,6 @@ function increasePrices(percentage) {
     updatedPrices[pricesKeys[index]] = Math.round((key * multiplier) * 100) / 100;
   });
   data.prices = updatedPrices;
-  return data.prices
 }
 
 function employeeCoverage(idOrName) {
