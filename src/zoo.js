@@ -235,13 +235,12 @@ function employeeCoverage(idOrName) {
 
   const output = {};
 
-  const person = employees.find(employee => employee.firstName === idOrName || employee.lastName === idOrName || employee.id === idOrName);
+  const person = employees.find(a => a.firstName === idOrName || a.lastName === idOrName || a.id === idOrName);
 
   const employeeFullName = `${person.firstName} ${person.lastName}`;
   const employeesByCoverageKeys = Object.keys(employeesByCoverage);
   const employeesByCoverageValues = Object.values(employeesByCoverage);
   let employeeResponsabilities = [];
-  
   employeesByCoverageKeys.forEach((employee, index) => {
     if (employee === employeeFullName) {
       employeeResponsabilities = employeesByCoverageValues[index];
