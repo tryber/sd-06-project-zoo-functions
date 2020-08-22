@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees, prices } = data;
+const { animals, employees, prices, hours } = data;
 
 const animalsByIds = (...ids) => ids.map(id => animals.find(a => a.id === id));
 
@@ -91,9 +91,18 @@ const animalMap = ({ includeNames = false, sorted = false, sex } = 0) => {
   }), {});
 };
 
-function schedule(dayName) {
-  // seu código aqui
-}
+const schedule = (dayName) => {
+  if (dayName) {
+    return {
+      [dayName]: dayName === 'Monday' ? 'CLOSED' :
+      `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm`,
+    };
+  }
+  return Object.entries(hours).reduce((acc, [day, { open, close }]) => ({
+    ...acc,
+    [day]: day === 'Monday' ? 'CLOSED' : `Open from ${open}am until ${close - 12}pm`,
+  }), {});
+};
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
