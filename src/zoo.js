@@ -46,8 +46,17 @@ function employeeByName(employeeName = '') {
   return employee;
 }
 
+// 4- Cria um novo colaborador a partir de objetos contendo informações pessoais
+// e gerentes e animais gerenciados.
+
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  return ({
+    id: personalInfo.id,
+    firstName: personalInfo.firstName,
+    lastName: personalInfo.lastName,
+    managers: [...associatedWith.managers],
+    responsibleFor: [...associatedWith.responsibleFor],
+  });
 }
 
 function isManager(id) {
