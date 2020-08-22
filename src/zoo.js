@@ -13,38 +13,52 @@ const data = require('./data');
 const { animals } = require('./data');
 const { employees } = require('./data');
 
+//  requisito1 - ok
 function animalsByIds(...ids) {
   const listOfAnimals = animals.filter(animal => ids.filter(id => id === animal.id).length > 0);
   return listOfAnimals;
 }
 
+
+//  requisito2 - ok
 function animalsOlderThan(specie, age) {
   const list = animals.filter(animal => animal.name === specie);
   const residents = list.filter(zoo => zoo.residents.every(resident => resident.age > age));
   return (residents.length > 0);
 }
 
+
+//  requisito3 - falta passar no teste vazio
 function employeeByName(employeeName) {
-  // seu código aqui
+  const employeeData = employees.find((employee) => {
+    if (employeeName.includes(employee.firstName) || employeeName.includes(employee.lastName)) {
+      return this;
+    }
+    return {};
+  });
+  return employeeData;
 }
 
-function createEmployee(id, firtsname, lastname, managers = [], responsibleFor = []) {
-  const newEmployee1 = {//concat??
-    id,
-    firtsname,
-    lastname,
-    managers,
-    responsibleFor,
+
+//  requisito4 - ok
+function createEmployee(personalInfo, associatedWith) {
+  const employee = {
+    ...personalInfo,
+    ...associatedWith,
   };
-  employees.push(newEmployee);
+  return employee;
 }
 
+
+//  requisito5 - logica?
 function isManager(id) {
   const teste = employees.filter(empregado => empregado.managers.some(manager => manager === id));
-  return (teste > 0);  
+  return (teste > 0);
 }
-console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
+//  console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
 
+
+//  requisito6
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
 }
