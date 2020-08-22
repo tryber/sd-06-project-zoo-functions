@@ -180,9 +180,10 @@ function animalMap(options) {
             return animalsBySpecie;
           });
       });
-    } else if (includeNames === false) {
+    } 
+    else if (includeNames === false) {
       locations.forEach(region => {
-      output[region] = animals.filter(animal => animal.location === region).map(mA => mA.name)});
+      output[region] = animals.filter(animal => animal.location === region).map(a => a.name)});
     }
   } else if (!options) {
     locations.forEach(region => {
