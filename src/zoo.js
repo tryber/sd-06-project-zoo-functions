@@ -60,20 +60,21 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function animalCount(species) {
   if (species === undefined) {
     const obj = {};
-    animals.map(element => obj[element.name] = 
-      element.residents.length);
+    animals.map(element => 
+      obj[element.name] = 
+        element.residents.length);
     return obj;
   }
   return animals.find(animais => animais.name === species).residents.length;
 }
 
-function entryCalculator({Adult = 0, Child = 0, Senior = 0}) {
-  if (entrants === {} || entrants === undefined) 0;
-  const total = (Adult * prices.Adult) + (Child * prices.Child) + (Senior * prices.Senior);
-  return total;
-}
-let entrants = { 'Child': 1, 'Senior': 1 };
-console.log(entryCalculator())
+// function entryCalculator({Adult = 0, Child = 0, Senior = 0}) {
+//   if (entrants === {} || entrants === undefined) 0;
+//   const total = (Adult * prices.Adult) + (Child * prices.Child) + (Senior * prices.Senior);
+//   return total;
+// }
+// let entrants = { 'Child': 1, 'Senior': 1 };
+// console.log(entryCalculator())
 
 function animalMap(options) {
   // seu código aqui
