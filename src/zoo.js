@@ -10,7 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { animals, employees, prices, hours } = require('./data');
+const { animals, employees, hours } = require('./data');
 
 function animalsByIds(...ids) {
   if (ids === undefined) {
@@ -44,7 +44,7 @@ function isManager(id) {
   const manager1 = '0e7b460e-acf4-4e17-bcb3-ee472265db83';
   const manager2 = 'fdb2543b-5662-46a7-badc-93d960fdc0a8';
   if (id === manager1 || id === manager2) {
-    return true; 
+    return true;
   }
   return false;
 }
@@ -64,7 +64,7 @@ function animalCount(species) {
   if (species === undefined) {
     return animals
     .reduce((previousValue, currentValue) => ({
-      ...previousValue, [currentValue.name]: currentValue.residents.length
+      ...previousValue, [currentValue.name]: currentValue.residents.length,
     }), {});
   }
   const targetAnimal = animals.find((animal => species === animal.name));
@@ -75,18 +75,18 @@ function entryCalculator(entrants) {
   if (entrants === undefined || entrants === {}) {
     return 0;
   }
-  const {Adult = 0, Senior = 0, Child = 0} = entrants;
+  const { Adult = 0, Senior = 0, Child = 0 } = entrants;
   return (Adult * 49.99) + (Child * 20.99) + (Senior * 24.99);
 }
 
 function animalMap(options) {
-  if (options === undefined) {
-    return Object.keys(hours).reduce((acc, key, index) =>({...acc,
-      [key]: `Open from ${Object.values(hours)[index].open}am until ${Object.values(hours)[index].close - 12}pm`
-    } 
-  ),{})}
-  return Object.keys(hours).find(options => options === ({[options]: `Open from ${options} until ${options}`
-  }))
+  // if (options === undefined) {
+  //   return Object.keys(hours).reduce((acc, key, index) => ({ ...acc,
+  //     [key]: `Open from ${Object.values(hours)[index].open}am until ${Object.values(hours)[index].close - 12}pm`,
+  //   }), {}); 
+  // };
+  // return Object.keys(hours).find(options => options === ({[options]: `Open from ${options} until ${options}`
+  // }))
 }
 
 function schedule(dayName) {
@@ -101,7 +101,7 @@ function increasePrices(percentage) {
   const updatedPrices = data.prices;
   const pricesKeys = Object.keys(updatedPrices);
   const pricesValues = Object.values(updatedPrices);
-  const multiplier = 1 + percentage / 100;
+  const multiplier = (1 + percentage) / 100;
   pricesValues.forEach((key, index) => {
     updatedPrices[pricesKeys[index]] = Math.round((key * multiplier) * 100) / 100;
   });
