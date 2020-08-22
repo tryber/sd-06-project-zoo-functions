@@ -116,21 +116,21 @@ const amPm = (time) => {
   }
   return moment;
 };
+const response = (day, object) => {
+  const { open, close } = hours[day];
+  if (open === 0 && close === 0) {
+    object[day] = 'CLOSED';
+  } else {
+    object[day] = `Open from ${amPm(open)}am until ${amPm(close)}pm`;
+  }
+  return object;
+};
 function schedule(dayName) {
   const result = {};
-  const response = (day) => {
-    const { open, close } = hours[day];
-    if (open === 0 && close === 0) {
-      result[day] = 'CLOSED';
-    } else {
-      result[day] = `Open from ${amPm(open)}am until ${amPm(close)}pm`;
-    }
-    return result;
-  };
   if (!dayName) {
-    Object.keys(hours).forEach(hour => response(hour));
+    Object.keys(hours).forEach(hour => response(hour, result));
   } else {
-    response(dayName);
+    response(dayName, result);
   }
   return result;
 }
