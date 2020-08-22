@@ -27,7 +27,7 @@ function employeeByName(employeeName) {
     .find(name => name.firstName === employeeName || name.lastName === employeeName);
 }
 
-console.log(employeeByName('Emery'));
+// console.log(employeeByName('Emery'));
 
 function createEmployee(personalInfo, associatedWith) {
   // Object.assign copia todas as propriedade de um ou mais objetos para outro objeto de destino
@@ -35,8 +35,11 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  // seu código aqui
+  return employees
+    .some(manager => manager.managers.includes(id));
 }
+
+// console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
