@@ -18,7 +18,8 @@ const { animals, employees } = require('./data');
 // Caso receba nenhum parâmetro, necessário retornar um array vazio
 // Ao receber como parâmetro um único id, retorna os animais com este id
 // Ao receber mais de um id, retorna os animais que têm um desses ids
-const animalsByIds = (...ids) => animals.filter(item => ids.includes(item.id));
+const animalsByIds = (...ids) =>
+  animals.filter(item => ids.includes(item.id));
 // const id1 = '0938aa23-f153-4937-9f88-4858b24d6bce';
 // const id2 = 'e8481c1d-42ea-4610-8e11-1752cfc05a46';
 // console.log(animalsByIds(id1, id2));
@@ -29,9 +30,7 @@ const animalsByIds = (...ids) => animals.filter(item => ids.includes(item.id));
 // Ao passar o nome de uma espécie e uma idade, testa se todos os animais desta espécie
 // possuem a idade mínima especificada
 const animalsOlderThan = (animal, age) => {
-  const allResidents = animals
-    .find(item => item.name === animal).residents;
-  // console.log(allResidents);
+  const allResidents = animals.find(item => item.name === animal).residents;
   return allResidents.every(item => item.age > age);
 };
 // console.log(animalsOlderThan('otters', 7)); //true
@@ -109,9 +108,28 @@ const addEmployee = (id, firstName, lastName, managers = [], responsibleFor = []
 
 
 // ====================================
-function animalCount(species) {
-  // seu código aqui
-}
+// 7- Implemente a função animalCount:
+// Sem parâmetros, retorna animais e suas quantidades
+// Com o nome de uma espécie de animal, retorna somente a quantidade
+const verifyAnimals = () => {
+  const myAnimals = {};
+  for (let index = 0; index < animals.length; index += 1) {
+    const nameAnimal = animals[index].name;
+    const countAnimal = animals[index].residents.length;
+    myAnimals[nameAnimal] = countAnimal;
+  }
+  return myAnimals;
+};
+const animalCount = (species) => {
+  const myAnimals = verifyAnimals();
+  if (species !== undefined) {
+    return myAnimals[species];
+  }
+  return myAnimals;
+};
+// console.log(animalCount()); // Object
+// console.log(animalCount('lions')); //4
+// console.log(animalCount('snakes')); //2
 
 
 // ====================================
