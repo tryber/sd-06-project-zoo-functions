@@ -233,15 +233,16 @@ function schedule(dayName) {
 
 function oldestFromFirstSpecies(id) {
   const { employees } = data;
-  
+
   const foundAnimalsList = employees
   .find(employee => employee.id === id).responsibleFor
   .map(currentAnimal => animals.find(animal => animal.id === currentAnimal));
 
   const animalList = [];
 
-  foundAnimalsList.forEach(animal => {
-    animal.residents.forEach(resident => animalList.push([resident.name, resident.sex, resident.age]));
+  foundAnimalsList.forEach((animal) => {
+    animal.residents
+    .forEach(resident => animalList.push([resident.name, resident.sex, resident.age]));
   });
 
   const animalsWithTheirAges = animalList;
