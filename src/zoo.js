@@ -20,7 +20,7 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  // Find the specie that have the same name as our 'animal' parameter and 
+  // Find the specie that have the same name as our 'animal' parameter and
   // then get all the 'residents' from
   return animals.find(specie => specie.name === animal).residents
   // See if every 'specificAnimal age' from our
