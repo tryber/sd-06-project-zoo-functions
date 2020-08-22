@@ -95,10 +95,17 @@ function schedule(dayName) {
   return scheduleDay;
 }
 
-console.log(schedule('Monday'));
-
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const firstAnimal = employees.find(element => element.id === id).responsibleFor[0];
+  const oldestAnimal = animalsObject
+    .find(item => item.id === firstAnimal).residents
+    .reduce((acc, current) => {
+      if (current.age > acc.age) {
+        return current;
+      }
+      return acc;
+    });
+  return [oldestAnimal.name, oldestAnimal.sex, oldestAnimal.age];
 }
 
 function increasePrices(percentage) {
