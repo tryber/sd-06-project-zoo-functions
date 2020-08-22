@@ -95,11 +95,12 @@ function increasePrices(percentage) {
   const updatedPrices = data.prices;
   const pricesKeys = Object.keys(updatedPrices);
   const pricesValues = Object.values(updatedPrices);
-  const multiplier = (1 + percentage) / 100;
+  const multiplier = (1 + (percentage / 100));
   pricesValues.forEach((key, index) => {
     updatedPrices[pricesKeys[index]] = Math.round((key * multiplier) * 100) / 100;
   });
   data.prices = updatedPrices;
+  return data.prices
 }
 
 function employeeCoverage(idOrName) {
