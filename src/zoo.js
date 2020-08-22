@@ -78,7 +78,7 @@ function animalCount(species = animals.map((animal) => animal.name)) {
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
+
 }
 
 function animalMap(options) {
