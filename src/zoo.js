@@ -228,32 +228,34 @@ function employeeCoverageEmpty() {
 }
 
 function employeeCoverage(idOrName) {
+  const employeesByCoverage = employeeCoverageEmpty();
   if (idOrName === undefined) {
-    return employeeCoverageEmpty();
+    return employeesByCoverage;
   }
 
-  let employeeInputName = '';
-  let employeeIndex = 0;
-  if (employeesNames.includes(idOrName) || employeesLastNames.includes(idOrName)) {
-    if (employeesNames.includes(idOrName)) {
-      employeeInputName = idOrName;
-      employeesNames.forEach((employee, index) => {
-        if (employee === employeeInputName) {
-          employeeIndex = index;
-        }
-      });
-    } else {
-      employeeInputName = idOrName;
+  const output = {};
+
+  const person = employees.find(employee => employee.firstName === idOrName || employee.lastName === idOrName || employee.id === idOrName);
+
+  const employeeFullName = `${person.firstName} ${person.lastName}`;
+  const employeesByCoverageKeys = Object.keys(employeesByCoverage);
+  const employeesByCoverageValues = Object.values(employeesByCoverage);
+  let employeeResponsabilities = [];
+  
+  employeesByCoverageKeys.forEach((employee, index) => {
+    if (employee === employeeFullName) {
+      employeeResponsabilities = employeesByCoverageValues[index];
     }
-    console.log(employeeInputName);
-    console.log(employeeIndex);
-  }
-  return employeeIndex;
+  });
+
+  output[employeeFullName] = employeeResponsabilities;
+  return output;
 }
 
 console.log(employeeCoverage());
 console.log(employeeCoverage('Stephanie'));
-// console.log(employeeCoverage('Azevado'));
+console.log(employeeCoverage('Azevado'));
+console.log(employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
 
 module.exports = {
   entryCalculator,
