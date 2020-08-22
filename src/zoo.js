@@ -94,7 +94,7 @@ function schedule(dayName) {
         obj.Monday = 'CLOSED';
         return obj;
       }
-      return (obj[dia[0]] = `Open from ${dia[1].open}am until ${dia[1].close -12}pm`);
+      return (obj[hour[0]] = `Open from ${dia[1].open}am until ${dia[1].close - 12}pm`);
     });
     return obj;
   }
