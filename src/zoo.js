@@ -148,11 +148,11 @@ function employeeCoverage(idOrName) {
   let objEmployees;
   const input = idOrName;
   if (idOrName !== undefined && idOrName !== '') {
-    const vfy = (obj) => obj.id === input || obj.firstName === input || obj.lastName === input;;
+    const vfy = obj => obj.id === input || obj.firstName === input || obj.lastName === input;
     objEmployees = [data.employees.find(obj => vfy(obj))];
   } else {
     objEmployees = data.employees;
-  };
+  }
   const objToReturn = {};
   objEmployees.forEach((objEmployee) => {
     const idsOfAnimalsCovered = objEmployee.responsibleFor;
