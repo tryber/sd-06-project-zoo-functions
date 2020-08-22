@@ -33,11 +33,10 @@ function employeeByName(employeeName) {
   const result = employees.filter(condicao);
   return result[0];
 }
-console.log(employeeByName());
-console.log(employeeByName('Emery'));
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  const newEmployee = Object.assign(personalInfo, associatedWith);
+  return newEmployee;
 }
 
 function isManager(id) {
