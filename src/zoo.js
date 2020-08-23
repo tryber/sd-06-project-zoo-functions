@@ -201,8 +201,8 @@ const mapLocation = (location, options) => {
 const noOptions = (location) => {
   const output = [];
   output[location] = [];
-  const animal = data.animals.map(animal => animal.name).find(animal => animal);
-  output[location].push(animal);
+  const noOptionReturn = data.animals.map(animal => animal.name).find(animal => animal);
+  output[location].push(noOptionReturn);
   return output;
 };
 
