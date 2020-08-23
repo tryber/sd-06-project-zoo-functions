@@ -154,14 +154,13 @@ function increasePrices(percentage) {
 
 function employeeCoverage(idOrName) {
   const findAnimal = (obj) => {
-    let animalName = []
-    obj.responsibleFor.forEach(animalId => {
-      animalName.push(animals.find(animal => animal.id === animalId).name);
-    });
+    const animalName = [];
+    obj.responsibleFor.forEach(animalId => 
+      animalName.push(animals.find(animal => animal.id === animalId).name));
     return animalName;
-  }
-  const findPerson = (search) => employees
-  .find(person => person.firstName === search || person.lastName === search || person.id === search);
+  };
+  const findPerson = search => employees.find(person => 
+    person.firstName === search || person.lastName === search || person.id === search);
 
   const printLine = (staff, object) => {
     object[`${staff.firstName} ${staff.lastName}`] = findAnimal(staff);
