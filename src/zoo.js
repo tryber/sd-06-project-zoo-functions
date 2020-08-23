@@ -102,8 +102,35 @@ function entryCalculator(entrants) {
     : Object.keys(entrants).reduce(sumEntries, 0);
 }
 
-function animalMap(options) {
+function animalMap(options = {}) {
   // seu código aqui
+  const getLocations = [];
+  data.animals.forEach((element) => getLocations.push(element.location));
+  let result = {};
+  getLocations.forEach(element => result[element] = []);
+  const getAnimals = (array, animal) => [ ...array, animal.name ];
+  Object.keys(result)
+    .forEach((currLocation) => {
+    result[currLocation] = data.animals
+    .filter(animal => animal.location === currLocation)
+    .reduce(getAnimals, []);
+  });
+  if (options.includeNames === true) {
+    const animalNames = (array, currResident) => {
+      return [ ...array, currResident.name ]
+    };
+    Object.keys(result).forEach(
+      (location => {
+        result[location]
+          .forEach((species, index) => {
+            result[location][index] = ({ [species]: data.animals
+              .find(element => element.name === species)
+                .residents.reduce(animalNames, []) })
+          })
+      })
+    );
+  }
+  return result;
 }
 
 function schedule(dayName) {
