@@ -40,13 +40,13 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  const Manager = data.employees.some(idManager => idManager.managers.some(managerId => managerId === id));
+  const Manager = data.employees.some(idManager => idManager.managers
+    .some(managerId => managerId === id));
   return Manager;
 }
 
-function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  const addEmployees = employees
-  .push( {id, firstName, lastName, managers, responsibleFor} );
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) { 
+  employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
 function animalCount(species) {
