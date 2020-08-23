@@ -310,6 +310,7 @@ const increasePrices = (percentage) => {
 // console.log(increasePrices(30));
 
 
+
 // ====================================
 // 13- Implemente a função employeeCoverage:
 // Sem parâmetros, retorna uma lista de funcionários e os animais pelos quais eles são responsáveis
@@ -317,7 +318,7 @@ const increasePrices = (percentage) => {
 // Com o primeiro nome de um funcionário, retorna os animais pelos quais o funcionário é responsável
 // Com o último nome de um funcionário, retorna os animais pelos quais o funcionário é responsável
 const employeeCoverage = (idOrName) => {
-  
+
 };
 
 module.exports = {
