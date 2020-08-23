@@ -52,18 +52,15 @@ function isManager(id) {
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // seu código aqui
-  // Adiciona um funcionário no fim da lista
-  
-  return employees.push( {
+  // Adiciona um funcionário no fim da list
+  return employees.push({
     id,
     firstName,
     lastName,
     managers,
     responsibleFor,
-  })
- 
+  });
 }
-
 
 function animalCount(species) {
   // seu código aqui
@@ -74,10 +71,10 @@ function animalCount(species) {
   .reduce((acc, { name, residents }) => {
     acc[name] = residents.length;
     return acc;
-  }, {}
+  }, {},
   );
-    if (species === undefined) return  countanimal;
-    return  animalFind.residents.length;
+  if (species === undefined) return countanimal;
+  return animalFind.residents.length;
 }
 
 function entryCalculator(entrants) {
