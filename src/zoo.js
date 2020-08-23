@@ -52,13 +52,12 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-
-  /*  let info = data.animals.map(el => {
-    return `${[el.name]}: ${el.residents.length}`
+  let obj = {}
+  data.animals.forEach(el => {
+    obj[el.name] = el.residents.length
   })
-  return (species) ? data.animals.find(el => el.name === species).residents.length : info */
+  return (species) ? data.animals.find(el => el.name === species).residents.length : obj 
 }
-
 function entryCalculator(entrants) {
   /*  if (entrants) {
     let total = (entrants.Adult * data.prices.Adult) + (entrants.Senior * data.prices.Senior)
