@@ -149,7 +149,8 @@ function increasePrices(percentage) {
 
   const updatedFeesObject = keys
     .reduce((priceObject, key, index) => {
-      const roundedFee = Math.round(updatedFees[index] * 100) / 100; //this rounds correctly three decimal places -> 74.985
+      const roundedFee = Math.round(updatedFees[index] * 100) / 100;
+      // this rounds correctly three decimal places -> 74.985
 
       return { ...priceObject, [key]: roundedFee };
     }, {});
