@@ -15,6 +15,7 @@ function animalsByIds(ids) {
   // seu código aqui - Caso receba nenhum parâmetro, necessário retornar um array vazio
   //Ao receber como parâmetro um único id, retorna os animais com este id
   //Ao receber mais de um id, retorna os animais que têm um desses ids
+
 }
 
 function animalsOlderThan(animal, age) {
