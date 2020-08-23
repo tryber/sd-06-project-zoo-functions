@@ -62,8 +62,10 @@ function entryCalculator(entrants) {
     return 0;
   }
   const entrantKeys = Object.keys(entrants);
-  return entrantKeys.reduce((acc, current, index) => {
-    return acc + prices[current] * Object.values(entrants)[index];
+  return entrantKeys.reduce((acc, current, index) => 
+  {
+    const aux = prices[current] * Object.values(entrants)[index];
+    return acc + aux;
   }, 0);
 }
 function animalMap(options) {
