@@ -127,7 +127,7 @@ const defaultMap = () => {
   return output;
 };
 
-const animalNames = (species, location) => {
+const animalNames = (species, location, options) => {
   const output = [];
   const animals = data.animals.filter(animal => animal.location === location)
   .filter(animal => animal.name === species)
@@ -135,27 +135,34 @@ const animalNames = (species, location) => {
   for (let index = 0; index < animals.length; index += 1) {
     output.push(animals[index].name);
   }
+  const keys = Object.keys(options);
+  const values = Object.values(options);
+  for (let index = 0; index < keys.length; index += 1) {
+    if (keys[index] === 'sorted' && values[index]) {
+      output.sort();
+    } 
+  }
   return output;
 };
 
 // console.log(animalNames());
 
-const animalObject = (species, location) => {
+const animalObject = (species, location, options) => {
   const output = {};
-  output[species] = animalNames(species, location);
+  output[species] = animalNames(species, location, options);
   return output;
 };
 
 // console.log(animalObject());
 
-const mapLocation = (location) => {
+const mapLocation = (location, options) => {
   const output = {};
   output[location] = [];
   const animalsArr = data.animals
   .filter(animal => animal.location === location)
   .map(animal => animal.name);
   for (let index = 0; index < animalsArr.length; index += 1) {
-    output[location].push(animalObject(animalsArr[index], location));
+    output[location].push(animalObject(animalsArr[index], location, options));
   }
   return output;
 };
@@ -170,17 +177,17 @@ function animalMap(options) {
   const keys = Object.keys(options);
   const values = Object.values(options);
   for (let index = 0; index < keys.length; index += 1) {
-    if (keys[index] === 'includeNames' && values[index] === true) {
-      Object.assign(output, mapLocation('NE'));
-      Object.assign(output, mapLocation('NW'));
-      Object.assign(output, mapLocation('SE'));
-      Object.assign(output, mapLocation('SW'));
+    if (keys[index] === 'includeNames' && values[index]) {
+      Object.assign(output, mapLocation('NE', options));
+      Object.assign(output, mapLocation('NW', options));
+      Object.assign(output, mapLocation('SE', options));
+      Object.assign(output, mapLocation('SW', options));
     }
   }
   return output;
 }
 
-console.log(animalMap());
+console.log(animalMap({ includeNames: true, sorted: true }));
 
 function schedule(dayName) {
   // seu código aqui
