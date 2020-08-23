@@ -84,7 +84,8 @@ function entryCalculator(entrants) {
   //   return totalEntries;
   // }
 
-  const entrances = Object.keys(entrants).reduce((total, key) => total + entrants[key] * prices[key], 0)
+  const entrances = Object.keys(entrants).reduce((total, key) =>
+    total + (entrants[key] * prices[key]), 0);
   return entrances;
 }
 
