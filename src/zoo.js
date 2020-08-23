@@ -95,7 +95,9 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const specie = employees.find(item => item.id === id).responsibleFor[0];
+  return Object.values(animals.find(item => item.id === specie).residents
+    .reduce((acc, animal) => acc.age > animal.age ? acc : animal));
 }
 
 function increasePrices(percentage) {
@@ -105,7 +107,25 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  if (idOrName !== undefined) {
+    const { firstName, lastName, responsibleFor } = employees.find(item => (
+      Object.values(item).includes(idOrName)
+    ));
+
+    return {
+      [`${firstName} ${lastName}`]: responsibleFor.map(item => {
+        return animals.find(n => n.id === item).name;
+      })
+    };
+  }
+  const names = employees.reduce((acc, item) => (
+    Object.assign(acc, { [`${item.firstName} ${item.lastName}`]: item.responsibleFor })
+  ), {});
+
+  return Object.entries(names).reduce((acc, entry) => {
+    const [key, value] = entry;
+    return Object.assign(acc, { [key]: value.map(item => animals.find(n => n.id === item).name) });
+  }, {});
 }
 
 module.exports = {
