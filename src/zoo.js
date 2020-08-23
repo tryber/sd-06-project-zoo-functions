@@ -13,6 +13,7 @@ const data = require('./data');
 
 const animalList = data.animals;
 const employeeList = data.employees;
+const hoursList = data.hours;
 
 
 function animalsByIds(...ids) {
@@ -81,12 +82,41 @@ function entryCalculator(entrants = {}) {
 }
 
 function animalMap(options) {
-  // seu código aqui
+  const map = { NE: [], NW: [], SE: [], SW: [] };
+  if (options === undefined) {
+    animalList.forEach((animal) => {
+      map[animal.location].push(animal.name);
+    });
+
+    return map;
+  }
+  const { includeNames } = options;
+  if (includeNames === true) {
+    animalList.forEach((animal) => {
+      const animalObject = {};
+      animalObject[animal.name] = animal.residents.map(individual => individual.name);
+      map[animal.location].push(animalObject);
+    });
+  }
+
+  return map;
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  const scheduleObj = {};
+  const displayHours = requiredDay => {
+    if (hoursList[requiredDay].open !== hoursList[requiredDay].close) {
+      scheduleObj[requiredDay] = `Open from ${hoursList[requiredDay].open}am until ${hoursList[requiredDay].close - 12}pm`;
+    } else scheduleObj[requiredDay] = 'CLOSED';
+  }
+  if (dayName === undefined) {
+  const days = Object.keys(hoursList);
+  days.forEach(day => displayHours(day));
+  } else displayHours(dayName);
+  return scheduleObj;
 }
+
+console.table(schedule('Monday'));
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
