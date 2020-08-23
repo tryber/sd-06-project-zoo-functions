@@ -296,15 +296,29 @@ const oldestFromFirstSpecies = (id) => {
 
 
 // ====================================
-function increasePrices(percentage) {
-  // seu código aqui
-}
+// 12- Implemente a função increasePrices:
+// Ao passar uma porcentagem, incrementa todos os preços, arrendondados em duas
+// casas decimais
+const increasePrices = (percentage) => {
+  const indice = 1 + (percentage / 100);
+  prices.Adult = Math.round((prices.Adult * indice) * 100) / 100;
+  prices.Senior = Math.round((prices.Senior * indice) * 100) / 100;
+  prices.Child = Math.round((prices.Child * indice) * 100) / 100;
+  return prices;
+};
+// console.log(increasePrices(50));
+// console.log(increasePrices(30));
 
 
 // ====================================
-function employeeCoverage(idOrName) {
-  // seu código aqui
-}
+// 13- Implemente a função employeeCoverage:
+// Sem parâmetros, retorna uma lista de funcionários e os animais pelos quais eles são responsáveis
+// Com o id de um funcionário, retorna os animais pelos quais o funcionário é responsável
+// Com o primeiro nome de um funcionário, retorna os animais pelos quais o funcionário é responsável
+// Com o último nome de um funcionário, retorna os animais pelos quais o funcionário é responsável
+const employeeCoverage = (idOrName) => {
+  
+};
 
 module.exports = {
   entryCalculator,
