@@ -37,7 +37,7 @@ function isManager(id) {
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  return employees.push({id, firstName, lastName, managers, responsibleFor });
+  return employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
 function animalCount(species) {
@@ -46,11 +46,11 @@ function animalCount(species) {
 
 function entryCalculator(...entrants) {
   const ticketValue = 0;
-  if(entrants.values === '' || entrants.values ==={}){
+  if ( entrants.values === '' || entrants.values === {}) {
     return 0;
   }
   return ticketValue;
-}  
+}
 
 function animalMap(options) {
   // seu código aqui
@@ -66,7 +66,7 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   // seu código aqui
-} 
+}
 
 function employeeCoverage(idOrName) {
   // seu código aqui
