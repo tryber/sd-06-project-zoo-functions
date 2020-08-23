@@ -63,21 +63,21 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  const animalCount =  animals.find(animal => animal.name === species);
+  const specificAnimal = animals.find(animal => animal.name === species);
   const allAnimals = animals.reduce((atual, { name, residents }) => {
     atual[name] = residents.length;
     return atual;
   }, {});
-  
-  return (!species) ? allAnimals : animalCount.residents.length;
+
+  return (!species) ? allAnimals : specificAnimal.residents.length;
 }
 
 function entryCalculator(entrants) {
-  
+
 }
 
 function animalMap(options) {
-  
+
 }
 
 function schedule(dayName) {
@@ -89,7 +89,7 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  return prices.forEach((item) => Object.entries(item) * percentage)
+  return prices.forEach(item => Object.entries(item) * percentage);
 }
 
 function employeeCoverage(idOrName) {
