@@ -137,7 +137,15 @@ const females = (animalsArr) => {
   return output;
 };
 
-// console.log(females('lions', 'NE'));
+const males = (animalsArr) => {
+  const output = [];
+  for (let index = 0; index < animalsArr.length; index += 1) {
+    if (animalsArr[index].sex === 'male') {
+      output.push(animalsArr[index].name);
+    }
+  }
+  return output;
+};
 
 const animalNames = (options, animalsArr) => {
   const keys = Object.keys(options);
@@ -166,6 +174,8 @@ const animalObject = (species, location, options) => {
   for (let index = 0; index < keys.length; index += 1) {
     if (keys[index] === 'sex' && values[index] === 'female') {
       output[species] = females(animalsArr);
+    } else if (keys[index] === 'sex' && values[index] === 'male') {
+      output[species] = males(animalsArr);
     } else {
       output[species] = animalNames(options, animalsArr);
     }
@@ -207,7 +217,7 @@ function animalMap(options) {
   return output;
 }
 
-console.log(animalMap({ includeNames: true, sex: 'female' }));
+console.log(animalMap({ includeNames: true, sex: 'male' }));
 
 function schedule(dayName) {
   // seu código aqui
