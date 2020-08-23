@@ -120,8 +120,29 @@ const increasePrices = (percentage) => {
 };
 
 const employeeCoverage = (idOrName) => {
-  // seu código aqui
+  if (!idOrName) {
+    const animalResponsibleFor = employees.reduce((acc,e) => {
+      const fullName = `${e.firstName} ${e.lastName}`;
+      return {
+        ...acc,
+        [fullName]: e.responsibleFor.map(res => animals.find(a => a.id === res).name),
+      };
+    }, {});
+    return animalResponsibleFor;
+  }
+  const animalsFilteredByNameOrId = employees
+    .filter(e => e.id === idOrName || e.firstName === idOrName || e.lastName === idOrName)
+    .reduce((acc,e) => {
+      const fullName = `${e.firstName} ${e.lastName}`;
+      return {
+        ...acc,
+        [fullName]: e.responsibleFor.map(res => animals.find(a => a.id === res).name),
+      };
+  }, {});
+  return animalsFilteredByNameOrId;
 };
+
+console.log(employeeCoverage())
 
 module.exports = {
   entryCalculator,
