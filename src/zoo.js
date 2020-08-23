@@ -75,16 +75,17 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   // seu código aqui
-  let totalEntries = 0;
-
   if (!entrants || Object.entries(entrants).length === 0) return 0;
 
-  if (Object.entries(entrants).length > 0) {
-    for (let key of Object.keys(entrants)) {
-      totalEntries += entrants[key] * prices[key];
-    }
-    return totalEntries;
-  }
+  // if (Object.entries(entrants).length > 0) {
+  //   for (let key of Object.keys(entrants)) {
+  //     totalEntries += entrants[key] * prices[key]
+  //   }
+  //   return totalEntries;
+  // }
+
+  const entrances = Object.keys(entrants).reduce((total, key) => total + entrants[key] * prices[key], 0)
+  return entrances;
 }
 
 function animalMap(options) {
