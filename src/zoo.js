@@ -78,14 +78,27 @@ function animalCount(species) {
 function entryCalculator(entrants) {
   const noArguments = entryCalculator.arguments.length === 0;
   const emptyObject = noArguments ?
-    undefined :
+    false :
     Object.keys(entrants).length === 0 && entrants.constructor === Object;
 
   if (noArguments || emptyObject) {
     return 0;
   }
 
-  return null;
+  const entries = Object.entries(entrants);
+
+  return entries.reduce((bill, current) => {
+    switch (current[0]) {
+      case 'Adult':
+        return bill + (current[1] * 49.99);
+      case 'Child':
+        return bill + (current[1] * 20.99);
+      case 'Senior':
+        return bill + (current[1] * 24.99);
+      default:
+        return -1;
+    }
+  }, 0.0);
 }
 
 function animalMap(options) {
