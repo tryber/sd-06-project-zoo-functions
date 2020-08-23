@@ -136,18 +136,27 @@ const checkIfSorted = (keys, values, output) => {
   return output;
 };
 
-const animalNames = (options, animalsArr, sex) => {
-  const output = [];
-  if (sex === undefined) {
-    for (let index = 0; index < animalsArr.length; index += 1) {
-      output.push(animalsArr[index].name);
-    }
-  } else {
+const pushNames = (animalsArr, output, sex) => {
+  if (sex) {
     for (let index = 0; index < animalsArr.length; index += 1) {
       if (animalsArr[index].sex === sex) {
         output.push(animalsArr[index].name);
       }
     }
+  } else {
+    for (let index = 0; index < animalsArr.length; index += 1) {
+      output.push(animalsArr[index].name);
+    }
+  }
+  return output;
+};
+
+const animalNames = (options, animalsArr, sex) => {
+  const output = [];
+  if (sex === undefined) {
+    pushNames(animalsArr, output);
+  } else {
+    pushNames(animalsArr, output, sex);
   }
   const keys = Object.keys(options);
   const values = Object.values(options);
