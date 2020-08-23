@@ -51,12 +51,14 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 }
 
 function animalCount(species) {
-/*  if (species === undefined) {
-    const obj = {};
-    data.animals.forEach(animal => obj[animal.name] = animal.residents.length);
-    return obj;
+  if (species === undefined) {
+    return data.animals.map((animal) => {
+      const nomeAnimal = animal.name;
+      return { [nomeAnimal]: animal.residents.length };
+    })
+    .reduce((previousValue, currentValue) => Object.assign(previousValue, currentValue));
   }
-  return data.animals.find(animal => animal.name === species).residents.length;*/
+  return data.animals.find(animal => animal.name === species).residents.length;
 }
 
 function entryCalculator(entrants) {
@@ -91,8 +93,6 @@ function schedule(dayName) {
     return { [dayName]: `Open from ${horario[1].open}am until ${horario[1].close - 12}pm` };
   })[0];
 }
-
-console.log(schedule('Monday'));
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
