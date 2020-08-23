@@ -71,7 +71,7 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  if (!entrants) {
+  if (!entrants || Object.entries(entrants).length === 0) {
     return 0
   }
 }
