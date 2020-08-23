@@ -10,18 +10,20 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-
+const { animals}= require('./data.js');
 function animalsByIds(ids) {
-  // seu código aqui - Caso receba nenhum parâmetro, necessário retornar um array vazio
-  //Ao receber como parâmetro um único id, retorna os animais com este id
-  //Ao receber mais de um id, retorna os animais que têm um desses ids
-
+  const animalId = animals
+  .filter (ident =>  ident.id === ids  )
+  .map(ident => ident.name )
+  return animalId;
 }
-
-function animalsOlderThan(animal, age) {
+ //let ids = ['0938aa23-f153-4937-9f88-4858b24d6bce', 'e8481c1d-42ea-4610-8e11-1752cfc05a46'];
+ let resp = animalsByIds('e8481c1d-42ea-4610-8e11-1752cfc05a46');
+ console.log(resp);
+ function animalsOlderThan(animal, age) {
 //Ao passar o nome de uma espécie e uma idade,
 //testa se todos os animais desta espécie possuem a idade mínima especificada animal, age }
-   return animals.find(anima, age);
+ return animals.find(anima, age);
 }
 
 function employeeByName(employeeName) {
