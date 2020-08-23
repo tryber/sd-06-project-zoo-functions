@@ -33,7 +33,11 @@ function animalsOlderThan(animal, age) {
 }
 
 function employeeByName(employeeName) {
-  // seu código aqui
+  const empty = {};
+  if (employeeName === undefined) {
+    return empty;
+  }
+  return employees.find(inPut => inPut.firstName === employeeName || inPut.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
