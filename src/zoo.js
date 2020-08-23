@@ -40,7 +40,9 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  const newHappiestEmployeeEva = { ...personalInfo, ...associatedWith };
+  const newHappyEmplyoeeData = data.employees.concat(newHappiestEmployeeEva);
+  return newHappyEmplyoeeData[newHappyEmplyoeeData.length - 1];
 }
 
 function isManager(id) {
