@@ -134,50 +134,30 @@ const checkIfSorted = (keys, values, output) => {
     }
   }
   return output;
-}
+};
 
-const females = (options, animalsArr) => {
+const animalNames = (options, animalsArr, sex) => {
   const output = [];
-  for (let index = 0; index < animalsArr.length; index += 1) {
-    if (animalsArr[index].sex === 'female') {
+  if (sex === undefined) {
+    for (let index = 0; index < animalsArr.length; index += 1) {
       output.push(animalsArr[index].name);
+    }
+  } else {
+    for (let index = 0; index < animalsArr.length; index += 1) {
+      if (animalsArr[index].sex === sex) {
+        output.push(animalsArr[index].name);
+      }
     }
   }
   const keys = Object.keys(options);
   const values = Object.values(options);
   checkIfSorted(keys, values, output);
-  return output;
-};
-
-const males = (options, animalsArr) => {
-  const output = [];
-  for (let index = 0; index < animalsArr.length; index += 1) {
-    if (animalsArr[index].sex === 'male') {
-      output.push(animalsArr[index].name);
-    }
-  }
-  const keys = Object.keys(options);
-  const values = Object.values(options);
-  checkIfSorted(keys, values, output);
-  return output;
-};
-
-const animalNames = (options, animalsArr) => {
-  const keys = Object.keys(options);
-  const values = Object.values(options);
-  const output = [];
-  for (let index = 0; index < animalsArr.length; index += 1) {
-    output.push(animalsArr[index].name);
-  }
-  for (let index = 0; index < keys.length; index += 1) {
-    if (keys[index] === 'sorted' && values[index]) {
-      output.sort();
-    }
-  }
+  console.log(output);
   return output;
 };
 
 const animalObject = (species, location, options) => {
+  const { sex } = options;
   const keys = Object.keys(options);
   const values = Object.values(options);
   const output = {};
@@ -186,11 +166,8 @@ const animalObject = (species, location, options) => {
   .filter(animal => animal.name === species)
   .flatMap(animal => animal.residents);
   for (let index = 0; index < keys.length; index += 1) {
-    if (keys[index] === 'sex' && values[index] === 'female' && !hasReturn) {
-      output[species] = females(options, animalsArr);
-      hasReturn = true;
-    } else if (keys[index] === 'sex' && values[index] === 'male' && !hasReturn) {
-      output[species] = males(options, animalsArr);
+    if (keys[index] === 'sex' && values[index] === sex && !hasReturn) {
+      output[species] = animalNames(options, animalsArr, sex);
       hasReturn = true;
     } else if (!hasReturn) {
       output[species] = animalNames(options, animalsArr);
