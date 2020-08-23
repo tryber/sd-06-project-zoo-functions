@@ -120,7 +120,9 @@ const defaultMap = () => {
   const locationArr = ['NE', 'NW', 'SE', 'SW'];
   const output = {};
   for (let index = 0; index < locationArr.length; index += 1) {
-    output[locationArr[index]] = data.animals.filter(animal => animal.location === locationArr[index]).map(animal => animal.name);
+    output[locationArr[index]] = data.animals
+    .filter(animal => animal.location === locationArr[index])
+    .map(animal => animal.name);
   }
   return output;
 };
@@ -149,7 +151,9 @@ const animalObject = (species, location) => {
 const mapLocation = (location) => {
   const output = {};
   output[location] = [];
-  const animalsArr = data.animals.filter(animal => animal.location === location).map(animal => animal.name);
+  const animalsArr = data.animals
+  .filter(animal => animal.location === location)
+  .map(animal => animal.name);
   for (let index = 0; index < animalsArr.length; index += 1) {
     output[location].push(animalObject(animalsArr[index], location));
   }
