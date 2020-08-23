@@ -18,11 +18,17 @@ function animalsByIds(...ids) {
   return agoraVaiEmNomeDoPai;
 }
 
-console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce', 'e8481c1d-42ea-4610-8e11-1752cfc05a46'));
+// console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce', 'e8481c1d-42ea-4610-8e11-1752cfc05a46'));
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  const ageOfAnimals = data.animals
+    .filter(species => species.name === animal)[0].residents
+      .every(animalAge => animalAge.age >= age) ? true : false;
+  return ageOfAnimals;
 }
+
+// console.log(animalsOlderThan('otters', 7));
+// console.log(animalsOlderThan('penguins', 10));
 
 function employeeByName(employeeName) {
   // seu código aqui
