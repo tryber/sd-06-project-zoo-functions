@@ -97,7 +97,7 @@ function schedule(dayName) {
 function oldestFromFirstSpecies(id) {
   const specie = employees.find(item => item.id === id).responsibleFor[0];
   return Object.values(animals.find(item => item.id === specie).residents
-    .reduce((acc, animal) => { return acc.age > animal.age ? acc : animal }));
+    .reduce((acc, animal) => { return acc.age > animal.age ? acc : animal; }));
 }
 
 function increasePrices(percentage) {
@@ -113,9 +113,8 @@ function employeeCoverage(idOrName) {
     ));
 
     return {
-      [`${firstName} ${lastName}`]: responsibleFor.map((item) => {
-        return animals.find(n => n.id === item).name;
-      }),
+      [`${firstName} ${lastName}`]:
+        responsibleFor.map((item) => { return animals.find(n => n.id === item).name; }),
     };
   }
   const names = employees.reduce((acc, item) => (
