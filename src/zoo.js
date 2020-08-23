@@ -127,21 +127,36 @@ const defaultMap = () => {
   return output;
 };
 
-const females = (animalsArr) => {
+const females = (options, animalsArr) => {
   const output = [];
   for (let index = 0; index < animalsArr.length; index += 1) {
     if (animalsArr[index].sex === 'female') {
       output.push(animalsArr[index].name);
     }
   }
+  const keys = Object.keys(options);
+  const values = Object.values(options);
+  for (let index = 0; index < keys.length; index += 1) {
+    if (keys[index] === 'sorted' && values[index]) {
+      output.sort();
+      console.log(output);
+    }
+  }
   return output;
 };
 
-const males = (animalsArr) => {
+const males = (options, animalsArr) => {
   const output = [];
   for (let index = 0; index < animalsArr.length; index += 1) {
     if (animalsArr[index].sex === 'male') {
       output.push(animalsArr[index].name);
+    }
+  }
+  const keys = Object.keys(options);
+  const values = Object.values(options);
+  for (let index = 0; index < keys.length; index += 1) {
+    if (keys[index] === 'sorted' && values[index]) {
+      output.sort();
     }
   }
   return output;
@@ -162,28 +177,27 @@ const animalNames = (options, animalsArr) => {
   return output;
 };
 
-// console.log(animalNames('lions', 'NE', { sex: 'female' }));
-
 const animalObject = (species, location, options) => {
   const keys = Object.keys(options);
   const values = Object.values(options);
   const output = {};
+  let hasReturn = false;
   const animalsArr = data.animals.filter(animal => animal.location === location)
   .filter(animal => animal.name === species)
   .flatMap(animal => animal.residents);
   for (let index = 0; index < keys.length; index += 1) {
-    if (keys[index] === 'sex' && values[index] === 'female') {
-      output[species] = females(animalsArr);
-    } else if (keys[index] === 'sex' && values[index] === 'male') {
-      output[species] = males(animalsArr);
-    } else {
+    if (keys[index] === 'sex' && values[index] === 'female' && !hasReturn) {
+      output[species] = females(options, animalsArr);
+      hasReturn = true;
+    } else if (keys[index] === 'sex' && values[index] === 'male' && !hasReturn) {
+      output[species] = males(options, animalsArr);
+      hasReturn = true;
+    } else if (!hasReturn) {
       output[species] = animalNames(options, animalsArr);
     }
   }
   return output;
 };
-
-// console.log(animalObject('lions', 'NE', { sex: 'female' }));
 
 const mapLocation = (location, options) => {
   const output = {};
@@ -196,8 +210,6 @@ const mapLocation = (location, options) => {
   }
   return output;
 };
-
-// console.log(mapLocation());
 
 function animalMap(options) {
   if (options === undefined) {
@@ -217,7 +229,7 @@ function animalMap(options) {
   return output;
 }
 
-console.log(animalMap({ includeNames: true, sex: 'male' }));
+console.log(animalMap({ includeNames: true, sex: 'female', sorted: true }));
 
 function schedule(dayName) {
   // seu código aqui
