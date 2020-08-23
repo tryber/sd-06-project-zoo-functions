@@ -107,11 +107,8 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  if (idOrName === undefined) {
-  return Object.keys(employees).forEach(employee => {`${employee.firstName} ${employee.lastName}`})
-  }
+  // seu código aqui
 }
-console.log(employeeCoverage())
 
 module.exports = {
   entryCalculator,
