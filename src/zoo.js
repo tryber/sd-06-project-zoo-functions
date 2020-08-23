@@ -42,15 +42,15 @@ function employeeByName(employeeName) {
   return employees
   .filter(employee => employee
     .firstName === employeeName ||
-      employee.lastName === employeeName)[0]
-};
+      employee.lastName === employeeName)[0];
+}
 
 function createEmployee(personalInfo, associatedWith) {
-  return Object.assign(personalInfo, associatedWith)
-};
+  return Object.assign(personalInfo, associatedWith);
+}
 
 function isManager(id) {
-  return employees.some(employee => employee.managers.some(manager => manager === id))
+  return employees.some(employee => employee.managers.some(manager => manager === id));
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
