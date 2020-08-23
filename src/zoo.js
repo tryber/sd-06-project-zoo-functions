@@ -136,15 +136,16 @@ const checkIfSorted = (keys, values, output) => {
   return output;
 };
 
+const pushNamesWithoutSex = (animalsArr, output) => {
+  for (let index = 0; index < animalsArr.length; index += 1) {
+    output.push(animalsArr[index].name);
+  }
+  return output;
+};
+
 const pushNames = (animalsArr, output, sex) => {
-  if (sex) {
-    for (let index = 0; index < animalsArr.length; index += 1) {
-      if (animalsArr[index].sex === sex) {
-        output.push(animalsArr[index].name);
-      }
-    }
-  } else {
-    for (let index = 0; index < animalsArr.length; index += 1) {
+  for (let index = 0; index < animalsArr.length; index += 1) {
+    if (animalsArr[index].sex === sex) {
       output.push(animalsArr[index].name);
     }
   }
@@ -154,7 +155,7 @@ const pushNames = (animalsArr, output, sex) => {
 const animalNames = (options, animalsArr, sex) => {
   const output = [];
   if (sex === undefined) {
-    pushNames(animalsArr, output);
+    pushNamesWithoutSex(animalsArr, output);
   } else {
     pushNames(animalsArr, output, sex);
   }
