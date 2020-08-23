@@ -105,39 +105,39 @@ function entryCalculator(entrants) {
 function animalMap({ includeNames = false, sex = '', sorted = false } = {}) {
   // seu código aqui
   const getLocations = [];
-  data.animals.forEach((element) => getLocations.push(element.location));
+  data.animals.forEach(element => getLocations.push(element.location));
   const locations = [ ...new Set(getLocations) ];
-  let result = {};
+  const result = {};
   locations.forEach(element => result[element] = []);
   const getAnimals = (array, animal) => [ ...array, animal.name ];
   Object.keys(result)
     .forEach((currLocation) => {
-    result[currLocation] = data.animals
-    .filter(animal => animal.location === currLocation)
-    .reduce(getAnimals, []);
-  });
+      result[currLocation] = data.animals
+      .filter(animal => animal.location === currLocation)
+      .reduce(getAnimals, []);
+    });
   if (includeNames) {
     // reduce method to get each resident animal´s name
     const animalNames = (array, currResident) => {
       if (sex === currResident.sex) {
         return [ ...array, currResident.name ];
       } else if (sex === '') {
-      return [ ...array, currResident.name ];
+        return [ ...array, currResident.name ];
       }
     };
     // start of main code to populate result
     locations.forEach(
-      location => {
+      (location) => {
         result[location]
           .forEach((species, index) => {
             result[location][index] = ({
               [species]: data.animals
               .find(element => element.name === species)
                 .residents
-                  .reduce(animalNames, []) })
-          })
+                  .reduce(animalNames, []) });
+          });
       }
-    )
+    );
   }
   // what to do if option sorted is triggered
   if (sorted) {
@@ -146,8 +146,8 @@ function animalMap({ includeNames = false, sex = '', sorted = false } = {}) {
         (species, index) => Object.keys(species)
           .forEach(element => result[location][index][element].sort())
       )
-    )
-  };
+    );
+  }
   return result;
 }
 
