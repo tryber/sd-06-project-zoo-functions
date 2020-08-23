@@ -12,17 +12,20 @@ eslint no-unused-vars: [
 const data = require('./data');
 
 function animalsByIds(...ids) {
-  let foundAnimal = [];
+  const foundAnimal = [];
   if (ids) {
-    ids.forEach(id => {
-      foundAnimal.push(...data.animals.filter(animal => animal.id === id))
-    });
+    ids.forEach(id => foundAnimal.push(...data.animals
+      .filter(animal => animal.id === id)));
   }
   return foundAnimal;
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  const checkAllAnimals = data.animals
+    .filter(zooAnimal => zooAnimal.name === animal);
+  const areAllAnimalsOlder = checkAllAnimals[0].residents
+    .every(resident => resident.age > age);
+  return areAllAnimalsOlder;
 }
 
 function employeeByName(employeeName) {
