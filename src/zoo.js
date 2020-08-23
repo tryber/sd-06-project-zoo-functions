@@ -46,7 +46,7 @@ function animalCount(species) {
 
 function entryCalculator(...entrants) {
   const ticketValue = 0;
-  if ( entrants.values === '' || entrants.values === {}) {
+  if (entrants.values === '' || entrants.values === {}) {
     return 0;
   }
   return ticketValue;
