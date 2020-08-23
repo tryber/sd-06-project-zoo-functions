@@ -267,10 +267,32 @@ const schedule = (dayName) => {
 // console.log(schedule('Monday'));
 // console.log(schedule('Tuesday'));
 
+
 // ====================================
-function oldestFromFirstSpecies(id) {
-  // seu código aqui
-}
+// 11- Implemente a função oldestFromFirstSpecies:
+// Passado o id de um funcionário, encontra a primeira espécie de animal gerenciado pelo
+// funcionário, e retorna um array com nome, sexo e idade do animal mais velho dessa espécie
+const verifyOldestResidents = (myResidents) => {
+  const myEntries = Object.entries(myResidents);
+  const newArray = [];
+  myEntries.forEach((item) => {
+    const itemArray = [];
+    itemArray.push(item[1].name, item[1].sex, item[1].age);
+    newArray.push(itemArray);
+  });
+  return newArray.sort(function (a, b) {
+    return b[2] - a[2];
+  });
+};
+const oldestFromFirstSpecies = (id) => {
+  const myEmployee = employees.find(item => item.id === id);
+  const idFirstAnimal = myEmployee.responsibleFor[0];
+  const myResidents = animals.find(item => item.id === idFirstAnimal).residents;
+  const oldestresident = verifyOldestResidents(myResidents)[0];
+  return oldestresident;
+};
+// console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
+// console.log(oldestFromFirstSpecies('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
 
 
 // ====================================
