@@ -1,1 +1,0 @@
-data.prices.Senior * entrants.Senior

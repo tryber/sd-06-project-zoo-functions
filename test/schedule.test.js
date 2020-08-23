@@ -31,3 +31,20 @@ describe('Implemente a função schedule', () => {
     assert.deepEqual(actual, expected);
   });
 });
+
+function schedule(dayName) {
+  const agenda = Object.entries(data.hours);
+  if (dayName === undefined) {
+  const agendaNova = {}
+  agenda.map (horario => {
+    if (horario[0] === 'Monday') return agendaNova.Monday = 'CLOSED'
+    agendaNova[horario[0]] = `Open from ${horario[1].open}am until ${horario[1].close - 12}pm`
+    
+  })
+  return agendaNova
+  }
+  agenda.filter((horario) => horario[0] === dayName).map((horario2) => {
+    if (dayName === 'Monday') return {[dayName]: 'CLOSED',};
+    return {[dayName] : `Open from ${horario2[1].open}am until ${horario2[1].close - 12}pm`,}
+  })[0]; 
+}
