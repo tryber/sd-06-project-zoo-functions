@@ -13,6 +13,7 @@ const data = require('./data');
 
 const { animals } = data;
 const { employees } = data;
+const { prices } = data;
 
 function animalsByIds(...ids) {
   // seu código aqui
@@ -30,6 +31,7 @@ function animalsOlderThan(animal, age) {
 function employeeByName(employeeName) {
   // seu código aqui
   if (!employeeName) return {};
+
   return employees.find(employee =>
     employee.firstName === employeeName
     || employee.lastName === employeeName);
@@ -61,10 +63,26 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 function animalCount(species) {
   // seu código aqui
+  if (!species) {
+    return animals.reduce((acc, element) =>
+      ({...acc, [element.name]: element.residents.length}), {})
+  }
+
+  return animals
+    .find(element => element.name === species)
+    .residents.length;
 }
 
 function entryCalculator(entrants) {
   // seu código aqui
+  let totalEntries = 0;
+
+  if (!entrants || Object.entries(entrants).length === 0) return 0;
+
+  for (key in entrants) {
+    totalEntries += entrants[key] * prices[key]
+  }
+  return totalEntries;
 }
 
 function animalMap(options) {
