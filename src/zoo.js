@@ -115,10 +115,44 @@ function increasePrices(percentage) {
   prices.Senior = Math.round((prices.Senior + (prices.Senior * percentageDivided)) * 100) / 100;
   prices.Child = Math.round((prices.Child + (prices.Child * percentageDivided)) * 100) / 100;
 }
+const result = {};
+const animalsEmployee = (employee) => {
+  const employeeName = `${employee.firstName} ${employee.lastName}`;
+  const animalsId = employee.responsibleFor;
+  const animalsName = [];
+  animalsId.forEach((idAnimal) => {
+    const animalObj = animals.find(animal => animal.id === idAnimal);
+    animalsName.push(animalObj.name);
+  });
+  Object.defineProperty(result, employeeName, { value: animalsName,
+    enumerable: true,
+    configurable: true,
+    writable: true });
+};
 
-function employeeCoverage(idOrName) {
-  // seu código aqui
+
+function employeeCoverage(idOrName = '') {
+  if (idOrName === '') {
+    employees.forEach(animalsEmployee);
+  } else {
+    const employeeObj = employees.find(employee => employee.id === idOrName
+    || employee.firstName === idOrName || employee.lastName === idOrName);
+    animalsEmployee(employeeObj);
+  }
+  // const animalsName = [];
+  // employeeObj.responsibleFor.forEach((animalId) => {
+  //   const animalObj = animals.find(animal => animal.id === animalId);
+  //   animalsName.push(animalObj.name);
+  // });
+  // const employeeName = `${employeeObj.firstName} ${employeeObj.lastName}`;
+  // const result2 = {};
+  // Object.defineProperty(result2, employeeName, { value: animalsName,
+  //   enumerable: true,
+  //   configurable: true,
+  //   writable: true });
+  return result;
 }
+console.log(employeeCoverage('Orloff'));
 
 module.exports = {
   entryCalculator,
