@@ -111,38 +111,35 @@ const oldestFromFirstSpecies = (id) => {
 };
 
 const increasePrices = (percentage) => {
-  data.prices.Adult = Number((Math.ceil((1 + (percentage / 100)) * 100 * data.prices.Adult) / 100)
-    .toFixed(2));
-  data.prices.Senior = Number((Math.ceil((1 + (percentage / 100)) * 100 * data.prices.Senior) / 100)
-    .toFixed(2));
-  data.prices.Child = Number((Math.ceil((1 + (percentage / 100)) * 100 * data.prices.Child) / 100)
-    .toFixed(2));
+  const pricesKeys = Object.keys(prices);
+
+  pricesKeys.forEach((price) => {
+    const newPrice = (Math.ceil((1 + (percentage / 100)) * 100 * data.prices[price]) / 100)
+      .toFixed(2);
+    data.prices[price] = Number(newPrice);
+  });
 };
+
+const buildObjectFromEmployeeCoverage = array => (
+  array.reduce((acc, e) => {
+    const fullName = `${e.firstName} ${e.lastName}`;
+    return {
+      ...acc,
+      [fullName]: e.responsibleFor.map(res => animals.find(a => a.id === res).name),
+    };
+  }, {})
+);
 
 const employeeCoverage = (idOrName) => {
   if (!idOrName) {
-    const animalResponsibleFor = employees.reduce((acc,e) => {
-      const fullName = `${e.firstName} ${e.lastName}`;
-      return {
-        ...acc,
-        [fullName]: e.responsibleFor.map(res => animals.find(a => a.id === res).name),
-      };
-    }, {});
-    return animalResponsibleFor;
+    const coverage = buildObjectFromEmployeeCoverage(employees);
+    return coverage;
   }
-  const animalsFilteredByNameOrId = employees
-    .filter(e => e.id === idOrName || e.firstName === idOrName || e.lastName === idOrName)
-    .reduce((acc,e) => {
-      const fullName = `${e.firstName} ${e.lastName}`;
-      return {
-        ...acc,
-        [fullName]: e.responsibleFor.map(res => animals.find(a => a.id === res).name),
-      };
-  }, {});
-  return animalsFilteredByNameOrId;
+  const filteredEmployees = employees
+  .filter(e => e.id === idOrName || e.firstName === idOrName || e.lastName === idOrName);
+  const coverage = buildObjectFromEmployeeCoverage(filteredEmployees);
+  return coverage;
 };
-
-console.log(employeeCoverage())
 
 module.exports = {
   entryCalculator,
