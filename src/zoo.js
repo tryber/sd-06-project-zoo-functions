@@ -310,16 +310,52 @@ const increasePrices = (percentage) => {
 // console.log(increasePrices(30));
 
 
-
 // ====================================
 // 13- Implemente a função employeeCoverage:
 // Sem parâmetros, retorna uma lista de funcionários e os animais pelos quais eles são responsáveis
 // Com o id de um funcionário, retorna os animais pelos quais o funcionário é responsável
 // Com o primeiro nome de um funcionário, retorna os animais pelos quais o funcionário é responsável
 // Com o último nome de um funcionário, retorna os animais pelos quais o funcionário é responsável
-const employeeCoverage = (idOrName) => {
-
+const createArrayAnimals = (myAnimalsId) => {
+  const myArrayAnimailsName = [];
+  myAnimalsId.forEach((idAnimal) => {
+    const myAnimal = animals.find(item => item.id === idAnimal);
+    myArrayAnimailsName.push(myAnimal.name);
+  });
+  return myArrayAnimailsName;
 };
+
+const createObjectEmployeeAnimals = (myEmployees) => {
+  const myObject = {};
+  for (let index = 0; index < myEmployees[0].length; index += 1) {
+    myObject[myEmployees[0][index]] = createArrayAnimals(myEmployees[1][index]);
+  }
+  return myObject;
+};
+
+const verifyEmployeesParameter = (param) => {
+  const myEmployees = [];
+  if (param === undefined) {
+    myEmployees.push(employees.map(item => `${item.firstName} ${item.lastName}`));
+    myEmployees.push(employees.map(item => item.responsibleFor));
+  } else {
+    const myEmployeeFilter = employees.filter(item =>
+      item.id === param || item.firstName === param || item.lastName === param);
+    myEmployees.push(myEmployeeFilter.map(item => `${item.firstName} ${item.lastName}`));
+    myEmployees.push(myEmployeeFilter.map(item => item.responsibleFor));
+  }
+  return myEmployees;
+};
+
+const employeeCoverage = (idOrName) => {
+  const myEmployees = verifyEmployeesParameter(idOrName);
+  return createObjectEmployeeAnimals(myEmployees);
+};
+// console.log(employeeCoverage());
+// console.log(employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
+// console.log(employeeCoverage('Stephanie'));
+// console.log(employeeCoverage('Azevado'));
+
 
 module.exports = {
   entryCalculator,
