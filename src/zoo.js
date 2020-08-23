@@ -131,10 +131,10 @@ const animalsEmployee = (employee) => {
 };
 
 
-function employeeCoverage(idOrName = '') {
-  if (idOrName === '') {
+function employeeCoverage(idOrName) {
+  if (idOrName === undefined) {
     employees.forEach(animalsEmployee);
-  } else {
+  } else if (idOrName) {
     const employeeObj = employees.find(employee => employee.id === idOrName
     || employee.firstName === idOrName || employee.lastName === idOrName);
     animalsEmployee(employeeObj);
@@ -152,7 +152,7 @@ function employeeCoverage(idOrName = '') {
   //   writable: true });
   return result;
 }
-console.log(employeeCoverage('Orloff'));
+console.log(employeeCoverage('Azevado'));
 
 module.exports = {
   entryCalculator,
