@@ -140,7 +140,7 @@ const animalNames = (species, location, options) => {
   for (let index = 0; index < keys.length; index += 1) {
     if (keys[index] === 'sorted' && values[index]) {
       output.sort();
-    } 
+    }
   }
   return output;
 };
