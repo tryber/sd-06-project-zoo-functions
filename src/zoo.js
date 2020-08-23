@@ -28,7 +28,7 @@ function animalsOlderThan(animalName, age) {
 function employeeByName(employeeName) {
   return employees
   .filter(worker => worker.firstName === employeeName ||
-  worker.lastName === employeeName)[0] || {}
+  worker.lastName === employeeName)[0] || {};
 }
 /*
 function createEmployee(personalInfo, associatedWith) {
@@ -103,6 +103,7 @@ function increasePrices(percentage) {
     prices[price[0]] = (price[1]*(1 + percentage/100));
   })
 } 
+
 */
 function employeeCoverage(idOrName) {
   // seu código aqui
