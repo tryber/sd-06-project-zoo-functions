@@ -10,7 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { animals, employees, prices } = require('./data');
+const { animals, employees, prices, hours } = require('./data');
 
 // ========================================================================================
 // 1- Implemente a função animalsByIds:
@@ -237,10 +237,35 @@ const animalMap = (options) => {
 
 
 // ========================================================================================
-function schedule(dayName) {
-  // seu código aqui
-}
+// 10- Implemente a função schedule:
+// Sem parâmetros, retorna um cronograma legível para humanos
+// Se um único dia for passado, retorna somente este dia em um formato legível para humanos
+const newSchedule = (days, dayName) => {
+  const mySchedule = {};
+  days.forEach((itemDay) => {
+    if (dayName === 'All' || dayName === itemDay[0]) {
+      const hourOpen = itemDay[1].open;
+      const hourClose = itemDay[1].close - 12;
+      if (hourOpen === 0) {
+        mySchedule[itemDay[0]] = 'CLOSED';
+      } else {
+        mySchedule[itemDay[0]] = `Open from ${hourOpen}am until ${hourClose}pm`;
+      }
+    }
+  });
+  return mySchedule;
+};
 
+const schedule = (dayName) => {
+  if (dayName === undefined) {
+    dayName = 'All';
+  }
+  const days = Object.entries(hours);
+  return newSchedule(days, dayName);
+};
+// console.log(schedule());
+// console.log(schedule('Monday'));
+// console.log(schedule('Tuesday'));
 
 // ====================================
 function oldestFromFirstSpecies(id) {
