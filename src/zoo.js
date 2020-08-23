@@ -14,6 +14,7 @@ const data = require('./data');
 const { animals } = data;
 const { employees } = data;
 const { hours } = data;
+const { prices: fees } = data;
 
 function animalsByIds(...ids) {
   if (animalsByIds.arguments.length === 0) {
@@ -142,7 +143,22 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  const keys = Object.keys(fees);
+  const values = Object.values(fees);
+  const updatedFees = values.map(fee => (fee + (fee * (percentage / 100))), {});
+
+  const updatedFeesObject = keys
+    .reduce((priceObject, key, index) => {
+      const roundedFee = Math.round(updatedFees[index] * 100) / 100; //this rounds correctly three decimal places -> 74.985
+
+      return { ...priceObject, [key]: roundedFee };
+    }, {});
+
+  data.prices.Adult = updatedFeesObject.Adult;
+  data.prices.Senior = updatedFeesObject.Senior;
+  data.prices.Child = updatedFeesObject.Child;
+
+  return data.prices;
 }
 
 function employeeCoverage(idOrName) {
