@@ -15,7 +15,7 @@ eslint no-unused-vars: [
 // Ao receber mais de um id, retorna os animais que têm um desses ids
 
 const data = require('./data');
-const { animals, employees, prices } = require('./data');
+const { animals, employees, prices, hours } = require('./data');
 
 function animalsByIds(...ids) {
   if (ids.length === 0) {
@@ -30,7 +30,7 @@ function animalsByIds(...ids) {
 
 function animalsOlderThan(animal, age) {
   return animals.find(eachAnimal => eachAnimal.name === animal)
-  .residents.every(residents => residents.age >= age);
+    .residents.every(residents => residents.age >= age);
 }
 
 // 3 - Sem parâmetros, retorna um objeto vazio
@@ -42,7 +42,7 @@ function employeeByName(employeeName = '') {
     return {};
   }
   const employee = employees.find(eachEmployee => eachEmployee.firstName === employeeName
-      || eachEmployee.lastName === employeeName);
+    || eachEmployee.lastName === employeeName);
   return employee;
 }
 
@@ -100,21 +100,82 @@ function entryCalculator(entrants) {
   if (!entrants) return 0;
   const keys = Object.keys(entrants);
   const values = Object.values(entrants);
-  console.log(keys);
-  console.log(values);
   const totalBill = keys.reduce((acc, cur, index) => {
     acc += prices[cur] * values[index];
+    console.log(cur)
     return acc;
   }, 0);
   return totalBill;
 }
 
+// 9 - Sem parâmetros, retorna animais categorizados por localização
+// Com a opção includeNames: true especificada, retorna nomes de animais
+// Com a opção sorted: true especificada, retorna nomes de animais ordenados
+// Com a opção sex: 'female' ou sex: 'male' especificada,
+// retorna somente nomes de animais macho/fêmea
+// Com a opção sex: 'female' ou sex: 'male' especificada e a opção sort: true especificada,
+// retorna somente nomes de animais macho/fêmea com os nomes dos animais ordenados
+// Só retorna informações ordenadas e com sexo se a opção includeNames: true for especificada
+
+const animalLocation = (location) => {
+  return animals
+    .filter(element => element.location === location)
+    .map(animal => animal.name);
+};
+
+const getResidents = animal =>
+    animals.find(animalWanted => animalWanted.name === animal)
+    .residents.map((element => element.name));
+
+// console.log(getResidents('lions'));
+
 function animalMap(options) {
-  // seu código aqui
+  const { includeNames, sorted, sex } = options || {};
+  const result = {};
+  const locations = ['NE', 'NW', 'SE', 'SW'];
+  locations.forEach((location) => {
+    result[location] = [];
+    animalLocation(location).forEach((animal) => {
+      if (!options) {
+        result[location].push(animal);
+      } else if (includeNames === true && sorted === true) {
+        result[location].push({ [animal]: getResidents(animal).sort() });
+      } else if (includeNames === true) {
+        result[location].push({ [animal]: getResidents(animal) });
+      } 
+    });
+  });
+  return result;
 }
+console.log(animalMap({ includeNames: true, sorted: true }).NE);
+
+
+const changeHour = (hour) => {
+  if (hour > 12) {
+    hour -= 12;
+    return hour;
+  }
+  return hour;
+};
+
+const convertHours = (eachDay, newSchedule) => {
+  const { open, close } = hours[eachDay];
+  if (open === 0 && close === 0) {
+    newSchedule[eachDay] = 'CLOSED';
+  } else {
+    newSchedule[eachDay] = `Open from ${changeHour(open)}am until ${changeHour(close)}pm`;
+  }
+  return newSchedule;
+};
 
 function schedule(dayName) {
-  // seu código aqui
+  const newSchedule = {};
+  if (!dayName) {
+    Object.keys(hours).forEach(eachDay => convertHours(eachDay, newSchedule));
+  } else {
+    convertHours(dayName, newSchedule);
+  }
+  return newSchedule;
 }
 
 function oldestFromFirstSpecies(id) {
