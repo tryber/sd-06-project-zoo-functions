@@ -18,11 +18,12 @@ function animalsByIds(...ids) {
     return animalsGroup;
   }
   ids.forEach(id =>
-    animals.filter(animal => {
+    animals.filter((animal) => {
       if (animal.id === id) {
         animalsGroup.push(animal);
       }
-    })
+      return 'error';
+    }),
   );
   return animalsGroup;
   // console.log(id);
@@ -39,17 +40,19 @@ function employeeByName(employeeName) {
     return {};
   }
   return employees
-    .filter(employee => employee.firstName === employeeName || employee.lastName === employeeName)[0]
-}
+  .filter(employee => employee
+    .firstName === employeeName ||
+      employee.lastName === employeeName)[0]
+};
 
 function createEmployee(personalInfo, associatedWith) {
   return Object.assign(personalInfo, associatedWith)
-}
+};
 
 function isManager(id) {
   return employees.some(employee => employee.managers.some(manager => manager === id))
 }
-console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'))
+
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
 }
