@@ -163,13 +163,8 @@ function schedule(dayName) {
         const day = next[0];
         const open = next[1].open;
         const close = next[1].close - 12;
-        let phrase;
 
-        if (open) {
-          phrase = `Open from ${open}am until ${close}pm`;
-        } else {
-          phrase = 'CLOSED';
-        }
+        const phrase = (open) ? (`Open from ${open}am until ${close}pm`) : ('CLOSED');
 
         return { ...start, [day]: phrase };
       }, {})
@@ -227,19 +222,20 @@ function addAnimalsNamesToEmployeeData() {
 }
 
 function employeeCoverage(idOrName) {
-  const employesAndAnimals = addAnimalsNamesToEmployeeData();
+  const employeesAndAnimals = addAnimalsNamesToEmployeeData();
 
   if (idOrName) {
     const searchedEmp = (
-      employesAndAnimals
+      employeesAndAnimals
       .find(emp => emp.id === idOrName || emp.firstName === idOrName || emp.lastName === idOrName)
     );
+
     const empName = `${searchedEmp.firstName} ${searchedEmp.lastName}`;
     return { [empName]: searchedEmp.responsibleFor };
   }
 
   return (
-    employesAndAnimals
+    employeesAndAnimals
       .reduce((start, next) => {
         const empName = `${next.firstName} ${next.lastName}`;
         const empAnim = { [empName]: next.responsibleFor };
