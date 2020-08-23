@@ -85,19 +85,18 @@ function animalCount(species) {
     data
       .animals
       .reduce((start, next) => {
+        // this all could be 1 line, but left like this for clarity.
         const specie = next.name;
         const count = next.residents.length;
-        start[specie] = count;
-        return start;
+        return { ...start, [specie]: count };
       }, {})
   );
 }
 
 function entryCalculator(entrants = 0) {
-  const possible = Object.keys(data.prices);
-
   return (
-    possible
+    Object
+      .keys(data.prices)
       .reduce((start, next) => start + (data.prices[next] * (entrants[next] || 0)), 0)
   );
 }
@@ -160,6 +159,7 @@ function schedule(dayName) {
     Object
       .entries(data.hours)
       .reduce((start, next) => {
+        // could also be reduced in lines but left like this for clarity.
         const day = next[0];
         const open = next[1].open;
         const close = next[1].close - 12;
@@ -171,14 +171,14 @@ function schedule(dayName) {
           phrase = 'CLOSED';
         }
 
-        start = { ...start, [day]: phrase };
-        return start;
+        return { ...start, [day]: phrase };
       }, {})
   );
 
   if (dayName) {
     return { [dayName]: fullSchedule[dayName] };
   }
+
   return fullSchedule;
 }
 
@@ -196,7 +196,7 @@ function oldestFromFirstSpecies(id) {
           .animals
           .find(animal => animal.id === animalId)
           .residents
-          .sort((a, b) => b.age - a.age)[0],
+          .sort((a, b) => b.age - a.age)[0], //reduce also works. Maybe it's even better.
       )
   );
 }
@@ -243,8 +243,7 @@ function employeeCoverage(idOrName) {
       .reduce((start, next) => {
         const empName = `${next.firstName} ${next.lastName}`;
         const empAnim = { [empName]: next.responsibleFor };
-        start = { ...start, ...empAnim };
-        return start;
+        return { ...start, ...empAnim };
       }, {})
   );
 }
