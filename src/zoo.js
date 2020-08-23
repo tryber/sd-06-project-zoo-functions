@@ -46,7 +46,12 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  // seu código aqui
+  const areYouABoss = data.employees.find(bossy => bossy.managers
+    .some(idManager => idManager === id));
+  if (!areYouABoss) {
+    return false;
+  }
+  return true;
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
