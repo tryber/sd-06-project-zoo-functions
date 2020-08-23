@@ -102,7 +102,6 @@ function entryCalculator(entrants) {
   const values = Object.values(entrants);
   const totalBill = keys.reduce((acc, cur, index) => {
     acc += prices[cur] * values[index];
-    console.log(cur)
     return acc;
   }, 0);
   return totalBill;
@@ -117,11 +116,9 @@ function entryCalculator(entrants) {
 // retorna somente nomes de animais macho/fêmea com os nomes dos animais ordenados
 // Só retorna informações ordenadas e com sexo se a opção includeNames: true for especificada
 
-const animalLocation = (location) => {
-  return animals
+const animalLocation = location => animals
     .filter(element => element.location === location)
     .map(animal => animal.name);
-};
 
 const getResidents = animal =>
     animals.find(animalWanted => animalWanted.name === animal)
@@ -130,7 +127,7 @@ const getResidents = animal =>
 // console.log(getResidents('lions'));
 
 function animalMap(options) {
-  const { includeNames, sorted, sex } = options || {};
+  const { includeNames, sorted } = options || {};
   const result = {};
   const locations = ['NE', 'NW', 'SE', 'SW'];
   locations.forEach((location) => {
@@ -142,7 +139,7 @@ function animalMap(options) {
         result[location].push({ [animal]: getResidents(animal).sort() });
       } else if (includeNames === true) {
         result[location].push({ [animal]: getResidents(animal) });
-      } 
+      }
     });
   });
   return result;
