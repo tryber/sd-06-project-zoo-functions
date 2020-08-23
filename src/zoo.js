@@ -8,14 +8,14 @@ eslint no-unused-vars: [
   }
 ]
 */
-// const assert = require('assert');
-const assert = require('assert');
+
 const data = require('./data');
-const { animals } = require('./data')
+const { animals } = require('./data');
+
 function animalsByIds(id) {
   // data é o array onde será aplicado o filter
-  let searchAnimalsById = animals.filter(creatures => creatures.id === id)
-  return searchAnimalsById
+  const searchAnimalsById = animals.filter(creatures => creatures.id === id);
+  return searchAnimalsById;
 }
 
 // function animalsOlderThan(animal, age) {
@@ -66,18 +66,18 @@ function animalsByIds(id) {
 //   // seu código aqui
 // }
 
-module.exports = {
-  entryCalculator,
-  schedule,
-  animalCount,
-  animalMap,
-  animalsByIds,
-  employeeByName,
-  employeeCoverage,
-  addEmployee,
-  isManager,
-  animalsOlderThan,
-  oldestFromFirstSpecies,
-  increasePrices,
-  createEmployee,
-};
+// module.exports = {
+//   entryCalculator,
+//   schedule,
+//   animalCount,
+//   animalMap,
+//   animalsByIds,
+//   employeeByName,
+//   employeeCoverage,
+//   addEmployee,
+//   isManager,
+//   animalsOlderThan,
+//   oldestFromFirstSpecies,
+//   increasePrices,
+//   createEmployee,
+// };
