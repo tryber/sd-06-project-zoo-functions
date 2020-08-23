@@ -127,6 +127,15 @@ const defaultMap = () => {
   return output;
 };
 
+const checkIfSorted = (keys, values, output) => {
+  for (let index = 0; index < keys.length; index += 1) {
+    if (keys[index] === 'sorted' && values[index]) {
+      output.sort();
+    }
+  }
+  return output;
+}
+
 const females = (options, animalsArr) => {
   const output = [];
   for (let index = 0; index < animalsArr.length; index += 1) {
@@ -136,12 +145,7 @@ const females = (options, animalsArr) => {
   }
   const keys = Object.keys(options);
   const values = Object.values(options);
-  for (let index = 0; index < keys.length; index += 1) {
-    if (keys[index] === 'sorted' && values[index]) {
-      output.sort();
-      console.log(output);
-    }
-  }
+  checkIfSorted(keys, values, output);
   return output;
 };
 
@@ -154,11 +158,7 @@ const males = (options, animalsArr) => {
   }
   const keys = Object.keys(options);
   const values = Object.values(options);
-  for (let index = 0; index < keys.length; index += 1) {
-    if (keys[index] === 'sorted' && values[index]) {
-      output.sort();
-    }
-  }
+  checkIfSorted(keys, values, output);
   return output;
 };
 
