@@ -67,7 +67,7 @@ function entryCalculator(entrants) {
   if (entrants.Senior) soma += (data.prices.Senior * entrants.Senior);
   return soma;
 }
-console.log(entryCalculator())
+
 function animalMap(options) {
   // seu código aqui
 }
