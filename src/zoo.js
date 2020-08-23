@@ -57,12 +57,17 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
-function animalCount(species = animals) {
-  return species.reduce((acc, { name, residents })=> (
-    Object.assign(acc, {[name]: residents.length})
-  ), {});
+function animalCount(species) {
+  if(!species) {
+    return animals.reduce((acc, { name, residents })=> (
+      Object.assign(acc, {[name]: residents.length})
+    ), {});
+  }
+  return animals.find(item =>
+    (item.name === species)).residents.length
+    
 }
-console.log(animalCount())
+console.log(animalCount('lions'))
 function entryCalculator(entrants) {
   // seu código aqui
 }
