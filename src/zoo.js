@@ -37,13 +37,17 @@ function employeeByName(employeeName) {
   }
   return findSearchTrue;
 }
-console.log(employeeByName('Emery'));
+
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
 }
 
 function isManager(id) {
   // seu código aqui
+  const isOrNotAManager = [];
+  employees.forEach(eachEmployee => eachEmployee.managers
+    .find(gerente => isOrNotAManager.push(gerente === id)));
+  return isOrNotAManager.some(result => result === true);
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
