@@ -65,7 +65,7 @@ function entryCalculator(entrants) {
   if (entrants.Adult) soma += (data.prices.Adult * entrants.Adult);
   if (entrants.Child) soma += (data.prices.Child * entrants.Child);
   if (entrants.Senior) soma += (data.prices.Senior * entrants.Senior);
-  return soma
+  return soma;
 }
 console.log(entryCalculator())
 function animalMap(options) {
