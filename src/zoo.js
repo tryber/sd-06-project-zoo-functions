@@ -148,22 +148,25 @@ function increasePrices(percentage) {
 
 function employeeCoverage(idOrName) {
   if (!idOrName) {
-    const objAnimal = data.employees.flatMap((emp) => {
-      const ani = data.animals.filter(animal => emp.responsibleFor
-        .some(id => id === animal.id))
-        .map(animal => animal.name);
-      const name = `${emp.firstName} ${emp.lastName}`;
-      return {
-        [name]: ani,
-      };
-    });
-    const obj = {};
-    objAnimal.forEach(e => Object.assign(obj, e));
-    return obj;
+    const empId = data.employees.map(emp => emp.responsibleFor);
+    const empName = data.employees.flatMap(emp => `${emp.firstName} ${emp.lastName}`);
+    const animals = empId.map(emp => emp.flatMap(e => data.animals.filter(ani => ani.id === e)));
+    const nameAnimals = animals.map(animal => animal.map(ani => ani.name));
+    return nameAnimals.reduce((acc, ani, index) => ({ ...acc, [empName[index]]: ani }), {});
   }
-  return 'ok'; // Retorno provisorio
+  const empName = data.employees
+    .filter(emp => (idOrName === emp.id ||
+      idOrName === emp.firstName ||
+      idOrName === emp.lastName))
+    .flatMap(ani => [`${ani.firstName} ${ani.lastName}`, ani.responsibleFor]);
+  const animals = empName[1].flatMap(emp => data.animals
+        .filter(ani => ani.id === emp))
+        .map(ani => ani.name);
+  return {
+    [empName[0]]: animals,
+  };
 }
-// console.log(employeeCoverage());
+
 module.exports = {
   entryCalculator,
   schedule,
