@@ -65,7 +65,7 @@ function animalCount(species) {
   // seu código aqui
   if (!species) {
     return animals.reduce((acc, element) =>
-      ({...acc, [element.name]: element.residents.length}), {})
+      ({ ...acc, [element.name]: element.residents.length }), {});
   }
 
   return animals
@@ -79,10 +79,12 @@ function entryCalculator(entrants) {
 
   if (!entrants || Object.entries(entrants).length === 0) return 0;
 
-  for (key in entrants) {
-    totalEntries += entrants[key] * prices[key]
+  if (Object.entries(entrants).length > 0) {
+    for (let key of Object.keys(entrants)) {
+      totalEntries += entrants[key] * prices[key];
+    }
+    return totalEntries;
   }
-  return totalEntries;
 }
 
 function animalMap(options) {
