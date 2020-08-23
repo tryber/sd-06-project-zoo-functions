@@ -127,29 +127,24 @@ const defaultMap = () => {
   return output;
 };
 
-const females = (species, location) => {
+const females = (animalsArr) => {
   const output = [];
-  const animals = data.animals.filter(animal => animal.location === location)
-  .filter(animal => animal.name === species)
-  .flatMap(animal => animal.residents);
-  for (let index = 0; index < animals.length; index += 1) {
-    if (animals[index].sex === 'female')
-    output.push(animals[index].name);
+  for (let index = 0; index < animalsArr.length; index += 1) {
+    if (animalsArr[index].sex === 'female') {
+      output.push(animalsArr[index].name);
+    }
   }
   return output;
-}
+};
 
 // console.log(females('lions', 'NE'));
 
-const animalNames = (species, location, options) => {
+const animalNames = (options, animalsArr) => {
   const keys = Object.keys(options);
   const values = Object.values(options);
   const output = [];
-  const animals = data.animals.filter(animal => animal.location === location)
-  .filter(animal => animal.name === species)
-  .flatMap(animal => animal.residents);
-  for (let index = 0; index < animals.length; index += 1) {
-    output.push(animals[index].name);
+  for (let index = 0; index < animalsArr.length; index += 1) {
+    output.push(animalsArr[index].name);
   }
   for (let index = 0; index < keys.length; index += 1) {
     if (keys[index] === 'sorted' && values[index]) {
@@ -165,17 +160,20 @@ const animalObject = (species, location, options) => {
   const keys = Object.keys(options);
   const values = Object.values(options);
   const output = {};
+  const animalsArr = data.animals.filter(animal => animal.location === location)
+  .filter(animal => animal.name === species)
+  .flatMap(animal => animal.residents);
   for (let index = 0; index < keys.length; index += 1) {
     if (keys[index] === 'sex' && values[index] === 'female') {
-      output[species] = females(species, location);
+      output[species] = females(animalsArr);
     } else {
-      output[species] = animalNames(species, location, options);
+      output[species] = animalNames(options, animalsArr);
     }
   }
   return output;
 };
 
-console.log(animalObject('lions', 'NE', { sex: 'female' }));
+// console.log(animalObject('lions', 'NE', { sex: 'female' }));
 
 const mapLocation = (location, options) => {
   const output = {};
