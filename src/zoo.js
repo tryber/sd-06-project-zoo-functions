@@ -114,7 +114,7 @@ function employeeCoverage(idOrName) {
 
     return {
       [`${firstName} ${lastName}`]:
-        responsibleFor.map((item) => (animals.find(n => n.id === item).name)),
+        responsibleFor.map(item => (animals.find(n => n.id === item).name)),
     };
   }
   const names = employees.reduce((acc, item) => (
