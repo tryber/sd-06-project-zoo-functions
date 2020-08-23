@@ -70,7 +70,7 @@ function animalCount(species) {
     // we'll find the animal that has the name equal to the parameter 'species', then we'll get
     // the array of residents of this finded animal and finally gets the array length and set it as
     // our answer 'countResult'.
-  countResult = animals.find(animal => animal.name === species).residents.length;
+    countResult = animals.find(animal => animal.name === species).residents.length;
   }
   // At final we'll return our answer
   return countResult;
