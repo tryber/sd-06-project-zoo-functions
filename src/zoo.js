@@ -39,6 +39,10 @@ function employeeByName(employeeName) {
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
+  // Cria um novo colaborador a partir de objetos (contendo informações pessoais)
+  // e (gerentes e animais gerenciados)
+  return Object.assign(personalInfo, associatedWith);
+  
 }
 
 function isManager(id) {
