@@ -108,7 +108,7 @@ function schedule(dayName) {
     if (hoursList[requiredDay].open !== hoursList[requiredDay].close) {
       scheduleObj[requiredDay] = `Open from ${hoursList[requiredDay].open}am until ${hoursList[requiredDay].close - 12}pm`;
     } else scheduleObj[requiredDay] = 'CLOSED';
-  }
+  };
   if (dayName === undefined) {
     const days = Object.keys(hoursList);
     days.forEach(day => displayHours(day));
