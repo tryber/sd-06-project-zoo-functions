@@ -60,7 +60,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function animalCount(species = animals) {
   return species.reduce((acc, { name, residents })=> (
     Object.assign(acc, {[name]: residents.length})
-  ), {})
+  ), {});
 }
 console.log(animalCount())
 function entryCalculator(entrants) {
