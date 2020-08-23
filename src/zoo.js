@@ -121,9 +121,7 @@ function oldestFromFirstSpecies(id) {
   const { responsibleFor: caredAnimals } = employeeData;
   const caredAnimalsData = animalList.find(animal => animal.id === caredAnimals[0]);
   const oldestAnimalData = caredAnimalsData.residents
-    .reduce((oldest, newAnimal) => { 
-      return (oldest.age > newAnimal.age) ? oldest : newAnimal 
-    });
+    .reduce((oldest, newAnimal) => { return (oldest.age > newAnimal.age) ? oldest : newAnimal });
   const desiredAnimalData = Object.values(oldestAnimalData);
   return desiredAnimalData;
 }
