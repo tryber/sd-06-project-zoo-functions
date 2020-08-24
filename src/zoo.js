@@ -140,8 +140,8 @@ function employeeCoverage(idOrName) {
   const people = employees.find(element => idOrName === element.id ||
       idOrName === element.firstName || idOrName === element.lastName);
   const nomes = `${people.firstName} ${people.lastName}`;
-  obj[nomes] = people.responsibleFor.flatMap(idAni => animals.find(ani =>
-      ani.id === idAni).name);
+  obj[nomes] = people.responsibleFor.flatMap(idAni => animals
+    .find(ani => idAni === ani.id).name);
   return obj;
 }
 
