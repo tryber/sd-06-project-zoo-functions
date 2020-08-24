@@ -84,7 +84,7 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  const weekSchedule = 
+  const weekSchedule =
     {
       'Tuesday': 'Open from 8am until 6pm',
       'Wednesday': 'Open from 8am until 6pm',
@@ -96,8 +96,8 @@ function schedule(dayName) {
     };
   if (dayName === undefined) {
     return weekSchedule;
-  } 
-  return { [dayName]: weekSchedule[dayName]};
+  }
+  return { [dayName]: weekSchedule[dayName] };
 }
 
 function oldestFromFirstSpecies(id) {
