@@ -11,57 +11,251 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-function animalsByIds(ids) {
-  // seu código aqui
+const animals = data.animals;
+const employees = data.employees;
+const prices = data.prices;
+const calendar = data.hours;
+
+
+function animalsByIds(...ids) {
+  if (ids.length === 0) {
+    return [];
+  } else if (ids.length === 1) {
+    const uniqueId = ids[0];
+    return animals.filter(element => element.id === uniqueId);
+  } else if (ids.length > 1) {
+    const output = [];
+    animals.forEach((animal) => {
+      ids.forEach((id) => {
+        if (animal.id === id) {
+          output.push(animal);
+        }
+      });
+    });
+    return output;
+  }
+  return [];
 }
+
+console.log('-----2------');
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  const testedAnimals = animals.find(element => element.name === animal);
+  const testedResidents = testedAnimals.residents;
+  const checkAnimalsAge = testedResidents.every(element => element.age > age);
+  return checkAnimalsAge;
 }
 
-function employeeByName(employeeName) {
-  // seu código aqui
+console.log('-----3------');
+
+function employeeByName(employee) {
+  const employeesFirstName = employees.map(element => element.firstName);
+  const employeesLastName = employees.map(element => element.lastName);
+  if (!employee) {
+    return {};
+  } else if (employeesFirstName.includes(employee)) {
+    return employees.find(element => element.firstName === employee);
+  } else if (employeesLastName.includes(employee)) {
+    return employees.find(element => element.lastName === employee);
+  }
+  return {};
 }
 
-function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+console.log('-----4------');
+
+function createEmployee(personal, associated) {
+  const newEmployee = Object.assign(personal);
+  Object.assign(newEmployee, associated);
+  return newEmployee;
 }
+
+console.log('-----5------');
 
 function isManager(id) {
-  // seu código aqui
+  const managersIds = employees.flatMap(element => element.managers);
+  if (managersIds.includes(id)) {
+    return true;
+  }
+  return false;
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+console.log('-----6------');
+
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  const newEmployee = {
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  };
+  employees.push(newEmployee);
 }
 
-function animalCount(species) {
-  // seu código aqui
+console.log('-----7------');
+
+function animalCount(species = 0) {
+  if (species === 0) {
+    const output = {};
+    animals.forEach((animal) => {
+      const animalName = animal.name;
+      const animalCounter = animal.residents.length;
+      output[animalName] = animalCounter;
+    });
+    return output;
+  }
+  const requiredAnimal = animals.find(animal => animal.name === species);
+  const requiredAnimalCount = requiredAnimal.residents.length;
+  return requiredAnimalCount;
 }
+
+console.log('-----8------');
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  if (!entrants || Object.keys(entrants).length === 0) {
+    return 0;
+  }
+  const entrantKeys = Object.keys(entrants);
+  const entrantValues = Object.values(entrants);
+  const toPay = entrantKeys.reduce((acc, current, index) => {
+    const currentCalc = prices[current] * entrantValues[index];
+    return acc + currentCalc;
+  }, 0);
+  return toPay;
 }
 
 function animalMap(options) {
-  // seu código aqui
+  const locations = ['NE', 'NW', 'SE', 'SW'];
+  const output = {};
+  const { includeNames = false, sorted = false, sex = '' } =
+  options === undefined ? { includeNames: false, sorted: false, sex: '' } : options;
+  if (includeNames === true) {
+    locations.forEach((region) => {
+      (output[region]) = animals
+      .filter(animal => animal.location === region).map((animalObject) => {
+        const animalsBySpecie = {};
+        let resAnimal = animalObject.residents;
+        if (sex !== '') resAnimal = resAnimal.filter(resident => resident.sex === sex);
+        animalsBySpecie[animalObject.name] = resAnimal.map(subject => subject.name);
+        if (sorted === true) animalsBySpecie[animalObject.name].sort();
+        return animalsBySpecie;
+      });
+    });
+  }
+  if (!options || includeNames === false) {
+    locations.forEach((region) => {
+      output[region] = animals.filter(animal => animal.location === region).map(mA => mA.name);
+    });
+  }
+  return output;
 }
+
+console.log('-----10------');
 
 function schedule(dayName) {
-  // seu código aqui
+  let output = {};
+  const calendarKeys = Object.keys(calendar);
+  const calendarValues = Object.values(calendar);
+  if (calendarValues[0].close > 12) {
+    calendarValues.forEach((key, index) => {
+      calendarValues[index].close -= 12;
+    });
+  }
+  calendarKeys.forEach((key, index) => {
+    output[key] = `Open from ${calendarValues[index].open}am until ${calendarValues[index].close}pm`;
+    if (calendarValues[index].open <= 0 && calendarValues[index].open <= 0) {
+      output[key] = 'CLOSED';
+    }
+  });
+  if (dayName !== undefined) {
+    output = { [dayName]: output[dayName] };
+  }
+  return output;
 }
+
+console.log('-----11------');
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const targetAnimalId = employees.find(emp => emp.id === id).responsibleFor[0];
+  const targetSpecieResidents = animals.find(animal => animal.id === targetAnimalId).residents;
+  const targetAnimalAge = targetSpecieResidents.reduce((acc, animal, index) => {
+    if (animal.age > acc.age) {
+      return animal.age;
+    } return acc;
+  });
+  const targetAnimalObj = targetSpecieResidents.find(animal => animal.age === targetAnimalAge);
+  const output = Object.values(targetAnimalObj);
+  return output;
 }
 
+console.log('-----12------');
+
 function increasePrices(percentage) {
-  // seu código aqui
+  const newPrices = data.prices;
+  const newPricesKeys = Object.keys(newPrices);
+  const increase = parseFloat(`1.${percentage}`);
+  newPricesKeys.forEach((key, index) => {
+    newPrices[key] = Math.round((newPrices[key] * increase) * 100) / 100;
+  });
+  data.prices = newPrices;
+  return data.prices;
+}
+
+console.log('-----13------');
+
+const employeesNames = employees.map(employee => employee.firstName);
+const employeesLastNames = employees.map(employee => employee.lastName);
+const employeesFullNames = [];
+employeesNames.forEach((employee, index) => {
+  employeesFullNames[index] = `${employeesNames[index]} ${employeesLastNames[index]}`;
+});
+
+function employeeCoverageEmpty() {
+  const employeeResponsability = employees.map(employee => employee.responsibleFor);
+
+  employeeResponsability.forEach((responsibilities, index) => {
+    employeeResponsability[index] = [];
+    responsibilities.forEach((animalId) => {
+      const animalName = animals.find(animal => animal.id === animalId).name;
+      employeeResponsability[index].push(animalName);
+    });
+  });
+  const output = {};
+  employeesFullNames.forEach((employee, index) => {
+    output[employee] = employeeResponsability[index];
+  });
+  return output;
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  const employeesByCoverage = employeeCoverageEmpty();
+  if (idOrName === undefined) {
+    return employeesByCoverage;
+  }
+
+  const output = {};
+
+  const person = employees
+  .find(a => a.firstName === idOrName || a.lastName === idOrName || a.id === idOrName);
+
+  const employeeFullName = `${person.firstName} ${person.lastName}`;
+  const employeesByCoverageKeys = Object.keys(employeesByCoverage);
+  const employeesByCoverageValues = Object.values(employeesByCoverage);
+  let employeeResponsabilities = [];
+  employeesByCoverageKeys.forEach((employee, index) => {
+    if (employee === employeeFullName) {
+      employeeResponsabilities = employeesByCoverageValues[index];
+    }
+  });
+
+  output[employeeFullName] = employeeResponsabilities;
+  return output;
 }
+
+console.log(employeeCoverage());
+console.log(employeeCoverage('Stephanie'));
+console.log(employeeCoverage('Azevado'));
+console.log(employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
 
 module.exports = {
   entryCalculator,
