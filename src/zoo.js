@@ -241,14 +241,27 @@ const defaultSchedule = () => {
   return output;
 };
 
+const getDaySchedule = (day) => {
+  const output = {};
+  const days = Object.keys(data.hours);
+  for (let index = 0; index < days.length; index += 1) {
+    if (days[index] === day) {
+      output[day] = `Open from ${data.hours[days[index]].open}am until ${(data.hours[days[index]].close) - 12}pm`;
+    }
+  }
+  return output;
+}
+
 function schedule(dayName) {
   switch (dayName) {
-    default:
+    case undefined:
       return defaultSchedule();
+    default:
+      return getDaySchedule(dayName);
   }
 }
 
-console.log(schedule());
+console.log(schedule('Tuesday'));
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
