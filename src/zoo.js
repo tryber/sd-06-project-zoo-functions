@@ -144,7 +144,7 @@ function oldestFromFirstSpecies(id) {
 function increasePrices(percentage) {
   // seu código aqui
   // Ao passar uma porcentagem, incrementa todos os preços, arrendondados em duas casas decimais
-  Object.keys(prices).map((valor) => {
+  return Object.keys(prices).map((valor) => {
     prices[valor] = Math.round((prices[valor] + (prices[valor] * (percentage / 100))) * 100) / 100;
   });
   return prices;
