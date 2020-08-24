@@ -82,7 +82,7 @@ function addEmployee(id = [], firstName = [], lastName = [], managers = [], resp
   // Nesse caso adicionamos um novo funcionário na base de dados (data.emplyees), então podemos
   // usar um push para adionar um novo elemento ao fim do array (data.employees.push()). Como cada
   // funcionário é um objeto, temos que passar englobar todos os dados recebidos dentro de um obj
-  // ({ dados }) para ser adionado pelo push. 
+  // ({ dados }) para ser adionado pelo push.
   return data.employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
@@ -92,14 +92,14 @@ function animalCount(species) {
   // aquela espécie, senão caso não for passado nenhuma espécie como input, o código retorna todos
   // os grupos de animais (data.animals)
   const meanObj = species ? data.animals.find(obj => obj.name === species) : data.animals;
-  
+
   // Aqui temos duas formas de contar o numero de animais, uma forma para o caso de termos uma
   // espécie passada como input (counterOne) e outra para contar o numero de animais caso nenhuma
   // espécie for passada como input (counterAll), que é o caso de termos todos os grupos de animais
   const counter = {
     // Aqui, como temos vários grupos de animais, construirmos um obj para retornar os dados
     // Como temos todos os grupos de animais, para cada grupo criamos, dentro do objeto de retorno,
-    // um par chave e valor com o nome da espécie e o número de residentes do grupo. 
+    // um par chave e valor com o nome da espécie e o número de residentes do grupo.
     countAll: () => {
       const objToReturn = {};
       meanObj.forEach((obj) => {
@@ -110,7 +110,7 @@ function animalCount(species) {
       return objToReturn;
     },
     // Aqui, como em meanObj só tem o grupo de animais correspondente à espécie definida, basta
-    // retornarmos o número de animais residentes daquele grupo. 
+    // retornarmos o número de animais residentes daquele grupo.
     countOne: () => `${meanObj.residents.length}`,
   };
   return (meanObj.length > 1) ? counter.countAll() : counter.countOne();
@@ -123,7 +123,7 @@ function entryCalculator(entrants) {
   // realizamos a soma do valor total com um reduce. O reduce passa uma chave por vez em per,
   // pegando o preço do ingresso referente a essa chave em data.prices, o valor da chave em
   // entrants que no caso é a quantidade, e multiplica ambos e acumula em sum. Depois de o reduce
-  // fazer a rotina para cada chave de entrats, ele retorna o acumulador que é a nossa soma.  
+  // fazer a rotina para cada chave de entrats, ele retorna o acumulador que é a nossa soma.
   if (entrants !== undefined && Object.keys(entrants).length > 0) {
     return Object.keys(entrants).reduce((sum, per) => sum + (data.prices[per] * entrants[per]), 0);
   }
