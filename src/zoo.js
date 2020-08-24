@@ -174,8 +174,8 @@ const animalObject = (species, location, options) => {
 const mapLocation = (location, options) => {
   const output = {};
   output[location] = [];
-  const animalsArr = data.animals.filter(animal => animal.location === location)
-  .map(animal => animal.name);
+  let animalsArr = data.animals.filter(animal => animal.location === location);
+  animalsArr = animalsArr.map(animal => animal.name);
   for (let index = 0; index < animalsArr.length; index += 1) {
     output[location].push(animalObject(animalsArr[index], location, options));
   }
