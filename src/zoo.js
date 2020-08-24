@@ -74,12 +74,11 @@ function entryCalculator(entrants) {
   //  const locationOption = ['NE', 'NW', 'SE', 'SW'];
 
 function animalMap(options) {
-  const locationList = {};
-  const initialList = {};
+  const [locationList, initialList]  = [{}, {}];
   const locationOption = animals.map(val => val.location).reduce((acc, value) => {
     if (acc.includes(value)) return acc;//  Referência: https://medium.com/dailyjs/how-to-remove-array-duplicates-in-es6-5daa8789641c
     return [...acc, value];
-    }, []);
+  }, []);
   locationOption.forEach((index) => {
     initialList[index] = animals
     .filter(value => value.location === index).map(animal => animal.name);
@@ -91,8 +90,7 @@ function animalMap(options) {
       const newObject = {};
       newObject[animal.name] = animal.residents;
       if (options.sex === 'female' || options.sex === 'male') {
-        newObject[animal.name] = newObject[animal.name].filter(theSex =>
-        theSex.sex === options.sex);
+        newObject[animal.name] = newObject[animal.name].filter(gndr => gndr.sex === options.sex);
       }
       if (options.includeNames === true) {
         newObject[animal.name] = newObject[animal.name].map(theName => theName.name);
