@@ -78,8 +78,8 @@ function animalCount(species) {
     return output;
   }
   const speciesCount = data.animals.filter(animal => animal.name === species)
-  .map(animal => animal.residents.length);
-  return speciesCount[0];
+  .map(animal => animal.residents.length).find(animal => animal);
+  return speciesCount;
 }
 
 // got the keys to be able to use length
@@ -88,23 +88,15 @@ function entryCalculator(entrants) {
   const keys = Object.keys(entrants);
   const values = Object.values(entrants);
   let totalSum = 0;
-  for (let index = 0; index < keys.length; index += 1) {
-    switch (keys[index]) {
-      case 'Adult':
-        totalSum += (data.prices.Adult * values[index]);
-        break;
-      case 'Senior':
-        totalSum += (data.prices.Senior * values[index]);
-        break;
-      case 'Child':
-        totalSum += (data.prices.Child * values[index]);
-        break;
-      default:
-        break;
-    }
-  }
+  keys.forEach((key, index) => {
+    if (key === 'Adult') { totalSum += (data.prices.Adult * values[index]) };
+    if (key === 'Senior') { totalSum += (data.prices.Senior * values[index]) };
+    if (key === 'Child') { totalSum += (data.prices.Child * values[index]) };
+  });
   return totalSum;
 }
+
+console.log(entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 }));
 
 const defaultMap = () => {
   const locationArr = ['NE', 'NW', 'SE', 'SW'];
