@@ -52,11 +52,12 @@ function createEmployee(personalInfo, associatedWith) {
   .some(Element => Element.id === id)
   .find(Element => Element.managers === id);
 
+  .flat()
 */
 
 function isManager(id) {
   const arr = [];
-  const managersList = data.employees
+  data.employees
     .forEach(Element => (arr.push(Element.managers)));
 
   const newArray = arr
