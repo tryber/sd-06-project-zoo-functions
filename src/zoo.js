@@ -89,7 +89,6 @@ function schedule(...dayName) {
   if (dayName.length === 0) {
     dayName = Object.keys(hours);
   }
-
   return dayName;
 }
 
