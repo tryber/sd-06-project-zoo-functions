@@ -14,6 +14,7 @@ const data = require('./data');
 const { animals } = data;
 const { employees } = data;
 const { prices } = data;
+const { hours } = data;
 
 function animalsByIds(...ids) {
   // seu código aqui
@@ -91,14 +92,28 @@ function entryCalculator(entrants) {
 
 function animalMap(options) {
   // seu código aqui
+
 }
 
 function schedule(dayName) {
   // seu código aqui
+  let scheduleOutput = Object.keys(hours).reduce((acc, day) =>
+    ({...acc, [day]: `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`}),
+    {});
+  scheduleOutput.Monday = "CLOSED";
+
+  if(dayName) {
+    let dayHours = {};
+    dayHours[dayName] = scheduleOutput[dayName];
+    return dayHours;
+  }
+
+  return scheduleOutput;
 }
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
+
 }
 
 function increasePrices(percentage) {
