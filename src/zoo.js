@@ -21,7 +21,7 @@ function animalsOlderThan(animal, age) {
 }
 
 function employeeByName(employeeName) {
-  if (!emploName) {
+  if (!employeeName) {
     return {};
   }
   return (
