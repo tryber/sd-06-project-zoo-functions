@@ -84,18 +84,15 @@ function animalMap(options = {}) {
     if (!options.includeNames) { 
       arrayExit.push(specie.name);
     } else if (options.includeNames) {
-      if (!!options.sex && options.sorted) {
-        arrayExit.push(
-          { [specie.name]: specie.residents.filter(animalSex => animalSex.sex === options.sex).map(animal => animal.name).sort() }
-        );
-      } else if (!!options.sex) {
+      if (!!options.sex) {
         arrayExit.push(
           { [specie.name]: specie.residents.filter(animalSex => animalSex.sex === options.sex).map(animal => animal.name) }
         );
-      } else if (options.sorted) {
-        arrayExit.push({ [specie.name]: specie.residents.map(animal => animal.name).sort() });
       } else {
         arrayExit.push({ [specie.name]: specie.residents.map(animal => animal.name) });
+      }
+      if (options.sorted) {
+        arrayExit[0][specie.name] = arrayExit[0][specie.name].sort()
       }
     }
     if (!objLocalization[specie.location]) {
@@ -106,7 +103,7 @@ function animalMap(options = {}) {
     return objLocalization;
   }, {});
 }
-// console.table(animalMap({ sex: 'female', sorted: true }));
+// console.table(animalMap({ sex: 'female', includeNames: true }).NE[0]);
 
 function schedule(dayName) {
   // seu código aqui
