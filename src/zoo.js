@@ -267,10 +267,26 @@ function schedule(dayName) {
   }
 }
 
-console.log(schedule('Tuesday'));
+// i use 'find' to get the object out of the array, an be able to access it
+const findAnimal = id => {
+  const output = [];
+  const oldestAnimal = data.animals
+  .filter(animal => animal.id === id)
+  .flatMap(animal => animal.residents)
+
+  // get the oldest
+  .sort((animalA, animalB) => animalB.age - animalA.age)
+  .find(animal => animal);
+  output.push(oldestAnimal.name, oldestAnimal.sex, oldestAnimal.age);
+  return output;
+};
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const animalId = data.employees
+  .filter(employee => employee.id === id)
+  .flatMap(animal => animal.responsibleFor)
+  .find(id => id);
+  return findAnimal(animalId);
 }
 
 function increasePrices(percentage) {
