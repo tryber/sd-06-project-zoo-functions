@@ -126,8 +126,8 @@ function schedule(dayName) {
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
-  // Passado o id de um funcionário, encontra a primeira espécie de animal
-  // gerenciado pelo funcionário, e retorna um array com nome, sexo e idade do animal mais velho dessa espécie
+  // Passado o id de um funcionário, encontra a primeira espécie de animalgerenciado pelo funcionário,
+  // e retorna um array com nome, sexo e idade do animal mais velho dessa espécie
   const animalGroupsInfo = employees.find(employee => employee.id === id).responsibleFor[0];
   const firstGroupInfo = animals.find(animalGroup => animalGroup.id === animalGroupsInfo);
   const { residents: animalsTakenCareByEmployee } = firstGroupInfo;
@@ -144,7 +144,7 @@ function oldestFromFirstSpecies(id) {
 function increasePrices(percentage) {
   // seu código aqui
   // Ao passar uma porcentagem, incrementa todos os preços, arrendondados em duas casas decimais
-  Object.keys(prices).map((valor) => {
+   return Object.keys(prices).map((valor) => {
     prices[valor] = Math.round((prices[valor] + (prices[valor] * (percentage / 100))) * 100) / 100;
   });
 }
