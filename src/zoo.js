@@ -13,6 +13,7 @@ const data = require('./data');
 const { animals } = require('./data');
 const { employees } = require('./data');
 const { prices } = require('./data');
+const { hours } = require('./data');
 
 function animalsByIds(...ids) {
   // seu código aqui
@@ -103,6 +104,31 @@ function animalMap(options) {
 
 function schedule(dayName) {
   // seu código aqui
+  // Sem parâmetros, retorna um cronograma legível para humanos
+  // Se um único dia for passado, retorna somente este dia em um formato legível para humanos
+  const { Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday } = hours;
+
+  const tuesday = `Open from ${Tuesday.open}am until ${Tuesday.close - 12}pm`;
+  const wednesday = `Open from ${Wednesday.open}am until ${Wednesday.close - 12}pm`;
+  const thursday = `Open from ${Thursday.open}am until ${Thursday.close - 12}pm`;
+  const friday = `Open from ${Friday.open}am until ${Friday.close - 12}pm`;
+  const saturday = `Open from ${Saturday.open}am until ${Saturday.close - 12}pm`;
+  const sunday = `Open from ${Sunday.open}am until ${Sunday.close - 12}pm`;
+
+  const auxWeek = {
+    Tuesday: tuesday,
+    Wednesday: wednesday,
+    Thursday: thursday,
+    Friday: friday,
+    Saturday: saturday,
+    Sunday: sunday,
+    Monday: 'CLOSED' };
+
+  if (dayName === undefined) {
+    return auxWeek;
+  }
+  const dayweek = { [dayName]: auxWeek[dayName] };
+  return dayweek;
 }
 
 function oldestFromFirstSpecies(id) {
