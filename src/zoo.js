@@ -87,14 +87,14 @@ function animalMap(options) {
 
 function schedule(dayName) {
   const addObj = (item, day) => {
-    item[day] = (data.hours[day].open === 0) 
-    ? `CLOSED`
+    item[day] = (data.hours[day].open === 0)
+    ? 'CLOSED'
     : `Open from ${data.hours[day].open}am until ${data.hours[day].close - 12}pm`;
-  }
+  };
   const keys = Object.keys(data.hours);
   const lista = {};
   const solo = {};
-  keys.forEach(day => {
+  keys.forEach((day) => {
     addObj(lista, day);
   });
   const diaParam = (element) => {
