@@ -22,9 +22,14 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+const ageComparator = animals
+.find(creature =>creature.name ===animal)
+//encontrar os animais através do nome usando find
+.residents.every(ageOf => ageOf.age >= age);
+// utilizando every comparar as idades de todos(every) os elementos dentro de residents
+  return ageComparator;
 }
-
+console.log(animalsOlderThan('tigers',1))
 
 function employeeByName(employeeName) {
   // seu código aqui
