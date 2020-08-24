@@ -17,14 +17,8 @@ function animalsByIds(ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  const arreiAnimals = [...animals];
-  let residentes = arreiAnimals.find( bicho => bicho.name === animal).residents;
-  residentes.forEach((param) => {
-    if(param.age > age) {
-      return true;
-    }
-    else false
-  });
+  return animals.find(element => element.name === animal)
+  .residents.every(element => element.age >= age);
 }
 
 function employeeByName(employeeName) {
