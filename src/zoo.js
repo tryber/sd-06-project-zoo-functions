@@ -75,19 +75,18 @@ function schedule(dayName) {
   // seu código aqui
   const obj = {};
   const days = Object.keys(hours);
-  const schedule = Object.values(hours);
+  const scheduleValue = Object.values(hours);
   days.forEach((element, index) => {
-    if (schedule[index].open === 0) {
-      obj[element] = `CLOSED`;
+    if (scheduleValue[index].open === 0) {
+      obj[element] = 'CLOSED';
     } else {
-      obj[element] = `Open from ${schedule[index].open}am until ${schedule[index].close - 12}pm`;
+      obj[element] = `Open from ${scheduleValue[index].open}am until ${scheduleValue[index].close - 12}pm`;
     }
   });
   if (!dayName) {
     return obj;
-  } else {
-    return { [dayName]: obj[dayName] };
   }
+  return { [dayName]: obj[dayName] };
 }
 
 function oldestFromFirstSpecies(id) {
