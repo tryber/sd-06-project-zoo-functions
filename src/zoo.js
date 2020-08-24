@@ -63,7 +63,7 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
+}
 
 function animalMap(options) {
   // seu código aqui
@@ -84,7 +84,7 @@ if (!dayName) {
 if (dayName === 'Monday') {
   obj[dayName] = 'CLOSED';
 } else if (Object.keys(day).includes(dayName)){
-  obj[dayName] = `Open from ${day[dayName].open}am until ${day[dayName].close - 12}pm`;
+  obj[dayName] = `Open from ${day[dayName].open}am until ${day[dayName].close - 12}pm`;; 
 }
 return obj;
 }
