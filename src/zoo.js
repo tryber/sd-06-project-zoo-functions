@@ -69,7 +69,7 @@ function animalCount(species = 'allOfThem') {
     animals
     .forEach((animal) => {
       const { name, residents } = animal;
-      animalList[`${name}`] = residents.length;
+      animalList[name] = residents.length;
     });
     return animalList;
   }
