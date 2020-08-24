@@ -63,24 +63,27 @@ function entryCalculator(entrants) {
     return 0;
   } else {
     const keys = Object.keys(entrants);
-  let total = 0;
-  const compare = (element) => {
-    if (element === 'Senior') {
-      total += data.prices.Senior * entrants.Senior;
-    } else if (element === 'Child') {
-      total += data.prices.Child * entrants.Child;
-    } else if (element === 'Adult') {
-      total += data.prices.Adult * entrants.Adult;
-    } else {
-      total += 0;
-    }
-  };
+    let total = 0;
+    const compare = (element) => {
+      switch(element) {
+        case 'Senior':
+          total += data.prices.Senior * entrants.Senior;
+          break;
+        case 'Child':
+          total += data.prices.Child * entrants.Child;
+          break;
+        case 'Adult':
+          total += data.prices.Adult * entrants.Adult;
+          break;
+        default:
+          total += 0;
+      }
+    };
   keys.forEach(el => compare(el));
   return total;
   }
 }
 function animalMap(options) {
-  
 }
 
 function schedule(dayName) {
