@@ -71,17 +71,17 @@ function schedule(dayName) {
   if (!dayName) {
     return Object.keys(hours).reduce((acc, curr) => {
       const { open, close } = hours[curr];
-      let currentValue = curr;
-      let phrase = `Open from ${open}am until ${close - 12}pm`
+      const currentValue = curr;
+      let phrase = `Open from ${open}am until ${close - 12}pm`;
       if (curr === 'Monday') {
         phrase = 'CLOSED';
       }
-      return { ...acc, [currentValue]: phrase }
+      return { ...acc, [currentValue]: phrase };
     }, {});
   } else if (dayName === 'Monday') {
-    return { Monday : 'CLOSED' };
+    return { Monday: 'CLOSED' };
   }
-  return { [dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm` }
+  return { [dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm` };
 }
 function oldestFromFirstSpecies(id) {
   // seu código aqui
