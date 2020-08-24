@@ -102,7 +102,12 @@ function schedule(...dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const { name, sex, age } = animals
+    .find(animal => animal.id === employees.find(employee => employee.id === id).responsibleFor[0])
+    .residents
+    .sort((resident1, resident2) => resident2.age - resident1.age)[0];
+
+  return [name, sex, age];
 }
 
 function increasePrices(percentage = 0) {
