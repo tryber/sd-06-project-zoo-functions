@@ -112,7 +112,7 @@ function isManager(id) {
 /* 6- Implemente a função addEmployee:
  Adiciona um funcionário no fim da lista*/
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   const newWorker = {
     id,
     firstName,
