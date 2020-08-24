@@ -10,7 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { animals } = require('./data');
+const { animals, hours, prices } = require('./data');
 const { employees } = require('./data');
 
 //  requisito1 - ok
@@ -82,17 +82,37 @@ function animalCount(specie) {
 }
 
 
+//  requisito8 - fonte: https://medium.com/cleytonbrasil/javascript-como-saber-se-um-objeto-est%C3%A1-vazio-a6a153f4f81f - https://docs.w3cub.com/javascript/global_objects/object/entries/ (aplicar foreach)
 function entryCalculator(entrants) {
-  // seu código aqui
+  let result = 0;
+  if ((entrants == null) || (Object.entries(entrants).length === 0)) {
+    return result;
+  }
+  Object.entries(entrants).forEach(([key, value]) => {
+    result += prices[key] * value;
+  });
+  return result;
 }
 
+
+//  requisito9 -
 function animalMap(options) {
   // seu código aqui
 }
 
+//  requisito10 -
 function schedule(dayName) {
-  // seu código aqui
+  /* const result = 0;
+  if ((dayName == null) || (Object.entries(dayName).length === 0)) {
+    let completeSchedule = {};
+    Object.entries(hours).forEach(([key, value]) => {
+      completeSchedule += `${key}: Open from ${value.open} until ${value.close} pm`;
+    });
+    return completeSchedule;
+  }
+  return result; */
 }
+
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
