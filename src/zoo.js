@@ -62,36 +62,33 @@ function entryCalculator(entrants) {
   ), 0);
 }
 
-function getSexSorted(sorted, name, sex) {
-  if (sorted) {
-    return {
-      [name]: animals
-        .find(animal => animal.name === name)
-        .residents
-        .filter(resident => resident.sex === sex)
-        .map(resident1 => resident1.name)
-        .sort(),
-    };
-  }
+function getSexSorted(name, sex) {
   return {
-    [name]: animals.find(animal => animal.name === name)
-      .residents.filter(resident => resident.sex === sex).map(resident1 => resident1.name),
+    [name]: animals
+      .find(animal => animal.name === name).residents
+      .filter(resident => resident.sex === sex)
+      .map(resident1 => resident1.name).sort(),
   };
 }
 
-function getGetNamesSorted(sorted, name) {
-  if (sorted) {
-    return {
-      [name]: animals
-        .find(animal => animal.name === name)
-        .residents
-        .map(resident => resident.name)
-        .sort()
-    };
-  }
+function getGetNamesSorted(name) {
+  return {
+    [name]: animals
+      .find(animal => animal.name === name).residents
+      .map(resident => resident.name).sort(),
+  };
+}
+
+function getSex(name, sex) {
   return {
     [name]: animals.find(animal => animal.name === name).residents
-      .map(resident => resident.name)
+    .filter(resident => resident.sex === sex).map(resident1 => resident1.name),
+  };
+}
+
+function getGetNames(name) {
+  return {
+    [name]: animals.find(animal => animal.name === name).residents.map(resident => resident.name),
   };
 }
 
@@ -102,14 +99,16 @@ function animalMap(options = {}) {
 
   if (includeNames && !sex) {
     return LOCAL.reduce((acc, { location, name }) => (
-      Object.assign(acc, { [location]: acc[location].concat(getGetNamesSorted(sorted, name)),
+      Object.assign(acc, { [location]: acc[location].concat(
+        sorted ? getGetNamesSorted(name) : getGetNames(name)),
       })
     ), { NE: [], NW: [], SE: [], SW: [] });
   }
 
   if (sex && includeNames) {
     return LOCAL.reduce((acc, { location, name }) => (
-      Object.assign(acc, { [location]: acc[location].concat(getSexSorted(sorted, name, sex)),
+      Object.assign(acc, { [location]: acc[location].concat(
+        sorted ? getSexSorted(name, sex) : getSex(name, sex)),
       })
     ), { NE: [], NW: [], SE: [], SW: [] });
   }
@@ -120,6 +119,8 @@ function animalMap(options = {}) {
     })
   ), { NE: [], NW: [], SE: [], SW: [] });
 }
+
+console.log(animalMap({ includeNames: true, sorted: true }));
 
 function schedule(dayName) {
   if (dayName !== undefined) {
