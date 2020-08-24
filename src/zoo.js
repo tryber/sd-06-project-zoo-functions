@@ -82,7 +82,7 @@ function entryCalculator(entrants = 0) {
   }
   const { Adult, Child, Senior } = data.prices;
   let result = 0;
-  if(Object.keys(entrants).includes('Adult')) {
+  if (Object.keys(entrants).includes('Adult')) {
     result += Adult * entrants.Adult;
   }
   if (Object.keys(entrants).includes('Child')) {
