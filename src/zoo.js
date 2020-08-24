@@ -112,22 +112,10 @@ function entryCalculator(entrants) {
 // ---------------------------------------ANIMAL MAP------------------------------------------------
 // ------------------------------------------------------------------------------------------------
 // Função de apoio à animalMap para evitar complexidade cognitiva e excedente de linhas
-function anmsObjCst(anmGrp, options) {
+function anmsObjCst(anmGrp, options = false) {
   // Passo 3 - Desconstrução do input
-  const keysOfInput = (options !== undefined) ? Object.keys(options) : [];
-  let includeNames = false;
-  let sex = false;
-  let sorted = false;
-  if (keysOfInput.includes('includeNames')) {
-    includeNames = options.includeNames;
-  } 
-  if (keysOfInput.includes('sex')) {
-    sex = options.sex;
-  }
-  if (keysOfInput.includes('sorted')) {
-    sorted = options.sorted;
-  }
-
+  const {includeNames, sex, sorted} = options;
+  
   // Passo 4 - Essa é a parte que varia conforma os inputs recebidos
   let animalsObj = {};
   const concatNames = (anmNames, anm) => anmNames.concat(anm.name);
