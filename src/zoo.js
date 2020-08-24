@@ -109,7 +109,7 @@ function entryCalculator(entrants) {
 }
 
 
-//---------------------------------------ANIMAL MAP------------------------------------------------
+// ---------------------------------------ANIMAL MAP------------------------------------------------
 // ------------------------------------------------------------------------------------------------
 // Função de apoio à animalMap para evitar complexidade cognitiva e excedente de linhas
 function anmsObjCst(anmGrp, options) {
@@ -131,16 +131,20 @@ function anmsObjCst(anmGrp, options) {
     animalsObj = anmGrp.name;
     // Caso 3 - sorted === true e includeNames === true
   } else if (includeNames && !sex && sorted) {
-    animalsObj[anmGrp.name] = anmGrp.residents.reduce(concatNames, []).sort();
+    animalsObj[anmGrp.name] = anmGrp.residents.reduce(concatNames, [])
+    animalsObj[anmGrp.name] = animalsObj[anmGrp.name].sort();
     // Caso 4 - sex === 'male'/'female' e includeNames === true
   } else if (includeNames && sex && !sorted) {
-    animalsObj[anmGrp.name] = anmGrp.residents.filter(filterSex).reduce(concatNames, []);
+    animalsObj[anmGrp.name] = anmGrp.residents.filter(filterSex)
+    animalsObj[anmGrp.name] = animalsObj[anmGrp.name].reduce(concatNames, []);
     // Caso 5 - sex === 'male'/'female' e includeNames === true e sorted === true
   } else if (includeNames && sex && sorted) {
-    animalsObj[anmGrp.name] = anmGrp.residents.filter(filterSex).reduce(concatNames, []).sort();
+    animalsObj[anmGrp.name] = anmGrp.residents.filter(filterSex)
+    animalsObj[anmGrp.name] = animalsObj[anmGrp.name].reduce(concatNames, [])
+    animalsObj[anmGrp.name] = animalsObj[anmGrp.name].sort();
   }
   return animalsObj;
-};
+}
 
 function animalMap(options) {
   // Passo 1
