@@ -85,8 +85,8 @@ function verifyPrices(type) {
   return rightPrice;
 }
 
-function entryCalculator(entrants = 0) {
-  if (entrants.length === 0 || entrants === 0) return 0;
+function entryCalculator(entrants) {
+  if (entrants === undefined || entrants.length === 0) return 0;
   return Object.keys(entrants)
   .reduce((acc, curr, index) => acc + (Object.values(entrants)[index] * verifyPrices(curr)), 0);
 }
@@ -264,7 +264,7 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+
 }
 
 module.exports = {
