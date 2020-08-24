@@ -102,9 +102,6 @@ function schedule(dayName) {
     'Sunday': `Open from ${hours.open}am until ${hours.close - 12}pm`,
     'Monday': `CLOSED`,
   };
-  
-
-
 }
 
 function oldestFromFirstSpecies(id) {
