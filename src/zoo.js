@@ -193,10 +193,10 @@ function schedule(dayName) {
   // seu código aqui
   // Se é recebido uma string com o nome do dia, encapsulamos esse nome dentro de um array para
   // usarmos como chave de trabalho, senão caso não seja passado nenhum input, pegamos
-  // todas as chaves do objeto cronograma (data.hours) para usarmos. 
+  // todas as chaves do objeto cronograma (data.hours) para usarmos.
   const objKeys = (dayName !== undefined && dayName !== '') ? [dayName] : Object.keys(data.hours);
   const objToReturn = {};
-  
+
   // Para cada chave (cada dia) pegamos o horário de abertura e de fechamento e para ficarmos no
   // padrão am/pm de horas, se o horário for maior que 12 subtraimos 12.
   // Pra construir o valor de retorno verficamos os horários! Se os horários de abertura/fechamento
@@ -223,9 +223,9 @@ function oldestFromFirstSpecies(id) {
   // Passo 2 - Tendo o id do grupo de animais (anmGrpId) procura-se pelo objeto que tem esse id,
   // ou seja procura o grupo.
   const anmGrp = data.animals.find(obj => obj.id === anmGrpId);
-  
+
   // Passo 3 - Tendo o grupo, verifica-se para cada animal residente se sua idade é maior que a
-  // idade do residente anterior. Assim determina-se o mais velho do grupo.  
+  // idade do residente anterior. Assim determina-se o mais velho do grupo.
   let oldest = anmGrp.residents[0];
   anmGrp.residents.forEach((anm) => {
     oldest = (anm.age > oldest.age) ? anm : oldest;
@@ -264,10 +264,10 @@ function employeeCoverage(idOrName) {
   // Tendo os ids dos animais cuidados pelo funcionário (idsOfAnimalsCovered), com um reduce,
   // para cada id procuramos o grupo de animais que possui o id em questão, e assim que encontrado
   // retorna-se o nome da espécie daquele grupo e esse nome é adicionado ao acumuluador que no caso
-  // é um array. 
+  // é um array.
   // Tendo esse array com o nome de todas as espécies que o funcionário cuida (value), construímos
   // uma chave com o nome completo do funcionário e adicionamos esse par chave-valor ao objeto de
-  // retorno. E por último, retorna-se esse objeto de retorno (objToReturn). 
+  // retorno. E por último, retorna-se esse objeto de retorno (objToReturn).
   const objToReturn = {};
   objEmployees.forEach((objEmployee) => {
     const idsOfAnimalsCovered = objEmployee.responsibleFor;
