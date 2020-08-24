@@ -26,7 +26,7 @@ const animalsByIds = (...ids) => {
       ids.find(idt => idt === compare.id));
   }
   return emptyArray;
-}
+};
 
 // 2- Implemente a função animalsOlderThan:
 // Ao passar o nome de uma espécie e uma idade,
