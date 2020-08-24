@@ -45,10 +45,28 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
+const resultCountAnimals = {};
+const allAnimals = (animalObj) => {
+  const animalName = animalObj.name;
+  const getAnimalsCount = (acc, animal) => acc + 1;
+  const numbersAnimal = animalObj.residents.reduce(getAnimalsCount, 0);
+  Object.defineProperty(resultCountAnimals, animalName, { value: numbersAnimal,
+    enumerable: true,
+    configurable: true,
+    writable: true });
+};
+
 function animalCount(species) {
-  // seu código aqui
+  if (species === undefined) {
+    animals.forEach(allAnimals);
+    return resultCountAnimals;
+  }
+  const animalCountObj = animals.find(animalObj => animalObj.name === species);
+  const getAnimalCount = (acc, animal) => acc + 1;
+  return animalCountObj.residents.reduce(getAnimalCount, 0);
 }
 
+// console.log(animalCount())
 function entryCalculator(entrants = {}) {
   if (entrants === {}) {
     return 0;
@@ -128,16 +146,17 @@ const animalsEmployee = (employee) => {
     enumerable: true,
     configurable: true,
     writable: true });
+  // result.employeeName = animalsName
 };
 
 
 function employeeCoverage(idOrName) {
-  if (idOrName === undefined) {
-    employees.forEach(animalsEmployee);
-  } else if (idOrName) {
+  if (idOrName) {
     const employeeObj = employees.find(employee => employee.id === idOrName
-    || employee.firstName === idOrName || employee.lastName === idOrName);
+      || employee.firstName === idOrName || employee.lastName === idOrName);
     animalsEmployee(employeeObj);
+  } else if (idOrName === undefined) {
+    employees.forEach(animalsEmployee);
   }
   // const animalsName = [];
   // employeeObj.responsibleFor.forEach((animalId) => {
@@ -152,7 +171,7 @@ function employeeCoverage(idOrName) {
   //   writable: true });
   return result;
 }
-console.log(employeeCoverage('Azevado'));
+// console.log(employeeCoverage('Stephanie'));
 
 module.exports = {
   entryCalculator,
