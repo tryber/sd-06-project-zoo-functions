@@ -83,8 +83,14 @@ function animalCount(species) {
   } return total;
 }
 
-function entryCalculator(entrants) { /** INCOMPLETED */
+function entryCalculator(entrants) { 
   // seu código aqui
+  var total = 0;
+  if (entrants == null || entrants === 0) { return total; }
+  if (entrants.Adult) { total += (entrants.Adult * 49.99) }
+  if (entrants.Child) { total += (entrants.Child * 20.99) }
+  if (entrants.Senior) { total += (entrants.Senior * 24.99) }
+  return total;
 }
 
 function animalMap(...options) {
