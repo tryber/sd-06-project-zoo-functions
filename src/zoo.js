@@ -27,9 +27,9 @@ function animalsByIds(...ids) {
   return arrayAnimals;
 }
 
-console.log(animalsByIds());
-console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce'));
-console.log('**********Requisito 1**********');
+// console.log(animalsByIds());
+// console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce'));
+// console.log('**********Requisito 1**********');
 
 
 /*  2- Implemente a função animalsOlderThan:
@@ -44,8 +44,8 @@ function animalsOlderThan(animal, age) {
   return result;
 }
 
-console.log(animalsOlderThan('otters', 7));
-console.log('**********Requisito 2**********');
+// console.log(animalsOlderThan('otters', 7));
+// console.log('**********Requisito 2**********');
 
 
 /* 3- Implemente a função employeeByName:
@@ -60,9 +60,9 @@ function employeeByName(employeeName) {
   return worker || {};
 }
 
-console.log(employeeByName());
-console.log(employeeByName('Emery'));
-console.log('**********Requisito 3**********');
+// console.log(employeeByName());
+// console.log(employeeByName('Emery'));
+// console.log('**********Requisito 3**********');
 
 
 /* 4- Implemente a função createEmployee:
@@ -75,22 +75,22 @@ function createEmployee(personalInfo, associatedWith) {
   return { id, firstName, lastName, managers, responsibleFor };
 }
 
-console.log(createEmployee({
-  id: '7ed1c9bb-8570-44f6-b718-0666b869573a',
-  firstName: 'John',
-  lastName: 'Doe',
-}, {
-  managers: [
-    'c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1',
-    '9e7d4524-363c-416a-8759-8aa7e50c0992',
-  ],
-  responsibleFor: [
-    '0938aa23-f153-4937-9f88-4858b24d6bce',
-    '89be95b3-47e4-4c5b-b687-1fabf2afa274',
-    'bb2a76d8-5fe3-4d03-84b7-dba9cfc048b5',
-  ],
-}));
-console.log('**********Requisito 4**********');
+// console.log(createEmployee({
+//   id: '7ed1c9bb-8570-44f6-b718-0666b869573a',
+//   firstName: 'John',
+//   lastName: 'Doe',
+// }, {
+//   managers: [
+//     'c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1',
+//     '9e7d4524-363c-416a-8759-8aa7e50c0992',
+//   ],
+//   responsibleFor: [
+//     '0938aa23-f153-4937-9f88-4858b24d6bce',
+//     '89be95b3-47e4-4c5b-b687-1fabf2afa274',
+//     'bb2a76d8-5fe3-4d03-84b7-dba9cfc048b5',
+//   ],
+// }));
+// console.log('**********Requisito 4**********');
 
 
 /* 5- Implemente a função isManager:
@@ -104,9 +104,9 @@ function isManager(id) {
   return manager;
 }
 
-console.log(isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
-console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
-console.log('**********Requisito 6**********');
+// console.log(isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
+// console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
+// console.log('**********Requisito 5**********');
 
 
 /* 6- Implemente a função addEmployee:
@@ -123,8 +123,13 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   return employees.push(newWorker);
 }
 
-console.log(addEmployee('39800c14-4b76-454a-858d-2f8d168146a7', 'John', 'Doe'));
-console.log('**********Requisito 6**********');
+// console.log(addEmployee('39800c14-4b76-454a-858d-2f8d168146a7', 'John', 'Doe'));
+// console.log('**********Requisito 6**********');
+
+
+/* 7- Implemente a função animalCount:
+ Sem parâmetros, retorna animais e suas quantidades
+ Com o nome de uma espécie de animal, retorna somente a quantidade*/
 
 function animalCount(species) {
   // seu código aqui
