@@ -61,27 +61,27 @@ function animalCount(species) {
 function entryCalculator(entrants) {
   if (!entrants) {
     return 0;
-  } else {
-    const keys = Object.keys(entrants);
-    let total = 0;
-    const compare = (element) => {
-      switch(element) {
-        case 'Senior':
-          total += data.prices.Senior * entrants.Senior;
-          break;
-        case 'Child':
-          total += data.prices.Child * entrants.Child;
-          break;
-        case 'Adult':
-          total += data.prices.Adult * entrants.Adult;
-          break;
-        default:
-          total += 0;
-      }
+  }
+  const keys = Object.keys(entrants);
+  let total = 0;
+  const compare = (element) => {
+    switch (element) {
+      case 'Senior':
+        total += data.prices.Senior * entrants.Senior;
+        break;
+      case 'Child':
+        total += data.prices.Child * entrants.Child;
+        break;
+      case 'Adult':
+        total += data.prices.Adult * entrants.Adult;
+        break;
+      default:
+        total += 0;
     };
+  };
   keys.forEach(el => compare(el));
   return total;
-  }
+  
 }
 function animalMap(options) {
 }
