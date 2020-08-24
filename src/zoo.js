@@ -61,8 +61,9 @@ function entryCalculator(entrants) {
   , 0);
 }
 
-function animalMap(options) {
-  // seu código aqui
+function animalMap(options = {}) {
+  const location = [...new Set (animals.map(animal => animal.location))];
+  return location;
 }
 
 function schedule(dayName) {
