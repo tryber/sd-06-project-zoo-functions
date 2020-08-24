@@ -140,8 +140,24 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  const employeeAndDependents = {};
+  const employeeFullName = selectedEmployee => `${selectedEmployee.firstName} ${selectedEmployee.lastName}`;
+  const employeeDependents = responsibleEmployee => responsibleEmployee.responsibleFor
+    .map(desiredId => animalList.find(inspectedAnimal => inspectedAnimal.id === desiredId).name);
+  if (idOrName === undefined) {
+    employeeList
+      .forEach((employee) => {
+        employeeAndDependents[employeeFullName(employee)] = employeeDependents(employee);
+      });
+    return employeeAndDependents;
+  }
+  const chosenEmployee = employeeList
+    .find(desiredEmployee => Object.values(desiredEmployee).includes(idOrName));
+  employeeAndDependents[employeeFullName(chosenEmployee)] = employeeDependents(chosenEmployee);
+  return employeeAndDependents;
 }
+
+console.log(employeeCoverage('Sharonda'));
 
 module.exports = {
   entryCalculator,
