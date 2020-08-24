@@ -11,14 +11,12 @@ eslint no-unused-vars: [
 // const assert = require('assert');
 const data = require('./data');
 const { animals } = require('./data');
-const { hours } = require('./data')
-
-
+// const { hours } = require('./data')
 
 function animalsByIds(...ids) {
   // o rest parameter foi inserido para que pudessem ser utilizados quantos parametros fossem necessarios
   const searchAnimalsById = animals
-  .filter(animal =>ids.includes(animal.id))
+  .filter(animal => ids.includes(animal.id));
   // filter para filtrar valores
   return searchAnimalsById;
 }
