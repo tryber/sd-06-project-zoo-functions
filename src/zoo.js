@@ -47,11 +47,11 @@ function animalCount(species) {
   let result = {};
   if (!species) {
     animals.forEach((animal) => {
-    const {name, residents} = animal;
-    result[name] = residents.length;
-  });
+      const { name, residents } = animal;
+      result[name] = residents.length;
+    });
   } else {
-    result = animals.find((animal) => animal.name === species).residents.length;
+    result = animals.find(animal => animal.name === species).residents.length;
   }
   return result;
 }
