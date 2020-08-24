@@ -63,7 +63,7 @@ function isManager(id) {
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
-  let newEmployee = { id, firstName, lastName, managers, responsibleFor };
+  const newEmployee = { id, firstName, lastName, managers, responsibleFor };
   employees.push(newEmployee);
 }
 
