@@ -95,7 +95,7 @@ function schedule(dayName) {
   // seu código aqui
   const result = {};
   const daysObj = Object.keys(hours);
-  const defaultMessage = day => `Open from ${hours[day].open}am until ${(hours[day].close) - 12}pm`
+  const defaultMessage = day => `Open from ${hours[day].open}am until ${(hours[day].close) - 12}pm`;
   if (!dayName) {
     daysObj.forEach((day) => {
       if (hours[day].open === 0) {
@@ -131,6 +131,13 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   // seu código aqui
+  const result = {};
+  const pricesObj = Object.keys(prices);
+  const valuesObj = Object.values(prices);
+  pricesObj.forEach((person) => {
+    result[person] = valuesObj * percentage / 100;
+  })
+  return result;
 }
 console.log(increasePrices());
 
