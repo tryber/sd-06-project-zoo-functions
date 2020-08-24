@@ -120,14 +120,13 @@ const animalLocation = location => animals
     .filter(element => element.location === location)
     .map(animal => animal.name);
 
-const getResidents = animal =>
-    animals.find(animalWanted => animalWanted.name === animal)
-    .residents.map((element => element.name));
-
-// console.log(getResidents('lions'));
+const getResidents = (animal, animalGender) => animals
+    .find(animalWanted => animalWanted.name === animal).residents
+    .filter(animalWanted => animalWanted.sex === animalGender || !animalGender)
+    .map((element => element.name));
 
 function animalMap(options) {
-  const { includeNames, sorted } = options || {};
+  const { includeNames, sorted, sex } = options || {};
   const result = {};
   const locations = ['NE', 'NW', 'SE', 'SW'];
   locations.forEach((location) => {
@@ -135,16 +134,23 @@ function animalMap(options) {
     animalLocation(location).forEach((animal) => {
       if (!options) {
         result[location].push(animal);
+      } else if (includeNames === true && (sex === 'female' || sex === 'male') && sorted === true) {
+        result[location].push({ [animal]: getResidents(animal, sex).sort() });
       } else if (includeNames === true && sorted === true) {
         result[location].push({ [animal]: getResidents(animal).sort() });
+      } else if (includeNames === true && (sex === 'female' || sex === 'male')) {
+        result[location].push({ [animal]: getResidents(animal, sex) });
       } else if (includeNames === true) {
         result[location].push({ [animal]: getResidents(animal) });
+      } else if (includeNames !== true) {
+        result[location].push(animal);
       }
     });
   });
   return result;
 }
-console.log(animalMap({ includeNames: true, sorted: true }).NE);
+
+console.log(animalMap({ sex: 'female' })['NE'][0]);
 
 
 const changeHour = (hour) => {
