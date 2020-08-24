@@ -76,13 +76,13 @@ function entryCalculator(entrants) {
     return total;
   }
   const entryObj = Object.entries(entrants);
-  for (i in entryObj) {
+  for (let i = 0; i < entryObj.length; i += 1) {
     if (entryObj[i][0] === 'Adult') {
-      total += entryObj[i][1] * 49.99
+      total += entryObj[i][1] * 49.99;
     } else if (entryObj[i][0] === 'Senior') {
-      total += entryObj[i][1] * 24.99
+      total += entryObj[i][1] * 24.99;
     } else {
-      total += entryObj[i][1] * 20.99
+      total += entryObj[i][1] * 20.99;
     }
   }
   return total;
@@ -94,6 +94,9 @@ function animalMap(options) {
 
 function schedule(dayName) {
   // seu código aqui
+  if (!dayName) {
+    return ''
+  }
 }
 
 function oldestFromFirstSpecies(id) {
