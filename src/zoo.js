@@ -62,23 +62,37 @@ function entryCalculator(entrants) {
   }, 0);
 }
 
-function getSexSorted(sorted) {
+function getSexSorted(sorted, sex) {
   if (sorted) {
-    return { [name]: animals
-      .find(animal => animal.name === name).residents.filter(resident => resident.sex === sex)
-          .map(resident1 => resident1.name).sort() }
+    return {
+      [name]: animals
+        .find(animal => animal.name === name)
+        .residents
+        .filter(resident => resident.sex === sex)
+        .map(resident1 => resident1.name)
+        .sort()
+    };
   }
-  return { [name]: animals.find(animal => animal.name === name)
-    .residents.filter(resident => resident.sex === sex).map(resident1 => resident1.name), }
+  return {
+    [name]: animals.find(animal => animal.name === name)
+      .residents.filter(resident => resident.sex === sex).map(resident1 => resident1.name),
+  }
 }
 
-function getGetNamesSorted(sorted) {
+function getGetNamesSorted(sorted, name) {
   if (sorted) {
-    return { [name]: animals.find(animal => animal.name === name)
-      .residents.map(resident => resident.name).sort() };  
+    return {
+      [name]: animals
+        .find(animal => animal.name === name)
+        .residents
+        .map(resident => resident.name)
+        .sort()
+    };
   }
-  return { [name]: animals.find(animal => animal.name === name).residents
-    .map(resident => resident.name), };
+  return {
+    [name]: animals.find(animal => animal.name === name).residents
+      .map(resident => resident.name)
+  };
 }
 
 function animalMap(options = {}) {
@@ -88,18 +102,18 @@ function animalMap(options = {}) {
 
   if (includeNames && !sex) {
     return LOCAL.reduce((acc, { location, name }) => {
-      return Object.assign(acc, { [location]: acc[location].concat(getGetNamesSorted(sorted))
+      return Object.assign(acc, { [location]: acc[location].concat(getGetNamesSorted(sorted, name))
       });
     }, { NE: [], NW: [], SE: [], SW: [] });
   }
 
   if (sex && includeNames) {
-    return LOCAL.reduce((acc, { location, name }) => { return Object.assign(acc, {
-        [location]: acc[location].concat(getSexSorted(sorted))
+    return LOCAL.reduce((acc, { location, name }) => {
+      return Object.assign(acc, { [location]: acc[location].concat(getSexSorted(sorted, sex))
       });
     }, { NE: [], NW: [], SE: [], SW: [] });
   }
-  
+
   return LOCAL.reduce((acc, { location, name }) => {
     return Object.assign(acc, {
       [location]: acc[location].concat(animals.find(animal => animal.name === name).name),
@@ -133,7 +147,7 @@ console.log(schedule());
 function oldestFromFirstSpecies(id) {
   const specie = employees.find(item => item.id === id).responsibleFor[0];
   return Object.values(animals.find(item => item.id === specie)
-  .residents.reduce((acc, animal) => (acc.age > animal.age ? acc : animal)));
+    .residents.reduce((acc, animal) => (acc.age > animal.age ? acc : animal)));
 }
 
 function increasePrices(percentage) {
@@ -158,8 +172,10 @@ function employeeCoverage(idOrName) {
   ), {});
 
   return Object.entries(names).reduce((acc, [key, value]) => {
-    return Object.assign(acc, { [key]: value
-      .map(item => animals.find(n => n.id.includes(item)).name) });
+    return Object.assign(acc, {
+      [key]: value
+        .map(item => animals.find(n => n.id.includes(item)).name)
+    });
   }, {});
 }
 
