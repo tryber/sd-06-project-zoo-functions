@@ -57,18 +57,30 @@ function animalCount(species) {
   });
   return (species) ? data.animals.find(el => el.name === species).residents.length : obj;
 }
-function entryCalculator(entrants) {
-  /*  if (entrants) {
-    let total = (entrants.Adult * data.prices.Adult) + (entrants.Senior * data.prices.Senior)
-     + (entrants.Child * data.prices.Child)
-    return total
-  } else {
-    return 0
-  } */
-}
 
+function entryCalculator(entrants) {
+  if (!entrants) {
+    return 0;
+  } else {
+    const keys = Object.keys(entrants);
+  let total = 0;
+  const compare = (element) => {
+    if (element === 'Senior') {
+      total += data.prices.Senior * entrants.Senior;
+    } else if (element === 'Child') {
+      total += data.prices.Child * entrants.Child;
+    } else if (element === 'Adult') {
+      total += data.prices.Adult * entrants.Adult;
+    } else {
+      total += 0;
+    }
+  };
+  keys.forEach(el => compare(el));
+  return total;
+  }
+}
 function animalMap(options) {
-  // seu código aqui
+  
 }
 
 function schedule(dayName) {
