@@ -123,23 +123,27 @@ function increasePrices(percentage) {
   prices.Child = Math.round((prices.Child + (prices.Child * perc)) * 100) / 100;
 }
 
-
-  function employeeCoverage(idOrName) {
-    const obj = {};
-    const geral = employees.map(element1 => element1.responsibleFor);
-    const resp = animals.find(element => geral.includes(element.id));
-    console.log(resp)
-    if (idOrName === undefined) {
-        employees.forEach(element2 => {
-        const nomes = element2.firstName + ' ' + element2.lastName;
-        const responsavel = resp;
-        obj[nomes] = responsavel;
-      });
-      return obj
-    }
+function employeeCoverage(idOrName) {
+  const obj = {};
+  employees.map((employee) => {
+    employee.animalList = employee.responsibleFor.map(idAnimal => animals.find(animal =>
+      animal.id === idAnimal).name);
+    return employee;
+  });
+  if (idOrName === undefined) {
+    employees.forEach((element) => {
+      const nomes = `${element.firstName} ${element.lastName}`;
+      obj[nomes] = element.animalList;
+    });
+    return obj;
   }
-  console.log(employeeCoverage())
-
+  const people = employees.find(element => idOrName === element.id ||
+      idOrName === element.firstName || idOrName === element.lastName);
+  const nomes = `${people.firstName} ${people.lastName}`;
+  obj[nomes] = people.responsibleFor.flatMap(idAni => animals
+    .find(ani => idAni === ani.id).name);
+  return obj;
+}
 
 module.exports = {
   entryCalculator,
