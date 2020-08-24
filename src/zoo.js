@@ -152,17 +152,15 @@ const schedule = (day) => {
   return timeAvailableObj;
 };
 
-console.log(schedule('Monday'))
-
 const oldestFromFirstSpecies = (employeeId) => {
-  const temp1 = employees.find(({ id }) => id === employeeId);  
-  console.log(temp1);
-  return temp1;
-}
-oldestFromFirstSpecies('0e7b460e-acf4-4e17-bcb3-ee472265db83');
-// function oldestFromFirstSpecies(id) {
-//   // seu código aqui
-// }
+  const animalId = employees.find(({ id }) => id === employeeId).responsibleFor[0];  
+  const residentsArray = animals.find(({ id }) => animalId === id).residents;
+  const oldest = residentsArray.sort((a, b) => {
+    return b.age - a.age;
+  })[0];
+  const { name, sex, age } = oldest;
+  return [name, sex, age];
+};
 
 function increasePrices(percentage) {
   // seu código aqui
