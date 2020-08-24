@@ -106,10 +106,10 @@ function animalMap({ includeNames = false, sex = '', sorted = false } = {}) {
   data.animals.forEach(element => getLocations.push(element.location));
   const locations = [...new Set(getLocations)];
   const result = {};
-  locations.forEach(element => {
-    result[element] = []
+  locations.forEach((element) => {
+    result[element] = [];
   });
-  const getAnimals = (array, animal) => [ ...array, animal.name ];
+  const getAnimals = (array, animal) => [...array, animal.name];
   Object.keys(result)
     .forEach((currLocation) => {
       result[currLocation] = data.animals
@@ -138,18 +138,16 @@ function animalMap({ includeNames = false, sex = '', sorted = false } = {}) {
                   .filter(animalNames)
                     .map(element => element.name) });
           });
-      }
-    );
+      });
   }
   // what to do if option sorted is triggered
-  if (sorted || (sorted && sex && includeNames)) {
+  if (sorted && includeNames) {
     locations.forEach(
       location => result[location].forEach(
         (species, index) => Object.keys(species)
           .forEach(element => result[location][index][element].sort())
-      )
-    );
-  }
+      ));
+  };
   return result;
 }
 
