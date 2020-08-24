@@ -137,7 +137,13 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  const percent = (percentage / 100) + 1;
+  const { Adult, Senior, Child } = prices;
+
+  prices.Adult = ((Adult * percent) + 0.005).toFixed(2);
+  prices.Senior = ((Senior * percent) + 0.005).toFixed(2);
+  prices.Child = ((Child * percent) + 0.0005).toFixed(2);
+  return prices;
 }
 
 function employeeCoverage(idOrName = 0) {
@@ -161,7 +167,7 @@ function employeeCoverage(idOrName = 0) {
     myObject[name] = animalArr[index];
   });
 
-  // find person name
+  // Getting person fullName using firstName lastName and ID.
   let fullName;
   employees.forEach((person) => {
     if (person.firstName === idOrName || person.lastName === idOrName || person.id === idOrName) {
@@ -169,7 +175,7 @@ function employeeCoverage(idOrName = 0) {
     }
   });
 
-  // final return
+  // Filtering what to return based on user input.
   const objToReturn = {};
   if (idOrName === 0) {
     return myObject;
@@ -177,7 +183,6 @@ function employeeCoverage(idOrName = 0) {
   objToReturn[fullName] = myObject[fullName];
   return objToReturn;
 }
-console.log(employeeCoverage('Stephanie'));
 
 module.exports = {
   entryCalculator,
