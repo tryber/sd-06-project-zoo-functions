@@ -44,7 +44,13 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  // seu código aqui
+  for (let i in employees) {
+    if (employees[i].managers[i] === id) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
