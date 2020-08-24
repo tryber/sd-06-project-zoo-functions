@@ -71,15 +71,15 @@ function entryCalculator(entrants) {
   return price;
 }
 
+  //  const locationOption = ['NE', 'NW', 'SE', 'SW'];
+
 function animalMap(options) {
   const locationList = {};
   const initialList = {};
-  //const locationOption = ['NE', 'NW', 'SE', 'SW'];
   const locationOption = animals.map(where =>
     where.location).reduce((acc, value) => {
-    if (acc.includes(value)) return acc;
-    return [...acc , value];
-    }, []); //Referência: https://medium.com/dailyjs/how-to-remove-array-duplicates-in-es6-5daa8789641c
+      if (acc.includes(value)) return acc;
+      return [...acc, value];}, []); //  Referência: https://medium.com/dailyjs/how-to-remove-array-duplicates-in-es6-5daa8789641c
   locationOption.forEach((index) => {
     initialList[index] = animals
     .filter(value => value.location === index).map(animal => animal.name);
@@ -137,7 +137,7 @@ function employeeById(employeeId) {
 }
 
 function employeeCoverage(idOrName) {
-  const employeeAndAnimalsList = {}; 
+  const employeeAndAnimalsList = {};
   if (!idOrName) {
     employees.forEach((value) => {
       const fullName = `${value.firstName} ${value.lastName}`;
@@ -152,7 +152,7 @@ function employeeCoverage(idOrName) {
   employeeAndAnimalsList[employeeName] = employeeAnimals;
   return employeeAndAnimalsList;
 }
-console.log(employeeCoverage())
+
 module.exports = {
   entryCalculator,
   schedule,
