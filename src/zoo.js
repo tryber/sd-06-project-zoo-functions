@@ -15,11 +15,11 @@ function animalsByIds(ids) {
   .find(ident => ident.id === ids);
   return (animalId);
 }
-  const rest = animalsByIds('e8481c1d-42ea-4610-8e11-1752cfc05a46', '0938aa23-f153-4937-9f88-4858b24d6bce');
-  console.log(rest);
+const rest = animalsByIds('e8481c1d-42ea-4610-8e11-1752cfc05a46', '0938aa23-f153-4937-9f88-4858b24d6bce');
+console.log(rest);
 
 function animalsOlderThan(animal, age) {
-return animals.find(animal, age);
+  return animals.find(animal, age);
 }
 
 function employeeByName(employeeName) {
