@@ -263,8 +263,30 @@ function increasePrices(percentage) {
   });
 }
 
-function employeeCoverage(idOrName) {
+function employeeCoverage(idOrName = 'allOfThem') {
+  const fetchedList = data.employees.map((employee) => {
+    employee.animalsList = employee.responsibleFor
+    .map(animalId => animals
+      .find(animal => animal.id === animalId).name)
+    return employee;
+  });
 
+  let result = {};
+  
+  if (idOrName === 'allOfThem') {
+    fetchedList.forEach((employee) => {
+      result[`${employee.firstName} ${employee.lastName}`] = employee.animalsList;
+    });
+  } else {
+    fetchedList.forEach(employee => {
+      const { firstName, lastName, id, animalsList } = employee;
+      if (firstName === idOrName || lastName === idOrName || id === idOrName) {
+        result[`${firstName} ${lastName}`] = animalsList;
+      }
+    });
+  }
+  
+  return result;
 }
 
 module.exports = {
