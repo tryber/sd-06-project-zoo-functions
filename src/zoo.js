@@ -90,9 +90,11 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  data.prices.Adult = Math.round((data.prices.Adult * (1 + (percentage / 100))*100))/100;
-  data.prices.Senior = Math.round((data.prices.Senior * (1 + (percentage / 100))*100))/100;
-  data.prices.Child = Math.round((data.prices.Child * (1 + (percentage / 100))*100))/100;
+  const category = ['Adult', 'Senior', 'Child'];
+  for (let i = 0; i <= 2; i += 1) {
+    data.prices[category[i]] = Math.round((data.prices[category[i]] *
+      (1 + (percentage / 100)) * 100)) / 100;
+  }
 }
 
 function employeeCoverage(idOrName) {
