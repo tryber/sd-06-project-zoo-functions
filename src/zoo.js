@@ -120,10 +120,7 @@ function schedule(dayName) {
         result = { Monday: 'CLOSED' };
       } else {
         const defined = hours[day];
-        Object.defineProperty(result, day, { value: `Open from ${defined.open}am until ${defined.close - 12}pm`,
-          enumerable: true,
-          configurable: true,
-          writable: true });
+        result = { [day]: `Open from ${defined.open}am until ${defined.close - 12}pm` };
       }
     }
   });
