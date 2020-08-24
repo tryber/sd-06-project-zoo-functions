@@ -78,7 +78,7 @@ function animalCount(species) {
 function entryCalculator(entrants) {
   // seu código aqui
   // if para retornar 0 caso o parâmetro não seja definido
-  if (entrants === undefined) {
+  if (entrants === undefined) { // poderia usar !entrants
     return 0;
   }
   // destructuring a estrutura entrants e colocando 0 como retorno padrão,
@@ -90,9 +90,42 @@ function entryCalculator(entrants) {
   total += Child * prices.Child;
   return total;
 }
+// funções auxiliares animalMap
+//  para retornar array com as locations de animals
+function arrLocations() {
+  const locations = {};
+  animals.forEach(animal => (locations[animal.location]) = 0);
+  return Object.keys(locations); // interface Object.keys retorna um array
+}
+
+// verificar a localiação dos animais
+const animalLocation = location => animals
+.filter(animal => animal.location === location)
+.map(animal => animal.name);
+
+const getResidents = (animal, animalGender) => animals
+.find(consultedAnimal => consultedAnimal.name === animal).residents
+.filter(consultedAnimal => consultedAnimal.sex === animalGender || !animalGender)
+.map((element => element.name));
 
 function animalMap(options) {
   // seu código aqui
+  const { includeNames = false, sorted = false, sex = '' } = options || {};
+  const requestReturned = {};
+  const locations = arrLocations();
+  locations.forEach((location) => {
+    requestReturned[location] = [];
+        animalLocation(location).forEach((animal) => {
+      if (includeNames !== true) {
+        requestReturned[location].push(animal);
+      } else if (sorted === true) {
+        requestReturned[location].push({ [animal]: getResidents(animal, sex).sort() });
+      } else {
+        requestReturned[location].push({ [animal]: getResidents(animal, sex) });
+      }
+    });
+  });
+  return requestReturned;
 }
 
 function schedule(dayName) {
@@ -134,7 +167,7 @@ function employeeCoverage(idOrName) {
   // seu código aqui
   // Sem parâmetros, retorna lista de funcionários e os animais pelos quais eles são responsáveis
   const employeesResponsibleForAnimals = {};
-  if (idOrName === undefined) {
+  if (!idOrName) {
     employees.forEach((employee) => {
       const fullName = `${employee.firstName} ${employee.lastName}`;
       const animalsCared = animalsByIds(...employee.responsibleFor);
