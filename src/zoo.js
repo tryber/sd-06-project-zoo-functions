@@ -159,13 +159,13 @@ function animalMap(options) {
   // percorremos todo o array data.animals para ver quais grupos de animais possuem localização...
   // igual ao estado (location === state).
   const objToReturn = {};
-  const constructObjReturnForSt = (st) => {
-    objToReturn[st] = data.animals.reduce((anmInSt, anmGrp) => {
-      const res = (anmGrp.location === st) ? anmInSt.concat(anmsObjCst(anmGrp, options)) : anmInSt;
-      return res;
-    }, []);
-  };
-  allStates.forEach(constructObjReturnForSt);
+  const vfyIfGrpIsInSt = st => data.animals.reduce((anmInSt, anmGrp) => {
+    const res = (anmGrp.location === st) ? anmInSt.concat(anmsObjCst(anmGrp, options)) : anmInSt;
+    return res;
+  }, []);
+  allStates.forEach((st) => {
+    objToReturn[st] = vfyIfGrpIsInSt(st);
+  });
   // Grand finale - retorna o objeto construido conforme o input
   return objToReturn;
 }
