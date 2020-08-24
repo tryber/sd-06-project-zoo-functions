@@ -8,9 +8,8 @@ eslint no-unused-vars: [
   }
 ]
 */
-// npm test test/nomeDoArquivo.test.js
 const data = require('./data');
-const { animals } = require('./data');
+const { animals, employees } = require('./data');
 
 function animalsByIds(...ids) {
   const result = [];
@@ -26,19 +25,26 @@ function animalsByIds(...ids) {
   });
   return result;
 }
-// console.log(animalsByIds('e8481c1d-42ea-4610-8e11-1752cfc05a46', '0938aa23-f153-4937-9f88-4858b24d6bce'));
 
 function animalsOlderThan(animal, ages) {
-  const filterType = animals.filter(( {name} ) => name === animal)
-  .map(({residents}) => residents.every(( {age} ) => age > ages));
+  const filterType = animals.filter(({ name }) => name === animal)
+  .map(({ residents }) => residents.every(({ age }) => age > ages));
   return filterType[0];
 }
 
-console.log(animalsOlderThan('otters', 7));
-
 function employeeByName(employeeName) {
-  // seu código aqui
+  let result = {};
+
+  const employeeResult = employees.find((employee) => {
+    const { firstName, lastName } = employee;
+    if(employeeName === firstName || employeeName === lastName){
+      result = employee;
+    }
+  })
+  return result;
 }
+
+// console.log(employeeByName('Wishart'));
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
