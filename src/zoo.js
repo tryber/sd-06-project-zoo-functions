@@ -10,7 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { animals, employees, prices } = require('./data');
+const { animals, employees, prices, hours } = require('./data');
 
 function animalsByIds(id1 = '', ...ids) {
   if (id1 === '') {
@@ -66,7 +66,6 @@ function animalCount(species) {
   return animalCountObj.residents.reduce(getAnimalCount, 0);
 }
 
-// console.log(animalCount())
 function entryCalculator(entrants = {}) {
   if (entrants === {}) {
     return 0;
@@ -99,19 +98,39 @@ function animalMap(options) {
   // seu código aqui
 }
 
-function schedule(dayName = '') {
-  // if (dayName === '') {
-  // return `Tuesday: Open from ${hours.Tuesday.open}am until ${hours.Tuesday.close}pm,
-  //   Wednesday: Open from ${hours.Wednesday.open}am until ${hours.Wednesday.close}pm,
-  //   Thursday: Open from ${hours.Thursday.open}am until ${hours.Thursday.close}pm,
-  //   Friday: Open from ${hours.Friday.open}am until ${hours.Friday.close}pm,
-  //   Saturday: Open from ${hours.Saturday.open}am until ${hours.Saturday.close}pm,
-  //   Sunday: Open from ${hours.Sunday.open}am until ${hours.Sunday.close}pm,
-  //   Monday: CLOSED`
-  // }
+const getScheduleUndefined = () => {
+  const daysOfTheWeek = ['Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+  const result = {};
+  daysOfTheWeek.forEach((day) => {
+    const dayDefined = hours[day];
+    Object.defineProperty(result, day, { value: `Open from ${dayDefined.open}am until ${dayDefined.close - 12}pm`, enumerable: true, configurable: true, writable: true });
+  });
+  Object.defineProperty(result, 'Monday', { value: 'CLOSED', enumerable: true, configurable: true, writable: true });
+  return result;
+};
+
+function schedule(dayName) {
+  if (dayName === undefined) {
+    return getScheduleUndefined();
+  }
+  let result = {};
+  Object.keys(hours).forEach((day) => {
+    if (day === dayName) {
+      if (day === 'Monday') {
+        result = { Monday: 'CLOSED' };
+      } else {
+        const defined = hours[day];
+        Object.defineProperty(result, day, { value: `Open from ${defined.open}am until ${defined.close - 12}pm`,
+          enumerable: true,
+          configurable: true,
+          writable: true });
+      }
+    }
+  });
+  return result;
 }
 
-// console.log(schedule())
+console.log(schedule('Saturday'));
 
 function oldestFromFirstSpecies(id) {
   const animalId = employees.find(employee => employee.id === id).responsibleFor[0];
@@ -146,7 +165,6 @@ const animalsEmployee = (employee) => {
     enumerable: true,
     configurable: true,
     writable: true });
-  // result.employeeName = animalsName
 };
 
 
