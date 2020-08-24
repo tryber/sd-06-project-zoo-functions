@@ -90,40 +90,31 @@ function entryCalculator(entrants) {
   total += Child * prices.Child;
   return total;
 }
-// funções auxiliares animalMap
-//  para retornar array com as locations de animals
-function arrLocations() {
-  const locations = {};
-  animals.forEach(animal => (locations[animal.location]) = 0);
-  return Object.keys(locations); // interface Object.keys retorna um array
-}
-
-// verificar a localiação dos animais
-const animalLocation = location => animals
-.filter(animal => animal.location === location)
-.map(animal => animal.name);
-
-const getResidents = (animal, animalGender) => animals
-.find(consultedAnimal => consultedAnimal.name === animal).residents
-.filter(consultedAnimal => consultedAnimal.sex === animalGender || !animalGender)
-.map((element => element.name));
 
 function animalMap(options) {
   // seu código aqui
   const { includeNames = false, sorted = false, sex = '' } = options || {};
   const requestReturned = {};
-  const locations = arrLocations();
+  const locations = ['NE', 'NW', 'SE', 'SW'];
+  // verificar a localiação dos animais
+  const animalLocation = location => animals
+  .filter(animal => animal.location === location)
+  .map(animal => animal.name);
+  const getResidents = (animal, animalGender) => animals
+  .find(consultedAnimal => consultedAnimal.name === animal).residents
+  .filter(consultedAnimal => consultedAnimal.sex === animalGender || !animalGender)
+  .map((element => element.name));
   locations.forEach((location) => {
     requestReturned[location] = [];
-        animalLocation(location).forEach((animal) => {
-      if (includeNames !== true) {
-        requestReturned[location].push(animal);
-      } else if (sorted === true) {
-        requestReturned[location].push({ [animal]: getResidents(animal, sex).sort() });
-      } else {
-        requestReturned[location].push({ [animal]: getResidents(animal, sex) });
-      }
-    });
+      animalLocation(location).forEach((animal) => {
+        if (includeNames !== true) { // aqui resolve includeName false
+          requestReturned[location].push(animal);
+        } else if (sorted === true) { // toda vez que testa sorted o includeN é testado
+          requestReturned[location].push({ [animal]: getResidents(animal, sex).sort() });
+        } else { // aqui as condições que sobraram sex
+          requestReturned[location].push({ [animal]: getResidents(animal, sex) });
+        }
+      });
   });
   return requestReturned;
 }
