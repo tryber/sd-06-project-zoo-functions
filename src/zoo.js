@@ -76,8 +76,22 @@ function animalCount(species) {
   return first;
 }
 
-function entryCalculator(entrants) {
-  // seu código aqui
+function entryCalculator(entrants = 0) {
+  if (Object.keys(entrants).length === 0) {
+    return 0;
+  }
+  const { Adult, Child, Senior } = data.prices;
+  let result = 0;
+  if(Object.keys(entrants).includes('Adult')) {
+    result += Adult * entrants.Adult;
+  }
+  if (Object.keys(entrants).includes('Child')) {
+    result += Child * entrants.Child;
+  }
+  if (Object.keys(entrants).includes('Senior')) {
+    result += Senior * entrants.Senior;
+  }
+  return result;
 }
 
 function animalMap(options) {
