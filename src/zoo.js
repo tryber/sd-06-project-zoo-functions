@@ -10,7 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { animals, employees, prices } = require('./data');
+const { animals, employees, prices, hours } = require('./data');
 
 function animalsByIds(...ids) {
   if (ids === undefined) {
@@ -61,22 +61,36 @@ function entryCalculator(entrants = 0) {
     return 0;
   }
   return Object.keys(entrants).reduce((acc, cur) => acc +
-  (entrants[cur] * prices[cur]), 0);
+    (entrants[cur] * prices[cur]), 0);
 }
 function animalMap(options) {
 
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  if (!dayName) {
+    return Object.keys(hours).reduce((acc, curr) => {
+      const { open, close } = hours[curr];
+      let currentValue = curr;
+      let phrase = `Open from ${open}am until ${close - 12}pm`
+      if (curr === 'Monday') {
+        phrase = 'CLOSED';
+      }
+      return { ...acc, [currentValue]: phrase }
+    }, {});
+  } else if (dayName === 'Monday') {
+    return { Monday : 'CLOSED' };
+  }
+  return { [dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm` }
 }
-
 function oldestFromFirstSpecies(id) {
   // seu código aqui
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  Object.keys(data.prices).forEach((keys) => {
+    data.prices[keys] = Math.round(((1 + (0.01 * percentage)) * data.prices[keys]) * 100) / 100;
+  });
 }
 
 function employeeCoverage(idOrName) {
