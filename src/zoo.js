@@ -227,11 +227,28 @@ function animalMap(options) {
   return output;
 }
 
-console.log(animalMap({ sex: 'female' }));
+// 24h to 12h = (-12)
+const defaultSchedule = () => {
+  const output = {};
+  const days = Object.keys(data.hours);
+  for (let index = 0; index < days.length; index += 1) {
+    if (data.hours[days[index]].open !== 0) {
+      output[days[index]] = `Open from ${data.hours[days[index]].open}am until ${(data.hours[days[index]].close) - 12}pm`;
+    } else {
+      output[days[index]] = 'CLOSED';
+    }
+  }
+  return output;
+};
 
 function schedule(dayName) {
-  // seu código aqui
-}
+  switch (dayName) {
+  default:
+    return defaultSchedule();
+  }
+};
+
+console.log(schedule());
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
