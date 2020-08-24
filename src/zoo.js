@@ -19,8 +19,7 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  return animals
-  .filter(animalOfList => animalOfList.name === animal)
+  return animals.filter(animalOfList => animalOfList.name === animal)
   .flatMap(filteredAnimal => filteredAnimal.residents)
   .every(residentAnimals => residentAnimals.age >= age);
 }
@@ -92,52 +91,43 @@ function entryCalculator(entrants) {
 }
 
 function createAnimalListByLocation(location) {
-  return animals
-  .filter(animal => animal.location === location)
+  return animals.filter(animal => animal.location === location)
   .flatMap(filteredAnimal => filteredAnimal.name);
 }
 
 function createAnimalResidentsList(location) {
-  return animals
-  .filter(animal => animal.location === location)
+  return animals.filter(animal => animal.location === location)
   .map((animal) => {
     const animalObject = {};
-    animalObject[animal.name] = animal.residents
-    .map(resident => resident.name);
+    animalObject[animal.name] = animal.residents.map(resident => resident.name);
     return animalObject;
   });
 }
 
 function createSortedAnimalResidentsList(location) {
-  return animals
-  .filter(animal => animal.location === location)
+  return animals.filter(animal => animal.location === location)
   .map((animal) => {
     const animalObject = {};
-    animalObject[animal.name] = animal.residents
-    .map(resident => resident.name).sort();
+    animalObject[animal.name] = animal.residents.map(resident => resident.name).sort();
     return animalObject;
   });
 }
 
 function createAnimalResidentsListBySex(location, sex) {
-  return animals
-  .filter(animal => animal.location === location)
+  return animals.filter(animal => animal.location === location)
   .map((animal) => {
     const animalObject = {};
-    animalObject[animal.name] = animal.residents
-    .filter(resident => resident.sex === sex)
+    animalObject[animal.name] = animal.residents.filter(resident => resident.sex === sex)
     .map(resident => resident.name);
     return animalObject;
   });
 }
 
 function createSortedAnimalResidentsListBySex(location, sex) {
-  return animals
-  .filter(animal => animal.location === location)
+  return animals.filter(animal => animal.location === location)
   .map((animal) => {
     const animalObject = {};
-    animalObject[animal.name] = animal.residents
-    .filter(resident => resident.sex === sex)
+    animalObject[animal.name] = animal.residents.filter(resident => resident.sex === sex)
     .map(resident => resident.name).sort();
     return animalObject;
   });
@@ -234,8 +224,7 @@ function schedule(dayName) {
 function oldestFromFirstSpecies(id) {
   const { employees } = data;
 
-  const foundAnimalsList = employees
-  .find(employee => employee.id === id).responsibleFor
+  const foundAnimalsList = employees.find(employee => employee.id === id).responsibleFor
   .map(currentAnimal => animals.find(animal => animal.id === currentAnimal));
 
   const animalList = [];
@@ -248,9 +237,7 @@ function oldestFromFirstSpecies(id) {
   const animalsWithTheirAges = animalList;
 
   const biggerAge = animalsWithTheirAges
-  .reduce((acc, currentAnimal) => acc
-  .concat(currentAnimal[2]), [])
-  .sort((a, b) => b - a)[0];
+  .reduce((acc, currentAnimal) => acc.concat(currentAnimal[2]), []).sort((a, b) => b - a)[0];
 
   return animalsWithTheirAges.find(animal => animal[2] === biggerAge);
 }
@@ -259,7 +246,7 @@ function increasePrices(percentage) {
   const { prices } = data;
   Object.keys(prices)
   .forEach((price) => {
-    prices[price] = (Math.round((prices[price] * (1 + (percentage / 100)) * 100)) / 100);
+    prices[price] = (Math.round(prices[price] * (1 + (percentage / 100)) * 100) / 100);
   });
 }
 
