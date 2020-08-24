@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { employees,  animals} = require('./data');
+const { employees, animals } = require('./data');
 
 function animalsByIds(...ids) {
   // seu código aqui
@@ -80,19 +80,20 @@ function entryCalculator(entrants = {}) {
 
 function animalMap(options = {}) {
   return animals.reduce((objLocalization, specie) => {
-    let arrayExit = [];
-    if (!options.includeNames) { 
+    const arrayExit = [];
+    if (!options.includeNames) {
       arrayExit.push(specie.name);
     } else if (options.includeNames) {
-      if (!!options.sex) {
+      if (!(!options.sex)) {
         arrayExit.push(
-          { [specie.name]: specie.residents.filter(animalSex => animalSex.sex === options.sex).map(animal => animal.name) }
+          { [specie.name]: specie.residents.filter(animalSex => animalSex.sex === options.sex)
+          .map(animal => animal.name) }
         );
       } else {
         arrayExit.push({ [specie.name]: specie.residents.map(animal => animal.name) });
       }
       if (options.sorted) {
-        arrayExit[0][specie.name] = arrayExit[0][specie.name].sort()
+        arrayExit[0][specie.name] = arrayExit[0][specie.name].sort();
       }
     }
     if (!objLocalization[specie.location]) {
