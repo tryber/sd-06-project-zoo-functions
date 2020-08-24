@@ -35,13 +35,13 @@ function employeeByName(employeeName) {
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
-  
+  return { ...personalInfo, ...associatedWith};
 }
 
 function isManager(id) {
   // seu código aqui
-  const nameManager = employees.some(name => name.managers.includes(id) === true);
-  return nameManager;
+  const managers = employees.some(manager => manager.managers.includes(id) === true);
+  return managers;
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
