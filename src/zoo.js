@@ -14,7 +14,7 @@ const { animals } = require('./data');
 // const { hours } = require('./data')
 
 function animalsByIds(...ids) {
-  // o rest parameter foi inserido para que pudessem ser utilizados quantos parametros fossem necessarios
+  // rest parameter inserido para que pudessem ser utilizados quantos parametros necessarios
   const searchAnimalsById = animals
   .filter(animal => ids.includes(animal.id));
   // filter para filtrar valores
