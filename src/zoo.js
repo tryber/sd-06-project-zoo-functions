@@ -21,16 +21,14 @@ function animalsByIds(...ids) {
 
 function animalsOlderThan(animal, age) {
   return data.animals.find(getAnimal => getAnimal.name === animal)
-  .residents.every(ageAnimal => ageAnimal.age > age);
+    .residents.every(ageAnimal => ageAnimal.age > age);
 }
 
 function employeeByName(employeeName) {
   if (!employeeName) return {};
-  return data.employees.find((name) => { if (name.firstName === employeeName || name.lastName === employeeName)
-    return name;
-  });
+  return data.employees.find(name => name.firstName === employeeName || name.lastName === employeeName);
 }
-console.log(employeeByName('Wilburn'));
+console.log(employeeByName('Burl'));
 
 function createEmployee(personalInfo, associatedWith) {
   //  return data.employees.map(())
@@ -70,7 +68,7 @@ function oldestFromFirstSpecies(id) {
   const firstAnimal = data.employees.find(employee => employee.id === id).responsibleFor[0];
   const whichAnimal = data.animals.find(animal => animal.id === firstAnimal).residents;
   const oldestAnimal = whichAnimal.reduce((accumulator, animalAge) =>
-  (accumulator.age > animalAge.age ? accumulator : animalAge), []);
+    (accumulator.age > animalAge.age ? accumulator : animalAge), []);
   return Object.values(oldestAnimal);
 }
 
