@@ -10,7 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { animals, employees } = require('./data');
+const { animals, employees, hours } = require('./data');
 
 const animalsByIds = (...params) => {
   const filtered = params.map(ids => animals.find(({ id }) => id === ids));
@@ -129,13 +129,40 @@ const animalMap = (options) => {
   return animalsSeparatedByZones(zones);
 };
 
-function schedule(dayName) {
-  // seu código aqui
-}
+const schedule = (day) => {
+  const timeAvailableObj = {};
+  if (day) {
+    const timeArray = Object.entries(hours).find(e => day === e[0]);
+    if (timeArray[0] === 'Monday') {
+      timeAvailableObj[timeArray[0]] = 'CLOSED';
+    } else {
+      timeAvailableObj[timeArray[0]] = 
+      `Open from ${timeArray[1].open}am until ${timeArray[1].close - 12}pm`;
+    }
+  } else {
+    Object.entries(hours).forEach((e) => {
+      if (e[0] === 'Monday') {
+        timeAvailableObj[e[0]] = 'CLOSED';
+      } else {
+        timeAvailableObj[e[0]] = `Open from ${e[1].open}am until ${e[1].close - 12}pm`;
+      }
+      return 0;
+    });
+  }
+  return timeAvailableObj;
+};
 
-function oldestFromFirstSpecies(id) {
-  // seu código aqui
+console.log(schedule('Monday'))
+
+const oldestFromFirstSpecies = (employeeId) => {
+  const temp1 = employees.find(({ id }) => id === employeeId);  
+  console.log(temp1);
+  return temp1;
 }
+oldestFromFirstSpecies('0e7b460e-acf4-4e17-bcb3-ee472265db83');
+// function oldestFromFirstSpecies(id) {
+//   // seu código aqui
+// }
 
 function increasePrices(percentage) {
   // seu código aqui
