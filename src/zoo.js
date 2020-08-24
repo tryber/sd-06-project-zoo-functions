@@ -104,9 +104,7 @@ function animalMap({ includeNames = false, sex = '', sorted = false } = {}) {
   // seu código aqui
   const getLocations = data.animals.reduce((array, element) => [...array, element.location], []);
   const locations = [...new Set(getLocations)];
-  const result = locations.reduce((acc, element) => {
-    return { ...acc, [element]: [] };
-  }, {});
+  const result = locations.reduce((acc, element) => ({...acc, [element]: []}), {});
   const getSpeciesByLocation = (currLocation) => {
     result[currLocation] = data.animals
       .filter(species => species.location === currLocation)
@@ -117,11 +115,14 @@ function animalMap({ includeNames = false, sex = '', sorted = false } = {}) {
     // .map method to get animals' names
     const getAnimalSex = (currResident) => !sex || sex === currResident.sex;
     // Method to get species and names in results
-    const getSpeciesAndNames = (location) => {
-        result[location] = result[location]
-          .flatMap(species => ({ 
-            [species]: data.animals.find(animalObj => animalObj.name === species).residents.filter(getAnimalSex).flatMap(resident => resident.name),
-          }));
+    const getSpeciesAndNames = location => {
+      result[location] = result[location]
+        .flatMap(species => ({
+          [species]: data.animals
+            .find(animalObj => animalObj.name === species)
+            .residents.filter(getAnimalSex)
+            .flatMap(resident => resident.name),
+        }));
     };
     locations.forEach(getSpeciesAndNames);
     console.log(result);
@@ -133,7 +134,7 @@ function animalMap({ includeNames = false, sex = '', sorted = false } = {}) {
         (species, index) => Object.keys(species)
           .forEach(element => result[location][index][element].sort())
       ));
-  };
+  }
   return result;
 }
 
