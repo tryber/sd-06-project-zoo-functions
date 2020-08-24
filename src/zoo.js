@@ -33,15 +33,7 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee({ id, firstName, lastName }, { managers, responsibleFor }) {
-  // seu código aqui
-  const createdEmployee = {
-    id,
-    firstName,
-    lastName,
-    managers,
-    responsibleFor,
-  };
-  return createdEmployee;
+  return { id, firstName, lastName, managers, responsibleFor };
 }
 
 function isManager(id) {
