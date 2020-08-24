@@ -12,6 +12,7 @@ eslint no-unused-vars: [
 const data = require('./data');
 const { animals } = require('./data');
 const { employees } = require('./data');
+const { hours } = require('./data');
 
 function animalsByIds(...ids) {
   // seu código aqui
@@ -106,6 +107,33 @@ function animalMap(options) {
 
 function schedule(dayName) {
   // seu código aqui
+  if (!dayName) {
+    return ({
+      'Tuesday': `Open from ${hours.Tuesday.open}am until ${hours.Tuesday.close - 12}pm`,
+      'Wednesday': `Open from ${hours.Wednesday.open}am until ${hours.Wednesday.close - 12}pm`,
+      'Thursday': `Open from ${hours.Thursday.open}am until ${hours.Thursday.close - 12}pm`,
+      'Friday': `Open from ${hours.Friday.open}am until ${hours.Friday.close - 12}pm`,
+      'Saturday': `Open from ${hours.Saturday.open}am until ${hours.Saturday.close - 12}pm`,
+      'Sunday': `Open from ${hours.Sunday.open}am until ${hours.Sunday.close - 12}pm`,
+      'Monday': 'CLOSED'
+    });
+  }
+  switch (dayName) {
+    case 'Monday':
+      return { 'Monday': 'CLOSED' };
+    case 'Tuesday':
+      return { 'Tuesday' : `Open from ${hours.Tuesday.open}am until ${hours.Tuesday.close - 12}pm` };
+    case 'Wednesday':
+      return { 'Wednesday': `Open from ${hours.Wednesday.open}am until ${hours.Wednesday.close - 12}pm` };
+    case 'Thursday':
+      return { 'Thursday': `Open from ${hours.Thursday.open}am until ${hours.Thursday.close - 12}pm` };
+    case 'Friday':
+      return { 'Friday': `Open from ${hours.Friday.open}am until ${hours.Friday.close - 12}pm` };
+    case 'Saturday':
+      return { 'Saturday': `Open from ${hours.Saturday.open}am until ${hours.Saturday.close - 12}pm` };
+    case 'Sunday':
+      return { 'Sunday': `Open from ${hours.Sunday.open}am until ${hours.Sunday.close - 12}pm` };
+  }
 }
 
 function oldestFromFirstSpecies(id) {
