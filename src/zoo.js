@@ -15,14 +15,12 @@ const { animals } = require('./data');
 function animalsByIds(...ids) {
   if (ids === undefined) {
     return undefined;
-  } else {
-    return animals.filter(animal => ids.includes(animal.id))
   }
+  return animals.filter(animal => ids.includes(animal.id))
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
-  return
+  return animals.find ()
 }
 
 function employeeByName(employeeName) {
