@@ -347,6 +347,7 @@ const employeeCoverage = (idOrName) => {
 // FIM DOS RESQUISITOS
 // ========================================================================================
 
+
 module.exports = {
   entryCalculator,
   schedule,
