@@ -9,11 +9,32 @@ eslint no-unused-vars: [
 ]
 */
 
-const data = require('./data');
+// npm test test/nomeDoArquivo.test.js
 
-function animalsByIds(ids) {
-  // seu código aqui
+const data = require('./data');
+const { animals } = require('./data');
+
+function animalsByIds(...ids) {
+  let result = [];
+  // animals.filter((element, index) => { 
+  //   let {id} = animals[index]
+  //   if (id === ids) {
+  //     return result.push(element);
+  //   }
+  // })
+  animals.map((animal) => {
+    let {id} = animal
+    for (element of ids) {
+      if (element === id) {
+        result.push(animal);
+      }
+    }
+  })
+  return result;
 }
+
+console.log(animalsByIds('e8481c1d-42ea-4610-8e11-1752cfc05a46','0938aa23-f153-4937-9f88-4858b24d6bce'));
+animalsByIds();
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
