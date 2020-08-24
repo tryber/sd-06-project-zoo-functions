@@ -89,9 +89,48 @@ function entryCalculator(entrants) {
   }
   return total;
 }
+// const data = require('./data');
+function noParamsAnimalMap() {
+  const arrayLocation = ['NE', 'NW', 'SE', 'SW'];
+  const animalPerLocation = {};
+  arrayLocation.forEach((region) => {
+    animalPerLocation[region] = data.animals
+      .filter(animal => animal.location === region).map(obj => obj.name);
+  });
+  return animalPerLocation;
+}
+
+function paramsAnimalMap(obj, options) {
+  const arrayLocation = Object.keys(obj);
+  arrayLocation.forEach((region) => {
+    obj[region].forEach((name, index) => {
+      let arrayAux = [];
+      if (options.sex) {
+        arrayAux = data.animals.find(animal => animal.name === name)
+          .residents.filter(item => item.sex === options.sex).map(item => item.name);
+      } else {
+        arrayAux = data.animals.find(animal => animal.name === name)
+          .residents.map(item => item.name);
+      }
+      if (options.sorted) {
+        arrayAux.sort();
+      }
+      const objNames = {
+        [name]: arrayAux,
+      };
+      obj[region][index] = objNames;
+    });
+  });
+  return obj;
+}
 
 function animalMap(options) {
   // seu código aqui
+  const objReturn = noParamsAnimalMap();
+  if (options && options.includeNames) {
+    return paramsAnimalMap(objReturn, options);
+  }
+  return objReturn;
 }
 
 function schedule(dayName) {
