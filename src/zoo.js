@@ -40,16 +40,16 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   return employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
-const getAnimals = () => {
+const getAnimalsNumber = () => {
   const animalsNum = {};
   animals.forEach(({ name, residents }) => { animalsNum[name] = residents.length; });
   return animalsNum;
 };
 
-function animalCount(species = getAnimals()) {
-  if (typeof species === 'object') return species;
-  const allSpecies = getAnimals();
-  return allSpecies[species];
+function animalCount(species) {
+  const allSpeciesNumber = getAnimalsNumber();
+  if (!species) return allSpeciesNumber;
+  return allSpeciesNumber[species];
 }
 
 function entryCalculator(entrants) {
@@ -59,9 +59,47 @@ function entryCalculator(entrants) {
   return keys.reduce(sumPrices, 0);
 }
 
+const getSpeciesPerLocation = () => {
+  const speciesLocation = {};
+  const directions = ['NE', 'NW', 'SE', 'SW'];
+  directions.forEach((direction) => {
+    speciesLocation[direction] = animals
+      .filter(animal => animal.location === direction).map(animal => animal.name);
+  });
+  return speciesLocation;
+};
+
+const getNamesPerLocations = (options = {}) => {
+  const { includeNames = false, sorted = false, sex = null } = options;
+  if (!includeNames) return getSpeciesPerLocation();
+  const speciesLocation = {};
+  const directions = ['NE', 'NW', 'SE', 'SW'];
+  directions.forEach((direction) => {
+    speciesLocation[direction] = animals
+    .filter(animal => animal.location === direction).map((animal) => {
+      const key = animal.name;
+      const value = animal.residents;
+      if (includeNames && sorted && sex) {
+        return { [key]: value.filter(resident => resident.sex === sex)
+          .map(resident => resident.name).sort() };
+      }
+      if (includeNames && sorted) return { [key]: value.map(resident => resident.name).sort() };
+      if (includeNames && sex) {
+        return { [key]: value.filter(resident => resident.sex === sex)
+          .map(resident => resident.name) };
+      }
+      return { [key]: value.map(resident => resident.name) };
+    });
+  });
+  return speciesLocation;
+};
+
 function animalMap(options) {
-  // seu código aqui
+  if (!options) return getSpeciesPerLocation();
+  return getNamesPerLocations(options);
 }
+
+console.log(animalMap({ includeNames: true, sex: 'female', sorted: true }));
 
 function schedule(dayName) {
   // seu código aqui
