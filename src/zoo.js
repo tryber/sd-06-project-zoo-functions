@@ -92,14 +92,14 @@ const emptyOption = () => {
     array[animal.location] = animals.filter(creature => creature.location === animal.location).map(element => element.name);
   });
   return array;
-}
+};
 
-const nameOption = ({includeNames = '', sorted = ''}) => {
+const nameOption = ({ includeNames = '', sorted = '' }) => {
   let array = {};
 
-  animals.map((animal) => {
+  animals.forEach((animal) => {
     array[animal.location] = animals.filter(creature => creature.location === animal.location).map((pet) =>  {
-      let obj = {};
+      const obj = {};
       if (includeNames === true) {
         if (sorted === ''){
           obj[pet.name] = pet.residents.map(element => element.name);
@@ -109,51 +109,44 @@ const nameOption = ({includeNames = '', sorted = ''}) => {
       } else {
         array = emptyOption();
       }
-      
       return obj;
     })
   })
   return array;
-}
+};
 
-const sexOption = ({sex = '', sorted = ''}) => {
+const sexOption = ({ sex = '', sorted = '' }) => {
   const array = {};
 
-  animals.map((animal) => {
+  animals.forEach((animal) => {
     array[animal.location] = animals.filter(creature => creature.location === animal.location).map((pet) =>  {
-      let obj = {}
-      if (sorted === '' && sex === 'male'){
-        obj[pet.name] = pet.residents.filter(item => item.sex === 'male').map(element => element.name);
-      } 
-      if (sorted === '' && sex === 'female') {
-        obj[pet.name] = pet.residents.filter(item => item.sex === 'female').map(element => element.name);
+      const obj = {}
+      if (sorted === ''){
+        obj[pet.name] = pet.residents.filter(item => item.sex === sex).map(element => element.name);
       }
-      if (sorted === true && sex === 'male'){
-        obj[pet.name] = pet.residents.filter(item => item.sex === 'male').map(element => element.name).sort();
-      } 
-      if (sorted === true && sex === 'female') {
-        obj[pet.name] = pet.residents.filter(item => item.sex === 'female').map(element => element.name).sort();
+      if (sorted === true){
+        obj[pet.name] = pet.residents.filter(item => item.sex === sex).map(element => element.name).sort();
       }
       return obj;
     })
   })
   return array;
-}
+};
 
 function animalMap(options = '') {
   let animalList = {};
-  const { includeNames, sex, sorted} = options;
+  const { includeNames, sex, sorted } = options;
   if (options === '') {
     animalList = emptyOption();
   }
   if (includeNames === true) {
-    if (sex === 'male' || sex === 'female') {
-      animalList = sexOption({sex, sorted});
+    if (sex) {
+      animalList = sexOption({ sex, sorted });
     } else {
-      animalList = nameOption({includeNames, sorted});
+      animalList = nameOption({ includeNames, sorted });
     }
   } else {
-    animalList = nameOption({includeNames, sorted});
+    animalList = nameOption({ includeNames, sorted });
   }
   return animalList;
 }
