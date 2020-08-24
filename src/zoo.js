@@ -116,31 +116,26 @@ function increasePrices(percentage) {
 function employeeCoverage(idOrName) {
   // seu código aqui
 
-  if (!idOrName) {
-    const fullList = {};
-    let animalsAux = [];
-    employees.forEach((element) => {
-      element.responsibleFor.forEach((id) => {
-        const objAnimal = animals.find(curr => curr.id === id);
-        animalsAux.push(objAnimal.name);
-      });
-      fullList[`${element.firstName} ${element.lastName}`] = animalsAux;
-      animalsAux = [];
+
+  const fullList = {};
+  let animalsAux = [];
+  employees.forEach((element) => {
+    element.responsibleFor.forEach((id) => {
+      const objAnimal = animals.find(curr => curr.id === id);
+      animalsAux.push(objAnimal.name);
     });
+    fullList[`${element.firstName} ${element.lastName}`] = animalsAux;
+    animalsAux = [];
+  });
+  if (!idOrName) {
     return fullList;
   }
-  const animalsEmployee = {};
   const employeeData = employees.find(element =>
     element.id === idOrName ||
     element.firstName === idOrName ||
     element.lastName === idOrName);
-  const aux = [];
-  employeeData.responsibleFor.forEach((element) => {
-    const animalObj = animals.find(animal => animal.id === element);
-    aux.push(animalObj.name);
-  });
-  animalsEmployee[`${employeeData.firstName} ${employeeData.lastName}`] = aux;
-  return animalsEmployee;
+  const fullName = `${employeeData.firstName} ${employeeData.lastName}`;
+  return { [fullName]: fullList[fullName] };
 }
 
 
