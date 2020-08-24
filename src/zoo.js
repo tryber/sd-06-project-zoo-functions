@@ -51,7 +51,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   const newEmployee = { id, firstName, lastName, managers, responsibleFor };
   return employees.push(newEmployee);
 }
-// On this function below i got help from Mario Duarte to understand the logic.
+// On this function below i got help from Mário Duarte to understand the logic.
 function animalCount(species) {
   // here i defined an constant, it's an object and will be our answer.
   let countResult = {};
