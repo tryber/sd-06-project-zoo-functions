@@ -115,8 +115,6 @@ function schedule(dayName = 0) {
   return daySchedule;
 }
 
-console.log(schedule('Monday'));
-
 function oldestFromFirstSpecies(id) {
   const getIds = employees
   .filter(person => person.id === id)
@@ -142,9 +140,44 @@ function increasePrices(percentage) {
   // seu código aqui
 }
 
-function employeeCoverage(idOrName) {
-  // seu código aqui
+function employeeCoverage(idOrName = 0) {
+  // getting names
+  const names = employees.map(person => `${person.firstName} ${person.lastName}`);
+
+  // Get animals from employees ID
+  const resposibleForId = employees
+  .map(person => person.responsibleFor
+  .map(id => animals.find(animal => (animal.id === id))));
+
+  // Create new array with animal names
+  const animalArr = [];
+  resposibleForId.forEach((item, index) => {
+    animalArr.push(resposibleForId[index].map(animal => animal.name));
+  });
+
+  // Create new object name + animal
+  const myObject = {};
+  names.forEach((name, index) => {
+    myObject[name] = animalArr[index];
+  });
+
+  // find person name
+  let fullName;
+  employees.forEach((person) => {
+    if (person.firstName === idOrName || person.lastName === idOrName || person.id === idOrName) {
+      fullName = `${person.firstName} ${person.lastName}`;
+    }
+  });
+
+  // final return
+  const objToReturn = {};
+  if (idOrName === 0) {
+    return myObject;
+  }
+  objToReturn[fullName] = myObject[fullName];
+  return objToReturn;
 }
+console.log(employeeCoverage('Stephanie'));
 
 module.exports = {
   entryCalculator,
