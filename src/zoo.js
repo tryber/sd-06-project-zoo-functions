@@ -109,13 +109,10 @@ function entryCalculator(entrants = 0) {
   const entrantsArray = Object.entries(entrants);
   let counter = 0;
   entrantsArray.forEach((item) => {
-    if (item[0] === 'Adult') {
-      counter += (49.99 * item[1]);
-    } else if (item[0] === 'Senior') {
-      counter += (24.99 * item[1]);
-    } else if (item[0] === 'Child') {
-      counter += (20.99 * item[1]);
-    }
+    //  https://eslint.org/docs/2.0.0/rules/brace-style
+    if (item[0] === 'Adult') counter += (49.99 * item[1]);
+    else if (item[0] === 'Senior') counter += (24.99 * item[1]);
+    else if (item[0] === 'Child') counter += (20.99 * item[1]);
   });
   return counter;
 }
