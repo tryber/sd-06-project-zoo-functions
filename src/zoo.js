@@ -82,6 +82,7 @@ function entryCalculator(entrants) {
   keys.forEach(el => compare(el));
   return total;
 }
+
 function animalMap(options) {
 }
 
@@ -103,10 +104,13 @@ function schedule(dayName) {
   };
   return (dayName) ? diaParam(dayName) : lista;
 }
-function oldestFromFirstSpecies(id) {
-  // seu código aqui
+function oldestFromFirstSpecies(ide) {
+  const employeeRes = data.employees.find(id => id.id === ide).responsibleFor[0];
+  const animal = data.animals.find(el => el.id === employeeRes);
+  const idade =  animal.residents.map(age => age.age).reduce((acc, act) => (acc < act) ? act : acc);
+  const realAnimal =  animal.residents.find(ele => ele.age === idade);
+  return Object.values(realAnimal);
 }
-
 function increasePrices(percentage) {
   // seu código aqui
 }
