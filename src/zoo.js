@@ -8,9 +8,7 @@ eslint no-unused-vars: [
   }
 ]
 */
-
 // npm test test/nomeDoArquivo.test.js
-
 const data = require('./data');
 const { animals } = require('./data');
 
@@ -19,22 +17,20 @@ function animalsByIds(...ids) {
 
   animals.map((animal) => {
     const { id } = animal;
-    for (let element of ids) {
+    for (const element of ids) {
       if (element === id) {
-        return result.push(animal);
+        result.push(animal);
       }
     }
+    return result;
   });
   return result;
 }
-
 // console.log(animalsByIds('e8481c1d-42ea-4610-8e11-1752cfc05a46', '0938aa23-f153-4937-9f88-4858b24d6bce'));
-// animalsByIds();
 
-function animalsOlderThan(animal, age) {
-  const filterType = animals.filter(({name}) => name === animal)
-  .map(({residents}) => residents.every(({age}) => age > 7));
-  
+function animalsOlderThan(animal, ages) {
+  const filterType = animals.filter(( {name} ) => name === animal)
+  .map(({residents}) => residents.every(( {age} ) => age > ages));
   return filterType[0];
 }
 
