@@ -62,6 +62,14 @@ function entryCalculator(entrants) {
   ), 0);
 }
 
+function getSex(name, sex) {
+  return { [name]: animals
+    .find(animal => animal.name === name)
+    .residents
+    .filter(resident => (resident.sex === sex))
+    .map(item => item.name) }
+}
+
 function animalMap(options = {}) {
   const { includeNames = false, sorted = false, sex = '' } = options;
   const LOCAL = animals.filter(item => item.location)
@@ -71,7 +79,7 @@ function animalMap(options = {}) {
     return LOCAL.reduce((acc, { location, name }) => (
       Object.assign(acc, { [location]: acc[location].concat(sorted ? { [name]: animals.find(
         animal => animal.name === name).residents.map(resident => resident.name).sort() } :
-          { [name]: animals.find(a => a.name === name).residents.map(b => b.name), }) })
+          { [name]: animals.find(a => a.name === name).residents.map(b => b.name) }) })
     ), { NE: [], NW: [], SE: [], SW: [] });
   }
 
@@ -79,8 +87,7 @@ function animalMap(options = {}) {
     return LOCAL.reduce((acc, { location, name }) => (
       Object.assign(acc, { [location]: acc[location].concat(sorted ? { [name]: animals.find(
       a => a.name === name).residents.filter(b => b.sex === sex).map(c => c.name).sort() } :
-      { [name]: animals.find(
-        d => d.name === name).residents.filter(e => (e.sex === sex)).map(f => f.name) }) })
+      getSex(name, sex)) })
     ), { NE: [], NW: [], SE: [], SW: [] });
   }
 
