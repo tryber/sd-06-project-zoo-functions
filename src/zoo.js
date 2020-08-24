@@ -44,13 +44,11 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  for (let i in employees) {
-    if (employees[i].managers[i] === id) {
-      return true;
-    } else {
-      return false;
-    }
+  const resultEmployee = data.employees.map((employee, index) => employee.managers[index] === id);
+  if (resultEmployee.find(value => value === true)) {
+    return true;
   }
+  return false;
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
