@@ -107,33 +107,23 @@ function animalMap(options) {
 
 function schedule(dayName) {
   // seu código aqui
+  const hoursObject = {};
+  const arrayKeys = Object.keys(hours);
+  arrayKeys.forEach((day) => {
+    const auxDay = data.hours[day];
+    if (auxDay.open === 0) {
+      hoursObject[day] = 'CLOSED';
+    } else {
+      hoursObject[day] = `Open from ${auxDay.open}am until ${auxDay.close - 12}pm`;
+    }
+  });
   if (!dayName) {
-    return ({
-      'Tuesday': `Open from ${hours.Tuesday.open}am until ${hours.Tuesday.close - 12}pm`,
-      'Wednesday': `Open from ${hours.Wednesday.open}am until ${hours.Wednesday.close - 12}pm`,
-      'Thursday': `Open from ${hours.Thursday.open}am until ${hours.Thursday.close - 12}pm`,
-      'Friday': `Open from ${hours.Friday.open}am until ${hours.Friday.close - 12}pm`,
-      'Saturday': `Open from ${hours.Saturday.open}am until ${hours.Saturday.close - 12}pm`,
-      'Sunday': `Open from ${hours.Sunday.open}am until ${hours.Sunday.close - 12}pm`,
-      'Monday': 'CLOSED'
-    });
+    return hoursObject;
   }
-  switch (dayName) {
-    case 'Monday':
-      return { 'Monday': 'CLOSED' };
-    case 'Tuesday':
-      return { 'Tuesday' : `Open from ${hours.Tuesday.open}am until ${hours.Tuesday.close - 12}pm` };
-    case 'Wednesday':
-      return { 'Wednesday': `Open from ${hours.Wednesday.open}am until ${hours.Wednesday.close - 12}pm` };
-    case 'Thursday':
-      return { 'Thursday': `Open from ${hours.Thursday.open}am until ${hours.Thursday.close - 12}pm` };
-    case 'Friday':
-      return { 'Friday': `Open from ${hours.Friday.open}am until ${hours.Friday.close - 12}pm` };
-    case 'Saturday':
-      return { 'Saturday': `Open from ${hours.Saturday.open}am until ${hours.Saturday.close - 12}pm` };
-    case 'Sunday':
-      return { 'Sunday': `Open from ${hours.Sunday.open}am until ${hours.Sunday.close - 12}pm` };
-  }
+  const objDayName = {
+    [dayName]: hoursObject[dayName],
+  };
+  return objDayName;
 }
 
 function oldestFromFirstSpecies(id) {
