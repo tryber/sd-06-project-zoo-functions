@@ -84,7 +84,10 @@ function schedule(dayName) {
   return { [dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm` };
 }
 function oldestFromFirstSpecies(id) {
-
+  const specieAnimal = employees.find(employees => employees.id === id).responsibleFor[0];
+  const residentsSpecies = animals.find(animal => animal.id === specieAnimal).residents;
+  const animalFinal = residentsSpecies.reduce((acc, { name, sex, age }) => (age > acc.age ? [name, sex, age] : acc));
+  return animalFinal;
 }
 
 function increasePrices(percentage) {
