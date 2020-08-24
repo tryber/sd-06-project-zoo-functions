@@ -57,9 +57,7 @@ function createEmployee(personalInfo, associatedWith) {
 function isManager(id) {
   const arr = [];
   const managersList = data.employees
-    .forEach(Element => (
-      arr.push(Element.managers)
-    ));
+    .forEach(Element => (arr.push(Element.managers)));
 
   const newArray = arr
     .reduce((acc, sub) => acc.concat(sub), []);
