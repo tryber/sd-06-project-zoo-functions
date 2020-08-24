@@ -53,6 +53,7 @@ function employeeByName(...employeeName) {
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
+  return Object.assign({}, personalInfo, associatedWith)
 }
 
 function isManager(id) {
@@ -62,6 +63,9 @@ function isManager(id) {
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
+  let newEmployee = { id, firstName, lastName, managers, responsibleFor }
+  employees.push(newEmployee);
+  console.log(employees)
 }
 
 function animalCount(species) {
@@ -80,11 +84,25 @@ function animalCount(species) {
   } return total;
 }
 
-function entryCalculator(entrants) {
+function entryCalculator(entrants) { /** INCOMPLETED */
   // seu código aqui
+  var total = 0;
+  if (entrants === undefined || Object.keys(entrants).length === 0) {return total;}
+  for (age in entrants) {
+    if (age === 'Adult') {
+      total += entrants[age] * 49.99;
+    }
+    if (age === 'Child') {
+      total += entrants[age] * 20.99;
+    }
+    if (age === 'Senior') {
+      total += entrants[age] * 24.99;
+    }
+  }
+  return total;
 }
 
-function animalMap(options) {
+function animalMap(...options) {
   // seu código aqui
 }
 
