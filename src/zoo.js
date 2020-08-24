@@ -10,7 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { animals, hours, prices } = require('./data');
+const { animals, prices } = require('./data');
 const { employees } = require('./data');
 
 //  requisito1 - ok
