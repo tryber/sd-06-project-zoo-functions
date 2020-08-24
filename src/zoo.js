@@ -124,6 +124,21 @@ function schedule(dayName) {
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
+  let localizaFuncionario = employees
+  .find(element => element.id === id);
+  localizaFuncionario = localizaFuncionario.responsibleFor[0];
+  const findFirstSpecie = animals
+  .find(element => element.id === localizaFuncionario);
+  let biggest = 0;
+  let finalResult = '';
+  const arrayOfResidents = findFirstSpecie.residents;
+  arrayOfResidents.forEach((element) => {
+    if (element.age > biggest) {
+      biggest = element.age;
+      finalResult = element;
+    }
+  });
+  return Object.values(finalResult);
 }
 
 function increasePrices(percentage) {
