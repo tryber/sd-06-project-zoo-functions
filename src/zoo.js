@@ -72,7 +72,7 @@ function animalCount(species = '') {
 function entryCalculator(entrants) {
   // seu código aqui
   let total = 0;
-  if (entrants === undefined || entrants === {}) {
+  if (!entrants) {
     return total;
   }
   const entryObj = Object.entries(entrants);
