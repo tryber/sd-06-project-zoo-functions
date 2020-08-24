@@ -64,8 +64,8 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 function animalCount(species) {
   const countReport = {};
-  animals.forEach(animal => {
-    countReport[animal.name] = animal.residents.length; 
+  animals.forEach((animal) => {
+    countReport[animal.name] = animal.residents.length;
   });
 
   if (species === undefined) {
@@ -79,9 +79,9 @@ function entryCalculator(entrants) {
 
   const entrantsTypes = Object.keys(entrants);
   return entrantsTypes
-  .reduce((acc, entrantType) => {
-    return acc += prices[entrantType] * entrants[entrantType];
-  }, 0);
+  .reduce((acc, entrantType) => (
+    acc += prices[entrantType] * entrants[entrantType]
+  ), 0);
 }
 
 function animalMap(options) {
