@@ -135,12 +135,12 @@ function increasePrices(percentage) {
   keysObj.forEach((key) => {
     const newValue = (prices[key] * (percentage / 100)) + prices[key];
     prices[key] = Math.round(newValue * 100) / 100;
-  })
-  return prices;
+  });
 }
 
 function employeeCoverage(idOrName) {
   // seu código aqui
+
 }
 
 module.exports = {
