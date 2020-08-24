@@ -30,8 +30,8 @@ function employeeByName(employeeName) {
     return {};
   }
   const findingEmployees = employees
-  .find((employeeNames =>
-  (employeeNames.firstName === employeeName || employeeNames.lastName === employeeName)));
+    .find((employeeNames =>
+      (employeeNames.firstName === employeeName || employeeNames.lastName === employeeName)));
   return findingEmployees;
 }
 
@@ -63,9 +63,9 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 function animalCount(species) {
   if (species === undefined) {
     return animals
-    .reduce((previousValue, currentValue) => ({
-      ...previousValue, [currentValue.name]: currentValue.residents.length,
-    }), {});
+      .reduce((previousValue, currentValue) => ({
+        ...previousValue, [currentValue.name]: currentValue.residents.length,
+      }), {});
   }
   const targetAnimal = animals.find((animal => species === animal.name));
   return targetAnimal.residents.length;
@@ -84,16 +84,15 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  const weekSchedule =
-    {
-      'Tuesday': 'Open from 8am until 6pm',
-      'Wednesday': 'Open from 8am until 6pm',
-      'Thursday': 'Open from 10am until 8pm',
-      'Friday': 'Open from 10am until 8pm',
-      'Saturday': 'Open from 8am until 10pm',
-      'Sunday': 'Open from 8am until 8pm',
-      'Monday': 'CLOSED'
-    };
+  const weekSchedule = {
+    Tuesday: 'Open from 8am until 6pm',
+    Wednesday: 'Open from 8am until 6pm',
+    Thursday: 'Open from 10am until 8pm',
+    Friday: 'Open from 10am until 8pm',
+    Saturday: 'Open from 8am until 10pm',
+    Sunday: 'Open from 8am until 8pm',
+    Monday: 'CLOSED',
+  };
   if (dayName === undefined) {
     return weekSchedule;
   }
