@@ -33,7 +33,7 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  //return data.employees.map(())
 }
 
 function isManager(id) {
@@ -45,7 +45,13 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 }
 
 function animalCount(species) {
-
+  if (!species) { 
+    return data.animals.reduce((objectAnimals, current) => {
+      objectAnimals[current.name] = current.residents.length;
+      return objectAnimals;
+    }, {});
+  }
+  return data.animals.find(getAnimal => getAnimal.name === species).residents.length;
 }
 
 function entryCalculator(entrants) {
