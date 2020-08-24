@@ -227,13 +227,17 @@ function animalMap(options) {
   return output;
 }
 
+const returnSchedule = (day) => {
+  return `Open from ${data.hours[day].open}am until ${(data.hours[day].close) - 12}pm`;
+}
+
 // 24h to 12h = (-12)
 const defaultSchedule = () => {
   const output = {};
   const days = Object.keys(data.hours);
   for (let index = 0; index < days.length; index += 1) {
     if (data.hours[days[index]].open !== 0) {
-      output[days[index]] = `Open from ${data.hours[days[index]].open}am until ${(data.hours[days[index]].close) - 12}pm`;
+      output[days[index]] = returnSchedule(days[index]);
     } else {
       output[days[index]] = 'CLOSED';
     }
@@ -244,13 +248,17 @@ const defaultSchedule = () => {
 const getDaySchedule = (day) => {
   const output = {};
   const days = Object.keys(data.hours);
+  const closedDay = days[days.length - 1];
   for (let index = 0; index < days.length; index += 1) {
-    if (days[index] === day) {
-      output[day] = `Open from ${data.hours[days[index]].open}am until ${(data.hours[days[index]].close) - 12}pm`;
+    if (days[index] === day && closedDay !== day) {
+      output[day] = returnSchedule(day);
+    }
+    if (day === closedDay) {
+      output[day] = "CLOSED";
     }
   }
   return output;
-}
+};
 
 function schedule(dayName) {
   switch (dayName) {
