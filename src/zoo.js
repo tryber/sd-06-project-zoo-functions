@@ -12,6 +12,7 @@ eslint no-unused-vars: [
 const data = require('./data');
 const { animals } = require('./data');
 // const { hours } = require('./data')
+const { employees } = require('./data');
 
 function animalsByIds(...ids) {
   // rest parameter inserido para que pudessem ser utilizados quantos parametros necessarios
@@ -30,10 +31,19 @@ function animalsOlderThan(animal, age) {
   return ageComparator;
 }
 
-
 function employeeByName(employeeName) {
-  // seu código aqui
+  if (employeeName === undefined){
+    return {};
+  }else {
+    const nameOfTheEmployee = employees
+    .find(theEmployee => theEmployee.firstName === employeeName || theEmployee.lastName === employeeName);
+    // usar find para encontrar o funcionario e suas properties para o primeiro nome OU para o ultimo nome e tirar do array
+  
+    return nameOfTheEmployee;
+  }
 }
+
+ console.log(employeeByName("Wishart"))
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
