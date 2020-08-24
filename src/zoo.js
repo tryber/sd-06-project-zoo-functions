@@ -99,10 +99,11 @@ function entryCalculator(entrants) {
 const defaultMap = () => {
   const locationArr = ['NE', 'NW', 'SE', 'SW'];
   const output = {};
-  for (let index = 0; index < locationArr.length; index += 1) {
-    output[locationArr[index]] = data.animals
-    .filter(animal => animal.location === locationArr[index]).map(animal => animal.name);
-  }
+
+  locationArr.forEach(location => {
+    output[location] = data.animals.filter(animal => animal.location === location)
+    .map(animal => animal.name);
+  });
   return output;
 };
 
