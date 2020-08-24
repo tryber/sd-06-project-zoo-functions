@@ -83,7 +83,7 @@ function entryCalculator(entrants) {
   if (entrants.Adult) totalChild += entrants.Adult * data.prices.Adult;
   if (entrants.Senior) totalSenior += entrants.Senior * data.prices.Senior;
   if (entrants.Child) totalAdult += entrants.Child * data.prices.Child;
-  let total = totalChild + totalSenior + totalAdult;
+  const total = totalChild + totalSenior + totalAdult;
   return total;
 }
 
