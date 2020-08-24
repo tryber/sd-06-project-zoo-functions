@@ -120,20 +120,23 @@ function increasePrices(percentage) {
   Object.keys(prices).forEach((k) => { prices[k] = Math.round(prices[k] * rate * 100) / 100; });
 }
 
-const employeeCoverageObjectConstructor = listOfEmployees =>
-  listOfEmployees.reduce((list, employee) => ({
+function employeeCoverageObjectConstructor(listOfEmployees) {
+  return listOfEmployees.reduce((list, employee) => ({
     ...list,
     [`${employee.firstName} ${employee.lastName}`]: employee.responsibleFor
       .map(specieId => animals.find(specie => specie.id === specieId).name),
   }), {});
+}
 
-const employeeCoverageGetEmployee = (employee, idOrName) =>
-  employee.firstName === idOrName || employee.lastName === idOrName || employee.id === idOrName;
+function employeeCoverageGetOrValidateEmployee(employee, idOrName) {
+  return employee.firstName === idOrName || employee.lastName === idOrName ||
+    employee.id === idOrName;
+}
 
 function employeeCoverage(idOrName) {
-  if (employees.some(employee => employeeCoverageGetEmployee(employee, idOrName))) {
+  if (employees.some(employee => employeeCoverageGetOrValidateEmployee(employee, idOrName))) {
     const chosenEmployee = employees.filter(employee =>
-      employeeCoverageGetEmployee(employee, idOrName));
+      employeeCoverageGetOrValidateEmployee(employee, idOrName));
 
     const result = employeeCoverageObjectConstructor(chosenEmployee);
     return result;
