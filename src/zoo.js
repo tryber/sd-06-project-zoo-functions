@@ -15,6 +15,7 @@ const data = require('./data');
 //  Ao receber como parâmetro um único id, retorna os animais com este id
 //  Ao receber mais de um id, retorna os animais que têm um desses ids
 function animalsByIds(...ids) {
+  //  !!!!!!Reever codigo com defaulParameter!!!!!
   if (ids.length === 0) {
     return [];
   }
@@ -38,6 +39,7 @@ function animalsOlderThan(animal, age) {
 //  Quando provido o primeiro nome do funcionário, retorna o objeto do funcionário
 //  Quando provido o último nome do funcionário, retorna o objeto do funcionário
 function employeeByName(employeeName) {
+  //  !!!!!!Reever codigo com defaulParameter!!!!!
   if (employeeName === undefined) {
     return {};
   }
@@ -64,6 +66,7 @@ function isManager(id) {
   for (let i = 0; i < arrayManagers.length; i += 1) {
     Array.prototype.push.apply(newArray, arrayManagers[i]);
   }
+  // !!!!!! Reever codigo com some que retorna true o false !!!!!!!!
   const managerFinder = newArray.find(item => item === id);
   if (managerFinder !== undefined) {
     return true;
@@ -78,8 +81,21 @@ function addEmployee(id = [], firstName = [], lastName = [], managers = [], resp
   return data.employees.push(employ);
 }
 
+//  Sem parâmetros, retorna animais e suas quantidades
+//  Com o nome de uma espécie de animal, retorna somente a quantidade
 function animalCount(species) {
-  // seu código aqui
+  if (species === undefined) {
+    const quantityAnimals = {};
+    data.animals
+      .forEach((animal) => {
+        quantityAnimals[animal.name] = animal.residents.length;
+      });
+    return quantityAnimals;
+  }
+
+  const animalNumber = data.animals
+    .find(animal => animal.name === species);
+  return animalNumber.residents.length;
 }
 
 function entryCalculator(entrants) {
