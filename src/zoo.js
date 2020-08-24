@@ -93,6 +93,7 @@ function schedule(dayName) {
   // Sem parâmetros, retorna um cronograma legível para humanos
   // Se um único dia for passado, retorna somente este dia em um formato legível // // para humanos
   // ver conversão de hora PM ====> hora24 - 12
+  /*
   const week = {
     'Tuesday': `Open from ${hours.open}am until ${hours.close - 12}pm`,
     'Wednesday': `Open from ${hours.open}am until ${hours.close - 12}pm`,
@@ -102,6 +103,7 @@ function schedule(dayName) {
     'Sunday': `Open from ${hours.open}am until ${hours.close - 12}pm`,
     'Monday': `CLOSED`,
   };
+  */
 }
 
 function oldestFromFirstSpecies(id) {
