@@ -16,14 +16,15 @@ function animalsByIds(...entrada) {
   // referencia icaro corporation do Brasil
   // https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/filtro
   // https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/contains
-  /* usando o filtro para selecionar os id que estão incluidos no paramentro       */ 
+  /* usando o filtro para selecionar os id que estão incluidos no paramentro */
   return data.animals.filter(resposta => entrada.includes(resposta.id));
 }
 
 function animalsOlderThan(animal, age) {
 // https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/find
 // https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/every
-  return data.animals.find(animals => animals.name === animal).residents.every(resultado  => resultado.age >= age);
+  return animals.find(animals => animals.name === animal).residents
+  .every(resultado  => resultado.age >= age);
 }
 
 function employeeByName(employeeName) {
