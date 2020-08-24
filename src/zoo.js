@@ -84,8 +84,8 @@ function animalMap(options) {
 function schedule(dayName) {
   const dayObject = Object.keys(hours);// array dos dias
   const visitTime = Object.values(hours);// array hs obs: acesso pelo .open/.close
-  const newObject = {};// objeto p/ salvar linhas do resultado/template string
-  dayObject.forEach((day, i) => {
+  const newObject = {};// objeto p/ salvar dias/linhas do resultado/template string
+  dayObject.forEach((day, i) => { // p/ cada dia cria um value/template,obs: monday = close
     if (day === 'Monday') {
       newObject[day] = 'CLOSED';
     } else {
@@ -95,7 +95,7 @@ function schedule(dayName) {
   if (dayName === undefined) {
     return newObject;
   }
-  const line = {};
+  const line = {};// objeto resposta default
   line[dayName] = newObject[dayName];
   return line;
 }
@@ -105,8 +105,13 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  const percentageValue = (percentage / 100) + 1;
+  prices.Adult = (Math.round((prices.Adult * percentageValue) * 100) / 100);
+  prices.Senior = (Math.round((prices.Senior * percentageValue) * 100) / 100);
+  prices.Child = (Math.round((prices.Child * percentageValue) * 100) / 100);
+  return prices;
 }
+
 
 function employeeCoverage(idOrName) {
   // seu código aqui
