@@ -63,7 +63,9 @@ function animalCount(species = '') {
   if (species !== '') {
     return animals.find(pet => pet.name === species).residents.length;
   }
-  animals.forEach(pet => allCounts[pet.name] = pet.residents.length);
+  animals.forEach((pet) => {
+    allCounts[pet.name] = pet.residents.length;
+  });
   return allCounts;
 }
 console.log(animalCount());
