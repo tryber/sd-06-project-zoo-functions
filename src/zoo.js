@@ -85,44 +85,42 @@ function entryCalculator(entrants) {
 function animalMap(options) {
   // seu código aqui
 }
-
-function schedule(dayName) {
-  // seu código aqui
-  function AmPm(hora) {
-    if(hora > 0 && hora < 12) {
-      return `${hora}am`
-    } else if (hora > 12 && hora <= 23) {
-      return `${hora -12}pm`
-    } else if (hora == 0 ) {
-      return `${hora}am`
-    } else if (hora == 12) {
-      return `${hora}pm`
-    }
-  }
-  const dias = Object.keys(hours)
-  const horario = Object.values(hours)
-  const obj = {}
-  if (dayName === undefined) {
-    horario.map((element,index,array) => {
-      if (index === array.length -1) return (obj[dias[index]] = `CLOSED`)
-      return (obj[dias[index]] = `Open from ${AmPm(element.open)} until ${AmPm(element.close)}`)
-    })
-    return obj
-  }
-  if (dayName === 'Monday') {
-    (obj[dayName] = `CLOSED`)
-    return obj
-  } else {
-    let specificDay = Object.entries(hours)
-   specificDay.filter(day => day[0] === dayName)
-   .reduce((acc,curr,index) => {
-     (obj[dayName] = `Open from ${AmPm(curr[1].open)} until ${AmPm(curr[1].close)}`)
-   }, {} )
-   return obj
+function AmPm(hora) {
+  if (hora > 0 && hora < 12) {
+    return `${hora}am`;
+  } else if (hora > 12 && hora <= 23) {
+    return `${hora - 12}pm`;
+  } else if (hora === 0) {
+    return `${hora}am`;
+  } else if (hora === 12) {
+    return `${hora}pm`;
   }
 }
+function schedule(dayName) {
+  // seu código aqui
 
-console.log(schedule('Monday'))
+  const dias = Object.keys(hours);
+  const horario = Object.values(hours);
+  const obj = {};
+  if (dayName === undefined) {
+    horario.map((element, index, array) => {
+      if (index === array.length - 1) return (obj[dias[index]] = 'CLOSED');
+      return (obj[dias[index]] = `Open from ${AmPm(element.open)} until ${AmPm(element.close)}`);
+    });
+    return obj;
+  }
+  if (dayName === 'Monday') {
+    (obj[dayName] = 'CLOSED');
+    return obj;
+  }
+  const specificDay = Object.entries(hours);
+  specificDay.filter(day => day[0] === dayName)
+    .reduce((acc, curr, index) => {
+      (obj[dayName] = `Open from ${AmPm(curr[1].open)} until ${AmPm(curr[1].close)}`);
+      return curr;
+    }, {});
+  return obj;
+}
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
