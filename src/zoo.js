@@ -276,9 +276,8 @@ function increasePrices(percentage) {
 const getAnimals = (ids) => {
   const output = [];
   for (let index = 0; index < ids.length; index += 1) {
-    // gotta refactor here, too specific
     output.push(data.animals.filter(animal => animal.id === ids[index])
-    .map(animal => animal.name)[0]);
+    .map(animal => animal.name).find(animal => animal));
   }
   return output;
 };
@@ -298,17 +297,14 @@ function employeeCoverage(idOrName) {
   const output = {};
   if (idOrName === undefined) {
     return defaultEmployeeList();
-  } else {
-    const checkedEmployee = data.employees.filter(employee =>
-    (idOrName === employee.id || idOrName === employee.firstName || idOrName === employee.lastName))
-    .find(employee => employee);
-    const fullName = `${checkedEmployee.firstName} ${checkedEmployee.lastName}`;
-    output[fullName] = getAnimals(checkedEmployee.responsibleFor);
   }
+  const checkedEmployee = data.employees.filter(employee =>
+  (idOrName === employee.id || idOrName === employee.firstName || idOrName === employee.lastName))
+  .find(employee => employee);
+  const fullName = `${checkedEmployee.firstName} ${checkedEmployee.lastName}`;
+  output[fullName] = getAnimals(checkedEmployee.responsibleFor);
   return output;
 }
-
-console.log(employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
 
 module.exports = {
   entryCalculator,
