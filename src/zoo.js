@@ -14,9 +14,11 @@ const data = require('./data');
 function animalsByIds(...ids) {
   const foundAnimal = [];
   if (ids) {
-    ids.forEach(id => foundAnimal.push(...data.animals
-      .filter(animal => animal.id === id)));
+    ids.forEach(id => foundAnimal.push(
+      ...data.animals.filter(animal => animal.id === id)
+    ));
   }
+
   return foundAnimal;
 }
 
@@ -25,32 +27,35 @@ function animalsOlderThan(animal, age) {
     .find(zooAnimal => zooAnimal.name === animal);
   const areAllAnimalsOlder = checkAllAnimals.residents
     .every(resident => resident.age > age);
+
   return areAllAnimalsOlder;
 }
 
 function employeeByName(employeeName) {
   let happyEmployee = {};
   if (employeeName) {
-    happyEmployee = data.employees
-    .find(thatEmployee =>
+    happyEmployee = data.employees.find(thatEmployee =>
       thatEmployee.firstName === employeeName ||
-      thatEmployee.lastName === employeeName);
+      thatEmployee.lastName === employeeName
+    );
   }
+
   return happyEmployee;
 }
 
 function createEmployee(personalInfo, associatedWith) {
   const newHappiestEmployeeEva = { ...personalInfo, ...associatedWith };
   const newHappyEmplyoeeData = data.employees.concat(newHappiestEmployeeEva);
+
   return newHappyEmplyoeeData[newHappyEmplyoeeData.length - 1];
 }
 
 function isManager(id) {
-  const areYouABoss = data.employees.find(bossy => bossy.managers
-    .some(idManager => idManager === id));
-  if (!areYouABoss) {
-    return false;
-  }
+  const areYouABoss = data.employees.find(
+    bossy => bossy.managers.some(idManager => idManager === id)
+  );
+  if (!areYouABoss) return false;
+
   return true;
 }
 
@@ -63,6 +68,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
     responsibleFor,
   };
   const newEmployeeMemory = data.employees.push(lookANewEmployeeHasBegun);
+
   return newEmployeeMemory;
 }
 
