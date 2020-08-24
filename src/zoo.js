@@ -8,8 +8,7 @@ eslint no-unused-vars: [
   }
 ]
 */
-// ----------------------------------------------------------------------------------------
-// Convenção de abreviações
+// ----------------------------CONVENÇÃO--DE--ABREVIAÇÕES----------------------------------
 // anm = animal | anms = animals | grp = group | grps = groups | arr= array | vfy = verify
 // rsd = residents | obj = object | res = result | per = person | sts = states | st = state
 // cst = construct | per = person
@@ -192,8 +191,19 @@ function animalMap(options) {
 
 function schedule(dayName) {
   // seu código aqui
-  const objToReturn = {};
+  // Se é recebido uma string com o nome do dia, encapsulamos esse nome dentro de um array para
+  // usarmos como chave de trabalho, senão caso não seja passado nenhum input, pegamos
+  // todas as chaves do objeto cronograma (data.hours) para usarmos. 
   const objKeys = (dayName !== undefined && dayName !== '') ? [dayName] : Object.keys(data.hours);
+  const objToReturn = {};
+  
+  // Para cada chave (cada dia) pegamos o horário de abertura e de fechamento e para ficarmos no
+  // padrão am/pm de horas, se o horário for maior que 12 subtraimos 12.
+  // Pra construir o valor de retorno verficamos os horários! Se os horários de abertura/fechamento
+  // forem iguais a zero retornamos "CLOSED" senão retornamos uma string no formato
+  // "Open ${hora abertura}"am until ${hora fechamento}pm"
+  // Tendo a chave (nome do dia) e o valor construído (value), para cada dia do objKeys, retornamos
+  // um objeto com essa chave-valor
   objKeys.forEach((key) => {
     let { open, close } = data.hours[key];
     close = (close > 12) ? close - 12 : close;
@@ -206,8 +216,16 @@ function schedule(dayName) {
 
 function oldestFromFirstSpecies(id) {
   // seu código
+  // Passo 1 - Encontra o funcionario referente ao id recebido como input e na sequência retorna o
+  // id do primeiro grupo de aniamis de que é responsável (anmGrpId).
   const anmGrpId = data.employees.find(obj => obj.id === id).responsibleFor[0];
+
+  // Passo 2 - Tendo o id do grupo de animais (anmGrpId) procura-se pelo objeto que tem esse id,
+  // ou seja procura o grupo.
   const anmGrp = data.animals.find(obj => obj.id === anmGrpId);
+  
+  // Passo 3 - Tendo o grupo, verifica-se para cada animal residente se sua idade é maior que a
+  // idade do residente anterior. Assim determina-se o mais velho do grupo.  
   let oldest = anmGrp.residents[0];
   anmGrp.residents.forEach((anm) => {
     oldest = (anm.age > oldest.age) ? anm : oldest;
@@ -217,6 +235,11 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   // seu código aqui
+  // Nesse caso recebemos uma taxa de aumento (percentage) do preço d ingresso, logo temos que
+  // atualizar o preço do ingresso na base de dados (data.prices). Então pra cada tipo de ingresso
+  // ('Adult', 'Senior', 'Child') que são as chaves de data.prices, atualizamos o valor.
+  // Passada um chave (key) para a rotina do forEach, busca-se o preço atual correspondente aquela
+  // chave (data.prices[key]) faz os calculos e atualiza o valor.
   Object.keys(data.prices).forEach((key) => {
     data.prices[key] = Math.round(((1 + (0.01 * percentage)) * data.prices[key]) * 100) / 100;
   });
@@ -226,18 +249,31 @@ function employeeCoverage(idOrName) {
   // seu código aqui
   let objEmployees;
   const input = idOrName;
+  // Se é passado um input para a função, procuramos o funcionário que possui aquele input
+  // como firstName ou como lastName ou como id, e armazenamos esse objeto funcionário.
+  // Se não é passado nenhum valor como input, nós pegamos todos os funcionários (data.employees)
   if (idOrName !== undefined && idOrName !== '') {
     const vfy = obj => obj.id === input || obj.firstName === input || obj.lastName === input;
     objEmployees = [data.employees.find(obj => vfy(obj))];
   } else {
     objEmployees = data.employees;
   }
+
+  // Com os funcionários disponíveis para trabalharmos (objEmployees), para cada funcionário
+  // (objEmployee) pegamos os ids dos grupos de animais de que é responsável (idsOfAnimalsCovered).
+  // Tendo os ids dos animais cuidados pelo funcionário (idsOfAnimalsCovered), com um reduce,
+  // para cada id procuramos o grupo de animais que possui o id em questão, e assim que encontrado
+  // retorna-se o nome da espécie daquele grupo e esse nome é adicionado ao acumuluador que no caso
+  // é um array. 
+  // Tendo esse array com o nome de todas as espécies que o funcionário cuida (value), construímos
+  // uma chave com o nome completo do funcionário e adicionamos esse par chave-valor ao objeto de
+  // retorno. E por último, retorna-se esse objeto de retorno (objToReturn). 
   const objToReturn = {};
   objEmployees.forEach((objEmployee) => {
     const idsOfAnimalsCovered = objEmployee.responsibleFor;
-    const key = `${objEmployee.firstName} ${objEmployee.lastName}`;
     const anmGrpName = id => data.animals.find(obj => obj.id === id).name;
     const value = idsOfAnimalsCovered.reduce((res, id) => res.concat(anmGrpName(id)), []);
+    const key = `${objEmployee.firstName} ${objEmployee.lastName}`;
     objToReturn[key] = value;
   });
   return objToReturn;
