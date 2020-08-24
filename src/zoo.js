@@ -40,11 +40,10 @@ function employeeByName(employeeName) {
   .filter(name => name.firstName === employeeName || name.lastName === employeeName);
   return providedName[0];
 }
-  // return employees
-  // .find(name => name.firstName === employeeName || name.lastName === employeeName);
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
+  return Object.assign(personalInfo, associatedWith);
 }
 
 function isManager(id) {
