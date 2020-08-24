@@ -10,26 +10,21 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { animals}= require('./data.js');
-function animalsByIds(ids) {
+const { animals } = require('./data.js');
+function animalsByIds(...ids) {
   const animalId = animals
   .filter (ident =>  ident.id === ids  );
-  //.map(ident => ident.name );
-
   return(animalId);
 }
- 
- let resp = animalsByIds( );
+  let rest = animalsByIds('e8481c1d-42ea-4610-8e11-1752cfc05a46');
+  console.log(rest);
 
- function animalsOlderThan(animal, age) {
-//Ao passar o nome de uma espécie e uma idade,
-//testa se todos os animais desta espécie possuem a idade mínima especificada animal, age }
- return animals.find(anima, age);
+  function animalsOlderThan(animal, age) {
+  return animals.find(anima, age);
 }
 
 function employeeByName(employeeName) {
-  // seu código aqui -Cria um novo colaborador a partir de objetos contendo informações pessoais,
-  //gerentes e animais gerenciados
+  // seu código aqui
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -49,9 +44,7 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui - 'Retorna 0 se nenhum argumento for passado
-  // Retorna 0 se um objeto vazio for passado
-  //Retorna o preço total a ser cobrado dado o número de adultos, crianças e idosos
+  // seu código aqui
 }
 
 function animalMap(options) {
@@ -63,17 +56,13 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui - 'Passado o id de um funcionário, encontra a primeira espécie de animal gerenciado
-  // pelo funcionário, e retorna um array com nome, sexo e idade do animal mais velho dessa espécie
+  // seu código aqui
 }
 
 function increasePrices(percentage) {
-  // seu código aqui - 'Ao passar uma porcentagem, incrementa todos os preços, arrendondados em
-  //duas casas decimais
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui - 'Sem parâmetros, retorna uma lista de funcionários e os animais pelos quais eles são responsáveis
 }
 
 module.exports = {
