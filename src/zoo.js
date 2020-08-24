@@ -23,8 +23,8 @@ function animalsByIds(...entrada) {
 function animalsOlderThan(animal, age) {
 // https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/find
 // https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/every
-  return animals.find(animals => animals.name === animal).residents
-  .every(resultado  => resultado.age >= age);
+  return animals.find(nome => nome.name === animal).residents
+  .every(resultado => resultado.age >= age);
 }
 
 function employeeByName(employeeName) {
