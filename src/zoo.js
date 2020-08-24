@@ -80,9 +80,9 @@ function entryCalculator(entrants) {
   let totalChild = 0;
   let totalSenior = 0;
   let totalAdult = 0;
-  if (entrants.Adult) totalChild += entrants.Adult * data.prices.Adult;
+  if (entrants.Adult) totalAdult += entrants.Adult * data.prices.Adult;
   if (entrants.Senior) totalSenior += entrants.Senior * data.prices.Senior;
-  if (entrants.Child) totalAdult += entrants.Child * data.prices.Child;
+  if (entrants.Child) totalChild += entrants.Child * data.prices.Child;
   const total = totalChild + totalSenior + totalAdult;
   return total;
 }
@@ -121,7 +121,13 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  const entrancePrices = Object.keys(data.prices);
+  entrancePrices.forEach((key) => {
+    data.prices[key] = Math.round(((1 + (0.01 * percentage)) * data.prices[key]) * 100) / 100;
+  });
+  // para cada key (adult, senior ou child) alteramos o valor
+  // Usamos math.round para arredondar o valor.
+  // fazemos *100 e depois /100 para arredondar em duas casas decimais.
 }
 
 function employeeCoverage(idOrName) {
