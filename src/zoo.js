@@ -132,6 +132,27 @@ function increasePrices(percentage) {
 
 function employeeCoverage(idOrName) {
   // seu código aqui
+  // Sem parâmetros, retorna lista de funcionários e os animais pelos quais eles são responsáveis
+  const employeesResponsibleForAnimals = {};
+  if (idOrName === undefined) {
+    employees.forEach((employee) => {
+      const fullName = `${employee.firstName} ${employee.lastName}`;
+      const animalsCared = animalsByIds(...employee.responsibleFor);
+      animalsCared.forEach((animal, index, array) => (array[index] = animal.name));
+      employeesResponsibleForAnimals[fullName] = animalsCared;
+    });
+    return employeesResponsibleForAnimals;
+  }
+  // Pelo id, 1o nome ou último nome de um funcionário, 
+  // retorna os animais pelos quais o funcionário é responsável
+  const worker = employees.find(employee =>
+    employee.id === idOrName || employee.firstName ===
+    idOrName || employee.lastName === idOrName);
+  const fullName = `${worker.firstName} ${worker.lastName}`;
+  const animalsCared = animalsByIds(...worker.responsibleFor);
+  animalsCared.forEach((animal, index, array) => (array[index] = animal.name));
+  employeesResponsibleForAnimals[fullName] = animalsCared;
+  return employeesResponsibleForAnimals;
 }
 
 module.exports = {
