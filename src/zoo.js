@@ -33,7 +33,7 @@ function animalsOlderThan(animal, age) {
 }
 
 function employeeByName(employeeName) {
-  if (employeeName == null) return {};
+  if (!employeeName) return {};
   const desiredEmployee = employeeList
     .find(employee => employee.firstName === employeeName || employee.lastName === employeeName);
   return desiredEmployee;
@@ -58,8 +58,8 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   employeeList.push(addedEmployee);
 }
 
-function animalCount(species = 'all') {
-  if (species === 'all') {
+function animalCount(species) {
+  if (!species) {
     const animalCountObject = {};
     animalList.forEach((animal) => {
       const animalName = animal.name;
@@ -82,26 +82,39 @@ function entryCalculator(entrants = {}) {
   return (adultEntry + seniorEntry + childEntry);
 }
 
+const animalsWithoutOptions = (someObject) => {
+  animalList.forEach((animal) => {
+    someObject[animal.location].push(animal.name);
+  });
+};
+
 function animalMap(options) {
-  const map = { NE: [], NW: [], SE: [], SW: [] };
-  if (options === undefined) {
-    animalList.forEach((animal) => {
-      map[animal.location].push(animal.name);
-    });
-
-    return map;
+  const mapObject = { NE: [], NW: [], SE: [], SW: [] };
+  if (!options) {
+    animalsWithoutOptions(mapObject);
+    return mapObject;
   }
-  const { includeNames } = options;
-  if (includeNames === true) {
-    animalList.forEach((animal) => {
-      const animalObject = {};
-      animalObject[animal.name] = animal.residents.map(individual => individual.name);
-      map[animal.location].push(animalObject);
-    });
+  const { includeNames, sort, sex } = options;
+  if (!includeNames) {
+    animalsWithoutOptions(mapObject);
+    return mapObject;
+  }
+  animalList.forEach((animal) => {
+    const animalObject = {};
+    animalObject[animal.name] = animal.residents.map(individual => individual.name);
+    mapObject[animal.location].push(animalObject);
+  });
+  if (sort) {
+    Object.keys(mapObject).forEach(location => mapObject[location]
+      .forEach((mappedAnimal) => {
+        Object.values(mappedAnimal)[0].sort();
+      }));
   }
 
-  return map;
+  return mapObject;
 }
+
+console.log(animalMap({ includeNames: true, sort: true, sex: 'male' }).NE);
 
 function schedule(dayName) {
   const scheduleObj = {};
@@ -110,7 +123,7 @@ function schedule(dayName) {
       scheduleObj[requiredDay] = `Open from ${hoursList[requiredDay].open}am until ${hoursList[requiredDay].close - 12}pm`;
     } else scheduleObj[requiredDay] = 'CLOSED';
   };
-  if (dayName === undefined) {
+  if (!dayName) {
     const days = Object.keys(hoursList);
     days.forEach(day => displayHours(day));
   } else displayHours(dayName);
@@ -144,7 +157,7 @@ function employeeCoverage(idOrName) {
   const employeeFullName = selectedEmployee => `${selectedEmployee.firstName} ${selectedEmployee.lastName}`;
   const employeeDependents = responsibleEmployee => responsibleEmployee.responsibleFor
     .map(desiredId => animalList.find(inspectedAnimal => inspectedAnimal.id === desiredId).name);
-  if (idOrName === undefined) {
+  if (!idOrName) {
     employeeList
       .forEach((employee) => {
         employeeAndDependents[employeeFullName(employee)] = employeeDependents(employee);
@@ -156,8 +169,6 @@ function employeeCoverage(idOrName) {
   employeeAndDependents[employeeFullName(chosenEmployee)] = employeeDependents(chosenEmployee);
   return employeeAndDependents;
 }
-
-console.log(employeeCoverage('Sharonda'));
 
 module.exports = {
   entryCalculator,
