@@ -35,12 +35,12 @@ function employeeByName(employeeName) {
   if (employeeName === undefined) {
     return {};
   }
-    const nameOfTheEmployee = employees
-    .find(theEmployee => theEmployee.firstName === employeeName 
+  const nameOfTheEmployee = employees
+    .find(theEmployee => theEmployee.firstName === employeeName
       || theEmployee.lastName === employeeName);
-   /* usar find para encontrar o funcionario e suas properties para o 
-    primeiro nome OU para o ultimo nome e tirar do array */
-    return nameOfTheEmployee;
+  /* usar find para encontrar o funcionario e suas properties para o
+  primeiro nome OU para o ultimo nome e tirar do array */
+  return nameOfTheEmployee;
 }
 
 function createEmployee(personalInfo, associatedWith) {
