@@ -43,11 +43,11 @@ function employeeByName(employeeName) {
 
 function createEmployee(personalInfo, associatedWith) {
   const empty = {};
-    if (personalInfo === undefined && associatedWith === undefined) {
-      return empty;
-    }
-    const object = Object.assign(empty, personalInfo, associatedWith);
-    return object;
+  if (personalInfo === undefined && associatedWith === undefined) {
+    return empty;
+  }
+  const object = Object.assign(empty, personalInfo, associatedWith);
+  return object;
 }
 
 function isManager(id) {
