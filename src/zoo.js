@@ -98,8 +98,26 @@ function animalCount(species) {
   return animalNumber.residents.length;
 }
 
-function entryCalculator(entrants) {
-  // seu código aqui
+//  Retorna 0 se nenhum argumento for passado
+//  Retorna 0 se um objeto vazio for passado
+//  Retorna o preço total a ser cobrado dado o número de adultos, crianças e idosos
+function entryCalculator(entrants = 0) {
+  const objectCount = Object.keys(entrants);
+  if (entrants === 0 || objectCount.length === 0) {
+    return 0;
+  }
+  const entrantsArray = Object.entries(entrants);
+  let counter = 0;
+  entrantsArray.forEach((item) => {
+    if (item[0] === 'Adult') {
+      counter += (49.99 * item[1]);
+    } else if (item[0] === 'Senior') {
+      counter += (24.99 * item[1]);
+    } else if (item[0] === 'Child') {
+      counter += (20.99 * item[1]);
+    }
+  });
+  return counter;
 }
 
 function animalMap(options) {
