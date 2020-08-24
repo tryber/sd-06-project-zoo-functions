@@ -111,8 +111,8 @@ const defaultMap = () => {
   const locationArr = ['NE', 'NW', 'SE', 'SW'];
   const output = {};
   for (let index = 0; index < locationArr.length; index += 1) {
-    output[locationArr[index]] = data.animals.filter(animal => animal.location === locationArr[index])
-    .map(animal => animal.name);
+    output[locationArr[index]] = data.animals
+    .filter(animal => animal.location === locationArr[index]).map(animal => animal.name);
   }
   return output;
 };
@@ -260,8 +260,7 @@ const findAnimal = (id) => {
 
 function oldestFromFirstSpecies(id) {
   const animalId = data.employees
-  .filter(employee => employee.id === id).flatMap(animal => animal.responsibleFor)
-  // .find(animal => animal);
+  .filter(employee => employee.id === id).flatMap(animal => animal.responsibleFor);
   return findAnimal(animalId);
 }
 
