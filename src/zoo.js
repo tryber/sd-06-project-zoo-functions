@@ -44,8 +44,10 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+ let newArray = Object.assign(personalInfo,associatedWith)
+  return newArray;
 }
+console.log(createEmployee({ id: '12j3oh23kh4k2j3h4', firstName: 'pedro', lastName: 'duarte'},{managers:['dfgdfgdf'],responsibleFor: ['sdfsdfsdfsd']}))
 
 function isManager(id) {
   // seu código aqui
