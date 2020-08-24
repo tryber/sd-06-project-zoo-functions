@@ -13,7 +13,7 @@ const data = require('./data');
 const { animals, employees, prices, hours } = data;
 
 function animalsByIds(...ids) {
-  return ids.map(item => animals.find(animal => animal.id === item));
+  return ids.map(item => animals.find(animal => animal.id.includes(item)));
 }
 
 function animalsOlderThan(animal, age) {
@@ -57,14 +57,48 @@ function animalCount(species = animals) {
 function entryCalculator(entrants) {
   if (entrants === undefined) return 0;
 
-  return Object.entries(entrants).reduce((total, entry) => {
-    const [key, value] = entry;
+  return Object.entries(entrants).reduce((total, [key, value]) => {
     return total + (data.prices[key] * value);
   }, 0);
 }
 
-function animalMap(options) {
-  // seu código aqui
+function animalMap(options = {}) {
+  const { includeNames = false, sorted = false, sex = '' } = options;
+
+  const LOCAL = animals.filter(item => item.location)
+    .sort((a, b) => (a.residents.length - b.residents.length));
+
+  if (includeNames && !sex) {
+    return LOCAL.reduce((acc, { location, name }) => {
+      return Object.assign(acc, {
+        [location]: acc[location].concat(sorted ?
+          { [name]: animals.find(animal => animal.name === name)
+              .residents.map(resident => resident.name).sort() } :
+          { [name]: animals.find(animal => animal.name === name)
+              .residents.map(resident => resident.name) })
+      });
+    }, { NE: [], NW: [], SE: [], SW: [] });
+  }
+
+  if (sex && includeNames) {
+    return LOCAL.reduce((acc, { location, name }) => {
+      return Object.assign(acc, {
+        [location]: acc[location].concat(sorted ?
+          { [name]: animals.find(animal => animal.name === name)
+              .residents.filter(resident => resident.sex === sex)
+              .map(resident1 => resident1.name).sort() } :
+          { [name]: animals.find(animal => animal.name === name)
+              .residents.filter(resident => resident.sex === sex)
+              .map(resident1 => resident1.name) })
+      });
+    }, { NE: [], NW: [], SE: [], SW: [] });
+  }
+
+  return LOCAL.reduce((acc, { location, name }) => {
+    return Object.assign(acc, {
+      [location]: acc[location].concat(animals.find(animal => animal.name === name).name)
+    });
+  }, { NE: [], NW: [], SE: [], SW: [] });
 }
 
 function schedule(dayName) {
@@ -72,11 +106,8 @@ function schedule(dayName) {
     const dayFiltered = Object.entries(hours).find(item => item[0] === dayName);
     const [day, obj] = dayFiltered;
     const { open, close } = obj;
-    let msg = `Open from ${open}am until ${close - 12}pm`;
-
-    if (day === 'Monday') {
-      msg = 'CLOSED';
-    }
+    let msg = day === 'Monday' ? 'CLOSED' :
+      `Open from ${open}am until ${close - 12}pm`
 
     return { [day]: msg };
   }
@@ -84,20 +115,19 @@ function schedule(dayName) {
   return Object.entries(hours).reduce((obj, entry) => {
     const [key, value] = entry;
     const { open, close } = value;
-    let msg = `Open from ${open}am until ${close - 12}pm`;
-
-    if (key === 'Monday') {
-      msg = 'CLOSED';
-    }
+    let msg = key === 'Monday' ? 'CLOSED' :
+      `Open from ${open}am until ${close - 12}pm`
 
     return Object.assign(obj, { [key]: msg });
   }, {});
 }
 
+console.log(schedule());
+
 function oldestFromFirstSpecies(id) {
   const specie = employees.find(item => item.id === id).responsibleFor[0];
-  return Object.values(animals.find(item => item.id === specie).residents
-    .reduce((acc, animal) => (acc.age > animal.age ? acc : animal)));
+  return Object.values(animals.find(item => item.id === specie)
+  .residents.reduce((acc, animal) => (acc.age > animal.age ? acc : animal)));
 }
 
 function increasePrices(percentage) {
@@ -114,16 +144,16 @@ function employeeCoverage(idOrName) {
 
     return {
       [`${firstName} ${lastName}`]:
-        responsibleFor.map(item => (animals.find(n => n.id === item).name)),
+        responsibleFor.map(item => (animals.find(n => n.id.includes(item)).name)),
     };
   }
   const names = employees.reduce((acc, item) => (
     Object.assign(acc, { [`${item.firstName} ${item.lastName}`]: item.responsibleFor })
   ), {});
 
-  return Object.entries(names).reduce((acc, entry) => {
-    const [key, value] = entry;
-    return Object.assign(acc, { [key]: value.map(item => animals.find(n => n.id === item).name) });
+  return Object.entries(names).reduce((acc, [key, value]) => {
+    return Object.assign(acc, { [key]: value
+      .map(item => animals.find(n => n.id.includes(item)).name) });
   }, {});
 }
 
