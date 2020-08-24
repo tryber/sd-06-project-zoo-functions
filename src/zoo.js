@@ -102,7 +102,7 @@ function createAnimalResidentsList(location) {
   .filter(animal => animal.location === location)
   .map((animal) => {
     const animalObject = {};
-    animalObject[`${animal.name}`] = animal.residents
+    animalObject[animal.name] = animal.residents
     .map(resident => resident.name);
     return animalObject;
   });
@@ -113,7 +113,7 @@ function createSortedAnimalResidentsList(location) {
   .filter(animal => animal.location === location)
   .map((animal) => {
     const animalObject = {};
-    animalObject[`${animal.name}`] = animal.residents
+    animalObject[animal.name] = animal.residents
     .map(resident => resident.name).sort();
     return animalObject;
   });
@@ -124,7 +124,7 @@ function createAnimalResidentsListBySex(location, sex) {
   .filter(animal => animal.location === location)
   .map((animal) => {
     const animalObject = {};
-    animalObject[`${animal.name}`] = animal.residents
+    animalObject[animal.name] = animal.residents
     .filter(resident => resident.sex === sex)
     .map(resident => resident.name);
     return animalObject;
@@ -136,7 +136,7 @@ function createSortedAnimalResidentsListBySex(location, sex) {
   .filter(animal => animal.location === location)
   .map((animal) => {
     const animalObject = {};
-    animalObject[`${animal.name}`] = animal.residents
+    animalObject[animal.name] = animal.residents
     .filter(resident => resident.sex === sex)
     .map(resident => resident.name).sort();
     return animalObject;
