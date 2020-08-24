@@ -9,12 +9,12 @@ eslint no-unused-vars: [
 ]
 */
 
-const data = require('./data');
+// const data = require('./data');
 const {
   animals,
   employees,
 } = require('./data');
-const { TestScheduler } = require('jest');
+// const { TestScheduler } = require('jest');
 
 function animalsByIds(...ids) {
   // seu código aqui..
@@ -27,7 +27,8 @@ function animalsOlderThan(animal, age) {
 }
 
 function employeeByName(employeeName) {
-  if (employeeName === undefined) {return {};
+  if (employeeName === undefined) { 
+    return {};
   } return employees.find(emp => emp.firstName === employeeName || emp.lastName === employeeName);
 }
 
@@ -41,10 +42,15 @@ function isManager(id) {
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
+  
 }
 
 function animalCount(species) {
   // seu código aqui
+  if (species === undefined) {
+    return animals.map(animal => animal.name)
+    return animals.map(animal => animal.residents)
+  }
 }
 
 function entryCalculator(entrants) {
