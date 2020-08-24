@@ -69,7 +69,7 @@ const entryCalculator = (entrants) => {
   return `${(Adult * 49.99) + (Child * 20.99) + (Senior * 24.99)}`;
 };
 
-const findZones = objArray => {
+const findZones = (objArray) => {
   const zones = [];
   objArray.forEach(({ location }) => {
     if (!zones.includes(location)) {
@@ -77,11 +77,11 @@ const findZones = objArray => {
     }
   });
   return zones;
-}
+};
 
-const animalsSeparatedByZones = zones => {
+const animalsSeparatedByZones = (zones) => {
   const animalsByZones = {};
-  zones.forEach(zone => {
+  zones.forEach((zone) => {
     const objsByZone = animals.filter(({ location }) => zone === location);
     objsByZone.forEach(({ name, location }) => {
       if (!animalsByZones[location]) {
@@ -91,47 +91,42 @@ const animalsSeparatedByZones = zones => {
     });
   });
   return animalsByZones;
-}
+};
 
 const filterResidentsNames = (residents, sex, sorted) => {
-  let residentsfilteredSorted = [];
-  if (sex === 'female') {
-    residentsfilteredSorted = residents.filter(({ sex }) => sex === 'female').map(({ name }) => name);
-  } else if (sex === 'male') {
-    residentsfilteredSorted = residents.filter(({ sex }) => sex === 'male').map(({ name }) => name);
-  } else {
-    residentsfilteredSorted = residents.map(({ name }) => name);
-  }
+  let residentsfilteredSorted = residents.map(({ name }) => name);
+  residentsfilteredSorted = sex === 'male' ? residents.filter(({ sex }) => sex === 'male').
+  map(({ name }) => name) : residentsfilteredSorted;
+  residentsfilteredSorted = sex === 'female' ? residents.filter(({ sex }) => sex === 'female').
+  map(({ name }) => name) : residentsfilteredSorted;
   if (sorted) {
     residentsfilteredSorted.sort();
   }
   return residentsfilteredSorted;
 };
 
-const animalMap = options => {
+const animalMap = (options) => {
   const zones = findZones(animals);
   if (!options) {
     return animalsSeparatedByZones(zones);
-  } else {
-    const { includeNames = false, sorted = false, sex } = options;
-    animalsByZones = {};
-    if (includeNames) {
-      zones.forEach(zone => {
-        const objsByZone = animals.filter(({ location }) => zone === location);
-        objsByZone.forEach(({ name, location, residents }) => {
-          if (!animalsByZones[location]) {
-            animalsByZones[location] = [];
-          }
-          const residentsByName = {};
-          residentsByName[name] = filterResidentsNames(residents, sex, sorted);
-          animalsByZones[location].push(residentsByName);
-        });
-      });
-      return animalsByZones;
-    } else {
-      return animalsSeparatedByZones(zones);
-    }
   }
+  const { includeNames = false, sorted = false, sex } = options;
+  const animalsByZones = {};
+  if (includeNames) {
+    zones.forEach((zone) => {
+      const objsByZone = animals.filter(({ location }) => zone === location);
+      objsByZone.forEach(({ name, location, residents }) => {
+        if (!animalsByZones[location]) {
+          animalsByZones[location] = [];
+        }
+        const residentsByName = {};
+        residentsByName[name] = filterResidentsNames(residents, sex, sorted);
+        animalsByZones[location].push(residentsByName);
+      });
+    });
+    return animalsByZones;
+  }
+  return animalsSeparatedByZones(zones);
 };
 
 function schedule(dayName) {
