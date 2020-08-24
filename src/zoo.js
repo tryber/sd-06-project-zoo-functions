@@ -11,17 +11,18 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
+// função animalsByIds implementada com a ajuda do Ícaro no plantão
 function animalsByIds(...ids) {
   if (ids.length === 0) return [];
   return data.animals.filter(animal => ids.includes(animal.id));
 }
 
-// função animalsByIds implementada com a ajuda do Ícaro no plantão
-
-console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce'));
-
-function animalsOlderThan(animal, age) {
-  // seu código aqui
+// fui ajudada pelo Ícaro novamente para desenvolver o raciocínio inicial
+function animalsOlderThan(animalName, age) {
+  // primeiro encontrar os animais com o nome passado em animalName
+  // depois verificar se esses animais tem a idade mínima de age
+  return data.animals.find(animal => animal.name === animalName)
+    .residents.every(resident => resident.age >= age);
 }
 
 function employeeByName(employeeName) {
