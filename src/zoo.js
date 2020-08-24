@@ -10,7 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { animals, employees} = require('./data');
+const { animals, employees } = require('./data');
 
 function animalsByIds(...ids) {
   if (ids === undefined) {
