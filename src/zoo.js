@@ -13,13 +13,14 @@ const data = require('./data');
 const { animals}= require('./data.js');
 function animalsByIds(ids) {
   const animalId = animals
-  .filter (ident =>  ident.id === ids  )
-  .map(ident => ident.name )
-  return animalId;
+  .filter (ident =>  ident.id === ids  );
+  //.map(ident => ident.name );
+
+  return(animalId);
 }
- //let ids = ['0938aa23-f153-4937-9f88-4858b24d6bce', 'e8481c1d-42ea-4610-8e11-1752cfc05a46'];
- let resp = animalsByIds('e8481c1d-42ea-4610-8e11-1752cfc05a46');
- console.log(resp);
+ 
+ let resp = animalsByIds( );
+
  function animalsOlderThan(animal, age) {
 //Ao passar o nome de uma espécie e uma idade,
 //testa se todos os animais desta espécie possuem a idade mínima especificada animal, age }
