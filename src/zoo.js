@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { employees, animals } = require('./data');
+const { employees, animals, hours } = require('./data');
 
 function animalsByIds(...ids) {
   // seu código aqui
@@ -87,9 +87,7 @@ function animalMap(options = {}) {
       if (options.sex) {
         arrayExit.push(
           { [specie.name]: specie.residents.filter(animalSex => animalSex.sex === options.sex)
-          .map(animal => animal.name) }
-        );
-        
+          .map(animal => animal.name) });
       } else {
         arrayExit.push({ [specie.name]: specie.residents.map(animal => animal.name) });
       }
@@ -109,6 +107,9 @@ function animalMap(options = {}) {
 
 function schedule(dayName) {
   // seu código aqui
+  if (dayName) {
+    return hours.reduce(())
+  }
 }
 
 function oldestFromFirstSpecies(id) {
