@@ -46,7 +46,7 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  return employees.map(value => value.managers).toString().includes(id);
+  return employees.some(value => value.managers.includes(id));
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
@@ -74,14 +74,13 @@ function entryCalculator(entrants) {
 function animalMap(options) {
   const locationList = {};
   const initialList = {};
-  const locationOption = animals.map(where =>
-    where.location).reduce((acc, value) => acc.includes(value) ? acc : [...acc, value], []); // Referência: https://medium.com/dailyjs/how-to-remove-array-duplicates-in-es6-5daa8789641c
+  const locationOption = ['NE', 'NW', 'SE', 'SW'];
   locationOption.forEach(index => initialList[index] = animals.filter(value =>
     value.location === index).map(animal => animal.name));
   if (!options) return initialList;
-  locationOption.forEach(index => {
+  locationOption.forEach((index) => {
     locationList[index] = animals
-    .filter(value => value.location === index).map(animal => {
+    .filter(value => value.location === index).map((animal) => {
       const newObject = {};
       newObject[animal.name] = animal.residents;
       if (options.sex === 'female' || options.sex === 'male') {
