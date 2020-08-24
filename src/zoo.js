@@ -84,22 +84,17 @@ function entryCalculator(entrants) {
   // Retorna 0 se nenhum argumento for passado
   // Retorna 0 se um objeto vazio for passado
   // Retorna o preço total a ser cobrado dado o número de adultos, crianças e idosos
-   if(entrants === undefined || entrants === {}) return 0;
-   const keys = Object.keys(entrants);
-   const values = Object.values(entrants);
-   const valueAL = keys.reduce((acc, cur, index) =>
-   {
-     return acc + (prices[cur] * values[index])
-
-   }, 0);
-   return valueAL;
-   
+  if (entrants === undefined || entrants === {}) return 0;
+  const keys = Object.keys(entrants);
+  const values = Object.values(entrants);
+  const valueAL = keys.reduce((acc, cur, index) => {
+      return acc + (prices[cur] * values[index]);
+  }, 0);
+  return valueAL;
 }
 
 function animalMap(options) {
   // seu código aqui
-
-
 }
 
 function schedule(dayName) {
@@ -107,7 +102,6 @@ function schedule(dayName) {
   // Sem parâmetros, retorna um cronograma legível para humanos
   // Se um único dia for passado, retorna somente este dia em um formato legível para humanos
   const { Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday } = hours;
-
   const tuesday = `Open from ${Tuesday.open}am until ${Tuesday.close - 12}pm`;
   const wednesday = `Open from ${Wednesday.open}am until ${Wednesday.close - 12}pm`;
   const thursday = `Open from ${Thursday.open}am until ${Thursday.close - 12}pm`;
