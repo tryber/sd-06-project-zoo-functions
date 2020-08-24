@@ -93,9 +93,21 @@ console.log(createEmployee({
 console.log('**********Requisito 4**********');
 
 
+/* 5- Implemente a função isManager:
+ Testa se o id passado é de um gerente*/
+
 function isManager(id) {
-  // seu código aqui
+  const manager = employees
+  .some(person =>
+    person.managers
+    .find(ids => ids === id));
+  return manager;
 }
+
+console.log(isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
+console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
+console.log('**********Requisito 5**********');
+
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
