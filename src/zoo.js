@@ -38,8 +38,7 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  let addInformation;
-  addInformation =  Object.assign(personalInfo, associatedWith);
+  const addInformation =  Object.assign(personalInfo, associatedWith);
   employees.push(addInformation);
   return addInformation;
 }
