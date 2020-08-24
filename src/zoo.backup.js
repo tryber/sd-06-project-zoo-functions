@@ -159,6 +159,7 @@ const entryCalculator = (entrants) => {
 // console.log(entryCalculator({ 'Child': 1, 'Senior': 1 })); // 45.98
 // ========================================================================================
 
+
 // ========================================================================================
 // REQUISITO 09- Implemente a função animalMap:
 // Sem parâmetros, retorna animais categorizados por localização
@@ -169,6 +170,15 @@ const entryCalculator = (entrants) => {
 // Com a opção sex: 'female' ou sex: 'male' especificada e a opção sort: true especificada,
 //   retorna somente nomes de animais macho/fêmea com os nomes dos animais ordenados
 // Só retorna informações ordenadas e com sexo se a opção includeNames: true for especificada
+const animalsByLocation = (location) => {
+  const animalsLocation = {};
+  location.forEach((itemLocation) => {
+    animalsLocation[itemLocation] = animals.filter(item => item.location === itemLocation);
+    animalsLocation[itemLocation] = animalsLocation[itemLocation].map(item => item.name);
+  });
+  return animalsLocation;
+};
+
 const getResidents = (myAnimal, sex, sorted) => {
   let residents = animals.find(item => item.name === myAnimal).residents;
   if (sex !== 'N') {
@@ -182,11 +192,18 @@ const getResidents = (myAnimal, sex, sorted) => {
 };
 // console.log(getResidents('lions', 'N', true));
 
+const createObjectAnimalsResidents = (itemAnimal, sex, sorted) => {
+  const myObjectAnimals = {};
+  myObjectAnimals[itemAnimal] = getResidents(itemAnimal, sex, sorted);
+  return myObjectAnimals;
+};
+// console.log(createObjectAnimalsResidents('lions'));
+
 const createArrayAnimalResidents = (myAnimals, sex, sorted) => {
   const myArrayAnimails = [];
   myAnimals.forEach((itemAnimal) => {
-    const animalResidents = {};
-    animalResidents[itemAnimal] = getResidents(itemAnimal, sex, sorted);
+    let animalResidents = {};
+    animalResidents = createObjectAnimalsResidents(itemAnimal, sex, sorted);
     myArrayAnimails.push(animalResidents);
   });
   return myArrayAnimails;
@@ -196,22 +213,13 @@ const createArrayAnimalResidents = (myAnimals, sex, sorted) => {
 const animalsByLocationWithName = (location, sex, sorted) => {
   const animalsLocation = {};
   location.forEach((itemLocation) => {
-    const myAnimals = animals.filter(item => item.location === itemLocation)
-    .map(item => item.name);
+    let myAnimals = animals.filter(item => item.location === itemLocation);
+    myAnimals = myAnimals.map(item => item.name);
     animalsLocation[itemLocation] = createArrayAnimalResidents(myAnimals, sex, sorted);
   });
   return animalsLocation;
 };
 // console.log(animalsByLocationWithName(0, [ 'NE', 'NW', 'SE', 'SW' ]));
-
-const animalsByLocation = (location) => {
-  const animalsLocation = {};
-  location.forEach((itemLocation) => {
-    animalsLocation[itemLocation] = animals.filter(item => item.location === itemLocation)
-    .map(item => item.name); // cria o objeto com os animais para cada location
-  });
-  return animalsLocation;
-};
 
 const animalMap = (options) => {
   const location = ['NE', 'NW', 'SE', 'SW'];
@@ -253,7 +261,7 @@ const schedule = (dayName) => {
   if (dayName === undefined) {
     dayName = 'All';
   }
-  const days = Object.entries(hours); // transforma o objeto hours em um array
+  const days = Object.entries(hours);
   return newSchedule(days, dayName);
 };
 // console.log(schedule());
@@ -273,16 +281,16 @@ const verifyOldestResidents = (myResidents) => {
     itemArray.push(item[1].name, item[1].sex, item[1].age);
     newArray.push(itemArray);
   });
-  newArray.sort(function (a, b) {
-    return b[2] - a[2]; // ordena o array de forma decrescente
+  return newArray.sort(function (a, b) {
+    return b[2] - a[2];
   });
-  return newArray[0]; // retorna o primeiro item do array, que será a maior idade
 };
 const oldestFromFirstSpecies = (id) => {
   const myEmployee = employees.find(item => item.id === id);
-  const idFirstResponsilbleAnimal = myEmployee.responsibleFor[0];
-  const myResidents = animals.find(item => item.id === idFirstResponsilbleAnimal).residents;
-  return verifyOldestResidents(myResidents);
+  const idFirstAnimal = myEmployee.responsibleFor[0];
+  const myResidents = animals.find(item => item.id === idFirstAnimal).residents;
+  const oldestresident = verifyOldestResidents(myResidents)[0];
+  return oldestresident;
 };
 // console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
 // console.log(oldestFromFirstSpecies('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
@@ -326,17 +334,22 @@ const createObjectEmployeeAnimals = (myEmployees) => {
   return myObject;
 };
 
-const employeeCoverage = (idOrName) => {
+const verifyEmployeesParameter = (param) => {
   const myEmployees = [];
-  if (idOrName === undefined) {
+  if (param === undefined) {
     myEmployees.push(employees.map(item => `${item.firstName} ${item.lastName}`));
     myEmployees.push(employees.map(item => item.responsibleFor));
   } else {
     const myEmployeeFilter = employees.filter(item =>
-      item.id === idOrName || item.firstName === idOrName || item.lastName === idOrName);
+      item.id === param || item.firstName === param || item.lastName === param);
     myEmployees.push(myEmployeeFilter.map(item => `${item.firstName} ${item.lastName}`));
     myEmployees.push(myEmployeeFilter.map(item => item.responsibleFor));
   }
+  return myEmployees;
+};
+
+const employeeCoverage = (idOrName) => {
+  const myEmployees = verifyEmployeesParameter(idOrName);
   return createObjectEmployeeAnimals(myEmployees);
 };
 // console.log(employeeCoverage());
