@@ -131,15 +131,13 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   // seu código aqui
-  const result = {};
-  const pricesObj = Object.keys(prices);
-  const valuesObj = Object.values(prices);
-  pricesObj.forEach((person) => {
-    result[person] = valuesObj * percentage / 100;
+  const keysObj = Object.keys(prices);
+  keysObj.forEach((key) => {
+    const newValue = (prices[key] * (percentage / 100)) + prices[key];
+    prices[key] = Math.round(newValue * 100) / 100;
   })
-  return result;
+  return prices;
 }
-console.log(increasePrices());
 
 function employeeCoverage(idOrName) {
   // seu código aqui
