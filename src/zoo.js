@@ -75,9 +75,10 @@ function animalMap(options) {
   const locationList = {};
   const initialList = {};
   const locationOption = ['NE', 'NW', 'SE', 'SW'];
-  locationOption.forEach(index => initialList[index] = animals.filter(value =>
-    value.location === index).map(animal => animal.name));
-  if (!options) return initialList;
+  locationOption.forEach((index) => {
+    initialList[index] = animals
+    .filter(value => value.location === index).map(animal => animal.name)});
+  if (!options || !options.includeNames) return initialList; // Resolvendo problema teste 06/06
   locationOption.forEach((index) => {
     locationList[index] = animals
     .filter(value => value.location === index).map((animal) => {
@@ -94,7 +95,6 @@ function animalMap(options) {
       return newObject;
     });
   });
-  if (!options.includeNames) return initialList; // Resolvendo problema teste 06/06
   return locationList;
 }
 
