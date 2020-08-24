@@ -51,8 +51,8 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
     firstName,
     lastName,
     managers,
-    responsibleFor
-  })
+    responsibleFor,
+  });
 }
 
 function animalCount(species) {
@@ -64,7 +64,7 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-  
+  // seu código aqui
 }
 
 function schedule(dayName) {
