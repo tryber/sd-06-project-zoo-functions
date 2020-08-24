@@ -54,8 +54,18 @@ function isManager(id) {
   return employees.some(inPut => inPut.managers.find(inPutTwo => inPutTwo === id));
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  const newEmployee = 
+ {
+   id,
+   firstName,
+   lastName,
+   managers,
+   responsibleFor
+ } 
+
+  const object = employees.push(newEmployee);
+  return employees;
 }
 
 function animalCount(species) {
