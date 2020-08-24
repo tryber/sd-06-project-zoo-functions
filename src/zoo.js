@@ -143,7 +143,7 @@ function employeeCoverage(idOrName) {
     });
     return employeesResponsibleForAnimals;
   }
-  // Pelo id, 1o nome ou último nome de um funcionário, 
+  // Pelo id, 1o nome ou último nome de um funcionário,
   // retorna os animais pelos quais o funcionário é responsável
   const worker = employees.find(employee =>
     employee.id === idOrName || employee.firstName ===
