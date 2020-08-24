@@ -80,9 +80,8 @@ function getGetNamesSorted(name) {
 }
 
 function getSex(name, sex) {
-  return {
-    [name]: animals.find(animal => animal.name === name).residents
-    .filter(resident => resident.sex === sex).map(resident1 => resident1.name),
+  return {[name]: animals.find(animal => animal.name === name).residents.filter(resident => 
+    resident.sex === sex).map(resident1 => resident1.name),
   };
 }
 
