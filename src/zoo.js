@@ -22,7 +22,6 @@ function animalsOlderThan(animal, age) {
   .every(item => item.age > age);
 }
 
-
 function employeeByName(employeeName) {
   let employee = {};
 
@@ -274,9 +273,36 @@ function increasePrices(percentage) {
   data.prices.Child = Math.round((child + (child * (percentage / 100))) * 100) / 100;
 }
 
-function employeeCoverage(idOrName) {
-  // seu código aqui
+const getAnimals = (ids) => {
+  const output = [];
+  for (let index = 0; index < ids.length; index += 1) {
+
+    // gotta refactor here, too specific
+    output.push(data.animals.filter(animal => animal.id === ids[index]).map(animal => animal.name)[0]);
+  }
+  return output;
 }
+
+const defaultEmployeeList = () => {
+  const output = {};
+  const fullNames = data.employees.map(name => `${name.firstName} ${name.lastName}`);
+  const animalsIds = data.employees.map(employee => employee.responsibleFor);
+
+  fullNames.forEach((name, index) => {
+    output[name] = getAnimals(animalsIds[index]);
+  });
+  return output;
+}
+
+function employeeCoverage(idOrName) {
+  const output = {};
+  if (idOrName === undefined) {
+    return defaultEmployeeList();
+  }
+  return output;
+}
+
+console.log(employeeCoverage());
 
 module.exports = {
   entryCalculator,
