@@ -118,11 +118,11 @@ function animalMap({ includeNames = false, sex = '', sorted = false } = {}) {
     });
   if (includeNames) {
     // reduce method to get each resident animal´s name
-    const animalNames = (array, currResident) => {
+    const animalNames = (currResident) => {
       if (sex === currResident.sex) {
-        return [ ...array, currResident.name ];
-      } else if (sex === '') {
-        return [ ...array, currResident.name ];
+        return currResident.name;
+      } else if (!sex) {
+        return currResident.name;
       }
     };
     // start of main code to populate result
@@ -134,13 +134,14 @@ function animalMap({ includeNames = false, sex = '', sorted = false } = {}) {
               [species]: data.animals
               .find(element => element.name === species)
                 .residents
-                  .reduce(animalNames, []) });
+                  .filter(animalNames)
+                    .map(element => element.name) });
           });
       }
     );
   }
   // what to do if option sorted is triggered
-  if (sorted) {
+  if (sorted || (sorted && sex && includeNames)) {
     locations.forEach(
       location => result[location].forEach(
         (species, index) => Object.keys(species)
