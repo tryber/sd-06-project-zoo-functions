@@ -72,21 +72,21 @@ function animalMap(options) {
 function schedule(dayName) {
   const obj = {};
   const day = data.hours;
-if (!dayName) {
-  obj['Tuesday']=`Open from ${day['Tuesday'].open}am until ${day['Tuesday'].close - 12}pm`;
-  obj['Wednesday']=`Open from ${day['Wednesday'].open}am until ${day['Wednesday'].close - 12}pm`;
-  obj['Thursday']=`Open from ${day['Thursday'].open}am until ${day['Thursday'].close - 12}pm`;
-  obj['Friday']=`Open from ${day['Friday'].open}am until ${day['Friday'].close - 12}pm`;
-  obj['Saturday']=`Open from ${day['Saturday'].open}am until ${day['Saturday'].close - 12}pm`;
-  obj['Sunday']=`Open from ${day['Sunday'].open}am until ${day['Sunday'].close - 12}pm`;
-  obj['Monday']=`CLOSED`;
-}
-if (dayName === 'Monday') {
+  if (!dayName) {
+  obj.Tuesday = `Open from ${day.Tuesday.open}am until ${day.Tuesday.close - 12}pm`;
+  obj.Wednesday = `Open from ${day.Wednesday.open}am until ${day.Wednesday.close - 12}pm`;
+  obj.Thursday = `Open from ${day.Thursday.open}am until ${day.Thursday.close - 12}pm`;
+  obj.Friday = `Open from ${day.Friday.open}am until ${day.Friday.close - 12}pm`;
+  obj.Saturday = `Open from ${day.Saturday.open}am until ${day.Saturday.close - 12}pm`;
+  obj.Sunday = `Open from ${day.Sunday.open}am until ${day.Sunday.close - 12}pm`;
+  obj.Monday = `CLOSED`;
+  }
+  if (dayName === 'Monday') {
   obj[dayName] = 'CLOSED';
-} else if (Object.keys(day).includes(dayName)){
-  obj[dayName] = `Open from ${day[dayName].open}am until ${day[dayName].close - 12}pm`;; 
-}
-return obj;
+  } else if (Object.keys(day).includes(dayName)){
+  obj[dayName] = `Open from ${day[dayName].open}am until ${day[dayName].close - 12}pm`;
+  }
+  return obj;
 }
 console.log(schedule());
 function oldestFromFirstSpecies(id) {
