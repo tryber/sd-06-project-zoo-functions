@@ -100,7 +100,7 @@ function schedule(dayName) {
   };
   if (dayName === undefined) return week;
   return {
-    [dayName]: `${week[dayName]}`
+    [dayName]: `${week[dayName]}`,
   };
 }
 
