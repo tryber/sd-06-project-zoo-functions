@@ -95,11 +95,11 @@ function schedule(dayName) {
   const daysOfTheWeek = (dayName !== undefined && dayName !== '') ? [dayName] : Object.keys(data.hours);
   const answer = {};
 
-  daysOfTheWeek.forEach(key => {
+  daysOfTheWeek.forEach((key) => {
     let { open, close } = data.hours[key];
     close = (close > 12) ? close - 12 : close;
     open = (open > 12) ? open - 12 : open;
-    const hour = (open !== 0 && close !== 0) ? `Open from ${open}am until ${close}pm` : `CLOSED`;
+    const hour = (open !== 0 && close !== 0) ? `Open from ${open}am until ${close}pm` : 'CLOSED';
     answer[key] = hour;
   });
   return answer;
