@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { employees } = require('./data');
+const { employees,  animals} = require('./data');
 
 function animalsByIds(...ids) {
   // seu código aqui
@@ -78,9 +78,52 @@ function entryCalculator(entrants = {}) {
 }
 // console.log(entryCalculator());
 
-function animalMap(options) {
-  // seu código aqui
+function animalMap(options = {}) {
+  // seu código aqui  
+  return animals.reduce((objLocalization, specie) => {
+    let arrayExit = [];
+    if (!options.includeNames) { 
+      arrayExit.push(specie.name);
+    } else if (options.includeNames) {
+      if (!!options.sex && options.sorted) {
+        arrayExit.push(
+          { [specie.name]: specie.residents.filter(animalSex => animalSex.sex === options.sex)
+            .map(animal => animal.name)
+            .sort((a, b) => {
+              if (a.toLowerCase() < b.toLowerCase()) return -1;
+              if (a.toLowerCase() > b.toLowerCase()) return 1;
+              return 0;
+            }) }
+        );
+      } else if (!!options.sex) {
+        arrayExit.push(
+          { [specie.name]: specie.residents.filter(animalSex => animalSex.sex === options.sex)
+          .map(animal => animal.name) }
+        );
+      } else if (options.sorted) {
+        arrayExit.push(
+          { [specie.name]: specie.residents.map(animal => animal.name)
+          .sort((a, b) => {
+          if (a.toLowerCase() < b.toLowerCase()) return -1;
+          if (a.toLowerCase() > b.toLowerCase()) return 1;
+          return 0;
+          }) }
+        );
+      } else {
+        arrayExit.push(
+          { [specie.name]: specie.residents.map(animal => animal.name) }
+        );
+      }
+    }
+    if (!objLocalization[specie.location]) {
+      objLocalization[specie.location] = arrayExit;
+    } else {
+      objLocalization[specie.location] = objLocalization[specie.location].concat(arrayExit);
+    }
+    return objLocalization;
+  }, {});
 }
+// console.table(animalMap({ sex: 'female', sorted: true }));
 
 function schedule(dayName) {
   // seu código aqui
