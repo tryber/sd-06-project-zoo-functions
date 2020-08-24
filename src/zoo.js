@@ -66,7 +66,7 @@ function getSex(name, sex) {
   return { [name]: animals
     .find(animal => animal.name.includes(name)).residents
     .filter(resident => (resident.sex.includes(sex)))
-    .map(item => item.name), }
+    .map(item => item.name) };
 }
 
 function animalMap(options = {}) {
