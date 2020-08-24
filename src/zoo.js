@@ -36,12 +36,13 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  return (data.emp.some(emp => emp.managers.includes(id))); 
+  return (data.emp.some(emp => emp.managers.includes(id)));
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   const newEmp = { id, firstName, lastName, managers, responsibleFor };
     return employees.push(newEmp);
+}
    
 function animalCount(species) {
   // seu código aqui
