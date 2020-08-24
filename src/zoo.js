@@ -55,16 +55,29 @@ function animalCount(species) {
 function entryCalculator(entrants) {
   if (!entrants || entrants === {}) return 0;
   return Object.keys(entrants).reduce((totalPrice, ticket) =>
-  totalPrice + (entrants[ticket] * data.prices[ticket]), 0);
+    totalPrice + (entrants[ticket] * data.prices[ticket]), 0);
 }
 
 function animalMap(options) {
   // seu código aqui
 }
 
-function schedule(dayName) {
-  // seu código aqui
+const openingHours = {
+  'Tuesday': 'Open from 8am until 6pm',
+  'Wednesday': 'Open from 8am until 6pm',
+  'Thursday': 'Open from 10am until 8pm',
+  'Friday': 'Open from 10am until 8pm',
+  'Saturday': 'Open from 8am until 10pm',
+  'Sunday': 'Open from 8am until 8pm',
+  'Monday': 'CLOSED'
 }
+function schedule(dayName) {
+  if (!dayName) return openingHours;
+  let key = Object.keys(openingHours).find((day) => 
+  (day === dayName))
+  return {  [key]: openingHours[key]  }
+}
+console.log(schedule('Tuesday'));
 
 function oldestFromFirstSpecies(id) {
   const firstAnimal = data.employees.find(employee => employee.id === id).responsibleFor[0];
@@ -75,7 +88,7 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-
+// return data.prices.reduce((newPrices, ticket) => 
 }
 
 function employeeCoverage(idOrName) {
