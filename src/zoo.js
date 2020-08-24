@@ -69,29 +69,24 @@ function animalMap(options = {}) {
 
   if (includeNames && !sex) {
     return LOCAL.reduce((acc, { location, name }) => (
-      Object.assign(acc, { [location]: acc[location].concat(
-        sorted ? { [name]: animals.find(animal => animal.name === name).residents
-        .map(resident => resident.name).sort(), } :
-        { [name]: animals.find(item1 => item1.name === name).residents.map(item2 => item2.name), }),
-      })
+      Object.assign(acc, { [location]: acc[location].concat(sorted ? { [name]: animals.find(
+        animal => animal.name === name).residents.map(resident => resident.name).sort() } :
+          { [name]: animals.find(a => a.name === name).residents.map(b => b.name), }) })
     ), { NE: [], NW: [], SE: [], SW: [] });
   }
 
   if (sex && includeNames) {
     return LOCAL.reduce((acc, { location, name }) => (
-      Object.assign(acc, { [location]: acc[location].concat(
-        sorted ? { [name]: animals.find(animal => animal.name === name).residents
-          .filter(resident => resident.sex === sex).map(resident1 => resident1.name).sort(), } :
-          { [name]: animals.find(item1 => item1.name === name).residents.filter(item2 => (
-            item2.sex === sex)).map(item3 => item3.name), }),
-      })
+      Object.assign(acc, { [location]: acc[location].concat(sorted ? { [name]: animals.find(
+        a => a.name === name).residents.filter(b => b.sex === sex).map(c => c.name).sort() } :
+          { [name]: animals.find(d => d.name === name).residents.filter(e => (e.sex === sex))
+            .map(f => f.name), }) })
     ), { NE: [], NW: [], SE: [], SW: [] });
   }
 
   return LOCAL.reduce((acc, { location, name }) => (
-    Object.assign(acc, {
-      [location]: acc[location].concat(animals.find(animal => animal.name === name).name),
-    })
+    Object.assign(acc, { [location]: acc[location].concat(animals
+      .find(animal => animal.name === name).name), })
   ), { NE: [], NW: [], SE: [], SW: [] });
 }
 
