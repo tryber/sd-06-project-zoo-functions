@@ -89,9 +89,8 @@ function entryCalculator(entrants = '') {
 const emptyOption = () => {
   const array = {};
   animals.forEach((animal) => {
-    array[animal.location] = animals.filter( ( creature ) => {
-      return creature.location === animal.location;
-    }).map(element => element.name);
+    array[animal.location] = animals.filter(creature => creature.location === animal.location)
+      .map(element => element.name);
   });
   return array;
 };
@@ -100,9 +99,8 @@ const nameOption = ({ includeNames = '', sorted = '' }) => {
   let array = {};
 
   animals.forEach((animal) => {
-    array[animal.location] = animals.filter( (creature ) => {
-      return creature.location === animal.location;
-    }).map((pet) => {
+    array[animal.location] = animals.filter(creature => creature.location === animal.location)
+    .map((pet) => {
       const obj = {};
       if (includeNames === true) {
         if (sorted === '') {
@@ -123,20 +121,16 @@ const sexOption = ({ sex = '', sorted = '' }) => {
   const array = {};
 
   animals.forEach((animal) => {
-    array[animal.location] = animals.filter( ( creature ) => {
-      return creature.location === animal.location;
-    }).map((pet) => {
-      const obj = {};
-      if (sorted === '') {
-        obj[pet.name] = pet.residents.filter( ( item ) => {
-          return item.sex === sex;
-        }).map(element => element.name);
-      }
-      if (sorted === true) {
-        obj[pet.name] = pet.residents.filter( ( item ) => {
-          return item.sex === sex;
-        }).map(element => element.name).sort();
-      }
+    array[animal.location] = animals.filter(creature => creature.location === animal.location)
+      .map((pet) => {
+        const obj = {};
+        if (sorted === '') {
+          obj[pet.name] = pet.residents.filter(item => item.sex === sex).map(element => element.name);
+        }
+        if (sorted === true) {
+          obj[pet.name] = pet.residents.filter(item => item.sex === sex)
+            .map(element => element.name).sort();
+        }
       return obj;
     });
   });
