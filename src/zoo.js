@@ -32,18 +32,16 @@ function animalsOlderThan(animal, age) {
 }
 
 function employeeByName(employeeName) {
-  if (employeeName === undefined){
+  if (employeeName === undefined) {
     return {};
-  }else {
-    const nameOfTheEmployee = employees
-    .find(theEmployee => theEmployee.firstName === employeeName || theEmployee.lastName === employeeName);
-    // usar find para encontrar o funcionario e suas properties para o primeiro nome OU para o ultimo nome e tirar do array
-  
-    return nameOfTheEmployee;
   }
+    const nameOfTheEmployee = employees
+    .find(theEmployee => theEmployee.firstName === employeeName 
+      || theEmployee.lastName === employeeName);
+   /* usar find para encontrar o funcionario e suas properties para o 
+    primeiro nome OU para o ultimo nome e tirar do array */
+    return nameOfTheEmployee;
 }
-
- console.log(employeeByName("Wishart"))
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
