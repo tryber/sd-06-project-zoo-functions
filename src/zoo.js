@@ -114,7 +114,7 @@ function schedule(dayName) {
   } else {
     week.push(dayName);
   }
-  week.forEach(dayWeek => {
+  week.forEach((dayWeek) => {
     if (hours[dayWeek].open === 0 && hours[dayWeek].close === 0) {
       exit[dayWeek] = 'CLOSED';
     } else {
