@@ -121,8 +121,8 @@ function employeeCoverage(idOrName) {
     let animalsAux = [];
     employees.forEach((element) => {
       element.responsibleFor.forEach((id) => {
-        const animalObj = animals.find(animal => animal.id === id);
-        animalsAux.push(animalObj.name);
+        const objAnimal = animals.find(curr => curr.id === id);
+        animalsAux.push(objAnimal.name);
       });
       fullList[`${element.firstName} ${element.lastName}`] = animalsAux;
       animalsAux = [];
