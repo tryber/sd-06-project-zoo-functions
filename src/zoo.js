@@ -95,12 +95,21 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
-}
 
-function increasePrices(percentage) {
-  // seu código aqui
 }
+console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'))
+function increasePrices(percentage) {
+  /*let {Adult, Senior, Child} = data.prices
+  Adult = Adult + (Adult * percentage) / 100
+  Senior = Senior + (Senior * percentage) / 100
+  Child = Child + (Child * percentage) / 100
+  return {
+    Adult,
+    Senior,
+    Child
+  }*/
+}
+// console.log(increasePrices(50))
 
 function employeeCoverage(idOrName) {
   // seu código aqui
