@@ -57,15 +57,14 @@ function animalCount(species) {
   if (species) {
     return animals.find(animal => animal.name === species).residents.length;
   }
-  const count = animals.map(animal => animal.residents.length);
   species = animals.map(animal => animal.name);
-
+  const count = animals.map(animal => animal.residents.length);
   const creatArrayAnimals = {};
 
   for (let i = 0; i < count.length; i += 1) {
     creatArrayAnimals[species[i]] = count[i];
-    // species.forEach((specie, index) => creatArrayAnimals[specie] = count[index]);
   }
+
   return creatArrayAnimals;
 }
 
