@@ -115,7 +115,31 @@ function increasePrices(percentage) {
 
 function employeeCoverage(idOrName) {
   // seu código aqui
+
+  if (!idOrName) {
+    const fullList = {};
+    let animalsAux = [];
+    employees.forEach(element => {
+      element.responsibleFor.forEach(id => {
+        const animalObj = animals.find(animal => animal.id === id)
+        animalsAux.push(animalObj.name);
+      });
+      fullList[`${element.firstName} ${element.lastName}`] = animalsAux;
+      animalsAux = [];
+    });
+    return fullList;
+  }
+  const animalsEmployee = {};
+  const employeeData = employees.find(element => element.id === idOrName || element.firstName === idOrName || element.lastName === idOrName);
+  const aux = [];
+  employeeData.responsibleFor.forEach(element => {
+    const animalObj = animals.find(animal => animal.id === element)
+    aux.push(animalObj.name);
+  });
+  animalsEmployee[`${employeeData.firstName} ${employeeData.lastName}`] = aux;
+  return animalsEmployee;
 }
+
 
 module.exports = {
   entryCalculator,
