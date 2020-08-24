@@ -227,9 +227,7 @@ function animalMap(options) {
   return output;
 }
 
-const returnSchedule = (day) => {
-  return `Open from ${data.hours[day].open}am until ${(data.hours[day].close) - 12}pm`;
-}
+const returnSchedule = (day) => `Open from ${data.hours[day].open}am until ${(data.hours[day].close) - 12}pm`;
 
 // 24h to 12h = (-12)
 const defaultSchedule = () => {
@@ -254,7 +252,7 @@ const getDaySchedule = (day) => {
       output[day] = returnSchedule(day);
     }
     if (day === closedDay) {
-      output[day] = "CLOSED";
+      output[day] = 'CLOSED';
     }
   }
   return output;
