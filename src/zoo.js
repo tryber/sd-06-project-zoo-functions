@@ -95,8 +95,12 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-
+  const funcionario = data.employees.filter(funcionario1 => funcionario1.id === id);
+  const animal = data.animals.filter(animal1 => animal1.id === funcionario[0].responsibleFor[0]);
+  const resultado = animal[0].residents.reduce((prev, curr) => (prev.age > curr.age ? prev : curr));
+  return Object.values(resultado);
 }
+
 
 function increasePrices(percentage) {
   let { Adult, Senior, Child } = data.prices;
@@ -110,8 +114,9 @@ function increasePrices(percentage) {
 
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+
 }
+
 
 module.exports = {
   entryCalculator,
