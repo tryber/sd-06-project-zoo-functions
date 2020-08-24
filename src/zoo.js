@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 //  criando branch
 
 const data = require('./data');
-const { animals } = require('./data');
+const { animals, employees } = require('./data');
 
 /*  1- Implemente a função animalsByIds:
  Caso receba nenhum parâmetro, necessário retornar um array vazio
@@ -29,6 +29,7 @@ function animalsByIds(...ids) {
 
 console.log(animalsByIds());
 console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce'));
+console.log('**********Requisito 1**********');
 
 
 /*  2- Implemente a função animalsOlderThan:
@@ -44,11 +45,24 @@ function animalsOlderThan(animal, age) {
 }
 
 console.log(animalsOlderThan('otters', 7));
+console.log('**********Requisito 2**********');
 
+
+/* 3- Implemente a função employeeByName:
+ Sem parâmetros, retorna um objeto vazio
+ Quando provido o primeiro nome do funcionário, retorna o objeto do funcionário
+ Quando provido o último nome do funcionário, retorna o objeto do funcionário*/
 
 function employeeByName(employeeName) {
-  // seu código aqui
+  const worker = employees
+  .find(person =>
+    person.firstName === employeeName || person.lastName === employeeName);
+  return worker || {};
 }
+
+console.log(employeeByName());
+console.log(employeeByName('Emery'));
+console.log('**********Requisito 3**********');
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
