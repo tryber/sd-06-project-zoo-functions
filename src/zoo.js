@@ -137,14 +137,13 @@ function employeeCoverage(idOrName) {
     });
     return obj;
   }
-  const people = employees.find(element => idOrName === element.id || 
+  const people = employees.find(element => idOrName === element.id ||
       idOrName === element.firstName || idOrName === element.lastName);
   const nomes = `${people.firstName} ${people.lastName}`;
-  obj[nomes] = people.responsibleFor.map(idAni => animals.find(ani =>
+  obj[nomes] = people.responsibleFor.flatMap(idAni => animals.find(ani =>
       ani.id === idAni).name);
   return obj;
 }
-
 
 module.exports = {
   entryCalculator,
