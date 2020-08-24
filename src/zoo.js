@@ -91,42 +91,42 @@ function animalMap(options) {
   // seu código aqui
 }
 
-const allDays = () => {
-  const result = {};
-  const daysObj = Object.keys(hours);
-  daysObj.forEach((day) => {
-    if (hours[day].open === 0) {
-      result[day] = 'CLOSED';
-    } else {
-      result[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`;
-    }
-  });
-  return result;
-};
-
-const oneDay = (day) => {
-  const oneDayObj = {};
-  if (day !== 'Monday') {
-    oneDayObj[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`;
-  } else {
-    oneDayObj[day] = 'CLOSED';
-  }
-  return oneDayObj;
-};
-
 function schedule(dayName) {
   // seu código aqui
+  const result = {};
+  const daysObj = Object.keys(hours);
   if (!dayName) {
-    return allDays();
+    daysObj.forEach((day) => {
+      if (hours[day].open === 0) {
+        result[day] = 'CLOSED';
+      } else {
+        result[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`;
+      }
+    });
+    return result;
   }
-  return oneDay(dayName);
+  if (dayName !== 'Monday') {
+      result[dayName] = `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm`;
+    } else {
+      result[dayName] = 'CLOSED';
+    }
+    return result;
 }
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
-  
+  let old = 0;
+  let result;
+  const firstAnimal = employees.find((name) => name.id === id).responsibleFor[0];
+  animals.find((name) => name.id === firstAnimal).residents.forEach(pet => {
+    if (pet.age > old) {
+      old = pet.age;
+      result = pet;
+    }
+  });
+  const oldestAnimal = [result.name, result.sex, result.age];
+  return oldestAnimal;
 }
-console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'))
 
 function increasePrices(percentage) {
   // seu código aqui
