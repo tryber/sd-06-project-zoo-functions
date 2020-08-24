@@ -100,7 +100,7 @@ const defaultMap = () => {
   const locationArr = ['NE', 'NW', 'SE', 'SW'];
   const output = {};
 
-  locationArr.forEach(location => {
+  locationArr.forEach((location) => {
     output[location] = data.animals.filter(animal => animal.location === location)
     .map(animal => animal.name);
   });
