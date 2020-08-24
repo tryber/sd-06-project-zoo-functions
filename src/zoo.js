@@ -10,7 +10,7 @@ eslint no-unused-vars: [
 */
 
 
-const { animals, employees } = require('./data');
+const { animals, employees, prices } = require('./data');
 const data = require('./data');
 
 const animalsByIds = (...ids) => animals
@@ -47,29 +47,44 @@ const addEmployee = (id = [], firstName = [], lastName = [], managers = [], resp
   data.employees.push({ id, firstName, lastName, managers, responsibleFor });
 
 
-function animalCount(species) {
-  // seu código aqui
-}
+const animalCount = (species) => {
+  if (species) {
+    const a = animals.find(namePopular =>
+      namePopular.name === species);
+    return a.residents.length;
+  }
+  const animalCoun = animals.reduce((acc, currentValue) => {
+    acc[currentValue.name] = currentValue.residents.length;
+    return acc;
+  }, {});
+  return animalCoun;
+};
 
-function entryCalculator(entrants) {
-  // seu código aqui
-}
+const entryCalculator = (entrants) => {
+  if (!entrants || Object.keys(entrants).length === 0) {
+    return 0;
+  }
+  return Object.keys(entrants).reduce((acc, curr) => acc +
+    (entrants[curr] * prices[curr]), 0);
+};
 
-function animalMap(options) {
+const animalMap = (options) => {
+};
+const schedule = (dayName) => {
   // seu código aqui
-}
-
-function schedule(dayName) {
-  // seu código aqui
-}
+};
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
 }
 
-function increasePrices(percentage) {
-  // seu código aqui
-}
+const increasePrices = (percentage) => {
+  const percent = number => Math.round(((number + number) * percentage * 0.01) * 100) / 100;
+  prices.Adult = percent(prices.Adult);
+  prices.Senior = percent(prices.Senior);
+  prices.Child = percent(prices.Child);
+};
+
 
 function employeeCoverage(idOrName) {
   // seu código aqui
