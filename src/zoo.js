@@ -8,9 +8,8 @@ eslint no-unused-vars: [
   }
 ]
 */
-
-const { animals } = require('./data');
-const { employees } = require('./data');
+const data = require('./data');
+const { animals, employees, prices } = require('./data');
 
 function animalsByIds(...ids) {
   // Caso receba nenhum parâmetro
@@ -67,7 +66,15 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  // Retorna 0 se nenhum argumento for passado
+  if (entrants === undefined || Object.keys(entrants).length === 0) return 0;
+  // Retorna o preço total a ser cobrado dado o número de adultos, crianças e idosos
+  const { Adult = 0, Child = 0, Senior = 0 } = entrants;
+  const adult = (prices.Adult) * Adult;
+  const child = (prices.Child) * Child;
+  const senior = (prices.Senior) * Senior;
+  const sum = adult + child + senior;
+  return sum;
 }
 
 function animalMap(options) {
