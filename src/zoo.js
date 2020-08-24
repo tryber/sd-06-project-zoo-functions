@@ -46,7 +46,7 @@ function createEmployee(personalInfo, associatedWith) {
 function isManager(id) {
   return employees
     .some(employee => employee.managers
-    .some(managerId => managerId === id));
+      .some(managerId => managerId === id));
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
@@ -87,7 +87,7 @@ function animalMap(options) {
 }
 
 function schedule(...dayName) {
-   if (dayName.length === 0) {
+  if (dayName.length === 0) {
     dayName = Object.keys(hours);
   }
 
