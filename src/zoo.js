@@ -61,7 +61,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 function animalCount(species) {
   let result = {};
-  if (species === undefined) {
+  if (!species) {
     animals.forEach((element) => {
       const { name, residents } = element;
       result[name] = residents.length;
@@ -82,8 +82,8 @@ function entryCalculator(entrants = 0) {
 
 function animalMap(options) {
   const searchByLocation = region => animals
-    .filter(animal => animal.location === region)
-    .map(element => element.name);
+  .filter(animal => animal.location === region)
+  .map(element => element.name);
 
   const search = (gender, animalName) => animals
     .find(animal => animal.name === animalName).residents
@@ -116,6 +116,7 @@ const amPm = (time) => {
   }
   return moment;
 };
+
 const response = (day, object) => {
   const { open, close } = hours[day];
   if (open === 0 && close === 0) {
@@ -129,7 +130,7 @@ const response = (day, object) => {
 function schedule(dayName) {
   const result = {};
   if (!dayName) {
-    Object.keys(hours).forEach(hour => response(hour, result));
+    Object.keys(hours).forEach(element => response(element, result));
   } else {
     response(dayName, result);
   }
@@ -153,14 +154,13 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  const findAnimal = (obj) => {
-    const animalName = [];
-    obj.responsibleFor.forEach(animalId =>
-      animalName.push(animals.find(animal => animal.id === animalId).name));
-    return animalName;
-  };
-  const findPerson = search => employees.find(person =>
-    person.firstName === search || person.lastName === search || person.id === search);
+  const findAnimal = obj => obj.responsibleFor
+  .map(animalId => animals.find(animal => animal.id === animalId).name);
+  
+  const findPerson = search => employees.find((person) => {
+    const {firstName, lastName, id} = person;
+    return (firstName === search || lastName === search || id === search)
+  });    
 
   const printLine = (staff, object) => {
     object[`${staff.firstName} ${staff.lastName}`] = findAnimal(staff);
