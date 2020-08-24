@@ -17,16 +17,11 @@ const { hours } = require('./data')
 
 function animalsByIds(...ids) {
   // o rest parameter foi inserido para que pudessem ser utilizados quantos parametros fossem necessarios
-
-  // if para retornar em caso de id vazio
   const searchAnimalsById = animals
   .filter(animal =>ids.includes(animal.id))
   // filter para filtrar valores
   return searchAnimalsById;
 }
- console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce','e8481c1d-42ea-4610-8e11-1752cfc05a46'));
- 
-
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
