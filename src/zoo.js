@@ -84,11 +84,11 @@ function animalMap(options = {}) {
     if (!options.includeNames) {
       arrayExit.push(specie.name);
     } else if (options.includeNames) {
-      if (!(!options.sex)) {
+      if (options.sex) {
         arrayExit.push(
-          { [specie.name]: specie.residents.filter(animalSex => animalSex.sex === options.sex)
-          .map(animal => animal.name) }
-        );
+        { [specie.name]: specie.residents.filter(animalSex => animalSex.sex === options.sex)
+        .map(animal => animal.name) } );
+        
       } else {
         arrayExit.push({ [specie.name]: specie.residents.map(animal => animal.name) });
       }
