@@ -77,11 +77,10 @@ function entryCalculator(entrants) {
         break;
       default:
         total += 0;
-    };
+    }
   };
   keys.forEach(el => compare(el));
   return total;
-  
 }
 function animalMap(options) {
 }
