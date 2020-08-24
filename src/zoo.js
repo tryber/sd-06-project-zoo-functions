@@ -100,10 +100,8 @@ function entryCalculator(entrants) {
   if (!entrants) return 0;
   const keys = Object.keys(entrants);
   const values = Object.values(entrants);
-  const totalBill = keys.reduce((acc, cur, index) => {
-    acc += prices[cur] * values[index];
-    return acc;
-  }, 0);
+  const totalBill = keys.reduce((acc, cur, index) =>
+    acc + (prices[cur] * values[index]), 0);
   return totalBill;
 }
 
@@ -194,8 +192,6 @@ function oldestFromFirstSpecies(id) {
   return oldestAnimalArray;
 }
 
-console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
-
 function increasePrices(percentage) {
   const percentToIncrease = number =>
   Math.round((number + (number * percentage * 0.01)) * 100) / 100;
@@ -204,9 +200,33 @@ function increasePrices(percentage) {
   });
 }
 
+const searchId = element => element.responsibleFor
+  .map(animalResponsableId => animalResponsableId);
+
+const searchNames = id => animals
+  .find(animal => animal.id === id).name;
+
+const identifyParamater = parameter =>
+    employees.find(employee =>
+    employee.id === parameter || employee.firstName === parameter
+    || employee.lastName === parameter);
+
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  if (!idOrName) {
+    const employeeFullList = employees.reduce((acc, cur) => {
+      acc[`${cur.firstName} ${cur.lastName}`] = searchId(cur).map(id => searchNames(id));
+      return acc;
+    }, {});
+    return employeeFullList;
+  }
+  const holder = {};
+  const { firstName, lastName } = identifyParamater(idOrName);
+  holder[`${firstName} ${lastName}`] = searchId(identifyParamater(idOrName)).map(id => searchNames(id));
+  return holder;
 }
+
+console.log(employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
+
 
 module.exports = {
   entryCalculator,
