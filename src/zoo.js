@@ -81,9 +81,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function animalCount(species) {
   // seu código aqui
   // SOURCE: encontrei dicas sensacionais de uso do reduce em https://jrsinclair.com/articles/2019/functional-js-do-more-with-reduce/
-  const countAnimals = (obj, current) => {
-    return ({ ...obj, [current.name]: current.residents.length });
-  };
+  const countAnimals = (obj, current) => ({ ...obj, [current.name]: current.residents.length });
 
   if (!species) {
     return data.animals.reduce(countAnimals, {});
@@ -106,9 +104,11 @@ function animalMap({ includeNames = false, sex = '', sorted = false } = {}) {
   // seu código aqui
   const getLocations = [];
   data.animals.forEach(element => getLocations.push(element.location));
-  const locations = [ ...new Set(getLocations) ];
+  const locations = [...new Set(getLocations)];
   const result = {};
-  locations.forEach(element => result[element] = []);
+  locations.forEach(element => {
+    result[element] = []
+  });
   const getAnimals = (array, animal) => [ ...array, animal.name ];
   Object.keys(result)
     .forEach((currLocation) => {
@@ -119,9 +119,10 @@ function animalMap({ includeNames = false, sex = '', sorted = false } = {}) {
   if (includeNames) {
     // reduce method to get each resident animal´s name
     const animalNames = (currResident) => {
-      if (sex === currResident.sex) {
+      if (!sex) {
         return currResident.name;
-      } else if (!sex) {
+      }
+      if (sex === currResident.sex) {
         return currResident.name;
       }
     };
