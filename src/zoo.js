@@ -13,24 +13,12 @@ const data = require('./data');
 const { animals, employees, prices, hours } = require('./data');
 
 function animalsByIds(...ids) {
-  // seu código aqui
-  // Verificar se o parâmetro é vazio, se for retorna um array vazio
-  // Se receber um único parâmetro retorna o animal com o id recebido
-  // Se receber mais de um parâmetro retorna todos os animais com os ids
   const result = [];
   if (ids === undefined) return result;
-  ids.forEach((id) => {
-    result.push(animals.find(animal => animal.id === id));
-  });
-  return result;
+  return ids.map(animal => animals.id === animal.id);
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
-  // Recebe uma espécie e uma idade
-  // Se todos os animais de uma espécie tiverem acima da idade especificada
-  // retorna true
-  // Caso contrário retorna false
   const species = animals.find(specie => specie.name === animal);
   const animalsAge = species.residents.every(specie => specie.age >= age);
   return animalsAge;
