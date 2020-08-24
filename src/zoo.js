@@ -132,8 +132,9 @@ function animalMap({ includeNames = false, sex = '', sorted = false } = {}) {
     locations.forEach(
       location => result[location].forEach(
         (species, index) => Object.keys(species)
-          .forEach(element => result[location][index][element].sort(),)
-      ));
+          .forEach(element => result[location][index][element].sort())
+      )
+    );
   }
   return result;
 }
