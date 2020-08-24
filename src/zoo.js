@@ -33,7 +33,7 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  //return data.employees.map(())
+  //  return data.employees.map(())
 }
 
 function isManager(id) {
@@ -45,7 +45,7 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 }
 
 function animalCount(species) {
-  if (!species) { 
+  if (!species) {
     return data.animals.reduce((objectAnimals, current) => {
       objectAnimals[current.name] = current.residents.length;
       return objectAnimals;
