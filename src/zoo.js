@@ -9,15 +9,11 @@ eslint no-unused-vars: [
 ]
 */
 
+
 const data = require('./data');
 
 function animalsByIds(...ids) {
-  if (ids === []) {
-    return [];
-  } else if (ids.length === 1) {
-    return data.animals.filter(animal => animal.id === ids[0]);
-  }
-  return data.animals.filter(animal => ids.some(id => (animal.id === id)));
+  return ids.map(id => data.animals.find(animal => animal.id === id));
 }
 
 function animalsOlderThan(animal, age) {
@@ -29,10 +25,10 @@ function employeeByName(employeeName) {
   if (employeeName === undefined) {
     return {};
   }
-  return data.employees.filter((emp) => {
+  return data.employees.find((emp) => {
     const emplo = employeeName;
     return (emp.firstName === emplo || emp.lastName === emplo);
-  })[0];
+  });
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -48,7 +44,7 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  return data.employees.some(emplo => (emplo.managers[0] === id || emplo.managers[1] === id));
+  return data.employees.some(emplo => (emplo.managers.find(ids => ids === id)));
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
@@ -77,17 +73,8 @@ function entryCalculator(entrants) {
   if (!entrants) {
     return 0;
   }
-  let result = 0;
-  if (entrants.Adult) {
-    result = entrants.Adult * data.prices.Adult;
-  }
-  if (entrants.Child) {
-    result += entrants.Child * data.prices.Child;
-  }
-  if (entrants.Senior) {
-    result += entrants.Senior * data.prices.Senior;
-  }
-  return result;
+  return Object.keys(entrants).reduce((total, key) =>
+  total + (data.prices[key] * entrants[key]), 0);
 }
 
 function animalMap({ includeNames = false, sorted = false, sex } = false) {
@@ -158,18 +145,8 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  let { Adult, Child, Senior } = data.prices;
-  Adult = Math.round((Adult * ((percentage / 100) + 1)) * 100) / 100;
-  Child = Math.round((Child * ((percentage / 100) + 1)) * 100) / 100;
-  Senior = Math.round((Senior * ((percentage / 100) + 1)) * 100) / 100;
-  data.prices.Adult = Adult;
-  data.prices.Child = Child;
-  data.prices.Senior = Senior;
-  return {
-    Adult,
-    Senior,
-    Child,
-  };
+  Object.keys(data.prices).forEach(key =>
+  (data.prices[key] = Math.round((data.prices[key] * ((percentage / 100) + 1)) * 100) / 100));
 }
 
 function employeeCoverage(idOrName) {
