@@ -49,6 +49,17 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
+  const count = data.animals.find(animal => animal.name === species);
+  const animalObject = {};
+  if (count) {
+    return count.residents.length;
+  }
+  data.animals.forEach((element) => {
+    const animalKey = element.name;
+    const animalValue = element.residents.length;
+    animalObject[animalKey] = animalValue;
+  });
+  return animalObject;
 }
 
 function entryCalculator(entrants) {
@@ -62,7 +73,7 @@ function animalMap(options) {
 function schedule(dayName) {
   // seu código aqui
 }
-
+console.log(schedule('Tuesday'));
 function oldestFromFirstSpecies(id) {
   // seu código aqui
 }
