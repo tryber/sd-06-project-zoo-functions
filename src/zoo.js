@@ -92,27 +92,27 @@ function animalMap(options) {
 }
 
 const allDays = () => {
-  let result = {};
-  let daysObj = Object.keys(hours);
+  const result = {};
+  const daysObj = Object.keys(hours);
   daysObj.forEach((day) => {
     if (hours[day].open === 0) {
       result[day] = 'CLOSED';
     } else {
-      result[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`
+      result[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`;
     }
-  })
+  });
   return result;
-}
+};
 
 const oneDay = (day) => {
-  let result = {};
+  const oneDayObj = {};
   if (day !== 'Monday') {
-    result[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`;
+    oneDayObj[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`;
   } else {
-    result[day] = 'CLOSED';
+    oneDayObj[day] = 'CLOSED';
   }
-  return result;
-}
+  return oneDayObj;
+};
 
 function schedule(dayName) {
   // seu código aqui
@@ -124,7 +124,9 @@ function schedule(dayName) {
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
+  
 }
+console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'))
 
 function increasePrices(percentage) {
   // seu código aqui
