@@ -64,39 +64,31 @@ function entryCalculator(entrants) {
 
 function animalMap(options = {}) {
   const { includeNames = false, sorted = false, sex = '' } = options;
-
   const LOCAL = animals.filter(item => item.location)
     .sort((a, b) => (a.residents.length - b.residents.length));
 
   if (includeNames && !sex) {
     return LOCAL.reduce((acc, { location, name }) => {
-      return Object.assign(acc, {
-        [location]: acc[location].concat(sorted ?
+      return Object.assign(acc, { [location]: acc[location].concat(sorted ? { [name]: animals
+        .find(animal => animal.name === name).residents.map(resident => resident.name).sort(), } :
           { [name]: animals.find(animal => animal.name === name)
-              .residents.map(resident => resident.name).sort() } :
-          { [name]: animals.find(animal => animal.name === name)
-              .residents.map(resident => resident.name) })
+            .residents.map(resident => resident.name), })
       });
     }, { NE: [], NW: [], SE: [], SW: [] });
   }
-
   if (sex && includeNames) {
-    return LOCAL.reduce((acc, { location, name }) => {
-      return Object.assign(acc, {
-        [location]: acc[location].concat(sorted ?
-          { [name]: animals.find(animal => animal.name === name)
-              .residents.filter(resident => resident.sex === sex)
-              .map(resident1 => resident1.name).sort() } :
-          { [name]: animals.find(animal => animal.name === name)
-              .residents.filter(resident => resident.sex === sex)
-              .map(resident1 => resident1.name) })
+    return LOCAL.reduce((acc, { location, name }) => { return Object.assign(acc, {
+        [location]: acc[location].concat(sorted ? { [name]: animals
+          .find(animal => animal.name === name).residents.filter(resident => resident.sex === sex)
+              .map(resident1 => resident1.name).sort(), } : { [name]: animals
+                .find(animal => animal.name === name).residents
+                .filter(resident => resident.sex === sex).map(resident1 => resident1.name), })
       });
     }, { NE: [], NW: [], SE: [], SW: [] });
   }
-
   return LOCAL.reduce((acc, { location, name }) => {
     return Object.assign(acc, {
-      [location]: acc[location].concat(animals.find(animal => animal.name === name).name)
+      [location]: acc[location].concat(animals.find(animal => animal.name === name).name),
     });
   }, { NE: [], NW: [], SE: [], SW: [] });
 }
@@ -106,8 +98,8 @@ function schedule(dayName) {
     const dayFiltered = Object.entries(hours).find(item => item[0] === dayName);
     const [day, obj] = dayFiltered;
     const { open, close } = obj;
-    let msg = day === 'Monday' ? 'CLOSED' :
-      `Open from ${open}am until ${close - 12}pm`
+    const msg = day === 'Monday' ? 'CLOSED' :
+      `Open from ${open}am until ${close - 12}pm`;
 
     return { [day]: msg };
   }
@@ -115,8 +107,8 @@ function schedule(dayName) {
   return Object.entries(hours).reduce((obj, entry) => {
     const [key, value] = entry;
     const { open, close } = value;
-    let msg = key === 'Monday' ? 'CLOSED' :
-      `Open from ${open}am until ${close - 12}pm`
+    const msg = key === 'Monday' ? 'CLOSED' :
+      `Open from ${open}am until ${close - 12}pm`;
 
     return Object.assign(obj, { [key]: msg });
   }, {});
