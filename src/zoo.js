@@ -10,7 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { animals, employees } = require('./data');
+const { animals, employees, hours, prices } = require('./data');
 
 function animalsByIds(...ids) {
   // seu código aqui
@@ -75,15 +75,14 @@ function entryCalculator(entrants) {
   if (!entrants) {
     return total;
   }
-  const entryObj = Object.entries(entrants);
-  for (let i = 0; i < entryObj.length; i += 1) {
-    if (entryObj[i][0] === 'Adult') {
-      total += entryObj[i][1] * 49.99;
-    } else if (entryObj[i][0] === 'Senior') {
-      total += entryObj[i][1] * 24.99;
-    } else {
-      total += entryObj[i][1] * 20.99;
-    }
+  if (entrants.Adult) {
+    total += entrants.Adult * prices.Adult;
+  }
+  if (entrants.Senior) {
+    total += entrants.Senior * prices.Senior;
+  }
+  if (entrants.Child) {
+    total += entrants.Child * prices.Child;
   }
   return total;
 }
@@ -94,10 +93,10 @@ function animalMap(options) {
 
 function schedule(dayName) {
   // seu código aqui
-  if (!dayName) {
-    return ''
-  }
+  let result = {};
+  const daysObj = Object.entries(hours);  
 }
+console.log(schedule())
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
