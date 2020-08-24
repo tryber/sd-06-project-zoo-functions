@@ -88,7 +88,7 @@ function entryCalculator(entrants = '') {
 
 const emptyOption = () => {
   const array = {};
-  animals.filter((animal) => {
+  animals.forEach((animal) => {
     array[animal.location] = animals.filter(creature => creature.location === animal.location).map(element => element.name);
   });
   return array;
@@ -98,10 +98,12 @@ const nameOption = ({ includeNames = '', sorted = '' }) => {
   let array = {};
 
   animals.forEach((animal) => {
-    array[animal.location] = animals.filter(creature => creature.location === animal.location).map((pet) =>  {
+    array[animal.location] = animals.filter((creature) => {
+      return creature.location === animal.location;
+    }).map((pet) => {
       const obj = {};
       if (includeNames === true) {
-        if (sorted === ''){
+        if (sorted === '') {
           obj[pet.name] = pet.residents.map(element => element.name);
         } else {
           obj[pet.name] = pet.residents.map(element => element.name).sort();
@@ -110,8 +112,8 @@ const nameOption = ({ includeNames = '', sorted = '' }) => {
         array = emptyOption();
       }
       return obj;
-    })
-  })
+    });
+  });
   return array;
 };
 
@@ -119,17 +121,19 @@ const sexOption = ({ sex = '', sorted = '' }) => {
   const array = {};
 
   animals.forEach((animal) => {
-    array[animal.location] = animals.filter(creature => creature.location === animal.location).map((pet) =>  {
-      const obj = {}
-      if (sorted === ''){
+    array[animal.location] = animals.filter((creature) => {
+      return creature.location === animal.location;
+    }).map((pet) => {
+      const obj = {};
+      if (sorted === '') {
         obj[pet.name] = pet.residents.filter(item => item.sex === sex).map(element => element.name);
       }
-      if (sorted === true){
+      if (sorted === true) {
         obj[pet.name] = pet.residents.filter(item => item.sex === sex).map(element => element.name).sort();
       }
       return obj;
-    })
-  })
+    });
+  });
   return array;
 };
 
@@ -139,12 +143,8 @@ function animalMap(options = '') {
   if (options === '') {
     animalList = emptyOption();
   }
-  if (includeNames === true) {
-    if (sex) {
-      animalList = sexOption({ sex, sorted });
-    } else {
-      animalList = nameOption({ includeNames, sorted });
-    }
+  if (includeNames === true && sex) {
+    animalList = sexOption({ sex, sorted });
   } else {
     animalList = nameOption({ includeNames, sorted });
   }
