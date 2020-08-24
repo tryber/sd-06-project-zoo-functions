@@ -8,77 +8,87 @@ eslint no-unused-vars: [
   }
 ]
 */
-
+// const assert = require('assert');
 const data = require('./data');
 const { animals } = require('./data');
+const { hours } = require('./data')
 
-function animalsByIds(id) {
-  // data é o array onde será aplicado o filter
-  const searchAnimalsById = animals.filter(creatures => creatures.id === id);
+
+
+function animalsByIds(...ids) {
+  // o rest parameter foi inserido para que pudessem ser utilizados quantos parametros fossem necessarios
+
+  // if para retornar em caso de id vazio
+  const searchAnimalsById = animals
+  .filter(animal =>ids.includes(animal.id))
+  // filter para filtrar valores
   return searchAnimalsById;
 }
-console.log(animalsByIds());
+ console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce','e8481c1d-42ea-4610-8e11-1752cfc05a46'));
+ 
 
-// function animalsOlderThan(animal, age) {
-//   // seu código aqui
-// }
 
-// function employeeByName(employeeName) {
-//   // seu código aqui
-// }
+function animalsOlderThan(animal, age) {
+  // seu código aqui
+}
 
-// function createEmployee(personalInfo, associatedWith) {
-//   // seu código aqui
-// }
 
-// function isManager(id) {
-//   // seu código aqui
-// }
+function employeeByName(employeeName) {
+  // seu código aqui
+}
 
-// function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-//   // seu código aqui
-// }
+function createEmployee(personalInfo, associatedWith) {
+  // seu código aqui
+}
 
-// function animalCount(species) {
-//   // seu código aqui
-// }
+function isManager(id) {
+  // seu código aqui
+}
 
-// function entryCalculator(entrants) {
-//   // seu código aqui
-// }
+function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+  // seu código aqui
+}
 
-// function animalMap(options) {
-//   // seu código aqui
-// }
+function animalCount(species) {
+  // seu código aqui
+}
 
-// function schedule(dayName) {
-//   // seu código aqui
-// }
+function entryCalculator(entrants) {
+  // seu código aqui
+}
 
-// function oldestFromFirstSpecies(id) {
-//   // seu código aqui
-// }
+function animalMap(options) {
+  // seu código aqui
+}
 
-// function increasePrices(percentage) {
-//   // seu código aqui
-// }
+function schedule(dayName) {
+  // seu código aqui
+}
 
-// function employeeCoverage(idOrName) {
-//   // seu código aqui
-// }
+function oldestFromFirstSpecies(id) {
+  // seu código aqui
+}
 
-// module.exports = {
-//   entryCalculator,
-//   schedule,
-//   animalCount,
-//   animalMap,
-//   animalsByIds,
-//   employeeByName,
-//   employeeCoverage,
-//   addEmployee,
-//   isManager,
-//   animalsOlderThan,
-//   oldestFromFirstSpecies,
-//   increasePrices,
-//   createEmployee,
-// };
+function increasePrices(percentage) {
+  // seu código aqui
+}
+
+function employeeCoverage(idOrName) {
+  // seu código aqui
+}
+
+module.exports = {
+  entryCalculator,
+  schedule,
+  animalCount,
+  animalMap,
+  animalsByIds,
+  employeeByName,
+  employeeCoverage,
+  addEmployee,
+  isManager,
+  animalsOlderThan,
+  oldestFromFirstSpecies,
+  increasePrices,
+  createEmployee,
+};
