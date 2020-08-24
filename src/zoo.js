@@ -88,7 +88,7 @@ function entryCalculator(entrants) {
   const keys = Object.keys(entrants);
   const values = Object.values(entrants);
   const valueAL = keys.reduce((acc, cur, index) => {
-      return acc + (prices[cur] * values[index]);
+    return acc + (prices[cur] * values[index]);
   }, 0);
   return valueAL;
 }
