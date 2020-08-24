@@ -82,7 +82,7 @@ function animalCount(specie) {
 }
 
 
-//  requisito8 - fonte: https://medium.com/cleytonbrasil/javascript-como-saber-se-um-objeto-est%C3%A1-vazio-a6a153f4f81f - https://docs.w3cub.com/javascript/global_objects/object/entries/ (aplicar foreach)
+//  requisito8 - fonte: https://medium.com/cleytonbrasil/javascript-como-saber-se-um-objeto-est%C3%A1-vazio-a6a153f4f81f - https://docs.w3cub.com/javascript/global_objects/object/entries/
 function entryCalculator(entrants) {
   let result = 0;
   if ((entrants == null) || (Object.entries(entrants).length === 0)) {
@@ -102,26 +102,41 @@ function animalMap(options) {
 
 //  requisito10 -
 function schedule(dayName) {
-  /* const result = 0;
-  if ((dayName == null) || (Object.entries(dayName).length === 0)) {
+  /*  if ((dayName == null) || (Object.entries(dayName).length === 0)) {
     let completeSchedule = {};
     Object.entries(hours).forEach(([key, value]) => {
-      completeSchedule += `${key}: Open from ${value.open} until ${value.close} pm`;
+      completeSchedule += `${key}: Open from ${value.open}am until ${value.close}pm, `;
     });
     return completeSchedule;
-  }
-  return result; */
+  }*/
 }
 
 
+// requisito 11
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  /*  const employee = employees.find(empregado => empregado.id === id)
+  .find(emp => emp.responsibleFor > 0);
+  const species = employee.filter(animal => animal.id === employee);
+  let maior = 0;
+  const oldestSpecies = species.map(specie => {
+    if (specie.residents.age > maior) {
+      maior = specie.residents.age;
+      return specie.residents;
+    }
+  });
+  return oldestSpecies;*/
 }
 
+
+// requisito 12
 function increasePrices(percentage) {
-  // seu código aqui
+  Object.entries(data.prices).forEach(([key, value]) => {
+    data.prices[key] = Math.round((value * ((percentage / 100) + 1)) * 100) / 100;
+  });
 }
 
+
+// requisito 13
 function employeeCoverage(idOrName) {
   // seu código aqui
 }
