@@ -76,8 +76,32 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-  // seu código aqui
+  const { includeNames } = options;
+  
+  let fieldNE = animalsObject.filter(element => element.location === 'NE');
+  let fieldNW = animalsObject.filter(element => element.location === 'NW');
+  let fieldSE = animalsObject.filter(element => element.location === 'SE');
+  let fieldSW = animalsObject.filter(element => element.location === 'SW');
+  const ne = fieldNE.map(item => item.name);
+  const nw = fieldNW.map(item => item.name);
+  const se = fieldSE.map(item => item.name);
+  const sw = fieldSW.map(item => item.name);
+  if (!options) {
+    return {
+      NE: ne,
+      NW: nw,
+      SE: se,
+      SW: sw,
+    }
+  }
+  
+
+
+
 }
+
+
+console.log(animalMap());
 
 function schedule(dayName) {
   const scheduleObj = {
@@ -118,8 +142,16 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  let list = {};
+  let arrAnimals = [];
+  const listEmployees = employees.map(element => {
+    list[`${element.firstName} ${element.lastName}`] = element.responsibleFor
+    return list;
+  });
+  listEmployees[0];
 }
+
+// console.log(employeeCoverage());
 
 module.exports = {
   entryCalculator,
