@@ -115,9 +115,18 @@ function entryCalculator(entrants) {
 function anmsObjCst(anmGrp, options) {
   // Passo 3 - Desconstrução do input
   const keysOfInput = (options !== undefined) ? Object.keys(options) : [];
-  const includeNames = keysOfInput.includes('includeNames') ? options.includeNames : false;
-  const sex = keysOfInput.includes('sex') ? options.sex : false;
-  const sorted = keysOfInput.includes('sorted') ? options.sorted : false;
+  let includeNames = false;
+  let sex = false;
+  let sorted = false;
+  if (keysOfInput.includes('includeNames')) {
+    includeNames = options.includeNames;
+  } 
+  if (keysOfInput.includes('sex')) {
+    sex = options.sex;
+  }
+  if (keysOfInput.includes('sorted')) {
+    sorted = options.sorted;
+  }
 
   // Passo 4 - Essa é a parte que varia conforma os inputs recebidos
   let animalsObj = {};
@@ -159,12 +168,11 @@ function animalMap(options) {
   // percorremos todo o array data.animals para ver quais grupos de animais possuem localização...
   // igual ao estado (location === state).
   const objToReturn = {};
-  const vfyIfGrpIsInSt = st => data.animals.reduce((anmInSt, anmGrp) => {
-    const res = (anmGrp.location === st) ? anmInSt.concat(anmsObjCst(anmGrp, options)) : anmInSt;
-    return res;
-  }, []);
   allStates.forEach((st) => {
-    objToReturn[st] = vfyIfGrpIsInSt(st);
+    objToReturn[st] = data.animals.reduce((anmInSt, anmGrp) => {
+      const res = (anmGrp.location === st) ? anmInSt.concat(anmsObjCst(anmGrp, options)) : anmInSt;
+      return res;
+    }, []);
   });
   // Grand finale - retorna o objeto construido conforme o input
   return objToReturn;
