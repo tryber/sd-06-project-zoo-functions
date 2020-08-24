@@ -64,10 +64,9 @@ function entryCalculator(entrants) {
 
 function getSex(name, sex) {
   return { [name]: animals
-    .find(animal => animal.name === name)
-    .residents
-    .filter(resident => (resident.sex === sex))
-    .map(item => item.name) }
+    .find(animal => animal.name.includes(name)).residents
+    .filter(resident => (resident.sex.includes(sex)))
+    .map(item => item.name), }
 }
 
 function animalMap(options = {}) {
