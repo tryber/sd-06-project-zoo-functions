@@ -97,13 +97,13 @@ function animalMap(options) {
 
 function schedule(dayName) {
   // seu código aqui
-  let scheduleOutput = Object.keys(hours).reduce((acc, day) =>
-    ({...acc, [day]: `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`}),
+  const scheduleOutput = Object.keys(hours).reduce((acc, day) =>
+    ({ ...acc, [day]: `Open from ${hours[day].open}am until ${hours[day].close - 12}pm` }),
     {});
-  scheduleOutput.Monday = "CLOSED";
+  scheduleOutput.Monday = 'CLOSED';
 
-  if(dayName) {
-    let dayHours = {};
+  if (dayName) {
+    const dayHours = {};
     dayHours[dayName] = scheduleOutput[dayName];
     return dayHours;
   }
