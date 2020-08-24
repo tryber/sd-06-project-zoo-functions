@@ -22,7 +22,7 @@ function animalsByIds(...ids) {
 
 function animalsOlderThan(animal, age) {
   return data.animals.filter(allAnimals => allAnimals.name === animal)
-  .some(pets => pets.residents.every(pet => pet.age >= age));
+    .some(pets => pets.residents.every(pet => pet.age >= age));
 }
 
 function employeeByName(employeeName) {
@@ -90,15 +90,41 @@ function entryCalculator(entrants) {
   return result;
 }
 
-function animalMap(options) {
-  // if(!options) {
-  //   return data.animals.map((animal) => {
-  //     animal.name
-  //   })
-  // }
+function animalMap({ includeNames = false, sorted = false, sex } = false) {
+  if (includeNames && sex) {
+    return data.animals.reduce((acc, animal) => ({
+      ...acc,
+      [animal.location]: data.animals
+        .filter(ani => ani.location === animal.location)
+        .map(ani => (
+        (sorted) ?
+        ({ [ani.name]: ani.residents.filter(a => a.sex === sex).map(name => name.name).sort() }) :
+        ({ [ani.name]: ani.residents.filter(a => a.sex === sex).map(name => name.name) })
+        )),
+    }), {});
+  }
+
+  if (includeNames) {
+    return data.animals.reduce((acc, animal) => ({
+      ...acc,
+      [animal.location]: data.animals
+        .filter(ani => ani.location === animal.location)
+        .map(ani => (
+        ((sorted) ?
+        { [ani.name]: ani.residents.map(a => a.name).sort() } :
+        { [ani.name]: ani.residents.map(a => a.name) })
+        )),
+    }), {});
+  }
+
+  return data.animals.reduce((acc, animal) => ({
+    ...acc,
+    [animal.location]: data.animals
+      .filter(ani => ani.location === animal.location)
+      .map(a => a.name),
+  }), {});
 }
-// console.log(animalMap());
-// console.log(animalMap());
+
 function schedule(dayName) {
   const hours = Object.entries(data.hours);
   if (!dayName) {
@@ -160,8 +186,8 @@ function employeeCoverage(idOrName) {
       idOrName === emp.lastName))
     .flatMap(ani => [`${ani.firstName} ${ani.lastName}`, ani.responsibleFor]);
   const animals = empName[1].flatMap(emp => data.animals
-        .filter(ani => ani.id === emp))
-        .map(ani => ani.name);
+    .filter(ani => ani.id === emp))
+    .map(ani => ani.name);
   return {
     [empName[0]]: animals,
   };
