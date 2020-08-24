@@ -70,7 +70,7 @@ const openingHours = {
   Saturday: 'Open from 8am until 10pm',
   Sunday: 'Open from 8am until 8pm',
   Monday: 'CLOSED',
-}
+};
 function schedule(dayName) {
   if (!dayName) return openingHours;
   const key = Object.keys(openingHours).find(day => day === dayName);
