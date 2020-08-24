@@ -66,18 +66,21 @@ function entryCalculator(entrants) {
   // seu código aqui
 }
 
+
 function animalMap(options) {
   // seu código aqui
 }
-
 function schedule(dayName) {
   // seu código aqui
 }
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
+  const first = employees.find(elemento => elemento.id === id).responsibleFor[0];
+  const nome = animals.find(elemento => elemento.id === first)
+  .residents.sort((a, b) => b.age - a.age);
+  return [nome[0].name, nome[0].sex, nome[0].age];
 }
-
 function increasePrices(percentage) {
   // seu código aqui
 }
