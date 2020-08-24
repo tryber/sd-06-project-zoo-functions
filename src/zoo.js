@@ -150,9 +150,6 @@ function animalMap(options) {
   return result;
 }
 
-console.log(animalMap({ sex: 'female' })['NE'][0]);
-
-
 const changeHour = (hour) => {
   if (hour > 12) {
     hour -= 12;
