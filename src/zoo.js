@@ -125,14 +125,15 @@ const sexOption = ({ sex = '', sorted = '' }) => {
       .map((pet) => {
         const obj = {};
         if (sorted === '') {
-          obj[pet.name] = pet.residents.filter(item => item.sex === sex).map(element => element.name);
+          obj[pet.name] = pet.residents.filter(item => item.sex === sex)
+            .map(element => element.name);
         }
         if (sorted === true) {
           obj[pet.name] = pet.residents.filter(item => item.sex === sex)
             .map(element => element.name).sort();
         }
-      return obj;
-    });
+        return obj;
+      });
   });
   return array;
 };
