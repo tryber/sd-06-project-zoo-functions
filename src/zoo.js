@@ -31,9 +31,8 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-return { ...personalInfo, ...associatedWith };
+  return { ...personalInfo, ...associatedWith };
 }
-// console.log(createEmployee(personalInfo, associatedWith));
 
 function isManager(id) {
   return data.employees.some(({ managers }) => managers.includes(id));
