@@ -76,7 +76,8 @@ function entryCalculator(entrants) {
   }
   const visitorId = Object.keys(entrants);
   const visitorAmount = Object.values(entrants);
-  const totalValue = visitorAmount.reduce((acc, currentValue, index) => acc + (currentValue * prices[visitorId[index]]), 0);
+  const totalValue = visitorAmount
+  .reduce((acc, currentValue, index) => acc + (currentValue * prices[visitorId[index]]), 0);
   return totalValue;
 }
 
