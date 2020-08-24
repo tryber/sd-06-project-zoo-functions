@@ -10,35 +10,47 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { animals } = require('./data');
-
-function animalsByIds(ids = []) {
+const { animals, employees } = require('./data');
+//rest agrupa o objeto em um ARRAY
+function animalsByIds(...ids) {
+  return animals.filter(animal => ids.find(paramFound => paramFound === animal.id))
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  return animals.find(doubutsu => doubutsu.name === animal).residents.every(allAge => allAge.age >= age)
 }
 
 function employeeByName(employeeName) {
-  // seu código aqui
+  if (employeeName === undefined) {
+    return {};
+  } else {
+    return employees.find(kaishyain => kaishyain.firstName === employeeName || kaishyain.lastName === employeeName)
+  }
 }
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
 }
 
+const { animals, employees } = require('./data');
 function isManager(id) {
-  // seu código aqui
+  return employees.find(kaishyain => kaishyain.id === id)
 }
+console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'))
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
 }
 
-function animalCount(species) {
-  // seu código aqui
-}
 
+function animalCount(species) {
+  if(species.length === 0)
+  return animals.forEach(animal => `${animals.name}: ${animals.residents}`) 
+}
+  
+console.log(animalCount());
+
+return animals.find(doubutsu => doubutsu.name === species).residents.length
 function entryCalculator(entrants) {
   // seu código aqui
 }
