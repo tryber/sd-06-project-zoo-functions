@@ -89,7 +89,16 @@ function schedule(...dayName) {
   if (dayName.length === 0) {
     dayName = Object.keys(hours);
   }
-  return dayName;
+
+  const result = {};
+  dayName.forEach((day) => {
+    if (hours[day].open === 0) {
+      result[day] = 'CLOSED';
+    } else {
+      result[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`;
+    }
+  });
+  return result;
 }
 
 function oldestFromFirstSpecies(id) {
