@@ -11,8 +11,9 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-function animalsByIds(ids) {
-  // seu código aqui
+function animalsByIds(...entrada) {
+  // referencia icaro corporation do Brasil
+  return data.animals.filter(resposta => entrada.includes(resposta.id));
 }
 
 function animalsOlderThan(animal, age) {
