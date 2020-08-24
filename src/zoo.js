@@ -119,8 +119,8 @@ function oldestFromFirstSpecies(id) {
   const firstAnimal = animals.find(animal => animal.id === employeeFirstAnimal);
 
   const oldestIndividual = firstAnimal.residents.reduce((acc, individual) => {
-    if (acc.age > individual.age) {return acc}
-    else {return individual};
+    if (acc.age > individual.age) return acc;
+    return individual;
   });
 
   const oldestInfo = [oldestIndividual.name, oldestIndividual.sex, oldestIndividual.age];
@@ -128,7 +128,6 @@ function oldestFromFirstSpecies(id) {
   return oldestInfo;
 }
 
-console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'))
 function increasePrices(percentage) {
   // seu código aqui
 }
