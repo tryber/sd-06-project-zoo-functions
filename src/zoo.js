@@ -114,8 +114,8 @@ function entryCalculator(entrants) {
 // Função de apoio à animalMap para evitar complexidade cognitiva e excedente de linhas
 function anmsObjCst(anmGrp, options = false) {
   // Passo 3 - Desconstrução do input
-  const {includeNames, sex, sorted} = options;
-  
+  const { includeNames, sex, sorted } = options;
+
   // Passo 4 - Essa é a parte que varia conforma os inputs recebidos
   let animalsObj = {};
   const concatNames = (anmNames, anm) => anmNames.concat(anm.name);
