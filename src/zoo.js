@@ -44,13 +44,11 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 
 
 function animalCount(species) {
-  if(species.length === 0)
-  return animals.forEach(animal => `${animals.name}: ${animals.residents}`) 
+  if(species.length === 0) {
+  return animals.forEach(animal => `${animals.name}: ${animals.residents}`)
+  }
 }
-  
-console.log(animalCount());
 
-return animals.find(doubutsu => doubutsu.name === species).residents.length
 function entryCalculator(entrants) {
   // seu código aqui
 }
