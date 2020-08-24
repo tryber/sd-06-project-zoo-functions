@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 const data = require('./data');
-const { animals, employees, prices } = require('./data');
+const { animals, employees, prices, hours } = require('./data');
 
 function animalsByIds(...ids) {
   if (ids === undefined) {
@@ -89,21 +89,19 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  // seu código aqui
-  // Sem parâmetros, retorna um cronograma legível para humanos
-  // Se um único dia for passado, retorna somente este dia em um formato legível // // para humanos
-  // ver conversão de hora PM ====> hora24 - 12
-  /*
   const week = {
-    'Tuesday': `Open from ${hours.open}am until ${hours.close - 12}pm`,
-    'Wednesday': `Open from ${hours.open}am until ${hours.close - 12}pm`,
-    'Thursday': `Open from ${hours.open}am until ${hours.close - 12}pm`,
-    'Friday': `Open from ${hours.open}am until ${hours.close - 12}pm`,
-    'Saturday': `Open from ${hours.open}am until ${hours.close - 12}pm`,
-    'Sunday': `Open from ${hours.open}am until ${hours.close - 12}pm`,
+    'Tuesday': `Open from ${hours.Tuesday.open}am until ${hours.Tuesday.close - 12}pm`,
+    'Wednesday': `Open from ${hours.Wednesday.open}am until ${hours.Wednesday.close - 12}pm`,
+    'Thursday': `Open from ${hours.Thursday.open}am until ${hours.Thursday.close - 12}pm`,
+    'Friday': `Open from ${hours.Friday.open}am until ${hours.Friday.close - 12}pm`,
+    'Saturday': `Open from ${hours.Saturday.open}am until ${hours.Saturday.close - 12}pm`,
+    'Sunday': `Open from ${hours.Sunday.open}am until ${hours.Sunday.close - 12}pm`,
     'Monday': `CLOSED`,
   };
-  */
+  if (dayName === undefined) return week;
+  return {
+    [dayName]: `${week[dayName]}`
+  };
 }
 
 function oldestFromFirstSpecies(id) {
