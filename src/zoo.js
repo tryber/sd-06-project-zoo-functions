@@ -37,7 +37,7 @@ function employeeByName(employeeName) {
 
   employees.find((employee) => {
     const { firstName, lastName } = employee;
-    if (employeeName === firstName || employeeName === lastName){
+    if (employeeName === firstName || employeeName === lastName) {
       result = employee;
       return result;
     }
@@ -48,15 +48,17 @@ function employeeByName(employeeName) {
 // console.log(employeeByName('Wishart'));
 
 function createEmployee(personalInfo, associatedWith) {
-  const result = {...personalInfo, ...associatedWith}
+  const result = { ...personalInfo, ...associatedWith };
   return result;
 }
 
 // console.log(createEmployee(personalInfo, associatedWith));
 
-function isManager(id) {
-  // seu código aqui
+function isManager(ids) {
+  const teste = employees.some(({managers}, index) => managers[index] === ids);
+  return teste;
 }
+// console.log(isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
