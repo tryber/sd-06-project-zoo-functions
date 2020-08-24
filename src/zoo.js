@@ -102,9 +102,11 @@ function entryCalculator(entrants) {
 
 function animalMap({ includeNames = false, sex = '', sorted = false } = {}) {
   // seu código aqui
-  const getLocations = data.animals.reduce((array, element) => [...array, element.location], []);
+  const getLocations = data.animals
+    .reduce((array, element) => [...array, element.location], []);
   const locations = [...new Set(getLocations)];
-  const result = locations.reduce((acc, element) => ({ ...acc, [element]: [] }), {});
+  const result = locations
+    .reduce((acc, element) => ({ ...acc, [element]: [] }), {});
   const getSpeciesByLocation = (currLocation) => {
     result[currLocation] = data.animals
       .filter(species => species.location === currLocation)
@@ -114,7 +116,7 @@ function animalMap({ includeNames = false, sex = '', sorted = false } = {}) {
   if (includeNames) {
     // .map method to get animals' names
     const getAnimalSex = currResident => !sex || sex === currResident.sex;
-    // Method to get species and names in results
+    // Method to get species and names into results
     const getSpeciesAndNames = (location) => {
       result[location] = result[location]
         .flatMap(species => ({
@@ -125,7 +127,6 @@ function animalMap({ includeNames = false, sex = '', sorted = false } = {}) {
         }));
     };
     locations.forEach(getSpeciesAndNames);
-    console.log(result);
   }
   // what to do if option sorted is triggered
   if (sorted && includeNames) {
