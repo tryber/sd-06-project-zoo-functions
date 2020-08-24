@@ -17,7 +17,7 @@ function animalsByIds(...ids) {
   if (ids === undefined) {
     return arr;
   }
-  ids.map((id) => {return arr.push(animals.find(animal => animal.id === id))});
+  ids.map(id => arr.push(animals.find(animal => animal.id === id)));
   return arr;
 }
 
@@ -27,8 +27,8 @@ function animalsByIds(...ids) {
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
-  const animalName = animals.find(animalName => animalName.name === animal);
-  const checkAge = animalName.residents.every(residentAge => age < residentAge.age);
+  const animalsName = animals.find(animalName => animalName.name === animal);
+  const checkAge = animalsName.residents.every(residentAge => age < residentAge.age);
   return checkAge;
 }
 
@@ -38,10 +38,9 @@ Sem parâmetros, retorna um objeto vazio */
 
 function employeeByName(employeeName) {
   // seu código aqui
-  if (employeeName === undefined) {return {}}
-  const findEmployee = employees.find((employee) =>
-  employee.firstName === employeeName || employee.lastName === employeeName
-  );
+  if (employeeName === undefined) { return {}; }
+  const findEmployee = employees.find(employee =>
+  employee.firstName === employeeName || employee.lastName === employeeName);
   return findEmployee;
 }
 /* Cria um novo colaborador a partir de objetos contendo informações pessoais,
@@ -68,13 +67,12 @@ function animalCount(species) {
   if (species !== undefined) {
     const animalsName = animals.find(animal => animal.name === species);
     return animalsName.residents.length;
-  } else {
-    const animalsCount = animals.reduce((acc, { name, residents }) => {
-      acc[name] = residents.length;
-      return acc;
-    }, {});
-    return animalsCount;
   }
+  const animalsCount = animals.reduce((acc, { name, residents }) => {
+    acc[name] = residents.length;
+    return acc;
+  }, {});
+  return animalsCount;
 }
 
 function entryCalculator(entrants) {
