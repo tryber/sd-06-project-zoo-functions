@@ -107,8 +107,9 @@ function schedule(dayName) {
 function oldestFromFirstSpecies(id) {
   const employeeRes = data.employees.find(idEm => idEm.id === id).responsibleFor[0];
   const animal = data.animals.find(element => element.id === employeeRes);
-  const idade = animal.residents.map(age => age.age).reduce((acc, act) => ((acc < act) ? act : acc));
-  const realAnimal = animal.residents.find(animal => animal.age === idade);
+  const idade = animal.residents.map(age => age.age)
+  .reduce((acc, act) => ((acc < act) ? act : acc));
+  const realAnimal = animal.residents.find(anim => anim.age === idade);
   return Object.values(realAnimal);
 }
 function increasePrices(percentage) {
