@@ -267,8 +267,8 @@ function schedule(dayName) {
   }
 }
 
-// i use 'find' to get the object out of the array, an be able to access it
-const findAnimal = id => {
+// i use 'find' to get the object out of the array, and be able to access it
+const findAnimal = (id) => {
   const output = [];
   const oldestAnimal = data.animals
   .filter(animal => animal.id === id)
@@ -283,9 +283,8 @@ const findAnimal = id => {
 
 function oldestFromFirstSpecies(id) {
   const animalId = data.employees
-  .filter(employee => employee.id === id)
-  .flatMap(animal => animal.responsibleFor)
-  .find(id => id);
+  .filter(employee => employee.id === id).flatMap(animal => animal.responsibleFor)
+  .find(animal => animal);
   return findAnimal(animalId);
 }
 
