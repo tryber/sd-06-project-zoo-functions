@@ -46,9 +46,32 @@ function createEmployee(personalInfo, associatedWith) {
   return create;
 }
 
+/*
+  Testa se o id passado é de um gerente
+
+  .some(Element => Element.id === id)
+  .find(Element => Element.managers === id);
+
+*/
+
 function isManager(id) {
-  // seu código aqui
+  let arr = [];
+  const managersList = data.employees
+    .forEach(Element => {
+      arr.push(Element.managers)
+    })
+    
+  const newArray = arr
+    .reduce((acc, sub) => acc.concat(sub), [])
+
+  const managerCheck = newArray
+  .some(Element => Element === id)
+
+  return managerCheck;
 }
+
+// console.log(isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
+// console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
