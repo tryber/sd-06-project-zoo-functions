@@ -83,18 +83,22 @@ function entryCalculator(entrants) {
   // Retorna 0 se nenhum argumento for passado
   // Retorna 0 se um objeto vazio for passado
   // Retorna o preço total a ser cobrado dado o número de adultos, crianças e idosos
-  if (entrants === undefined || entrants === { }) return 0;
-  let adult = 0;
-  let children = 0;t -
-  let elder = 0;
-  adult = entrants.Adult * prices.Adult;
-  children = entrants.Child * prices.Child;
-  elder = entrants.Senior * prices.Senior;
-  return adult+children+elder;
+   if(entrants === undefined || entrants === {}) return 0;
+   const keys = Object.keys(entrants);
+   const values = Object.values(entrants);
+   const valueAL = keys.reduce((acc, cur, index) =>
+   {
+     return acc + (prices[cur] * values[index])
+
+   }, 0);
+   return valueAL;
+   
 }
 
 function animalMap(options) {
   // seu código aqui
+
+
 }
 
 function schedule(dayName) {
