@@ -106,12 +106,25 @@ function isManager(id) {
 
 console.log(isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
 console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
-console.log('**********Requisito 5**********');
+console.log('**********Requisito 6**********');
 
+
+/* 6- Implemente a função addEmployee:
+ Adiciona um funcionário no fim da lista*/
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+  const newWorker = {
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  };
+  return employees.push(newWorker);
 }
+
+console.log(addEmployee('39800c14-4b76-454a-858d-2f8d168146a7', 'John', 'Doe'));
+console.log('**********Requisito 6**********');
 
 function animalCount(species) {
   // seu código aqui
