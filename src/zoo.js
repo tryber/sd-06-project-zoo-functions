@@ -35,14 +35,14 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee({ id, firstName, lastName }, { managers, responsibleFor }) {
-  const total = {
+  const newEmployee = {
     id,
     firstName,
     lastName,
     managers,
     responsibleFor,
   };
-  return total;
+  return newEmployee;
 }
 
 function isManager(id) {
@@ -50,14 +50,14 @@ function isManager(id) {
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  const total = {
+  const newEmployee = {
     id,
     firstName,
     lastName,
     managers,
     responsibleFor,
   };
-  return employees.push(total);
+  return employees.push(newEmployee);
 }
 
 function animalCount(species) {
@@ -74,12 +74,12 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  let total = 0;
+  let result = 0;
   if (entrants === undefined) return total;
-  if (entrants.Adult) total += entrants.Adult * prices.Adult;
-  if (entrants.Senior) total += entrants.Senior * prices.Senior;
-  if (entrants.Child) total += entrants.Child * prices.Child;
-  return total;
+  if (entrants.Adult) result += entrants.Adult * prices.Adult;
+  if (entrants.Senior) result += entrants.Senior * prices.Senior;
+  if (entrants.Child) result += entrants.Child * prices.Child;
+  return result;
 }
 
 function animalMap(options) {
@@ -123,9 +123,23 @@ function increasePrices(percentage) {
   prices.Child = Math.round((prices.Child + (prices.Child * perc)) * 100) / 100;
 }
 
-function employeeCoverage(idOrName) {
 
-}
+  function employeeCoverage(idOrName) {
+    const obj = {};
+    const geral = employees.map(element1 => element1.responsibleFor);
+    const resp = animals.find(element => geral.includes(element.id));
+    console.log(resp)
+    if (idOrName === undefined) {
+        employees.forEach(element2 => {
+        const nomes = element2.firstName + ' ' + element2.lastName;
+        const responsavel = resp;
+        obj[nomes] = responsavel;
+      });
+      return obj
+    }
+  }
+  console.log(employeeCoverage())
+
 
 module.exports = {
   entryCalculator,
