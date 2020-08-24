@@ -94,7 +94,7 @@ function oldestFromFirstSpecies(id) {
   const firstIdAnimal = employees.find(element => element.id === id).responsibleFor[0];
   const dataAnimal = animals.find(animal => animal.id === firstIdAnimal);
   let older = 0;
-  const olderAnimal = dataAnimal.residents.reduce((acc,curr) => {
+  const olderAnimal = dataAnimal.residents.reduce((acc, curr) => {
     if (curr.age > older) {
       older = curr.age;
       acc = curr;
