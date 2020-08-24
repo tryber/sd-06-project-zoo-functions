@@ -70,10 +70,12 @@ function isManager(id) {
   }
   return false;
 }
-console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+//  https://eslint.org/docs/rules/object-shorthand
+//  Adiciona um funcionário no fim da lista
+function addEmployee(id = [], firstName = [], lastName = [], managers = [], responsibleFor = []) {
+  const employ = { id, firstName, lastName, managers, responsibleFor };
+  return data.employees.push(employ);
 }
 
 function animalCount(species) {
