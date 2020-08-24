@@ -78,15 +78,15 @@ function animalMap(options = {}) {
   if (sex && includeNames) {
     return LOCAL.reduce((acc, { location, name }) => (
       Object.assign(acc, { [location]: acc[location].concat(sorted ? { [name]: animals.find(
-        a => a.name === name).residents.filter(b => b.sex === sex).map(c => c.name).sort() } :
-          { [name]: animals.find(d => d.name === name).residents.filter(e => (e.sex === sex))
-            .map(f => f.name), }) })
+      a => a.name === name).residents.filter(b => b.sex === sex).map(c => c.name).sort() } :
+      { [name]: animals.find(
+        d => d.name === name).residents.filter(e => (e.sex === sex)).map(f => f.name) }) })
     ), { NE: [], NW: [], SE: [], SW: [] });
   }
 
   return LOCAL.reduce((acc, { location, name }) => (
     Object.assign(acc, { [location]: acc[location].concat(animals
-      .find(animal => animal.name === name).name), })
+      .find(animal => animal.name === name).name) })
   ), { NE: [], NW: [], SE: [], SW: [] });
 }
 
