@@ -13,19 +13,24 @@ const data = require('./data');
 const { animals, employees, prices, hours } = require('./data');
 
 // ========================================================================================
-// 1- Implemente a função animalsByIds:
+// INICIO DOS REQUISITOS
+// ========================================================================================
+// REQUISITO 01- Implemente a função animalsByIds:
 // Caso receba nenhum parâmetro, necessário retornar um array vazio
 // Ao receber como parâmetro um único id, retorna os animais com este id
 // Ao receber mais de um id, retorna os animais que têm um desses ids
-const animalsByIds = (...ids) =>
-  animals.filter(item => ids.includes(item.id));
+const animalsByIds = (...ids) => {
+  const result = animals.filter(item => ids.includes(item.id));
+  return result;
+};
+// console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce'));
 // const id1 = '0938aa23-f153-4937-9f88-4858b24d6bce';
 // const id2 = 'e8481c1d-42ea-4610-8e11-1752cfc05a46';
 // console.log(animalsByIds(id1, id2));
 // ========================================================================================
 
 // ========================================================================================
-// 2- Implemente a função animalsOlderThan:
+// REQUISITO 02- Implemente a função animalsOlderThan:
 // Ao passar o nome de uma espécie e uma idade, testa se todos os animais desta espécie
 // possuem a idade mínima especificada
 const animalsOlderThan = (animal, age) => {
@@ -37,11 +42,10 @@ const animalsOlderThan = (animal, age) => {
 // ========================================================================================
 
 // ========================================================================================
-// 3- Implemente a função employeeByName:
+// REQUISITO 03- Implemente a função employeeByName:
 // Sem parâmetros, retorna um objeto vazio
 // Quando provido o primeiro nome do funcionário, retorna o objeto do funcionário
 // Quando provido o último nome do funcionário, retorna o objeto do funcionário
-
 const employeeByName = (employeeName) => {
   if (employeeName === undefined) {
     return {};
@@ -54,14 +58,14 @@ const employeeByName = (employeeName) => {
 // ========================================================================================
 
 // ========================================================================================
-// 4- Implemente a função createEmployee:
+// REQUISITO 04- Implemente a função createEmployee:
 // Cria um novo colaborador a partir de objetos contendo informações pessoais e
 // gerentes e animais gerenciados.
 const createEmployee = (personalInfo, associatedWith) => {
   const { id, firstName, lastName } = personalInfo;
   const { managers, responsibleFor } = associatedWith;
-
-  return { id, firstName, lastName, managers, responsibleFor };
+  const newEmployee = { id, firstName, lastName, managers, responsibleFor };
+  return newEmployee;
 };
 // const personalInfo = { id: '7ed1c9bb-8570-44f6-b718-0666b869573a',
 //   firstName: 'John',
@@ -76,7 +80,7 @@ const createEmployee = (personalInfo, associatedWith) => {
 // ========================================================================================
 
 // ========================================================================================
-// 5- Implemente a função isManager:
+// REQUISITO 05- Implemente a função isManager:
 // Testa se o id passado é de um gerente
 const isManager = (id) => {
   const allManagers = employees.flatMap(item => item.managers);
@@ -84,10 +88,10 @@ const isManager = (id) => {
 };
 // console.log(isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
 // console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
-
+// ========================================================================================
 
 // ========================================================================================
-// 6- Implemente a função addEmployee:
+// REQUISITO 06- Implemente a função addEmployee:
 // Adiciona um funcionário no fim da lista
 const addEmployee = (id, firstName, lastName, managers = [], responsibleFor = []) => {
   const myEmployee = { id, firstName, lastName, managers, responsibleFor };
@@ -96,22 +100,18 @@ const addEmployee = (id, firstName, lastName, managers = [], responsibleFor = []
 };
 // console.log(addEmployee('39800c14-4b76-454a-858d-2f8d168146a7', 'John', 'Doe'));
 // console.log(addEmployee('4141da1c-a6ed-4cf7-90c4-99c657ba4ef3', 'Jane', 'Doe',
-// [
-//   '546fe3d4-2d81-4bb4-83a7-92d5b7048d17',
-//   'a67a36ee-3765-4c74-8e0f-13f881f6588a',
-// ],
-// [
-//   'ee6139bf-b526-4653-9e1e-1ca128d0ad2e',
-//   '210fcd23-aa7b-4975-91b7-0230ebb27b99',
-// ]));
+// ['546fe3d4-2d81-4bb4-83a7-92d5b7048d17',
+//   'a67a36ee-3765-4c74-8e0f-13f881f6588a',],
+// ['ee6139bf-b526-4653-9e1e-1ca128d0ad2e',
+//   '210fcd23-aa7b-4975-91b7-0230ebb27b99',]));
 // ========================================================================================
 
 // ========================================================================================
-// 7- Implemente a função animalCount:
+// REQUISITO 07- Implemente a função animalCount:
 // Sem parâmetros, retorna animais e suas quantidades
 // Com o nome de uma espécie de animal, retorna somente a quantidade
-const verifyAnimals = () => {
-  const myAnimals = {};
+const verifyAllAnimalsSpecies = () => {
+  const myAnimals = {}; // Objeto vai receber o name e quantidade d
   for (let index = 0; index < animals.length; index += 1) {
     const nameAnimal = animals[index].name;
     const countAnimal = animals[index].residents.length;
@@ -120,11 +120,11 @@ const verifyAnimals = () => {
   return myAnimals;
 };
 const animalCount = (species) => {
-  const myAnimals = verifyAnimals();
+  const myAnimals = verifyAllAnimalsSpecies();
   if (species !== undefined) {
-    return myAnimals[species];
+    return myAnimals[species]; // retorna apenas o item do objeto do parametro
   }
-  return myAnimals;
+  return myAnimals; // retorna o objeto completo com todas as especies
 };
 // console.log(animalCount()); // Object
 // console.log(animalCount('lions')); //4
@@ -132,23 +132,24 @@ const animalCount = (species) => {
 // ========================================================================================
 
 // ========================================================================================
-// 8- Implemente a função entryCalculator:
+// REQUISITO 08- Implemente a função entryCalculator:
 // Retorna 0 se nenhum argumento for passado
 // Retorna 0 se um objeto vazio for passado
 // Retorna o preço total a ser cobrado dado o número de adultos, crianças e idosos
-const verifyTotal = (myEntries) => {
+const verifyTotal = (entrants) => {
   let total = 0;
+  const myEntries = Object.entries(entrants); // transforma num array o objeto "entrants"
   myEntries.forEach((item) => {
     total += (prices[item[0]] * item[1]);
   });
   return total;
 };
+
 const entryCalculator = (entrants) => {
   if (entrants === undefined || entrants === {}) {
     return 0;
   }
-  const myEntries = Object.entries(entrants);
-  return verifyTotal(myEntries);
+  return verifyTotal(entrants);
 };
 // console.log(entryCalculator()); // 0
 // console.log(entryCalculator({})); // 0
@@ -158,8 +159,9 @@ const entryCalculator = (entrants) => {
 // console.log(entryCalculator({ 'Child': 1, 'Senior': 1 })); // 45.98
 // ========================================================================================
 
+
 // ========================================================================================
-// 9- Implemente a função animalMap:
+// REQUISITO 09- Implemente a função animalMap:
 // Sem parâmetros, retorna animais categorizados por localização
 // Com a opção includeNames: true especificada, retorna nomes de animais
 // Com a opção sorted: true especificada, retorna nomes de animais ordenados
@@ -235,9 +237,8 @@ const animalMap = (options) => {
 // console.dir(animalMap({ includeNames: true, sex: 'female' }), {depth: null});
 // ========================================================================================
 
-
 // ========================================================================================
-// 10- Implemente a função schedule:
+// REQUISITO 10- Implemente a função schedule:
 // Sem parâmetros, retorna um cronograma legível para humanos
 // Se um único dia for passado, retorna somente este dia em um formato legível para humanos
 const newSchedule = (days, dayName) => {
@@ -266,10 +267,10 @@ const schedule = (dayName) => {
 // console.log(schedule());
 // console.log(schedule('Monday'));
 // console.log(schedule('Tuesday'));
+// ========================================================================================
 
-
-// ====================================
-// 11- Implemente a função oldestFromFirstSpecies:
+// ========================================================================================
+// REQUISITO 11- Implemente a função oldestFromFirstSpecies:
 // Passado o id de um funcionário, encontra a primeira espécie de animal gerenciado pelo
 // funcionário, e retorna um array com nome, sexo e idade do animal mais velho dessa espécie
 const verifyOldestResidents = (myResidents) => {
@@ -293,10 +294,10 @@ const oldestFromFirstSpecies = (id) => {
 };
 // console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
 // console.log(oldestFromFirstSpecies('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
+// ========================================================================================
 
-
-// ====================================
-// 12- Implemente a função increasePrices:
+// ========================================================================================
+// REQUISITO 12- Implemente a função increasePrices:
 // Ao passar uma porcentagem, incrementa todos os preços, arrendondados em duas
 // casas decimais
 const increasePrices = (percentage) => {
@@ -308,10 +309,10 @@ const increasePrices = (percentage) => {
 };
 // console.log(increasePrices(50));
 // console.log(increasePrices(30));
+// ========================================================================================
 
-
-// ====================================
-// 13- Implemente a função employeeCoverage:
+// ========================================================================================
+// REQUISITO 13- Implemente a função employeeCoverage:
 // Sem parâmetros, retorna uma lista de funcionários e os animais pelos quais eles são responsáveis
 // Com o id de um funcionário, retorna os animais pelos quais o funcionário é responsável
 // Com o primeiro nome de um funcionário, retorna os animais pelos quais o funcionário é responsável
@@ -355,7 +356,9 @@ const employeeCoverage = (idOrName) => {
 // console.log(employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
 // console.log(employeeCoverage('Stephanie'));
 // console.log(employeeCoverage('Azevado'));
-
+// ========================================================================================
+// FIM DOS RESQUISITOS
+// ========================================================================================
 
 module.exports = {
   entryCalculator,
