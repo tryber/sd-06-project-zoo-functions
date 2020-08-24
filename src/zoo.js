@@ -12,6 +12,8 @@ eslint no-unused-vars: [
 const data = require('./data');
 const { animals, employees, hours, prices } = require('./data');
 
+const { Adult, Senior, Child } = prices;
+
 function animalsByIds(...ids) {
   return ids.map(id => animals.find(animal => animal.id === id));
 }
@@ -70,19 +72,18 @@ function entryCalculator(entrants) {
     return 0;
   }
 
-  const { Adult: adultPrice, Senior: seniorPrice, Child: childPrice } = prices;
-  const { Adult = 0, Senior = 0, Child = 0 } = entrants;
+  const { Adult: quantAdult = 0, Senior: quantSenior = 0, Child: quantChild = 0 } = entrants;
 
-  return (adultPrice * Adult) + (seniorPrice * Senior) + (childPrice * Child);
+  return (Adult * quantAdult) + (Senior * quantSenior) + (Child * quantChild);
 }
-
 
 function animalMap(options) {
   // seu código aqui
 }
 
 function schedule(dayName) {
-  return hours.map();
+  // seu código aqui
+  hours.forEach();
 }
 
 function oldestFromFirstSpecies(id) {
@@ -90,7 +91,11 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  const currentPercentage = (percentage / 100) + 1;
+  Object.entries(prices)
+  .forEach(([key, value]) => {
+    prices[key] = Math.round(value * currentPercentage * 100) / 100;
+  });
 }
 
 function employeeCoverage(idOrName) {
