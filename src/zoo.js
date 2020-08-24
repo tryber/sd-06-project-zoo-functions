@@ -62,35 +62,6 @@ function entryCalculator(entrants) {
   ), 0);
 }
 
-function getSexSorted(name, sex) {
-  return {
-    [name]: animals
-      .find(animal => animal.name === name).residents
-      .filter(resident => resident.sex === sex)
-      .map(resident1 => resident1.name).sort(),
-  };
-}
-
-function getGetNamesSorted(name) {
-  return {
-    [name]: animals
-      .find(animal => animal.name === name).residents
-      .map(resident => resident.name).sort(),
-  };
-}
-
-function getSex(name, sex) {
-  return {[name]: animals.find(animal => animal.name === name).residents.filter(resident => 
-    resident.sex === sex).map(resident1 => resident1.name),
-  };
-}
-
-function getGetNames(name) {
-  return {
-    [name]: animals.find(animal => animal.name === name).residents.map(resident => resident.name),
-  };
-}
-
 function animalMap(options = {}) {
   const { includeNames = false, sorted = false, sex = '' } = options;
   const LOCAL = animals.filter(item => item.location)
@@ -99,7 +70,9 @@ function animalMap(options = {}) {
   if (includeNames && !sex) {
     return LOCAL.reduce((acc, { location, name }) => (
       Object.assign(acc, { [location]: acc[location].concat(
-        sorted ? getGetNamesSorted(name) : getGetNames(name)),
+        sorted ? { [name]: animals.find(animal => animal.name === name).residents
+        .map(resident => resident.name).sort(), } :
+        { [name]: animals.find(item1 => item1.name === name).residents.map(item2 => item2.name), }),
       })
     ), { NE: [], NW: [], SE: [], SW: [] });
   }
@@ -107,7 +80,10 @@ function animalMap(options = {}) {
   if (sex && includeNames) {
     return LOCAL.reduce((acc, { location, name }) => (
       Object.assign(acc, { [location]: acc[location].concat(
-        sorted ? getSexSorted(name, sex) : getSex(name, sex)),
+        sorted ? { [name]: animals.find(animal => animal.name === name).residents
+          .filter(resident => resident.sex === sex).map(resident1 => resident1.name).sort(), } :
+          { [name]: animals.find(item1 => item1.name === name).residents.filter(item2 => (
+            item2.sex === sex)).map(item3 => item3.name), }),
       })
     ), { NE: [], NW: [], SE: [], SW: [] });
   }
@@ -118,8 +94,6 @@ function animalMap(options = {}) {
     })
   ), { NE: [], NW: [], SE: [], SW: [] });
 }
-
-console.log(animalMap({ includeNames: true, sorted: true }));
 
 function schedule(dayName) {
   if (dayName !== undefined) {
