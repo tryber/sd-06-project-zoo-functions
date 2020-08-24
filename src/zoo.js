@@ -55,23 +55,23 @@ function createEmployee(personalInfo, associatedWith) {
 */
 
 function isManager(id) {
-  let arr = [];
+  const arr = [];
   const managersList = data.employees
     .forEach(Element => {
-      arr.push(Element.managers)
-    })
-    
+      arr.push(Element.managers);
+    });
+
   const newArray = arr
-    .reduce((acc, sub) => acc.concat(sub), [])
+    .reduce((acc, sub) => acc.concat(sub), []);
 
   const managerCheck = newArray
-  .some(Element => Element === id)
+  .some(Element => Element === id);
 
   return managerCheck;
 }
 
-// console.log(isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
-// console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
+console.log(isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
+console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
