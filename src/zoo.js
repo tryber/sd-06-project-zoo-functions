@@ -264,8 +264,14 @@ function oldestFromFirstSpecies(id) {
   return findAnimal(animalId);
 }
 
+// '+' to remain number(when i use toFixed(n)). Learned here:
+// https://stackoverflow.com/questions/15762768/javascript-math-round-to-two-decimal-places/15762794
+// also learned how to round decimals with math.round
 function increasePrices(percentage) {
-  // seu código aqui
+  let { Adult: adult, Senior: senior, Child: child } = data.prices;
+  data.prices.Adult = Math.round((adult + (adult * (percentage / 100))) * 100) / 100;
+  data.prices.Senior = Math.round((senior + (senior * (percentage / 100))) * 100) / 100;
+  data.prices.Child = Math.round((child + (child * (percentage / 100))) * 100) / 100;
 }
 
 function employeeCoverage(idOrName) {
