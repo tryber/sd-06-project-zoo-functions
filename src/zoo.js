@@ -243,10 +243,10 @@ const defaultSchedule = () => {
 
 function schedule(dayName) {
   switch (dayName) {
-  default:
-    return defaultSchedule();
+    default:
+      return defaultSchedule();
   }
-};
+}
 
 console.log(schedule());
 
