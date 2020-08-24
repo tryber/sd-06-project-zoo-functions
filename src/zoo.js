@@ -103,10 +103,10 @@ function schedule(dayName) {
     close = (close > 12) ? close - 12 : close;
     open = (open > 12) ? open - 12 : open;
     const hour = (open !== 0 && close !== 0) ? `Open from ${open}am until ${close}pm` : 'CLOSED';
-    answer[key] = hour; 
+    answer[key] = hour;
   });
   // no forEach pegamos cada dia, e, para manter no padrao de 12hrs, diminuimos 12 do valor.
-  // Exemplo: Se fecha as 18hrs (18-12=6hrs) fecha as 
+  // Exemplo: Se fecha as 18hrs (18-12=6hrs) fecha as
   // 6hrs da tarde, e criamos uma string com esses dados.
   // Se o horario for igual a 0, retornamos 'CLOSED'.
   return answer;
