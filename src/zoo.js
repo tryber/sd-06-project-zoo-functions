@@ -18,9 +18,7 @@ function animalsByIds(...ids) {
 
 // filter for the animals, MAGIC flatMap to access residents and every to test age
 function animalsOlderThan(animal, age) {
-  return data.animals
-  .filter(item => item.name === animal)
-  .flatMap(item => item.residents)
+  return data.animals.filter(item => item.name === animal).flatMap(item => item.residents)
   .every(item => item.age > age);
 }
 
@@ -32,9 +30,7 @@ function employeeByName(employeeName) {
   // returns only the first, gotta check this later, too specific
   const employeeObject = data.employees
   .filter(({ firstName, lastName }) => (firstName === employeeName || lastName === employeeName));
-  if (employeeObject.length !== 0) {
-    employee = employeeObject[0];
-  }
+  if (employeeObject.length !== 0) { employee = employeeObject[0]; }
   return employee;
 }
 
@@ -54,9 +50,7 @@ function createEmployee(personalInfo, associatedWith) {
 
 // get the manager ids and filters it
 function isManager(id) {
-  return data.employees
-  .flatMap(employee => employee.managers)
-  .some(item => item === id);
+  return data.employees.flatMap(employee => employee.managers).some(item => item === id);
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
@@ -84,17 +78,14 @@ function animalCount(species) {
     }
     return output;
   }
-  const speciesCount = data.animals
-  .filter(animal => animal.name === species)
+  const speciesCount = data.animals.filter(animal => animal.name === species)
   .map(animal => animal.residents.length);
   return speciesCount[0];
 }
 
 // got the keys to be able to use length
 function entryCalculator(entrants) {
-  if (entrants === undefined || Object.keys(entrants).length === 0) {
-    return 0;
-  }
+  if (entrants === undefined || Object.keys(entrants).length === 0) { return 0; }
   const keys = Object.keys(entrants);
   const values = Object.values(entrants);
   let totalSum = 0;
@@ -120,8 +111,7 @@ const defaultMap = () => {
   const locationArr = ['NE', 'NW', 'SE', 'SW'];
   const output = {};
   for (let index = 0; index < locationArr.length; index += 1) {
-    output[locationArr[index]] = data.animals
-    .filter(animal => animal.location === locationArr[index])
+    output[locationArr[index]] = data.animals.filter(animal => animal.location === locationArr[index])
     .map(animal => animal.name);
   }
   return output;
@@ -129,9 +119,7 @@ const defaultMap = () => {
 
 const checkIfSorted = (keys, values, output) => {
   for (let index = 0; index < keys.length; index += 1) {
-    if (keys.includes('sorted') && values[index]) {
-      output.sort();
-    }
+    if (keys.includes('sorted') && values[index]) { output.sort(); }
   }
   return output;
 };
@@ -145,9 +133,7 @@ const pushNamesWithoutSex = (animalsArr, output) => {
 
 const pushNames = (animalsArr, output, sex) => {
   for (let index = 0; index < animalsArr.length; index += 1) {
-    if (animalsArr[index].sex === sex) {
-      output.push(animalsArr[index].name);
-    }
+    if (animalsArr[index].sex === sex) { output.push(animalsArr[index].name); }
   }
   return output;
 };
@@ -188,8 +174,7 @@ const animalObject = (species, location, options) => {
 const mapLocation = (location, options) => {
   const output = {};
   output[location] = [];
-  const animalsArr = data.animals
-  .filter(animal => animal.location === location)
+  const animalsArr = data.animals.filter(animal => animal.location === location)
   .map(animal => animal.name);
   for (let index = 0; index < animalsArr.length; index += 1) {
     output[location].push(animalObject(animalsArr[index], location, options));
@@ -208,9 +193,7 @@ const noOptions = (location) => {
 
 // 'includes' I learned from prof Ícaro, monster
 function animalMap(options) {
-  if (options === undefined) {
-    return defaultMap();
-  }
+  if (options === undefined) { return defaultMap(); }
   const output = {};
   const keys = Object.keys(options);
   const values = Object.values(options);
@@ -236,9 +219,7 @@ const defaultSchedule = () => {
   for (let index = 0; index < days.length; index += 1) {
     if (data.hours[days[index]].open !== 0) {
       output[days[index]] = returnSchedule(days[index]);
-    } else {
-      output[days[index]] = 'CLOSED';
-    }
+    } else { output[days[index]] = 'CLOSED'; }
   }
   return output;
 };
@@ -248,12 +229,8 @@ const getDaySchedule = (day) => {
   const days = Object.keys(data.hours);
   const closedDay = days[days.length - 1];
   for (let index = 0; index < days.length; index += 1) {
-    if (days[index] === day && closedDay !== day) {
-      output[day] = returnSchedule(day);
-    }
-    if (day === closedDay) {
-      output[day] = 'CLOSED';
-    }
+    if (days[index] === day && closedDay !== day) { output[day] = returnSchedule(day); }
+    if (day === closedDay) { output[day] = 'CLOSED'; }
   }
   return output;
 };
@@ -269,9 +246,9 @@ function schedule(dayName) {
 
 // i use 'find' to get the object out of the array, and be able to access it
 const findAnimal = (id) => {
+  const firstId = id.find(item => item);
   const output = [];
-  const oldestAnimal = data.animals
-  .filter(animal => animal.id === id)
+  const oldestAnimal = data.animals.filter(animal => animal.id === firstId)
   .flatMap(animal => animal.residents)
 
   // get the oldest
@@ -284,7 +261,7 @@ const findAnimal = (id) => {
 function oldestFromFirstSpecies(id) {
   const animalId = data.employees
   .filter(employee => employee.id === id).flatMap(animal => animal.responsibleFor)
-  .find(animal => animal);
+  // .find(animal => animal);
   return findAnimal(animalId);
 }
 
