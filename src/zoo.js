@@ -89,14 +89,12 @@ function entryCalculator(entrants) {
   const values = Object.values(entrants);
   let totalSum = 0;
   keys.forEach((key, index) => {
-    if (key === 'Adult') { totalSum += (data.prices.Adult * values[index]) };
-    if (key === 'Senior') { totalSum += (data.prices.Senior * values[index]) };
-    if (key === 'Child') { totalSum += (data.prices.Child * values[index]) };
+    if (key === 'Adult') { totalSum += (data.prices.Adult * values[index]); }
+    if (key === 'Senior') { totalSum += (data.prices.Senior * values[index]); }
+    if (key === 'Child') { totalSum += (data.prices.Child * values[index]); }
   });
   return totalSum;
 }
-
-console.log(entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 }));
 
 const defaultMap = () => {
   const locationArr = ['NE', 'NW', 'SE', 'SW'];
