@@ -13,18 +13,20 @@ const data = require('./data');
 
 function animalsByIds(...ids) {
   if (!ids) {
-    return[];
+    return [];
   }
   return ids.map(i => data.animals.find(animal => animal.id === i));
- };
+}
 
 function animalsOlderThan(animal, age) {
-  const verifyAnimal = animals.find(atributo => atributo.name === animal);
-    return verifyAnimal.residents.every(atributo => atributo.age >= age);
+  return animals.find(indice => indice.name === animal)
+  .residents.every(posicao => posicao.age >= age);
 }
 
 function employeeByName(employeeName) {
-  // seu código aqui
+  if (!employeeName) {
+    return [];
+  }
 }
 
 function createEmployee(personalInfo, associatedWith) {
