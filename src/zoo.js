@@ -50,12 +50,10 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(id) {
   const areYouAManager = employees
-  .some(employees => employees.managers.includes(id));
-  
+  .some(checkingEmployee => checkingEmployee.managers.includes(id));
+
   return areYouAManager;
 }
-
-
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
@@ -70,7 +68,7 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
- 
+
 }
 
 function schedule(dayName) {
