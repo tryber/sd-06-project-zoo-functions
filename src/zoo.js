@@ -126,14 +126,13 @@ function increasePrices(percentage) {
   return prices;
 }
 
-function employeeById(employeeId) { 
+function employeeById(employeeId) {
   if (!employeeId) return {};
   return employees.find(person => person.id === employeeId);
 }
 
 function employeeCoverage(idOrName) {
   const employeeAndAnimalsList = {};
-
   if (!idOrName) {
     employees.forEach((value) => {
       const fullName = `${value.firstName} ${value.lastName}`;
@@ -142,14 +141,11 @@ function employeeCoverage(idOrName) {
     });
     return employeeAndAnimalsList;
   }
-  
   const getEmployee = idOrName.includes('-') ? employeeById(idOrName) : employeeByName(idOrName);
   const employeeName = `${getEmployee.firstName} ${getEmployee.lastName}`;
   const employeeAnimals = animalsByIds(...getEmployee.responsibleFor).map(animal => animal.name);
-  
   employeeAndAnimalsList[employeeName] = employeeAnimals;
-  
-  return employeeAndAnimalsList;  
+  return employeeAndAnimalsList;
 }
 
 module.exports = {
