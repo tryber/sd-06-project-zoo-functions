@@ -104,8 +104,14 @@ function schedule(dayName) {
 // console.log(schedule('Monday'));
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const findEmploye = employees.find(employee => employee.id === id).responsibleFor[0];
+  const findAnimal = Object.values(animals
+    .find(animal => animal.id === findEmploye).residents
+    .reduce((acumulator, animal) => (acumulator.age > animal.age ? acumulator : animal)));
+  return findAnimal;
 }
+
+// console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
 
 function increasePrices(percentage) {
   // seu código aqui
