@@ -64,7 +64,7 @@ function animalCount(species) {
 function entryCalculator(entrants) {
   // seu código aqui
 }
-
+// Resolução retirada do plantão realizado pelo especialista Oliva, no dia 25/08.
 function retrieveAnimalsPerLocation(locations) {
   const animalsPerLocation = {};
   locations.forEach((location) => {
@@ -113,9 +113,20 @@ function animalMap(options) {
 
   return retrieveAnimals(locations, sorted, sex);
 }
-
+// Resolução retirada do fechamento do dia 25/08, feita pelo especialista Oliva
 function schedule(dayName) {
-  // seu código aqui
+  const allDays = Object.keys(data.hours);
+  const schedule = {};
+  allDays.forEach((day) => {
+  if (day === 'Monday') {
+    schedule[day] = 'CLOSED';
+  } else {
+    const hours = data.hours[day];
+    schedule[day] = `Open from ${hours.open}am until ${hours.close -12}pm`;
+  }
+});
+if (!dayName) return schedule;
+return { [dayName]: schedule[dayName]};
 }
 
 function oldestFromFirstSpecies(id) {
