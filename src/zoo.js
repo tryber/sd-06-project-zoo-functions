@@ -85,18 +85,19 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  const entranceTicket = Object.keys(entrants);
   // atribuir as variavel a chave
-  if (entrants === undefined || entranceTicket.length === 0) {
+  if (entrants === undefined || Object.keys(entrants).length === 0) {
     // se as informaçoes forem indefinidas ou objeto vazio retornar 0
     return 0;
   }
-  const entrancePrice = entranceTicket
+  const ticket = Object.keys(entrants);
+  const entrancePrice = ticket
   .reduce((totalPriceTicket, key) => totalPriceTicket + (prices[key] * entrants[key]), 0);
 //  somar o valor total dos tickets atribuindo totalPriceTicket ao somatorio e as chaves
 // do prices e das entradas inicias. tentando upoar commmit
   return entrancePrice;
 }
+console.log()
 
 function animalMap(options) {
 
