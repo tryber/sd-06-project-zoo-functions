@@ -15,7 +15,10 @@ const { animals, employees, prices, hours } = require('./data');
 function animalsByIds(...ids) {
   const result = [];
   if (ids === undefined) return result;
-  return ids.map(animal => animals.id === animal.id);
+  ids.forEach((id) => {
+    result.push(animals.find(animal => animal.id === id));
+  });
+  return result;
 }
 
 function animalsOlderThan(animal, age) {
