@@ -134,7 +134,7 @@ function increasePrices(percentage) {
     actual += (actual / 100) * percentage;
     return actual;
   };
-  prices.Adult = Math.round(addPercentage(prices.Adult)* 100) / 100;
+  prices.Adult = Math.round(addPercentage(prices.Adult) * 100) / 100;
   prices.Senior = Math.round(addPercentage(prices.Senior) * 100) / 100;
   prices.Child = Math.round(addPercentage(prices.Child) * 100) / 100;
   return prices;
