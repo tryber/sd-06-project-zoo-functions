@@ -79,7 +79,7 @@ function increasePrices(percentage) {
   const percent = 1 + (percentage / 100);
   Object.keys(data.prices).forEach((entries) => {
     data.prices[entries] = (Math.round((100 * data.prices[entries] * percent)) / 100);
-});
+  });
 }
 
 
