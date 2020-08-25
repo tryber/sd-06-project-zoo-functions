@@ -195,7 +195,21 @@ schedule('Tuesday');
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
+  const myEmployee = data.employees.find(employee => employee.id === id);
+  const employeeFirstAnimalID = myEmployee.responsibleFor[0];
+  const myAnimal = animals.find(animal => animal.id === employeeFirstAnimalID);
+  const oldestAnimal = myAnimal.residents.reduce((resident, next) => {
+    if (resident.age > next.age) {
+      return resident;
+    } else {
+      return next;
+    }
+  });
+
+  return Object.values(oldestAnimal);
 }
+
+// oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992');
 
 function increasePrices(percentage) {
   // seu código aqui
