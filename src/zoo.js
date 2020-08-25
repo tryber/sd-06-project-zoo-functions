@@ -71,8 +71,6 @@ function animalCount(species) {
   return populationOfAnimals;
 }
 
-console.log(animalCount())
-
 function entryCalculator(entrants) {
 
 }
