@@ -96,9 +96,8 @@ const animalsSeparatedByZones = (zones) => {
 const filterResidentsNames = (residents, sexOfResidents, sorted) => {
   let residentsfilteredSorted = residents.map(({ name }) => name);
   residentsfilteredSorted = sexOfResidents === 'male' ? residents.filter(({ sex }) => sex === 'male')
-  .map(({ name }) => name) : residentsfilteredSorted;
-  residentsfilteredSorted = sexOfResidents === 'female' ? residents.filter(({ sex }) => sex === 'female')
-  .map(({ name }) => name) : residentsfilteredSorted;
+    .map(({ name }) => name) : sexOfResidents === 'female' ? residents.filter(({ sex }) => sex === 'female')
+    .map(({ name }) => name) : residentsfilteredSorted;
   if (sorted) {
     residentsfilteredSorted.sort();
   }
@@ -133,22 +132,15 @@ const schedule = (day) => {
   const timeAvailableObj = {};
   if (day) {
     const timeArray = Object.entries(hours).find(e => day === e[0]);
-    if (timeArray[0] === 'Monday') {
-      timeAvailableObj[timeArray[0]] = 'CLOSED';
-    } else {
-      timeAvailableObj[timeArray[0]] =
-        `Open from ${timeArray[1].open}am until ${timeArray[1].close - 12}pm`;
-    }
-  } else {
-    Object.entries(hours).forEach((e) => {
-      if (e[0] === 'Monday') {
-        timeAvailableObj[e[0]] = 'CLOSED';
-      } else {
-        timeAvailableObj[e[0]] = `Open from ${e[1].open}am until ${e[1].close - 12}pm`;
-      }
-      return 0;
-    });
+    timeAvailableObj[timeArray[0]] = timeArray[0] === 'Monday' ?
+      'CLOSED' : `Open from ${timeArray[1].open}am until ${timeArray[1].close - 12}pm`;
+    return timeAvailableObj;
   }
+  Object.entries(hours).forEach((e) => {
+    timeAvailableObj[e[0]] = e[0] === 'Monday' ?
+      'CLOSED' : `Open from ${e[1].open}am until ${e[1].close - 12}pm`;
+    return 0;
+  });
   return timeAvailableObj;
 };
 
@@ -168,7 +160,7 @@ const increasePrices = (percentage) => {
   return prices;
 };
 
-const isIdOrName = checkIdOrName => /.*\d.*/.test(checkIdOrName) ? 'id' : 'name';
+const isIdOrName = checkIdOrName => (/.*\d.*/.test(checkIdOrName) ? 'id' : 'name');
 
 const createEmployeeNameAnimalIdArray = (stringIdOrName) => {
   if (!stringIdOrName) {
@@ -180,12 +172,10 @@ const createEmployeeNameAnimalIdArray = (stringIdOrName) => {
     });
     return employeeAnimaIdlArray;
   }
-  const idName = isIdOrName(stringIdOrName);
-  const employeeAnimals = {};
-  const employeeAnimaIdlArray = [];
+  const idName = isIdOrName(stringIdOrName), employeeAnimals = {}, employeeAnimaIdlArray = [];
   if (idName === 'id') {
     const { firstName, lastName, responsibleFor } = employees
-    .find(({ id }) => id === stringIdOrName);
+      .find(({ id }) => id === stringIdOrName);
     employeeAnimals.fullName = `${firstName} ${lastName}`;
     employeeAnimals.responsibleFor = responsibleFor;
     employeeAnimaIdlArray.push(employeeAnimals);
@@ -232,8 +222,6 @@ function employeeCoverage(idOrName) {
   });
   return obj;
 }
-
-console.log(employeeCoverage('b0dc644a-5335-489b-8a2c-4e086c7819a2'))
 
 module.exports = {
   entryCalculator,
