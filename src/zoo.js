@@ -13,6 +13,7 @@ eslint no-unused-vars: [
 const {
   animals,
   employees,
+  prices,
 } = require('./data');
 const data = require('./data');
 // const { TestScheduler } = require('jest');
@@ -58,10 +59,15 @@ function animalCount(species) {
     .map(element => element.residents.length);
   return animalsTotal[0];
 }
-
 function entryCalculator(entrants) {
   // seu código aqui
-}
+  if (entrants == undefined || Object.keys(entrants).length === 0) {
+    return 0;
+  } else {
+  const totalValue = Object.keys(entrants).map(element => entrants[element] * prices[element]).reduce((prev, next) => prev + next);
+  return totalValue;
+  }
+};
 
 function animalMap(options) {
 //   // seu código aqui
@@ -81,8 +87,25 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
+  const result = {};
   // seu código aqui
-}
+  // sem parâmetros retorna todos os animais
+  // juntar nome e sobrenome e usar como propriedade (chave) do objeto de retorno
+  // (find) a partir do id do animal (responsibleFor no employee) preciso do nome de cada employees [{}] --> {}
+  // com um parâmetro retorna somente os animal
+  employees.forEach((employee) => {
+  const mappedAnimals = employee.responsibleFor.map(
+    (animalIdResponsibleFor) => {
+      const foundAnimalName = animals.find((animal) => animal.id === animalIdResponsibleFor).name;
+      return foundAnimalName;
+    })
+      result[`${employee.firstName} ${employee.lastName}`] = mappedAnimals;
+    });
+  
+  console.log(result)  
+  return result;
+  }
+
 
 module.exports = {
   entryCalculator,
