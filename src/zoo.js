@@ -15,7 +15,7 @@ function animalsByIds(...ids) {
   const foundAnimal = [];
   if (ids) {
     ids.forEach(id => foundAnimal.push(
-      ...data.animals.filter(animal => animal.id === id)
+      ...data.animals.filter(animal => animal.id === id),
     ));
   }
 
@@ -36,7 +36,7 @@ function employeeByName(employeeName) {
   if (employeeName) {
     happyEmployee = data.employees.find(thatEmployee =>
       thatEmployee.firstName === employeeName ||
-      thatEmployee.lastName === employeeName
+      thatEmployee.lastName === employeeName,
     );
   }
 
@@ -52,7 +52,7 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(id) {
   const areYouABoss = data.employees.find(
-    bossy => bossy.managers.some(idManager => idManager === id)
+    bossy => bossy.managers.some(idManager => idManager === id),
   );
   if (!areYouABoss) return false;
 
@@ -76,7 +76,7 @@ function animalCount(species) {
   if (!species) {
     const allSpeciesNameTotal = {};
     data.animals.forEach(zooAnimal =>
-      allSpeciesNameTotal[zooAnimal.name] = zooAnimal.residents.length
+      allSpeciesNameTotal[zooAnimal.name] = zooAnimal.residents.length,
     );
 
     return allSpeciesNameTotal;
@@ -90,9 +90,9 @@ function animalCount(species) {
 function entryCalculator(entrants) {
   let totalPrice = 0;
   if (entrants) {
-    Object.keys(entrants).forEach(ticketPerson => {
-      totalPrice += data.prices[ticketPerson] * entrants[ticketPerson]
-    });
+    Object.keys(entrants).forEach(ticketPerson =>
+      totalPrice += data.prices[ticketPerson] * entrants[ticketPerson],
+    );
   }
 
   return totalPrice;
