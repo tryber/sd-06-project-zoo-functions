@@ -100,19 +100,19 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  const schedule = {};
+  const timetable = {};
   const days = Object.keys(hours);
-  days.forEach(day => {
+  days.forEach((day) => {
     let openHour = hours[day].open;
     let closeHour = hours[day].close;
-    if(openHour > 12) openHour -= 12;
-    if(closeHour > 12) closeHour -= 12;
+    if (openHour > 12) openHour -= 12;
+    if (closeHour > 12) closeHour -= 12;
     if (day !== 'Monday') {
-      schedule[day] = `Open from ${openHour}am until ${closeHour}pm`;
-    } else schedule[day] = `CLOSED`;
-  })
-  if(!dayName) return schedule;
-  return { [dayName]: schedule[dayName] };
+      timetable[day] = `Open from ${openHour}am until ${closeHour}pm`;
+    } else timetable[day] = 'CLOSED';
+  });
+  if (!dayName) return timetable;
+  return { [dayName]: timetable[dayName] };
 }
 
 console.log(schedule('Tuesday'));
