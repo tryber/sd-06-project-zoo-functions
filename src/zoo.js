@@ -65,26 +65,26 @@ function entryCalculator(entrants = {}) {
 }
 
 function animalMap(options) {
-  
+  // seu código aqui
 }
 
-function setSchedule(){
+function setSchedule() {
   const scheduleMap = {};
-  Object.entries(hours).forEach((hourEntry) => 
-  scheduleMap[hourEntry[0]] = `Open from ${hourEntry[1].open}am until ${hourEntry[1].close -12}pm`)
+  Object.entries(hours).forEach(hourEntry =>
+  scheduleMap[hourEntry[0]] = `Open from ${hourEntry[1].open}am until ${hourEntry[1].close -12}pm` );
   scheduleMap.Monday = 'CLOSED';
   return scheduleMap;
 }
 
-function getDaySchedule(dayName, scheduleMap){
-  const daySchedule = {}
-  daySchedule[dayName] = scheduleMap[dayName]
+function getDaySchedule(dayName, scheduleMap) {
+  const daySchedule = {};
+  daySchedule[dayName] = scheduleMap[dayName];
   return daySchedule;
 }
 
 function schedule(dayName) {
   const scheduleMap = setSchedule();
-  if (dayName){
+  if (dayName) {
     return getDaySchedule(dayName, scheduleMap);
   }
   return scheduleMap;
