@@ -65,7 +65,7 @@ function entryCalculator(entrants = {}) {
 }
 function retrieveAnimalsPerLocation(locations) {
   const animalsPerLocation = {};
-  locations.forEach((location) =>{
+  locations.forEach((location) => {
     const animals = animals
     .filter(animal => animal.location === location)
     .map(animal => animal.name);
@@ -73,10 +73,13 @@ function retrieveAnimalsPerLocation(locations) {
   });
   return animalsPerLocation;
 }
+
+const animals = animals
+
 function retrieveAnimals(locations, sorted, sex) {
   const animalsPerLocationWithName = {};
   locations.forEach((location) => {
-    const animals = animals
+    animals
     .filter(animal => animal.location === location)
     .map((animal) => {
       const nameKey = animal.name;
@@ -87,7 +90,7 @@ function retrieveAnimals(locations, sorted, sex) {
       })
       .map(resident => resident.name);
       if (sorted) nameValues.sort();
-      return { [nameKey] : nameValues };
+      return { [nameKey]:nameValues };
     });
     animalsPerLocationWithName[location] = animals;
   });
