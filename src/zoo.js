@@ -18,7 +18,7 @@ function animalsByIds(...ids) {
     return animalsGroup;
   }
   ids.forEach(id =>
-    animals.filter(animal => {
+    animals.filter((animal) => {
       if (animal.id === id) {
         animalsGroup.push(animal);
       }
@@ -40,7 +40,7 @@ function employeeByName(employeeName) {
     return {};
   }
   return employees.filter(
-    (employee) =>
+    employee =>
       employee.firstName === employeeName || employee.lastName === employeeName,
   )[0];
 }
@@ -105,11 +105,11 @@ function schedule(dayName) {
       });
     }, {});
   }
-  return Object.keys(hours).reduce((_, cur) => {
-    return dayName === 'Monday' ?
+  return Object.keys(hours).reduce((_, cur) =>
+    dayName === 'Monday' ?
     { [cur]: 'CLOSED' } :
-    { [dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm` }
-  });
+    { [dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm` },
+  );
 }
 
 function oldestFromFirstSpecies(id) {
