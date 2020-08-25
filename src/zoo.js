@@ -110,50 +110,48 @@ function entryCalculator(entrants) {
 
 function animalMap(options) {
   // seu código aqui
-  const result = {}, animalsByLocation = {};
+  const result = {}
+  const animalsByLocation = {};
   const directions = ['NE', 'NW', 'SE', 'SW'];
 
   directions.forEach((direction) => {
-    const myDirection = `animals${direction}`;
-    animalsByLocation[myDirection] = animals.filter(animal => animal.location === direction); // animalsByLocation[myDirection] é igual animalsNE, animalsNW, etc.
+    const myDirection = `animals${direction}`; // animalsByLocation[myDirection] = animalsNE
+    animalsByLocation[myDirection] = animals.filter(animal => animal.location === direction);
     const animalNames = animalsByLocation[myDirection].map(animal => animal.name);
 
     if (!options) {
       result[direction] = animalsByLocation[myDirection].map(animal => animal.name);
       return result;
     }
-    if (options.includeNames === true) {
+    if (options.includeNames) {
       let residents;
       residents = animalsByLocation[myDirection].map(animal => animal.residents);
-
       if (options.sex) {
         residents = animalsByLocation[myDirection]
           .map(animal => animal.residents.filter(each => each.sex === options.sex)
             .map(resident => resident.name));
       } else {
-        residents.map(resident => resident.name);
-
         residents = animalsByLocation[myDirection]
           .map(animal => animal.residents.map(resident => resident.name));
       }
-      result[direction] = [];
 
+      result[direction] = [];
       for (let i = 0; i < animalNames.length; i += 1) {
-        const myRes = residents[i];
         if (options.sorted === true) {
-          myRes.sort();
+          residents[i].sort();
         }
         result[direction].push({ [animalNames[i]]: residents[i] });
       }
     } else {
       result[direction] = animalsByLocation[myDirection].map(animal => animal.name);
     }
+    return result;
   });
   return result;
 }
 
 
-// console.log(animalMap({ includeNames: true }));
+console.log(animalMap({ includeNames: true }));
 // { includeNames: true, sex: 'female', sorted: true }
 
 function schedule(dayName) {
