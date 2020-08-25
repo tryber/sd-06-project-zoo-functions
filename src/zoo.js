@@ -22,7 +22,7 @@ function animalsByIds(...ids) {
 // testa se todos os animais desta espécie possuem a idade mínima especificada
 function animalsOlderThan(animal, age) {
   return data.animals.find(types => types.name === animal)
-  .residents.every(types => types.age >= age);
+    .residents.every(types => types.age >= age);
 }
 // 3- Implemente a função employeeByName:
 // Sem parâmetros, retorna um objeto vazio
@@ -32,7 +32,7 @@ function employeeByName(employeeName) {
   if (employeeName === undefined) {
     return {};
   } return data.employees.find(types => types.firstName === employeeName ||
-  types.lastName === employeeName);
+    types.lastName === employeeName);
 }
 // 4- Implemente a função createEmployee:
 // Cria um novo colaborador a partir de objetos contendo
@@ -50,17 +50,68 @@ function isManager(id) {
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   return data.employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
-
+// 7- Implemente a função animalCount:
+// Sem parâmetros, retorna animais e suas quantidades
+// Com o nome de uma espécie de animal, retorna somente a quantidade
+// https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Object/fromEntries
+// https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Operators/Operador_Virgula
 function animalCount(species) {
-  // seu código aqui
+  if (species === undefined) {
+    return Object.fromEntries(data.animals.map(types => [types.name, types.residents.length]));
+  } return data.animals.find(types => types.name === species).residents.length;
 }
 
 function entryCalculator(entrants) {
   // seu código aqui
 }
 
+function retrieveAnimalsPerLocation(locations) {
+  const animalsPerLocation = {};
+  locations.forEach((location) => {
+    const animals = data.animals
+      .filter(animal => animal.location === location)
+      .map(animal => animal.name);
+    if (animals.length !== 0) animalsPerLocation[location] = animals;
+  });
+
+  return animalsPerLocation;
+}
+
+function retrieveAnimals(locations, sorted, sex) {
+  const animalsPerLocationWithName = {};
+
+  locations.forEach((location) => {
+    const animals = data.animals
+      .filter((animal) => animal.location === location)
+      .map(animal => {
+        const nameKey = animal.name;
+        const nameValues = animal.residents
+          .filter((resident) => {
+            const isFilteringSex = sex !== undefined;
+            return isFilteringSex ? resident.sex === sex : true;
+          })
+          .map(resident => resident.name);
+
+        if (sorted) nameValues.sort();
+
+        return { [nameKey]: nameValues };
+      });
+
+    animalsPerLocationWithName[location] = animals;
+  });
+
+  return animalsPerLocationWithName;
+}
+
 function animalMap(options) {
-  // seu código aqui
+  const locations = ['NE', 'NW', 'SE', 'SW'];
+  if (!options) return retrieveAnimalsPerLocation(locations);
+
+  const { includeNames, sorted, sex } = options;
+
+  if (!includeNames) return retrieveAnimalsPerLocation(locations);
+
+  return retrieveAnimals(locations, sorted, sex);
 }
 
 function schedule(dayName) {
