@@ -90,7 +90,7 @@ function animalCount(species) {
 function entryCalculator(entrants) {
   if (!entrants) return 0;
 
-cle  let totalPrice = 0;
+  let totalPrice = 0;
 
   // got hint about use Object.keys instead of Object.entries by watching other students PR's
   for (let i = 0; i < Object.keys(entrants).length; i += 1) {
