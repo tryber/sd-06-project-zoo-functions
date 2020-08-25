@@ -15,7 +15,7 @@ const { animals } = require('./data');
 function animalsByIds(...ids) {
   // seu código aqui
   const findAnimals = (array, animalId) => {
-    array.push(data.animals.find(animalObj => animalObj.id === animalId));
+    array.push(animals.find(animalObj => animalObj.id === animalId));
     return array;
   };
   return (ids.length)
@@ -29,7 +29,7 @@ function animalsOlderThan(animal, age) {
     array.push(resident.age);
     return array;
   };
-  const ageArray = data.animals
+  const ageArray = animals
     .find(element => element.name === animal)
     .residents.reduce(getResidentsAge, []);
   return ageArray.every(residentAge => residentAge >= age);
@@ -56,12 +56,7 @@ function isManager(id) {
   data.employees
     .forEach((person) => {
       if (person.managers
-        .find(managerId => managerId === id)
-        ) {
-        idIsManager = true;
-      } else {
-        return idIsManager;
-      }
+        .find(managerId => managerId === id)) idIsManager = true;
       return idIsManager;
     });
   return idIsManager;
@@ -180,10 +175,10 @@ function oldestFromFirstSpecies(id) {
   animalsObj.residents.reduce(
     (oldest, currResident) => {
       if (oldest.age > currResident.age) {
-        result = [oldest.name, oldest.sex, oldest.age];
+        result = Object.values(oldest);
         return oldest;
       }
-      result = [currResident.name, currResident.sex, currResident.age];
+      result = Object.values(currResident);
       return currResident;
     });
   return result;
