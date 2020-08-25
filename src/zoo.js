@@ -128,22 +128,6 @@ const animalMap = (options) => {
   return animalsSeparatedByZones(zones);
 };
 
-// const schedule = (day) => {
-//   const timeAvailableObj = {};
-//   if (day) {
-//     const timeArray = Object.entries(hours).find(e => day === e[0]);
-//     timeAvailableObj[timeArray[0]] = timeArray[0] === 'Monday' ?
-//       'CLOSED' : `Open from ${timeArray[1].open}am until ${timeArray[1].close - 12}pm`;
-//     return timeAvailableObj;
-//   }
-//   Object.entries(hours).forEach((e) => {
-//     timeAvailableObj[e[0]] = e[0] === 'Monday' ?
-//       'CLOSED' : `Open from ${e[1].open}am until ${e[1].close - 12}pm`;
-//     return 0;
-//   });
-//   return timeAvailableObj;
-// };
-
 const isMonday = (array) => {
   const timeAvailableObj = {};
   timeAvailableObj[array[0]] = array[0] === 'Monday' ?
