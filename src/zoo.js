@@ -29,13 +29,13 @@ function employeeByName(employeeName) {
   if (employeeName === undefined) return {};
   const firstNameEmployee = employees.find(firstName => firstName.firstName === employeeName);
   const lastNameEmployee = employees.find(lastName => lastName.lastName === employeeName);
-  if(firstNameEmployee) return firstNameEmployee;
+  if (firstNameEmployee) return firstNameEmployee;
   return lastNameEmployee;
 }
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
-  return { ...personalInfo, ...associatedWith};
+  return { ...personalInfo, ...associatedWith };
 }
 
 function isManager(id) {
