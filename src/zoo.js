@@ -66,11 +66,11 @@ function isManager(id) {
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // seu código aqui
   employees.push({
-    id: id,
-    firstName: firstName,
-    lastName: lastName,
-    managers: managers,
-    responsibleFor: responsibleFor,
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
   });
 }
 
@@ -158,15 +158,12 @@ function increasePrices(percentage = 0) {
 
 function employeeCoverage(idOrName) {
   // seu código aqui
-  // const listaName = employees.map(person => `${person.firstName} ${person.lastName}`)
-  // const listaId = employees.map(id => id.responsibleFor)
+  if (!idOrName){
 
-  // const obj = {}
-  // listaName.forEach((element, index) => obj[element] = listaId[index])
-  // return obj;
+  }
 }
 
-// console.log(employeeCoverage())
+console.log(employeeCoverage())
 
 module.exports = {
   entryCalculator,
