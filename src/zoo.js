@@ -10,14 +10,14 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { employees, animals } = require('./data');
+const { employees} = require('./data');
 
 function animalsByIds(...ids) {
   return ids.map(ele => data.animals.find(el => el.id === ele));
 }
 
 function animalsOlderThan(animal, age) {
-  const registro = data.animals.find(animals => animals.name === animal).residents
+  const registro = data.animals.find(anim => anim.name === animal).residents
   .map(element => element.age)
   .every((ages => ages >= age));
   return registro;
@@ -84,7 +84,7 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-  /*const locations = ['NE', 'NW', 'SE', 'SW'];
+  /* const locations = ['NE', 'NW', 'SE', 'SW'];
   const todos = {};
   if (!options) {
     locations.forEach((location) => {
@@ -93,7 +93,7 @@ function animalMap(options) {
       .map(eln => eln.name);
     })
     return todos;
-  }*/
+  } */
 }
 
 function schedule(dayName) {
@@ -126,9 +126,9 @@ function increasePrices(percentage) {
   const priceIncrement = {};
   const prices = Object.keys(data.prices);
   const valuesP = Object.values(data.prices);
-  prices.forEach ((el, index) => {
-    let number = (valuesP[index] * (percentage / 100)) + valuesP[index];
-    let calculate = Math.round(number * 100) / 100;
+  prices.forEach((el, index) => {
+    const number = (valuesP[index] * (percentage / 100)) + valuesP[index];
+    const calculate = Math.round(number * 100) / 100;
     priceIncrement[el] = calculate;
     data.prices = priceIncrement;
   });
@@ -136,7 +136,7 @@ function increasePrices(percentage) {
 }
 function employeeCoverage(idOrName) {
   // seu código aqui
-} 
+}
 
 module.exports = {
   entryCalculator,
