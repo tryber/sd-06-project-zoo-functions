@@ -48,8 +48,28 @@ function isManager(id) {
     .some((manager, index) => manager[index] === id);
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function addEmployee(
+  employeeId,
+  employeeFirstName,
+  employeeLastName,
+  ...employeeManagersAndResponsibleFor
+) {
+  if (!employeeManagersAndResponsibleFor[0] && !employeeManagersAndResponsibleFor[1]) {
+    return data.employees.push({
+      id: employeeId,
+      firstName: employeeFirstName,
+      lastName: employeeLastName,
+      managers: [],
+      responsibleFor: [],
+    });
+  }
+  return data.employees.push({
+    id: employeeId,
+    firstName: employeeFirstName,
+    lastName: employeeLastName,
+    managers: [...employeeManagersAndResponsibleFor][0],
+    responsibleFor: [...employeeManagersAndResponsibleFor][1],
+  });
 }
 
 function animalCount(species) {
