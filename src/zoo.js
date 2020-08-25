@@ -75,9 +75,9 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function animalCount(species) {
   if (!species) {
     const allSpeciesNameTotal = {};
-    data.animals.forEach(zooAnimal =>
-      allSpeciesNameTotal[zooAnimal.name] = zooAnimal.residents.length,
-    );
+    data.animals.forEach(function (zooAnimal) {
+      allSpeciesNameTotal[zooAnimal.name] = zooAnimal.residents.length;
+    });
 
     return allSpeciesNameTotal;
   }
@@ -90,9 +90,9 @@ function animalCount(species) {
 function entryCalculator(entrants) {
   let totalPrice = 0;
   if (entrants) {
-    Object.keys(entrants).forEach(ticketPerson =>
-      totalPrice += data.prices[ticketPerson] * entrants[ticketPerson],
-    );
+    Object.keys(entrants).forEach(function (ticketPerson) {
+      totalPrice += data.prices[ticketPerson] * entrants[ticketPerson];
+    });
   }
 
   return totalPrice;
