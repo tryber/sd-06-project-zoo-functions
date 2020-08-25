@@ -31,7 +31,9 @@ function animalsOlderThan(animal, age) {
 
 function employeeByName(employeeName) {
   const name = employees.find(employee =>
-    employee.firstName === employeeName || employee.lastName === employeeName || employee.id === employeeName);
+    employee.firstName === employeeName ||
+    employee.lastName === employeeName ||
+    employee.id === employeeName);
 
   if (name) {
     return name;
@@ -127,16 +129,18 @@ function increasePrices(percentage = 0) {
 }
 
 function employeeCoverage(idOrName) {
-  let result = {};
-  
-  employees.forEach(employee => {
-    let idAnimalCovered = employee.responsibleFor.map(idAnimal => animalsByIds(idAnimal)[0].name);
+  const result = {};
+
+  employees.forEach((employee) => {
+    const idAnimalCovered = employee.responsibleFor.map(idAnimal => animalsByIds(idAnimal)[0].name);
     result[`${employee.firstName} ${employee.lastName}`] = idAnimalCovered;
-  })
+  });
 
   if (idOrName) {
     const employee = employeeByName(idOrName);
-    
+    const employeeFullName = `${employee.firstName} ${employee.lastName}`;
+
+    return { [employeeFullName]: result[employeeFullName] };
   }
 
   return result;
