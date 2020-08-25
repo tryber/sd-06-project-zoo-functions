@@ -10,7 +10,7 @@ eslint no-unused-vars: [
 */
 const data = require('./data');
 
-const { prices } = data;
+const { prices, hours } = data;
 
 function animalsByIds(...ids) {
   return data.animals.filter(species => ids.includes(species.id));
@@ -78,7 +78,9 @@ function schedule(dayName) {
     Monday: 'Closed today',
   };
   if (!dayName) return allSchedule;
-  return {[dayName]: `${allSchedule[dayName]}`,};
+  return {
+    [dayName]: `${allSchedule[dayName]}`,
+  };
 }
 
 function oldestFromFirstSpecies(id) {
