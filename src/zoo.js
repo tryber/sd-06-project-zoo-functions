@@ -12,25 +12,25 @@ eslint no-unused-vars: [
 const data = require('./data');
 const { animals, employees } = require('./data');
 
-//Explicação Requisito 1: se ids não possuem parâmetros (length = 0 ou undefined), retorna array vazio.
-//Ao receber, retorna os animais com esse id e inclui eles no array com o método includes.
+/*Explicação Requisito 1: se ids não possuem parâmetros (length = 0 ou undefined), retorna array vazio.
+Ao receber, retorna os animais com esse id e inclui eles no array com o método includes.*/
 function animalsByIds(...ids) {
   if (ids === undefined) {
     return [];
   }
   return animals.filter(animalId => ids.includes(animalId.id));
 }
-//Explicação Requisito 2: Procura o animal especificado no parâmetro com um .find,
-//e filtra a idade para que seja igual a idade mínima especificada no outro parâmetro.
+/*Explicação Requisito 2: Procura o animal especificado no parâmetro com um .find,
+e filtra a idade para que seja igual a idade mínima especificada no outro parâmetro.*/
 function animalsOlderThan(animal, age) {
   const filteringAnimals = animals.find(targetAnimal => targetAnimal.name === animal);
   const checkingAge = filteringAnimals.residents.every(animalAges => animalAges.age > age);
   return checkingAge;
 }
-//Explicação Requisito 3: Sem parâmetros (seja length = 0 ou undefined), retorna
-//um objeto vazio. Quando employeeName(primeiro nome) = a procura de nomes do array
-//(employeeNames), retorna o objeto do funcionário (find sempre retorna o objeto inteiro).
-//Quando prodvido o último nome, a mesma coisa.
+/*Explicação Requisito 3: Sem parâmetros (seja length = 0 ou undefined), retorna
+um objeto vazio. Quando employeeName(primeiro nome) = a procura de nomes do array
+(employeeNames), retorna o objeto do funcionário (find sempre retorna o objeto inteiro).
+Quando prodvido o último nome, a mesma coisa.*/
 function employeeByName(employeeName) {
   if (employeeName === undefined) {
     return {};
@@ -69,10 +69,10 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   };
   return employees.push(lastEmployee);
 }
-//Explicação Requisito 7: Sem parâmetros, usa um .reduce para reduzir o
-//array original e retornar os nomes dos animais e suas quantidades especificadas.
-//Com um nome especificado, procura com o .find esse animal e compara
-//com o species passado no parâmetro da função.
+// Explicação Requisito 7: Sem parâmetros, usa um .reduce para reduzir o
+// array original e retornar os nomes dos animais e suas quantidades especificadas.
+// Com um nome especificado, procura com o .find esse animal e compara
+// com o species passado no parâmetro da função.
 function animalCount(species) {
   if (species === undefined) {
     return animals
