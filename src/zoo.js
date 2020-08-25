@@ -76,8 +76,17 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  const prices = Object.keys(data.prices);
+  const values = Object.values(data.prices);
+  const Increment = {};
+  prices.forEach((item, i) => {
+    const number = ((percentage / 100) * values[i]) + values[i];
+    const totalInc = Math.round(number * 100) / 100;
+    Increment[item] = totalInc;
+  });
+  return priceIncrement;
 }
+
 
 function employeeCoverage(idOrName) {
   // seu código aqui
