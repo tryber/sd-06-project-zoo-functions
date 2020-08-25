@@ -164,7 +164,7 @@ const increasePrices = (percentage) => {
 const isIdOrName = checkIdOrName => (/.*\d.*/.test(checkIdOrName) ? 'id' : 'name');
 
 const mountObj = (nameOne, nameTwo, array) => {
-  const employeeAnimals = {}
+  const employeeAnimals = {};
   employeeAnimals.fullName = `${nameOne} ${nameTwo}`;
   employeeAnimals.responsibleFor = array;
   return employeeAnimals;
@@ -172,11 +172,11 @@ const mountObj = (nameOne, nameTwo, array) => {
 
 const createEmployeeNameAnimalIdArray = (stringIdOrName) => {
   if (!stringIdOrName) {
-    const employeeAnimaIdlArray = employees
-    .map(({ firstName, lastName, responsibleFor }) => mountObj(firstName, lastName, responsibleFor));
+    let employeeAnimaIdlArray = []; 
+    employeeAnimaIdlArray = employees.map((e) => mountObj(e.firstName, e.lastName, e.responsibleFor));
     return employeeAnimaIdlArray;
   }
-  const idName = isIdOrName(stringIdOrName)
+  const idName = isIdOrName(stringIdOrName);
   const employeeAnimaIdlArray = [];
   if (idName === 'id') {
     const { firstName, lastName, responsibleFor } = employees
@@ -185,7 +185,7 @@ const createEmployeeNameAnimalIdArray = (stringIdOrName) => {
     employeeAnimaIdlArray.push(employeeAnimals);
   } else {
     const { firstName, lastName, responsibleFor } = employees
-    .find(({ firstName, lastName }) => firstName === stringIdOrName || lastName === stringIdOrName);
+    .find((e) => e.firstName === stringIdOrName || e.lastName === stringIdOrName);
     const employeeAnimals = mountObj(firstName, lastName, responsibleFor);
     employeeAnimaIdlArray.push(employeeAnimals);
   }
