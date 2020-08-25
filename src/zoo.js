@@ -10,6 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
+const { animals, employees, prices } = data;
 
 function animalsByIds(...ids) {
   return data.animals.filter(species => ids.includes(species.id));
