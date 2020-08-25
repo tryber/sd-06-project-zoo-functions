@@ -162,15 +162,14 @@ function employeeCoverage(idOrName) {
     return individual;
   });
 
-  const responsibilities = employee.responsibleFor;
   const coveredAnimals = [];
-  for (let i = 0; i < responsibilities.length; i += 1) {
-    coveredAnimals.push(animals.find(animal => animal.id === responsibilities[i]).name);
+  for (let i = 0; i < employee.responsibleFor.length; i += 1) {
+    coveredAnimals.push(animals.find(animal => animal.id === employee.responsibleFor[i]).name);
   }
   const employeeResponsibilities = { [`${employee.firstName} ${employee.lastName}`]: coveredAnimals };
   return employeeResponsibilities;
 }
-
+console.log(employeeCoverage("Nigel"))
 module.exports = {
   entryCalculator,
   schedule,
