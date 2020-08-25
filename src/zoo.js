@@ -110,40 +110,31 @@ function entryCalculator(entrants) {
 
 function animalMap(options) {
   // seu código aqui
-  const animalsByLocation = {
-    animalsNE: animals.filter(animal => animal.location === 'NE'),
-    animalsNW: animals.filter(animal => animal.location === 'NW'),
-    animalsSE: animals.filter(animal => animal.location === 'SE'),
-    animalsSW: animals.filter(animal => animal.location === 'SW'),
-  };
   const result = {};
   const directions = ['NE', 'NW', 'SE', 'SW'];
-  directions.map((direction) => {
+  const animalsByLocation = {};
+  directions.forEach((direction) => {
+    animalsByLocation[`animals${direction}`] = animals.filter(animal => animal.location === direction);
+  }); // animalsByLocation[myDirection] é igual animalsNE, animalsNW, etc.
+  directions.forEach((direction) => {
     const myDirection = `animals${direction}`;
-    // animalsByLocation[myDirection] é igual animalsNE, animalsNW, etc.
     const animalNames = animalsByLocation[myDirection].map(animal => animal.name);
     if (!options) {
       result[direction] = animalsByLocation[myDirection].map(animal => animal.name);
       return result;
     } else if (options.includeNames === true) {
-      // teste.direction = 'ui';
-
       let residents;
       if (options.sex) {
         residents = animalsByLocation[myDirection]
           .map(animal => animal.residents
             .filter(each => each.sex === options.sex)
-            .map(resident => resident.name)
-          );
+            .map(resident => resident.name));
       } else {
         residents = animalsByLocation[myDirection]
           .map(animal => animal.residents
-            .map(resident => resident.name)
-          );
+            .map(resident => resident.name));
       }
-
       result[direction] = [];
-      // result[direction] = animalNames.map(animal => ({ [animal]: residents }));
 
       for (let i = 0; i < animalNames.length; i += 1) {
         const myRes = residents[i];
