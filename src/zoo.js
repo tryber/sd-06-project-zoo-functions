@@ -34,7 +34,6 @@ function animalsOlderThan(animal, ages) {
 
 function employeeByName(employeeName) {
   let result = {};
-
   employees.find((employee) => {
     const { firstName, lastName } = employee;
     if (employeeName === firstName || employeeName === lastName) {
@@ -61,25 +60,21 @@ function isManager(ids) {
 // console.log(isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  let empregado = {id, firstName, lastName, managers, responsibleFor};
- 
+  const empregado = { id, firstName, lastName, managers, responsibleFor };
   return employees.push(empregado);
 }
 
 // console.log(addEmployee('39800c14-4b76-454a-858d-2f8d168146a7', 'John', 'Doe'));
 
 function animalCount(species) {
-
-
   if (!species) {
-    let newObj = {};
-     animals.forEach((animal) => {
-      let {name, residents} = animal;
+    const newObj = {};
+    animals.forEach((animal) => {
+      const { name, residents } = animal;
       const key = name;
       const value = residents.length;
       newObj[key] = value;
-      
-    })
+    });
     return newObj;
   }
   return animals.find((animal) => animal.name === species).residents.length;
@@ -88,10 +83,10 @@ function animalCount(species) {
 // console.log(animalCount('lions'));
 
 function entryCalculator(entrants = 0) {
-  let { Adult, Senior, Child } = prices;
+  const { Adult, Senior, Child } = prices;
   let result = 0;
-// pode ser feito sem tudo isso, apenas declarando 0 quando o valor do parametro não for passado. Crio uma variável soma e então soma todas as multiplicações. Anyway, nice try!
-  const resp = Object.keys(entrants).forEach((key) => {
+  Object.keys(entrants).forEach((key) => {
+    let tot = 0;
     switch (key) {
       case 'Adult':
         tot = entrants[key] * Adult;
@@ -108,7 +103,7 @@ function entryCalculator(entrants = 0) {
       default:
         console.log('Sorry, not valid')
     }
-  })
+  });
   return result;
 }
 
@@ -119,45 +114,35 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  let newObj = {}
+  const newObj = {};
   const date = Object.entries(hours);
-
-  if (!dayName){
+  if (!dayName) {
     date.map((element) => {
       if (element.includes('Monday')){
-        newObj.Monday = 'CLOSED'
-        return newObj;
+        return newObj.Monday = 'CLOSED'
       }
-
-      let day = element[0];
-      let hour = element[1];
-      let {open, close} = hour;
-      newObj[day] = `Open from ${open}am until ${close-12}pm`
-      return newObj;
-    })
+      const day = element[0];
+      const hour = element[1];
+      const {open, close} = hour;
+      return newObj[day] = `Open from ${ open }am until ${ close-12 }pm`
+    });
     return newObj;
   } 
-
   date.map((item) => {
-    if (dayName === 'Monday'){
-      newObj.Monday = 'CLOSED'
-      return newObj;
+    if (dayName === 'Monday') {
+      return newObj.Monday = 'CLOSED'
     }
-
-    let day = item[0];
-    let hour = item[1];
-    let {open, close} = hour;
-    // console.log(day);
-    if (day === dayName){
-      newObj[day] = `Open from ${open}am until ${close-12}pm`;
-      return newObj;
+    const day = item[0];
+    const hour = item[1];
+    const { open, close } = hour;
+    if (day === dayName) {
+      return newObj[day] = `Open from ${ open }am until ${ close-12 }pm`;
     }
-    
-  })
+  });
   return newObj;
 }
 
-// console.log(schedule('Tuesday'))
+console.log(schedule('Tuesday'))
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
