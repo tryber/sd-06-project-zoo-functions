@@ -48,16 +48,15 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 
 function animalCount(species) {
   // seu código aqui
-  // if (species === undefined) {
-  //   console.log (animals.flatMap(animal => ({[animal.name]: animal.residents.length})))
-  // } console.log(animals.map(animal => animal.residents.length))
-  let animais = [];
-  animals.forEach(element => {
-    animais.push({[element.name]: element.residents.length})
-  }); console.log(animais.reduce())
-  }
+  if (species == null) { 
+  const animais = {};
+  animals.forEach(element => animais[element.name] = element.residents.length);
+  return animais;
 
-  console.log(animalCount())
+  } animalsTotal = animals.filter(element => element.name === species)
+     .map(element => element.residents.length);
+     return animalsTotal[0];
+}
  
 function entryCalculator(entrants) {
   // seu código aqui
