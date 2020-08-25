@@ -145,21 +145,22 @@ function animalMap({ includeNames = false, sex = '', sorted = false } = {}) {
 function schedule(dayName = 'all') {
   // seu código aqui
   const allDays = {};
-  Object.keys(data.hours).forEach((day) => { allDays[day] = data.hours[day] });
+  Object.keys(data.hours).forEach(day => { allDays[day] = data.hours[day] });
 
-  let result = {};
+  const result = {};
 
-  const genMessage = day => {
+  const genMessage = (day) => {
     if (allDays[day].open === 0) {
-      return "CLOSED"
-    } else {
-      return `Open from ${allDays[day].open}am until ${allDays[day].close - 12}pm`;
+      return 'CLOSED';
     }
-  }
+    return `Open from ${allDays[day].open}am until ${allDays[day].close - 12}pm`;
+  };
 
-  switch(dayName) {
+  switch (dayName) {
     case 'all':
-      Object.keys(allDays).forEach(day => result[day] = genMessage([day]));
+      Object.keys(allDays).forEach((day) => {
+        result[day] = genMessage([day]);
+      });
       break;
     default:
       result[dayName] = genMessage(dayName);
