@@ -52,10 +52,10 @@ const employeeByName = (employeeName) => {
 };
 
 // 4- Implemente a função createEmployee:
-// Cria um novo colaborador a partir de objetos 
+// Cria um novo colaborador a partir de objetos
 // contendo informações pessoais e gerentes e animais gerenciados.
 const createEmployee = (personalInfo, associatedWith) =>
-  ({...personalInfo, ...associatedWith});
+  ({ ...personalInfo, ...associatedWith });
 
 
 function isManager(id) {
