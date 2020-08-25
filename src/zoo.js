@@ -110,29 +110,31 @@ function entryCalculator(entrants) {
 
 function animalMap(options) {
   // seu código aqui
-  const result = {};
+  const result = {}, animalsByLocation = {};
   const directions = ['NE', 'NW', 'SE', 'SW'];
-  const animalsByLocation = {};
-  directions.forEach((direction) => {
-    animalsByLocation[`animals${direction}`] = animals.filter(animal => animal.location === direction);
-  }); // animalsByLocation[myDirection] é igual animalsNE, animalsNW, etc.
+
   directions.forEach((direction) => {
     const myDirection = `animals${direction}`;
+    animalsByLocation[myDirection] = animals.filter(animal => animal.location === direction); // animalsByLocation[myDirection] é igual animalsNE, animalsNW, etc.
     const animalNames = animalsByLocation[myDirection].map(animal => animal.name);
+
     if (!options) {
       result[direction] = animalsByLocation[myDirection].map(animal => animal.name);
       return result;
-    } else if (options.includeNames === true) {
+    }
+    if (options.includeNames === true) {
       let residents;
+      residents = animalsByLocation[myDirection].map(animal => animal.residents);
+
       if (options.sex) {
         residents = animalsByLocation[myDirection]
-          .map(animal => animal.residents
-            .filter(each => each.sex === options.sex)
+          .map(animal => animal.residents.filter(each => each.sex === options.sex)
             .map(resident => resident.name));
       } else {
+        residents.map(resident => resident.name);
+
         residents = animalsByLocation[myDirection]
-          .map(animal => animal.residents
-            .map(resident => resident.name));
+          .map(animal => animal.residents.map(resident => resident.name));
       }
       result[direction] = [];
 
@@ -151,7 +153,8 @@ function animalMap(options) {
 }
 
 
-console.log(animalMap({ includeNames: true, sex: 'female', sorted: true }));
+// console.log(animalMap({ includeNames: true }));
+// { includeNames: true, sex: 'female', sorted: true }
 
 function schedule(dayName) {
   // seu código aqui
