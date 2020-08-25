@@ -71,7 +71,7 @@ function animalMap(options) {
 function setSchedule() {
   const scheduleMap = {};
   Object.entries(hours).forEach(hourEntry =>
-  scheduleMap[hourEntry[0]] = `Open from ${hourEntry[1].open}am until ${hourEntry[1].close -12}pm` );
+  scheduleMap[hourEntry[0]] = `Open from ${hourEntry[1].open} am until ${hourEntry[1].close -12} pm`);
   scheduleMap.Monday = 'CLOSED';
   return scheduleMap;
 }
