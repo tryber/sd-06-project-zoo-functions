@@ -126,7 +126,11 @@ const getResidents = (animal, animalGender) => animals
 function animalMap(options) {
   const { includeNames, sorted, sex } = options || {};
   const result = {};
-  const locations = ['NE', 'NW', 'SE', 'SW'];
+  const locations = animals.map(animal => animal.location)
+  .reduce((acc, cur) => {
+    if (!acc.includes(cur)) acc.push(cur);
+    return acc;
+  }, []);
   locations.forEach((location) => {
     result[location] = [];
     animalLocation(location).forEach((animal) => {
