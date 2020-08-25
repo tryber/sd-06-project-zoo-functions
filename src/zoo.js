@@ -42,8 +42,8 @@ const createEmployee = (personalInfo, associatedWith) => {
 const isManager = id => employees.some(({ managers }) => managers.includes(id));
 
 const addEmployee = (id, firstName, lastName, managers = [], responsibleFor = []) => {
-  const newEmployee = { id, firstName, lastName, managers, responsibleFor }
-  employees.push(newEmployee)
+  const newEmployee = { id, firstName, lastName, managers, responsibleFor };
+  employees.push(newEmployee);
   return employees;
 };
 
