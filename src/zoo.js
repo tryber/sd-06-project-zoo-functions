@@ -159,6 +159,7 @@ function employeeCoverage(idOrName) {
       || individual.id === idOrName) {
       return individual;
     }
+    return individual;
   });
 
   const responsibilities = employee.responsibleFor;
