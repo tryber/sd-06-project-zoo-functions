@@ -153,9 +153,9 @@ function employeeCoverage(idOrName) {
     });
     return employeeAnimals;
   }
-  const employee = employees.find((individual) => (individual.firstName === idOrName
+  const employee = employees.find(individual => (individual.firstName === idOrName
     || individual.lastName === idOrName
-    || individual.id === idOrName)
+    || individual.id === idOrName),
   );
 
   const coveredAnimals = [];
