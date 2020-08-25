@@ -12,8 +12,9 @@ eslint no-unused-vars: [
 const data = require('./data');
 const { animals, employees } = require('./data');
 
-/* Explicação Requisito 1: se ids não possuem parâmetros (length = 0 ou undefined), retorna array vazio.
-Ao receber, retorna os animais com esse id e inclui eles no array com o método includes */
+/* Explicação Requisito 1: se ids não possuem parâmetros (length = 0 ou undefined),
+retorna array vazio. Ao receber, retorna os animais com esse id e inclui eles no
+array com o método includes */
 function animalsByIds(...ids) {
   if (ids === undefined) {
     return [];
@@ -27,9 +28,10 @@ function animalsOlderThan(animal, age) {
   const checkingAge = filteringAnimals.residents.every(animalAges => animalAges.age > age);
   return checkingAge;
 }
-/* Explicação Requisito 3: Sem parâmetros (seja length = 0 ou undefined), retorna um objeto vazio.
-Quando employeeName(primeiro nome) = a procura de nomes do array (employeeNames), retorna o objeto
-do funcionário (find sempre retorna o objeto inteiro). Quando prodvido o último nome, a mesma coisa. */
+/* Explicação Requisito 3: Sem parâmetros (seja length = 0 ou undefined),
+retorna um objeto vazio. Quando employeeName(primeiro nome) = a procura ]
+de nomes do array (employeeNames), retorna o objeto do funcionário (find
+  sempre retorna o objeto inteiro). Quando prodvido o último nome, a mesma coisa. */
 function employeeByName(employeeName) {
   if (employeeName === undefined) {
     return {};
