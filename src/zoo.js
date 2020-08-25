@@ -8,8 +8,8 @@ eslint no-unused-vars: [
   }
 ]
 */
-
 const data = require('./data');
+
 const { prices } = data;
 
 function animalsByIds(...ids) {
