@@ -75,7 +75,7 @@ function addEmployee(
 
 function animalCount(species) {
   const allSPeciesCountObj = {};
-  animals.forEach(animal => allSPeciesCountObj[animal.name] = animal.residents.length);
+  animals.forEach(animal => (allSPeciesCountObj[animal.name] = animal.residents.length));
 
   const orderedSpeciesObj = {};
   // stackoverflow solution to order an object with sort hof
