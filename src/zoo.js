@@ -109,7 +109,7 @@ function schedule(dayName) {
     return dayName === 'Monday' ?
     { [cur]: 'CLOSED' } :
     { [dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm` }
-  );
+  });
 }
 
 function oldestFromFirstSpecies(id) {
