@@ -42,8 +42,19 @@ const isManager = id =>
   data.employees.find(employee => employee.id === id)
   .managers[0] === '9e7d4524-363c-416a-8759-8aa7e50c0992';
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-
+function addEmployee(...value) {
+  if (value[3] === undefined) {
+    value[3] = [];
+    value[4] = [];
+  }
+  const objeto = {
+    id: value[0],
+    firstName: value[1],
+    lastName: value[2],
+    managers: value[3],
+    responsibleFor: value[4],
+  };
+  return data.employees.push(objeto);
 }
 
 function animalCount(species) {
