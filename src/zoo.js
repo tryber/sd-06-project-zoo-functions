@@ -113,12 +113,12 @@ function animalMapWithNoParams() {
   const animalsByLocation = {};
   const directions = ['NE', 'NW', 'SE', 'SW'];
 
-  directions.forEach(direction => {
+  directions.forEach((direction) => {
     const myDirection = `animals${direction}`; // animalsByLocation[myDirection] = animalsNE
     animalsByLocation[myDirection] = animals.filter(animal => animal.location === direction);
 
     result[direction] = animalsByLocation[myDirection].map(animal => animal.name);
-  })
+  });
   return result;
 }
 
@@ -128,16 +128,13 @@ function animalMap(options) {
   const animalsByLocation = {};
   const directions = ['NE', 'NW', 'SE', 'SW'];
 
-  if (!options) {
-    return animalMapWithNoParams();
-  }
+  if (!options) return animalMapWithNoParams();
 
   if (options.includeNames) {
     directions.forEach((direction) => {
       const myDirection = `animals${direction}`; // animalsByLocation[myDirection] = animalsNE
       animalsByLocation[myDirection] = animals.filter(animal => animal.location === direction);
       const animalNames = animalsByLocation[myDirection].map(animal => animal.name);
-
       let residents = animalsByLocation[myDirection].map(animal => animal.residents);
       if (options.sex) {
         residents = animalsByLocation[myDirection]
@@ -154,14 +151,12 @@ function animalMap(options) {
         result[direction].push({ [animalNames[i]]: residents[i] });
       }
     });
-  } else {
-    return animalMapWithNoParams();
-  }
+  } else return animalMapWithNoParams();
   return result;
 }
 
 
-console.log(animalMap());
+console.log(animalMap({ includeNames: false }));
 // { includeNames: true, sex: 'female', sorted: true }
 
 function schedule(dayName) {
