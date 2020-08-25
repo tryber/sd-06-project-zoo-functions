@@ -132,11 +132,43 @@ function increasePrices(percentage) {
   pricesKeys.forEach((key) => {
     prices[key] = Math.round((prices[key] * (1 + (percentage / 100))) * 100) / 100;
   });
+
   return prices;
 }
 
+const getEmployeeCoverage = () => {
+  const employeesResponsibleFor = {};
+  const getAnimalSpecies = responsibleFor => responsibleFor
+    .map(id => animals.find(animal => animal.id === id).name);
+  employees.forEach(({ firstName, lastName, responsibleFor }) => {
+    const fullName = `${firstName} ${lastName}`;
+    employeesResponsibleFor[fullName] = getAnimalSpecies(responsibleFor);
+  });
+
+  return employeesResponsibleFor;
+};
+
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  let coverage = {};
+  if (!idOrName) coverage = getEmployeeCoverage();
+  const employeeByID = employees.find(employee => employee.id === idOrName);
+  const employeeByFirstName = employees.find(employee => employee.firstName === idOrName);
+  const employeeByLastName = employees.find(employee => employee.lastName === idOrName);
+
+  if (employeeByID) {
+    const fullName = `${employeeByID.firstName} ${employeeByID.lastName}`;
+    coverage[fullName] = getEmployeeCoverage()[fullName];
+  }
+  if (employeeByFirstName) {
+    const fullName = `${idOrName} ${employeeByFirstName.lastName}`;
+    coverage[fullName] = getEmployeeCoverage()[fullName];
+  }
+  if (employeeByLastName) {
+    const fullName = `${employeeByLastName.firstName} ${idOrName}`;
+    coverage[fullName] = getEmployeeCoverage()[fullName];
+  }
+
+  return coverage;
 }
 
 module.exports = {
