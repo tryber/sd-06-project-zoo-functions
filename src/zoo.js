@@ -64,7 +64,7 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   let totalPrice = 0;
-  if (entrants === undefined || Object.entries(entrants).length == 0 ) {
+  if (entrants === undefined || Object.entries(entrants).length === 0 ) {
     return 0;
   }
   Object.keys(entrants).forEach((faixaIdade, posicao) => {
