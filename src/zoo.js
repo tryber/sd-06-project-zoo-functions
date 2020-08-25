@@ -94,10 +94,40 @@ function entryCalculator(entrants = 0) {
   return result;
 }
 
-function animalMap(options) {
-  // seu código aqui
-}
+const gen = (sex) => {
+  let general = 'female';
+  if (sex === 'male') general = 'male';
+  return general;
+};
 
+function animalMap(options) {
+  const obj = {};
+  const location = animals.map(elem => elem.location);
+  if (!options || !options.includeNames) {
+    location.forEach((position) => {
+      obj[position] = animals.filter(elem => elem.location === position).map(elem => elem.name);
+    });
+    return obj;
+  }
+  if (options.includeNames === true) {
+    location.forEach((position) => {
+      obj[position] = animals.filter(elem => elem.location === position).map((elem) => {
+        const animal = {};
+        if (options.sex === gen(options.sex)) {
+          animal[elem.name] = elem.residents.filter(names => names.sex === gen(options.sex))
+            .flatMap(map => map.name);
+          if (options.sorted === true) animal[elem.name].sort();
+          return animal;
+        }
+        animal[elem.name] = elem.residents.flatMap(names => names.name);
+        if (options.sorted === true) animal[elem.name].sort();
+        return animal;
+      });
+    });
+  }
+  return obj;
+}
+console.log(animalMap({ includeNames: true }));
 function schedule(dayName) {
   // seu código aqui
 }
