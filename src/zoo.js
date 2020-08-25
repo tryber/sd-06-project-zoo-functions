@@ -28,15 +28,13 @@ function animalsOlderThan(animal, age) {
 }
 
 function employeeByName(employeeName) {
-  // verificar porque n da certo assim  const achei = data.employees.find(funcionario =>
-  // funcionario.firstName === employeeName || funcionario.lastName === employeeName) || {};
   const achei = data.employees.find(funcionario => funcionario.firstName === employeeName
   || funcionario.lastName === employeeName);
   return achei || {};
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  return { ...personalInfo, ...associatedWith };
 }
 
 function isManager(id) {
@@ -56,7 +54,7 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-  // seu código aqui
+7
 }
 
 function schedule(dayName) {
