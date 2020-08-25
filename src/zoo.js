@@ -114,7 +114,6 @@ function schedule(dayName) {
   if (dayName === 'Monday') {
     isOpen[dayName] = 'CLOSED';
   }
-  
   return isOpen;
 }
 
