@@ -144,12 +144,12 @@ function oldestFromFirstSpecies(id) {
 function increasePrices(percentage) {
   // seu código aqui
   const arrayPrices = Object.keys(prices);
-  return arrayPrices.reduce((acc, curr) => {
-    acc[curr] = Math.round((prices[curr] * percentage / 100 + prices[curr]) * 100) / 100;
-    
-    return acc
-  }, {})
-  
+  const obj = {}
+  arrayPrices.map((element) => {
+      //console.log(Math.round((prices[element] * percentage / 100 + prices[element]) * 100) / 100)
+      (obj[element] = (Math.round((prices[element] * percentage / 100 + prices[element]) * 100) / 100))
+  })
+  return obj
 }
 console.log(increasePrices(50))
 
