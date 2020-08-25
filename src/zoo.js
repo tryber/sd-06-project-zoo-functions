@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees, prices } = data;
+const { animals, employees, hours, prices } = data;
 
 function animalsByIds(...ids) {
   return animals.filter(animal => ids.find(thoseWhich => thoseWhich === animal.id));
@@ -92,12 +92,50 @@ function animalMap(options) {
   // seu código aqui
 }
 
+function wholeSchedule() {
+  const daysKey = Object.keys(hours);
+    const openClose = Object.values(hours);
+    const firstObject = openClose.reduce((acc, { open, close }, index) => {
+      if (daysKey[index] !== 'Monday') {
+        return Object.assign(acc, {
+          [daysKey[index]]: `Open from ${open}am until ${(close - 12)}pm`
+        });
+      } else if (daysKey[index] === 'Monday') {
+        return Object.assign(acc, {
+          [daysKey[index]]: 'CLOSED'
+        })
+      };
+    }, {});
+    return firstObject;
+}
+
 function schedule(dayName) {
-  // seu código aqui
+  if (!dayName) {
+    return wholeSchedule();
+  }
+  const firstObject = wholeSchedule();
+  const secondObject = {
+    [dayName]: firstObject[dayName]
+  }
+
+  return secondObject;
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  let array = [];
+  const trabalhador = employees.find(inPut => inPut.id === id);
+  const retorno = trabalhador.responsibleFor;
+  const x = animals.find((pet) => pet.id === retorno[0]);
+  let z = x.residents[0]['age'];
+  let nomeAnimal;
+  x.residents.forEach(inPut => {
+    if(inPut['age'] > z) {
+    z = inPut['age'];
+    nomeAnimal = inPut;
+    }
+  })
+  array = [nomeAnimal['name'], nomeAnimal['sex'], nomeAnimal['age']];
+  return array;
 }
 
 function increasePrices(percentage) {
