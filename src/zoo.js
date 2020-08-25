@@ -114,25 +114,26 @@ function getSpecieNameById(animalId) {
 }
 
 function getOlder(animals) {
-  let age = 0
+  let age = 0;
   animals.forEach(function (animal) {
     if (animal.age > age) {
       age = animal.age;
-
     }
   });
-  return animals.filter(animal => animal.age === age);
+  return animals.filter((animal) => animal.age === age);
 }
 
 function getAnimalsIdsByEmployeeId(employeeId) {
-  return employees.filter(employee => employee.id === employeeId).flatMap(employee => employee.responsibleFor);
+  return employees
+    .filter((employee) => employee.id === employeeId)
+    .flatMap((employee) => employee.responsibleFor);
 }
 
 function oldestFromFirstSpecies(employeeID) {
-  const [firstAnimalId] = getAnimalsIdsByEmployeeId(employeeID)
-  const {residents} = getSpecieNameById(firstAnimalId);
+  const [firstAnimalId] = getAnimalsIdsByEmployeeId(employeeID);
+  const { residents } = getSpecieNameById(firstAnimalId);
   const older = getOlder(residents)[0];
-  return [older.name, older.sex, older.age]
+  return [older.name, older.sex, older.age];
 }
 
 function increasePrices(percentage) {
