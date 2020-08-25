@@ -63,6 +63,7 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
+  // Object.keys -> transformas as keys em um array
 }
 
 function animalMap(options) {
@@ -88,9 +89,23 @@ function schedule(dayName) {
   }
   return obj;
 }
-console.log(schedule());
+
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  // guardar o id do primeiro animal que o func gerencia
+  const animalId = data.employees.find(element => element.id === id).responsibleFor[0];
+  // buscar o animal
+  const findAnimal = data.animals.find(element => element.id === animalId);
+  // testar qual animal mais velho- para isso:
+  // percorrer o array residents e comparar 1 posição com a 2,
+  // salvar a que for maior, depois comparar com a 3, e assim por diante
+  // variavel que será retornada com o mais velho
+  let theOldest = findAnimal.residents[0];
+  findAnimal.residents.forEach((element) => {
+    if (element.age > theOldest.age) {
+      theOldest = element;
+    }
+  });
+  return Object.values(theOldest);
 }
 
 function increasePrices(percentage) {
