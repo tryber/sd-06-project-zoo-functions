@@ -25,8 +25,8 @@ function animalsByIds(...ids) {
     animals.filter((animal) => {
       if (animal.id === id) {
         animalsArray.push(animal);
-      }
-    }) return undefined;
+      } return undefined;
+    });
   });
   return animalsArray;
 }
