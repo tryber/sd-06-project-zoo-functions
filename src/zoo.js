@@ -82,39 +82,55 @@ function entryCalculator(entrants = {}) {
   return (adultEntry + seniorEntry + childEntry);
 }
 
-const animalsWithoutOptions = (someObject) => {
-  animalList.forEach((animal) => {
-    someObject[animal.location].push(animal.name);
+const animalsLocationFilter = (receivingObject, locationList) => {
+  locationList.forEach((location) => {
+    const locatedAnimals = animalList
+      .filter(animal => animal.location === location)
+      .map(animal => animal.name);
+    if (locatedAnimals.length !== 0) receivingObject[location] = locatedAnimals;
   });
 };
 
+const animalsSexFilter = (chosenSex, givenAnimal) => {
+  if (!chosenSex) return true;
+  if (givenAnimal.sex === chosenSex) return true;
+  return false;
+};
+
+const createAnimalObject = (destinationObject, subjectAnimal, selectedSex) => {
+  const animalObject = {};
+  const filteredAnimals = subjectAnimal.residents
+    .filter((animalToFilter => animalsSexFilter(selectedSex, animalToFilter)))
+    .map(individual => individual.name);
+  animalObject[subjectAnimal.name] = filteredAnimals;
+  if (!destinationObject[subjectAnimal.location]) {
+    destinationObject[subjectAnimal.location] = [];
+  }
+  destinationObject[subjectAnimal.location].push(animalObject);
+};
+
 function animalMap(options) {
-  const mapObject = { NE: [], NW: [], SE: [], SW: [] };
+  const mapObject = {};
+  const mapLocations = ['NE', 'NW', 'SE', 'SW'];
   if (!options) {
-    animalsWithoutOptions(mapObject);
+    animalsLocationFilter(mapObject, mapLocations);
     return mapObject;
   }
-  const { includeNames, sort, sex } = options;
+  const { includeNames = false, sorted = false, sex = undefined } = options;
   if (!includeNames) {
-    animalsWithoutOptions(mapObject);
+    animalsLocationFilter(mapObject, mapLocations);
     return mapObject;
   }
-  animalList.forEach((animal) => {
-    const animalObject = {};
-    animalObject[animal.name] = animal.residents.map(individual => individual.name);
-    mapObject[animal.location].push(animalObject);
-  });
-  if (sort) {
+  animalList.forEach(animal => createAnimalObject(mapObject, animal, sex));
+  if (sorted) {
     Object.keys(mapObject).forEach(location => mapObject[location]
       .forEach((mappedAnimal) => {
         Object.values(mappedAnimal)[0].sort();
       }));
   }
-
   return mapObject;
 }
 
-console.log(animalMap({ includeNames: true, sort: true, sex: 'male' }).NE);
 
 function schedule(dayName) {
   const scheduleObj = {};
