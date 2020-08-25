@@ -63,9 +63,43 @@ function entryCalculator(entrants = {}) {
   }
   return 0;
 }
+function retrieveAnimalsPerLocation(locations) {
+  const animalsPerLocation = {};
+  locations.forEach((location) =>{
+    const animals = data.animals
+    .filter(animal => animal.location === location)
+    .map(animal => animal.name);
+    if (animals.length !== 0) animalsPerLocation[location] = animals;
+  });
+  return animalsPerLocation;
+}
+function retrieveAnimals(locations, sorted, sex) {
+  const animalsPerLocationWithName = {};
+  locations.forEach((location) => {
+    const animals = data.animals
+    .filter(animal => animal.location === location)
+    .map(animal => {
+      const nameKey = animal.name;
+      const nameValues = animal.residents
+      .filter(resident => {
+        const isFilteringSex = sex !== undefined;
+        return isFilteringSex ? resident.sex === sex : true;
+      })
+      .map(resident => resident.name);
+      if (sorted) nameValues.sort();
+      return { [nameKey]:nameValues};
+    });
+    animalsPerLocationWithName[location] = animals;
+  });
+  return animalsPerLocationWithName;
+}
 
 function animalMap(options) {
-  // seu código aqui
+  const locations = ['NE', 'NW', 'SE', 'SW'];
+  if (!options) return retrieveAnimalsPerLocation(locations);
+  const { includeNames, sorted, sex } = options;
+  if (!includeNames) return retrieveAnimalsPerLocation(locations);
+  return retrieveAnimals(locations, sorted, sex);
 }
 
 function setSchedule() {
@@ -97,8 +131,9 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  Object.entries(prices).forEach(entrants =>
-    data.prices[entrants[0]] = Math.ceil(entrants[1] * (1 + (percentage/100)) * 100) / 100 );
+  Object.entries(prices).forEach(entrants => {
+    data.prices[entrants[0]] = Math.ceil(entrants[1] * (1 + (percentage/100)) * 100) / 100;
+  });
 }
 
 function employeeCoverage(idOrName) {
