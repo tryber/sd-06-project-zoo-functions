@@ -14,7 +14,6 @@ const {
   animals,
   employees,
   prices,
-  hours,
 } = require('./data');
 
 function animalsByIds(...ids) {
