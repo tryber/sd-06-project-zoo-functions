@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 const data = require('./data');
-const { animals, employees } = require('./data');
+const { animals, employees, prices } = require('./data');
 
 function animalsByIds(...ids) {
   const result = [];
@@ -85,11 +85,34 @@ function animalCount(species) {
   return animals.find((animal) => animal.name === species).residents.length;
 }
 
-console.log(animalCount('lions'));
+// console.log(animalCount('lions'));
 
-function entryCalculator(entrants) {
-  // seu código aqui
+function entryCalculator(entrants = 0) {
+  let { Adult, Senior, Child } = prices;
+  let result = 0;
+// pode ser feito sem tudo isso, apenas declarando 0 quando o valor do parametro não for passado. Crio uma variável soma e então soma todas as multiplicações. Anyway, nice try!
+  const resp = Object.keys(entrants).forEach((key) => {
+    switch (key) {
+      case 'Adult':
+        tot = entrants[key] * Adult;
+        result += tot;
+        break;
+      case 'Senior':
+        tot = entrants[key] * Senior;
+        result += tot;
+        break;
+      case 'Child':
+        tot = entrants[key] * Child;
+        result += tot;
+        break;
+      default:
+        console.log('Sorry, not valid')
+    }
+  })
+  return result;
 }
+
+// console.log(entryCalculator({}))
 
 function animalMap(options) {
   // seu código aqui
