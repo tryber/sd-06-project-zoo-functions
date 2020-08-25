@@ -201,9 +201,8 @@ function oldestFromFirstSpecies(id) {
   const oldestAnimal = myAnimal.residents.reduce((resident, next) => {
     if (resident.age > next.age) {
       return resident;
-    } else {
-      return next;
     }
+    return next;
   });
 
   return Object.values(oldestAnimal);
