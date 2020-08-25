@@ -13,7 +13,6 @@ const data = require('./data');
 const {
   animals,
   employees,
-  hours
 } = require('./data');
 
 function animalsByIds(...ids) {
@@ -39,7 +38,7 @@ function createEmployee(personalInfo, associatedWith) {
   } = personalInfo;
   const {
     managers,
-    responsibleFor
+    responsibleFor,
   } = associatedWith;
   return {
     id,
@@ -73,7 +72,6 @@ function animalCount(species) {
     return obj;
   }
   return animals.find(animal => animal.name === species).residents.length;
-
 }
 
 function entryCalculator(entrants) {
