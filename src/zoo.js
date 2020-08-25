@@ -62,12 +62,12 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  if (entrants === undefined || Object.keys(entrants).length == 0) {
+  if (entrants === undefined || Object.keys(entrants).length === 0) {
     return 0;
   }
   let sum = 0;
   const arrEntries = Object.entries(entrants);
-  arrEntries.forEach(element => sum += (data.prices[element[0]] * element[1]));
+  arrEntries.forEach(element => (sum += (data.prices[element[0]] * element[1])));
   return sum;
 }
 
