@@ -130,13 +130,13 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   // seu código aqui
-  var thisprices = Object.values(prices);
-  var addPercentage = (actual, percentage) => actual += (actual / 100 * percentage);
-  thisprices.forEach(price => Math.round(addPercentage(price, percentage)*100)/100);
-  prices.Adult =  Math.round(addPercentage(prices.Adult, percentage)*100)/100;
-  prices.Senior =  Math.round(addPercentage(prices.Senior, percentage)*100)/100;
-  prices.Child =  Math.round(addPercentage(prices.Child, percentage)*100)/100;
-  return prices
+  const addPercentage = function (actual) { 
+    return actual += (actual / 100) * percentage;
+  }
+  prices.Adult = Math.round(addPercentage(prices.Adult)* 100)/ 100;
+  prices.Senior = Math.round(addPercentage(prices.Senior) * 100) / 100;
+  prices.Child = Math.round(addPercentage(prices.Child) * 100) / 100;
+  return prices;
 }
 
 function employeeCoverage(idOrName) {
