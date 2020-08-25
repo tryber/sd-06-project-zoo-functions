@@ -61,8 +61,12 @@ function createEmployee(personalInfo, associatedWith) {
   ],
 })); */
 
-function isManager(id) {
-  // seu código aqui
+function isManager(idNumber) {
+  // SEMPRE RETORNA TRUE COM SOME, COM EVERY ATÉ RETORNA FALSE MAS NÃO PASSA
+  // já tentei employee.id, .managers, .responsableFor
+  return data
+    .employees.some((employee, index) =>
+      employee.managers[index] === idNumber);
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
