@@ -30,7 +30,8 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  return ({ firstName: personalInfo.firstName,
+  return ({
+    firstName: personalInfo.firstName,
     id: personalInfo.id,
     lastName: personalInfo.lastName,
     managers: associatedWith.managers,
@@ -49,7 +50,7 @@ function addEmployee(id = '', firstName = '', lastName = '', managers = [], resp
 const animalCount = (species) => {
   if (!species) {
     return data.animals.reduce((acc, current) =>
-    ({ ...acc, [current.name]: current.residents.length }), {});
+      ({ ...acc, [current.name]: current.residents.length }), {});
   }
   return data.animals.find(e => (e.name === species)).residents.length;
 };
@@ -59,57 +60,62 @@ function entryCalculator(entrants) {
     return 0;
   }
   return Object.keys(entrants).reduce((acc, current) =>
-  acc + (data.prices[current] * entrants[current]), 0);
+    acc + (data.prices[current] * entrants[current]), 0);
 }
 
 function animalMap(options) {
   const RESULT = {};
   if (!options) {
-    data.animals.map((e) => {
+    data.animals.forEach(function (e) {
       if (e.location in RESULT) {
         RESULT[e.location].push(e.name);
       } else {
         RESULT[e.location] = [e.name];
       }
     });
-    return RESULT;
   }
+  return RESULT;
 }
 
 function schedule(dayName) {
-  const QUERY = `Open from ${data.hours[dayName].open}am until ${data.hours[dayName].close - 12}pm`;
   if (!dayName) {
+    /* const QUERY = ({ data.hours.map(e => `Open from ${e.open}am until ${e.close - 12}pm`);
+    };
+    Object.entries(data.hours).reduce((acc, current) =>
+      Object.keys(current) `Open from ${current.open}am until ${current.close - 12}pm`);
+    */
     return {
-      'Tuesday': 'Open from 8am until 6pm',
-      'Wednesday': 'Open from 8am until 6pm',
-      'Thursday': 'Open from 10am until 8pm',
-      'Friday': 'Open from 10am until 8pm',
-      'Saturday': 'Open from 8am until 10pm',
-      'Sunday': 'Open from 8am until 8pm',
-      'Monday': 'CLOSED'
+      Tuesday: 'Open from 8am until 6pm',
+      Wednesday: 'Open from 8am until 6pm',
+      Thursday: 'Open from 10am until 8pm',
+      Friday: 'Open from 10am until 8pm',
+      Saturday: 'Open from 8am until 10pm',
+      Sunday: 'Open from 8am until 8pm',
+      Monday: 'CLOSED',
     };
   } else if (dayName === 'Monday') {
-    return { "Monday": "CLOSED" };
-  } 
-  return { [dayName]: QUERY };
-    /* const RESULT = {};
-    for (const [key, value] of Object.entries(data.hours)) {
-      if () {
-
-      } else {
-
-      }
-      console.log(`${key}: Open from ${value.open}am until ${value.close}pm`);
-    } */
-  //console.log(Object.entries(data.hours).map(e => e.keys))
+    return { Monday: 'CLOSED' };
+  }
+  return {
+    [dayName]: `Open from ${data.hours[dayName].open}am until ${data.hours[dayName].close - 12}pm`,
+  };
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const ANIMALS = data.employees.find(e => (e.id === id)).responsibleFor;
+  const ANIMALOBJ = data.animals.find(element => element.id === ANIMALS[0]);
+  return ANIMALOBJ.residents.reduce((acc, { name, sex, age }) =>
+    (age > acc.age ? [name, sex, age] : acc));
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  if (percentage) {
+    return Object.keys(data.prices).forEach(((e) => {
+      data.prices[e] = (Math.round((data.prices[e] * ((percentage / 100) + 1)) * 100)) / 100;
+    }
+    ));
+  }
+  return null;
 }
 
 function employeeCoverage(idOrName) {
