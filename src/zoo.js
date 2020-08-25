@@ -94,7 +94,7 @@ function entryCalculator(entrants) {
   const entrancePrice = entranceTicket
   .reduce((totalPriceTicket, key) => totalPriceTicket + (prices[key] * entrants[key]), 0);
 //  somar o valor total dos tickets atribuindo totalPriceTicket ao somatorio e as chaves
-// do prices e das entradas inicias
+// do prices e das entradas inicias.
   return entrancePrice;
 }
 
