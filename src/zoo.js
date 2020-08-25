@@ -127,7 +127,7 @@ function schedule(dayName) {
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
-  const idAnimal = employees.find(funcionários => funcionários.id === id).responsibleFor[0];
+  const idAnimal = employees.find(employee => employee.id === id).responsibleFor[0];
   const { name, sex, age } = animals.find(species => species.id === idAnimal).residents
   .reduce((total, resident) => {
     if (resident.age > total.age) {
@@ -150,7 +150,24 @@ function increasePrices(percentage) {
 
 function employeeCoverage(idOrName) {
   // seu código aqui
+  const arrayEmployeesName = employees.map(employee => `${employee.firstName} ${employee.lastName}`);
+  const arrayResponsibleForSpecie = employees.map(employee => employee.responsibleFor).map(arrayResponsibleFor => arrayResponsibleFor.map(idResponsibleFor => animals.find(specie => specie.id === idResponsibleFor).name));
+  if (!idOrName) {
+    return arrayEmployeesName.reduce((exit, nameEmployee, index) => {
+      exit[nameEmployee] = arrayResponsibleForSpecie[index];
+      return exit;
+    }, {});
+  }
+  const indexExit = employees.reduce((exit, employee, index) => {
+    const { firstName, lastName, id } = employee;
+    if (idOrName === firstName || idOrName === lastName || idOrName === id) {
+      return index;
+    }
+    return exit;
+  });
+  return { [arrayEmployeesName[indexExit]]: arrayResponsibleForSpecie[indexExit] };
 }
+// console.log(employeeCoverage('Strauss'));
 
 module.exports = {
   entryCalculator,
