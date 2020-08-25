@@ -78,7 +78,20 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-  // seu código aqui
+  const locations = ['NE', 'NW', 'SE', 'SW'];
+
+  if (!options) {
+    const animalsPerLocation = {};
+
+    locations.forEach((location) => {
+      const arrAnimals = animals
+        .filter(animal => animal.location === location)
+        .map(animal => animal.name);
+
+      if (arrAnimals.length !== 0) animalsPerLocation[location] = arrAnimals;
+    });
+    // conferir quais animais são dessa localização
+  }
 }
 
 function schedule(dayName) {
@@ -103,9 +116,24 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
-}
+  if (!idOrName) {
+    const func = employees.reduce((acc, curr) => (
+      { ...acc, [`${curr.firstName} ${curr.lastName}`]: curr.responsibleFor }
+    ), {});
+    return Object.keys(func).reduce((acc, curr) => ({
+      ...acc,
+      [curr]: func[curr].map(animalId => animals.find(animalName =>
+        animalName.id === animalId).name) }
+    ), {});
+  }
 
+  const emp = employees.find(employee =>
+    employee.id === idOrName || employee.firstName === idOrName || employee.lastName === idOrName);
+  const { firstName, lastName, responsibleFor } = emp;
+  return { [`${firstName} ${lastName}`]: responsibleFor.map(animalId => animals.find(animalName => animalName.id === animalId).name) };
+}
+console.log(employeeCoverage());
+console.log(employeeCoverage('Strauss'));
 module.exports = {
   entryCalculator,
   schedule,
