@@ -109,7 +109,7 @@ function entryCalculator(entrants) {
   // seu código aqui
   if (!entrants) return 0;
   if (Object.entries(entrants).length === 0) return 0;
-  // Object.entries(objeto) converte o objeto em um array 
+  // Object.entries(objeto) converte o objeto em um array
   let totalPrice = 0;
   if (entrants.Adult) {
     totalPrice += entrants.Adult * data.prices.Adult;
