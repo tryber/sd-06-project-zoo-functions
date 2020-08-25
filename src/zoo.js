@@ -75,33 +75,177 @@ function entryCalculator(entrants) {
   return (Adult * 49.99) + (Child * 20.99) + (Senior * 24.99);
 }
 
-function animalMap(options) {
-  const { includeNames } = options;
-  
-  let fieldNE = animalsObject.filter(element => element.location === 'NE');
-  let fieldNW = animalsObject.filter(element => element.location === 'NW');
-  let fieldSE = animalsObject.filter(element => element.location === 'SE');
-  let fieldSW = animalsObject.filter(element => element.location === 'SW');
-  const ne = fieldNE.map(item => item.name);
-  const nw = fieldNW.map(item => item.name);
-  const se = fieldSE.map(item => item.name);
-  const sw = fieldSW.map(item => item.name);
-  if (!options) {
+function animalsFilteredByLocation(location) {
+  return animalsObject.filter(animal => animal.location === location);
+}
+
+// function retrieveAnimalsFromLocation(location) {
+//   const list = animalsFilteredByLocation(location);
+//   return list
+//     .map(element => element.name);
+// }
+
+function AnimalsName(location) {
+  const list = animalsFilteredByLocation(location);
+  return list
+    .map(element => element.residents.map(name => name.name));
+}
+
+function animalsGender(location, sex, index) {
+  const list = animalsFilteredByLocation(location);
+  return list
+    .map(resident => resident
+      .residents.filter(name => name.sex === sex))[index]
+    .map(gender => gender.name);
+}
+
+// function withNoOptions() {
+//   return {
+//     NE: retrieveAnimalsFromLocation('NE'),
+//     NW: retrieveAnimalsFromLocation('NW'),
+//     SE: retrieveAnimalsFromLocation('SE'),
+//     SW: retrieveAnimalsFromLocation('SW'),
+//   };
+// }
+
+function withNoSortedNorsex(sorted) {
+  if (!sorted) {
     return {
-      NE: ne,
-      NW: nw,
-      SE: se,
-      SW: sw,
-    }
+      NE: [
+        { [retrieveAnimalsFromLocation('NE')[0]]: AnimalsName('NE')[0] },
+        { [retrieveAnimalsFromLocation('NE')[1]]: AnimalsName('NE')[1] },
+      ],
+      NW: [
+        { [retrieveAnimalsFromLocation('NW')[0]]: AnimalsName('NW')[0] },
+        { [retrieveAnimalsFromLocation('NW')[1]]: AnimalsName('NW')[1] },
+        { [retrieveAnimalsFromLocation('NW')[2]]: AnimalsName('NW')[2] },
+      ],
+      SE: [
+        { [retrieveAnimalsFromLocation('SE')[0]]: AnimalsName('SE')[0] },
+        { [retrieveAnimalsFromLocation('SE')[1]]: AnimalsName('SE')[1] },
+      ],
+      SW: [
+        { [retrieveAnimalsFromLocation('SW')[0]]: AnimalsName('SW')[0] },
+        { [retrieveAnimalsFromLocation('SW')[1]]: AnimalsName('SW')[1] },
+      ],
+    };
+  } else {
+    return withSortedButNoSex();
   }
-  
+}
 
+function withSortedButNoSex() {
+  return {
+    NE: [
+      { [retrieveAnimalsFromLocation('NE')[0]]: AnimalsName('NE')[0].sort() },
+      { [retrieveAnimalsFromLocation('NE')[1]]: AnimalsName('NE')[1].sort() },
+    ],
+    NW: [
+      { [retrieveAnimalsFromLocation('NW')[0]]: AnimalsName('NW')[0].sort() },
+      { [retrieveAnimalsFromLocation('NW')[1]]: AnimalsName('NW')[1].sort() },
+      { [retrieveAnimalsFromLocation('NW')[2]]: AnimalsName('NW')[2].sort() },
+    ],
+    SE: [
+      { [retrieveAnimalsFromLocation('SE')[0]]: AnimalsName('SE')[0].sort() },
+      { [retrieveAnimalsFromLocation('SE')[1]]: AnimalsName('SE')[1].sort() },
+    ],
+    SW: [
+      { [retrieveAnimalsFromLocation('SW')[0]]: AnimalsName('SW')[0].sort() },
+      { [retrieveAnimalsFromLocation('SW')[1]]: AnimalsName('SW')[1].sort() },
+    ],
+  };
+}
 
+// console.log(teste());
+
+function teste() {
+  const resp = withSortedButNoSex();
+  return resp['NE'];
 
 }
 
+function withNoSorted(sex) {
+  return {
+    NE: [
+      { [retrieveAnimalsFromLocation('NE')[0]]: animalsGender('NE', sex, 0) },
+      { [retrieveAnimalsFromLocation('NE')[1]]: animalsGender('NE', sex, 1) },
+    ],
+    NW: [
+      { [retrieveAnimalsFromLocation('NW')[0]]: animalsGender('NW', sex, 0) },
+      { [retrieveAnimalsFromLocation('NW')[1]]: animalsGender('NW', sex, 1) },
+      { [retrieveAnimalsFromLocation('NW')[2]]: animalsGender('NW', sex, 2) },
+    ],
+    SE: [
+      { [retrieveAnimalsFromLocation('SE')[0]]: animalsGender('SE', sex, 0) },
+      { [retrieveAnimalsFromLocation('SE')[1]]: animalsGender('SE', sex, 1) },
+    ],
+    SW: [
+      { [retrieveAnimalsFromLocation('SW')[0]]: animalsGender('SW', sex, 0) },
+      { [retrieveAnimalsFromLocation('SW')[1]]: animalsGender('SW', sex, 1) },
+    ],
+  };
+}
 
-console.log(animalMap());
+function withAllThree(sex) {
+  return {
+    NE: [
+      { [retrieveAnimalsFromLocation('NE')[0]]: animalsGender('NE', sex, 0).sort() },
+      { [retrieveAnimalsFromLocation('NE')[1]]: animalsGender('NE', sex, 1).sort() },
+    ],
+    NW: [
+      { [retrieveAnimalsFromLocation('NW')[0]]: animalsGender('NW', sex, 0).sort() },
+      { [retrieveAnimalsFromLocation('NW')[1]]: animalsGender('NW', sex, 1).sort() },
+      { [retrieveAnimalsFromLocation('NW')[2]]: animalsGender('NW', sex, 2).sort() },
+    ],
+    SE: [
+      { [retrieveAnimalsFromLocation('SE')[0]]: animalsGender('SE', sex, 0).sort() },
+      { [retrieveAnimalsFromLocation('SE')[1]]: animalsGender('SE', sex, 1).sort() },
+    ],
+    SW: [
+      { [retrieveAnimalsFromLocation('SW')[0]]: animalsGender('SW', sex, 0).sort() },
+      { [retrieveAnimalsFromLocation('SW')[1]]: animalsGender('SW', sex, 1).sort() },
+    ],
+  };
+}
+
+function animalMap(options) {
+  const { includeNames, sorted, sex } = options || {};
+  const location = ['NE', 'NW', 'SE', 'SW'];
+  let obj = {};
+  let obj2 = {};
+
+  if (!options) {
+    location.forEach(location => {
+      const animalLoc = location;
+      const animals = animalsObject
+        .filter(animal => animal.location === location)
+        .map(animal => animal.name);
+      obj[animalLoc] = animals;
+    })
+    return obj;
+  }
+
+  if (!includeNames) {
+    location.forEach(location => {
+      const animalLoc = location;
+      const animals = animalsObject
+        .filter(animal => animal.location === location)
+        .map(animal => animal.name);
+      const name = animalsObject.filter(animal => animal.location === location).map(animal => animal.residents);
+      obj[animalLoc] = animals;
+    })
+    return obj;
+  }
+}
+// if (!includeNames) return withNoOptions();
+// if (includeNames && !sorted && !sex) return withNoSortedNorsex(sorted);
+// if (includeNames && sorted && !sex) return withNoSortedNorsex(sorted);
+// if (includeNames && sex && !sorted) return withNoSorted(sex);
+// if (includeNames && sex && sorted) return withAllThree(sex);
+
+
+
+// console.log(animalMap({ includeNames: true }));
 
 function schedule(dayName) {
   const scheduleObj = {
@@ -142,16 +286,31 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  let list = {};
-  let arrAnimals = [];
-  const listEmployees = employees.map(element => {
-    list[`${element.firstName} ${element.lastName}`] = element.responsibleFor
-    return list;
-  });
-  listEmployees[0];
+  let allAnimals = {};
+  let filteredEmployee;
+
+  if (!idOrName) {
+    filteredEmployee = employees;
+  } else {
+    filteredEmployee = employees.filter(
+      idAndName => idAndName.id === idOrName ||
+        idAndName.firstName === idOrName ||
+        idAndName.lastName === idOrName
+    );
+  }
+  filteredEmployee.forEach(employer => {
+    let mappedAnimal = employer.responsibleFor.map(animalId => {
+      return animalsObject.find(item => item.id === animalId).name;
+    })
+    allAnimals[`${employer.firstName} ${employer.lastName}`] = mappedAnimal;
+  })
+  return allAnimals;
 }
 
-// console.log(employeeCoverage());
+
+
+console.log(employeeCoverage('Azevado'));
+
 
 module.exports = {
   entryCalculator,
