@@ -95,8 +95,16 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  // seu código aqui
-  hours.forEach();
+  const daysOfWeek = Object.keys(hours).reduce((daysList, day, index) =>
+  ({ ...daysList,
+    [day]: day === 'Monday' ? 'CLOSED' : `Open from ${Object.values(hours)[index].open}am until ${Object.values(hours)[index].close - 12}pm`,
+  }), {});
+  if (dayName) {
+    const dayOfWeek = Object.entries(daysOfWeek).find(day => day[0] === dayName);
+    const [day, hoursPerDay] = dayOfWeek;
+    return { [day]: hoursPerDay };
+  }
+  return daysOfWeek;
 }
 
 function oldestFromFirstSpecies(id) {
@@ -132,8 +140,7 @@ function employeeCoverage(idOrName) {
   const { firstName, lastName, responsibleFor } = emp;
   return { [`${firstName} ${lastName}`]: responsibleFor.map(animalId => animals.find(animalName => animalName.id === animalId).name) };
 }
-console.log(employeeCoverage());
-console.log(employeeCoverage('Strauss'));
+
 module.exports = {
   entryCalculator,
   schedule,
