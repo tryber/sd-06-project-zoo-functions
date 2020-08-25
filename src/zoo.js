@@ -130,18 +130,16 @@ function animalMap(options) {
   locations.forEach((location) => {
     result[location] = [];
     animalLocation(location).forEach((animal) => {
-      if (!options) {
+      if (!options || includeNames !== true) {
         result[location].push(animal);
-      } else if (includeNames === true && (sex === 'female' || sex === 'male') && sorted === true) {
+      } else if ((sex === 'female' || sex === 'male') && sorted === true) {
         result[location].push({ [animal]: getResidents(animal, sex).sort() });
-      } else if (includeNames === true && sorted === true) {
+      } else if (sorted === true) {
         result[location].push({ [animal]: getResidents(animal).sort() });
-      } else if (includeNames === true && (sex === 'female' || sex === 'male')) {
+      } else if (sex === 'female' || sex === 'male') {
         result[location].push({ [animal]: getResidents(animal, sex) });
-      } else if (includeNames === true) {
+      } else {
         result[location].push({ [animal]: getResidents(animal) });
-      } else if (includeNames !== true) {
-        result[location].push(animal);
       }
     });
   });
@@ -225,7 +223,7 @@ function employeeCoverage(idOrName) {
   return holder;
 }
 
-console.log(employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
+console.log(employeeCoverage());
 
 
 module.exports = {
