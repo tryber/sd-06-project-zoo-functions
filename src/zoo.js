@@ -97,7 +97,6 @@ function entryCalculator(entrants) {
 // do prices e das entradas inicias. tentando upoar commmit
   return entrancePrice;
 }
-console.log()
 
 function animalMap(options) {
 
