@@ -38,7 +38,7 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  // seu código aqui
+  return data.employees.some(employe => employe.managers.includes(id));
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
@@ -54,7 +54,7 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-7
+
 }
 
 function schedule(dayName) {
