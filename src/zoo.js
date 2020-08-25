@@ -138,8 +138,8 @@ function schedule(dayName) {
     }
   });
 
-  if (dayName === undefined) return schedule;
-  return { [dayName]: schedule[dayName] };
+  if (dayName === undefined) return schedulee;
+  return { [dayName]: schedulee[dayName] };
 }
 
 function oldestFromFirstSpecies(id) {
