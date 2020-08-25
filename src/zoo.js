@@ -63,19 +63,6 @@ function entryCalculator(entrants) {
 
 function animalMap(options) {
 //   // seu código aqui
-//   const locations = ['NE', 'NW', 'SE', 'SW'];
-//   if (!options) {
-//     const animalsPerLocation = {};
-
-//     locations.forEach((location) => {
-//       //filtrar por localização
-//   //     const animals = data.animals
-//   //     .filter((animal => animal.location === location)
-//   //     .map(animal => animal.name);
-//   //   })
-//   // } 
-
-
 }
 // console.log(animals.filter(animal => animal.location === 'NE').map(nome => nome.name))
 
