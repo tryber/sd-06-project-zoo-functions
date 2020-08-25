@@ -48,21 +48,19 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  // const returnObject = {};
-  // if (species === undefined) {
-  //   animals.forEach(function (element) {
-  //     returnObject[element.name] = element.residents.length;
-  // });}
-  // animals.find(function(element){
-  //   if (element.name === species){
-  //     return element.name.length;
-  // }
-  // });
-  // return returnObject;
+  const returnObject = {};
+  animals.forEach(function (element) {
+    returnObject[element.name] = element.residents.length;
+  });
+  if (species === undefined) {
+    return returnObject;
+  }
+  const animalNumber = returnObject[species];
+  return animalNumber;
 }
-// console.log(animalCount());
-// console.log(animalCount('lions'));// 2
-// console.log(animalCount('snakes'));// 4
+console.log(animalCount());
+console.log(animalCount('lions'));// 2
+console.log(animalCount('snakes'));// 4
 
 function entryCalculator(entrants) {
   if (entrants === undefined || Object.keys(entrants) === undefined) return 0;
@@ -105,7 +103,7 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  const percentageValue = (percentage / 100) + 1;
+  const percentageValue = (percentage / 100) + 1;// base percentual/aumento
   prices.Adult = (Math.round((prices.Adult * percentageValue) * 100) / 100);
   prices.Senior = (Math.round((prices.Senior * percentageValue) * 100) / 100);
   prices.Child = (Math.round((prices.Child * percentageValue) * 100) / 100);
