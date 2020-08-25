@@ -169,21 +169,25 @@ function schedule(dayName) {
 
   if (dayName) {
     if (dayName === 'Monday') {
-      result[dayName] = 'CLOSED'
+      result[dayName] = 'CLOSED';
       return result;
     }
     const myDay = data.hours[dayName];
-    result[dayName] = `Open from ${myDay.open}am until ${myDay.close - 12}pm`
+    result[dayName] = `Open from ${myDay.open}am until ${myDay.close - 12}pm`;
     return result;
   }
 
   daysOfTheWeek.map((day) => {
-    if (day === 'Monday') return result[day] = 'CLOSED';
+    if (day === 'Monday') {
+      result[day] = 'CLOSED';
+      return result;
+    }
 
     const open = data.hours[day].open;
     const close = data.hours[day].close - 12;
-    return result[day] = `Open from ${open}am until ${close}pm`
-  })
+    result[day] = `Open from ${open}am until ${close}pm`;
+    return result;
+  });
   return result;
 }
 
