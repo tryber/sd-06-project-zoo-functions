@@ -54,7 +54,7 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  if (!entrants || Object.keys(entrants).length === 0) { 
+  if (!entrants || Object.keys(entrants).length === 0) {
     return 0;
   }
   const { Adult = 0, Child = 0, Senior = 0 } = entrants;
@@ -111,4 +111,3 @@ module.exports = {
   increasePrices,
   createEmployee,
 };
- */
