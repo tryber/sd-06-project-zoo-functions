@@ -89,7 +89,7 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
     firstName,
     lastName,
     managers,
-    responsibleFor
+    responsibleFor,
   };
 
   data.employees.push(newEmployee);
