@@ -10,8 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { animals } = require('./data');
-const { employees } = require('./data');
+const { animals, employees, prices } = require('./data');
 
 function animalsByIds(...ids) {
   // hint about includes received from Icaro
@@ -89,7 +88,16 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  if (!entrants) return 0;
+
+cle  let totalPrice = 0;
+
+  // got hint about use Object.keys instead of Object.entries by watching other students PR's
+  for (let i = 0; i < Object.keys(entrants).length; i += 1) {
+    totalPrice += prices[Object.keys(entrants)[i]] * entrants[Object.keys(entrants)[i]];
+  }
+
+  return totalPrice;
 }
 
 function animalMap(options) {
