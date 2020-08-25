@@ -17,11 +17,11 @@ function animalsByIds(...ids) {
   // return animals.filter((animal, index) => animal.id === ids[index])
   // seu código aqui
   const arrayId = [...ids];
-  if ( arrayId === undefined ) {
+  if (arrayId === undefined) {
     return [];
   }
   const newArrayId = [];
-  arrayId.forEach(element => {
+  arrayId.forEach((element) => {
     const objResult = animals.filter(id => id.id === element);
     newArrayId.push(objResult[0]);
   });
@@ -45,14 +45,14 @@ function employeeByName(employeeName) {
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
-  const employees = {
+  const newEmployees = {
     id: personalInfo.id,
-    firstName : personalInfo.firstName,
-    lastName : personalInfo.lastName,
-    managers : associatedWith.managers,
-    responsibleFor : associatedWith.responsibleFor
+    firstName: personalInfo.firstName,
+    lastName: personalInfo.lastName,
+    managers: associatedWith.managers,
+    responsibleFor: associatedWith.responsibleFor
   };
-  return employees;
+  return newEmployees;
 }
 
 function isManager(id) {
@@ -63,50 +63,49 @@ function isManager(id) {
   return array.some((mane, index) => mane[index] === id);
 }
 
-function addEmployee(id, firstName, lastName, managers=[], responsibleFor=[]) {
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // seu código aqui
   employees.push({
-    id : id,
-    firstName : firstName,
-    lastName : lastName,
-    managers : managers,
-    responsibleFor : responsibleFor
+    id: id,
+    firstName: firstName,
+    lastName: lastName,
+    managers: managers,
+    responsibleFor: responsibleFor,
   });
 }
 
 function animalCount(species) {
   // seu código aqui
-  if(species === undefined) {
-    let obj={};
+  if (species === undefined) {
+    const obj = {};
     animals.forEach(element => obj[element.name] = element.residents.length);
     return obj;
   }
-  let num = animals.find(animal => animal.name === species);
+  const num = animals.find(animal => animal.name === species);
   return num.residents.length;
 }
 
-function entryCalculator(entrants=0) {
+function entryCalculator(entrants = 0) {
   // seu código aqui
   let acc = 0;
   if (entrants === 0) {
     return 0;
-  } else if (entrants.Adult){
-    acc += entrants.Adult * prices.Adult
+  } else if (entrants.Adult) {
+    acc += entrants.Adult * prices.Adult;
   }
   if (entrants.Senior) {
-    acc += entrants.Senior * prices.Senior
+    acc += entrants.Senior * prices.Senior;
   }
   if (entrants.Child){
-    acc += entrants.Child * prices.Child
+    acc += entrants.Child * prices.Child;
   }
   return acc;
 }
-// console.log(entryCalculator({ 'Child': 1, 'Senior': 1}))
 
 function animalMap(options) {
   // seu código aqui
 }
-//console.log(animalMap())
+// console.log(animalMap())
 
 function schedule(dayName) {
   // seu código aqui
@@ -117,17 +116,16 @@ function schedule(dayName) {
     Friday: `Open from ${hours.Friday.open}am until ${hours.Friday.close - 12}pm`,
     Saturday: `Open from ${hours.Saturday.open}am until ${hours.Saturday.close - 12}pm`,
     Sunday: `Open from ${hours.Sunday.open}am until ${hours.Sunday.close - 12}pm`,
-    Monday: `CLOSED`
+    Monday: 'CLOSED',
   };
-  if (dayName===undefined) {
+  if (dayName === undefined) {
     return table;
   }
   const arrayDays = Object.entries(table);
-  const result = arrayDays.find((u) => u[0] === dayName);
+  const result = arrayDays.find(u => u[0] === dayName);
   const resultObj = {};
   resultObj[result[0]] = result[1];
   return resultObj;
-
 }
 
 function oldestFromFirstSpecies(id) {
@@ -136,26 +134,25 @@ function oldestFromFirstSpecies(id) {
   const pet = animals.find(cd => cd.id === func.responsibleFor[0]);
   let ag = 0;
   let agObj;
-  pet.residents.forEach(element => {
+  pet.residents.forEach((element) => {
     if (element.age > ag) {
       ag = element.age;
       agObj = element;
     }
-  })
+  });
   const result = [agObj.name, agObj.sex, agObj.age];
 
   return result;
 }
-//console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'))
 
-function increasePrices(percentage=0) {
+function increasePrices(percentage = 0) {
   // seu código aqui
-  percentage = (percentage/100)+1;
-  let adult = ((percentage * prices.Adult) + 0.005).toFixed(2);
+  percentage = (percentage / 100) + 1;
+  const adult = ((percentage * prices.Adult) + 0.005).toFixed(2);
   prices.Adult = adult;
-  let senior = ((percentage * prices.Senior) + 0.005).toFixed(2);
+  const senior = ((percentage * prices.Senior) + 0.005).toFixed(2);
   prices.Senior = senior;
-  let child = ((percentage * prices.Child) + 0.005).toFixed(2);
+  const child = ((percentage * prices.Child) + 0.005).toFixed(2);
   prices.Child = child;
 }
 
