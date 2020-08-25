@@ -109,7 +109,7 @@ function animalMap(options) {
     animalLocation(location).forEach((animal) => {
       if (includeNames !== true) { // aqui resolve includeName false
         requestReturned[location].push(animal);
-      } else if (sorted === true) { // toda vez que testa sorted o includeN é testado
+      } else if (sorted) { // toda vez que testa sorted o includeN é testado
         requestReturned[location].push({ [animal]: getResidents(animal, sex).sort() });
       } else { // aqui as condições que sobraram sex
         requestReturned[location].push({ [animal]: getResidents(animal, sex) });
