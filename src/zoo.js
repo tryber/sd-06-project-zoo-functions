@@ -45,7 +45,7 @@ function createEmployee(personalInfo, associatedWith) {
   });
 }
 
- console.log(createEmployee({
+/* console.log(createEmployee({
   id: '7ed1c9bb-8570-44f6-b718-0666b869573a',
   firstName: 'John',
   lastName: 'Doe',
@@ -59,7 +59,7 @@ function createEmployee(personalInfo, associatedWith) {
     '89be95b3-47e4-4c5b-b687-1fabf2afa274',
     'bb2a76d8-5fe3-4d03-84b7-dba9cfc048b5',
   ],
-}));
+})); */
 
 function isManager(id) {
   // seu código aqui
