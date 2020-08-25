@@ -143,6 +143,10 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   // seu código aqui
+  if (percentage === undefined) {
+    return prices
+  }
+
   const arrayPrices = Object.keys(prices);
   const obj = {}
   arrayPrices.map((element) => {
@@ -151,15 +155,7 @@ function increasePrices(percentage) {
   })
   return obj
 }
-console.log(increasePrices(50))
-
-
-  /*
-  return Object.keys(prices).reduce((newPrices, price) => {
-    newPrices[price] = Math.round((prices.price + prices[price] * (percentage /100)) * 100) / 100;
-    return newPrices;
-  }, {})*/
-
+console.log(increasePrices())
 
 
 function employeeCoverage(idOrName) {
