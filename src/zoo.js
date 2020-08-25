@@ -94,6 +94,12 @@ function entryCalculator(entrants) {
 
 function animalMap(options) {
   // seu código aqui
+  // const locations = ['NE', 'NW', 'SE', 'SW'];
+  // if(options === undefined) {
+  //   locations.forEach(index) => {
+
+  //   }
+  // }
 }
 
 function schedule(dayName) {
