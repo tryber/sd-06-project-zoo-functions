@@ -110,7 +110,7 @@ function entryCalculator(entrants) {
 
 function animalMap(options) {
   // seu código aqui
-  const result = {}
+  const result = {};
   const animalsByLocation = {};
   const directions = ['NE', 'NW', 'SE', 'SW'];
 
@@ -122,10 +122,8 @@ function animalMap(options) {
     if (!options) {
       result[direction] = animalsByLocation[myDirection].map(animal => animal.name);
       return result;
-    }
-    if (options.includeNames) {
-      let residents;
-      residents = animalsByLocation[myDirection].map(animal => animal.residents);
+    } else if (options.includeNames) {
+      let residents = animalsByLocation[myDirection].map(animal => animal.residents);
       if (options.sex) {
         residents = animalsByLocation[myDirection]
           .map(animal => animal.residents.filter(each => each.sex === options.sex)
@@ -151,7 +149,7 @@ function animalMap(options) {
 }
 
 
-console.log(animalMap({ includeNames: true }));
+console.log(animalMap({ includeNames: true, sex: 'female', sorted: true }));
 // { includeNames: true, sex: 'female', sorted: true }
 
 function schedule(dayName) {
