@@ -67,8 +67,65 @@ function entryCalculator(entrants) {
     return acc + aux;
   }, 0);
 }
+function animalsByLocation () {
+  const listObj = { NE: [], NW: [], SE: [], SW: [] };
+  animals.forEach(animal => {
+    if (animal.location === 'NE') {
+      listObj.NE.push(animal.name);
+    } else 
+    if (animal.location === 'NW') {
+      listObj.NW.push(animal.name);
+    } else
+    if (animal.location === 'SE') {
+      listObj.SE.push(animal.name);
+    } else {
+      listObj.SW.push(animal.name);
+    }
+  });
+  return listObj;
+}
+
+function nameAnimalsByLocation () {
+  const listObj = { NE: [], NW: [], SE: [], SW: [] };
+  animals.forEach(animal => {
+    const nameResidente = [];
+    if (animal.location === 'NE') {
+      animal.residents.forEach(resident => {
+        nameResidente.push(resident.name);
+      });
+      listObj.NE.push(nameResidente);
+    } else 
+    if (animal.location === 'NW') {
+      animal.residents.forEach(resident => {
+        nameResidente.push(resident.name);
+      });
+      listObj.NW.push(nameResidente);
+    } else
+    if (animal.location === 'SE') {
+      animal.residents.forEach(resident => {
+        nameResidente.push(resident.name);
+      });
+      listObj.SE.push(nameResidente);
+    } else {
+      animal.residents.forEach(resident => {
+        nameResidente.push(resident.name);
+      });
+      listObj.SW.push(nameResidente);
+    }
+  });
+  return listObj;
+
+}
+
 function animalMap(options) {
   // seu código aqui
+  if (!options) {
+    return animalsByLocation();
+  }
+  const optionsValues = Object.values(options);
+  if(optionsValues[0] === true && optionsValues.length === 1) {
+    return nameAnimalsByLocation();
+  }
 }
 
 function schedule(dayName) {
