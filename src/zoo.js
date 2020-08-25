@@ -50,7 +50,7 @@ function createEmployee(personalInfo, associatedWith) {
     firstName: personalInfo.firstName,
     lastName: personalInfo.lastName,
     managers: associatedWith.managers,
-    responsibleFor: associatedWith.responsibleFor
+    responsibleFor: associatedWith.responsibleFor,
   };
   return newEmployees;
 }
@@ -96,7 +96,7 @@ function entryCalculator(entrants = 0) {
   if (entrants.Senior) {
     acc += entrants.Senior * prices.Senior;
   }
-  if (entrants.Child){
+  if (entrants.Child) {
     acc += entrants.Child * prices.Child;
   }
   return acc;
