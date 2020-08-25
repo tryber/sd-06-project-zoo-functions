@@ -55,14 +55,18 @@ function createEmployee(personalInfo, associatedWith) {
 // console.log(createEmployee(personalInfo, associatedWith));
 
 function isManager(ids) {
-  const teste = employees.some(({managers}, index) => managers[index] === ids);
+  const teste = employees.some(({ managers }, index) => managers[index] === ids);
   return teste;
 }
 // console.log(isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  let empregado = {id, firstName, lastName, managers, responsibleFor};
+ 
+  return employees.push(empregado);
 }
+
+// console.log(addEmployee('39800c14-4b76-454a-858d-2f8d168146a7', 'John', 'Doe'));
 
 function animalCount(species) {
   // seu código aqui
