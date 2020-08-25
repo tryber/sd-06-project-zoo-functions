@@ -115,11 +115,11 @@ function animalMap(options) {
     animalsNW: animals.filter(animal => animal.location === 'NW'),
     animalsSE: animals.filter(animal => animal.location === 'SE'),
     animalsSW: animals.filter(animal => animal.location === 'SW'),
-  }
-  const result = {}
+  };
+  const result = {};
   const directions = ['NE', 'NW', 'SE', 'SW'];
-  directions.forEach((direction) => {
-    const myDirection = 'animals' + direction;
+  directions.map((direction) => {
+    const myDirection = `animals${direction}`;
     // animalsByLocation[myDirection] é igual animalsNE, animalsNW, etc.
     const animalNames = animalsByLocation[myDirection].map(animal => animal.name);
     if (!options) {
@@ -152,7 +152,6 @@ function animalMap(options) {
         }
         result[direction].push({ [animalNames[i]]: residents[i] });
       }
-
     } else {
       result[direction] = animalsByLocation[myDirection].map(animal => animal.name);
     }
@@ -161,7 +160,7 @@ function animalMap(options) {
 }
 
 
-animalMap({ sex: 'female' });
+console.log(animalMap({ includeNames: true, sex: 'female', sorted: true }));
 
 function schedule(dayName) {
   // seu código aqui
