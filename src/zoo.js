@@ -109,10 +109,12 @@ function schedule(dayName) {
 function oldestFromFirstSpecies(id) {
   const happyEmployeeId = data.employees.find(employee => employee.id === id);
   const idAnimalResponsibleFor = happyEmployeeId.responsibleFor[0];
-  const animalWholeInfo = data.animals.find(animal => animal.id === idAnimalResponsibleFor);
-  const allAnimalsOldestToYoungestList = animalWholeInfo.residents.sort((resident1, resident2) => resident2.age - resident1.age);
-  const { name, sex, age } = allAnimalsOldestToYoungestList[0]
-  return [name, sex, age]
+  const animalWholeInfo = data.animals.find(animal =>
+    animal.id === idAnimalResponsibleFor);
+  const allAnimalsOldestToYoungestList = animalWholeInfo.residents.sort((resident1, resident2) =>
+  resident2.age - resident1.age);
+  const { name, sex, age } = allAnimalsOldestToYoungestList[0];
+  return [name, sex, age];
 }
 
 function increasePrices(percentage) {
