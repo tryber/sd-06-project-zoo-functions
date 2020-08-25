@@ -114,7 +114,7 @@ function entryCalculator(entrants) {
 // retorna somente nomes de animais macho/fêmea com os nomes dos animais ordenados
 // Só retorna informações ordenadas e com sexo se a opção includeNames: true for especificada
 
-const animalLocation = location => animals
+const getAnimalLocation = location => animals
     .filter(element => element.location === location)
     .map(animal => animal.name);
 
@@ -129,8 +129,13 @@ function animalMap(options) {
   const locations = ['NE', 'NW', 'SE', 'SW'];
   locations.forEach((location) => {
     result[location] = [];
+<<<<<<< HEAD
     animalLocation(location).forEach((animal) => {
       if (!options || includeNames !== true) {
+=======
+    getAnimalLocation(location).forEach((animal) => {
+      if (!options) {
+>>>>>>> 9a2c391e8fdaf57affccf81d01e3975232be7762
         result[location].push(animal);
       } else if ((sex === 'female' || sex === 'male') && sorted === true) {
         result[location].push({ [animal]: getResidents(animal, sex).sort() });
@@ -198,10 +203,10 @@ function increasePrices(percentage) {
   });
 }
 
-const searchId = element => element.responsibleFor
+const searchResponsibleForId = element => element.responsibleFor
   .map(animalResponsableId => animalResponsableId);
 
-const searchNames = id => animals
+const searchAnimalNameByResponsibleForId = id => animals
   .find(animal => animal.id === id).name;
 
 const identifyParamater = parameter =>
@@ -212,14 +217,16 @@ const identifyParamater = parameter =>
 function employeeCoverage(idOrName) {
   if (!idOrName) {
     const employeeFullList = employees.reduce((acc, cur) => {
-      acc[`${cur.firstName} ${cur.lastName}`] = searchId(cur).map(id => searchNames(id));
+      acc[`${cur.firstName} ${cur.lastName}`] = searchResponsibleForId(cur)
+      .map(id => searchAnimalNameByResponsibleForId(id));
       return acc;
     }, {});
     return employeeFullList;
   }
   const holder = {};
   const { firstName, lastName } = identifyParamater(idOrName);
-  holder[`${firstName} ${lastName}`] = searchId(identifyParamater(idOrName)).map(id => searchNames(id));
+  holder[`${firstName} ${lastName}`] = searchResponsibleForId(identifyParamater(idOrName))
+  .map(id => searchAnimalNameByResponsibleForId(id));
   return holder;
 }
 
