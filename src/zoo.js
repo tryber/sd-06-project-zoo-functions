@@ -11,6 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
+
 //  Caso receba nenhum parâmetro, necessário retornar um array vazio
 //  Ao receber como parâmetro um único id, retorna os animais com este id
 //  Ao receber mais de um id, retorna os animais que têm um desses ids
@@ -121,17 +122,36 @@ function animalMap(options) {
   // seu código aqui
 }
 
+//  Sem parâmetros, retorna um cronograma legível para humanos
+//  Se um único dia for passado, retorna somente este dia em um formato legível para humanos
+//  Percorrer objeto https://pt.stackoverflow.com/questions/173293/como-percorrer-um-objeto-em-javascript
 function schedule(dayName) {
   // seu código aqui
 }
 
+//  Passado o id de um funcionário, encontra a primeira espécie de animal gerenciado pelo
+//  funcionário, e retorna um array com nome, sexo e idade do animal mais velho dessa espécie
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  let animalOlder = 0;
+  let showAnimal = [];
+  const employe = data.employees
+    .find(employeFinder => employeFinder.id === id);
+
+  data.animals
+    .find(animal => animal.id === employe.responsibleFor[0]).residents
+    .forEach((animal) => {
+      if (animal.age > animalOlder) {
+        animalOlder = animal.age;
+        showAnimal = animal;
+      }
+    });
+  return Object.values(showAnimal);
 }
 
 function increasePrices(percentage) {
   // seu código aqui
 }
+
 
 function employeeCoverage(idOrName) {
   // seu código aqui
