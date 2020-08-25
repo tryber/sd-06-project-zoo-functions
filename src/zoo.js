@@ -71,28 +71,61 @@ function entryCalculator(entrants) {
   if (entrants === {} || entrants === undefined) {
     return 0;
   }
-
   const { Adult: quantAdult = 0, Senior: quantSenior = 0, Child: quantChild = 0 } = entrants;
-
   return (Adult * quantAdult) + (Senior * quantSenior) + (Child * quantChild);
+}
+
+function retrieveAnimalsPerLocation(locations) {
+  const animalsPerLocation = {};
+
+  locations.forEach((location) => {
+    const arrAnimals = data.animals
+      .filter(animal => animal.location === location)
+      .map(animal => animal.name);
+
+    if (animals.length !== 0) animalsPerLocation[location] = arrAnimals;
+  });
+
+  return animalsPerLocation;
+}
+
+function retrieveAnimals(locations, sorted, sex) {
+  const animalsPerLocationWithName = {};
+
+  locations.forEach((location) => {
+    const animalsPerLocation = animals
+      .filter(animal => animal.location === location)
+      .map((animal) => {
+        const nameKey = animal.name;
+        const nameValues = animal.residents
+        .filter((resident) => {
+          const isFilteringSex = sex !== undefined;
+          return isFilteringSex ? resident.sex === sex : true;
+        })
+        .map(resident => resident.name);
+
+        if (sorted) nameValues.sort();
+
+        return { [nameKey]: nameValues };
+      });
+
+    animalsPerLocationWithName[location] = animalsPerLocation;
+  });
+
+  return animalsPerLocationWithName;
 }
 
 function animalMap(options) {
   const locations = ['NE', 'NW', 'SE', 'SW'];
+  if (!options) return retrieveAnimalsPerLocation(locations);
 
-  if (!options) {
-    const animalsPerLocation = {};
+  const { includeNames, sorted, sex } = options;
 
-    locations.forEach((location) => {
-      const arrAnimals = animals
-        .filter(animal => animal.location === location)
-        .map(animal => animal.name);
+  if (!includeNames) return retrieveAnimalsPerLocation(locations);
 
-      if (arrAnimals.length !== 0) animalsPerLocation[location] = arrAnimals;
-    });
-    // conferir quais animais são dessa localização
-  }
+  return retrieveAnimals(locations, sorted, sex);
 }
+console.log(animalMap());
 
 function schedule(dayName) {
   const daysOfWeek = Object.keys(hours).reduce((daysList, day, index) =>
