@@ -31,11 +31,12 @@ function animalsOlderThan(animal, age) {
 
 function employeeByName(employeeName) {
   const name = employees.find(employee =>
-    employee.firstName === employeeName || employee.lastName === employeeName);
+    employee.firstName === employeeName || employee.lastName === employeeName || employee.id === employeeName);
 
   if (name) {
     return name;
   }
+
   return {};
 }
 
@@ -45,8 +46,7 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(id) {
   return employees
-    .some(employee => employee.managers
-      .some(managerId => managerId === id));
+    .some(employee => employee.managers.some(managerId => managerId === id));
 }
 
 function addEmployee(id = '', firstName = '', lastName = '', managers = [], responsibleFor = []) {
@@ -98,6 +98,7 @@ function schedule(...dayName) {
       result[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`;
     }
   });
+
   return result;
 }
 
@@ -122,12 +123,26 @@ function increasePrices(percentage = 0) {
     );
   }
 
-  return Object.assign(data.prices, newPrices);
+  Object.assign(data.prices, newPrices);
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  let result = {};
+  
+  employees.forEach(employee => {
+    let idAnimalCovered = employee.responsibleFor.map(idAnimal => animalsByIds(idAnimal)[0].name);
+    result[`${employee.firstName} ${employee.lastName}`] = idAnimalCovered;
+  })
+
+  if (idOrName) {
+    const employee = employeeByName(idOrName);
+    
+  }
+
+  return result;
 }
+
+console.log(employeeCoverage('Strauss'));
 
 module.exports = {
   entryCalculator,
