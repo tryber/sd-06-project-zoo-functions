@@ -71,12 +71,75 @@ function entryCalculator(entrants) {
   return sum;
 }
 
-function animalMap(options) {
-  // seu código aqui
+  //Código do Plantão do Oliva ->
+function retrieveAnimalsPerLocation(locations) {
+  const animalsPerLocation = {};
+
+  locations.forEach((location) => {
+    const animals = data.animals
+      .filter(animal => animal.location === location)
+      .map(animal => animal.name);
+
+      if (animals.length !== 0) animalsPerLocation[location] = animals;
+  });
+
+  return animalsPerLocation;
 }
 
+function retrieveAnimals(locations, sorted, sex) {
+  const animalsPerLocationWithName = {};
+
+  locations.forEach((location) => {
+    const animals = data.animals
+      .filter(animal => animal.location === location)
+      .map(animal => {
+        const nameKey = animal.name;
+        const nameValues = animal.residents
+        .filter(resident => {
+          const isFilteringSex = sex !== undefined;
+          return isFilteringSex ? resident.sex === sex : true;
+        })
+        .map(resident => resident.name);
+
+        if(sorted) nameValues.sort();
+
+        return { [nameKey]: nameValues };
+      });
+
+      animalsPerLocationWithName[location] = animals;
+  });
+
+  return animalsPerLocationWithName;
+}
+
+function animalMap(options) {
+  const locations = ['NE', 'NW', 'SE', 'SW'];
+  if (!options) return retrieveAnimalsPerLocation(locations);
+
+  const { includeNames, sorted, sex } = options;
+
+  if (!includeNames) return retrieveAnimalsPerLocation(locations);
+
+  return retrieveAnimals(locations, sorted, sex);
+}
+// <- Código do Planto do Oliva
+
 function schedule(dayName) {
-  // seu código aqui
+  const allDays = Object.keys(data.hours);
+  const schedule = {};
+
+  allDays.forEach((day) => {
+    if (day === 'Monday') {
+      schedule[day] = 'CLOSED';
+    } else {
+      const openHours = data.hours[day].open;
+      const closeHours = data.hours[day].close - 12;
+      schedule[day] = `Open from ${openHours}am until ${closeHours}pm`;
+    }
+  });
+
+  if (dayName === undefined) return schedule;
+  return { [dayName]: schedule[dayName] };
 }
 
 function oldestFromFirstSpecies(id) {
