@@ -127,9 +127,37 @@ function animalMap(options) {
   }
   return obj;
 }
-console.log(animalMap({ includeNames: true }));
+
+const convert = (time) => {
+  const amOrPm = (time < 12) ? 'am' : 'pm';
+  const hour = time % 12 || 12;
+  return `${hour}${amOrPm}`;
+};// Baseado em : https://stackoverflow.com/questions/13898423/javascript-convert-24-hour-time-of-day-string-to-12-hour-time-with-am-pm-and-no
+
 function schedule(dayName) {
-  // seu código aqui
+  const obj = {};
+  if (!dayName) {
+    Object.keys(data.hours).forEach((days, i) => {
+      const { open, close } = Object.values(data.hours)[i];
+      if (days === 'Monday') {
+        obj[days] = 'CLOSED';
+        return obj;
+      }
+      obj[days] = `Open from ${convert(open)} until ${convert(close)}`;
+      return obj;
+    });
+  }
+  if (Object.keys(data.hours).includes(dayName)) {
+    const day = Object.entries(data.hours).filter(elem => elem[0] === dayName);
+    const { open, close } = day[0][1];
+    const name = day[0][0];
+    if (dayName === 'Monday') {
+      obj[name] = 'CLOSED';
+      return obj;
+    }
+    obj[name] = `Open from ${convert(open)} until ${convert(close)}`;
+  }
+  return obj;
 }
 
 function oldestFromFirstSpecies(id) {
