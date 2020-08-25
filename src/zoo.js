@@ -90,10 +90,8 @@ function increasePrices(percentage) {
     newPrices[price] = Math.round((data.prices[price] + data.prices[price] * (percentage / 100)) * 100) / 100;
     return newPrices;
   }, {});
-  
-  Object.assign(data.prices, result);
+  return Object.assign(data.prices, result);
 }
-console.log(increasePrices(30));
 
 function employeeCoverage(idOrName) {
   // seu código aqui
