@@ -68,7 +68,17 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  const allSchedule = {
+    Tuesday: `Open at ${hours.Tuesday.open}am until ${hours.Tuesday.close - 12}pm`,
+    Wednesday: `Open at ${hours.Wednesday.open}am until ${hours.Wednesday.close - 12}pm`,
+    Thursday: `Open at ${hours.Thursday.open}am until ${hours.Thursday.close - 12}pm`,
+    Friday: `Open at ${hours.Friday.open}am until ${hours.Friday.close - 12}pm`,
+    Saturday: `Open at ${hours.Saturday.open}am until ${hours.Saturday.close - 12}pm`,
+    Sunday: `Open at ${hours.Sunday.open}am until ${hours.Sunday.close - 12}pm`,
+    Monday: 'Closed today',
+  };
+  if (!dayName) return allSchedule;
+  return {[dayName]: `${allSchedule[dayName]}`,};
 }
 
 function oldestFromFirstSpecies(id) {
