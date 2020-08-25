@@ -116,17 +116,17 @@ function animalMap(options) {
 // Resolução retirada do fechamento do dia 25/08, feita pelo especialista Oliva
 function schedule(dayName) {
   const allDays = Object.keys(data.hours);
-  const schedule = {};
+  const schedulee = {};
   allDays.forEach((day) => {
-  if (day === 'Monday') {
-    schedule[day] = 'CLOSED';
-  } else {
-    const hours = data.hours[day];
-    schedule[day] = `Open from ${hours.open}am until ${hours.close -12}pm`;
-  }
-});
-if (!dayName) return schedule;
-return { [dayName]: schedule[dayName]};
+    if (day === 'Monday') {
+      schedulee[day] = 'CLOSED';
+    } else {
+      const hours = data.hours[day];
+      schedulee[day] = `Open from ${hours.open}am until ${hours.close - 12}pm`;
+    }
+  });
+  if (!dayName) return schedulee;
+  return { [dayName]: schedulee[dayName] };
 }
 
 function oldestFromFirstSpecies(id) {
