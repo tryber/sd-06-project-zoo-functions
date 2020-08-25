@@ -115,10 +115,16 @@ function schedule(dayName) {
   return { [dayName]: timetable[dayName] };
 }
 
-console.log(schedule('Tuesday'));
-
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const specieID = employees.find(employee => employee.id === id).responsibleFor[0];
+  const specieResidents = animals.find(animal => animal.id === specieID).residents;
+  const getOldest = (acc, resident) => {
+    if (resident.age > acc.age) return resident;
+    return acc;
+  };
+  const oldestAnimal = specieResidents.reduce(getOldest);
+
+  return Object.values(oldestAnimal);
 }
 
 function increasePrices(percentage) {
