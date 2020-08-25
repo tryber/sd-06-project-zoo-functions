@@ -101,8 +101,46 @@ function entryCalculator(entrants) {
   return totalPrice;
 }
 
+function noParamsAnimalMap() {
+  const arrayLocation = ['NE', 'NW', 'SE', 'SW'];
+  const animalPerLocation = {};
+  arrayLocation.forEach((region) => {
+    animalPerLocation[region] = data.animals
+      .filter(animal => animal.location === region).map(obj => obj.name);
+  });
+  return animalPerLocation;
+}
+function paramsAnimalMap(obj, options) {
+  const arrayLocation = Object.keys(obj);
+  arrayLocation.forEach((region) => {
+    obj[region].forEach((name, index) => {
+      let arrayAux = [];
+      if (options.sex) {
+        arrayAux = data.animals.find(animal => animal.name === name)
+          .residents.filter(item => item.sex === options.sex).map(item => item.name);
+      } else {
+        arrayAux = data.animals.find(animal => animal.name === name)
+          .residents.map(item => item.name);
+      }
+      if (options.sorted) {
+        arrayAux.sort();
+      }
+      const objNames = {
+        [name]: arrayAux,
+      };
+      obj[region][index] = objNames;
+    });
+  });
+  return obj;
+}
+
 function animalMap(options) {
   // seu código aqui
+  const objReturn = noParamsAnimalMap();
+  if (options && options.includeNames) {
+    return paramsAnimalMap(objReturn, options);
+  }
+  return objReturn;
 }
 
 function schedule(dayName) {
@@ -143,8 +181,39 @@ function increasePrices(percentage) {
   });
 }
 
+function employeeCoverageNoParams() {
+  const objReturn = {};
+  const arrayNames = data.employees.map(employee => `${employee.firstName} ${employee.lastName}`);
+  arrayNames.forEach((name, index) => {
+    const arrayAnimals = [];
+    data.employees[index].responsibleFor
+      .forEach(idAnimal => arrayAnimals.push(data.animals.find(item => item.id === idAnimal).name));
+    objReturn[name] = arrayAnimals;
+  });
+  return objReturn;
+}
+
 function employeeCoverage(idOrName) {
   // seu código aqui
+  const objReturn = employeeCoverageNoParams();
+  if (!idOrName) {
+    return objReturn;
+  }
+  const objEmployee = data.employees
+    .find(item => (item.firstName === idOrName || item.lastName === idOrName ||
+      item.id === idOrName));
+  const fullName = `${objEmployee.firstName} ${objEmployee.lastName}`;
+  const fullListKeys = Object.keys(objReturn);
+  const fullListValues = Object.values(objReturn);
+  let employeeAnimals = [];
+  fullListKeys.forEach((name, index) => {
+    if (name === fullName) {
+      employeeAnimals = fullListValues[index];
+    }
+  });
+  const objWithIdOrName = {};
+  objWithIdOrName[fullName] = employeeAnimals;
+  return objWithIdOrName;
 }
 
 module.exports = {
