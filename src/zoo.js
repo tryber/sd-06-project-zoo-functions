@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 // const assert = require('assert');
 const data = require('./data');
 const { animals } = require('./data');
-const { hours } = require('./data')
+const { hours } = require('./data');
 const { employees } = require('./data');
 const { prices } = require('./data');
 
@@ -94,7 +94,7 @@ function entryCalculator(entrants) {
   const entrancePrice = ticket
   .reduce((totalPriceTicket, key) => totalPriceTicket + (prices[key] * entrants[key]), 0);
 //  somar o valor total dos tickets atribuindo totalPriceTicket ao somatorio e as chaves
-// do prices e das entradas inicias. 
+// do prices e das entradas inicias.
   return entrancePrice;
 }
 
@@ -103,12 +103,12 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  const daysOfTheWeek =Object.keys(hours);
-  const readebleDate = {}
+  const daysOfTheWeek = Object.keys(hours);
+  const readebleDate = {};
   // inicializando duas constantes para utilização no forEach
   daysOfTheWeek.forEach((specifiedDay) => {
     // forEach vai iterar em cada elemento para aplicar a função para melhor leitura
-    if(specifiedDay === 'Monday') {
+    if (specifiedDay === 'Monday') {
       // Se monday a função retorna closed como valor
       readebleDate[specifiedDay] = 'CLOSED';
     } else {
@@ -117,11 +117,11 @@ function schedule(dayName) {
       // utilizando template literals para concatenar as variaveis na frase
     }
   });
-  if(dayName === undefined) {
+  if (dayName === undefined) {
     return readebleDate;
   }
   return {
-    [dayName]:readebleDate[dayName]
+    [dayName]: readebleDate[dayName],
   };
   // codigo baseado na resolução do fechamento
 }
