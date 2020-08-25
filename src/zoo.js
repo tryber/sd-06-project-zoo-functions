@@ -71,16 +71,16 @@ function entryCalculator(entrants) {
   return sum;
 }
 
-  //Código do Plantão do Oliva ->
+// Código do Plantão do Oliva ->
 function retrieveAnimalsPerLocation(locations) {
   const animalsPerLocation = {};
 
   locations.forEach((location) => {
-    const animals = data.animals
+    const animalss = data.animals
       .filter(animal => animal.location === location)
       .map(animal => animal.name);
 
-      if (animals.length !== 0) animalsPerLocation[location] = animals;
+    if (animalss.length !== 0) animalsPerLocation[location] = animalss;
   });
 
   return animalsPerLocation;
@@ -90,23 +90,23 @@ function retrieveAnimals(locations, sorted, sex) {
   const animalsPerLocationWithName = {};
 
   locations.forEach((location) => {
-    const animals = data.animals
+    const animalss = data.animals
       .filter(animal => animal.location === location)
-      .map(animal => {
+      .map((animal) => {
         const nameKey = animal.name;
         const nameValues = animal.residents
-        .filter(resident => {
+        .filter((resident) => {
           const isFilteringSex = sex !== undefined;
           return isFilteringSex ? resident.sex === sex : true;
         })
         .map(resident => resident.name);
 
-        if(sorted) nameValues.sort();
+        if (sorted) nameValues.sort();
 
         return { [nameKey]: nameValues };
       });
 
-      animalsPerLocationWithName[location] = animals;
+    animalsPerLocationWithName[location] = animalss;
   });
 
   return animalsPerLocationWithName;
@@ -126,15 +126,15 @@ function animalMap(options) {
 
 function schedule(dayName) {
   const allDays = Object.keys(data.hours);
-  const schedule = {};
+  const schedulee = {};
 
   allDays.forEach((day) => {
     if (day === 'Monday') {
-      schedule[day] = 'CLOSED';
+      schedulee[day] = 'CLOSED';
     } else {
       const openHours = data.hours[day].open;
       const closeHours = data.hours[day].close - 12;
-      schedule[day] = `Open from ${openHours}am until ${closeHours}pm`;
+      schedulee[day] = `Open from ${openHours}am until ${closeHours}pm`;
     }
   });
 
