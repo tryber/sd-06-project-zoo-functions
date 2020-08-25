@@ -50,7 +50,7 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   if (!entrants || entrants === {}) {
-     return 0;
+    return 0;
   }
   let totalPrice = 0;
   if (entrants.Adult) {
