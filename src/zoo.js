@@ -143,7 +143,7 @@ function increasePrices(percentage) {
   // seu código aqui
   const arrayAgeRange = ['Adult', 'Senior', 'Child'];
   arrayAgeRange.forEach((ageRange) => {
-    data.prices[ageRange] = Math.round((data.prices[ageRange] * 
+    data.prices[ageRange] = Math.round((data.prices[ageRange] *
     ((percentage / 100) + 1)) * 100) / 100;
   });
 }
