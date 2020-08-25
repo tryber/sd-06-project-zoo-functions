@@ -96,9 +96,9 @@ const animalsSeparatedByZones = (zones) => {
 const filterResidentsNames = (residents, sex, sorted) => {
   let residentsfilteredSorted = residents.map(({ name }) => name);
   residentsfilteredSorted = sex === 'male' ? residents.filter(({ sex }) => sex === 'male').
-  map(({ name }) => name) : residentsfilteredSorted;
+    map(({ name }) => name) : residentsfilteredSorted;
   residentsfilteredSorted = sex === 'female' ? residents.filter(({ sex }) => sex === 'female').
-  map(({ name }) => name) : residentsfilteredSorted;
+    map(({ name }) => name) : residentsfilteredSorted;
   if (sorted) {
     residentsfilteredSorted.sort();
   }
@@ -136,8 +136,8 @@ const schedule = (day) => {
     if (timeArray[0] === 'Monday') {
       timeAvailableObj[timeArray[0]] = 'CLOSED';
     } else {
-      timeAvailableObj[timeArray[0]] = 
-      `Open from ${timeArray[1].open}am until ${timeArray[1].close - 12}pm`;
+      timeAvailableObj[timeArray[0]] =
+        `Open from ${timeArray[1].open}am until ${timeArray[1].close - 12}pm`;
     }
   } else {
     Object.entries(hours).forEach((e) => {
@@ -153,16 +153,14 @@ const schedule = (day) => {
 };
 
 const oldestFromFirstSpecies = (employeeId) => {
-  const animalId = employees.find(({ id }) => id === employeeId).responsibleFor[0];  
+  const animalId = employees.find(({ id }) => id === employeeId).responsibleFor[0];
   const residentsArray = animals.find(({ id }) => animalId === id).residents;
-  const oldest = residentsArray.sort((a, b) => {
-    return b.age - a.age;
-  })[0];
+  const oldest = residentsArray.sort((a, b) => b.age - a.age)[0];
   const { name, sex, age } = oldest;
   return [name, sex, age];
 };
 
-const increasePrices = (percentage) => { 
+const increasePrices = (percentage) => {
   Object.entries(prices).forEach((e) => {
     prices[e[0]] = Math.round((e[1] * (1 + (percentage / 100)) * 100)) / 100;
     return 0;
@@ -170,9 +168,73 @@ const increasePrices = (percentage) => {
   return prices;
 };
 
-function employeeCoverage(idOrName) {
-  // seu código aqui
+const isIdOrName = (checkIdOrName) => /.*\d.*/.test(checkIdOrName) ? 'id' : 'name';
+
+const createEmployeeNameAnimalIdArray = (stringIdOrName) => {
+  if (!stringIdOrName) {
+    const employeeAnimaIdlArray = employees.map(({ firstName, lastName, responsibleFor }) => {
+      const employeeAnimals = {};
+      employeeAnimals['fullName'] = `${firstName} ${lastName}`;
+      employeeAnimals['responsibleFor'] = responsibleFor;
+      return employeeAnimals;
+    });
+    return employeeAnimaIdlArray;
+  } else {
+    const idName = isIdOrName(stringIdOrName);
+    const employeeAnimals = {};
+    const employeeAnimaIdlArray = [];
+    if (idName === 'id') {
+      const { firstName, lastName, responsibleFor } = employees.find(({ id }) => id === stringIdOrName);
+      employeeAnimals['fullName'] = `${firstName} ${lastName}`;
+      employeeAnimals['responsibleFor'] = responsibleFor;
+      employeeAnimaIdlArray.push(employeeAnimals);
+    } else {
+      const { firstName, lastName, responsibleFor } = employees.find(({ firstName, lastName }) => {
+        return firstName === stringIdOrName || lastName === stringIdOrName;
+      });
+      employeeAnimals['fullName'] = `${firstName} ${lastName}`;
+      employeeAnimals['responsibleFor'] = responsibleFor;
+      employeeAnimaIdlArray.push(employeeAnimals);
+    }
+    return employeeAnimaIdlArray;
+  }
+};
+
+
+const createEmployeeAnimalsArray = (array) => {
+  array.forEach(({ responsibleFor }) => {
+    responsibleFor.forEach((e, index) => {
+      animals.forEach(({ id, name }) => {
+        if (id === e) {
+          responsibleFor[index] = name;
+        }
+      });
+    });
+  });
+  return array;
 }
+
+function employeeCoverage(idOrName) {
+  if (!idOrName) {
+    const obj = {};
+    const employeeNameAnimalIdArray = createEmployeeNameAnimalIdArray();
+    const employeeAnimalsArray = createEmployeeAnimalsArray(employeeNameAnimalIdArray);
+    employeeAnimalsArray.forEach(({ fullName, responsibleFor }) => {
+      obj[fullName] = responsibleFor;
+    });
+    return obj;
+  } else {
+    const obj = {};
+    const employeeNameAnimalIdArray = createEmployeeNameAnimalIdArray(idOrName);
+    const employeeAnimalsArray = createEmployeeAnimalsArray(employeeNameAnimalIdArray);
+    employeeAnimalsArray.forEach(({ fullName, responsibleFor }) => {
+      obj[fullName] = responsibleFor;
+    });
+    return obj;
+  }
+}
+
+console.log(employeeCoverage('Elser'))
 
 module.exports = {
   entryCalculator,
