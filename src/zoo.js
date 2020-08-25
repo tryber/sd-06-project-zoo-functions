@@ -149,7 +149,7 @@ const isMonday = (array) => {
   timeAvailableObj[array[0]] = array[0] === 'Monday' ?
   'CLOSED' : `Open from ${array[1].open}am until ${array[1].close - 12}pm`;
   return timeAvailableObj;
-}
+};
 
 const schedule = (day) => {
   const timeAvailableObjAll = {};
