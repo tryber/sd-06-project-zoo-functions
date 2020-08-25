@@ -69,6 +69,7 @@ const entryCalculator = (entrants) => {
 };
 
 const animalMap = (options) => {
+
 };
 
 const schedule = (dayName) => {
@@ -90,7 +91,7 @@ const schedule = (dayName) => {
 
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+
 }
 
 const increasePrices = (percentage) => {
@@ -100,10 +101,27 @@ const increasePrices = (percentage) => {
   prices.Child = percent(prices.Child);
 };
 
+const employeeCoverage = (idOrName) => {
+  const result = {};
 
-function employeeCoverage(idOrName) {
-  // seu código aqui
-}
+  let filteredEmployes;
+  if (!idOrName) {
+    filteredEmployes = employees;
+  } else {
+    filteredEmployes = employees
+      .filter(employe => employe.id === idOrName ||
+        employe.firstName === idOrName || employe.lastName === idOrName);
+  }
+  filteredEmployes.forEach((employe) => {
+    const mappedAnimal = employe.responsibleFor.map((idAnimal) => {
+      const foundNameAninamal = animals.find(element => element.id === idAnimal).name;
+
+      return foundNameAninamal;
+    });
+    result[`${employe.firstName} ${employe.lastName}`] = mappedAnimal;
+  });
+  return result;
+};
 
 module.exports = {
   entryCalculator,
