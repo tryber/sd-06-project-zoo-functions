@@ -49,7 +49,9 @@ function animalCount(species) {
   // seu código aqui
   if (species == null) {
     const animais = {};
-    animals.forEach(element => animais[element.name] = element.residents.length);
+    animals.forEach(function(element) {
+      animais[element.name] = element.residents.length;
+  });  
     return animais;
   }
   const animalsTotal = animals.filter(element => element.name === species)
