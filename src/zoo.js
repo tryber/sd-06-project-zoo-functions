@@ -114,7 +114,7 @@ function entryCalculator(entrants) {
 // retorna somente nomes de animais macho/fêmea com os nomes dos animais ordenados
 // Só retorna informações ordenadas e com sexo se a opção includeNames: true for especificada
 
-const animalLocation = location => animals
+const getAnimalLocation = location => animals
     .filter(element => element.location === location)
     .map(animal => animal.name);
 
@@ -129,7 +129,7 @@ function animalMap(options) {
   const locations = ['NE', 'NW', 'SE', 'SW'];
   locations.forEach((location) => {
     result[location] = [];
-    animalLocation(location).forEach((animal) => {
+    getAnimalLocation(location).forEach((animal) => {
       if (!options) {
         result[location].push(animal);
       } else if (includeNames === true && (sex === 'female' || sex === 'male') && sorted === true) {
