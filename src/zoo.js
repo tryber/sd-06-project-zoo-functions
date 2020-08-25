@@ -51,7 +51,7 @@ function animalCount(species) {
 
 function entryCalculator(entrants = 0) {
   const { Adult = 0, Child = 0, Senior = 0 } = entrants;
-  const [ adultPrice, seniorPrice, childPrice ] = Object.values(prices)
+  const [adultPrice, seniorPrice, childPrice] = Object.values(prices);
   const sumOfPrices = (Adult * adultPrice) + (Senior * seniorPrice) + (Child * childPrice);
   return sumOfPrices;
 }
@@ -66,8 +66,11 @@ function schedule(dayName) {
     return scheduleDays
       .reduce((accDay, [day, { open, close }]) => ({ ...accDay, [day]: (day === 'Monday') ? 'CLOSED' : `Open from ${open}am until ${close - 12}pm` }), {});
   }
+  return {
+    [dayName]: (dayName === 'Monday') ? 'CLOSED' : `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm`,
+  };
 }
-console.log(schedule());
+
 function oldestFromFirstSpecies(id) {
   // seu código aqui
 }
