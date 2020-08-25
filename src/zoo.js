@@ -153,11 +153,10 @@ function employeeCoverage(idOrName) {
     });
     return employeeAnimals;
   }
-  const employee = employees.find((individual) => {
-    return (individual.firstName === idOrName
-      || individual.lastName === idOrName
-      || individual.id === idOrName);
-  });
+  const employee = employees.find((individual) => (individual.firstName === idOrName
+    || individual.lastName === idOrName
+    || individual.id === idOrName)
+  );
 
   const coveredAnimals = [];
   for (let i = 0; i < employee.responsibleFor.length; i += 1) {
