@@ -10,7 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { animals, employees, prices, hours } = require('./data');
+const { animals, employees, prices } = require('./data');
 
 /* 1- Implemente a função animalsByIds: Caso receba nenhum parâmetro, necessário retornar
 um array vazio. Ao receber como parâmetro um único id, retorna os animais com este id.
@@ -100,7 +100,7 @@ function animalCount(species) {
   return specieAndNumbers;
 }
 
-/*8- Implemente a função entryCalculator:
+/* 8- Implemente a função entryCalculator:
 Retorna 0 se nenhum argumento for passado. Retorna 0 se um objeto vazio for passado.
 Retorna o preço total a ser cobrado dado o número de adultos, crianças e idosos */
 function entryCalculator(entrants) {
