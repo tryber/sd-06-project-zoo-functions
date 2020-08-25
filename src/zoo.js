@@ -43,7 +43,8 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  // seu código aqui
+  return animals
+    .reduce((acc, current) => ({ ...acc, [current.name]: current.residents.length}), {})
 }
 
 function entryCalculator(entrants) {
