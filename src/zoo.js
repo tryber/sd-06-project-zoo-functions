@@ -10,7 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require("./data");
-const { animals, employees, prices } = require("./data");
+const { animals, employees, prices, hours } = require("./data");
 
 function animalsByIds(...ids) {
   const animalsGroup = [];
@@ -80,7 +80,10 @@ function entryCalculator(entrants = 0) {
   if (Object.keys(entrants).length === 0) {
     return 0;
   }
-  return Object.keys(entrants).reduce((acc, cur) => acc + (entrants[cur] * prices[cur]), 0)
+  return Object.keys(entrants).reduce(
+    (acc, cur) => acc + entrants[cur] * prices[cur],
+    0
+  );
 }
 
 function animalMap(options) {
@@ -88,7 +91,24 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  
+  if (!dayName) {
+    return Object.values(hours).reduce((acc, { open, close }, key) => {
+      if (Object.keys(hours)[key] !== "Monday") {
+        return Object.assign(acc, {
+          [Object.keys(hours)[key]]: `Open from ${[open]}am until ${
+            [close] - 12
+          }pm`,
+        });
+      }
+      return Object.assign(acc, {
+        [Object.keys(hours)[key]]: "CLOSED",
+      });
+    }, {});
+  }
+  return Object.keys(hours).reduce((_,cur) => dayName === 'Monday' ?
+    { [cur]: 'CLOSED' } :
+    { [dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm`
+    });
 }
 
 function oldestFromFirstSpecies(id) {
