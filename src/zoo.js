@@ -99,7 +99,6 @@ function animalMap(...options) {
 
 function schedule(dayName) {
   // seu código aqui
-  
   const calendar = {
     Tuesday: 'Open from 8am until 6pm',
     Wednesday: 'Open from 8am until 6pm',
@@ -118,7 +117,6 @@ function schedule(dayName) {
   
   return isOpen;
 }
-console.log(schedule())
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
