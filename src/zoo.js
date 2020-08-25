@@ -10,6 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
+const { prices } = require('./data');
 
 function animalsByIds(...ids) {
   if (ids === undefined) {
@@ -19,7 +20,7 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  return data.animals.find (olderAnimal => olderAnimal.name === animal)
+  return data.animals.find(olderAnimal => olderAnimal.name === animal)
   .residents.every(animalAge => animalAge.age > age);
 }
 
@@ -27,7 +28,8 @@ function employeeByName(employeeName) {
   if (!employeeName) {
     return {};
   }
-  return data.employees.find(name => name.firstName === employeeName || name.lastName === employeeName);
+  return data.employees.find(name => name.firstName === employeeName ||
+    name.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -35,7 +37,7 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-
+return data.employees.some(manager => manager.managers.includes(id))
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
@@ -56,11 +58,10 @@ function retrieveAnimalsPerLocation(locations) {
 
   locations.forEach((location) => {
     const animals = data.animals
-      .filter(animal => animal.location === location) // quais animais tem a determinada loc
-      .map(animal => animal.name);// retorna apena o nome dos animais
-
-      if (animals.length !== 0) animalsPerLocation[location] = animals; // se o tamnho do array for diferente do 0 adiciona a localizacao de acordo com os animais em cada uma delas 
-  });
+    .filter(animal => animal.location === location)// quais animais tem a determinada loc
+    .map(animal => animal.name);// retorna apena o nome dos animais
+    if(animals.length !== 0) animalsPerLocation[location] = animals; 
+  });// se o tamnho do array for diferente do 0 adiciona a localizacao de acordo com os animais em cada uma delas
 
   return animalsPerLocation;
 }
@@ -76,18 +77,14 @@ function retrieveAnimals(locations, sorted, sex) {
         const nameValues = animal.residents
         .filter(resident => {
           const isFilteringSex = sex !== undefined;
-          return isFilteringSex ? resident.sex === sex : true; // se o parametro existir vai filtrar, caso nao exista vai retornar tudo
+          return isFilteringSex ? resident.sex === sex : true; // se o parametro existir vai filtrar
         })
         .map(resident => resident.name); // acessa dentro do objeto o nome do residente
-
-        if(sorted) nameValues.sort();
-
+        if (sorted) nameValues.sort();
         return { [nameKey]: nameValues }; // a chave serve para identificar qual chave seria, [lion: valores]
       });
-
       animalsPerLocationWithName[location] = animals;
   });
-
   return animalsPerLocationWithName;
 }
 
@@ -112,9 +109,9 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   const addDecimals = percentage / 100;
-  data.prices.Adult = Math.round((data.prices.Adult + (data.prices.Adult * addDecimals))*100) /100;
-  data.prices.Senior = Math.round((data.prices.Senior + (data.prices.Senior * addDecimals))*100) /100;
-  data.prices.Child = Math.round((data.prices.Child + (data.prices.Child * addDecimals))*100) /100;
+  prices.Adult = Math.round((prices.Adult + (prices.Adult * addDecimals))*100) /100;
+  prices.Senior = Math.round((prices.Senior + (prices.Senior * addDecimals))*100) /100;
+  prices.Child = Math.round((prices.Child + (prices.Child * addDecimals))*100) /100; //code Climate nao deixou colocar data.prices, entao tive que declarar no inicio do codigo
 }
 
 function employeeCoverage(idOrName) {
