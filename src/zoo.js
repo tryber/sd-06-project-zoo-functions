@@ -10,7 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { employees } = require('./data');
+const { employees, animals } = require('./data');
 
 // função animalsByIds implementada com a ajuda do Ícaro no plantão
 function animalsByIds(...ids) {
@@ -34,36 +34,10 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  return data.employees.map((employee) => {
-    return {
-      id: personalInfo.id,
-      firstName: personalInfo.firstName,
-      lastName: personalInfo.lastName,
-      managers: [associatedWith.managers],
-      responsibleFor: [associatedWith.responsibleFor],
-    };
-  });
+  return {...personalInfo, ...associatedWith};
 }
 
-/* console.log(createEmployee({
-  id: '7ed1c9bb-8570-44f6-b718-0666b869573a',
-  firstName: 'John',
-  lastName: 'Doe',
-}, {
-  managers: [
-    'c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1',
-    '9e7d4524-363c-416a-8759-8aa7e50c0992',
-  ],
-  responsibleFor: [
-    '0938aa23-f153-4937-9f88-4858b24d6bce',
-    '89be95b3-47e4-4c5b-b687-1fabf2afa274',
-    'bb2a76d8-5fe3-4d03-84b7-dba9cfc048b5',
-  ],
-})); */
-
 function isManager(idNumber) {
-  // SEMPRE RETORNA TRUE COM SOME, COM EVERY ATÉ RETORNA FALSE MAS NÃO PASSA
-  // já tentei employee.id, .managers, .responsableFor
   return data
     .employees.some((employee, index) =>
       employee.managers[index] === idNumber);
@@ -74,8 +48,14 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 }
 
 function animalCount(species) {
-  // seu código aqui
+  if (species === undefined)
+    return data.animals.map(animal =>
+      `${animal.name}: ${animal.residents.length},`);
+      // RETORNA UM ARRAY E NÃO UM OBJETO
+  return data.animals.filter(animal => animal.residents.length);
 }
+
+// console.log(animalCount('lions'));
 
 function entryCalculator(entrants) {
   // seu código aqui
