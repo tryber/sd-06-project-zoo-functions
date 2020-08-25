@@ -154,19 +154,40 @@ function animalMapWithIncludeNames(options) {
 function animalMap(options) {
   // seu código aqui
   if (!options) return animalMapWithNoParams();
-
   if (options.includeNames) return animalMapWithIncludeNames(options);
 
   return animalMapWithNoParams();
 }
 
 
-console.log(animalMap({ includeNames: true, sex: 'female', sorted: true }));
-// { includeNames: true, sex: 'female', sorted: true }
+// console.log(animalMap({ includeNames: true, sex: 'female', sorted: true }));
 
 function schedule(dayName) {
   // seu código aqui
+  const result = {};
+  const daysOfTheWeek = Object.keys(data.hours);
+
+  if (dayName) {
+    if (dayName === 'Monday') {
+      result[dayName] = 'CLOSED'
+      return result;
+    }
+    const myDay = data.hours[dayName];
+    result[dayName] = `Open from ${myDay.open}am until ${myDay.close - 12}pm`
+    return result;
+  }
+
+  daysOfTheWeek.map((day) => {
+    if (day === 'Monday') return result[day] = 'CLOSED';
+
+    const open = data.hours[day].open;
+    const close = data.hours[day].close - 12;
+    return result[day] = `Open from ${open}am until ${close}pm`
+  })
+  return result;
 }
+
+schedule('Tuesday');
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
