@@ -172,8 +172,9 @@ const mountObj = (nameOne, nameTwo, array) => {
 
 const createEmployeeNameAnimalIdArray = (stringIdOrName) => {
   if (!stringIdOrName) {
-    let employeeAnimaIdlArray = []; 
-    employeeAnimaIdlArray = employees.map((e) => mountObj(e.firstName, e.lastName, e.responsibleFor));
+    let employeeAnimaIdlArray = [];
+    employeeAnimaIdlArray = employees
+    .map(e => mountObj(e.firstName, e.lastName, e.responsibleFor));
     return employeeAnimaIdlArray;
   }
   const idName = isIdOrName(stringIdOrName);
@@ -185,7 +186,7 @@ const createEmployeeNameAnimalIdArray = (stringIdOrName) => {
     employeeAnimaIdlArray.push(employeeAnimals);
   } else {
     const { firstName, lastName, responsibleFor } = employees
-    .find((e) => e.firstName === stringIdOrName || e.lastName === stringIdOrName);
+    .find(e => e.firstName === stringIdOrName || e.lastName === stringIdOrName);
     const employeeAnimals = mountObj(firstName, lastName, responsibleFor);
     employeeAnimaIdlArray.push(employeeAnimals);
   }
