@@ -182,7 +182,25 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  const coverageList = {};
+  let employeeList = [];
+  let animalList = [];
+
+  (idOrName === '' || idOrName === undefined) ?
+    employeeList = data.employees :
+    employeeList = data.employees
+      .filter(employee => employee.id === idOrName ||
+         employee.firstName === idOrName || employee.lastName === idOrName)
+  
+  employeeList.forEach(employee => {
+    animalList = [];
+    employee.responsibleFor.forEach(id => {
+      animalList.push(`${data.animals.filter(animal => animal.id === id).map(pet => pet.name)}`);
+    });
+    coverageList[`${employee.firstName} ${employee.lastName}`] = animalList;
+  });
+
+  return coverageList;
 }
 
 module.exports = {
