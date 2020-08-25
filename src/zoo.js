@@ -132,14 +132,10 @@ function animalMap(options) {
     animalLocation(location).forEach((animal) => {
       if (!options || includeNames !== true) {
         result[location].push(animal);
-      } else if ((sex === 'female' || sex === 'male') && sorted === true) {
-        result[location].push({ [animal]: getResidents(animal, sex).sort() });
       } else if (sorted === true) {
-        result[location].push({ [animal]: getResidents(animal).sort() });
-      } else if (sex === 'female' || sex === 'male') {
-        result[location].push({ [animal]: getResidents(animal, sex) });
+        result[location].push({ [animal]: getResidents(animal, sex).sort() });
       } else {
-        result[location].push({ [animal]: getResidents(animal) });
+        result[location].push({ [animal]: getResidents(animal, sex) });
       }
     });
   });
