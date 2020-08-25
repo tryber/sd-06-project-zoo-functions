@@ -57,13 +57,19 @@ function addEmployee(...value) {
   return data.employees.push(objeto);
 }
 
+const namesOfAnimals = data.animals.map(animal => animal.name);
+const population = data.animals.map(animal => animal.residents.length);
+
 function animalCount(species) {
-  if(species){
+  const populationOfAnimals = {};
+  if (species) {
     return data.animals.find(animal => animal.name === species).popularity;
   }
+  namesOfAnimals.forEach((nameOfAnimal, index) => {
+    populationOfAnimals[nameOfAnimal] = population[index];
+  });
+  return populationOfAnimals;
 }
-
-console.log(animalCount('snakes'))
 
 function entryCalculator(entrants) {
   // seu código aqui
