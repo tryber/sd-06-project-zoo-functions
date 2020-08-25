@@ -113,7 +113,7 @@ function schedule(dayName) {
       readebleDate[specifiedDay] = 'CLOSED';
     } else {
       // os outros dias da semana retorna a frase legível
-      readebleDate[specifiedDay] = `Open from ${hours[specifiedDay].open}am until ${hours[specifiedDay].close - 12}pm`
+      readebleDate[specifiedDay] = `Open from ${hours[specifiedDay].open}am until ${hours[specifiedDay].close - 12}pm`;
       // utilizando template literals para concatenar as variaveis na frase
     }
   });
