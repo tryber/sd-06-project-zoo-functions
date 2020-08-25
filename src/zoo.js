@@ -118,7 +118,7 @@ function entryCalculator(entrants) {
     totalPrice += entrants.Senior * data.prices.Senior;
   }
   if (entrants.Child) {
-    totalPrice += entrants.Child * data.prices.Child;
+    totalPrice += entrants.Child * prices.Child;
   }
   console.log(totalPrice);
   return totalPrice;
