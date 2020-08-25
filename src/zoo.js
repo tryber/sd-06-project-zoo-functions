@@ -105,14 +105,15 @@ function oldestFromFirstSpecies(id) {
     .find(animal => animal.id === employeeId).residents
     .reduce((acumulator, animal) => {
       if (acumulator.age > animal.age) return acumulator;
-      return animalId;
+      return animal;
     }));
   return animalId;
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+
 }
+
 
 function employeeCoverage(idOrName) {
   // seu código aqui
