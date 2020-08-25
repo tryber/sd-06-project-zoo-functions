@@ -169,7 +169,7 @@ function employeeCoverage(idOrName) {
   const employeeResponsibilities = { [`${employee.firstName} ${employee.lastName}`]: coveredAnimals };
   return employeeResponsibilities;
 }
-console.log(employeeCoverage("Nigel"))
+
 module.exports = {
   entryCalculator,
   schedule,
