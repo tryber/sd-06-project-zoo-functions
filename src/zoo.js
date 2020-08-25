@@ -69,11 +69,32 @@ function isManager(id) {
   return managerCheck;
 }
 
-console.log(isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
-console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
+// console.log(isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
+// console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
 
+/*
+  Adiciona um funcionário no fim da lista
+*/
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+  if (!managers) {
+    managers = [];
+  }
+
+  if (!responsibleFor) {
+    responsibleFor = [];
+  }
+
+  const newEmployee = {
+    id: id,
+    firstName: firstName,
+    lastName: lastName,
+    managers: managers,
+    responsibleFor: responsibleFor
+  };
+
+  data.employees.push(newEmployee);
+
+  return data.employees;
 }
 
 function animalCount(species) {
