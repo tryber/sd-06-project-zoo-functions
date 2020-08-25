@@ -14,6 +14,7 @@ const {
   animals,
   employees,
 } = require('./data');
+const data = require('./data');
 // const { TestScheduler } = require('jest');
 
 function animalsByIds(...ids) {
@@ -47,19 +48,38 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 
 function animalCount(species) {
   // seu código aqui
-  if (species === undefined) {
-    return animals.map(animal => animal.name)
-    return animals.map(animal => animal.residents)
+  // if (species === undefined) {
+  //   console.log (animals.flatMap(animal => ({[animal.name]: animal.residents.length})))
+  // } console.log(animals.map(animal => animal.residents.length))
+  let animais = [];
+  animals.forEach(element => {
+    animais.push({[element.name]: element.residents.length})
+  }); console.log(animais.reduce())
   }
-}
 
+  console.log(animalCount())
+ 
 function entryCalculator(entrants) {
   // seu código aqui
 }
 
 function animalMap(options) {
-  // seu código aqui
+//   // seu código aqui
+//   const locations = ['NE', 'NW', 'SE', 'SW'];
+//   if (!options) {
+//     const animalsPerLocation = {};
+
+//     locations.forEach((location) => {
+//       //filtrar por localização
+//   //     const animals = data.animals
+//   //     .filter((animal => animal.location === location)
+//   //     .map(animal => animal.name);
+//   //   })
+//   // } 
+
+
 }
+// console.log(animals.filter(animal => animal.location === 'NE').map(nome => nome.name))
 
 function schedule(dayName) {
   //   // seu código aqui
