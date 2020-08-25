@@ -10,7 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { animals, employees, prices } = require('./data');
+const { animals, employees, prices, hours } = require('./data');
 
 function animalsByIds(...ids) {
   // seu código aqui
@@ -88,10 +88,43 @@ function entryCalculator(entrants) {
 
 function animalMap(options) {
   // seu código aqui
+  // const region = ['NE','NW','SE','SW'];
+  // const animalNames = {};
+  // if( options === undefined ) {
+  //   region.forEach(local => animalNames[local] = (animals
+  //     .filter(index => index.location === local)
+  //     .map(nomes => nomes.name)));
+  //     return animalNames;
+  // };
+  //  let objIncludeNames = {movel1:'casa',movel2:'musa',movel3:'moleca'};
+  //  let objAnimalsNames = {};
+  //  let valorResindent = [];
+  //   region.filter(local => animals.filter(any => any.location === local;
+
+  // //  animals.filter((zone) => valorResindent.push(zone.residents.map(name => name.name)));
+  // return objAnimalsNames;
 }
 
 function schedule(dayName) {
   // seu código aqui
+  const chave = Object.keys(hours);
+  const newObj = {};
+  if (dayName === undefined) {
+    chave.forEach((value) => {
+      if (value === 'Monday') {
+        newObj[value] = 'CLOSED';
+      } else {
+        (newObj[value] = `Open from ${hours[value].open}am until ${(hours[value].close - 12)}pm`);
+      }
+    });
+    return newObj;
+  }
+  if (dayName === 'Monday') {
+    newObj[dayName] = 'CLOSED';
+    return newObj;
+  }
+  newObj[dayName] = `Open from ${hours[dayName].open}am until ${(hours[dayName].close - 12)}pm`;
+  return newObj;
 }
 
 function oldestFromFirstSpecies(id) {
