@@ -38,12 +38,12 @@ function createEmployee(personalInfo, associatedWith) {
   };
 }
 
-function isManager(id) {
-  // seu código aqui
-}
+const isManager = id =>
+  data.employees.find(employee => employee.id === id)
+  .managers[0] === '9e7d4524-363c-416a-8759-8aa7e50c0992';
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+
 }
 
 function animalCount(species) {
