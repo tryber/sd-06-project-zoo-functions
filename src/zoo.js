@@ -66,7 +66,7 @@ function entryCalculator(entrants = {}) {
 function retrieveAnimalsPerLocation(locations) {
   const animalsPerLocation = {};
   locations.forEach((location) =>{
-    const animals = data.animals
+    const animals = animals
     .filter(animal => animal.location === location)
     .map(animal => animal.name);
     if (animals.length !== 0) animalsPerLocation[location] = animals;
@@ -76,18 +76,18 @@ function retrieveAnimalsPerLocation(locations) {
 function retrieveAnimals(locations, sorted, sex) {
   const animalsPerLocationWithName = {};
   locations.forEach((location) => {
-    const animals = data.animals
+    const animals = animals
     .filter(animal => animal.location === location)
-    .map(animal => {
+    .map((animal) => {
       const nameKey = animal.name;
       const nameValues = animal.residents
-      .filter(resident => {
+      .filter((resident) => {
         const isFilteringSex = sex !== undefined;
         return isFilteringSex ? resident.sex === sex : true;
       })
       .map(resident => resident.name);
       if (sorted) nameValues.sort();
-      return { [nameKey]:nameValues};
+      return { [nameKey] : nameValues };
     });
     animalsPerLocationWithName[location] = animals;
   });
@@ -131,7 +131,7 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  Object.entries(prices).forEach(entrants => {
+  Object.entries(prices).forEach((entrants) => {
     data.prices[entrants[0]] = Math.ceil(entrants[1] * (1 + (percentage/100)) * 100) / 100;
   });
 }
