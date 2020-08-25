@@ -108,7 +108,7 @@ function schedule(dayName) {
   Object.keys(hours).reduce((_, cur) =>
     dayName === 'Monday' ?
     { [cur]: 'CLOSED' } :
-    { [dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm` }
+    { [dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm` },
   );
 }
 
