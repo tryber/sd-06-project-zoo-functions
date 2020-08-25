@@ -10,7 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { animals, employees } = require('./data');
+const { animals, employees, prices } = require('./data');
 
 // 1 - Implemente a função animalsByIds:
 // Caso receba nenhum parâmetro, necessário retornar um array vazio
@@ -101,8 +101,27 @@ function animalCount(species) {
 // console.log(retorno2);
 // if (!species) return (retorno2);
 
+// 8- Implemente a função entryCalculator:
+// Retorna 0 se nenhum argumento for passado
+// Retorna 0 se um objeto vazio for passado
+// Retorna o preço total a ser cobrado dado o número de adultos, crianças e idosos
 function entryCalculator(entrants) {
   // seu código aqui
+  if (!entrants) return 0;
+  if (Object.entries(entrants).length === 0) return 0;
+  // Object.entries(objeto) converte o objeto em um array 
+  let totalPrice = 0;
+  if (entrants.Adult) {
+    totalPrice += entrants.Adult * prices.Adult;
+  }
+  if (entrants.Senior) {
+    totalPrice += entrants.Senior * prices.Senior;
+  }
+  if (entrants.Child) {
+    totalPrice += entrants.Child * prices.Child;
+  }
+  console.log(totalPrice);
+  return totalPrice;
 }
 
 function animalMap(options) {
