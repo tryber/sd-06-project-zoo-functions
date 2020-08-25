@@ -186,11 +186,13 @@ function employeeCoverage(idOrName) {
   let employeeList = [];
   let animalList = [];
 
-  (idOrName === '' || idOrName === undefined) ?
-    employeeList = data.employees :
+  if (idOrName === '' || idOrName === undefined) {
+    employeeList = data.employees;
+  } else {
     employeeList = data.employees
       .filter(employee => employee.id === idOrName ||
         employee.firstName === idOrName || employee.lastName === idOrName);
+  }
 
   employeeList.forEach((employee) => {
     animalList = [];
