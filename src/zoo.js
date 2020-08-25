@@ -64,24 +64,25 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  if(species === undefined){
+  if ( species === undefined ) {
     const countingAnimals = {};
     // definir como objeto vazio
     animals.forEach((countedAnimals) => {
       // iterar sobre cada elemento do array animals
       countingAnimals[countedAnimals.name] = countedAnimals.residents.length;
-      // passar o valor dos residents para cada chave dos nomes dos animais (key value) dentro do objeto
+      // passar o valor dos residents para cada chave dos nomes dos animais 
+      // (key value) dentro do objeto
     })
     return countingAnimals;
   }
   const countingAnimals = animals
   .find(numericAnimals => numericAnimals.name === species)
 // encontrar os animais através do nome usando find
- .residents.length
-// imprimir o length dos residents
+  .residents.length;
+// imprimir o length dos residents de acordo com o nome da species
   return countingAnimals;
 }
-console.log(animalCount())
+
 
 function entryCalculator(entrants) {
   // seu código aqui
