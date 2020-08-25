@@ -77,7 +77,7 @@ function animalCount(species) {
     });
     return newObj;
   }
-  return animals.find((animal) => animal.name === species).residents.length;
+  return animals.find(animal => animal.name === species).residents.length;
 }
 
 // console.log(animalCount('lions'));
@@ -101,7 +101,7 @@ function entryCalculator(entrants = 0) {
         result += tot;
         break;
       default:
-        console.log('Sorry, not valid')
+        console.log('Sorry, not valid');
     }
   });
   return result;
@@ -118,25 +118,27 @@ function schedule(dayName) {
   const date = Object.entries(hours);
   if (!dayName) {
     date.map((element) => {
-      if (element.includes('Monday')){
-        return newObj.Monday = 'CLOSED'
+      if (element.includes('Monday')) {
+        newObj.Monday = 'CLOSED'
+        return newObj;
       }
       const day = element[0];
       const hour = element[1];
-      const {open, close} = hour;
-      return newObj[day] = `Open from ${ open }am until ${ close-12 }pm`
+      const { open, close } = hour;
+      return newObj[ day ] = `Open from ${open}am until ${close-12}pm`
     });
     return newObj;
-  } 
+  }
   date.map((item) => {
     if (dayName === 'Monday') {
-      return newObj.Monday = 'CLOSED'
+      newObj.Monday = 'CLOSED'
+      return newObj;
     }
     const day = item[0];
     const hour = item[1];
     const { open, close } = hour;
     if (day === dayName) {
-      return newObj[day] = `Open from ${ open }am until ${ close-12 }pm`;
+      return newObj[ day ] = `Open from ${open}am until ${close-12}pm`;
     }
   });
   return newObj;
