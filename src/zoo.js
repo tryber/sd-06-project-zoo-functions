@@ -74,9 +74,32 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   return employees.push(neyEmployee);
 }
 
+// 7- Implemente a função animalCount:
+// Sem parâmetros, retorna animais e suas quantidades
+// Com o nome de uma espécie de animal, retorna somente a quantidade
 function animalCount(species) {
   // seu código aqui
+  // **** com reduce ****
+  if (!species) {
+    return data.animals.reduce((accumulator, currentValue) =>
+      ({ ...accumulator, [currentValue.name]: currentValue.residents.length }), {});
+  }
+  return data.animals.find(specieName => specieName.name === species).residents.length;
 }
+// **** com for ****
+// const retorno1 = {};
+// for (const animal of data.animals) {
+//   retorno1[animal.name] = animal.residents.length;
+// }
+// console.log(retorno1);
+
+// **** com forEach ****
+// const retorno2 = {};
+// data.animals.forEach(animal => {
+//   retorno2[animal.name] = animal.residents.length;
+// });
+// console.log(retorno2);
+// if (!species) return (retorno2);
 
 function entryCalculator(entrants) {
   // seu código aqui
