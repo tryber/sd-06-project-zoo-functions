@@ -10,7 +10,7 @@ eslint no-unused-vars: [
 */
 const data = require('./data');
 
-const {  } = data;
+const { prices } = data;
 
 function animalsByIds(...ids) {
   return data.animals.filter(species => ids.includes(species.id));
@@ -76,7 +76,6 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  const prices = Object.keys(data.prices);
   const values = Object.values(data.prices);
   const Increment = {};
   prices.forEach((item, i) => {
@@ -85,7 +84,7 @@ function increasePrices(percentage) {
     Increment[item] = totalInc;
     data.prices = Increment;
   });
-  return  data.prices;
+  return data.prices;
 }
 
 
