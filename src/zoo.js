@@ -10,7 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-// const { animals } = require('./data');
+const { animals } = require('./data');
 
 function animalsByIds(...ids) {
   // seu código aqui
@@ -198,8 +198,35 @@ function increasePrices(percentage) {
   });
 }
 
-function employeeCoverage(idOrName) {
+function employeeCoverage(idOrName = 'all') {
   // seu código aqui
+  const result = {};
+
+  const getSpecies = animalId => animals.find(species => animalId === species.id).name;
+
+  const getEmployee = identifier => data.employees
+    .find(person => person.id === identifier
+      || person.firstName === identifier
+      || person.lastName === identifier);
+
+  const cases = idOrName;
+  switch (cases) {
+    case 'all':
+      data.employees.forEach((employee) => {
+        result[`${employee.firstName} ${employee.lastName}`] = employee
+          .responsibleFor
+            .map(getSpecies);
+      });
+      break;
+    default: {
+      const currEmployee = getEmployee(cases);
+      result[`${currEmployee.firstName} ${currEmployee.lastName}`] = currEmployee
+        .responsibleFor
+          .map(animalId => getSpecies(animalId));
+      break;
+    }
+  }
+  return result;
 }
 
 module.exports = {
