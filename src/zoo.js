@@ -128,20 +128,25 @@ function schedule(dayName) {
 function oldestFromFirstSpecies(id) {
   // seu código aqui
   const idAnimal = employees.find(funcionários => funcionários.id === id).responsibleFor[0];
-  const animalsResidents = animals.find(species => species.id === idAnimal).residents;
-  const olderAnimal = animalsResidents.reduce((total, resident) => {
+  const { name, sex, age } = animals.find(species => species.id === idAnimal).residents
+  .reduce((total, resident) => {
     if (resident.age > total.age) {
       return resident;
     }
     return total;
   });
-  return [olderAnimal.name, olderAnimal.sex, olderAnimal.age];
+  return [name, sex, age];
 }
 // console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
 
 function increasePrices(percentage) {
   // seu código aqui
+  data.prices['Adult'] = (Math.round((data.prices.Adult * ((percentage / 100) + 1)) * 100) / 100);
+  data.prices['Senior'] = (Math.round((data.prices.Senior * ((percentage / 100) + 1)) * 100) / 100);
+  data.prices['Child'] = (Math.round((data.prices.Child * ((percentage / 100) + 1)) * 100) / 100);
 }
+// increasePrices(50)
+// console.log(data.prices['Adult']);
 
 function employeeCoverage(idOrName) {
   // seu código aqui
