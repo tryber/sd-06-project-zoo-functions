@@ -147,7 +147,7 @@ function increasePrices(percentage) {
   const gambiarra = percentage / 100;
   const arrayPrices = ['Adult', 'Senior', 'Child'];
   for (let i = 0; i < 3; i += 1) {
-    data.prices[newArray[i]] =
+    data.prices[arrayPrices[i]] =
     Math.round((prices[arrayPrices[i]] + (prices[arrayPrices[i]] * gambiarra)) * 100) / 100;
   }
 }
