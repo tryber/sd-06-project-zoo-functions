@@ -110,17 +110,25 @@ function schedule(dayName) {
       result[day] = 'CLOSED';
     }
   });
-  
-  if (week.find(day => dayName === day)) return { [dayName]: result[dayName] };
+
+  if (week.some(day => dayName === day)) return { [dayName]: result[dayName] };
   return result;
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const animalId = employees.find(employee => employee.id === id).responsibleFor[0];
+  const animalsInfo = animals.filter(animal => animal.id === animalId)[0].residents;
+  const oldestAge = animalsInfo.reduce((acc, curr) => Math.max(acc, curr.age), 0);
+  const oldestAnimal = animalsInfo.find(animal => animal.age === oldestAge);
+  const { name, sex, age } = oldestAnimal;
+  return [name, sex, age];
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  const percent = (percentage / 100) + 1;
+  Object.keys(prices).forEach((each) => {
+    prices[each] = Math.ceil(prices[each] * (percent * 100)) / 100;
+  });
 }
 
 function employeeCoverage(idOrName) {
