@@ -66,40 +66,24 @@ function entryCalculator(entrants) {
 
 // console.log(entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 }));
 
-/*
-Sem parâmetros, retorna animais categorizados por localização
-Com a opção includeNames: true especificada, retorna nomes de animais
-Com a opção sorted: true especificada, retorna nomes de animais ordenados
-Com a opção sex: 'female' ou sex: 'male' especificada, retorna somente nomes de animais macho/fêmea
-Com a opção sex: 'female' ou sex: 'male' especificada e a opção sort: true especificada, retorna somente nomes de animais macho/fêmea com os nomes dos animais ordenados
-Só retorna informações ordenadas e com sexo se a opção includeNames: true for especificada
-*/
-
-// PARAMETROS PODE TER:
-// {
-  // includeNames: True
-  // sex: 'female'
-  // sorted: true
-// }
-
 function animalMap(options) {
-  const locations = ['NE', 'NW', 'SE', 'SW'];
-  if (!options) {
-    const animalsPerLocation = {};
+  // const locations = ['NE', 'NW', 'SE', 'SW'];
+  // if (!options) {
+  //   const animalsPerLocation = {};
 
-    locations.forEach((location) => {
-      const animalsLocation = animals
-      .filter(animal => animal.location === location)
-      .map(animal => animal.name);
+  //   locations.forEach((location) => {
+  //     const animalsLocation = animals
+  //     .filter(animal => animal.location === location)
+  //     .map(animal => animal.name);
 
-      if (animals.length !== 0) animalsPerLocation[location] = animalsLocation;
-    });
-    return animalsPerLocation;
-  }
+  //     if (animals.length !== 0) animalsPerLocation[location] = animalsLocation;
+  //   });
+  //   return animalsPerLocation;
+  // }
 }
 
 function schedule(dayName) {
-  const { Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, Monday } = hours;
+  const { Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday } = hours;
 
   const daysWeek = {
     Tuesday: `Open from ${Tuesday.open}am until ${Tuesday.close - 12}pm`,
@@ -108,8 +92,8 @@ function schedule(dayName) {
     Friday: `Open from ${Friday.open}am until ${Friday.close - 12}pm`,
     Saturday: `Open from ${Saturday.open}am until ${Saturday.close - 12}pm`,
     Sunday: `Open from ${Sunday.open}am until ${Sunday.close - 12}pm`,
-    Monday: 'CLOSED'
-  }
+    Monday: 'CLOSED',
+  };
 
   if (!dayName) return daysWeek;
 
@@ -117,7 +101,7 @@ function schedule(dayName) {
   return { [weekDay]: daysWeek[weekDay] };
 }
 
-console.log(schedule('Monday'));
+// console.log(schedule('Monday'));
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
