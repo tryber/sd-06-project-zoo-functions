@@ -51,7 +51,7 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(id) {
   const areYouAManager = employees
-  .some(checkingEmployee => checkingEmployee.managers.includes(id))
+  .some(checkingEmployee => checkingEmployee.managers.includes(id));
   // checando se algum (some) funcionario tem o id repetido dentro de managers;
 
   return areYouAManager;
@@ -59,10 +59,9 @@ function isManager(id) {
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // caracterizar managers e responsibleFor como array
-  return employees.push({id, firstName, lastName, managers, responsibleFor});
+  return employees.push({ id, firstName, lastName, managers, responsibleFor });
 // usar o push para EMPURRAR os objetos dentro do array employees
 }
-
 
 function animalCount(species) {
   // seu código aqui
@@ -73,7 +72,7 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-  
+
 }
 
 function schedule(dayName) {
