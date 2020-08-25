@@ -14,6 +14,7 @@ const { animals } = require('./data');
 const { employees } = require('./data');
 
 function animalsByIds(...ids) {
+  // hint about includes received from Icaro
   const getAnimalById = animals.filter(animal => ids.includes(animal.id));
   return getAnimalById;
 }
@@ -73,7 +74,18 @@ function addEmployee(
 }
 
 function animalCount(species) {
-  // seu código aqui
+  const allSPeciesCountObj = {};
+  animals.forEach(animal => allSPeciesCountObj[animal.name] = animal.residents.length);
+
+  const orderedSpeciesObj = {};
+  // stackoverflow solution to order an object with sort hof
+  Object.keys(allSPeciesCountObj)
+    .sort()
+    .forEach(key => (orderedSpeciesObj[key] = allSPeciesCountObj[key]));
+  const sameSpecieCount = animals.find(animal => animal.name === species);
+
+  if (species) return sameSpecieCount.residents.length;
+  return orderedSpeciesObj;
 }
 
 function entryCalculator(entrants) {
