@@ -63,13 +63,15 @@ const population = data.animals.map(animal => animal.residents.length);
 function animalCount(species) {
   const populationOfAnimals = {};
   if (species) {
-    return data.animals.find(animal => animal.name === species).popularity;
+    return data.animals.find(animal => animal.name === species).residents.length;
   }
   namesOfAnimals.forEach((nameOfAnimal, index) => {
     populationOfAnimals[nameOfAnimal] = population[index];
   });
   return populationOfAnimals;
 }
+
+console.log(animalCount())
 
 function entryCalculator(entrants) {
 
