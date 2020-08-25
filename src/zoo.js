@@ -23,7 +23,7 @@ function animalsOlderThan(animal, age) {
 
 function employeeByName(employeeName) {
   if (!employeeName) return {};
-  return data.employees.find((Element) => 
+  return data.employees.find(Element =>
     Element.firstName === employeeName || Element.lastName === employeeName);
 }
 
