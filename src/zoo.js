@@ -15,7 +15,7 @@ const { employees, animals } = require('./data');
 // função animalsByIds implementada com a ajuda do Ícaro no plantão
 function animalsByIds(...ids) {
   if (ids.length === 0) return [];
-  return data.animals.filter(animal => ids.includes(animal.id));
+  return animals.filter(animal => ids.includes(animal.id));
 }
 
 // fui ajudada pelo Ícaro novamente para desenvolver o raciocínio inicial
@@ -34,7 +34,7 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  return {...personalInfo, ...associatedWith};
+  return { ...personalInfo, ...associatedWith };
 }
 
 function isManager(idNumber) {
@@ -48,9 +48,10 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 }
 
 function animalCount(species) {
-  if (species === undefined)
+  if (species === undefined) {
     return data.animals.map(animal =>
       `${animal.name}: ${animal.residents.length},`);
+  }
       // RETORNA UM ARRAY E NÃO UM OBJETO
   return data.animals.filter(animal => animal.residents.length);
 }
