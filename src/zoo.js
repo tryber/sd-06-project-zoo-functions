@@ -9,21 +9,21 @@ eslint no-unused-vars: [
 ]
 */
 
-const data = require("./data");
-const { animals, employees, prices, hours } = require("./data");
+// const data = require('./data');
+const { animals, employees, prices, hours } = require('./data');
 
 function animalsByIds(...ids) {
   const animalsGroup = [];
   if (ids.length === 0) {
     return animalsGroup;
   }
-  ids.forEach((id) =>
-    animals.filter((animal) => {
+  ids.forEach(id =>
+    animals.filter(animal => {
       if (animal.id === id) {
         animalsGroup.push(animal);
       }
-      return "error";
-    })
+      return 'error';
+    }),
   );
   return animalsGroup;
   // console.log(id);
@@ -31,8 +31,8 @@ function animalsByIds(...ids) {
 // id == animals.id ? animals : [])
 function animalsOlderThan(animal, age) {
   return animals
-    .filter((oneAnimal) => animal === oneAnimal.name)[0]
-    .residents.every((element) => element.age > age);
+    .filter(oneAnimal => animal === oneAnimal.name)[0]
+    .residents.every(element => element.age > age);
 }
 
 function employeeByName(employeeName) {
@@ -41,7 +41,7 @@ function employeeByName(employeeName) {
   }
   return employees.filter(
     (employee) =>
-      employee.firstName === employeeName || employee.lastName === employeeName
+      employee.firstName === employeeName || employee.lastName === employeeName,
   )[0];
 }
 
@@ -50,8 +50,8 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  return employees.some((employee) =>
-    employee.managers.some((manager) => manager === id)
+  return employees.some(employee =>
+    employee.managers.some(manager => manager === id),
   );
 }
 
@@ -60,7 +60,7 @@ function addEmployee(
   firstName,
   lastName,
   managers = [],
-  responsibleFor = []
+  responsibleFor = [],
 ) {
   employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
@@ -70,10 +70,10 @@ function animalCount(species) {
     return animals.reduce(
       (acc, { name, residents }) =>
         Object.assign(acc, { [name]: residents.length }),
-      {}
+      {},
     );
   }
-  return animals.find((item) => item.name === species).residents.length;
+  return animals.find(item => item.name === species).residents.length;
 }
 
 function entryCalculator(entrants = 0) {
@@ -81,8 +81,8 @@ function entryCalculator(entrants = 0) {
     return 0;
   }
   return Object.keys(entrants).reduce(
-    (acc, cur) => acc + entrants[cur] * prices[cur],
-    0
+    (acc, cur) => acc + (entrants[cur] * prices[cur]),
+    0,
   );
 }
 
@@ -93,7 +93,7 @@ function animalMap(options) {
 function schedule(dayName) {
   if (!dayName) {
     return Object.values(hours).reduce((acc, { open, close }, key) => {
-      if (Object.keys(hours)[key] !== "Monday") {
+      if (Object.keys(hours)[key] !== 'Monday') {
         return Object.assign(acc, {
           [Object.keys(hours)[key]]: `Open from ${[open]}am until ${
             [close] - 12
@@ -101,14 +101,15 @@ function schedule(dayName) {
         });
       }
       return Object.assign(acc, {
-        [Object.keys(hours)[key]]: "CLOSED",
+        [Object.keys(hours)[key]]: 'CLOSED',
       });
     }, {});
   }
-  return Object.keys(hours).reduce((_,cur) => dayName === 'Monday' ?
+  return Object.keys(hours).reduce((_, cur) => {
+    return dayName === 'Monday' ?
     { [cur]: 'CLOSED' } :
-    { [dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm`
-    });
+    { [dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm` }
+  });
 }
 
 function oldestFromFirstSpecies(id) {
