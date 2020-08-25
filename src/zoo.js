@@ -28,7 +28,7 @@ function animalsOlderThan(animal, age) {
 }
 
 function employeeByName(employeeName) {
-  if (employeeName === undefined) { 
+  if (employeeName === undefined) {
     return {};
   } return employees.find(emp => emp.firstName === employeeName || emp.lastName === employeeName);
 }
@@ -43,21 +43,20 @@ function isManager(id) {
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
-  
 }
 
 function animalCount(species) {
   // seu código aqui
-  if (species == null) { 
+  if (species == null) {
   const animais = {};
   animals.forEach(element => animais[element.name] = element.residents.length);
   return animais;
-
-  } animalsTotal = animals.filter(element => element.name === species)
-     .map(element => element.residents.length);
-     return animalsTotal[0];
 }
- 
+  animalsTotal = animals.filter(element => element.name === species)
+    .map(element => element.residents.length);
+  return animalsTotal[0];
+}
+
 function entryCalculator(entrants) {
   // seu código aqui
 }
@@ -81,7 +80,7 @@ function animalMap(options) {
 // console.log(animals.filter(animal => animal.location === 'NE').map(nome => nome.name))
 
 function schedule(dayName) {
-  //   // seu código aqui
+// seu código aqui
 }
 
 function oldestFromFirstSpecies(id) {
