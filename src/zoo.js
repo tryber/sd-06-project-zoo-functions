@@ -14,6 +14,7 @@ const {
   animals,
   employees,
   prices,
+  hours,
 } = require('./data');
 
 function animalsByIds(...ids) {
@@ -88,10 +89,14 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
+  // dsdsdsd
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const animalId = employees.find(elem => elem.id === id).responsibleFor[0];
+  return (animals.find(animal => animal.id === animalId).residents)
+  .map(elem => Object.values(elem))
+  .sort((a, b) => b[2] - a[2])[0];
 }
 
 function increasePrices(percentage) {
