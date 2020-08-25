@@ -75,7 +75,7 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   let result = 0;
-  if (entrants === undefined) return total;
+  if (entrants === undefined) return result;
   if (entrants.Adult) result += entrants.Adult * prices.Adult;
   if (entrants.Senior) result += entrants.Senior * prices.Senior;
   if (entrants.Child) result += entrants.Child * prices.Child;
