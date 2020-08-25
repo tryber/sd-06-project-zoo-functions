@@ -100,10 +100,19 @@ function increasePrices(percentage) {
   return Object.assign(data.prices, result);
 }
 
-function employeeCoverage(idOrName) {
-  // seu código aqui
-}
+function findAnimal(array) {
+  return array.map(id => data.animals.find(animal => animal.id === id).name);
+};
 
+function employeeCoverage(idOrName) {
+  const result = data.employees.reduce((employeeResponsible, { firstName, lastName, responsibleFor }) => {
+    employeeResponsible[`${firstName} ${lastName}`] = findAnimal(responsibleFor);
+    return employeeResponsible;
+  }, {});
+
+  if (!idOrName) return result;
+}
+console.log(employeeCoverage());
 module.exports = {
   entryCalculator,
   schedule,
