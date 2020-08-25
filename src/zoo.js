@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 const data = require('./data');
-const { animals, employees, prices } = require('./data');
+const { animals, employees, prices, hours } = require('./data');
 
 function animalsByIds(...ids) {
   // Caso receba nenhum parâmetro
@@ -78,11 +78,23 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-  // seu código aqui
+  // Sem parâmetros, retorna animais categorizados por localização
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  const { Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday } = hours;
+  const daysOfTheWeek = {
+    Tuesday: `Open from ${Tuesday.open}am until ${Tuesday.close - 12}pm`,
+    Wednesday: `Open from ${Wednesday.open}am until ${Wednesday.close - 12}pm`,
+    Thursday: `Open from ${Thursday.open}am until ${Thursday.close - 12}pm`,
+    Friday: `Open from ${Friday.open}am until ${Friday.close - 12}pm`,
+    Saturday: `Open from ${Saturday.open}am until ${Saturday.close - 12}pm`,
+    Sunday: `Open from ${Sunday.open}am until ${Sunday.close - 12}pm`,
+    Monday: 'CLOSED',
+  };
+  if (dayName === undefined) return daysOfTheWeek;
+  const key = Object.keys(daysOfTheWeek).find(day => day === dayName);
+  return { [key]: daysOfTheWeek[key] };
 }
 
 function oldestFromFirstSpecies(id) {
