@@ -142,8 +142,9 @@ function oldestFromFirstSpecies(id) {
 function increasePrices(percentage) {
   // seu código aqui
   const arrayAgeRange = ['Adult', 'Senior', 'Child'];
-  arrayAgeRange.forEach(ageRange =>
-  data.prices[ageRange] = Math.round((data.prices[ageRange] * (percentage / 100 + 1)) * 100) / 100);
+  arrayAgeRange.forEach(ageRange => {
+    data.prices[ageRange] = Math.round((data.prices[ageRange] * ((percentage / 100) + 1)) * 100) / 100;
+  });
 }
 // increasePrices(50)
 // console.log(data.prices['Adult']);
