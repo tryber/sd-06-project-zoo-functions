@@ -190,11 +190,11 @@ function employeeCoverage(idOrName) {
     employeeList = data.employees :
     employeeList = data.employees
       .filter(employee => employee.id === idOrName ||
-         employee.firstName === idOrName || employee.lastName === idOrName)
-  
-  employeeList.forEach(employee => {
+        employee.firstName === idOrName || employee.lastName === idOrName);
+
+  employeeList.forEach((employee) => {
     animalList = [];
-    employee.responsibleFor.forEach(id => {
+    employee.responsibleFor.forEach((id) => {
       animalList.push(`${data.animals.filter(animal => animal.id === id).map(pet => pet.name)}`);
     });
     coverageList[`${employee.firstName} ${employee.lastName}`] = animalList;
