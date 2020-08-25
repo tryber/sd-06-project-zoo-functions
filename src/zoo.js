@@ -68,30 +68,26 @@ function animalMap(options) {
   
 }
 
+function setSchedule(){
+  const scheduleMap = {};
+  Object.entries(hours).forEach((hourEntry) => 
+  scheduleMap[hourEntry[0]] = `Open from ${hourEntry[1].open}am until ${hourEntry[1].close -12}pm`)
+  scheduleMap.Monday = 'CLOSED';
+  return scheduleMap;
+}
+
+function getDaySchedule(dayName, scheduleMap){
+  const daySchedule = {}
+  daySchedule[dayName] = scheduleMap[dayName]
+  return daySchedule;
+}
+
 function schedule(dayName) {
-  if (dayName === 'Monday') {
-    return {'Monday': 'CLOSED'};
-  } else if (dayName === 'Tuesday') {
-    return {'Tuesday': `Open from 8am until 6pm`};
-  } else if (dayName === 'Wednesday') {
-    return {'Wednesday':`Open from 8am until 6pm`};
-  } else if (dayName === 'Thursday') {
-    return {'Thursday':`Open from 10am until 8pm`};
-  } else if (dayName === 'Friday') {
-    return {'Friday':`Open from 10am until 8pm`};
-  } else if (dayName === 'Saturday') { 
-    return {'Saturday':`Open from 8am until 8pm`};
-  } else {
-    return {
-      'Tuesday': 'Open from 8am until 6pm',
-      'Wednesday': 'Open from 8am until 6pm',
-      'Thursday': 'Open from 10am until 8pm',
-      'Friday': 'Open from 10am until 8pm',
-      'Saturday': 'Open from 8am until 10pm',
-      'Sunday': 'Open from 8am until 8pm',
-      'Monday': 'CLOSED'
-    }
+  const scheduleMap = setSchedule();
+  if (dayName){
+    return getDaySchedule(dayName, scheduleMap);
   }
+  return scheduleMap;
 }
 
 function oldestFromFirstSpecies(id) {
