@@ -82,8 +82,8 @@ function retrieveAnimals(locations, sorted, sex) {
 
   locations.forEach((location) => {
     const animals = data.animals
-      .filter((animal) => animal.location === location)
-      .map(animal => {
+      .filter(animal => animal.location === location)
+      .map((animal) => {
         const nameKey = animal.name;
         const nameValues = animal.residents
           .filter((resident) => {
