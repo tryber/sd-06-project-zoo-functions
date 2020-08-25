@@ -49,14 +49,14 @@ function animalCount(species) {
   // seu código aqui
   if (species == null) {
     const animais = {};
-    animals.forEach(function(element) {
+    animals.forEach(function (element) {
       animais[element.name] = element.residents.length;
-  });  
+    });
     return animais;
   }
   const animalsTotal = animals.filter(element => element.name === species)
     .map(element => element.residents.length);
-    return animalsTotal[0];
+  return animalsTotal[0];
 }
 
 function entryCalculator(entrants) {
