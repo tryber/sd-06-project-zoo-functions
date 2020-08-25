@@ -45,19 +45,24 @@ function employeeByName(employeeName) {
 
 function createEmployee(personalInfo, associatedWith) {
   const newArray = Object.assign(personalInfo, associatedWith);
+  // object.assign para atribuir objetos dentro de um array
   return newArray;
 }
 
 function isManager(id) {
   const areYouAManager = employees
-  .some(checkingEmployee => checkingEmployee.managers.includes(id));
+  .some(checkingEmployee => checkingEmployee.managers.includes(id))
+  // checando se algum (some) funcionario tem o id repetido dentro de managers;
 
   return areYouAManager;
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  // caracterizar managers e responsibleFor como array
+  return employees.push({id, firstName, lastName, managers, responsibleFor});
+// usar o push para EMPURRAR os objetos dentro do array employees
 }
+
 
 function animalCount(species) {
   // seu código aqui
@@ -68,7 +73,7 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-
+  
 }
 
 function schedule(dayName) {
