@@ -112,13 +112,13 @@ function entryCalculator(entrants) {
   // Object.entries(objeto) converte o objeto em um array 
   let totalPrice = 0;
   if (entrants.Adult) {
-    totalPrice += entrants.Adult * prices.Adult;
+    totalPrice += entrants.Adult * data.prices.Adult;
   }
   if (entrants.Senior) {
-    totalPrice += entrants.Senior * prices.Senior;
+    totalPrice += entrants.Senior * data.prices.Senior;
   }
   if (entrants.Child) {
-    totalPrice += entrants.Child * prices.Child;
+    totalPrice += entrants.Child * data.prices.Child;
   }
   console.log(totalPrice);
   return totalPrice;
