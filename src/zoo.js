@@ -10,6 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
+const { employees } = require('./data');
 
 const { animals } = data;
 
@@ -32,19 +33,30 @@ const animalsByIds = (...ids) => {
 // Ao passar o nome de uma espécie e uma idade,
 // testa se todos os animais desta espécie possuem a idade mínima especificada
 const animalsOlderThan = (animal, age) =>
-  animals.find(verifyAge => verifyAge.name === animal)
+  animals.find(verifyName => verifyName.name === animal)
     .residents.every(ageMin => ageMin.age > age);
 
-console.log(animalsOlderThan('penguins', 5));
 
+// 3- Implemente a função employeeByName:
+// Sem parâmetros, retorna um objeto vazio
+// Quando provido o primeiro nome do funcionário, retorna o objeto do funcionário
+// Quando provido o último nome do funcionário, retorna o objeto do funcionário
+const employeeByName = (employeeName) => {
+  const emptyObject = {};
+  if (employeeName) {
+    return employees.find(verifyEmployeeName =>
+      (verifyEmployeeName.firstName === employeeName) ||
+        (verifyEmployeeName.lastName === employeeName));
+  }
+  return emptyObject;
+};
 
-function employeeByName(employeeName) {
-  // seu código aqui
-}
+// 4- Implemente a função createEmployee:
+// Cria um novo colaborador a partir de objetos 
+// contendo informações pessoais e gerentes e animais gerenciados.
+const createEmployee = (personalInfo, associatedWith) =>
+  ({...personalInfo, ...associatedWith});
 
-function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
-}
 
 function isManager(id) {
   // seu código aqui
