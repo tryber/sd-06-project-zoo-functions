@@ -10,7 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { animals, employees, prices } = require('./data');
+const { animals, employees, prices, hours } = require('./data');
 
 function animalsByIds(...ids) {
   const result = [];
@@ -89,6 +89,7 @@ function animalMap(options = 0) {
               if (listResident.sex === sex) list.push(listResident.name);
             }
           });
+
         if (sorted) list.sort();
         listNames[animal] = list;
         animalsRegion[region].push(listNames);
@@ -99,7 +100,19 @@ function animalMap(options = 0) {
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  const week = ['Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Monday'];
+  const result = {};
+
+  week.forEach((day) => {
+    if (hours[day].open !== 0) {
+      result[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`;
+    } else {
+      result[day] = 'CLOSED';
+    }
+  });
+  
+  if (week.find(day => dayName === day)) return { [dayName]: result[dayName] };
+  return result;
 }
 
 function oldestFromFirstSpecies(id) {
