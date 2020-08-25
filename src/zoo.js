@@ -13,6 +13,7 @@ const data = require('./data');
 const { animals } = require('./data');
 // const { hours } = require('./data')
 const { employees } = require('./data');
+const { prices } = require('./data');
 
 function animalsByIds(...ids) {
   // rest parameter inserido para que pudessem ser utilizados quantos parametros necessarios
@@ -82,10 +83,20 @@ function animalCount(species) {
 // imprimir o length dos residents de acordo com o nome da species
   return countingAnimals;
 }
-
+ 
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  const entranceTicket = Object.keys(entrants)
+  // atribuir as variavel a chave
+  if (entrants === undefined || entranceTicket.length === 0 ) {
+    // se as informaçoes forem indefinidas ou objeto vazio retornar 0
+    return 0;
+  }
+  const entrancePrice = entranceTicket
+ .reduce((totalPriceTicket, key) => totalPriceTicket + (prices[key] * entrants[key]), 0);
+//  somar o valor total dos tickets atribuindo totalPriceTicket ao somatorio e as chaves
+// do prices e das entradas inicias
+  return entrancePrice;
 }
 
 function animalMap(options) {
