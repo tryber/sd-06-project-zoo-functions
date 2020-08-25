@@ -142,6 +142,7 @@ function increasePrices(percentage) {
 
 function employeeCoverage(idOrName) {
   const employeeAnimals = {};
+
   if (!idOrName) {
     employees.forEach((employee) => {
       const animalsUnderEmployeeCare = employee.responsibleFor.map((animalId) => {
@@ -159,13 +160,13 @@ function employeeCoverage(idOrName) {
       return individual;
     }
   });
-  const employeeName = `${employee.firstName} ${employee.lastName}`;
+
   const responsibilities = employee.responsibleFor;
   const coveredAnimals = [];
   for (let i = 0; i < responsibilities.length; i += 1) {
     coveredAnimals.push(animals.find(animal => animal.id === responsibilities[i]).name);
   }
-  const employeeResponsibilities = { [employeeName]: coveredAnimals, };
+  const employeeResponsibilities = { [`${employee.firstName} ${employee.lastName}`]: coveredAnimals };
   return employeeResponsibilities;
 }
 
