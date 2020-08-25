@@ -145,7 +145,7 @@ function animalMap({ includeNames = false, sex = '', sorted = false } = {}) {
 function schedule(dayName = 'all') {
   // seu código aqui
   const allDays = {};
-  Object.keys(data.hours).forEach(day => { allDays[day] = data.hours[day] });
+  Object.keys(data.hours).forEach((day) => { allDays[day] = data.hours[day]; });
 
   const result = {};
 
