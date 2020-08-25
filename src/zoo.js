@@ -19,7 +19,7 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animalName, animalAge) {
-  const getAnimalByName = data.animals.find(animal => animal.name === animalName);
+  const getAnimalByName = animals.find(animal => animal.name === animalName);
   const animalsResidentsObj = getAnimalByName.residents;
   return animalsResidentsObj.every(animal => animal.age >= animalAge);
 }
@@ -43,7 +43,9 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  // seu código aqui
+  return employees
+    .map(employee => employee.managers)
+    .some((manager, index) => manager[index] === id);
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
