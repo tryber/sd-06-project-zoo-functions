@@ -200,10 +200,10 @@ function increasePrices(percentage) {
   });
 }
 
-const searchId = element => element.responsibleFor
+const searchResponsibleForId = element => element.responsibleFor
   .map(animalResponsableId => animalResponsableId);
 
-const searchNames = id => animals
+const searchAnimalNameByResponsibleForId = id => animals
   .find(animal => animal.id === id).name;
 
 const identifyParamater = parameter =>
@@ -214,14 +214,16 @@ const identifyParamater = parameter =>
 function employeeCoverage(idOrName) {
   if (!idOrName) {
     const employeeFullList = employees.reduce((acc, cur) => {
-      acc[`${cur.firstName} ${cur.lastName}`] = searchId(cur).map(id => searchNames(id));
+      acc[`${cur.firstName} ${cur.lastName}`] = searchResponsibleForId(cur)
+      .map(id => searchAnimalNameByResponsibleForId(id));
       return acc;
     }, {});
     return employeeFullList;
   }
   const holder = {};
   const { firstName, lastName } = identifyParamater(idOrName);
-  holder[`${firstName} ${lastName}`] = searchId(identifyParamater(idOrName)).map(id => searchNames(id));
+  holder[`${firstName} ${lastName}`] = searchResponsibleForId(identifyParamater(idOrName))
+  .map(id => searchAnimalNameByResponsibleForId(id));
   return holder;
 }
 
