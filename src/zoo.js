@@ -37,7 +37,7 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-return data.employees.some(manager => manager.managers.includes(id))
+  return data.employees.some(manager => manager.managers.includes(id));
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
@@ -60,9 +60,9 @@ function retrieveAnimalsPerLocation(locations) {
     const animals = data.animals
     .filter(animal => animal.location === location)// quais animais tem a determinada loc
     .map(animal => animal.name);// retorna apena o nome dos animais
-    if(animals.length !== 0) animalsPerLocation[location] = animals; 
-  });// se o tamnho do array for diferente do 0 adiciona a localizacao de acordo com os animais em cada uma delas
-
+    if (animals.length !== 0) animalsPerLocation[location] = animals;
+  });// se o tamnho do array for diferente do 0 
+  //adiciona a localizacao de acordo com os animais em cada uma delas
   return animalsPerLocation;
 }
 
@@ -81,7 +81,7 @@ function retrieveAnimals(locations, sorted, sex) {
         })
         .map(resident => resident.name); // acessa dentro do objeto o nome do residente
         if (sorted) nameValues.sort();
-        return { [nameKey]: nameValues }; // a chave serve para identificar qual chave seria, [lion: valores]
+        return { [nameKey]: nameValues };//a chave serve para identificar qual chave seria[lion: valores]
       });
       animalsPerLocationWithName[location] = animals;
   });
