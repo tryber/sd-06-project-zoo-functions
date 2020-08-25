@@ -58,8 +58,12 @@ function addEmployee(...value) {
 }
 
 function animalCount(species) {
-  // seu código aqui
+  if(species){
+    return data.animals.find(animal => animal.name === species).popularity;
+  }
 }
+
+console.log(animalCount('snakes'))
 
 function entryCalculator(entrants) {
   // seu código aqui
