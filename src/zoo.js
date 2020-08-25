@@ -83,6 +83,7 @@ function animalMap(options) {
 
 function schedule(dayName) {
   const { Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday } = hours;
+  //  Sem parâmetros, retorna um cronograma legível para humanos
   const daysOfTheWeek = {
     Tuesday: `Open from ${Tuesday.open}am until ${Tuesday.close - 12}pm`,
     Wednesday: `Open from ${Wednesday.open}am until ${Wednesday.close - 12}pm`,
@@ -92,13 +93,21 @@ function schedule(dayName) {
     Sunday: `Open from ${Sunday.open}am until ${Sunday.close - 12}pm`,
     Monday: 'CLOSED',
   };
+  // Se um único dia for passado, retorna somente este dia em um formato legível para humanos
   if (dayName === undefined) return daysOfTheWeek;
   const key = Object.keys(daysOfTheWeek).find(day => day === dayName);
   return { [key]: daysOfTheWeek[key] };
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const employeeId = employees.find(employee => employee.id === id).responsibleFor[0];
+  const animalId = Object.values(animals
+    .find(animal => animal.id === employeeId).residents
+    .reduce((acumulator, animal) => {
+      if (acumulator.age > animal.age) return acumulator;
+      return animalId;
+    }));
+  return animalId;
 }
 
 function increasePrices(percentage) {
