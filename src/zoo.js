@@ -10,8 +10,8 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { animals, prices } = require('./data');
-const { employees } = require('./data');
+const { animals, prices, employees, hours } = require('./data');
+
 
 //  requisito1 - ok
 function animalsByIds(...ids) {
@@ -82,7 +82,7 @@ function animalCount(specie) {
 }
 
 
-//  requisito8 - fonte: https://medium.com/cleytonbrasil/javascript-como-saber-se-um-objeto-est%C3%A1-vazio-a6a153f4f81f - https://docs.w3cub.com/javascript/global_objects/object/entries/
+//  requisito8 - ok fonte: https://medium.com/cleytonbrasil/javascript-como-saber-se-um-objeto-est%C3%A1-vazio-a6a153f4f81f - https://docs.w3cub.com/javascript/global_objects/object/entries/
 function entryCalculator(entrants) {
   let result = 0;
   if ((entrants == null) || (Object.entries(entrants).length === 0)) {
@@ -100,15 +100,20 @@ function animalMap(options) {
   // seu código aqui
 }
 
-//  requisito10 -
+//  requisito10 - ok
 function schedule(dayName) {
-  /*  if ((dayName == null) || (Object.entries(dayName).length === 0)) {
-    let completeSchedule = {};
-    Object.entries(hours).forEach(([key, value]) => {
-      completeSchedule += `${key}: Open from ${value.open}am until ${value.close}pm, `;
-    });
-    return completeSchedule;
-  }*/
+  const completeSchedule = {};
+  Object.entries(hours).forEach(([key, value]) => {
+    if (key === 'Monday') {
+      completeSchedule[key] = 'CLOSED';
+    } else {
+      const openValue = value.open;
+      const closeValue = value.close - 12;
+      completeSchedule[key] = `Open from ${openValue}am until ${closeValue}pm`;
+    }
+  });
+  if (!dayName) return completeSchedule;
+  return { [dayName]: completeSchedule[dayName] };
 }
 
 
