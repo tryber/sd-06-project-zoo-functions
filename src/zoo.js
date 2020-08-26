@@ -89,7 +89,7 @@ function retrieveAnimals(locations, sorted, sex) {
         const nameKey = animal.name;
         const nameValues = animal.residents
           .filter((resident) => {
-            const isFilteringSex = sex != undefined;
+            const isFilteringSex = sex !== undefined;
             return isFilteringSex ? resident.sex === sex : true;
           })
           .map(resident => resident.name);
@@ -98,7 +98,7 @@ function retrieveAnimals(locations, sorted, sex) {
 
         return { [nameKey]: nameValues };
       });
-  animalsByLocationWithName[location] = animalLocation;
+    animalsByLocationWithName[location] = animalLocation;
   });
   return animalsByLocationWithName;
 }
