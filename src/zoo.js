@@ -101,7 +101,7 @@ function retrieveAnimals(locations, sorted, sex) {
   });
 
   return animalsPerLocationWithName;
-  } 
+  }  
 
 function animalMap(options) {
   const locations = ['NE', 'NW', 'SE', 'SW'];
