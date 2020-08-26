@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-//const data = require('./data');
+
 const { animals, employees, prices, hours } = require('./data');
 
 function animalsByIds(...ids) {
@@ -78,13 +78,19 @@ function animalMap(options) {
 }
 function schedule(dayName) {
   // seu código aqui
-  //if(!dayName) {
-    //console.log(Object.entries(hours).reduce((acc, {open, close}) => {
-      const calendar = acc
-   // }))
-  //}
+  const painel = {};
+  let scheduleControl;
+  if (!dayName) {
+    scheduleControl = Object.keys(hours);
+  } else {
+    scheduleControl = Object.keys(hours).filter(key => key === dayName);
+  }
+  scheduleControl.map((day) => {
+    painel[day] = (day === 'Monday') ? 'CLOSED' : painel[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`;
+    return painel;
+  });
+  return painel;
 }
-//schedule()
 function oldestFromFirstSpecies(id) {
   // seu código aqui
   const first = employees.find(elemento => elemento.id === id).responsibleFor[0];
@@ -94,8 +100,6 @@ function oldestFromFirstSpecies(id) {
 }
 function increasePrices(percentage) {
 // seu código aqui
-
-
   Object.keys(prices).forEach((elemento) => {
     prices[elemento] = Number((prices[elemento] + (((prices[elemento] * percentage) + 0.001) / 100))
   .toFixed(2));
@@ -104,19 +108,20 @@ function increasePrices(percentage) {
 
 function employeeCoverage(idOrName) {
   // sem parametro => todos animais
-  const result = [];
+  const result = {};
   if (!idOrName) {
-    employees.forEach(employee => {
+    employees.forEach((employee) => {
       result[`${employee.firstName} ${employee.lastName}`] = [];
-      employee.responsibleFor.forEach(animalIdResponsibleFor => {
+      employee.responsibleFor.forEach((animalIdResponsibleFor) => {
         const foundAninal = animals.find(animal => animal.id === animalIdResponsibleFor).name;
-        result[`${employee.firstName} ${employee.lastName}`].push(foundAninal)
-      })
+        result[`${employee.firstName} ${employee.lastName}`].push(foundAninal);
+      });
     });
-    return result
+    return result;
   }
+  return 'faltando';
 }
-employeeCoverage();
+// console.log(employeeCoverage());
 
 module.exports = {
   entryCalculator,
