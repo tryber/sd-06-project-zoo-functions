@@ -70,18 +70,16 @@ function animalCount(species) {
   .reduce((acc, animal) => acc + animal.residents.length, 0);
 }
 
-// got the keys to be able to use length
 function entryCalculator(entrants) {
-  if (entrants === undefined || Object.keys(entrants).length === 0) { return 0; }
+  if (!entrants) { return 0; }
+  const { Adult: adult, Senior: senior, Child: child } = data.prices;
   const keys = Object.keys(entrants);
-  const values = Object.values(entrants);
-  let totalSum = 0;
-  keys.forEach((key, index) => {
-    if (key === 'Adult') { totalSum += (data.prices.Adult * values[index]); }
-    if (key === 'Senior') { totalSum += (data.prices.Senior * values[index]); }
-    if (key === 'Child') { totalSum += (data.prices.Child * values[index]); }
-  });
-  return totalSum;
+  return keys.reduce((acc, element) => {
+    if (element === 'Adult') acc += (adult * entrants.Adult);
+    if (element === 'Senior') acc += (senior * entrants.Senior);
+    if (element === 'Child') acc += (child * entrants.Child);
+    return acc;
+  }, 0);
 }
 
 const defaultMap = () => {
