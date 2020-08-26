@@ -45,15 +45,15 @@ function isManager(id) {
   .some(manager => manager === id);
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  const newEmployee = { id: '', firstName: '', lastName: '', managers: [], responsibleFor: [] };
-  if (id !== '') { newEmployee.id = id; }
-  if (firstName !== '') { newEmployee.firstName = firstName; }
-  if (lastName !== '') { newEmployee.lastName = lastName; }
-
-  // had to check if they were array
-  if (Array.isArray(managers)) { newEmployee.managers = managers; }
-  if (Array.isArray(responsibleFor)) { newEmployee.responsibleFor = responsibleFor; }
+// parameters with default values
+function addEmployee(id = '', firstName = '', lastName = '', managers = [], responsibleFor = []) {
+  // passing the parameters to an array to be able to use reduce
+  const newEmployeeArray = [id, firstName, lastName, managers, responsibleFor];
+  const newEmployee = newEmployeeArray.reduce((acc, element) => {
+    // the object has predefined keys with the same name as the values in the array
+    [element] = element;
+    return acc;
+  }, { id, firstName, lastName, managers, responsibleFor });
   data.employees.push(newEmployee);
 }
 
