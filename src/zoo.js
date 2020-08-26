@@ -10,29 +10,28 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { animals, employees } = require('./data');
 
 function animalsByIds(...ids) {
-  return animals.filter(animal => ids.some(id => id === animal.id));
+  return data.animals.filter(animal => ids.some(id => id === animal.id));
 }
 
 function animalsOlderThan(animal, age) {
-  return animals.find(element => element.name === animal)
+  return data.animals.find(element => element.name === animal)
   .residents.every(element => element.age >= age);
 }
 
 function employeeByName(employeeName) {
-  let arreiEmployee = [employeeName];
-  if (arreiEmployee.length === 0) {
-    return 0;
-  }
-  if (arreiEmployee.length === 1) {
-    return employeeName.filter(element => element.firstName === employeeName[0]);
-  }
-  if (arreiEmployee.length === 2) {
-    return arreiEmployee.filter(element => element.firstName === employeeName[0]) &&
-    arreiEmployee.filter(element => element.firstName === employeeName[0]);
-  }
+  // let arreiEmployee = [employeeName];
+  // if (arreiEmployee.length === 0) {
+  //   return 0;
+  // }
+  // if (arreiEmployee.length === 1) {
+  //   return employeeName.filter(element => element.firstName === employeeName[0]);
+  // }
+  // if (arreiEmployee.length === 2) {
+  //   return arreiEmployee.filter(element => element.firstName === employeeName[0]) &&
+  //   arreiEmployee.filter(element => element.firstName === employeeName[0]);
+  // }
 }
 
 function createEmployee(personalInfo, associatedWith) {
