@@ -66,8 +66,23 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-  // seu código aqui
+  const locations = ['NE', 'NW', 'SE', 'SW'];
+
+  if (!options) {
+    const objectAnimals = {}
+    locations.forEach((location) => {
+      const animals = data.animals
+      .filter(animal => animal.location === location)
+      .map(animalName => animalName.name);
+
+      if (animals.length !== 0) return objectAnimals[location] = animals;
+    })
+    return objectAnimals;
+  }
+
+
 }
+console.log(animalMap());
 
 const openingHours = {
   Tuesday: 'Open from 8am until 6pm',
