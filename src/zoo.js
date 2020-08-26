@@ -10,6 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
+
 const { animals, employees, prices, hours } = data;
 
 function animalsByIds(...ids) {
@@ -103,21 +104,19 @@ function schedule(dayName) {
       });
     }, {});
   }
-    if (dayName !== 'Monday') {
-      return { [dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm` };
-    }
-    return { [dayName]: 'CLOSED' };
+  if (dayName !== 'Monday') {
+    return { [dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm` };
+  }
+  return { [dayName]: 'CLOSED' };
 }
-
-  // Passando o id de um funcionário, encontra a primeira espécie de animal gerenciado pelo funcionário, e retorna um array com nome, sexo e idade do animal mais velho dessa espécie
 
 function oldestFromFirstSpecies(id) {
   const animalsId = employees.find(employee => employee.id === id).responsibleFor[0];
-  const { name, sex, age } = animals.filter((species) => species.id === animalsId)[0].residents
+  const { name, sex, age } = animals.filter(species => species.id === animalsId)[0].residents
   .reduce((acc, cur) => acc.age > cur.age ? acc : cur);
-  return [ name , sex , age ];  
+  return [name, sex, age];
 }
-  function increasePrices(percentage) {
+function increasePrices(percentage) {
   // seu código aqui
 }
 
