@@ -138,13 +138,13 @@ function schedule(dayName) {
     } return hora;
   }
   const allDay = {
-    'Tuesday': `Open from ${hours.Tuesday.open}am until ${lock(hours.Tuesday.close)}pm`,
-    'Wednesday': `Open from ${hours.Wednesday.open}am until ${lock(hours.Wednesday.close)}pm`,
-    'Thursday': `Open from ${hours.Thursday.open}am until ${lock(hours.Thursday.close)}pm`,
-    'Friday': `Open from ${hours.Friday.open}am until ${lock(hours.Friday.close)}pm`,
-    'Saturday': `Open from ${hours.Saturday.open}am until ${lock(hours.Saturday.close)}pm`,
-    'Sunday': `Open from ${hours.Sunday.open}am until ${lock(hours.Sunday.close)}pm`,
-    'Monday': 'CLOSED',
+    Tuesday: `Open from ${hours.Tuesday.open}am until ${lock(hours.Tuesday.close)}pm`,
+    Wednesday: `Open from ${hours.Wednesday.open}am until ${lock(hours.Wednesday.close)}pm`,
+    Thursday: `Open from ${hours.Thursday.open}am until ${lock(hours.Thursday.close)}pm`,
+    Friday: `Open from ${hours.Friday.open}am until ${lock(hours.Friday.close)}pm`,
+    Saturday: `Open from ${hours.Saturday.open}am until ${lock(hours.Saturday.close)}pm`,
+    Sunday: `Open from ${hours.Sunday.open}am until ${lock(hours.Sunday.close)}pm`,
+    Monday: `CLOSED`,
   };
   if (dayName == null) { return allDay; }
   const day = {};
@@ -155,7 +155,6 @@ function schedule(dayName) {
   }
   return day;
 }
-// console.log(schedule())
 
 /* 11- Implemente a função oldestFromFirstSpecies:
 Passado o id de um funcionário, encontra a primeira espécie de animal gerenciado
