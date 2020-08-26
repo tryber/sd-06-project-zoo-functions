@@ -81,20 +81,54 @@ function entryCalculator(entrants) {
   return total;
 }
 
+function retrieveAnimalsPerLocation(locations) {
+  const animalsPerLocation = {};
+  locations.forEach((location) => {
+    const brandNewAnimals = animals.filter(animal => animal.location === location)
+      .map(animal => animal.name);
+    if (brandNewAnimals.length !== 0) animalsPerLocation[location] = brandNewAnimals;
+  });
+  return animalsPerLocation;
+}
+
+function retrieveAnimals(locations, sorted, sex) {
+  const animalsPerLocationWithName = {};
+  locations.forEach((location) => {
+    const newAnimals = animals.filter(animal => animal.location === location)
+      .map((animal) => {
+        const nameKey = animal.name;
+        const nameValues = animal.residents
+        .filter((resident) => {
+          const isFilteringSex = sex !== undefined;
+          return isFilteringSex ? resident.sex === sex : true;
+        })
+        .map(resident => resident.name);
+        if (sorted) nameValues.sort();
+        return { [nameKey]: nameValues };
+      });
+    animalsPerLocationWithName[location] = newAnimals;
+  });
+  return animalsPerLocationWithName;
+}
+
 function animalMap(options) {
-  // seu código aqui
+  const locations = ['NE', 'NW', 'SE', 'SW'];
+  if (!options) return retrieveAnimalsPerLocation(locations);
+  const { includeNames, sorted, sex } = options;
+  if (!includeNames) return retrieveAnimalsPerLocation(locations);
+  return retrieveAnimals(locations, sorted, sex);
 }
 
 function schedule(dayName) {
   // seu código aqui
   if (!dayName) {
-    return Object.keys(hours).reduce((result, key) => {
-      const { open, close } = hours[key];
+    return Object.keys(hours).reduce((result, day) => {
+      const { open, close } = hours[day];
       let monday = `Open from ${open}am until ${close - 12}pm`;
-      if (key === 'Monday') {
+      if (day === 'Monday') {
         monday = 'CLOSED';
       }
-      return { ...result, [key]: monday };
+      return { ...result, [day]: monday };
     }, {});
   } else if (dayName === 'Monday') {
     return { [dayName]: 'CLOSED' };
