@@ -67,65 +67,54 @@ function entryCalculator(entrants) {
     return acc + aux;
   }, 0);
 }
-function animalsByLocation () {
-  const listObj = { NE: [], NW: [], SE: [], SW: [] };
-  animals.forEach(animal => {
-    if (animal.location === 'NE') {
-      listObj.NE.push(animal.name);
-    } else 
-    if (animal.location === 'NW') {
-      listObj.NW.push(animal.name);
-    } else
-    if (animal.location === 'SE') {
-      listObj.SE.push(animal.name);
-    } else {
-      listObj.SW.push(animal.name);
-    }
+
+function retrieveAnimalsByLocation(locations) {
+  const animalsByLocation = {};
+  locations.forEach((location) => {
+    const animalLocation = animals
+      .filter(animal => animal.location === location)
+      .map(animal => animal.name);
+    if (animalLocation.length !== 0) animalsByLocation[location] = animalLocation;
   });
-  return listObj;
+  return animalsByLocation;
 }
 
-function nameAnimalsByLocation () {
-  const listObj = { NE: [], NW: [], SE: [], SW: [] };
-  animals.forEach(animal => {
-    const nameResidente = [];
-    if (animal.location === 'NE') {
-      animal.residents.forEach(resident => {
-        nameResidente.push(resident.name);
-      });
-      listObj.NE.push(nameResidente);
-    } else 
-    if (animal.location === 'NW') {
-      animal.residents.forEach(resident => {
-        nameResidente.push(resident.name);
-      });
-      listObj.NW.push(nameResidente);
-    } else
-    if (animal.location === 'SE') {
-      animal.residents.forEach(resident => {
-        nameResidente.push(resident.name);
-      });
-      listObj.SE.push(nameResidente);
-    } else {
-      animal.residents.forEach(resident => {
-        nameResidente.push(resident.name);
-      });
-      listObj.SW.push(nameResidente);
-    }
-  });
-  return listObj;
+function retrieveAnimals(locations, sorted, sex) {
+  const animalsByLocationWithName = {};
 
+  locations.forEach((location) => {
+    const animalLocation = animals
+      .filter(animal => animal.location === location)
+      .map(animal => {
+        const nameKey = animal.name;
+        const nameValues = animal.residents
+        .filter(resident => {
+          return (sex !== undefined) ? resident.sex === sex : true;
+        })
+        .map(resident => resident.name);
+
+        if (sorted) nameValues.sort();
+
+        return { [nameKey]: nameValues };
+      });
+
+      animalsByLocationWithName[location] = animalLocation;
+  });
+  
+  return animalsByLocationWithName;
 }
 
 function animalMap(options) {
   // seu código aqui
-  if (!options) {
-    return animalsByLocation();
-  }
-  const optionsValues = Object.values(options);
-  if(optionsValues[0] === true && optionsValues.length === 1) {
-    return nameAnimalsByLocation();
-  }
+  const locations = ['NE', 'NW', 'SE', 'SW'];
+  if (!options) return retrieveAnimalsByLocation(locations);
+
+  const { includeNames, sorted, sex } = options;
+
+  if (!includeNames) return retrieveAnimalsByLocation(locations);
+
+  return retrieveAnimals(locations, sorted, sex);
+
 }
 
 function schedule(dayName) {
