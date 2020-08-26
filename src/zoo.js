@@ -10,7 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { animals, employees, prices } = require('./data');
+const { animals, employees, prices, hours } = require('./data');
 
 function animalsByIds(...ids) {
   // hint about includes received from Icaro
@@ -105,7 +105,26 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  const allDays = Object.keys(hours);
+  const mondayObj = { Monday: 'CLOSED' };
+
+  if (dayName === 'Monday') {
+    return mondayObj;
+  }
+
+  let showScheduleToCustomer = {};
+
+  allDays.forEach(day => (showScheduleToCustomer[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`));
+
+  if (!dayName) {
+    showScheduleToCustomer = Object.assign(showScheduleToCustomer, mondayObj);
+  } else {
+    return {
+      // ES6 and Babel new feature found at StackOverflow
+      [dayName]: showScheduleToCustomer[dayName],
+    };
+  }
+  return showScheduleToCustomer;
 }
 
 function oldestFromFirstSpecies(id) {
