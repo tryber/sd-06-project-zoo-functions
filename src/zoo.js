@@ -38,7 +38,7 @@ function employeeByName(employeeName) {
   if (!employeeName) {
     return {};
   }
-  return employees.find((employee) => employeeName === employee.firstName || employeeName === employee.lastName);
+  return employees.find(emp => employeeName === emp.firstName || employeeName === emp.lastName);
 }
 
 // console.log(employeeByName('Wishart'));
@@ -120,15 +120,12 @@ function animalMap(options) {
 function schedule(dayName) {
   const newObj = {};
   const date = Object.entries(hours);
-
   if (!dayName) {
     date.map((element) => {
       if (element.includes('Monday')) {
         newObj.Monday = 'CLOSED';
         return newObj;
       }
-      // newObj = isMonday(element);
-
       const day = element[0];
       const hour = element[1];
       const { open, close } = hour;
