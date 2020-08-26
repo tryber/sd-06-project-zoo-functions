@@ -50,7 +50,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
     firstName,
     lastName,
     managers,
-    responsibleFor
+    responsibleFor,
   };
   employees.push(lastEmployee);
 }
@@ -58,7 +58,9 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function animalCount(species) {
   const allAnimals = {};
   if (!species) {
-    animals.forEach(animal => allAnimals[animal.name] = animal.residents.length);
+    animals.forEach(animal => {
+      allAnimals[animal.name] = animal.residents.length
+    });
     return allAnimals;
   }
   return animals.find(animal => animal.name === species).residents.length;
@@ -68,10 +70,12 @@ function entryCalculator(entrants) {
   if (!entrants || Object.entries(entrants).length === 0) {
     return 0;
   }
-  return Object.keys(prices).reduce((accumulator, currentValue) => accumulator + (prices[currentValue] * entrants[currentValue]), 0);
+  return Object.keys(prices).reduce((accumulator, currentValue) => {
+    accumulator + (prices[currentValue] * entrants[currentValue]), 0
+  });
 }
 
-// Line 75 to 140 implemented by Gabriel Olíva at the guided lesson!
+// Line 79 to 144 implemented by Gabriel Olíva at the guided lesson!
 function retrieveAnimalsPerLocation(locations) {
   const animalsPerLocation = {};
 
@@ -80,7 +84,7 @@ function retrieveAnimalsPerLocation(locations) {
       .filter(animal => animal.location === location)
       .map(animal => animal.name);
 
-      if (species.length !== 0) animalsPerLocation[location] = species;
+    if (species.length !== 0) animalsPerLocation[location] = species;
   });
   return animalsPerLocation;
 }
@@ -91,10 +95,10 @@ function retrieveAnimals(locations, sorted, sex) {
   locations.forEach((location) => { // location assume NE depois NW depo...
     const species = animals
       .filter(animal => animal.location === location)
-      .map(animal => {
+      .map((animal) => {
         const nameKey = animal.name;
         const nameValues = animal.residents
-          .filter(resident => {
+          .filter((resident) => {
             const isFilteringSex = sex !== undefined;
             return isFilteringSex ? resident.sex === sex : true;
           })
@@ -104,7 +108,7 @@ function retrieveAnimals(locations, sorted, sex) {
 
         return { [nameKey]: nameValues };
       });
-      animalsPerLocationWithName[location] = species;
+    animalsPerLocationWithName[location] = species;
   });
 
   return animalsPerLocationWithName;
@@ -113,30 +117,30 @@ function retrieveAnimals(locations, sorted, sex) {
 function animalMap(options) {
   const locations = ['NE', 'NW', 'SE', 'SW'];
   if (!options) {
-    return retrieveAnimalsPerLocation(locations)
+    return retrieveAnimalsPerLocation(locations);
   }
   const { includeNames, sorted, sex } = options;
 
-  if (!includeNames)  return retrieveAnimalsPerLocation(locations);
+  if (!includeNames) return retrieveAnimalsPerLocation(locations);
 
   return retrieveAnimals(locations, sorted, sex);
 }
 
 function schedule(dayName) {
   const allDays = Object.keys(hours);
-  const schedule = {};
+  const schedules = {};
 
   allDays.forEach((day) => {
     if (day === 'Monday') {
-      schedule[day] = 'CLOSED';
+      schedules[day] = 'CLOSED';
     } else {
       const openHour = hours[day].open;
       const closeHour = hours[day].close - 12;
-      schedule[day] = `Open from ${openHour}am until ${closeHour}pm`;
+      schedules[day] = `Open from ${openHour}am until ${closeHour}pm`;
     }
   });
-  if (dayName === undefined) return schedule;
-  return { [dayName]: schedule[dayName] };
+  if (dayName === undefined) return schedules;
+  return { [dayName]: schedules[dayName] };
 }
 // _________________________Guided lesson ends_________________________
 
