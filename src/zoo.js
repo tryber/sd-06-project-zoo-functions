@@ -23,7 +23,7 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  const animalNameAge = animals.find(i => i.name === animal).residents.every(p => p.age >= age);
+  const animalNameAge = data.animals.find(i => i.name === animal).residents.every(p => p.age >= age);
   return animalNameAge;
 }
 
@@ -56,12 +56,12 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 function animalCount(species) {
   if (!species) {
-    return animals.reduce((ac, animal) => ({
+    return data.animals.reduce((ac, animal) => ({
       ...ac,
       [animal.name]: animal.residents.length,
     }), {});
   }
-  return animals.find(animal => animal.name === species).residents.length;
+  return data.animals.find(animal => animal.name === species).residents.length;
 }
 
 function entryCalculator(entrants) {
@@ -94,7 +94,7 @@ function retrieveAnimals(locations, sorted, sex) {
 
   locations.forEach((location) => {
     const animals = data.animals
-      .filter((animal) => animal.location === location)
+      .filter(animal => animal.location === location)
       .map((animal) => {
         const nameKey = animal.name;
         const nameValues = animal.residents
@@ -102,12 +102,12 @@ function retrieveAnimals(locations, sorted, sex) {
             const isFilteringSex = sex !== undefined;
             return isFilteringSex ? resident.sex === sex : true;
           })
-          .map((resident) => resident.name);
+          .map(resident => resident.name);
 
         if (sorted) nameValues.sort();
 
         return {
-          [nameKey]: nameValues
+          [nameKey]: nameValues,
         };
       });
 
@@ -124,7 +124,7 @@ function animalMap(options) {
   const {
     includeNames,
     sorted,
-    sex
+    sex,
   } = options;
 
   if (!includeNames) return retrieveAnimalsPerLocation(locations);
