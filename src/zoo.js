@@ -71,26 +71,26 @@ function animalCount(species) {
   return populationOfAnimals;
 }
 
-// resultado += (entrants.Adult * 49.99);
-// resultado += (entrants.Senior * 24.99);
-// resultado += (entrants.Child * 20.99);
-
-// const adult = (num) => num * 49.99;
-// const senior = (num) => num * 24.99;
-// const child = (num) => num * 20.99;
-
-// const entrants = { 'Adult': 2, 'Child': 3, 'Senior': 1 }
+// refatorado a function entryCalculator.
+// eu demorei mais de 6 horas pra nao conseguir fazer essa implementação
+// entao eu fui buscar pro uma luz e coletei o conhecimento para concluilo
+// no projeto do henrique rezendo da turma 3, ele é meu amigo.
+// eu vou explicar o código aqui no comentário no entando se caso eu cair
+// em uma entrevista onde eu tenha que explicalo no futuro, é relevante que o comentario seja apagado.
+// a function retorna 0 se nao receber um objeto e 0 se o objeto estiver vazio.
+// o obj segue um padrão de chave e valor, então eu separei as chaves num array.
+// eu passei um reduce nesse array com um acomulador e um valor do array que é uma chave.
+// no acomulador eu atribui o numero de vezes que a chave do obj que eu recebi tinha.
+// vezes o valor da chave do objeto price no data tem.
+// tenho certeza absoluto que consigo explicar esse código, certeza eu nunca chegaria nessa solução
+// uma vez que eu nem sabia a sintaxe para acessar o valor de um objeto.
 
 function entryCalculator(entrants) {
   if (!entrants) return 0;
   if (Object.values(entrants).length === 0) return 0;
-  const nivels = Object.keys(entrants);
-  const resultado = nivels.reduce((acc, entrant) =>
+  return Object.keys(entrants).reduce((acc, entrant) =>
   acc + (data.prices[entrant] * entrants[entrant]), 0);
-  return resultado;
 }
-
-// console.log(entryCalculator(entrants))
 
 function animalMap(options) {
   // seu código aqui
