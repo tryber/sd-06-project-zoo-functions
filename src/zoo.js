@@ -48,7 +48,7 @@ function createEmployee(personalInfo, associatedWith) {
   const newArray = Object.assign(personalInfo, associatedWith);
   // object.assign para atribuir objetos dentro de um array
   return newArray;
-};
+}
 
 function isManager(id) {
   const areYouAManager = employees
@@ -126,26 +126,23 @@ function schedule(dayName) {
   // codigo baseado na resolução do fechamento
 }
 
-
 function oldestFromFirstSpecies(id) {
   const designatedEmployees = employees
   .filter(idResponsable => id.includes(idResponsable.id))
   .find(firstAnimal => firstAnimal.responsibleFor[0]).responsibleFor[0];
   const idOfTheAnimal = animals
-  .find(animalsId =>animalsId.id === designatedEmployees)
+  .find(animalsId => animalsId.id === designatedEmployees)
   .residents.sort(function (first, second) {
-        if (first.age > second.age) {
-          return 1;
-        }
-        if (first.age < second.age) {
-          return -1;
-        }
-        return 0;
-      }).pop()
-      return(Object.values(idOfTheAnimal))
+    if (first.age > second.age) {
+      return 1;
+    }
+    if (first.age < second.age) {
+      return -1;
+    }
+    return 0;
+  }).pop();
+  return (Object.values(idOfTheAnimal));
 }
-
-//  console.log(oldestFromFirstSpecies('4b40a139-d4dc-4f09-822d-ec25e819a5ad'))
 
 function increasePrices(percentage) {
 //   const perc = percentage / 100;
@@ -153,7 +150,6 @@ function increasePrices(percentage) {
 //   prices.Senior = Math.round((prices.Senior + (prices.Senior * perc)) * 100) / 100;
 //   prices.Child = Math.round((prices.Child + (prices.Child * perc)) * 100) / 100;
  }
-
 
 function employeeCoverage(idOrName) {
   // seu código aqui
