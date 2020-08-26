@@ -11,8 +11,9 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals } = data;
-// const { animals, employees } = data;
+// const { animals } = data;
+// const { employees } = data;
+const { animals, employees } = data;
 // const { animals, employees, prices } = data;
 // const { animals, employees, prices, hours } = data;
 
@@ -46,8 +47,8 @@ function animalsByIds(...ids) { // rest paramenter returns []
 // desta espécie possuem a idade mínima especificada
 function animalsOlderThan(animal, age) {
   return animals
-  .find(element => element.name === animal).residents
-  .every(currentValue => currentValue.age >= age);
+  .find(element => element.name === animal).residents // filtrar apenas 1
+  .every(currentValue => currentValue.age >= age); // todos mais velhos que
 }
 
 // console.log(animalsOlderThan('otters', 7));
@@ -55,9 +56,22 @@ function animalsOlderThan(animal, age) {
 
 // -----------------------------------------------------------------------
 
+// Sem parâmetros, retorna um objeto vazio
+// Quando provido o primeiro nome do funcionário, retorna {} do funcionário
+// Quando provido o último nome do funcionário, retorna {} do funcionário
+
 function employeeByName(employeeName) {
-  // seu código aqui
+  if (employeeName === undefined) {
+    return {};
+  }
+
+  return employees
+  .find(element => element.firstName === employeeName || element.lastName === employeeName);
 }
+
+// console.log(employeeByName());
+// console.log(employeeByName('Emery'));
+// console.log(employeeByName('Wishart'));
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
