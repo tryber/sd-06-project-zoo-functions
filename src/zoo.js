@@ -119,17 +119,19 @@ function schedule(dayName) {
 
 // requisito 11
 function oldestFromFirstSpecies(id) {
-  /*  const employee = employees.find(empregado => empregado.id === id)
-  .find(emp => emp.responsibleFor > 0);
-  const species = employee.filter(animal => animal.id === employee);
-  let maior = 0;
-  const oldestSpecies = species.map(specie => {
-    if (specie.residents.age > maior) {
-      maior = specie.residents.age;
-      return specie.residents;
+  const employee = employees.find(empregado => empregado.id === id);
+  const animalId = employee.responsibleFor[0];
+  const specie = animals.find(animal => animal.id === animalId);
+
+  let result = [];
+  let biggerAge = 0;
+  specie.residents.forEach((resident) => {
+    if (resident.age > biggerAge) {
+      biggerAge = resident.age;
+      result = [resident.name, resident.sex, resident.age];
     }
   });
-  return oldestSpecies;*/
+  return result;
 }
 
 
