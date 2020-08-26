@@ -21,6 +21,7 @@ function animalsByIds(...ids) {
   }
   return ids.map(i => data.animals.find(animal => animal.id === i));
 }
+console.log(animalsByIds())
 
 function animalsOlderThan(animal, age) {
   const animalNA = data.animals.find(i => i.name === animal).residents.every(p => p.age >= age);
@@ -132,9 +133,22 @@ function animalMap(options) {
   return retrieveAnimals(locations, sorted, sex);
 }
 
-
 function schedule(dayName) {
-  // seu código aqui
+  const agendaDiaria = {};
+  const agendaZoo = {
+    Tuesday: 'Open from 8am until 6pm',
+    Wednesday: 'Open from 8am until 6pm',
+    Thursday: 'Open from 10am until 8pm',
+    Friday: 'Open from 10am until 8pm',
+    Saturday: 'Open from 8am until 10pm',
+    Sunday: 'Open from 8am until 8pm',
+    Monday: 'CLOSED',
+  };
+  if (!dayName) {
+    return agendaZoo;
+  } 
+  agendaDiaria[dayName] = agenda[dayName];
+  return agendaDiaria;
 }
 
 function oldestFromFirstSpecies(id) {
