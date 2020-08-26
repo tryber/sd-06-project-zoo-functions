@@ -162,19 +162,6 @@ function employeeCoverage(idOrName) {
   return coverage;
 }
 
-console.log(employeeCoverage('Nelson'));
-
-// const expected = {
-//   'Nigel Nelson': ['lions', 'tigers'],
-//   'Burl Bethea': ['lions', 'tigers', 'bears', 'penguins'],
-//   'Ola Orloff': ['otters', 'frogs', 'snakes', 'elephants'],
-//   'Wilburn Wishart': ['snakes', 'elephants'],
-//   'Stephanie Strauss': ['giraffes', 'otters'],
-//   'Sharonda Spry': ['otters', 'frogs'],
-//   'Ardith Azevado': ['tigers', 'bears'],
-//   'Emery Elser': ['elephants', 'bears', 'lions']
-// };
-
 module.exports = {
   entryCalculator,
   schedule,
