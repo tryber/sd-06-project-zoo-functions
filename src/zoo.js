@@ -51,14 +51,17 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 function animalCount(species) {
   if (species === undefined) {
-    return data.animals.map(animal =>
-      `${animal.name}: ${animal.residents.length},`);
+    return data.animals.map(animal => ({
+      animal: animal.name,
+      quantidade: animal.residents.length
+    }));
   }
       // RETORNA UM ARRAY E NÃO UM OBJETO
-  return data.animals.find(animal => animal.residents.length);
+  return data.animals.find(animal => animal.name === species)
+    .residents.length;
 }
 
-// console.log(animalCount('lions'));
+console.log(animalCount());
 
 function entryCalculator(entrants) {
   // seu código aqui
