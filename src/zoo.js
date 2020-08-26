@@ -39,9 +39,10 @@ function createEmployee(personalInfo, associatedWith) {
   return { ...personalInfo, ...associatedWith };
 }
 
-// get the manager ids and filters it
 function isManager(id) {
-  return data.employees.flatMap(employee => employee.managers).some(item => item === id);
+  // get all the managers ids and compares them with parameter
+  return data.employees.flatMap(employee => employee.managers)
+  .some(manager => manager === id);
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
