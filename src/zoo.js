@@ -10,10 +10,6 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-// const { animals, employees } = require('./data');
-// const { employees } = require('./data');
-// const { employees } = require('./data');
-//  const { animals } = require('./data');
 
 function animalsByIds(...ids) {
   // seu código aqui
@@ -51,12 +47,15 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 function animalCount(species) {
   // seu código aqui
+//  if (!species)
+//  data.animals.filter(name1 => name1.name )
+//   .map(name2 => name2.popularity);
 }
 
 function entryCalculator(entrants) {
   // seu código aqui
-//   if (!entrants) return 0;
-//   if (entrants !== {}) return 0;
+//  if (!entrants) return 0;
+//  if (entrants !== {}) return 0;
 }
 
 function animalMap(options) {
@@ -96,19 +95,29 @@ function employeeCoverage(idOrName) {
   // com nome retorna somente um animal
   // com sobrenome retorna somente um animal
   // resolução no plantão
-  // const result = {};
-  // if (!idOrName) {
-  //   data.employees.forEach(employee => {
-  //     result [`${employee.firstName} ${employee.lastName}`] = '';
-  //     employee.responsibleFor.forEach(animalIdResponsibleFor => {
-  //       const foundAnimalName = data.animals.find(animal =>
-  //          animal.id === animalIdResponsibleFor).name;
-  //       result [`${employee.firstName} ${employee.lastName}`].push(foundAnimalName);
-  //     });
-  //   });
-  // }
-  // return result;
+  const result = {};
+  let filteredEmployees;
+  if (!idOrName) {
+    filteredEmployees = data.employees;
+  } else {
+    filteredEmployees = data.employees.filter(
+      employee => employee.id === idOrName ||
+      employee.firstName === idOrName ||
+      employee.lastName === idOrName,
+    );
+  }
+  filteredEmployees.forEach((employee) => { // em vez de replicar trocou o data.emp. por filtered
+    const mappedAnimals = employee.responsibleFor.map(
+      (animalIdResponsibleFor) => {
+        const foundAnimalName = data.animals.find(
+          animal => animal.id === animalIdResponsibleFor).name;
+        return foundAnimalName;
+      });
+    result[`${employee.firstName} ${employee.lastName}`] = mappedAnimals;
+  });
+  return result;
 }
+
 
 module.exports = {
   entryCalculator,
