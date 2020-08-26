@@ -153,8 +153,8 @@ function increasePrices(percentage) {
   const newPricesObject = {};
   const personPriceArray = Object.entries(data.prices);
   personPriceArray.map((price) => {
-    //  Solucoe encontrada no grupo de watsap para conseguir o numero esperado e que 
-    //  passase no codeclimate 
+  //  Solucoe encontrada no grupo de watsap para conseguir o numero esperado e que
+  //  passase no codeclimate
     price[1] += price[1] * (percentage / 100);
     price[1] *= 100;
     price[1] = Math.round(price[1]);
