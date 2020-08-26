@@ -10,7 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { animals, employees, prices } = require('./data');
+const { animals, employees, prices, hours } = require('./data');
 
 /* 1- Implemente a função animalsByIds: Caso receba nenhum parâmetro, necessário retornar
 um array vazio. Ao receber como parâmetro um único id, retorna os animais com este id.
@@ -131,32 +131,32 @@ function animalMap(options) {
 Sem parâmetros, retorna um cronograma legível para humanos
 Se um único dia for passado, retorna somente este dia em um formato legível para humanos */
 function schedule(dayName) {
-//   // seu código aqui
-//   function lock (hora) {
-//     if (hora > 12) {
-//      return hora -= 12;
-//     }
-//   };
-//   console.log(lock(hours.Tuesday.close))
-//   let allDay = {
-//     'Tuesday': `Open from ${hours.Tuesday.open}am until ${lock(hours.Tuesday.close)}pm`,
-//     'Wednesday': `Open from ${hours.Wednesday.open}am until ${lock(hours.Wednesday.close)}pm`,
-//     'Thursday': `Open from ${hours.Thursday.open}am until ${lock(hours.Thursday.close)}pm`,
-//     'Friday': `Open from ${hours.Friday.open}am until ${lock(hours.Friday.close)}pm`,
-//     'Saturday': `Open from ${hours.Saturday.open}am until ${lock(hours.Saturday.close)}pm`,
-//     'Sunday': `Open from ${hours.Sunday.open}am until ${lock(hours.Sunday.close)}pm`,
-//     'Monday': `CLOSED`
-//   };
-//   let day = `${dayName}: Open from ${hours[dayName].open}am until ${hours[dayName].close}pm`;
-//   if (dayName === 'Monday') {
-//     day = `${dayName}: CLOSED`;
-//     return day;
-//   } else if (!dayName) {
-//     return allDay;
-//   }
-//   return day;
+  // seu código aqui
+  function lock (hora) {
+    if (hora > 12) {
+      // console.log(hora);
+     return hora - 12;
+    } return hora;
+  }
+  let allDay = {
+    'Tuesday': `Open from ${hours.Tuesday.open}am until ${lock(hours.Tuesday.close)}pm`,
+    'Wednesday': `Open from ${hours.Wednesday.open}am until ${lock(hours.Wednesday.close)}pm`,
+    'Thursday': `Open from ${hours.Thursday.open}am until ${lock(hours.Thursday.close)}pm`,
+    'Friday': `Open from ${hours.Friday.open}am until ${lock(hours.Friday.close)}pm`,
+    'Saturday': `Open from ${hours.Saturday.open}am until ${lock(hours.Saturday.close)}pm`,
+    'Sunday': `Open from ${hours.Sunday.open}am until ${lock(hours.Sunday.close)}pm`,
+    'Monday': `CLOSED`
+  };
+  if (dayName == null) { return allDay}
+  var dia = {};
+  dia[dayName] = `Open from ${hours[dayName].open}am until ${lock(hours[dayName].close)}pm`;
+  if (dayName === 'Monday') {
+    dia[dayName] = 'CLOSED';
+    return dia;
+  }
+  return dia;
 }
-// console.log(schedule('Tuesday'))
+// console.log(schedule())
 
 /* 11- Implemente a função oldestFromFirstSpecies:
 Passado o id de um funcionário, encontra a primeira espécie de animal gerenciado
