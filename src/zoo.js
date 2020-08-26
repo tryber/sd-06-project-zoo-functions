@@ -109,52 +109,69 @@ function entryCalculator(entrants = 0) {
 function animalMap(options) {
   // seu código aqui
 }
-
-// function isMonday (element) {
+function schedule(dayName) {
+  // seu código aqui
+  const obj = {};
+  const hora = Object.entries(hours);
+  if (dayName === undefined) {
+    hora.map((dia) => {
+      if (dia.includes('Monday')) {
+        obj.Monday = 'CLOSED';
+        return obj;
+      }
+      return (obj[dia[0]] = `Open from ${dia[1].open}am until ${dia[1].close - 12}pm`);
+    });
+    return obj;
+  }
+  return hora.filter(name => name[0] === dayName).map((dia) => {
+    if (dayName === 'Monday') {
+      obj[dayName] = 'CLOSED';
+      return obj;
+    }
+    obj[dayName] = `Open from ${dia[1].open}am until ${dia[1].close - 12}pm`;
+    return obj;
+  })[0];
+}
+// function schedule(dayName) {
 //   const newObj = {};
-//   if (element.includes('Monday')) {
-//     newObj.Monday = 'CLOSED'
+//   const date = Object.entries(hours);
+//   if (!dayName) {
+//     date.map((element) => {
+//       if (element.includes('Monday')) {
+//         newObj.Monday = 'CLOSED';
+//         return newObj;
+//       }
+//       const day = element[0];
+//       const hour = element[1];
+//       const { open, close } = hour;
+//       newObj[day] = `Open from ${open}am until ${close - 12}pm`;
+//       return newObj;
+//     });
 //     return newObj;
 //   }
+//   date.map((item) => {
+//     if (dayName === 'Monday') {
+//       newObj.Monday = 'CLOSED';
+//       return newObj;
+//     }
+//     const day = item[0];
+//     const hour = item[1];
+//     const { open, close } = hour;
+//     if (day === dayName) {
+//       newObj[day] = `Open from ${open}am until ${close - 12}pm`;
+//       return newObj;
+//     }
+//   });
+//   return newObj;
 // }
-function schedule(dayName) {
-  const newObj = {};
-  const date = Object.entries(hours);
-  if (!dayName) {
-    date.map((element) => {
-      if (element.includes('Monday')) {
-        newObj.Monday = 'CLOSED';
-        return newObj;
-      }
-      const day = element[0];
-      const hour = element[1];
-      const { open, close } = hour;
-      newObj[day] = `Open from ${open}am until ${close - 12}pm`;
-      return newObj;
-    });
-    return newObj;
-  }
-  date.map((item) => {
-    if (dayName === 'Monday') {
-      newObj.Monday = 'CLOSED';
-      return newObj;
-    }
-    const day = item[0];
-    const hour = item[1];
-    const { open, close } = hour;
-    if (day === dayName) {
-      newObj[day] = `Open from ${open}am until ${close - 12}pm`;
-      return newObj;
-    }
-  });
-  return newObj;
-}
 
 // console.log(schedule());
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
 }
+
+console.log(oldestFromFirstSpecies())
 
 function increasePrices(percentage) {
   // seu código aqui
