@@ -87,7 +87,8 @@ function retrieveAnimals(locations, sorted, sex) {
       .filter(animal => animal.location === location)
       .map((animal) => {
         const nameKey = animal.name;
-        const nameValues = animal.residents.filter((resident) => {
+        const nameValues = animal.residents
+          .filter((resident) => {
             return (sex !== undefined) ? resident.sex === sex : true;
           })
           .map(resident => resident.name);
