@@ -13,7 +13,6 @@ const data = require('./data');
 const { animals } = require('./data');
 
 function animalsByIds(...ids) {
-  // seu código aqui
   const result = [];
   if (ids === undefined) {
     return [];
@@ -27,13 +26,11 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
   const myAnimal = animals.find(species => species.name === animal);
   return myAnimal.residents.every(one => one.age >= 7);
 }
 
 function employeeByName(employeeName) {
-  // seu código aqui
   if (employeeName === undefined || employeeName === '') {
     return {};
   }
@@ -44,14 +41,12 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
   const newEmployee = Object.assign({}, personalInfo, associatedWith);
   // data.employees.push(newEmployee);
   return newEmployee;
 }
 
 function isManager(id) {
-  // seu código aqui
   const myEmployee = data.employees
     .find(employee => employee.id === id);
   console.log(myEmployee.managers);
@@ -63,7 +58,6 @@ function isManager(id) {
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  // seu código aqui
   const newEmployee = {
     id,
     firstName,
@@ -76,7 +70,6 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 
 function animalCount(species) {
-  // seu código aqui
   if (species === undefined || species === '') {
     const myAnimals = {};
     animals.forEach((animal) => {
@@ -91,7 +84,6 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
   if (entrants === undefined || entrants === '' || Object.keys(entrants).length === 0) {
     return 0;
   }
@@ -223,12 +215,34 @@ function increasePrices(percentage) {
     data.prices[age] = myNum;
   });
 }
-// increasePrices(50);
-// increasePrices(30);
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  let result = {};
+  const names = data.employees.map(employee => `${employee.firstName} ${employee.lastName}`);
+
+  for (let i = 0; i < names.length; i += 1) {
+    // console.log(names[i], data.employees[i]); o ID dos animais de cada nome    
+    const myAnimalIDs = data.employees[i].responsibleFor; // array de IDs
+    animalsArray = []
+    myAnimalIDs.forEach((id) => {
+      const myAnimal = animals.find(animal => animal.id === id);
+      animalsArray.push(myAnimal.name);
+    })
+    result[names[i]] = animalsArray;
+  }
+
+  if (idOrName) {
+    myEmployee = data.employees.find(employee => employee.id === idOrName
+      || employee.firstName === idOrName
+      || employee.lastName === idOrName);
+    myEmployeeName = `${myEmployee.firstName} ${myEmployee.lastName}`
+    resultWithName = { [myEmployeeName]: result[myEmployeeName], }
+    return resultWithName
+  }
+  return result;
 }
+
+// employeeCoverage('Azevado');
 
 module.exports = {
   entryCalculator,
