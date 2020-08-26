@@ -171,7 +171,7 @@ function oldestFromFirstSpecies(id) {
   // seu código aqui
 }
 
-console.log(oldestFromFirstSpecies())
+console.log(oldestFromFirstSpecies());
 
 function increasePrices(percentage) {
   // seu código aqui
