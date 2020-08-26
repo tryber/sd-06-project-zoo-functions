@@ -14,6 +14,7 @@ const {
   animals,
   employees,
   prices,
+  hours,
 } = require('./data');
 
 function animalsByIds(...ids) {
@@ -88,7 +89,21 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  // dsdsdsd
+  const obj = {};
+  Object.keys(hours).forEach((day) => {
+    if (day === 'Monday') {
+      obj[day] = 'CLOSED'
+    } else {
+      const openHr = hours[day].open;
+      const closeHr = hours[day].close - 12;
+      obj[day] = `Open from ${openHr}am until ${closeHr}pm`
+    }
+  });
+  if (!dayName) {
+    return obj;
+  }
+  return { [dayName]: obj[dayName] };
+
 }
 
 function oldestFromFirstSpecies(id) {
