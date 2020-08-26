@@ -10,9 +10,9 @@ eslint no-unused-vars: [
 */
 const data = require('./data');
 
-const { prices, hours } = data;
+const { prices, hours } = data
 
-function animalsByIds(...ids) {
+function animalsByIds(ids) {
   return data.animals.filter(species => ids.includes(species.id));
 }
 
@@ -40,9 +40,11 @@ function isManager(id) {
   return (data.employees.some(employee => employee.managers.includes(id)));
 }
 
-function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+  function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   const newEmp = { id, firstName, lastName, managers, responsibleFor };
   return (data.employees.push(newEmp));
+  }
 }
 
 function animalCount(species) {
@@ -140,7 +142,6 @@ function increasePrices(percentage) {
     data.prices[entries] = (Math.round((100 * data.prices[entries] * percent)) / 100);
   });
 }
-
 
 function employeeCoverage(idOrName) {
   // seu código aqui
