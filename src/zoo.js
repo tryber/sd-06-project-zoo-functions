@@ -132,8 +132,48 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  const coverage = {};
+
+  const listOfAnimals = (employee) => {
+    const listAnimals = [];
+    const pushAnimalName = (eachId) => {
+      animals.forEach((animal) => {
+        if (animal.id === eachId) listAnimals.push(animal.name);
+      });
+    };
+    employee.responsibleFor.forEach(eachId => pushAnimalName(eachId));
+    return listAnimals;
+  };
+
+  const addFullName = (employee) => {
+    const fullName = `${employee.firstName} ${employee.lastName}`;
+    coverage[fullName] = listOfAnimals(employee);
+  };
+
+  if (!idOrName) {
+    employees.forEach(employee => addFullName(employee));
+    return coverage;
+  }
+
+  employees.forEach((employee) => {
+    const { id, firstName, lastName } = employee;
+    if (id === idOrName || firstName === idOrName || lastName === idOrName) addFullName(employee);
+  });
+  return coverage;
 }
+
+console.log(employeeCoverage('Nelson'));
+
+// const expected = {
+//   'Nigel Nelson': ['lions', 'tigers'],
+//   'Burl Bethea': ['lions', 'tigers', 'bears', 'penguins'],
+//   'Ola Orloff': ['otters', 'frogs', 'snakes', 'elephants'],
+//   'Wilburn Wishart': ['snakes', 'elephants'],
+//   'Stephanie Strauss': ['giraffes', 'otters'],
+//   'Sharonda Spry': ['otters', 'frogs'],
+//   'Ardith Azevado': ['tigers', 'bears'],
+//   'Emery Elser': ['elephants', 'bears', 'lions']
+// };
 
 module.exports = {
   entryCalculator,
