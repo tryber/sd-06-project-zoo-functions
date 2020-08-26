@@ -11,15 +11,19 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-// destructuring to verify ids, spread to receive n number of arrays
+// rest because can be more than one parameter
 function animalsByIds(...ids) {
+  // destructure the element, so it's easier to compare
   return data.animals.filter(({ id }, index) => id === ids[index]);
 }
 
-// filter for the animals, MAGIC flatMap to access residents and every to test age
 function animalsOlderThan(animal, age) {
-  return data.animals.filter(item => item.name === animal).flatMap(item => item.residents)
-  .every(item => item.age > age);
+  // filter the animals by name
+  return data.animals.filter(({ name }) => name === animal)
+  // flatmap to bring up the array
+  .flatMap(animal => animal.residents)
+  // check if all of them are older than the parameter
+  .every(resident => resident.age > age);
 }
 
 function employeeByName(employeeName) {
