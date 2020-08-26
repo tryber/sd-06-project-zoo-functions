@@ -13,12 +13,10 @@ const data = require('./data');
 const { animals } = require('./data');
 
 function animalsByIds(...ids) {
-  // seu código aqui
   return animals.filter((elem, i) => elem.id === ids[i]);
 }
 
 function animalsOlderThan(animal, ages) {
-  // seu código aqui
   const datas = animals
     .filter(elem => elem.name === animal)
     .flatMap(elem => elem.residents)
@@ -27,7 +25,6 @@ function animalsOlderThan(animal, ages) {
 }
 
 function employeeByName(employeeName) {
-  // seu código aqui
   if (employeeName === undefined) {
     return {};
   }
@@ -38,17 +35,14 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
   return { ...personalInfo, ...associatedWith };
 }
 
 function isManager(id) {
-  // seu código aqui
   return data.employees.some((elem, i) => elem.managers[i] === id);
 }
 
 function addEmployee(...info) {
-  // seu código aqui
   const newEmp = {
     id: info[0],
     firstName: info[1],
@@ -60,7 +54,6 @@ function addEmployee(...info) {
 }
 
 function animalCount(species) {
-  // seu código aqui
   if (!species) {
     const obj = {};
     for (let i = 0; i < animals.length; i += 1) {
@@ -136,34 +129,33 @@ const convert = (time) => {
 
 function schedule(dayName) {
   const obj = {};
-  if (!dayName) {
-    Object.keys(data.hours).forEach((days, i) => {
-      const { open, close } = Object.values(data.hours)[i];
-      if (days === 'Monday') {
-        obj[days] = 'CLOSED';
-        return obj;
-      }
-      obj[days] = `Open from ${convert(open)} until ${convert(close)}`;
-      return obj;
-    });
-  }
-  if (Object.keys(data.hours).includes(dayName)) {
-    const day = Object.entries(data.hours).filter(elem => elem[0] === dayName);
-    const { open, close } = day[0][1];
-    const name = day[0][0];
-    if (dayName === 'Monday') {
-      obj[name] = 'CLOSED';
-      return obj;
+  Object.keys(data.hours).forEach((days, i) => {
+    const { open, close } = Object.values(data.hours)[i];
+    if (days === 'Monday') {
+      obj[days] = 'CLOSED';
+    } else {
+    obj[days] = `Open from ${convert(open)} until ${convert(close)}`;
     }
-    obj[name] = `Open from ${convert(open)} until ${convert(close)}`;
-  }
-  return obj;
+  });
+  
+  if (!dayName) return obj;
+  return { [dayName] : obj[dayName] };
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const idAnimal = data.employees
+    .filter(elem => elem.id === id)
+    .map(elem => elem.responsibleFor[0]);
+  const info = animals
+    .filter(elem => elem.id === idAnimal[0])
+    .map(animal => animal.residents);
+  const older = info[0]
+    .map(infos => infos.age)
+    .reduce((acc, curr) => acc > curr ? acc : curr);
+  const animal = info[0].find(elem => elem.age === older);
+  return Object.values(animal);
 }
-
+//console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
 function increasePrices(percentage) {
   // seu código aqui
 }
