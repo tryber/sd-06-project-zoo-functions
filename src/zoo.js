@@ -20,20 +20,22 @@ function animalsByIds(...ids) {
       if (element === id) {
         result.push(animal);
       }
-    })
+    });
     return result;
   });
   return result;
 }
 
 function animalsOlderThan(animal, ages) {
-  const filterType = animals.filter(({ name }) => name === animal)
-  .map(({ residents }) => residents.every(({ age }) => age > ages));
+  const filterType = animals
+    .filter(({ name }) => name === animal)
+    .map(({ residents }) => residents
+      .every(({ age }) => age > ages));
   return filterType[0];
 }
 
 function employeeByName(employeeName) {
-  if (!employeeName){
+  if (!employeeName) {
     return {};
   }
   return employees.find((employee) => employeeName === employee.firstName || employeeName === employee.lastName);
@@ -130,7 +132,8 @@ function schedule(dayName) {
       const day = element[0];
       const hour = element[1];
       const { open, close } = hour;
-      return newObj[day] = `Open from ${open}am until ${close - 12}pm`;
+      newObj[day] = `Open from ${open}am until ${close - 12}pm`;
+      return newObj;
     });
     return newObj;
   }
@@ -139,12 +142,12 @@ function schedule(dayName) {
       newObj.Monday = 'CLOSED';
       return newObj;
     }
-    
     const day = item[0];
     const hour = item[1];
     const { open, close } = hour;
     if (day === dayName) {
-      return newObj[day] = `Open from ${open}am until ${close - 12}pm`;
+      newObj[day] = `Open from ${open}am until ${close - 12}pm`;
+      return newObj;
     }
   });
   return newObj;
