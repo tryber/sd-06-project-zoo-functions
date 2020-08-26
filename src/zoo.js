@@ -208,11 +208,24 @@ function oldestFromFirstSpecies(id) {
   return Object.values(oldestAnimal);
 }
 
-// oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992');
-
 function increasePrices(percentage) {
   // seu código aqui
+  const ages = Object.keys(data.prices);
+  const percent = percentage / 100;
+
+  ages.forEach(age => {
+    let myNum = data.prices[age];
+    let increase = myNum * percent;
+    myNum += increase;
+    // solução matemágica abaixo encontrada numa thread do slack, da turma 1!
+    myNum = Math.round(myNum * 100) / 100;
+
+    data.prices[age] = myNum;
+  });
+  console.log(data.prices)
 }
+// increasePrices(50);
+// increasePrices(30);
 
 function employeeCoverage(idOrName) {
   // seu código aqui
