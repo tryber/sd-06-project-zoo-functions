@@ -87,7 +87,7 @@ function schedule(dayName) {
     return scheduleFormated;
   }
 
-  return { [dayName]: schedule[dayName] };
+  return { [dayName]: scheduleFormated[dayName] };
 }
 
 function oldestFromFirstSpecies(id) {
