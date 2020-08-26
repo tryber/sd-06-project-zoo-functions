@@ -160,25 +160,22 @@ function employeeCoverage(idOrName) {
   // seu código aqui
   const result = {};
   let filteredEmployees;
-  if( !idOrName ) {
-    filteredEmployees = employees
+  if (!idOrName) {
+    filteredEmployees = employees;
   } else {
-    filteredEmployees = employees.filter(employee => employee.id === idOrName || employee.firstName === idOrName || employee.lastName === idOrName)
+    filteredEmployees = employees.filter(employee => 
+      employee.id === idOrName || employee.firstName === idOrName || employee.lastName === idOrName);
   }
-  
-    filteredEmployees.forEach(employee => {
+  filteredEmployees.forEach((employee) => {
       result[`${employee.firstName} ${employee.lastName}`] = [];
 
-      employee.responsibleFor.forEach(animalIdResponsibleFor => {
+      employee.responsibleFor.forEach((animalIdResponsibleFor) => {
         const foundAnimal = animals.find(animal => animal.id === animalIdResponsibleFor).name;
         result[`${employee.firstName} ${employee.lastName}`].push(foundAnimal);
-      })
-    })
-    return result;
-  
+      });
+    });
+  return result;
 }
-
- console.log(employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad'))
 
 module.exports = {
   entryCalculator,
