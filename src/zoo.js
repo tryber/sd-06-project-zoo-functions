@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees, prices } = data;
+const { animals, employees, prices, hours } = data;
 
 function animalsByIds(...ids) {
   return animals.filter(animal => ids.find(thoseWhich => thoseWhich === animal.id));
@@ -92,31 +92,27 @@ function animalMap(options) {
   // seu código aqui
 }
 
-function wholeSchedule() {
+function schedule(dayName) {
   const daysKey = Object.keys(hours);
   const openClose = Object.values(hours);
   const firstObject = openClose.reduce((acc, { open, close }, index) => {
     if (daysKey[index] !== 'Monday') {
       return Object.assign(acc, {
-        [daysKey[index]]: `Open from ${open}am until ${(close - 12)}pm`,
+        [daysKey[index]]: `Open from ${open}am until ${(close - 12)}pm`
       });
     } else if (daysKey[index] === 'Monday') {
       return Object.assign(acc, {
-        [daysKey[index]]: 'CLOSED',
-      });
-    }
+        [daysKey[index]]: 'CLOSED'
+      })
+    };
   }, {});
-  return firstObject;
-}
-
-function schedule(dayName) {
   if (!dayName) {
-    return wholeSchedule();
+    return firstObject;
   }
-  const firstObject = wholeSchedule();
+
   const secondObject = {
-    [dayName]: firstObject[dayName],
-  };
+    [dayName]: firstObject[dayName]
+  }
   return secondObject;
 }
 
