@@ -49,7 +49,7 @@ function animalCount(species) {
   // https://jrsinclair.com/articles/2019/functional-js-do-more-with-reduce/
   const contandoPrimos = (nome, meuArray) => ({ ...nome,
     [meuArray.name]: meuArray.residents.length });
-  return !species ? data.animals.reduce(contandoPrimos, {}) : 
+  return !species ? data.animals.reduce(contandoPrimos, {}) :
     (data.animals.find(meuArray => meuArray.name === species)
     .residents.length);
 }
