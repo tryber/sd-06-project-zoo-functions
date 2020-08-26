@@ -104,23 +104,17 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  const hours = data.hours;
-  if (dayName && dayName !== 'Monday') {
-    const daySchedule = {};
-    daySchedule[dayName] = `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm`;
-    return daySchedule;
+  const weekDays = Object.keys(data.hours);
+  if (!dayName) {
+    return weekDays.reduce((acc, days) => {
+      const { open, close } = data.hours[days];
+      if (days === 'Monday') return { ...acc, [days]: 'CLOSED' };
+      return { ...acc, [days]: `Open from ${open}am until ${close - 12}pm` };
+    }, {});
   }
-  if (dayName === 'Monday') {
-    const daySchedule = { Monday: 'CLOSED' };
-    return daySchedule;
-  }
-  const weekDay = Object.keys(hours);
-  const humanSchedule = {};
-  for (let i = 0; i <= 6; i += 1) {
-    humanSchedule[weekDay[i]] = `Open from ${hours[weekDay[i]].open}am until ${hours[weekDay[i]].close - 12}pm`;
-  }
-  humanSchedule.Monday = 'CLOSED';
-  return humanSchedule;
+  if (dayName === 'Monday') return { [dayName]: 'CLOSED' };
+  const { open, close } = data.hours[dayName];
+  return { [dayName]: `Open from ${open}am until ${close - 12}pm` };
 }
 
 function oldestFromFirstSpecies(id) {
@@ -140,7 +134,7 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  // Teste
+  // teste
 }
 
 module.exports = {
