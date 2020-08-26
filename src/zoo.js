@@ -148,13 +148,13 @@ function schedule(dayName) {
     'Monday': `CLOSED`
   };
   if (dayName == null) { return allDay}
-  var dia = {};
-  dia[dayName] = `Open from ${hours[dayName].open}am until ${lock(hours[dayName].close)}pm`;
+  let day = {};
+  day[dayName] = `Open from ${hours[dayName].open}am until ${lock(hours[dayName].close)}pm`;
   if (dayName === 'Monday') {
-    dia[dayName] = 'CLOSED';
-    return dia;
+    day[dayName] = 'CLOSED';
+    return day;
   }
-  return dia;
+  return day;
 }
 // console.log(schedule())
 
