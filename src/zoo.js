@@ -182,10 +182,18 @@ function oldestFromFirstSpecies(id) {
 // console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
 
 function increasePrices(percentage) {
-  // seu código aqui
+  let { Adult, Senior, Child } = prices;
+  const adult = (Math.round(Adult * (1 + (percentage / 100)) * 100)) /100;
+  const senior = (Math.round(Senior * (1 + (percentage / 100)) * 100)) /100;
+  const child = (Math.round(Child * (1 + (percentage / 100)) * 100)) /100;
+  prices.Adult = adult;
+  prices.Senior = senior;
+  prices.Child = child;
+  return {Adult: adult, Senior: senior, Child: child};
 }
 
-console.log(increasePrices());
+// console.log(increasePrices(50));
+// console.log(increasePrices(30));
 
 function employeeCoverage(idOrName) {
   // seu código aqui
