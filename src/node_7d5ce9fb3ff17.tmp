@@ -42,8 +42,7 @@ function employeeByName(...employeeName) {
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
-  const newEmployee = (Object.assign({}, personalInfo, associatedWith));
-  return newEmployee;
+  //Cria um novo colaborador a partir de objetos contendo informações pessoais e gerentes e animais gerenciados.
 }
 
 function isManager(id) {
@@ -52,16 +51,8 @@ function isManager(id) {
   .some(manager => manager.id === id && manager.lastName === 'Bethea');
 }
 
-function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
-  const addEmployeeInList = {
-    id,
-    firstName,
-    lastName,
-    managers,
-    responsibleFor,
-  };
-  return employees.push(addEmployeeInList)
 }
 
 function animalCount(species) {
@@ -134,22 +125,28 @@ function schedule(dayName) {
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
-  let localizaFuncionario = employees
-  .find(element => element.id === id);
-  localizaFuncionario = localizaFuncionario.responsibleFor[0];
-  const findFirstSpecie = animals
-  .find(element => element.id === localizaFuncionario);
-  let biggest = 0;
-  let finalResult = '';
-  const arrayOfResidents = findFirstSpecie.residents;
-  arrayOfResidents.forEach((element) => {
-    if (element.age > biggest) {
-      biggest = element.age;
-      finalResult = element;
-    }
-  });
-  return Object.values(finalResult);
+ // Passado o id de um funcionário, encontra a primeira espécie de animal gerenciado pelo funcionário, e retorna um array com nome, sexo e idade do animal mais velho dessa espécie
+ //let findEmployee = [];
+ const findEmployee = [];
+ let result = []
+ employees.forEach((element) =>{
+   if (element.id === id) {
+     result = element.responsibleFor[0]
+   }
+ })
+ //console.log(findAnimal)
+ const findAnimal = animals.find(animal => animal.id === result)
+ const selectAnimalOldest = findAnimal.residents
+ let oldestAnimal = 0
+ for (i = 0; i <selectAnimalOldest.length; i =+ 1 ) {
+   if (selectAnimalOldest[i] > oldestAnimal) {
+     oldestAnimal = selectAnimalOldest
+   }
+ }
+console.log(oldestAnimal)
+ 
 }
+console.log(oldestFromFirstSpecies('4b40a139-d4dc-4f09-822d-ec25e819a5ad'))
 
 function increasePrices(percentage) {
   // seu código aqui
