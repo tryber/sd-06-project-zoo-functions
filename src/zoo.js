@@ -76,7 +76,8 @@ function animalCount(species) {
 // entao eu fui buscar pro uma luz e coletei o conhecimento para concluilo
 // no projeto do henrique rezendo da turma 3, ele é meu amigo.
 // eu vou explicar o código aqui no comentário no entando se caso eu cair
-// em uma entrevista onde eu tenha que explicalo no futuro, é relevante que o comentario seja apagado.
+// em uma entrevista onde eu tenha que explicalo no futuro,
+// é relevante que o comentario seja apagado.
 // a function retorna 0 se nao receber um objeto e 0 se o objeto estiver vazio.
 // o obj segue um padrão de chave e valor, então eu separei as chaves num array.
 // eu passei um reduce nesse array com um acomulador e um valor do array que é uma chave.
@@ -84,6 +85,12 @@ function animalCount(species) {
 // vezes o valor da chave do objeto price no data tem.
 // tenho certeza absoluto que consigo explicar esse código, certeza eu nunca chegaria nessa solução
 // uma vez que eu nem sabia a sintaxe para acessar o valor de um objeto.
+// depois de refletir sobre essa function lembrei
+// que já ate tinha usado a sintaxe de acessar um valor
+// de um objeto, na function anterior, para implementar esse valor a um objeto.
+// nao consegui fazer essa assimilação,
+// por tanto venho atravez deste corrigir meu comentario a respeito
+// disso com a errata de que consolidei firmimente esse atributo.
 
 function entryCalculator(entrants) {
   if (!entrants) return 0;
