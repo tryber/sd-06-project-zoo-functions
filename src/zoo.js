@@ -113,7 +113,7 @@ function schedule(dayName) {
 function oldestFromFirstSpecies(id) {
   const animalsId = employees.find(employee => employee.id === id).responsibleFor[0];
   const { name, sex, age } = animals.filter(species => species.id === animalsId)[0].residents
-  .reduce((acc, cur) => (acc.age > cur.age) ? acc : cur);
+  .reduce((acc, cur) => (acc.age > cur.age ? acc : cur));
   return [name, sex, age];
 }
 function increasePrices(percentage) {
