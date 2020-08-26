@@ -36,12 +36,23 @@ function isManager(id) {
     .some(managerId => managerId === id);
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  return data.employees.push({id, firstName,lastName, managers, responsibleFor});
 }
 
 function animalCount(species) {
-  // seu código aqui
+  let response = {};
+  if (!species) {
+    data.animals.forEach((element) => {
+      const { name, residents } = element;
+      response[name] = residents.length;
+    });
+  } else {
+    response = data.animals
+      .find(element => element.name === species)
+      .residents.length;
+  }
+  return response;
 }
 
 function entryCalculator(entrants) {
