@@ -9,17 +9,17 @@ eslint no-unused-vars: [
 ]
 */
 
-const { employees, animals, prices, hours } = require('./data');
+const { employees, prices, hours } = require('./data');
 const data = require('./data');
 
 function animalsByIds(...ids) {
-  return animals
+  return data.animals
   .filter(animal => animal.id === ids[0])
-  .concat(animals.filter(animal => animal.id === ids[1]));
+  .concat(data.animals.filter(animal => animal.id === ids[1]));
 }
 
 function animalsOlderThan(animalName, age) {
-  return animals
+  return data.animals
   .find((animal => animal.name === animalName)).residents
   .every((animal => animal.age > age));
 }
@@ -46,12 +46,12 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function animalCount(species) {
   let result = {};
   if (!species) {
-    animals.forEach((animal) => {
+    data.animals.forEach((animal) => {
       const { name, residents } = animal;
       result[name] = residents.length;
     });
   } else {
-    result = animals.find(animal => animal.name === species).residents.length;
+    result = data.animals.find(animal => animal.name === species).residents.length;
   }
   return result;
 }
