@@ -44,10 +44,8 @@ function isManager(idNumber) {
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  //adiciona um funcionário no fim da lista
-  //recebe os dados desse funcionário e precisa acrescentar tudo isso no final do array de funcionários
   return data.employees
-    .push({id, firstName, lastName, managers, responsibleFor});
+    .push({ id, firstName, lastName, managers, responsibleFor });
 }
 
 
