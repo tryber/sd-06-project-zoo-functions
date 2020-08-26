@@ -132,8 +132,19 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
  Com o nome de uma espécie de animal, retorna somente a quantidade*/
 
 function animalCount(species) {
-  // seu código aqui
+  if (!species) {
+    const animalObj = {};
+    animals.forEach(element => (animalObj[element.name] = element.residents.length));
+    return animalObj;
+  }
+  const count = animals.find(element => element.name === species);
+  return count.residents.length;
 }
+
+// console.log(animalCount('lions'));
+// console.log(animalCount());
+// console.log('**********Requisito 7**********');
+
 
 function entryCalculator(entrants) {
   // seu código aqui
