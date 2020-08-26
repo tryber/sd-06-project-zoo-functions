@@ -64,6 +64,14 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   // Object.keys -> transformas as keys em um array
+  if (!entrants || Object.keys(entrants).length === 0) {
+    return 0;
+  }
+  // desestruturando o parametro entrants
+  const { Adult = 0, Child = 0, Senior = 0 } = entrants;
+  // multiplica a quantidade de cada ingresso fornecido por entrants, pelo valor
+  const totalPrice = (Adult * 49.99) + (Child * 20.99) + (Senior * 24.99);
+  return totalPrice;
 }
 
 function animalMap(options) {
@@ -109,7 +117,10 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  return Object.keys(data.prices)
+  .forEach((element) => {
+    data.prices[element] = (Math.round(element * (1 + (percentage / 100)) * 100) / 100);
+  });
 }
 
 function employeeCoverage(idOrName) {
