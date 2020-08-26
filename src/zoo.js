@@ -107,7 +107,7 @@ function entryCalculator(entrants) {
   // seu código aqui
   let result = 0;
   if ((!entrants) || (entrants === undefined)) {
-  return result;
+    return result;
   }
   Object.keys(entrants).forEach((vAtual, index) => {
     result += prices[vAtual] * Object.values(entrants)[index];
