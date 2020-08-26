@@ -11,18 +11,18 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { employees, animals, hours } = require('./data');
+const { employees, animals, hours, prices } = require('./data');
 
 function animalsByIds(...ids) {
   // seu código aqui
   return ids.reduce((total, id) =>
-    total.concat(data.animals.filter(animal => animal.id === id))
+    total.concat(animals.filter(animal => animal.id === id))
   , []);
 }
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
-  return data.animals.find(obgAnimal => animal === obgAnimal.name)
+  return animals.find(obgAnimal => animal === obgAnimal.name)
   .residents.every(animalResident => animalResident.age >= age);
 }
 
@@ -56,19 +56,19 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function animalCount(species) {
   // seu código aqui
   if (!species) {
-    return data.animals.reduce((total, specie) =>
+    return animals.reduce((total, specie) =>
     ({ ...total, [specie.name]: specie.residents.length }), {});
   }
-  return data.animals.find(specie => specie.name === species).residents.length;
+  return animals.find(specie => specie.name === species).residents.length;
 }
 // console.log(animalCount());
 
 function entryCalculator(entrants = {}) {
   // seu código aqui
   let { Adult, Child, Senior } = entrants;
-  const priceAdult = data.prices.Adult;
-  const priceChild = data.prices.Child;
-  const priceSenior = data.prices.Senior;
+  const priceAdult = prices.Adult;
+  const priceChild = prices.Child;
+  const priceSenior = prices.Senior;
   if (!Adult) { Adult = 0; }
   if (!Child) { Child = 0; }
   if (!Senior) { Senior = 0; }
@@ -108,7 +108,7 @@ function schedule(dayName) {
   let week = [];
   const exit = {};
   if (!dayName) {
-    week = ['Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Monday'];
+    week = Object.keys(hours);
   } else {
     week.push(dayName);
   }
@@ -139,7 +139,7 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   // seu código aqui
-  const arrayAgeRange = Object.keys(data.prices);
+  const arrayAgeRange = Object.keys(prices);
   arrayAgeRange.forEach((ageRange) => {
     data.prices[ageRange] = Math.round((data.prices[ageRange] *
     ((percentage / 100) + 1)) * 100) / 100;
