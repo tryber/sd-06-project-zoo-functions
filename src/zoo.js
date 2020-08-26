@@ -23,14 +23,11 @@ function animalsOlderThan(animal, age) {
 }
 
 function employeeByName(employeeName) {
-  let employee = {};
-
-  // filter the employee, returns the object within the array or the empty obj
-  // returns only the first, gotta check this later, too specific
-  const employeeObject = data.employees
-  .filter(({ firstName, lastName }) => (firstName === employeeName || lastName === employeeName));
-  if (employeeObject.length !== 0) { employee = employeeObject[0]; }
-  return employee;
+  // return empty object if no parameters are passed
+  if (!employeeName) { return {} };
+  // find by name and return the object
+  return data.employees
+  .find(({ firstName, lastName }) => firstName === employeeName || lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
