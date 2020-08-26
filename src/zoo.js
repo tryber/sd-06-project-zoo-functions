@@ -139,8 +139,8 @@ function schedule(dayName) {
     if (day === 'Monday') {
       openingHours[day] = 'CLOSED';
     } else {
-      const dayOpen = data.hours[day].open;
-      const dayClose = data.hours[day].close - 12;
+      const dayOpen = hours[day].open;
+      const dayClose = hours[day].close - 12;
       openingHours[day] = `Open from ${dayOpen}am until ${dayClose}pm`;
     }
   });
