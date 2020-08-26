@@ -7,12 +7,12 @@ eslint no-unused-vars: [
     "varsIgnorePattern": "data"
   }
 ]
-*///////////
+*/
 
 const data = require('./data');
 
-function animalsByIds(ids) {
-  // seu código aqui
+function animalsByIds(...ids) {
+  return data.animals.filter(element => ids.includes(element.id));  
 }
 
 function animalsOlderThan(animal, age) {
