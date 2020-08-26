@@ -21,7 +21,6 @@ function animalsByIds(...ids) {
   }
   return ids.map(i => data.animals.find(animal => animal.id === i));
 }
-console.log(animalsByIds())
 
 function animalsOlderThan(animal, age) {
   const animalNA = data.animals.find(i => i.name === animal).residents.every(p => p.age >= age);
@@ -146,8 +145,8 @@ function schedule(dayName) {
   };
   if (!dayName) {
     return agendaZoo;
-  } 
-  agendaDiaria[dayName] = agenda[dayName];
+  }
+  agendaDiaria[dayName] = agendaZoo[dayName];
   return agendaDiaria;
 }
 
