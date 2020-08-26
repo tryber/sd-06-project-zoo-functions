@@ -144,7 +144,7 @@ function schedule(dayName) {
     'Friday': `Open from ${hours.Friday.open}am until ${lock(hours.Friday.close)}pm`,
     'Saturday': `Open from ${hours.Saturday.open}am until ${lock(hours.Saturday.close)}pm`,
     'Sunday': `Open from ${hours.Sunday.open}am until ${lock(hours.Sunday.close)}pm`,
-    'Monday': `CLOSED`,
+    'Monday': 'CLOSED',
   };
   if (dayName == null) { return allDay; }
   const day = {};
