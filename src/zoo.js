@@ -168,7 +168,6 @@ function schedule(dayName) {
 // console.log(schedule());
 
 function oldestFromFirstSpecies(id) {
-  
   const result = employees.filter(element => element.id === id)[0].responsibleFor;
   const allAnimals = animals.find(animal => animal.id === result[0]).residents
   .reduce((acc, curr) => {
@@ -176,7 +175,7 @@ function oldestFromFirstSpecies(id) {
       return curr;
     }
     return acc; // preciso retornar acc p/ no segundo loop ter valor
-  })
+  });
   return [allAnimals.name, allAnimals.sex, allAnimals.age];
 }
 
@@ -185,6 +184,8 @@ function oldestFromFirstSpecies(id) {
 function increasePrices(percentage) {
   // seu código aqui
 }
+
+console.log(increasePrices());
 
 function employeeCoverage(idOrName) {
   // seu código aqui
