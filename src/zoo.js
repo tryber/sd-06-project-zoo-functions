@@ -62,9 +62,56 @@ function entryCalculator(entrants) {
   const { Adult = 0, Child = 0, Senior = 0 } = entrants;
   return (Adult * prices.Adult) + (Child * prices.Child) + (Senior * prices.Senior);
 }
+//Requisito abaixo foi aplicado no plantão do requisito 9 dia 25/08 pelo Professor Oliva.
+function retrieveAnimalsPerLocation(locations) {
+  const animalsPerLocation = {};
+
+  locations.forEach((location) => {
+    const animals = data.animals
+      .filter(animal => animal.location === location)
+      .map(animal => animal.name);
+
+      if (animals.length !== 0) animalsPerLocation[location] = animals;
+  });
+
+  return animalsPerLocation;
+}
+
+function retrieveAnimals(locations, sorted, sex) {
+  const animalsPerLocationWithName = {};
+
+  locations.forEach((location) => {
+    const animals = data.animals
+      .filter(animal => animal.location === location)
+      .map(animal => {
+        const nameKey = animal.name;
+        const nameValues = animal.residents
+        .filter(resident => {
+          const isFilteringSex = sex !== undefined;
+          return isFilteringSex ? resident.sex === sex : true;
+        })
+        .map(resident => resident.name);
+
+        if(sorted) nameValues.sort();
+
+        return { [nameKey]: nameValues };
+      });
+
+      animalsPerLocationWithName[location] = animals;
+  });
+
+  return animalsPerLocationWithName;
+}
 
 function animalMap(options) {
-  // seu código aqui
+  const locations = ['NE', 'NW', 'SE', 'SW'];
+  if (!options) return retrieveAnimalsPerLocation(locations);
+
+  const { includeNames, sorted, sex } = options;
+
+  if (!includeNames) return retrieveAnimalsPerLocation(locations);
+
+  return retrieveAnimals(locations, sorted, sex);
 }
 
 function schedule(dayName) {
