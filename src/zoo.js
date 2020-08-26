@@ -94,9 +94,49 @@ function entryCalculator(entrants = {}) {
   return total;
 }
 
-function animalMap(options) {
-  // seu código aqui
+function retrieveAnimalsPerLocation(locations) {
+  const animalsPerLocation = {};
+
+  locations.forEach((location) => {
+    const animals = data.animals
+      .filter(animal => animal.location === location)
+      .map(animal => animal.name);
+      
+    if (animals.length !== 0) animalsPerLocation[location] = animals;
+  });
+
+  return animalsPerLocation;
 }
+
+function retrieveAnimalsByLocationWithName (locations) {
+  const animalsPerLocationWithName = {};
+
+  locations.forEach((location) => {
+    const animals = data.animals
+      .filter(animal => animal.location === location)
+      .map((animal) => {
+        const nameKey = animal.name;
+        const nameValues = animal.residents.map(resident => resident.name);
+      
+      return { [nameKey]: nameValues}
+      });
+    animalsPerLocationWithName [location] = animals; 
+  })
+
+  return retrieveAnimalsByLocationWithName;
+}
+
+function animalMap(options) {
+  const locations = ['NE', 'NW', 'SE', 'SW'];
+
+  if (!options) return retrieveAnimalsPerLocation(locations)
+
+  const includeNames = options.includeNames;
+
+  if (includeNames) return retrieveAnimalsByLocationWithName(locations)
+}
+
+console.log(animalMap())
 
 const getScheduleUndefined = () => {
   const daysOfTheWeek = ['Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
@@ -127,8 +167,6 @@ function schedule(dayName) {
   return result;
 }
 
-console.log(schedule('Saturday'));
-
 function oldestFromFirstSpecies(id) {
   const animalId = employees.find(employee => employee.id === id).responsibleFor[0];
   const animal = animals.find(specie => specie.id === animalId).residents;
@@ -149,8 +187,8 @@ function increasePrices(percentage) {
   prices.Senior = Math.round((prices.Senior + (prices.Senior * percentageDivided)) * 100) / 100;
   prices.Child = Math.round((prices.Child + (prices.Child * percentageDivided)) * 100) / 100;
 }
-const result = {};
-const animalsEmployee = (employee) => {
+
+const animalsEmployee = (employee, result) => {
   const employeeName = `${employee.firstName} ${employee.lastName}`;
   const animalsId = employee.responsibleFor;
   const animalsName = [];
@@ -166,27 +204,19 @@ const animalsEmployee = (employee) => {
 
 
 function employeeCoverage(idOrName) {
+  const result = {};
   if (idOrName) {
     const employeeObj = employees.find(employee => employee.id === idOrName
       || employee.firstName === idOrName || employee.lastName === idOrName);
-    animalsEmployee(employeeObj);
+    animalsEmployee(employeeObj, result);
   } else if (idOrName === undefined) {
-    employees.forEach(animalsEmployee);
+    employees.forEach((employee) => {
+      animalsEmployee(employee, result)
+    });
   }
-  // const animalsName = [];
-  // employeeObj.responsibleFor.forEach((animalId) => {
-  //   const animalObj = animals.find(animal => animal.id === animalId);
-  //   animalsName.push(animalObj.name);
-  // });
-  // const employeeName = `${employeeObj.firstName} ${employeeObj.lastName}`;
-  // const result2 = {};
-  // Object.defineProperty(result2, employeeName, { value: animalsName,
-  //   enumerable: true,
-  //   configurable: true,
-  //   writable: true });
   return result;
 }
-// console.log(employeeCoverage('Stephanie'));
+console.log(employeeCoverage());
 
 module.exports = {
   entryCalculator,
