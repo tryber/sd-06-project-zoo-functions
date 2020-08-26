@@ -10,7 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { prices, hours } = require('./data');
+const { prices } = require('./data');
 
 function animalsByIds(...ids) {
   if (ids === undefined) {
@@ -131,7 +131,7 @@ function schedule(dayName) {
     Friday: 'Open from 10am until 8pm',
     Saturday: 'Open from 8am until 10pm',
     Sunday: 'Open from 8am until 8pm',
-    Monday: 'CLOSED'
+    Monday: 'CLOSED',
   };
   if (!dayName) return cronogram;
   const hoursByDays = Object.keys(cronogram).find(days => days === dayName);
