@@ -217,27 +217,27 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  let result = {};
+  const result = {};
   const names = data.employees.map(employee => `${employee.firstName} ${employee.lastName}`);
 
   for (let i = 0; i < names.length; i += 1) {
-    // console.log(names[i], data.employees[i]); o ID dos animais de cada nome    
+    // console.log(names[i], data.employees[i]); o ID dos animais de cada nome
     const myAnimalIDs = data.employees[i].responsibleFor; // array de IDs
-    animalsArray = []
+    const animalsArray = [];
     myAnimalIDs.forEach((id) => {
       const myAnimal = animals.find(animal => animal.id === id);
       animalsArray.push(myAnimal.name);
-    })
+    });
     result[names[i]] = animalsArray;
   }
 
   if (idOrName) {
-    myEmployee = data.employees.find(employee => employee.id === idOrName
+    const myEmployee = data.employees.find(employee => employee.id === idOrName
       || employee.firstName === idOrName
       || employee.lastName === idOrName);
-    myEmployeeName = `${myEmployee.firstName} ${myEmployee.lastName}`
-    resultWithName = { [myEmployeeName]: result[myEmployeeName], }
-    return resultWithName
+    myEmployeeName = `${myEmployee.firstName} ${myEmployee.lastName}`;
+    const resultWithName = { [myEmployeeName]: result[myEmployeeName] };
+    return resultWithName;
   }
   return result;
 }
