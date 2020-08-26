@@ -35,17 +35,8 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  const newEmployee = {};
-  const { id, firstName, lastName } = personalInfo;
-  const { managers, responsibleFor } = associatedWith;
-  newEmployee.id = id;
-  newEmployee.firstName = firstName;
-  newEmployee.lastName = lastName;
-  newEmployee.managers = managers;
-  newEmployee.responsibleFor = responsibleFor;
-
-  // data.employees.push(newEmployee);
-  return newEmployee;
+  // rest to get all the content from both parameters
+  return {...personalInfo, ...associatedWith};
 }
 
 // get the manager ids and filters it
