@@ -132,11 +132,10 @@ Sem parâmetros, retorna um cronograma legível para humanos
 Se um único dia for passado, retorna somente este dia em um formato legível para humanos */
 function schedule(dayName) {
   // seu código aqui
-  function lock (hora) {
+  function lock(hora) {
     if (hora > 12) {
-      // console.log(hora);
-     return hora - 12;
-    } return hora;
+      return hora - 12;
+    }return hora;
   }
   let allDay = {
     'Tuesday': `Open from ${hours.Tuesday.open}am until ${lock(hours.Tuesday.close)}pm`,
@@ -147,7 +146,7 @@ function schedule(dayName) {
     'Sunday': `Open from ${hours.Sunday.open}am until ${lock(hours.Sunday.close)}pm`,
     'Monday': `CLOSED`
   };
-  if (dayName == null) { return allDay}
+  if (dayName == null) { return allDay};
   let day = {};
   day[dayName] = `Open from ${hours[dayName].open}am until ${lock(hours[dayName].close)}pm`;
   if (dayName === 'Monday') {
