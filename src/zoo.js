@@ -87,9 +87,57 @@ function entryCalculator(entrants = 0) {
   return sum;
 }
 
-function animalMap(options) {
-  // seu código aqui
+function getAnimalsPerLocation(locationArr) {
+  const locationObj = {};
+
+  locationArr.forEach((location) => {
+    const animalSpecies = animals
+    .filter(animal => animal.location === location)
+    .map(animal => animal.name);
+
+    if (animalSpecies.length !== 0) locationObj[location] = animalSpecies;
+  });
+  return locationObj;
 }
+
+function getAnimalsByLocationAndNames(locationArr, sorted, sex) {
+  const locationAndNames = {};
+
+  locationArr.forEach((location) => {
+    const animalsSpecies = animals
+    .filter(animal => animal.location === location)
+    .map((animal) => {
+      const nameKey = animal.name;
+      let nameValue = animal.residents.map(resident => resident.name);
+
+      if (sex) {
+        nameValue = animal.residents
+        .filter(resident => resident.sex === sex)
+        .map(animalName => animalName.name);
+      }
+
+      if (sorted) nameValue.sort();
+
+      return { [nameKey]: nameValue };
+    });
+    locationAndNames[location] = animalsSpecies;
+  });
+
+  return locationAndNames;
+}
+
+function animalMap(options) {
+  const locationArr = ['NE', 'NW', 'SE', 'SW'];
+
+  if (!options) return getAnimalsPerLocation(locationArr);
+
+  const { includeNames, sorted, sex } = options;
+
+  if (!includeNames) return getAnimalsPerLocation(locationArr);
+
+  return getAnimalsByLocationAndNames(locationArr, sorted, sex);
+}
+
 
 function schedule(dayName = 0) {
   const { Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday } = hours;
