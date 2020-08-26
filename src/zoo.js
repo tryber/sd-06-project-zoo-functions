@@ -168,10 +168,19 @@ function schedule(dayName) {
 // console.log(schedule());
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  
+  const result = employees.filter(element => element.id === id)[0].responsibleFor;
+  const allAnimals = animals.find(animal => animal.id === result[0]).residents
+  .reduce((acc, curr) => {
+    if (curr.age > acc.age) {
+      return curr;
+    }
+    return acc; // preciso retornar acc p/ no segundo loop ter valor
+  })
+  return [allAnimals.name, allAnimals.sex, allAnimals.age];
 }
 
-console.log(oldestFromFirstSpecies());
+// console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
 
 function increasePrices(percentage) {
   // seu código aqui
