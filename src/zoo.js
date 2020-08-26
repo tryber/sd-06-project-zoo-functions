@@ -16,7 +16,7 @@ function animalsByIds(...ids) {
   // seu código aqui
   return animals.filter(elemento => elemento.id === ids || ids.includes(elemento.id));
 }
-// usar includes
+
 function animalsOlderThan(animal, age) {
   // seu código aqui
   return animals.find(nome => nome.name === animal).residents.every(idade => idade.age > age);
@@ -88,18 +88,17 @@ function oldestFromFirstSpecies(id) {
   return [nome[0].name, nome[0].sex, nome[0].age];
 }
 function increasePrices(percentage) {
-  // seu código aqui
-return (
-  prices.Adult = (prices.Adult+(prices.Adult*percentage/100)),
-  prices.Senior = (prices.Senior+(prices.Senior*percentage/100)),
-  prices.Child = (prices.Child+(prices.Child*percentage/100))
-
-)}
-increasePrices(50)
-console.log(prices)
-function employeeCoverage(idOrName) {
-  // seu código aqui
+// seu código aqui
+  Object.keys(prices).forEach((elemento) => {
+    prices[elemento] = Number((prices[elemento] + (((prices[elemento] * percentage) + 0.001) / 100))
+  .toFixed(2));
+  });
 }
+
+function employeeCoverage(idOrName) {
+  // sem parametro => todos animais
+}
+employeeCoverage();
 
 module.exports = {
   entryCalculator,
