@@ -125,15 +125,15 @@ function oldestFromFirstSpecies(id) {
   const trabalhador = employees.find(inPut => inPut.id === id);
   const retorno = trabalhador.responsibleFor;
   const x = animals.find(pet => pet.id === retorno[0]);
-  let z = x.residents[0]['age'];
+  let z = x.residents[0].age;
   let nomeAnimal;
   (x.residents).forEach(inPut => {
-    if (inPut['age'] > z) {
-      z = inPut['age'];
+    if (inPut.age > z) {
+      z = inPut.age;
       nomeAnimal = inPut;
     }
   });
-  array = [nomeAnimal['name'], nomeAnimal['sex'], nomeAnimal['age']];
+  array = [nomeAnimal.name, nomeAnimal.sex, nomeAnimal.age];
   return array;
 }
 
