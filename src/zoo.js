@@ -57,21 +57,18 @@ function addEmployee(id = '', firstName = '', lastName = '', managers = [], resp
 }
 
 function animalCount(species) {
-  if (species === undefined) {
-    const animals = data.animals.map(animal => animal.name);
-    const count = data.animals.map(animal => animal.residents.length);
-    const output = {};
-
-    // had the idea, learned how to do it in here:
-    // https://stackoverflow.com/questions/39127989/creating-a-javascript-object-from-two-arrays
-    for (let index = 0; index < animals.length; index += 1) {
-      output[animals[index]] = count[index];
-    }
-    return output;
+  if (!species) {
+    return data.animals.reduce((acc, element) => ({
+      // had to pass acc before with rest
+      // learned here:
+      // https://medium.com/@vmarchesin/using-array-prototype-reduce-in-objects-using-javascript-dfcdae538fc8
+      ...acc,
+      [element.name]: element.residents.length,
+    }), {});
+  } else {
+    return data.animals.filter(({ name }) => name === species)
+    .reduce((acc, animal) => acc + animal.residents.length, 0);
   }
-  const speciesCount = data.animals.filter(animal => animal.name === species)
-  .map(animal => animal.residents.length).find(animal => animal);
-  return speciesCount;
 }
 
 // got the keys to be able to use length
