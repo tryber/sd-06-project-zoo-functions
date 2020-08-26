@@ -99,7 +99,7 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 
 function animalCount(species) {
   if (!species) {
-    let animalsList = {};
+    const animalsList = {};
     data.animals
       .forEach(el => {
         animalsList[el.name] = getAnimalCount(el.name);
