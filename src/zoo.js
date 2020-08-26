@@ -92,34 +92,33 @@ function animalMap(options) {
   // seu código aqui
 }
 
-// function wholeSchedule() {
-//   const daysKey = Object.keys(hours);
-//   const openClose = Object.values(hours);
-//   const firstObject = openClose.reduce((acc, { open, close }, index) => {
-//     if (daysKey[index] !== 'Monday') {
-//       return Object.assign(acc, {
-//         [daysKey[index]]: `Open from ${open}am until ${(close - 12)}pm`,
-//       });
-//     } else if (daysKey[index] === 'Monday') {
-//       return Object.assign(acc, {
-//         [daysKey[index]]: 'CLOSED',
-//       });
-//     }
-//   }, {});
-//   return firstObject;
-// }
-function schedule(dayName) {
+function wholeSchedule() {
+  const daysKey = Object.keys(hours);
+  const openClose = Object.values(hours);
+  const firstObject = openClose.reduce((acc, { open, close }, index) => {
+    if (daysKey[index] !== 'Monday') {
+      return Object.assign(acc, {
+        [daysKey[index]]: `Open from ${open}am until ${(close - 12)}pm`,
+      });
+    } else if (daysKey[index] === 'Monday') {
+      return Object.assign(acc, {
+        [daysKey[index]]: 'CLOSED',
+      });
+    }
+  }, {});
+  return firstObject;
 }
-// function schedule(dayName) {
-//   if (!dayName) {
-//     return wholeSchedule();
-//   }
-//   const firstObject = wholeSchedule();
-//   const secondObject = {
-//     [dayName]: firstObject[dayName],
-//   };
-//   return secondObject;
-// }
+
+function schedule(dayName) {
+  if (!dayName) {
+    return wholeSchedule();
+  }
+  const firstObject = wholeSchedule();
+  const secondObject = {
+    [dayName]: firstObject[dayName],
+  };
+  return secondObject;
+}
 
 function oldestFromFirstSpecies(id) {
   let array = [];
