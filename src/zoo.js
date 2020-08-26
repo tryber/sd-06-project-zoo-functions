@@ -129,8 +129,26 @@ function oldestFromFirstSpecies(id) {
   return [name, sex, age];
 }
 
+function ceilPrecised(number, precision) {
+  const power = 10 ** precision;
+
+  return Math.ceil(number * power) / power;
+}
+// Encontrei essa função para realizar o arredondamento dos valores dos centavos,
+// no site abaixo [dirask]:
+// https://dirask.com/posts/JavaScript-Math-ceil-method-example-OpBeqD
+
 function increasePrices(percentage) {
-  // seu código aqui
+  const actualPrice = data.prices;
+  const newPricesRipOff = [];
+  Object.values(actualPrice).forEach(function (prices) {
+    newPricesRipOff.push(ceilPrecised(prices += prices * (percentage / 100), 2));
+  });
+  Object.keys(actualPrice).forEach(function (person, index) {
+    actualPrice[person] = newPricesRipOff[index];
+  });
+
+  return actualPrice;
 }
 
 function employeeCoverage(idOrName) {
