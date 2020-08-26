@@ -14,6 +14,7 @@ const {
   animals,
   employees,
   prices,
+  hours,
 } = require('./data');
 const data = require('./data');
 // const { TestScheduler } = require('jest');
@@ -42,41 +43,66 @@ function isManager(id) {
   return employees.flatMap(element => element.managers).some(idManager => idManager === id);
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // seu código aqui
+  let lastEmployee = {
+      id,
+      firstName,
+      lastName,
+      managers,
+      responsibleFor,
+  }
+  return employees.push(lastEmployee)
 }
 
 function animalCount(species) {
   // seu código aqui
-  if (species == null) {
+  if (species === undefined) {
     const animais = {};
     animals.forEach(function (element) {
       animais[element.name] = element.residents.length;
     });
     return animais;
   }
-  const animalsTotal = animals.filter(element => element.name === species)
-    .map(element => element.residents.length);
+  const animalsTotal = animals.filter(element => element.name === species).map(element => element.residents.length);
   return animalsTotal[0];
 }
+
 function entryCalculator(entrants) {
   // seu código aqui
   if (entrants == undefined || Object.keys(entrants).length === 0) {
     return 0;
-  } else {
+  }
   const totalValue = Object.keys(entrants).map(element => entrants[element] * prices[element]).reduce((prev, next) => prev + next);
   return totalValue;
-  }
 };
 
 function animalMap(options) {
-//   // seu código aqui
+const locations = ['NE', 'NW', 'SE', 'SW'];
+
+if (!options) {
+  animalsPerLocation = {};
+
+  locations.forEach((location) => {
+    const animals = data.animals.filter(animal => animal.location === location).map(animal => animal.name);
+
+    if (animals.length !== 0) animalsPerLocation[location] = animals;
+  });
+  return animalsPerLocation;
+} 
+
 }
 // console.log(animals.filter(animal => animal.location === 'NE').map(nome => nome.name))
 
 function schedule(dayName) {
-// seu código aqui
-}
+  const allWeek = {};
+  const allDays = Object.keys(hours);
+  const allZooDays = allDays.map(element => element !== 'Monday' ? allWeek[element] = `Open from ${hours[element].open}am until ${hours[element].close-12}pm` : allWeek[element] = `CLOSED`);
+  if (!dayName) {
+    return allWeek;
+  } const newActual = {[dayName]: allWeek[dayName]};
+    return newActual
+};
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
@@ -88,11 +114,6 @@ function increasePrices(percentage) {
 
 function employeeCoverage(idOrName) {
   const result = {};
-  // seu código aqui
-  // sem parâmetros retorna todos os animais
-  // juntar nome e sobrenome e usar como propriedade (chave) do objeto de retorno
-  // (find) a partir do id do animal (responsibleFor no employee) preciso do nome de cada employees [{}] --> {}
-  // com um parâmetro retorna somente os animal
   employees.forEach((employee) => {
   const mappedAnimals = employee.responsibleFor.map(
     (animalIdResponsibleFor) => {
@@ -101,11 +122,10 @@ function employeeCoverage(idOrName) {
     })
       result[`${employee.firstName} ${employee.lastName}`] = mappedAnimals;
     });
-  
-  console.log(result)  
+
   return result;
   }
-
+// console.log(employeeCoverage('c1f50212-35a6-4ecd-8223-f835538526c2'))
 
 module.exports = {
   entryCalculator,
