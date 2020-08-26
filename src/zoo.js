@@ -59,44 +59,44 @@ function entryCalculator(entrants) {
   return keys.reduce(sumPrices, 0);
 }
 
-const getSpeciesPerLocation = () => {
+const getSpeciesPerLocation = (directions) => {
   const speciesLocation = {};
-  const directions = ['NE', 'NW', 'SE', 'SW'];
   directions.forEach((direction) => {
     speciesLocation[direction] = animals
       .filter(animal => animal.location === direction).map(animal => animal.name);
   });
+
   return speciesLocation;
 };
 
-const getNamesPerLocations = (options = {}) => {
-  const { includeNames = false, sorted = false, sex = null } = options;
-  if (!includeNames) return getSpeciesPerLocation();
+const getNamesPerLocations = (directions, sorted, sex) => {
   const speciesLocation = {};
-  const directions = ['NE', 'NW', 'SE', 'SW'];
   directions.forEach((direction) => {
     speciesLocation[direction] = animals
-    .filter(animal => animal.location === direction).map((animal) => {
-      const key = animal.name;
-      const value = animal.residents;
-      if (includeNames && sorted && sex) {
-        return { [key]: value.filter(resident => resident.sex === sex)
-          .map(resident => resident.name).sort() };
-      }
-      if (includeNames && sorted) return { [key]: value.map(resident => resident.name).sort() };
-      if (includeNames && sex) {
-        return { [key]: value.filter(resident => resident.sex === sex)
-          .map(resident => resident.name) };
-      }
-      return { [key]: value.map(resident => resident.name) };
-    });
+      .filter(animal => animal.location === direction)
+      .map((animal) => {
+        const key = animal.name;
+        const value = animal.residents
+          .filter(resident => (sex ? resident.sex === sex : true))
+          .map(resident => resident.name);
+        if (sorted) value.sort();
+
+        return { [key]: value };
+      });
   });
+
   return speciesLocation;
 };
 
 function animalMap(options) {
-  if (!options) return getSpeciesPerLocation();
-  return getNamesPerLocations(options);
+  const directions = ['NE', 'NW', 'SE', 'SW'];
+
+  if (!options) return getSpeciesPerLocation(directions);
+
+  const { includeNames, sorted, sex } = options;
+
+  if (!includeNames) return getSpeciesPerLocation(directions);
+  return getNamesPerLocations(directions, sorted, sex);
 }
 
 function schedule(dayName) {
@@ -150,23 +150,21 @@ const getEmployeeCoverage = () => {
 
 function employeeCoverage(idOrName) {
   let coverage = {};
+
   if (!idOrName) coverage = getEmployeeCoverage();
+
   const employeeByID = employees.find(employee => employee.id === idOrName);
   const employeeByFirstName = employees.find(employee => employee.firstName === idOrName);
   const employeeByLastName = employees.find(employee => employee.lastName === idOrName);
+  let fullName;
 
-  if (employeeByID) {
-    const fullName = `${employeeByID.firstName} ${employeeByID.lastName}`;
-    coverage[fullName] = getEmployeeCoverage()[fullName];
-  }
-  if (employeeByFirstName) {
-    const fullName = `${idOrName} ${employeeByFirstName.lastName}`;
-    coverage[fullName] = getEmployeeCoverage()[fullName];
-  }
-  if (employeeByLastName) {
-    const fullName = `${employeeByLastName.firstName} ${idOrName}`;
-    coverage[fullName] = getEmployeeCoverage()[fullName];
-  }
+  if (employeeByID) fullName = `${employeeByID.firstName} ${employeeByID.lastName}`;
+
+  if (employeeByFirstName) fullName = `${idOrName} ${employeeByFirstName.lastName}`;
+
+  if (employeeByLastName) fullName = `${employeeByLastName.firstName} ${idOrName}`;
+
+  coverage[fullName] = getEmployeeCoverage()[fullName];
 
   return coverage;
 }
