@@ -23,8 +23,8 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  const animalNameAge = data.animals.find(i => i.name === animal).residents.every(p => p.age >= age);
-  return animalNameAge;
+  const animalNA = data.animals.find(i => i.name === animal).residents.every(p => p.age >= age);
+  return animalNA;
 }
 
 function employeeByName(employeeName) {
@@ -98,7 +98,7 @@ function retrieveAnimals(locations, sorted, sex) {
       .map((animal) => {
         const nameKey = animal.name;
         const nameValues = animal.residents
-          .filter(resident => {
+          .filter((resident) => {
             const isFilteringSex = sex !== undefined;
             return isFilteringSex ? resident.sex === sex : true;
           })
