@@ -56,7 +56,8 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function animalCount(species) {
   // seu código aqui
   if (!species) {
-    return data.animals.reduce((total, specie) => ({ ...total, [specie.name]: specie.residents.length }), {});
+    return data.animals.reduce((total, specie) =>
+    ({ ...total, [specie.name]: specie.residents.length }), {});
   }
   return data.animals.find(specie => specie.name === species).residents.length;
 }
@@ -155,7 +156,8 @@ function employeeCoverage(idOrName) {
   .map(idResponsibleFor => animals
   .find(specie => specie.id === idResponsibleFor).name));
   if (!idOrName) {
-    return arrayEmployeesName.reduce((exit, nameEmployee, index) => ({ ...exit, [nameEmployee]: arrayResponsibleForSpecie[index] }), {});
+    return arrayEmployeesName.reduce((exit, nameEmployee, index) =>
+    ({ ...exit, [nameEmployee]: arrayResponsibleForSpecie[index] }), {});
   }
   const indexExit = employees.reduce((exit, employee, index) => {
     const { firstName, lastName, id } = employee;
