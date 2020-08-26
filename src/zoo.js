@@ -36,7 +36,7 @@ function animalsOlderThan(animal, age) {
     .residents.every(element => element.age > age);
 }
 
-function employeeByName(employeeName = {}) {
+function employeeByName(employeeName) {
   if (employeeName === undefined) {
     return {};
   }
