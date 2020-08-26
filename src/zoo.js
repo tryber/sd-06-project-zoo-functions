@@ -13,8 +13,8 @@ const data = require('./data');
 
 // const { animals } = data;
 // const { employees } = data;
-const { animals, employees } = data;
-// const { animals, employees, prices } = data;
+// const { animals, employees } = data;
+const { animals, employees, prices } = data;
 // const { animals, employees, prices, hours } = data;
 
 // -----------------------------------------------------------------------
@@ -115,9 +115,38 @@ function animalCount(species) {
 // console.log(animalCount('lions'));
 // console.log(animalCount('snakes'));
 
-function entryCalculator(entrants) {
-  // seu código aqui
+// -----------------------------------------------------------------------
+
+// Retorna 0 se nenhum argumento for passado'
+// Retorna 0 se um objeto vazio for passado'
+// Retorna o preço total a ser cobrado dado o número de adultos,_
+// crianças e idosos'
+
+function entryCalculator(entrants = {}) {
+  if (Object.keys(entrants).length === 0) {
+    return 0;
+  }
+
+  const { Adult: totalAdults, Child: totalChilds, Senior: totalSeniors } = entrants;
+
+  const priceAdult = prices.Adult;
+  const priceChild = prices.Child;
+  const priceSenior = prices.Senior;
+
+  const totalPriceAdults = totalAdults !== undefined ? totalAdults * priceAdult : 0;
+  const totalPriceChilds = totalChilds !== undefined ? totalChilds * priceChild : 0;
+  const totalPriceSeniors = totalSeniors !== undefined ? totalSeniors * priceSenior : 0;
+
+  return totalPriceAdults + totalPriceChilds + totalPriceSeniors;
 }
+
+// console.log(entryCalculator());
+// console.log(entryCalculator({}));
+// console.log(entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 }));
+// console.log(entryCalculator({ 'Adult': 1 }));
+// console.log(entryCalculator({ 'Senior': 1 }));
+// console.log(entryCalculator({ 'Child': 1 }));
+// console.log(entryCalculator({ 'Child': 1, 'Senior': 1 }));
 
 function animalMap(obj = {}) {
 // // Sem parâmetros, retorna animais categorizados por localização'
