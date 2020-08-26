@@ -46,7 +46,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function animalCount(species) {
   if (species === undefined) {
     const object = {};
-    animals.forEach(element => object[element.name] = element.residents.length);
+    animals.forEach((element) => object[element.name] = element.residents.length);
     return object;
   }
   const animal = animals.find(element => element.name === species);
@@ -63,20 +63,20 @@ function animalMap(options) {
 
 function schedule(dayName) {
   const days = Object.keys(data.hours);
-  const schedule = {};
+  const scheduleObject = {};
 
   days.forEach((day) => {
     if (day === 'Monday') {
-      schedule[day] = 'CLOSED';// 'Monday': 'CLOSED'
+      scheduleObject[day] = 'CLOSED';// 'Monday': 'CLOSED'
     } else {
       const open = data.hours[day].open;// = 8
       const closed = data.hours[day].close - 12;// = 6
-      schedule[day] = `Open from ${open}am until ${closed}pm`;// 'Tuesday': 'Open from 8am until 6pm', ...
+      scheduleObject[day] = `Open from ${open}am until ${closed}pm`;// 'Tuesday': 'Open from 8am until 6pm', ...
     }
   });
 
-  if (dayName === undefined) return schedule;
-  return { [dayName]: schedule[dayName] };
+  if (dayName === undefined) return scheduleObject;
+  return { [dayName]: scheduleObject[dayName] };
 }
 
 function oldestFromFirstSpecies(id) {
