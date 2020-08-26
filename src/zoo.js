@@ -38,7 +38,10 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  return { ...personalInfo, ...associatedWith };
+  return {
+    ...personalInfo,
+    ...associatedWith
+  };
 }
 
 function isManager(id) {
@@ -57,7 +60,10 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 function animalCount(species) {
   if (!species) {
-    return animals.reduce((ac, animal) => ({ ...ac, [animal.name]: animal.residents.length }), {});
+    return animals.reduce((ac, animal) => ({
+      ...ac,
+      [animal.name]: animal.residents.length
+    }), {});
   }
   return animals.find(animal => animal.name === species).residents.length;
 }
@@ -77,11 +83,11 @@ function retrieveAnimalsPerLocation(locations) {
   const animalsPerLocation = {};
 
   locations.forEach((location) => {
-    const animals = data.animals
+    animals = data.animals
       .filter(animal => animal.location === location)
       .map(animal => animal.name);
 
-      if (animals.length !== 0) animalsPerLocation[location] = animals;
+    if (animals.length !== 0) animalsPerLocation[location] = animals;
   });
 
   return animalsPerLocation;
@@ -91,23 +97,25 @@ function retrieveAnimals(locations, sorted, sex) {
   const animalsPerLocationWithName = {};
 
   locations.forEach((location) => {
-    const animals = data.animals
-      .filter(animal => animal.location === location)
-      .map(animal => {
+    animals = data.animals
+      .filter((animal) => animal.location === location)
+      .map((animal) => {
         const nameKey = animal.name;
         const nameValues = animal.residents
-        .filter(resident => {
-          const isFilteringSex = sex !== undefined;
-          return isFilteringSex ? resident.sex === sex : true;
-        })
-        .map(resident => resident.name);
+          .filter(resident => {
+            const isFilteringSex = sex !== undefined;
+            return isFilteringSex ? resident.sex === sex : true;
+          })
+          .map((resident) => resident.name);
 
-        if(sorted) nameValues.sort();
+        if (sorted) nameValues.sort();
 
-        return { [nameKey]: nameValues };
+        return {
+          [nameKey]: nameValues
+        };
       });
 
-      animalsPerLocationWithName[location] = animals;
+    animalsPerLocationWithName[location] = animals;
   });
 
   return animalsPerLocationWithName;
@@ -117,7 +125,11 @@ function animalMap(options) {
   const locations = ['NE', 'NW', 'SE', 'SW'];
   if (!options) return retrieveAnimalsPerLocation(locations);
 
-  const { includeNames, sorted, sex } = options;
+  const {
+    includeNames,
+    sorted,
+    sex
+  } = options;
 
   if (!includeNames) return retrieveAnimalsPerLocation(locations);
 
