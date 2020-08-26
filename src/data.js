@@ -1,3 +1,4 @@
+// npm test test/nomeDoArquivo.test.js
 module.exports = {
   animals: [
     {
