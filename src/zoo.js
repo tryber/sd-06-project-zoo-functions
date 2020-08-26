@@ -103,7 +103,19 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  const zooScheduleComplete = {};
+  const zooWeekDays = Object.keys(data.hours);
+  zooWeekDays.forEach((daysOfWeek) => {
+    const zooOpening = data.hours[daysOfWeek];
+    if (zooOpening.open === 0) {
+      zooScheduleComplete[daysOfWeek] = 'CLOSED';
+    } else {
+      zooScheduleComplete[daysOfWeek] = `Open from ${zooOpening.open}am until ${zooOpening.close - 12}pm`;
+    }
+  });
+  if (!dayName) return zooScheduleComplete;
+
+  return { [dayName]: zooScheduleComplete[dayName] };
 }
 
 function oldestFromFirstSpecies(id) {
