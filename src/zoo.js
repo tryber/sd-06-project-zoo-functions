@@ -94,49 +94,45 @@ function entryCalculator(entrants = {}) {
   return total;
 }
 
-function retrieveAnimalsPerLocation(locations) {
-  const animalsPerLocation = {};
+// function retrieveAnimalsPerLocation(locations) {
+//   const animalsPerLocation = {};
 
-  locations.forEach((location) => {
-    const animals = data.animals
-      .filter(animal => animal.location === location)
-      .map(animal => animal.name);
-      
-    if (animals.length !== 0) animalsPerLocation[location] = animals;
-  });
+//   locations.forEach((location) => {
+//     const animals = data.animals
+//       .filter(animal => animal.location === location)
+//       .map(animal => animal.name);
+//     if (animals.length !== 0) animalsPerLocation[location] = animals;
+//   });
 
-  return animalsPerLocation;
-}
+//   return animalsPerLocation;
+// }
 
-function retrieveAnimalsByLocationWithName (locations) {
-  const animalsPerLocationWithName = {};
+// function retrieveAnimalsByLocationWithName(locations) {
+//   const animalsPerLocationWithName = {};
 
-  locations.forEach((location) => {
-    const animals = data.animals
-      .filter(animal => animal.location === location)
-      .map((animal) => {
-        const nameKey = animal.name;
-        const nameValues = animal.residents.map(resident => resident.name);
-      
-      return { [nameKey]: nameValues}
-      });
-    animalsPerLocationWithName [location] = animals; 
-  })
+//   locations.forEach((location) => {
+//     const animals = data.animals
+//       .filter(animal => animal.location === location)
+//       .map((animal) => {
+//         const nameKey = animal.name;
+//         const nameValues = animal.residents.map(resident => resident.name);
+//       return { [nameKey]: nameValues}
+//       });
+//     animalsPerLocationWithName [location] = animals;
+//   })
 
-  return retrieveAnimalsByLocationWithName;
-}
+//   return retrieveAnimalsByLocationWithName;
+// }
 
 function animalMap(options) {
-  const locations = ['NE', 'NW', 'SE', 'SW'];
+  // const locations = ['NE', 'NW', 'SE', 'SW'];
 
-  if (!options) return retrieveAnimalsPerLocation(locations)
+  // if (!options) return retrieveAnimalsPerLocation(locations)
 
-  const includeNames = options.includeNames;
+  // const includeNames = options.includeNames;
 
-  if (includeNames) return retrieveAnimalsByLocationWithName(locations)
+  // if (includeNames) return retrieveAnimalsByLocationWithName(locations)
 }
-
-console.log(animalMap())
 
 const getScheduleUndefined = () => {
   const daysOfTheWeek = ['Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
@@ -211,7 +207,7 @@ function employeeCoverage(idOrName) {
     animalsEmployee(employeeObj, result);
   } else if (idOrName === undefined) {
     employees.forEach((employee) => {
-      animalsEmployee(employee, result)
+      animalsEmployee(employee, result);
     });
   }
   return result;
