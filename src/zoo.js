@@ -65,10 +65,9 @@ function animalCount(species) {
       ...acc,
       [element.name]: element.residents.length,
     }), {});
-  } else {
-    return data.animals.filter(({ name }) => name === species)
-    .reduce((acc, animal) => acc + animal.residents.length, 0);
   }
+  return data.animals.filter(({ name }) => name === species)
+  .reduce((acc, animal) => acc + animal.residents.length, 0);
 }
 
 // got the keys to be able to use length
