@@ -42,6 +42,8 @@ function employeeByName(...employeeName) {
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
+  const newEmployee = (Object.assign({}, personalInfo, associatedWith));
+  return newEmployee;
 }
 
 function isManager(id) {
@@ -143,20 +145,7 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   // seu código aqui
-  if (percentage === undefined) {
-    return prices
-  }
-
-  const arrayPrices = Object.keys(prices);
-  const obj = {}
-  arrayPrices.map((element) => {
-      //console.log(Math.round((prices[element] * percentage / 100 + prices[element]) * 100) / 100)
-      (obj[element] = (Math.round((prices[element] * percentage / 100 + prices[element]) * 100) / 100))
-  })
-  return obj
 }
-console.log(increasePrices())
-
 
 function employeeCoverage(idOrName) {
   // seu código aqui
