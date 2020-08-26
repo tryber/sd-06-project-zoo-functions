@@ -16,6 +16,8 @@ const { animals } = data;
 // const { animals, employees, prices } = data;
 // const { animals, employees, prices, hours } = data;
 
+// -----------------------------------------------------------------------
+
 // Caso receba nenhum parâmetro, necessário retornar um array vazio
 // Ao receber como parâmetro um único id, retorna os animais com este id
 // Ao receber mais de um id, retorna os animais que têm um desses ids
@@ -38,9 +40,20 @@ function animalsByIds(...ids) { // rest paramenter returns []
 // final result: passou nos testes, mas ficou uma dúvida:
 // Por que retorna a palavra objeto ao invés do próprio objeto.
 
+// ----------------------------------------------------------------------
+
+// Ao passar o nome de uma espécie e uma idade, testa se todos os animais
+// desta espécie possuem a idade mínima especificada
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  return animals
+  .find(element => element.name === animal).residents
+  .every(currentValue => currentValue.age >= age);
 }
+
+// console.log(animalsOlderThan('otters', 7));
+// console.log(animalsOlderThan('penguins', 10));
+
+// -----------------------------------------------------------------------
 
 function employeeByName(employeeName) {
   // seu código aqui
