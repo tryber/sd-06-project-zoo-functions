@@ -148,11 +148,22 @@ function oldestFromFirstSpecies(id) {
   return Object.values(showAnimal);
 }
 
+//  Ao passar uma porcentagem, incrementa todos os preços, arrendondados em duas casas decimais
 function increasePrices(percentage) {
-  // seu código aqui
+  const newPricesObject = {};
+  const personPriceArray = Object.entries(data.prices);
+  personPriceArray.map((price) => {
+    //  Solucoe encontrada no grupo de watsap para conseguir o numero esperado e que 
+    //  passase no codeclimate 
+    price[1] += price[1] * (percentage / 100);
+    price[1] *= 100;
+    price[1] = Math.round(price[1]);
+    price[1] /= 100;
+    newPricesObject[price[0]] = price[1];
+    data.prices = newPricesObject;
+    return newPricesObject;
+  });
 }
-
-
 function employeeCoverage(idOrName) {
   // seu código aqui
 }
