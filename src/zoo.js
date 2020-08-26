@@ -156,9 +156,8 @@ function increasePrices(percentage) {
   const arrayPrices = Object.keys(data.prices);
   const obj = {};
   arrayPrices.map((element) => {
-    (obj[element] =
-      (Math.round(((data.prices[element]) *
-      ((percentage / 100) + (data.prices[element])) * 100)) / 100));
+    (obj[element] = Math.round((((data.prices[element] * percentage) / 100) +
+    data.prices[element]) * 100) / 100);
     return obj;
   });
   return (data.prices = obj);
@@ -168,7 +167,6 @@ function employeeCoverage(idOrName) {
   // seu código aqui
 
 }
-
 module.exports = {
   entryCalculator,
   schedule,
