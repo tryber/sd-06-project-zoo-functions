@@ -95,11 +95,7 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  if (idOrName === undefined) {
-    const fullName = employees.map(employFullName => `${employFullName.firstName} ${employFullName.lastName}`);
-    const animal = employees.map(animalId => animalId.responsibleFor);
 
-  }
 
 }
 employeeCoverage();
