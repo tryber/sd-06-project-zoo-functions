@@ -105,7 +105,7 @@ function animalCount(species) {
   if (!species) {
     const animalsList = {};
     data.animals
-      .forEach(el => animalsList[el.name] = getAnimalCount(el.name));
+      .forEach(el => (animalsList[el.name] = getAnimalCount(el.name)));
     return animalsList;
   }
 
