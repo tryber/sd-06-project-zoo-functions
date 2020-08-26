@@ -11,36 +11,91 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-function animalsByIds(ids) {
-  // seu código aqui
+function animalsByIds(...ids) {
+  const foundAnimal = [];
+  if (ids) {
+    ids.forEach(id => foundAnimal.push(
+      ...data.animals.filter(animal => animal.id === id),
+    ));
+  }
+
+  return foundAnimal;
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  const checkAllAnimals = data.animals
+    .find(zooAnimal => zooAnimal.name === animal);
+  const areAllAnimalsOlder = checkAllAnimals.residents
+    .every(resident => resident.age > age);
+
+  return areAllAnimalsOlder;
 }
 
 function employeeByName(employeeName) {
-  // seu código aqui
+  let happyEmployee = {};
+  if (employeeName) {
+    happyEmployee = data.employees.find(thatEmployee =>
+      thatEmployee.firstName === employeeName ||
+      thatEmployee.lastName === employeeName,
+    );
+  }
+
+  return happyEmployee;
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  const newHappiestEmployeeEva = { ...personalInfo, ...associatedWith };
+  const newHappyEmplyoeeData = data.employees.concat(newHappiestEmployeeEva);
+
+  return newHappyEmplyoeeData[newHappyEmplyoeeData.length - 1];
 }
 
 function isManager(id) {
-  // seu código aqui
+  const areYouABoss = data.employees.find(
+    bossy => bossy.managers.some(idManager => idManager === id),
+  );
+  if (!areYouABoss) return false;
+
+  return true;
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  const lookANewEmployeeHasBegun = {
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  };
+  const newEmployeeMemory = data.employees.push(lookANewEmployeeHasBegun);
+
+  return newEmployeeMemory;
 }
 
 function animalCount(species) {
-  // seu código aqui
+  if (!species) {
+    const allSpeciesNameTotal = {};
+    data.animals.forEach(function (zooAnimal) {
+      allSpeciesNameTotal[zooAnimal.name] = zooAnimal.residents.length;
+    });
+
+    return allSpeciesNameTotal;
+  }
+
+  const uniqueAnimal = data.animals.find(aniZoo => aniZoo.name === species);
+
+  return uniqueAnimal.residents.length;
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  let totalPrice = 0;
+  if (entrants) {
+    Object.keys(entrants).forEach(function (ticketPerson) {
+      totalPrice += data.prices[ticketPerson] * entrants[ticketPerson];
+    });
+  }
+
+  return totalPrice;
 }
 
 function animalMap(options) {
@@ -48,15 +103,52 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  const zooScheduleComplete = {};
+  const zooWeekDays = Object.keys(data.hours);
+  zooWeekDays.forEach((daysOfWeek) => {
+    const zooOpening = data.hours[daysOfWeek];
+    if (zooOpening.open === 0) {
+      zooScheduleComplete[daysOfWeek] = 'CLOSED';
+    } else {
+      zooScheduleComplete[daysOfWeek] = `Open from ${zooOpening.open}am until ${zooOpening.close - 12}pm`;
+    }
+  });
+  if (!dayName) return zooScheduleComplete;
+
+  return { [dayName]: zooScheduleComplete[dayName] };
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const happyEmployeeId = data.employees.find(employee => employee.id === id);
+  const idAnimalResponsibleFor = happyEmployeeId.responsibleFor[0];
+  const animalWholeInfo = data.animals.find(animal =>
+    animal.id === idAnimalResponsibleFor);
+  const allAnimalsOldestToYoungestList = animalWholeInfo.residents.sort((resident1, resident2) =>
+  resident2.age - resident1.age);
+  const { name, sex, age } = allAnimalsOldestToYoungestList[0];
+  return [name, sex, age];
 }
 
+function ceilPrecised(number, precision) {
+  const power = 10 ** precision;
+
+  return Math.ceil(number * power) / power;
+}
+// Encontrei essa função para realizar o arredondamento dos valores dos centavos,
+// no site abaixo [dirask]:
+// https://dirask.com/posts/JavaScript-Math-ceil-method-example-OpBeqD
+
 function increasePrices(percentage) {
-  // seu código aqui
+  const actualPrice = data.prices;
+  const newPricesRipOff = [];
+  Object.values(actualPrice).forEach(function (prices) {
+    newPricesRipOff.push(ceilPrecised(prices += prices * (percentage / 100), 2));
+  });
+  Object.keys(actualPrice).forEach(function (person, index) {
+    actualPrice[person] = newPricesRipOff[index];
+  });
+
+  return actualPrice;
 }
 
 function employeeCoverage(idOrName) {
