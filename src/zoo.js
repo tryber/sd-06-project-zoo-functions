@@ -21,7 +21,7 @@ function animalsOlderThan(animal, age) {
   // filter the animals by name
   return data.animals.filter(({ name }) => name === animal)
   // flatmap to bring up the array
-  .flatMap(animal => animal.residents)
+  .flatMap(animalMatch => animalMatch.residents)
   // check if all of them are older than the parameter
   .every(resident => resident.age > age);
 }
