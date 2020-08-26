@@ -58,9 +58,6 @@ function animalCount(species) {
   const animalNumber = returnObject[species];
   return animalNumber;
 }
-console.log(animalCount());
-console.log(animalCount('lions'));// 2
-console.log(animalCount('snakes'));// 4
 
 function entryCalculator(entrants) {
   if (entrants === undefined || Object.keys(entrants) === undefined) return 0;
@@ -74,9 +71,36 @@ function entryCalculator(entrants) {
   }, 0);
   return totalBillValue;
 }
+// 9- Implemente a função animalMap:
+// Sem parâmetros, retorna animais categorizados por localização
+// Com a opção includeNames: true especificada, retorna nomes de animais
+// Com a opção sorted: true especificada, retorna nomes de animais ordenados
+// Com a opção sex: 'female' ou sex: 'male' especificada,
+// retorna somente nomes de animais macho/fêmea
 
-function animalMap(options) {
-  // seu código aqui
+// Com a opção sex: 'female' ou sex: 'male' especificada e a opção sort: true especificada,
+// retorna somente nomes de animais macho/fêmea com os nomes dos animais ordenados
+
+// Só retorna informações ordenadas e com sexo se a opção includeNames: true for especificada
+
+// PARAMETROS PODEM TER:
+// includeNames: true
+// sex: 'female'
+// sorted: true
+
+function animalMap(options) {    // Uso do data defido ao nome igual ao destructuring do começo
+  // const locations = ['NE', 'NW', 'SE', 'SW'];
+
+  // if (!options) {
+  //   const animalsPerLocation = {};
+  //   locations.forEach((location) => {
+  //     const animals = data.animals
+  //     .filter(animal => animal.location === location)
+  //     .map(animal => animal.name);
+  //     if (animals.length !== 0) animalsPerLocation[location] = animals;
+  //   });
+  //   return animalsPerLocation;
+  // }
 }
 
 function schedule(dayName) {
@@ -99,11 +123,21 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const firstSpecie = employees // id da primeira especie q employee/id é responsável
+  .find(employee => employee.id === id).responsibleFor[0];
+  const residentAgeArray = animals // filtrar  residents
+  .find(animal => animal.id === firstSpecie).residents;
+  const agesArray = [];// array com idades/animais
+  residentAgeArray.forEach(animal => agesArray.push(animal.age));
+  const higherAge = agesArray.sort((a, b) => b - a)[0];
+  const elFinale = residentAgeArray.find(animal => (animal.age === higherAge));
+  return [elFinale.name, elFinale.sex, elFinale.age];
 }
+console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
+console.log(oldestFromFirstSpecies('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
 
 function increasePrices(percentage) {
-  const percentageValue = (percentage / 100) + 1;// base percentual/aumento
+  const percentageValue = (percentage / 100) + 1;// base percentual/aumento advinda via parâmetro
   prices.Adult = (Math.round((prices.Adult * percentageValue) * 100) / 100);
   prices.Senior = (Math.round((prices.Senior * percentageValue) * 100) / 100);
   prices.Child = (Math.round((prices.Child * percentageValue) * 100) / 100);
