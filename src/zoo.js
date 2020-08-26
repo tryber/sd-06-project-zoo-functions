@@ -50,8 +50,10 @@ function addEmployee(id = '', firstName = '', lastName = '', managers = [], resp
   // passing the parameters to an array to be able to use reduce
   const newEmployeeArray = [id, firstName, lastName, managers, responsibleFor];
   const newEmployee = newEmployeeArray.reduce((acc, element) => {
-    // the object has predefined keys with the same name as the values in the array
-    [element] = element;
+    // the object has predefined keys
+    [] = element;
+    // learned that i have to return acc every iteration here:
+    // https://jrsinclair.com/articles/2019/functional-js-do-more-with-reduce/
     return acc;
   }, { id, firstName, lastName, managers, responsibleFor });
   data.employees.push(newEmployee);
