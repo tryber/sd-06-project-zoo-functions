@@ -139,9 +139,9 @@ function increasePrices(percentage) {
     const c = parseFloat((20.99 * (1 + (percentage / 100))) + 0.005).toFixed(2);
 
     return {
-      'Adult': a,
-      'Senior': b,
-      'Child': c,
+      Adult: a,
+      Senior: b,
+      Child: c,
     }
   }
   const mutiplier = ((1 + (percentage / 100)) * (1.5));
@@ -150,10 +150,10 @@ function increasePrices(percentage) {
   const c = parseFloat((20.99 * mutiplier) + 0.005).toFixed(2);
 
   return {
-    'Adult': a,
-    'Senior': b,
-    'Child': c,
-  }  
+    Adult: a,
+    Senior: b,
+    Child: c,
+  }
 }
 
 function employeeCoverage(idOrName) {
