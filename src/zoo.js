@@ -213,16 +213,15 @@ function increasePrices(percentage) {
   const ages = Object.keys(data.prices);
   const percent = percentage / 100;
 
-  ages.forEach(age => {
+  ages.forEach((age) => {
     let myNum = data.prices[age];
-    let increase = myNum * percent;
+    const increase = myNum * percent;
     myNum += increase;
     // solução matemágica abaixo encontrada numa thread do slack, da turma 1!
     myNum = Math.round(myNum * 100) / 100;
 
     data.prices[age] = myNum;
   });
-  console.log(data.prices)
 }
 // increasePrices(50);
 // increasePrices(30);
