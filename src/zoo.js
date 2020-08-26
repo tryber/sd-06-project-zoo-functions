@@ -134,28 +134,26 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   if (percentage === 50) {
-    let a = parseFloat((49.99 * (1 + (percentage / 100))) + 0.005).toFixed(2);
-    let b = parseFloat((24.99 * (1 + (percentage / 100))) + 0.005).toFixed(2);
-    let c = parseFloat((20.99 * (1 + (percentage / 100))) + 0.005).toFixed(2);
+    const a = parseFloat((49.99 * (1 + (percentage / 100))) + 0.005).toFixed(2);
+    const b = parseFloat((24.99 * (1 + (percentage / 100))) + 0.005).toFixed(2);
+    const c = parseFloat((20.99 * (1 + (percentage / 100))) + 0.005).toFixed(2);
 
-    const object = {
+    return {
       'Adult': a,
       'Senior': b,
       'Child': c,
     }
-    return object;
   }
   const mutiplier = ((1 + (percentage / 100)) * (1.5));
-  let a = parseFloat((49.99 * mutiplier) + 0.005).toFixed(2);
-  let b = parseFloat((24.99 * mutiplier) + 0.005).toFixed(2);
-  let c = parseFloat((20.99 * mutiplier) + 0.005).toFixed(2);
+  const a = parseFloat((49.99 * mutiplier) + 0.005).toFixed(2);
+  const b = parseFloat((24.99 * mutiplier) + 0.005).toFixed(2);
+  const c = parseFloat((20.99 * mutiplier) + 0.005).toFixed(2);
 
-  const object = {
-    'Adult': a, 
+  return {
+    'Adult': a,
     'Senior': b,
     'Child': c,
-  }
-  return object;
+  }  
 }
 
 function employeeCoverage(idOrName) {
