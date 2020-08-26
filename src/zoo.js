@@ -145,8 +145,8 @@ function increasePrices(percentage) {
     ((percentage / 100) + 1)) * 100) / 100;
   });
 }
-increasePrices(50)
-console.log(data.prices['Adult']);
+// increasePrices(50)
+// console.log(data.prices['Adult']);
 
 function employeeCoverage(idOrName) {
   // seu código aqui
