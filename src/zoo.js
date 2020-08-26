@@ -14,18 +14,28 @@ const data = require('./data');
 const { animals, employees, prices, hours } = data;
 
 function animalsByIds(...ids) {
-  return ids.map(animalID => animals.find(animal => animal.id === animalID));
+  const animalsSearch = ids
+    .map(animalID => animals
+      .find(animal => animal.id === animalID));
+
+  return animalsSearch;
 }
 
 function animalsOlderThan(animalName, animalAge) {
-  return animals.find(animal => animalName === animal.name).residents
-  .every(resident => resident.age >= animalAge);
+  const animalsOlderThanAge = animals
+    .find(animal => animalName === animal.name).residents
+    .every(resident => resident.age >= animalAge);
+
+  return animalsOlderThanAge;
 }
 
 function employeeByName(employeeName) {
   if (employeeName === undefined) return {};
-  return employees
-  .find(({ firstName, lastName }) => firstName === employeeName || lastName === employeeName);
+
+  const findEmployeeByName = employees
+    .find(({ firstName, lastName }) => firstName === employeeName || lastName === employeeName);
+
+  return findEmployeeByName;
 }
 
 function createEmployee({ id, firstName, lastName }, { managers, responsibleFor }) {
@@ -33,7 +43,9 @@ function createEmployee({ id, firstName, lastName }, { managers, responsibleFor 
 }
 
 function isManager(id) {
-  return employees.some(({ managers }) => managers.includes(id));
+  const isManagerID = employees.some(({ managers }) => managers.includes(id));
+
+  return isManagerID;
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
@@ -43,34 +55,43 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 const getAnimalsNumber = () => {
   const animalsNum = {};
   animals.forEach(({ name, residents }) => { animalsNum[name] = residents.length; });
+
   return animalsNum;
 };
 
 function animalCount(species) {
   const allSpeciesNumber = getAnimalsNumber();
+
   if (!species) return allSpeciesNumber;
+
   return allSpeciesNumber[species];
 }
 
 function entryCalculator(entrants) {
   if (!entrants || Object.keys(entrants).length === 0) return 0;
-  const keys = Object.keys(entrants);
+
+  const entrantskeys = Object.keys(entrants);
   const sumPrices = (acc, key) => acc + (entrants[key] * prices[key]);
-  return keys.reduce(sumPrices, 0);
+
+  return entrantskeys.reduce(sumPrices, 0);
 }
 
 const getSpeciesPerLocation = (directions) => {
   const speciesLocation = {};
-  directions.forEach((direction) => {
-    speciesLocation[direction] = animals
-      .filter(animal => animal.location === direction).map(animal => animal.name);
-  });
+
+  directions
+    .forEach((direction) => {
+      speciesLocation[direction] = animals
+      .filter(animal => animal.location === direction)
+      .map(animal => animal.name);
+    });
 
   return speciesLocation;
 };
 
 const getNamesPerLocations = (directions, sorted, sex) => {
   const speciesLocation = {};
+
   directions.forEach((direction) => {
     speciesLocation[direction] = animals
       .filter(animal => animal.location === direction)
@@ -79,6 +100,7 @@ const getNamesPerLocations = (directions, sorted, sex) => {
         const value = animal.residents
           .filter(resident => (sex ? resident.sex === sex : true))
           .map(resident => resident.name);
+
         if (sorted) value.sort();
 
         return { [key]: value };
@@ -96,22 +118,25 @@ function animalMap(options) {
   const { includeNames, sorted, sex } = options;
 
   if (!includeNames) return getSpeciesPerLocation(directions);
+
   return getNamesPerLocations(directions, sorted, sex);
 }
 
 function schedule(dayName) {
   const timetable = {};
   const days = Object.keys(hours);
+
   days.forEach((day) => {
-    let openHour = hours[day].open;
-    let closeHour = hours[day].close;
-    if (openHour > 12) openHour -= 12;
-    if (closeHour > 12) closeHour -= 12;
+    const openHour = hours[day].open;
+    const closeHour = hours[day].close - 12;
+
     if (day !== 'Monday') {
       timetable[day] = `Open from ${openHour}am until ${closeHour}pm`;
     } else timetable[day] = 'CLOSED';
   });
+
   if (!dayName) return timetable;
+
   return { [dayName]: timetable[dayName] };
 }
 
@@ -129,6 +154,7 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   const pricesKeys = Object.keys(prices);
+
   pricesKeys.forEach((key) => {
     prices[key] = Math.round((prices[key] * (1 + (percentage / 100))) * 100) / 100;
   });
@@ -139,7 +165,9 @@ function increasePrices(percentage) {
 const getEmployeeCoverage = () => {
   const employeesResponsibleFor = {};
   const getAnimalSpecies = responsibleFor => responsibleFor
-    .map(id => animals.find(animal => animal.id === id).name);
+    .map(id => animals
+      .find(animal => animal.id === id).name);
+
   employees.forEach(({ firstName, lastName, responsibleFor }) => {
     const fullName = `${firstName} ${lastName}`;
     employeesResponsibleFor[fullName] = getAnimalSpecies(responsibleFor);
