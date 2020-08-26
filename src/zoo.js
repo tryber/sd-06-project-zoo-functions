@@ -38,7 +38,7 @@ function employeeByName(employeeName) {
     return empty;
   }
   return employees
-  .find(inPut => inPut.firstName === employeeName || inPut.lastName === employeeName);
+    .find(inPut => inPut.firstName === employeeName || inPut.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -69,10 +69,10 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function animalCount(species) {
   if (!species) {
     return animals.reduce((acc, { name, residents }) =>
-    Object.assign(acc, {
-      [name]: residents.length,
-    }), {},
-  );
+      Object.assign(acc, {
+        [name]: residents.length,
+      }), {},
+    );
   }
   return animals.find(element => element.name === species).residents.length;
 }
@@ -84,7 +84,7 @@ function entryCalculator(entrants) {
   const visitorId = Object.keys(entrants);
   const visitorAmount = Object.values(entrants);
   const totalValue = visitorAmount
-  .reduce((acc, currentValue, index) => acc + (currentValue * prices[visitorId[index]]), 0);
+    .reduce((acc, currentValue, index) => acc + (currentValue * prices[visitorId[index]]), 0);
   return totalValue;
 }
 
@@ -94,19 +94,19 @@ function animalMap(options) {
 
 function wholeSchedule() {
   const daysKey = Object.keys(hours);
-    const openClose = Object.values(hours);
-    const firstObject = openClose.reduce((acc, { open, close }, index) => {
-      if (daysKey[index] !== 'Monday') {
-        return Object.assign(acc, {
-          [daysKey[index]]: `Open from ${open}am until ${(close - 12)}pm`
-        });
-      } else if (daysKey[index] === 'Monday') {
-        return Object.assign(acc, {
-          [daysKey[index]]: 'CLOSED'
-        })
-      };
-    }, {});
-    return firstObject;
+  const openClose = Object.values(hours);
+  const firstObject = openClose.reduce((acc, { open, close }, index) => {
+    if (daysKey[index] !== 'Monday') {
+      return Object.assign(acc, {
+        [daysKey[index]]: `Open from ${open}am until ${(close - 12)}pm`,
+      });
+    } else if (daysKey[index] === 'Monday') {
+      return Object.assign(acc, {
+        [daysKey[index]]: 'CLOSED',
+      });
+    }
+  }, {});
+  return firstObject;
 }
 
 function schedule(dayName) {
@@ -115,9 +115,8 @@ function schedule(dayName) {
   }
   const firstObject = wholeSchedule();
   const secondObject = {
-    [dayName]: firstObject[dayName]
-  }
-
+    [dayName]: firstObject[dayName],
+  };
   return secondObject;
 }
 
@@ -125,15 +124,15 @@ function oldestFromFirstSpecies(id) {
   let array = [];
   const trabalhador = employees.find(inPut => inPut.id === id);
   const retorno = trabalhador.responsibleFor;
-  const x = animals.find((pet) => pet.id === retorno[0]);
+  const x = animals.find(pet => pet.id === retorno[0]);
   let z = x.residents[0]['age'];
   let nomeAnimal;
-  x.residents.forEach(inPut => {
-    if(inPut['age'] > z) {
-    z = inPut['age'];
-    nomeAnimal = inPut;
+  (x.residents).forEach(inPut => {
+    if (inPut['age'] > z) {
+      z = inPut['age'];
+      nomeAnimal = inPut;
     }
-  })
+  });
   array = [nomeAnimal['name'], nomeAnimal['sex'], nomeAnimal['age']];
   return array;
 }
