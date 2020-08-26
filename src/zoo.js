@@ -134,12 +134,11 @@ function schedule(dayName) {
     if (days === 'Monday') {
       obj[days] = 'CLOSED';
     } else {
-    obj[days] = `Open from ${convert(open)} until ${convert(close)}`;
+      obj[days] = `Open from ${convert(open)} until ${convert(close)}`;
     }
   });
-  
   if (!dayName) return obj;
-  return { [dayName] : obj[dayName] };
+  return { [dayName]: obj[dayName] };
 }
 
 function oldestFromFirstSpecies(id) {
@@ -148,14 +147,14 @@ function oldestFromFirstSpecies(id) {
     .map(elem => elem.responsibleFor[0]);
   const info = animals
     .filter(elem => elem.id === idAnimal[0])
-    .map(animal => animal.residents);
-  const older = info[0]
-    .map(infos => infos.age)
-    .reduce((acc, curr) => acc > curr ? acc : curr);
-  const animal = info[0].find(elem => elem.age === older);
+    .map(animal => animal.residents)[0];
+  const older = info
+    .map(item => item.age)
+    .reduce((acc, curr) => (acc > curr ? acc : curr));
+  const animal = info.find(elem => elem.age === older);
   return Object.values(animal);
 }
-//console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
+
 function increasePrices(percentage) {
   // seu código aqui
 }
