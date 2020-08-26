@@ -49,16 +49,15 @@ function animalCount(species) {
   // https://jrsinclair.com/articles/2019/functional-js-do-more-with-reduce/
   const contandoPrimos = (nome, meuArray) => ({ ...nome,
     [meuArray.name]: meuArray.residents.length });
-  if (!species) {
-    return data.animals.reduce(contandoPrimos, {});
-  }
-  return (data.animals
-    .find(meuArray => meuArray.name === species)
+  return !species ? data.animals.reduce(contandoPrimos, {}) : 
+    (data.animals.find(meuArray => meuArray.name === species)
     .residents.length);
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  const somarEntradas = (soma, pessoas) => soma + (data.prices[pessoas] * entrants[pessoas]);
+  return (!entrants || Object.keys(entrants).length === 0)
+  ? 0 : Object.keys(entrants).reduce(somarEntradas, 0);
 }
 
 function animalMap(options) {
