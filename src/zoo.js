@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees, hours, prices } = data;
+const { animals, employees, hours } = data;
 
 function animalsByIds(...ids) {
   if (!ids) {
@@ -58,8 +58,8 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function animalCount(species) {
   const allAnimals = {};
   if (!species) {
-    animals.forEach(animal => {
-      allAnimals[animal.name] = animal.residents.length
+    animals.forEach((animal) => {
+      allAnimals[animal.name] = animal.residents.length;
     });
     return allAnimals;
   }
@@ -67,12 +67,12 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  if (!entrants || Object.entries(entrants).length === 0) {
-    return 0;
-  }
-  return Object.keys(prices).reduce((accumulator, currentValue) => {
-    accumulator + (prices[currentValue] * entrants[currentValue]), 0
-  });
+  // if (!entrants || Object.entries(entrants).length === 0) {
+  //   return 0;
+  // }
+  // return Object.keys(prices).reduce((accumulator, currentValue) => {
+  //  return accumulator + (prices[currentValue] * entrants[currentValue]), 0
+  // });
 }
 
 // Line 79 to 144 implemented by Gabriel Olíva at the guided lesson!
