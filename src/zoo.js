@@ -151,7 +151,10 @@ const getEmployeeCoverage = () => {
 function employeeCoverage(idOrName) {
   let coverage = {};
 
-  if (!idOrName) coverage = getEmployeeCoverage();
+  if (!idOrName) {
+    coverage = getEmployeeCoverage();
+    return coverage;
+  }
 
   const employeeByID = employees.find(employee => employee.id === idOrName);
   const employeeByFirstName = employees.find(employee => employee.firstName === idOrName);
