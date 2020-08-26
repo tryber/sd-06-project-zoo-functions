@@ -97,21 +97,19 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   return data.employees;
 }
 
+function getAnimalCount(specie) {
+  return data.animals.filter(el => el.name === specie)[0].residents.length;
+}
+
 function animalCount(species) {
   if (!species) {
     const animalsList = {};
     data.animals
-      .forEach(el => {
-        animalsList[el.name] = getAnimalCount(el.name);
-      })
+      .forEach(el => animalsList[el.name] = getAnimalCount(el.name));
     return animalsList;
   }
 
   return getAnimalCount(species);
-}
-
-function getAnimalCount(specie) {
-  return data.animals.filter(el => el.name === specie)[0].residents.length;
 }
 
 // console.log(animalCount());
