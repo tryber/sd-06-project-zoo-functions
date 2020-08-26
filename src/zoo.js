@@ -16,11 +16,11 @@ function animalsByIds(...ids) {
 
   animals.map((animal) => {
     const { id } = animal;
-    for (const element of ids) {
+    ids.forEach((element) => {
       if (element === id) {
         result.push(animal);
       }
-    }
+    })
     return result;
   });
   return result;
@@ -33,15 +33,10 @@ function animalsOlderThan(animal, ages) {
 }
 
 function employeeByName(employeeName) {
-  let result = {};
-  employees.find((employee) => {
-    const { firstName, lastName } = employee;
-    if (employeeName === firstName || employeeName === lastName) {
-      result = employee;
-      return result;
-    }
-  });
-  return result;
+  if (!employeeName){
+    return {};
+  }
+  return employees.find((employee) => employeeName === employee.firstName || employeeName === employee.lastName);
 }
 
 // console.log(employeeByName('Wishart'));
@@ -113,38 +108,49 @@ function animalMap(options) {
   // seu código aqui
 }
 
+// function isMonday (element) {
+//   const newObj = {};
+//   if (element.includes('Monday')) {
+//     newObj.Monday = 'CLOSED'
+//     return newObj;
+//   }
+// }
 function schedule(dayName) {
   const newObj = {};
   const date = Object.entries(hours);
+
   if (!dayName) {
     date.map((element) => {
       if (element.includes('Monday')) {
-        newObj.Monday = 'CLOSED'
+        newObj.Monday = 'CLOSED';
         return newObj;
       }
+      // newObj = isMonday(element);
+
       const day = element[0];
       const hour = element[1];
       const { open, close } = hour;
-      return newObj[ day ] = `Open from ${open}am until ${close-12}pm`
+      return newObj[day] = `Open from ${open}am until ${close - 12}pm`;
     });
     return newObj;
   }
   date.map((item) => {
     if (dayName === 'Monday') {
-      newObj.Monday = 'CLOSED'
+      newObj.Monday = 'CLOSED';
       return newObj;
     }
+    
     const day = item[0];
     const hour = item[1];
     const { open, close } = hour;
     if (day === dayName) {
-      return newObj[ day ] = `Open from ${open}am until ${close-12}pm`;
+      return newObj[day] = `Open from ${open}am until ${close - 12}pm`;
     }
   });
   return newObj;
 }
 
-console.log(schedule('Tuesday'))
+// console.log(schedule());
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
