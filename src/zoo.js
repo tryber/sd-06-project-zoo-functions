@@ -52,7 +52,7 @@ function isManager(id) {
 }
 
 function addEmployee(id = '', firstName = '', lastName = '', managers = [], responsibleFor = []) {
-  data.employees.push({ id, firstName, lastName, managers, responsibleFor });
+  employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
 function animalCount(species) {
@@ -125,7 +125,7 @@ function increasePrices(percentage = 0) {
     );
   }
 
-  Object.assign(data.prices, newPrices);
+  Object.assign(prices, newPrices);
 }
 
 function employeeCoverage(idOrName) {
@@ -145,8 +145,6 @@ function employeeCoverage(idOrName) {
 
   return result;
 }
-
-console.log(employeeCoverage('Strauss'));
 
 module.exports = {
   entryCalculator,
