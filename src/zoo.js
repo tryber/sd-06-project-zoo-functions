@@ -66,28 +66,54 @@ function employeeByName(employeeName) {
   }
 
   return employees
-  .find(element => element.firstName === employeeName || element.lastName === employeeName);
+    .find(element => element.firstName === employeeName || element.lastName === employeeName);
 }
 
 // console.log(employeeByName());
 // console.log(employeeByName('Emery'));
 // console.log(employeeByName('Wishart'));
 
+// -----------------------------------------------------------------------
+
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
 }
 
+// -----------------------------------------------------------------------
+
+// Testa se o id passado é de um gerente'
+
 function isManager(id) {
-  // seu código aqui
+
 }
+
+// -----------------------------------------------------------------------
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
 }
 
+// -----------------------------------------------------------------------
+
+// Sem parâmetros, retorna animais e suas quantidades
+// Com o nome de uma espécie de animal, retorna somente a quantidade
+
 function animalCount(species) {
-  // seu código aqui
+  if (species === undefined) {
+    const obj = {};
+    animals.forEach((animal) => {
+      const specieName = animal.name;
+      const totalResidents = animal.residents.length;
+      obj[specieName] = totalResidents;
+    });
+    return obj;
+  }
+  return animals.find(animal => animal.name === species).residents.length;
 }
+
+// console.log(animalCount());
+// console.log(animalCount('lions'));
+// console.log(animalCount('snakes'));
 
 function entryCalculator(entrants) {
   // seu código aqui
