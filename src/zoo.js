@@ -58,7 +58,13 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  // seu código aqui
+  if (species === undefined) {
+    return Object.fromEntries(animals
+      .map(allAnimals => [allAnimals.name, allAnimals.residents.length]));
+  }
+  return animals
+    .find(countAnimal => countAnimal.name === species)
+    .residents.length;
 }
 
 
@@ -66,19 +72,10 @@ function entryCalculator(entrants) {
   if (entrants === undefined) {
     return 0;
   }
-  let adultValue = 0;
-  let childValue = 0;
-  let seniorValue = 0;
-  if (entrants.Adult !== undefined) {
-    adultValue = entrants.Adult * prices.Adult;
-  }
-  if (entrants.Child !== undefined) {
-    childValue = entrants.Child * prices.Child;
-  }
-  if (entrants.Senior !== undefined) {
-    seniorValue = entrants.Senior * prices.Senior;
-  }
-  return adultValue + childValue + seniorValue;
+  const keys = Object.keys(entrants);
+  const totalPrice = keys
+    .reduce((sum, currentValue) => sum + (entrants[currentValue] * prices[currentValue]), 0);
+  return totalPrice;
 }
 
 function animalMap(options) {
@@ -98,8 +95,14 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  if (idOrName === undefined) {
+    const fullName = employees.map(employFullName => `${employFullName.firstName} ${employFullName.lastName}`);
+    const animal = employees.map(animalId => animalId.responsibleFor);
+
+  }
+
 }
+employeeCoverage();
 
 module.exports = {
   entryCalculator,
