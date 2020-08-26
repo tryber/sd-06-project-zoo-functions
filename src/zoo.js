@@ -98,20 +98,20 @@ function schedule(dayName) {
   const firstObject = openClose.reduce((acc, { open, close }, index) => {
     if (daysKey[index] !== 'Monday') {
       return Object.assign(acc, {
-        [daysKey[index]]: `Open from ${open}am until ${(close - 12)}pm`
+        [daysKey[index]]: `Open from ${open}am until ${(close - 12)}pm`,
       });
     }
     return Object.assign(acc, {
-      [daysKey[index]]: 'CLOSED'
-    })
+      [daysKey[index]]: 'CLOSED',
+    });
   }, {});
   if (!dayName) {
     return firstObject;
   }
 
   const secondObject = {
-    [dayName]: firstObject[dayName]
-  }
+    [dayName]: firstObject[dayName],
+  };
   return secondObject;
 }
 
