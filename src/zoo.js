@@ -114,7 +114,7 @@ function animalMap(options) {
   if (!includeNames) return retrieveAnimalsPerLocation(locations);
 
   return retrieveAnimals(locations, sorted, sex);
-}
+} 
 
 function schedule(dayName) {
   const allSchedule = {
