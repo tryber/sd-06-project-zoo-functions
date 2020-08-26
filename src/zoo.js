@@ -10,7 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { animals, employees, prices } = require('./data');
+const { animals, employees, prices, hours } = require('./data');
 
 // 1 - Implemente a função animalsByIds:
 // Caso receba nenhum parâmetro, necessário retornar um array vazio
@@ -128,8 +128,26 @@ function animalMap(options) {
   // seu código aqui
 }
 
+// 10- Implemente a função schedule:
+// Sem parâmetros, retorna um cronograma legível para humanos
+// Se um único dia for passado, retorna somente este dia em um formato legível para humanos
 function schedule(dayName) {
   // seu código aqui
+  const allDays = Object.keys(data.hours);
+  const openingHours = {};
+  allDays.forEach((day) => {
+    if (day === 'Monday') {
+      openingHours[day] = 'CLOSED';
+    } else {
+      const dayOpen = data.hours[day].open;
+      const dayClose = data.hours[day].close - 12;
+      openingHours[day] = `Open from ${dayOpen}am until ${dayClose}pm`;
+    }
+  });
+  console.log(openingHours);
+
+  if (!dayName) return openingHours;
+  return { [dayName]: openingHours[dayName] };
 }
 
 function oldestFromFirstSpecies(id) {
