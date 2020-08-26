@@ -85,22 +85,20 @@ function retrieveAnimals(locations, sorted, sex) {
   locations.forEach((location) => {
     const animalLocation = animals
       .filter(animal => animal.location === location)
-      .map(animal => {
+      .map((animal) => {
         const nameKey = animal.name;
         const nameValues = animal.residents
-        .filter(resident => {
-          return (sex !== undefined) ? resident.sex === sex : true;
-        })
-        .map(resident => resident.name);
+          .filter((resident) => {
+            return (sex !== undefined) ? resident.sex === sex : true;
+          })
+          .map(resident => resident.name);
 
         if (sorted) nameValues.sort();
 
         return { [nameKey]: nameValues };
       });
-
-      animalsByLocationWithName[location] = animalLocation;
+  animalsByLocationWithName[location] = animalLocation;
   });
-  
   return animalsByLocationWithName;
 }
 
@@ -114,7 +112,6 @@ function animalMap(options) {
   if (!includeNames) return retrieveAnimalsByLocation(locations);
 
   return retrieveAnimals(locations, sorted, sex);
-
 }
 
 function schedule(dayName) {
