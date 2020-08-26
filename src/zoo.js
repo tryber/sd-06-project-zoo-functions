@@ -30,7 +30,7 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  const retorno = {...personalInfo, ...associatedWith};
+  const retorno = { ...personalInfo, ...associatedWith };
   return retorno;
 }
 
