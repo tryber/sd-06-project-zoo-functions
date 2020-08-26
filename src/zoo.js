@@ -122,7 +122,7 @@ function animalMap(options) {
 
   return retrieveAnimals(locations, sorted, sex);
 }
-// <- Código do Planto do Oliva
+// <- Código do Plantão do Oliva
 
 function schedule(dayName) {
   const allDays = Object.keys(data.hours);
@@ -142,8 +142,26 @@ function schedule(dayName) {
   return { [dayName]: schedulee[dayName] };
 }
 
+// Requisito 11
+const residentsOldest = (resident) => {
+  const arrResidents = Object.entries(resident);
+  const newArray = [];
+  arrResidents.forEach((item) => {
+    const itemArray = [];
+    itemArray.push(item[1].name, item[1].sex, item[1].age);
+    newArray.push(itemArray);
+  });
+  return newArray.sort(function (a, b) {
+    return b[2] - a[2];
+  });
+};
+
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const firstEmployee = employees.find(employee => employee.id === id);
+  const firstEspecie = firstEmployee.responsibleFor[0];
+  const resident = animals.find(animal => animal.id === firstEspecie).residents;
+  const residentOld = residentsOldest(resident)[0];
+  return residentOld;
 }
 
 function increasePrices(percentage) {
