@@ -53,7 +53,7 @@ function animalCount(species) {
   if (species === undefined) {
     return data.animals.map(animal => ({
       animal: animal.name,
-      quantidade: animal.residents.length
+      quantidade: animal.residents.length,
     }));
   }
       // RETORNA UM ARRAY E NÃO UM OBJETO
