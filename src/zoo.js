@@ -62,7 +62,7 @@ function entryCalculator(entrants) {
   const { Adult = 0, Child = 0, Senior = 0 } = entrants;
   return (Adult * prices.Adult) + (Child * prices.Child) + (Senior * prices.Senior);
 }
-//Requisito abaixo foi aplicado no plantão do requisito 9 dia 25/08 pelo Professor Oliva.
+
 function retrieveAnimalsPerLocation(locations) {
   const animalsPerLocation = {};
 
