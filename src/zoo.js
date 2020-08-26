@@ -28,11 +28,12 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  return Object.assign(personalInfo, associatedWith);
 }
 
 function isManager(id) {
-  // seu código aqui
+  return data.employees.flatMap(employee => employee.managers)
+    .some(managerId => managerId === id);
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
