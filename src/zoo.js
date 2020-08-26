@@ -100,11 +100,10 @@ function schedule(dayName) {
       return Object.assign(acc, {
         [daysKey[index]]: `Open from ${open}am until ${(close - 12)}pm`
       });
-    } else if (daysKey[index] === 'Monday') {
-      return Object.assign(acc, {
-        [daysKey[index]]: 'CLOSED'
-      })
-    };
+    }
+    return Object.assign(acc, {
+      [daysKey[index]]: 'CLOSED'
+    })
   }, {});
   if (!dayName) {
     return firstObject;
