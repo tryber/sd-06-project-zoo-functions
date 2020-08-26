@@ -75,12 +75,15 @@ function oldestFromFirstSpecies(id) {
   const firstSpecieOfEmployee = employees.find(employee => employee.id === id).responsibleFor[0];
   const oldestAnimal = animals
     .find(animal => animal.id === firstSpecieOfEmployee).residents
-    .sort((newest, oldest) => oldest.age - newest.age)[0]
+    .sort((newest, oldest) => oldest.age - newest.age)[0];
   return Object.values(oldestAnimal);
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  return Object.entries(prices)
+    .forEach(([people, price]) => {
+      prices[people] = (Math.round(price * (percentage / 100 + 1) * 100) / 100).toFixed(2);
+  })
 }
 
 function employeeCoverage(idOrName) {
