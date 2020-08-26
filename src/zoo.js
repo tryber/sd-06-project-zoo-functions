@@ -9,8 +9,8 @@ eslint no-unused-vars: [
 ]
 */
 
-// const data = require('./data');
-const { animals, employees, prices, hours } = require('./data');
+const data = require('./data');
+const { animals, employees, prices, hours } = data;
 
 function animalsByIds(...ids) {
   const animalsGroup = [];
@@ -35,7 +35,7 @@ function animalsOlderThan(animal, age) {
     .residents.every(element => element.age > age);
 }
 
-function employeeByName(employeeName) {
+function employeeByName(employeeName = {}) {
   if (employeeName === undefined) {
     return {};
   }
@@ -95,9 +95,7 @@ function schedule(dayName) {
     return Object.values(hours).reduce((acc, { open, close }, key) => {
       if (Object.keys(hours)[key] !== 'Monday') {
         return Object.assign(acc, {
-          [Object.keys(hours)[key]]: `Open from ${[open]}am until ${
-            [close] - 12
-          }pm`,
+          [Object.keys(hours)[key]]: `Open from ${[open]}am until ${[close] - 12}pm`,
         });
       }
       return Object.assign(acc, {
@@ -105,19 +103,21 @@ function schedule(dayName) {
       });
     }, {});
   }
-  return Object.keys(hours).reduce((_, cur) => {
     if (dayName !== 'Monday') {
       return { [dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm` };
     }
-    return { [cur]: 'CLOSED' };
-  });
+    return { [dayName]: 'CLOSED' };
 }
+
+  // Passando o id de um funcionário, encontra a primeira espécie de animal gerenciado pelo funcionário, e retorna um array com nome, sexo e idade do animal mais velho dessa espécie
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const animalsId = employees.find(employee => employee.id === id).responsibleFor[0];
+  const { name, sex, age } = animals.filter((species) => species.id === animalsId)[0].residents
+  .reduce((acc, cur) => acc.age > cur.age ? acc : cur);
+  return [ name , sex , age ];  
 }
-
-function increasePrices(percentage) {
+  function increasePrices(percentage) {
   // seu código aqui
 }
 
