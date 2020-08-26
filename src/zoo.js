@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees, hours, prices } = data;
+const { animals, employees, prices } = data;
 
 function animalsByIds(...ids) {
   return animals.filter(animal => ids.find(thoseWhich => thoseWhich === animal.id));
@@ -108,7 +108,8 @@ function animalMap(options) {
 //   }, {});
 //   return firstObject;
 // }
-
+function schedule(dayName) {
+}
 // function schedule(dayName) {
 //   if (!dayName) {
 //     return wholeSchedule();
