@@ -76,7 +76,7 @@ function entryCalculator(entrants) {
 function retrieveAnimalsPerLocation(locations) {
   const animalsPerLocation = {};
   locations.forEach((location) => {
-    const animals = animals
+    const animals = data.animals
       .filter(animal => animal.location === location)
       .map(animal => animal.name);
     if (animals.length !== 0) animalsPerLocation[location] = animals;
@@ -87,7 +87,7 @@ function retrieveAnimals(locations, sorted, sex) {
   const animalsPerLocationWithName = {};
 
   locations.forEach((location) => {
-    const animals = animals
+    const animals = data.animals
       .filter(animal => animal.location === location)
       .map((animal) => {
         const nameKey = animal.name;
