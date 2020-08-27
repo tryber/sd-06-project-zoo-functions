@@ -14,7 +14,7 @@ const {
   animals,
   employees,
   prices,
-  hours,
+// hours,
 } = require('./data');
 const data = require('./data');
 // const { isArray } = require('util');
@@ -99,7 +99,8 @@ function animalMap(options) {
 function schedule(dayName) {
   // const allWeek = {};
   // const allDays = Object.keys(hours);
-  // allDays.map((element) => element !== 'Monday' ? allWeek[element] = `Open from ${hours[element].open}am until ${hours[element].close-12}pm` : allWeek[element] = 'CLOSED');
+  // allDays.map((element) => element !== 'Monday' ? allWeek[element] = `Open
+  //  from ${hours[element].open}am until ${hours[element].close-12}pm` : allWeek[element] = 'CLOSED');
   // if (!dayName) {
   //   return allWeek;
   // } const newActual = { [dayName]: allWeek[dayName] };
