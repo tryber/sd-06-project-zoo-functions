@@ -82,110 +82,44 @@ function entryCalculator(entrants) {
   }, 0);
 }
 
-const defaultMap = () => {
-  const locationArr = ['NE', 'NW', 'SE', 'SW'];
-  const output = {};
-
-  locationArr.forEach((location) => {
-    output[location] = data.animals.filter(animal => animal.location === location)
-    .map(animal => animal.name);
-  });
-  return output;
-};
-
-const checkIfSorted = (keys, values, output) => {
-  for (let index = 0; index < keys.length; index += 1) {
-    if (keys.includes('sorted') && values[index]) { output.sort(); }
-  }
-  return output;
-};
-
-const pushNamesWithoutSex = (animalsArr, output) => {
-  for (let index = 0; index < animalsArr.length; index += 1) {
-    output.push(animalsArr[index].name);
-  }
-  return output;
-};
-
-const pushNames = (animalsArr, output, sex) => {
-  for (let index = 0; index < animalsArr.length; index += 1) {
-    if (animalsArr[index].sex === sex) { output.push(animalsArr[index].name); }
-  }
-  return output;
-};
-
-const animalNames = (options, animalsArr, sex) => {
-  const output = [];
-  if (sex === undefined) {
-    pushNamesWithoutSex(animalsArr, output);
-  } else {
-    pushNames(animalsArr, output, sex);
-  }
-  const keys = Object.keys(options);
-  const values = Object.values(options);
-  checkIfSorted(keys, values, output);
-  return output;
-};
-
-const animalObject = (species, location, options) => {
-  const { sex } = options;
-  const keys = Object.keys(options);
-  const values = Object.values(options);
-  const output = {};
-  let hasReturn = false;
-  const animalsArr = data.animals.filter(animal => animal.location === location)
-  .filter(animal => animal.name === species)
+function getResidentsNames(species, options) {
+  const { sorted, sex } = options;
+  const output = data.animals.filter(animal => animal.name === species)
   .flatMap(animal => animal.residents);
-  for (let index = 0; index < keys.length; index += 1) {
-    if (keys.includes('sex') && values[index] === sex && !hasReturn) {
-      output[species] = animalNames(options, animalsArr, sex);
-      hasReturn = true;
-    } else if (!hasReturn) {
-      output[species] = animalNames(options, animalsArr);
-    }
-  }
-  return output;
-};
+  if (sex && !sorted) { return output.filter(resident => resident.sex === sex)
+    .map(resident => resident.name); }
+  if (sex && sorted) { return output.filter(resident => resident.sex === sex)
+  .map(resident => resident.name).sort(); }
+  if (!sex && sorted) { return output.map(resident => resident.name).sort(); }
+  if (!sorted) { return output.map(resident => resident.name); }
+}
 
-const mapLocation = (location, options) => {
-  const output = {};
-  output[location] = [];
-  let animalsArr = data.animals.filter(animal => animal.location === location);
-  animalsArr = animalsArr.map(animal => animal.name);
-  for (let index = 0; index < animalsArr.length; index += 1) {
-    output[location].push(animalObject(animalsArr[index], location, options));
-  }
-  return output;
-};
-
-// the no-option return is not specified, so i returned what the test wants
-const noOptions = (location) => {
-  const output = [];
-  output[location] = [];
-  const noOptionReturn = data.animals.map(animal => animal.name).find(animal => animal);
-  output[location].push(noOptionReturn);
-  return output;
-};
-
-// 'includes' I learned from prof Ícaro, monster
-function animalMap(options) {
-  if (options === undefined) { return defaultMap(); }
-  const output = {};
-  const keys = Object.keys(options);
-  const values = Object.values(options);
-  for (let index = 0; index < keys.length; index += 1) {
-    if (keys.includes('includeNames') && values[index]) {
-      Object.assign(output, mapLocation('NE', options));
-      Object.assign(output, mapLocation('NW', options));
-      Object.assign(output, mapLocation('SE', options));
-      Object.assign(output, mapLocation('SW', options));
-    } else {
-      Object.assign(output, noOptions('NE'));
-    }
-  }
+function getAnimalNameAsKey(location, options) {
+  let output = [];
+  let animalObject = {};
+  data.animals.filter(animal => animal.location === location)
+  .map(animal => animal.name).forEach(animal => {
+    // tests if has 'includeNames' option
+    if (!Object.keys(options).includes('includeNames')) { output.push(animal); return output; }
+    animalObject[animal] = getResidentsNames(animal, options);
+    output.push(animalObject);
+    animalObject = {};
+  });
   return output;
 }
 
+function animalMap(options) {
+  const locations = ['NE', 'NW', 'SE', 'SW'];
+  if (!options) {
+    return locations.reduce((acc, location) => ({
+      ...acc, [location]: data.animals.filter(animal => animal.location === location)
+      .map(animal => animal.name)
+    }), {});
+  }
+  return locations.reduce((acc, location) => ({
+    ...acc, [location]: getAnimalNameAsKey(location, options),
+  }), {});
+}
 const returnSchedule = day => `Open from ${data.hours[day].open}am until ${(data.hours[day].close) - 12}pm`;
 
 // 24h to 12h = (-12)
