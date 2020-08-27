@@ -123,16 +123,18 @@ function animalMapRequireTwo(regions, sorted, sex) {
       // filter para acha os animais que tem a localização da array, retorna o obj
       .filter(pet => pet.location === element)
       // formata a saida do filter
-      .map((pepet) => {
-        const objAnimal = pepet.name;
+      .map((p) => {
+        const objAnimal = p.name;
         if (sex) {
-          const arrayAnimalName = pepet.residents.filter(resideSex => resideSex.sex === sex).map(resid => resid.name);
+          const arrayAnimalName = p.residents
+          .filter(r => r.sex === sex)
+          .map(re => re.name);
           if (sorted) {
             arrayAnimalName.sort()
           }
           return { [objAnimal]: arrayAnimalName };
         } else {
-          const arrayAnimalName = pepet.residents.map(resid => resid.name);
+          const arrayAnimalName = p.residents.map(resid => resid.name);
         if (sorted) {
           arrayAnimalName.sort()
         }
