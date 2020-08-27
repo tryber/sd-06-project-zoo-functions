@@ -121,11 +121,20 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const idDoPrimeiroAnimal =
+    data.employees.find(funcionario => id === funcionario.id).responsibleFor[0];
+  const objDoAnimal = data.animals.find(animal => idDoPrimeiroAnimal === animal.id).residents;
+  let maisvelho = { age: 0 };
+  objDoAnimal.forEach((animal) => {
+    if (animal.age > maisvelho.age) {
+      maisvelho = animal;
+    }
+  });
+  return Object.values(maisvelho);
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  // seu código aquiq q ganh
 }
 
 function employeeCoverage(idOrName) {
