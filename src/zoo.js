@@ -97,13 +97,13 @@ function animalMap(options) {
 // console.log(animals.filter(animal => animal.location === 'NE').map(nome => nome.name))
 
 function schedule(dayName) {
-  const allWeek = {};
-  const allDays = Object.keys(hours);
-  allDays.map((element) => {element !== 'Monday' ? allWeek[element] = `Open from ${hours[element].open}am until ${hours[element].close-12}pm` : allWeek[element] = 'CLOSED'});
-  if (!dayName) {
-    return allWeek;
-  } const newActual = { [dayName]: allWeek[dayName] };
-  return newActual;
+  // const allWeek = {};
+  // const allDays = Object.keys(hours);
+  // allDays.map((element) => element !== 'Monday' ? allWeek[element] = `Open from ${hours[element].open}am until ${hours[element].close-12}pm` : allWeek[element] = 'CLOSED');
+  // if (!dayName) {
+  //   return allWeek;
+  // } const newActual = { [dayName]: allWeek[dayName] };
+  // return newActual;
 }
 
 function oldestFromFirstSpecies(id) {
