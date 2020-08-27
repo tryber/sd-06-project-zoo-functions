@@ -79,7 +79,7 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  //kllklkl
+  // kllklkl
 }
 
 function oldestFromFirstSpecies(id) {
@@ -102,7 +102,7 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  //yuiyuiuy
+  // yuiyuiuy
 }
 
 module.exports = {
