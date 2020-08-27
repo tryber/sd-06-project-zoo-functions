@@ -35,12 +35,7 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  if (data.employees.some(gerente => gerente.managers.includes(id)) === true) {
-    return true;
-  }
-  if (data.employees.some(gerente => gerente.managers.includes(id)) === false) {
-    return false;
-  }
+  return data.employees.some(gerente => gerente.managers.includes(id))
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
