@@ -132,7 +132,7 @@ function employeeCoverage(idOrName) {
   //   }, {})
   // }
 }
-console.log(employeeCoverage())
+console.log(employeeCoverage());
 
 // animals.filter(animalName => animalName.id === animalCur ? animalName.name : false)).name
 
