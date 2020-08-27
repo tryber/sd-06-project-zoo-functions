@@ -100,9 +100,11 @@ function schedule(dayName) {
   const allWeek = {};
   const allDays = Object.keys(hours);
   allDays.map((element) => {
-    element !== 'Monday' ? allWeek[element] =
-    `Open from ${hours[element].open}am until ${hours[element].close-12}pm` :
-     allWeek[element] = 'CLOSED'
+    if (element === 'Monday') {
+      return allWeek[element] = 'CLOSED'
+    }
+    return allWeek[element] = 
+     `Open from ${hours[element].open}am until ${hours[element].close-12}pm`
   });
   if (!dayName) {
     return allWeek;
