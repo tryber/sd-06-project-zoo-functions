@@ -20,7 +20,7 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  return data.animals.find(getAnimal => getAnimal.name === animal)
+  return data.animals.find(getAnimalName => getAnimalName.name === animal)
     .residents.every(ageAnimal => ageAnimal.age > age);
 }
 
@@ -65,24 +65,55 @@ function entryCalculator(entrants) {
     totalPrice + (entrants[ticket] * data.prices[ticket]), 0);
 }
 
-function animalMap(options) {
-  const locations = ['NE', 'NW', 'SE', 'SW'];
+function getAnimalByLocation(locations) {
+  const objectAnimals = {};
 
-  if (!options) {
-    const objectAnimals = {}
-    locations.forEach((location) => {
-      const animals = data.animals
+  locations.forEach((location) => {
+    const animals = data.animals
       .filter(animal => animal.location === location)
       .map(animalName => animalName.name);
 
-      if (animals.length !== 0) return objectAnimals[location] = animals;
-    })
-    return objectAnimals;
-  }
-
-
+    if (animals.length !== 0) objectAnimals[location] = animals;
+  });
+  return objectAnimals;
 }
-console.log(animalMap());
+
+function retrieveAnimal(locations, sorted, sex) {
+  const objectAnimalsWithNames = {};
+
+  locations.forEach((location) => {
+    const animals = data.animals
+    .filter(animal => animal.location === location)
+    .map((animalName) => {
+      const animalKey = animalName.name;
+      const animalResidents = animalName.residents
+      .filter((resident) => {
+        const isFiltering = sex !== undefined;
+        return isFiltering ? resident.sex === sex : true;
+      })
+      .map(resident => resident.name);
+
+      if (sorted) animalResidents.sort();
+
+      return { [animalKey]: animalResidents };
+    });
+
+    objectAnimalsWithNames[location] = animals;
+  });
+
+  return objectAnimalsWithNames;
+}
+
+function animalMap(options) {
+  const locations = ['NE', 'NW', 'SE', 'SW'];
+  if (!options) return getAnimalByLocation(locations);
+
+  const { includeNames, sorted, sex } = options;
+
+  if (!includeNames) return getAnimalByLocation(locations);
+
+  return retrieveAnimal(locations, sorted, sex);
+}
 
 const openingHours = {
   Tuesday: 'Open from 8am until 6pm',
