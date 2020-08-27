@@ -10,7 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { animals, employees } = require('./data');
+const { animals, employees, hours } = require('./data');
 
 const animalsByIds = (...ids) => {
   const retorno = [];
@@ -83,7 +83,8 @@ function animalCount(species) {
 // eu passei um reduce nesse array com um acomulador e um valor do array que é uma chave.
 // no acomulador eu atribui o numero de vezes que a chave do obj que eu recebi tinha.
 // vezes o valor da chave do objeto price no data tem.
-// tenho certeza absoluto que consigo explicar esse código, certeza eu nunca chegaria nessa solução
+// tenho certeza absoluto que consigo explicar esse código,
+// certeza eu nunca chegaria nessa solução
 // uma vez que eu nem sabia a sintaxe para acessar o valor de um objeto.
 // depois de refletir sobre essa function lembrei
 // que já ate tinha usado a sintaxe de acessar um valor
@@ -103,8 +104,20 @@ function animalMap(options) {
   // seu código aqui
 }
 
+const retorno = {};
+const o = Object.values(hours)
+Object.keys(hours).forEach((day, index) => {
+  retorno[day] = `Open from ${o[index].open}am until ${(o[index].close) - 12}pm`;
+});
+retorno['Monday'] = `CLOSED`;
+
 function schedule(dayName) {
-  // seu código aqui
+  if(!dayName) {
+    return retorno;
+  }
+  const resposta = {};
+  resposta[dayName] = Object.entries(retorno).find(value => dayName === value[0])[1];
+  return resposta;
 }
 
 function oldestFromFirstSpecies(id) {
