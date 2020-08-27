@@ -88,11 +88,11 @@ function getResidentsNames(species, options) {
   .flatMap(animal => animal.residents);
   if (sex && !sorted) {
     return output.filter(resident => resident.sex === sex)
-    .map(resident => resident.name); 
+    .map(resident => resident.name);
   }
   if (sex && sorted) {
     return output.filter(resident => resident.sex === sex)
-  .map(resident => resident.name).sort(); 
+  .map(resident => resident.name).sort();
   }
   if (!sex && sorted) { return output.map(resident => resident.name).sort(); }
   if (!sorted) { return output.map(resident => resident.name); }
@@ -118,7 +118,7 @@ function animalMap(options) {
     return locations.reduce((acc, location) => ({
       ...acc,
       [location]: data.animals.filter(animal => animal.location === location)
-      .map(animal => animal.name);
+      .map(animal => animal.name),
     }), {});
   }
   return locations.reduce((acc, location) => ({
