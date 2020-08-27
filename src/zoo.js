@@ -137,9 +137,7 @@ function animalMap(options) {
   // constroi array de localizações
   const array = animals.map(pet => pet.location);
   // constroi array com localizações nao repetidas
-  const regions = array.filter((elem, index, self) => {
-    return index === self.indexOf(elem);
-  });
+  const regions = array.filter((elem, index, self) => index === self.indexOf(elem));
   if (!options) {
     return animalMapRequireOne(regions);
   }
