@@ -105,14 +105,14 @@ function animalMap(options) {
 }
 
 const retorno = {};
-const o = Object.values(hours)
+const o = Object.values(hours);
 Object.keys(hours).forEach((day, index) => {
   retorno[day] = `Open from ${o[index].open}am until ${(o[index].close) - 12}pm`;
 });
-retorno['Monday'] = `CLOSED`;
+retorno.Monday = 'CLOSED';
 
 function schedule(dayName) {
-  if(!dayName) {
+  if (!dayName) {
     return retorno;
   }
   const resposta = {};
