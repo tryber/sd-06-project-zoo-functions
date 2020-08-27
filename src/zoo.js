@@ -17,6 +17,7 @@ const {
   hours,
 } = require('./data');
 const data = require('./data');
+const { isArray } = require('util');
 // const { TestScheduler } = require('jest');
 
 function animalsByIds(...ids) {
@@ -59,20 +60,22 @@ function animalCount(species) {
   // seu código aqui
   if (species === undefined) {
     const animais = {};
-    animals.forEach(element => animais[element.name] = element.residents.length );
+    animals.forEach(element => animais[element.name] = element.residents.length);
     return animais;
   }
-  const animalsTotal = animals.filter(element => element.name === species).map(element => element.residents.length);
-  return animalsTotal[0];
+  const animalsTotal = animals.filter(element => element.name === species);
+  const residentAnimals = animalsTotal.map(element => element.residents.length);
+  return residentAnimals[0];
 }
-// console.log(animalCount('lions'))
+
 function entryCalculator(entrants) {
   // seu código aqui
   if (entrants === undefined || Object.keys(entrants).length === 0) {
     return 0;
   }
-  const totalValue = Object.keys(entrants).map(element => entrants[element] * prices[element]).reduce((prev, next) => prev + next);
-  return totalValue;
+  const totalValue = Object.keys(entrants).map(element => entrants[element] * prices[element])
+  const calc = totalValue.reduce((prev, next) => prev + next);
+  return calc;
 }
 
 function animalMap(options) {
@@ -103,7 +106,9 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  // id => find employee.responsibleFor
+  // array = {id animal === animals.residents}
+  const findEmployeeId = [employees.find(employee => employee.id === id)]
 }
 
 function increasePrices(percentage) {
