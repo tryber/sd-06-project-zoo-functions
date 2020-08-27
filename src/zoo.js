@@ -146,6 +146,7 @@ function animalMap(options) {
   if (options.includesNames) {
     return animalMapRequireTwo(regions);
   }
+  return options;
 }
 console.log(animalMap({ includesNames: true }));
 
