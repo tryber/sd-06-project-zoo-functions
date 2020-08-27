@@ -1,1 +1,0 @@
-onsole.log(data.prices.Adult, data.prices.Senior, data.prices.Child)

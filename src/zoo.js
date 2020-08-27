@@ -101,7 +101,6 @@ function oldestFromFirstSpecies(id) {
   return Object.values(resultado);
 }
 
-
 function increasePrices(percentage) {
   let { Adult, Senior, Child } = data.prices;
   Adult = Math.round((Adult + ((Adult * percentage) / 100)) * 100) / 100;
@@ -114,9 +113,25 @@ function increasePrices(percentage) {
 
 
 function employeeCoverage(idOrName) {
-
+  const listaDeFuncionario = {};
+  let funcionariosFiltrados;
+  if (!idOrName) {
+    funcionariosFiltrados = data.employees;
+  } else {
+    funcionariosFiltrados = data.employees.filter(
+      funcionario =>
+      funcionario.id === idOrName ||
+      funcionario.firstName === idOrName ||
+      funcionario.lastName === idOrName,
+    );
+  }
+  funcionariosFiltrados.forEach((funcionario) => {
+    const mappedAnimals = funcionario.responsibleFor.map(responsibleId =>
+      data.animals.find(animal => animal.id === responsibleId).name);
+    listaDeFuncionario[`${funcionario.firstName} ${funcionario.lastName}`] = mappedAnimals;
+  });
+  return listaDeFuncionario;
 }
-
 
 module.exports = {
   entryCalculator,
