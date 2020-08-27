@@ -102,10 +102,56 @@ function entryCalculator(entrants = 0) {
   return acc;
 }
 
+function animalMapRequireOne(regions){
+  const result = {}
+    // foreach para percorrer o array
+    regions.forEach(element => {
+      result[element] = animals
+      // filter para acha os animais que tem a localização da array, retorna o obj
+      .filter(pet => pet.location === element)
+      // formata a saida do filter
+      .map(pepet => pepet.name)
+    })
+    return result
+}
+
+function animalMapRequireTwo(regions){
+  const result = {}
+    // foreach para percorrer o array
+    regions.forEach(element => {
+      result[element] = animals
+      // filter para acha os animais que tem a localização da array, retorna o obj
+      .filter(pet => pet.location === element)
+      // formata a saida do filter
+      .map(pepet => {
+        const objAnimal = pepet.name
+        const arrayAnimalName = pepet.residents.map(resid => resid.name)
+        return {[objAnimal] : arrayAnimalName}
+      })
+    })
+    return result
+
+}
+
 function animalMap(options) {
   // seu código aqui
+  // constroi array de localizações
+  const array = animals.map(pet => pet.location)
+  // constroi array com localizações nao repetidas
+  const regions = array.filter((elem, index, self) => {
+    return index === self.indexOf(elem);
+});
+  
+  if (!options){
+    return animalMapRequireOne(regions);
+  }
+  if(options.includesNames){
+    return animalMapRequireTwo(regions)
+  }
+  
+  
 }
-// console.log(animalMap())
+console.log(animalMap({includesNames:true}))
 
 function schedule(dayName) {
   // seu código aqui
