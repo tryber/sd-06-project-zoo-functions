@@ -150,13 +150,13 @@ function increasePrices(percentage) {
 
   prices.Adult = Math.round((prices.Adult * 100 * (1 + (runningAwayFromCC))).toFixed(2)) / 100;
 
-  prices.Senior = Math.round((prices.Senior * 100.00002 * (1 + (looksLikeItWorked)))
-  .toFixed(2)) / 100;
+  prices.Senior = parseFloat(Math.round((prices.Senior * 100 * (1 + (looksLikeItWorked)))
+  .toFixed(2)) / 100).toPrecision(4);
 
   prices.Child = Math.round((prices.Child * 100 * (1 + (0.01 * percentage))).toFixed(2)) / 100;
   return prices;
 }
-// console.log(increasePrices(50))
+//  console.log(increasePrices(50))
 
 function employeeCoverage(idOrName) {
   // seu código aqui
