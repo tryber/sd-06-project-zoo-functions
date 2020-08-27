@@ -139,7 +139,7 @@ function employeeCoverage(idOrName) {
   //   if (idOrName === employees.firstName
   //  || idOrName === employees.id || idOrName === employees.lastName) {
   //     result = mappedAnimals;
-  //}
+  // }
   //   // result[`${employee.firstName} ${employee.lastName}`] = mappedAnimals;
   // };
   // return result;
