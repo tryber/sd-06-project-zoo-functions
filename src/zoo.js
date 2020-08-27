@@ -164,9 +164,24 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  // Este requisito foi feito em conjunto com o plantão do Icaro.
+  const obj = {};
+  if (!idOrName) {
+    employees.forEach((employee) => {
+      const mappedAnimals = employee.responsibleFor.map(animalFromResponsibleFor => {
+        const findAnimal = animals.find((animal) => 
+          animal.id === animalFromResponsibleFor
+        ).name
+        return findAnimal
+      });
+      obj[`${employee.firstName} ${employee.lastName}`] = mappedAnimals;
+    });
+    return obj    
+  };  
+};
 
-}
+console.log(employeeCoverage())
+
 module.exports = {
   entryCalculator,
   schedule,
