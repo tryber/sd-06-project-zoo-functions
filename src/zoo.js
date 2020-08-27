@@ -95,7 +95,7 @@ function getResidentsNames(species, options) {
   .map(resident => resident.name).sort();
   }
   if (!sex && sorted) { return output.map(resident => resident.name).sort(); }
-  if (!sorted) { return output.map(resident => resident.name); }
+  return output.map(resident => resident.name);
 }
 
 function getAnimalNameAsKey(location, options) {
@@ -108,6 +108,7 @@ function getAnimalNameAsKey(location, options) {
     animalObject[animal] = getResidentsNames(animal, options);
     output.push(animalObject);
     animalObject = {};
+    return output;
   });
   return output;
 }
