@@ -11,7 +11,6 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-
 //  Caso receba nenhum parâmetro, necessário retornar um array vazio
 //  Ao receber como parâmetro um único id, retorna os animais com este id
 //  Ao receber mais de um id, retorna os animais que têm um desses ids
@@ -164,8 +163,62 @@ function increasePrices(percentage) {
     return newPricesObject;
   });
 }
+
+//  Sem parâmetros, retorna uma lista de funcionários e os animais pelos
+// quais eles são responsáveis Com o id de um funcionário, retorna os animais
+// pelos quais o funcionário é responsável Com o primeiro nome de um funcionário,
+// retorna os animais pelos quais o funcionário é responsável Com o último nome
+// de um funcionário, retorna os animais pelos quais o funcionário é responsável
+
+// Funcoes a executar para quando nao se pasa parametro----------------------------
+//  funcoe chamada por createEmployeeList para buscar atraves de parametro ja passado os animales
+//  por los cuales e responsable o empregado
+function listAnimals(employ) {
+  const animalsResponsibleFor = employ.responsibleFor;
+  const listAnimalsDoEmploy = animalsResponsibleFor
+  .map((id) => {
+    const animalsFound = data.animals
+      .find(animal => animal.id === id);
+    return animalsFound.name;
+  });
+  return listAnimalsDoEmploy;
+}
+//  Pasa por cada empregado e cria objeto con nome e sobrenome, logo chama a funcoe listAnimals
+//  para tracer os animais desses empregados
+function createEmployeeList() {
+  const employeObject = {};
+  data.employees
+    .map((employ) => {
+      const nameEmploy = `${employ.firstName} ${employ.lastName}`;
+      employeObject[nameEmploy] = listAnimals(employ);
+      return employeObject;
+    });
+  return employeObject;
+}
+function createObjetToShow(employe, callback) {
+  const employeObject = {};
+  const animalOfEmploye = callback(employe);
+  const nameEmploy = `${employe.firstName} ${employe.lastName}`;
+  employeObject[nameEmploy] = animalOfEmploye;
+  return employeObject;
+}
+
+function createEmployeeLisWithParameters(idOrName, callback) {
+  let employeObject = {};
+  data.employees.forEach((employe) => {
+    if (employe.id === idOrName || employe.firstName === idOrName) {
+      employeObject = createObjetToShow(employe, callback);
+    } else if (employe.lastName === idOrName) {
+      employeObject = createObjetToShow(employe, callback);
+    }
+  });
+  return employeObject;
+}
+
+// Funcoe principal que deriva dependendo do parametros pasados
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  if (!idOrName) return createEmployeeList();
+  return createEmployeeLisWithParameters(idOrName, listAnimals);
 }
 
 module.exports = {
