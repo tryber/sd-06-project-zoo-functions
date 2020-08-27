@@ -109,19 +109,29 @@ function increasePrices(percentage) {
 function employeeCoverage(idOrName) {
   // sem parametro => todos animais
   const result = {};
+  let employeeInfo;
+
   if (!idOrName) {
-    employees.forEach((employee) => {
-      result[`${employee.firstName} ${employee.lastName}`] = [];
-      employee.responsibleFor.forEach((animalIdResponsibleFor) => {
-        const foundAninal = animals.find(animal => animal.id === animalIdResponsibleFor).name;
-        result[`${employee.firstName} ${employee.lastName}`].push(foundAninal);
-      });
-    });
-    return result;
+    employeeInfo = employees;
+  } else {
+    employeeInfo = employees.filter(
+      employee =>
+      employee.id === idOrName ||
+      employee.firstName === idOrName ||
+      employee.lastName === idOrName,
+    );
   }
-  return 'faltando';
+  employeeInfo.forEach((employee) => {
+    const SearchAnimals = employee.responsibleFor.map((animalIdResponsibleFor) => {
+      const animalName = animals.find(animal => animal.id === animalIdResponsibleFor).name;
+      return animalName;
+    });
+    result[`${employee.firstName} ${employee.lastName}`] = SearchAnimals;
+  });
+  return result;
 }
-// console.log(employeeCoverage());
+
+console.log(employeeCoverage('Burl'));
 
 module.exports = {
   entryCalculator,
