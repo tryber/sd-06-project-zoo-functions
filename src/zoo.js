@@ -101,10 +101,11 @@ function schedule(dayName) {
   const allDays = Object.keys(hours);
   allDays.map((element) => {
     if (element === 'Monday') {
-      return allWeek[element] = 'CLOSED';
-    }
-    return allWeek[element] =
-      `Open from ${hours [element].open}am until ${hours [element].close-12}pm`;
+      allWeek[element] = 'CLOSED';
+      return allWeek;
+    } 
+      allWeek[element] = `Open from ${hours[element].open}am until ${hours[element].close-12}pm`;
+      return allWeek;
   });
   if (!dayName) {
     return allWeek;
@@ -128,23 +129,20 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  const result = {};
-  employees.forEach((employee) => {
-    const mappedAnimals = employee.responsibleFor.map(
-    (animalIdResponsibleFor) => {
-      const foundAnimalName = animals.find(animal => animal.id === animalIdResponsibleFor).name;
-      return foundAnimalName;
-    });
-    if (idOrName === employees.firstName || idOrName === employees.id || idOrName === employees.lastName) {
-      result = mappedAnimals;
-      
-    } 
-    // result[`${employee.firstName} ${employee.lastName}`] = mappedAnimals;
-  });
-
-  return result;
+  // const result = {};
+  // employees.forEach((employee) => {
+  //   const mappedAnimals = employee.responsibleFor.map(
+  //   (animalIdResponsibleFor) => {
+  //     const foundAnimalName = animals.find(animal => animal.id === animalIdResponsibleFor).name;
+  //     return foundAnimalName;
+  //   });
+  //   if (idOrName === employees.firstName || idOrName === employees.id || idOrName === employees.lastName) {
+  //     result = mappedAnimals;
+ //   }
+  //   // result[`${employee.firstName} ${employee.lastName}`] = mappedAnimals;
+  // };
+  // return result;
 }
-console.log(employeeCoverage('Ola'))
 
 module.exports = {
   entryCalculator,
