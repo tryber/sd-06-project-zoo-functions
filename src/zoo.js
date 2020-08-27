@@ -11,6 +11,8 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
+const { animals, employees, prices, hours } = data;
+
 function animalsByIds(...ids) {
   return data.animals.filter(element => ids.includes(element.id));
 }
@@ -77,7 +79,7 @@ function entryCalculator(entrants) {
 function animalMap(options) {
   // teste
 }
-  
+
 function schedule(dayName) {
   const scheduleFormated = {};
   const daysOfWeek = Object.keys(hours);
