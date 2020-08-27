@@ -110,7 +110,7 @@ function schedule(dayName) {
     return allWeek;
   }
   const newActual = {
-    [dayName]: allWeek[dayName];
+    [dayName]: allWeek[dayName]
   };
   return newActual;
 }
