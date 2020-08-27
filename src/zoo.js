@@ -11,10 +11,6 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-// const { animals } = data;
-// const { employees } = data;
-// const { animals, employees } = data;
-// const { animals, employees, prices } = data;
 const { animals, employees, prices, hours } = data;
 
 // -----------------------------------------------------------------------
@@ -84,8 +80,14 @@ function createEmployee(personalInfo, associatedWith) {
 // Testa se o id passado é de um gerente'
 
 function isManager(id) {
+  const manager = [];
+  employees.forEach(employee => manager.push(employee.managers
+    .find(element => element === id)));
 
+  return manager.some(value => value === id);
 }
+  // console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
+  // console.log(isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
 
 // -----------------------------------------------------------------------
 
