@@ -176,7 +176,8 @@ const findAnimal = (id) => {
 
 function oldestFromFirstSpecies(id) {
   const animalId = data.employees
-  .filter(employee => employee.id === id).flatMap(animal => animal.responsibleFor);
+  .filter(employee => employee.id === id)
+  .flatMap(animal => animal.responsibleFor);
   return findAnimal(animalId);
 }
 
