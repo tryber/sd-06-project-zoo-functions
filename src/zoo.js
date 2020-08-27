@@ -35,11 +35,15 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  // seu código aqui
+  if (data.employees.some(gerente => gerente.managers.includes(id)) === true) {
+    return true;
+  }
+  if (data.employees.some(gerente => gerente.managers.includes(id)) === false) {
+    return false;
+  }
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
 }
 
 function animalCount(species) {
