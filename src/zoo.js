@@ -103,9 +103,9 @@ function schedule(dayName) {
     if (element === 'Monday') {
       allWeek[element] = 'CLOSED';
       return allWeek;
-    } 
-      allWeek[element] = `Open from ${hours[element].open}am until ${hours[element].close-12}pm`;
-      return allWeek;
+    }
+    allWeek[element] = `Open from ${hours[element].open}am until ${hours[element].close - 12}pm`;
+    return allWeek;
   });
   if (!dayName) {
     return allWeek;
@@ -136,9 +136,10 @@ function employeeCoverage(idOrName) {
   //     const foundAnimalName = animals.find(animal => animal.id === animalIdResponsibleFor).name;
   //     return foundAnimalName;
   //   });
-  //   if (idOrName === employees.firstName || idOrName === employees.id || idOrName === employees.lastName) {
+  //   if (idOrName === employees.firstName
+  //  || idOrName === employees.id || idOrName === employees.lastName) {
   //     result = mappedAnimals;
- //   }
+  //}
   //   // result[`${employee.firstName} ${employee.lastName}`] = mappedAnimals;
   // };
   // return result;
