@@ -150,7 +150,8 @@ function increasePrices(percentage) {
 
   prices.Adult = Math.round((prices.Adult * 100 * (1 + (runningAwayFromCC))).toFixed(2)) / 100;
 
-  prices.Senior = Math.round((prices.Senior * 100 * (1 + (looksLikeItWorked / 100) * 100)).toFixed(2)) / 100;
+  prices.Senior = Math.round((prices.Senior * 100.00002 * (1 + (looksLikeItWorked)))
+  .toFixed(2)) / 100;
 
   prices.Child = Math.round((prices.Child * 100 * (1 + (0.01 * percentage))).toFixed(2)) / 100;
   return prices;
