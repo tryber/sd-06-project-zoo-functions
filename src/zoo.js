@@ -123,14 +123,14 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  if (!idOrName) {
-    return employees.reduce((acc, employee) => {
-      const animalId = employee.responsibleFor.reduce((animalAcc, animalCur) => , [])
-      const name = `${employee.firstName} ${employee.lastName}`;
-      console.log(animalId)
-      return Object.assign(acc, {[name]: [animalId]});
-    }, {})
-  }
+  // if (!idOrName) {
+  //   return employees.reduce((acc, employee) => {
+  //     const animalId = employee.responsibleFor.reduce((animalAcc, animalCur) => , [])
+  //     const name = `${employee.firstName} ${employee.lastName}`;
+  //     console.log(animalId)
+  //     return Object.assign(acc, {[name]: [animalId]});
+  //   }, {})
+  // }
 }
 console.log(employeeCoverage())
 
