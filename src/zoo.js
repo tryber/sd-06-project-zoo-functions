@@ -135,11 +135,11 @@ function animalMapRequireTwo(regions, sorted, sex) {
           return { [objAnimal]: arrayAnimalName };
         } else {
           const arrayAnimalName = p.residents.map(resid => resid.name);
-        if (sorted) {
-          arrayAnimalName.sort()
+          if (sorted) {
+          arrayAnimalName.sort();
         }
-        return { [objAnimal]: arrayAnimalName };
-      }
+          return { [objAnimal]: arrayAnimalName };
+        }
       });
   });
   return result;
@@ -157,7 +157,7 @@ function animalMap(options) {
   if (options.includeNames) {
     return animalMapRequireTwo(regions, options.sorted, options.sex);
   } else {
-    return animalMapRequireOne(regions)
+    return animalMapRequireOne(regions);
   }
 }
 console.log(animalMap({ sorted: true, sex: 'female' }));
