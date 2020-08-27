@@ -70,9 +70,45 @@ function entryCalculator(entrants) {
   return soma;
 }
 
+// Com a opção includeNames: true especificada, retorna nomes de animais
+// Com a opção sorted: true especificada, retorna nomes de animais ordenados
+// Com a opção sex: 'female' ou sex: 'male' especificada, retorna somente nomes de animais macho/fêmea
+// Com a opção sex: 'female' ou sex: 'male' especificada e a opção sort: true especificada, retorna somente nomes de animais macho/fêmea com os nomes dos animais ordenados
+// Só retorna informações ordenadas e com sexo se a opção includeNames: true for especificada
+
+//Função Principal
 function animalMap(options) {
-  // seu código aqui
+  const locations = ['NE', 'NW', 'SE', 'SW'];
+  if (!options) return retornarAnimaisPorLocalizacao(locations);
+  const includeNames = options.includeNames;
+  if (includeNames) return retornarAnimaisPorLocalizacaoComNome(locations);
 }
+
+const retornarAnimaisPorLocalizacao = (locations) => {
+  const animaisPorLocalizacao = {};
+  locations.forEach(localizacao => {
+    const animais = data.animals.filter(animal => animal.location === localizacao)
+    .map(animal => animal.name);
+    if (animais.length !== 0) animaisPorLocalizacao[localizacao] = animais;
+  });
+  return animaisPorLocalizacao
+}
+
+const retornarAnimaisPorLocalizacaoComNome = (locations) => {
+  const animaisPorLocalizacaoComNome = {};
+  locations.forEach(localizacao => {
+    const animais = data.animals.filter(animal => animal.location === localizacao)
+    .map(animal => {
+      const nameKey = animal.name
+      const nameValues = animal.residents.map(resident => resident.name)
+      return {[nameKey]:nameValues}
+    });
+    if (animais.length !== 0) animaisPorLocalizacaoComNome[localizacao] = animais;
+  });
+  return animaisPorLocalizacaoComNome
+}
+
+console.log(animalMap())
 
 function schedule(dayName) {
   const agenda = Object.entries(data.hours);
