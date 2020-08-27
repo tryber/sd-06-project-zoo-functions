@@ -115,7 +115,7 @@ function animalMapRequireOne(regions) {
   return result;
 }
 
-function animalMapRequireTwo(regions) {
+function animalMapRequireTwo(regions, sorted, sex) {
   const result = {};
     // foreach para percorrer o array
   regions.forEach((element) => {
@@ -125,8 +125,19 @@ function animalMapRequireTwo(regions) {
       // formata a saida do filter
       .map((pepet) => {
         const objAnimal = pepet.name;
-        const arrayAnimalName = pepet.residents.map(resid => resid.name);
+        if (sex) {
+          const arrayAnimalName = pepet.residents.filter(resideSex => resideSex.sex === sex).map(resid => resid.name);
+          if (sorted) {
+            arrayAnimalName.sort()
+          }
+          return { [objAnimal]: arrayAnimalName };
+        } else {
+          const arrayAnimalName = pepet.residents.map(resid => resid.name);
+        if (sorted) {
+          arrayAnimalName.sort()
+        }
         return { [objAnimal]: arrayAnimalName };
+      }
       });
   });
   return result;
@@ -141,12 +152,13 @@ function animalMap(options) {
   if (!options) {
     return animalMapRequireOne(regions);
   }
-  if (options.includesNames) {
-    return animalMapRequireTwo(regions);
+  if (options.includeNames) {
+    return animalMapRequireTwo(regions, options.sorted, options.sex);
+  } else {
+    return animalMapRequireOne(regions)
   }
-  return options;
 }
-console.log(animalMap({ includesNames: true }));
+console.log(animalMap({ sorted: true, sex: 'female' }));
 
 function schedule(dayName) {
   // seu código aqui
