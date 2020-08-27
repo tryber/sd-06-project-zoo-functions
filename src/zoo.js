@@ -133,31 +133,13 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  if (percentage === 50) {
-    const a = parseFloat((49.99 * (1 + (percentage / 100))) + 0.005).toFixed(2);
-    const b = parseFloat((24.99 * (1 + (percentage / 100))) + 0.005).toFixed(2);
-    const c = parseFloat((20.99 * (1 + (percentage / 100))) + 0.005).toFixed(2);
-
-    return {
-      Adult: a,
-      Senior: b,
-      Child: c,
-    }
-  }
-  const mutiplier = ((1 + (percentage / 100)) * (1.5));
-  const a = parseFloat((49.99 * mutiplier) + 0.005).toFixed(2);
-  const b = parseFloat((24.99 * mutiplier) + 0.005).toFixed(2);
-  const c = parseFloat((20.99 * mutiplier) + 0.005).toFixed(2);
-
-  return {
-    Adult: a,
-    Senior: b,
-    Child: c,
-  }
+  prices.Adult = parseFloat((prices.Adult * (1 + (percentage / 100))) + 0.005).toFixed(2);
+  prices.Senior = parseFloat((prices.Senior * (1 + (percentage / 100))) + 0.005).toFixed(2);
+  prices.Child = parseFloat((prices.Child * (1 + (percentage / 100))) + 0.005).toFixed(2);
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+
 }
 
 module.exports = {
