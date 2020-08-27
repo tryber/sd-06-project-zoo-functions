@@ -14,7 +14,7 @@ const {
   animals,
   employees,
   prices,
-// hours,
+  hours,
 } = require('./data');
 const data = require('./data');
 // const { isArray } = require('util');
@@ -99,9 +99,9 @@ function animalMap(options) {
 function schedule(dayName) {
   const allWeek = {};
   const allDays = Object.keys(hours);
-  allDays.map((element) => element !== 'Monday' ? allWeek[element] = `Open
-   from ${hours[element].open}am until ${hours[element]
-  .close-12}pm` : allWeek[element] = 'CLOSED');
+  allDays.map(element => {element !== 'Monday' ? allWeek[element] 
+  = `Open from ${hours[element].open}am until ${hours[element].close-12}pm` : 
+  allWeek[element] = 'CLOSED'});
   if (!dayName) {
     return allWeek;
   }
@@ -114,7 +114,9 @@ function schedule(dayName) {
 function oldestFromFirstSpecies(id) {
   // id => find employee.responsibleFor
   // array = {id animal === animals.residents}
-  // const findEmployeeId = [employees.find(employee => employee.id === id)]
+  const findEmployeeId = employees.find(employee => employee.id === id);
+  const findEmployeeIdKeys = Object.keys(findEmployeeId).responsibleFor
+  console.log(indEmployeeIdKeys)
 }
 
 function increasePrices(percentage) {
