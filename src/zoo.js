@@ -17,7 +17,7 @@ const {
   hours,
 } = require('./data');
 const data = require('./data');
-const { isArray } = require('util');
+// const { isArray } = require('util');
 // const { TestScheduler } = require('jest');
 
 function animalsByIds(...ids) {
@@ -60,7 +60,7 @@ function animalCount(species) {
   // seu código aqui
   if (species === undefined) {
     const animais = {};
-    animals.forEach(element => animais[element.name] = element.residents.length);
+    animals.forEach(element => (animais[element.name] = element.residents.length));
     return animais;
   }
   const animalsTotal = animals.filter(element => element.name === species);
@@ -73,7 +73,7 @@ function entryCalculator(entrants) {
   if (entrants === undefined || Object.keys(entrants).length === 0) {
     return 0;
   }
-  const totalValue = Object.keys(entrants).map(element => entrants[element] * prices[element])
+  const totalValue = Object.keys(entrants).map(element => entrants[element] * prices[element]);
   const calc = totalValue.reduce((prev, next) => prev + next);
   return calc;
 }
@@ -85,7 +85,8 @@ function animalMap(options) {
 //     animalsPerLocation = {};
 
 //   locations.forEach((location) => {
-//     const animals = data.animals.filter(animal => animal.location === location).map(animal => animal.name);
+//     const animals = data.animals.filter(animal => animal.location === location)
+        // .map(animal => animal.name);
 
 //     if (animals.length !== 0) animalsPerLocation[location] = animals;
 //   });
@@ -98,7 +99,7 @@ function animalMap(options) {
 function schedule(dayName) {
   const allWeek = {};
   const allDays = Object.keys(hours);
-  allDays.map(element => element !== 'Monday' ? allWeek[element] = `Open from ${hours[element].open}am until ${hours[element].close-12}pm` : allWeek[element] = 'CLOSED');
+  allDays.map(element => (element !== 'Monday' ? allWeek[element] = `Open from ${hours[element].open}am until ${hours[element].close-12}pm` : allWeek[element] = 'CLOSED'));
   if (!dayName) {
     return allWeek;
   } const newActual = { [dayName]: allWeek[dayName] };
@@ -108,7 +109,7 @@ function schedule(dayName) {
 function oldestFromFirstSpecies(id) {
   // id => find employee.responsibleFor
   // array = {id animal === animals.residents}
-  const findEmployeeId = [employees.find(employee => employee.id === id)]
+  // const findEmployeeId = [employees.find(employee => employee.id === id)]
 }
 
 function increasePrices(percentage) {
@@ -124,7 +125,7 @@ function employeeCoverage(idOrName) {
       return foundAnimalName;
     });
     result[`${employee.firstName} ${employee.lastName}`] = mappedAnimals;
-    });
+  });
 
   return result;
 }
