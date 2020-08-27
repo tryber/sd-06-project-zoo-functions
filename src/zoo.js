@@ -70,50 +70,43 @@ function entryCalculator(entrants) {
   return soma;
 }
 
-// Com a opção includeNames: true especificada, retorna nomes de animais
-// Com a opção sorted: true especificada, retorna nomes de animais ordenados
-// Com a opção sex: 'female' ou sex: 'male' especificada, retorna somente nomes de animais macho/fêmea
-// Com a opção sex: 'female' ou sex: 'male' especificada e a opção sort: true especificada, retorna somente nomes de animais macho/fêmea com os nomes dos animais ordenados
-// Só retorna informações ordenadas e com sexo se a opção includeNames: true for especificada
-
-//Função Principal
-function animalMap(options) {
-  const locations = ['NE', 'NW', 'SE', 'SW'];
-  if (!options) return retornarAnimaisPorLocalizacao(locations);
-  const {includeNames, sorted, sex} = options
-  if (!includeNames) return retornarAnimaisPorLocalizacao(locations);
-  return retornarAnimaisPorLocalizacaoComNome(locations, sorted, sex);
-}
-
 const retornarAnimaisPorLocalizacao = (locations) => {
   const animaisPorLocalizacao = {};
-  locations.forEach(localizacao => {
-    const animais = data.animals.filter(animal => animal.location === localizacao)
-    .map(animal => animal.name);
+  locations.forEach((localizacao) => {
+    const animais = data.animals.filter(index => index.location === localizacao)
+    .map(nomeAnimal => nomeAnimal.name);
     if (animais.length !== 0) animaisPorLocalizacao[localizacao] = animais;
   });
-  return animaisPorLocalizacao
-}
+  return animaisPorLocalizacao;
+};
 
 const retornarAnimaisPorLocalizacaoComNome = (locations, sorted, sex) => {
   const animaisPorLocalizacaoComNome = {};
-  locations.forEach(localizacao => {
-    const animais = data.animals.filter(animal => animal.location === localizacao)
-    .map(animal => {
-      const nameKey = animal.name
+  locations.forEach((location) => {
+    const animais = data.animals.filter(pet => pet.location === location)
+    .map((animal) => {
+      const nameKey = animal.name;
       if (sex) {
-        let nameValues = animal.residents.filter(animal=> animal.sex === sex).map(resident => resident.name)
+        const nameValues = animal.residents.filter(sexoAnimal => sexoAnimal.sex === sex)
+        .map(animalResident => animalResident.name);
         if (sorted) nameValues.sort();
-        return {[nameKey]:nameValues}
-      } else {
-        let nameValues = animal.residents.map(resident => resident.name)
-        if (sorted) nameValues.sort();
-        return {[nameKey]:nameValues}
+        return { [nameKey]: nameValues };
       }
+      const nameValues = animal.residents.map(resident => resident.name);
+      if (sorted) nameValues.sort();
+      return { [nameKey]: nameValues };
     });
-    if (animais.length !== 0) animaisPorLocalizacaoComNome[localizacao] = animais;
+    if (animais.length !== 0) animaisPorLocalizacaoComNome[location] = animais;
   });
-  return animaisPorLocalizacaoComNome
+  return animaisPorLocalizacaoComNome;
+};
+
+function animalMap(options) {
+  const locations = ['NE', 'NW', 'SE', 'SW'];
+  if (!options) return retornarAnimaisPorLocalizacao(locations);
+  const { includeNames, sorted, sex } = options;
+  if (!includeNames) return retornarAnimaisPorLocalizacao(locations);
+  return retornarAnimaisPorLocalizacaoComNome(locations, sorted, sex);
 }
 
 function schedule(dayName) {
