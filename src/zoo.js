@@ -78,7 +78,9 @@ function entryCalculator(entrants) {
   return totalPrice;
 }
 
-function animalMap(options) {}
+function animalMap(options) {
+  // seu código aqui
+}
 
 function schedule(dayName) {
   // seu código aqui
@@ -98,10 +100,34 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-
-
+  const response = {};
+  const getResponseByParam = (param) => {
+    const employee = employees.find(employ => employ[param] === idOrName);
+    const listAnimalByEployeeId = [];
+    employee.responsibleFor.forEach((animalByEployeeId) => {
+      listAnimalByEployeeId.push(animals
+        .find(animalName => animalByEployeeId === animalName.id).name);
+    });
+    response[`${employee.firstName} ${employee.lastName}`] = listAnimalByEployeeId;
+  };
+  if (idOrName === undefined) {
+    employees.forEach((employee) => {
+      const getAnimal = employee.responsibleFor;
+      const listAnimal = [];
+      getAnimal.forEach((animal) => {
+        listAnimal.push(animals.find(animalName => animal === animalName.id).name);
+      });
+      response[`${employee.firstName} ${employee.lastName}`] = listAnimal;
+    });
+  } else if (employees.some(employee => employee.id === idOrName)) {
+    getResponseByParam('id');
+  } else if (employees.some(employeeName => employeeName.firstName === idOrName)) {
+    getResponseByParam('firstName');
+  } else if (employees.some(employeeName => employeeName.lastName === idOrName)) {
+    getResponseByParam('lastName');
+  }
+  return response;
 }
-employeeCoverage();
 
 module.exports = {
   entryCalculator,
