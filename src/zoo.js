@@ -86,19 +86,23 @@ function getResidentsNames(species, options) {
   const { sorted, sex } = options;
   const output = data.animals.filter(animal => animal.name === species)
   .flatMap(animal => animal.residents);
-  if (sex && !sorted) { return output.filter(resident => resident.sex === sex)
-    .map(resident => resident.name); }
-  if (sex && sorted) { return output.filter(resident => resident.sex === sex)
-  .map(resident => resident.name).sort(); }
+  if (sex && !sorted) {
+    return output.filter(resident => resident.sex === sex)
+    .map(resident => resident.name); 
+  }
+  if (sex && sorted) {
+    return output.filter(resident => resident.sex === sex)
+  .map(resident => resident.name).sort(); 
+  }
   if (!sex && sorted) { return output.map(resident => resident.name).sort(); }
   if (!sorted) { return output.map(resident => resident.name); }
 }
 
 function getAnimalNameAsKey(location, options) {
-  let output = [];
+  const output = [];
   let animalObject = {};
   data.animals.filter(animal => animal.location === location)
-  .map(animal => animal.name).forEach(animal => {
+  .map(animal => animal.name).forEach((animal) => {
     // tests if has 'includeNames' option
     if (!Object.keys(options).includes('includeNames')) { output.push(animal); return output; }
     animalObject[animal] = getResidentsNames(animal, options);
@@ -112,8 +116,9 @@ function animalMap(options) {
   const locations = ['NE', 'NW', 'SE', 'SW'];
   if (!options) {
     return locations.reduce((acc, location) => ({
-      ...acc, [location]: data.animals.filter(animal => animal.location === location)
-      .map(animal => animal.name)
+      ...acc,
+      [location]: data.animals.filter(animal => animal.location === location)
+      .map(animal => animal.name);
     }), {});
   }
   return locations.reduce((acc, location) => ({
