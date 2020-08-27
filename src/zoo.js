@@ -38,11 +38,11 @@ function isManager(id) {
   return data.employees.some(gerente => gerente.managers.includes(id));
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  data.employees.push({ id, firstName, lastName, managers, responsibleFor});
 }
 
 function animalCount(species) {
-  // seu código aqui
 }
 
 function entryCalculator(entrants) {
