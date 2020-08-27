@@ -101,16 +101,16 @@ function schedule(dayName) {
   const allDays = Object.keys(hours);
   allDays.map((element) => {
     if (element === 'Monday') {
-      return allWeek[element] = 'CLOSED'
+      return allWeek[element] = 'CLOSED';
     }
-    return allWeek[element] = 
-     `Open from ${hours[element].open}am until ${hours[element].close-12}pm`
+    return allWeek[element] =
+      `Open from ${ hours [element].open }am until ${ hours [element].close-12 }pm`;
   });
   if (!dayName) {
     return allWeek;
   }
   const newActual = {
-    [dayName]: allWeek[dayName]
+    [dayName]: allWeek[dayName];
   };
   return newActual;
 }
@@ -118,9 +118,9 @@ function schedule(dayName) {
 function oldestFromFirstSpecies(id) {
   // id => find employee.responsibleFor
   // array = {id animal === animals.residents}
-  const findEmployeeId = employees.find(employee => employee.id === id);
-  const findEmployeeIdKeys = Object.keys(findEmployeeId).responsibleFor
-  console.log(indEmployeeIdKeys)
+  // const findEmployeeId = employees.find(employee => employee.id === id);
+  // const findEmployeeIdKeys = Object.keys(findEmployeeId).responsibleFor
+  // console.log(indEmployeeIdKeys)
 }
 
 function increasePrices(percentage) {
