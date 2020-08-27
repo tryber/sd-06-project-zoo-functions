@@ -78,20 +78,20 @@ function entryCalculator(entrants) {
   return totalPrice;
 }
 
-function animalMap(options) {
-  // seu código aqui
-}
+function animalMap(options) {}
 
 function schedule(dayName) {
   // seu código aqui
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const animalId = employees.find(employee => employee.id === id).responsibleFor[0];
+  const animalSpecie = animals.find(specie => specie.id === animalId).residents;
+  const ordedSpecie = animalSpecie.sort((a, b) => b.age - a.age);
+  return [`${ordedSpecie[0].name}`, `${ordedSpecie[0].sex}`, `${ordedSpecie[0].age}`];
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
   const keys = Object.keys(prices);
   const increase = 1 + (percentage / 100);
   keys.forEach((key) => { prices[key] = Math.round(prices[key] * increase * 100) / 100; });
