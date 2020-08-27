@@ -104,13 +104,13 @@ function schedule(dayName) {
       return allWeek[element] = 'CLOSED';
     }
     return allWeek[element] =
-      `Open from ${ hours [element].open }am until ${ hours [element].close-12 }pm`;
+      `Open from ${hours [element].open}am until ${hours [element].close-12}pm`;
   });
   if (!dayName) {
     return allWeek;
   }
   const newActual = {
-    [dayName]: allWeek[dayName]
+    [dayName]: allWeek[dayName],
   };
   return newActual;
 }
@@ -135,12 +135,16 @@ function employeeCoverage(idOrName) {
       const foundAnimalName = animals.find(animal => animal.id === animalIdResponsibleFor).name;
       return foundAnimalName;
     });
-    result[`${employee.firstName} ${employee.lastName}`] = mappedAnimals;
+    if (idOrName === employees.firstName || idOrName === employees.id || idOrName === employees.lastName) {
+      result = mappedAnimals;
+      
+    } 
+    // result[`${employee.firstName} ${employee.lastName}`] = mappedAnimals;
   });
 
   return result;
 }
-// console.log(employeeCoverage('c1f50212-35a6-4ecd-8223-f835538526c2'))
+console.log(employeeCoverage('Ola'))
 
 module.exports = {
   entryCalculator,
