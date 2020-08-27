@@ -119,12 +119,9 @@ function employeeCoverage(idOrName) {
       });
       response[`${employee.firstName} ${employee.lastName}`] = listAnimal;
     });
-  } else if (employees.some(employee => employee.id === idOrName)) {
-    getResponseByParam('id');
-  } else if (employees.some(employeeName => employeeName.firstName === idOrName)) {
-    getResponseByParam('firstName');
-  } else if (employees.some(employeeName => employeeName.lastName === idOrName)) {
-    getResponseByParam('lastName');
+  } else if (employees.some(employee => employee.id === idOrName)) {getResponseByParam('id');
+  } else if (employees.some(employeeName => employeeName.firstName === idOrName)) {getResponseByParam('firstName');
+  } else if (employees.some(employeeName => employeeName.lastName === idOrName)) {getResponseByParam('lastName');
   }
   return response;
 }
