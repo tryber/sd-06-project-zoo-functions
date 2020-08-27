@@ -14,8 +14,8 @@ const data = require('./data');
 // const { animals } = data;
 // const { employees } = data;
 // const { animals, employees } = data;
-const { animals, employees, prices } = data;
-// const { animals, employees, prices, hours } = data;
+// const { animals, employees, prices } = data;
+const { animals, employees, prices, hours } = data;
 
 // -----------------------------------------------------------------------
 
@@ -148,6 +148,8 @@ function entryCalculator(entrants = {}) {
 // console.log(entryCalculator({ 'Child': 1 }));
 // console.log(entryCalculator({ 'Child': 1, 'Senior': 1 }));
 
+// -----------------------------------------------------------------------
+
 function animalMap(obj = {}) {
 // // Sem parâmetros, retorna animais categorizados por localização'
 
@@ -211,9 +213,35 @@ function animalMap(obj = {}) {
 // sorted: true
 // sex: 'female'
 
+// -----------------------------------------------------------------------
+// Essa soluução foi baseada na solução guiada realizada pelo Oliva.
+// Sem parâmetros, retorna um cronograma legível para humanos'
+// Se um único dia for passado, retorna somente este dia em um formato legível para humanos
+
 function schedule(dayName) {
-  // seu código aqui
+  const daySchedule = {};
+  const days = Object.keys(hours);
+
+  days.forEach((day) => {
+    if (day === 'Monday') {
+      daySchedule[day] = 'CLOSED';
+    } else {
+      const opening = hours[day].open;
+      const closing = hours[day].close - 12;
+      daySchedule[day] = `Open from ${opening}am until ${closing}pm`;
+    }
+  });
+
+  if (dayName === undefined || dayName.length === 0) {
+    return daySchedule;
+  }
+  return { [dayName]: daySchedule[dayName] };
 }
+
+// console.log(schedule());
+// console.log(schedule(''));
+// console.log(schedule('Monday'));
+// console.log(schedule('Tuesday'))
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
