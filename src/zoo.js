@@ -10,7 +10,7 @@ eslint no-unused-vars: [
 */
 const data = require('./data');
 
-const { prices, hours } = data;
+const { prices, hours, employees, animals } = data;
 
 function animalsByIds(...ids) {
   return data.animals.filter(species => ids.includes(species.id));
@@ -89,11 +89,6 @@ function oldestFromFirstSpecies(id) {
     (age > result.age ? [name, sex, age] : result),
   );
 }
-/* Passado o id de um funcionário, encontra a primeira espécie de animal gerenciado pelo funcionário, 
-e retorna um array com nome, sexo e idade do animal mais velho dessa espécie */
-
-
-
 
 function increasePrices(percentage) {
   const percent = 1 + (percentage / 100);
@@ -103,10 +98,6 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-/* Sem parâmetros, retorna uma lista de funcionários e os animais pelos quais eles são responsáveis*/
-/*Com o id de um funcionário, retorna os animais pelos quais o funcionário é responsável*/
-/*Com o primeiro nome de um funcionário, retorna os animais pelos quais o funcionário é responsável*/
-/*Com o último nome de um funcionário, retorna os animais pelos quais o funcionário é responsável */
 
 }
 
