@@ -117,11 +117,13 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // id => find employee.responsibleFor
-  // array = {id animal === animals.residents}
-  // const findEmployeeId = employees.find(employee => employee.id === id);
-  // const findEmployeeIdKeys = Object.keys(findEmployeeId).responsibleFor
-  // console.log(indEmployeeIdKeys)
+  const findEmployeeId = employees.find(employee => employee.id === id).responsibleFor[0];
+  const thisAnimal = animals.find(animal => animal.id === findEmployeeId).residents;
+  const olderAnimal = thisAnimal.sort((a, b) => {
+    if (a.age < b.age) { return 1; }
+    if (a.age > b.age) { return -1; } return 0;
+  })
+  return Object.values(olderAnimal[0]);
 }
 
 function increasePrices(percentage) {
