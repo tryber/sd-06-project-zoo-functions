@@ -45,14 +45,14 @@ function isManager(id) {
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // seu código aqui
-  let lastEmployee = {
-      id,
-      firstName,
-      lastName,
-      managers,
-      responsibleFor,
+  const lastEmployee = {
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
   }
-  return employees.push(lastEmployee)
+  return employees.push(lastEmployee);
 }
 
 function animalCount(species) {
@@ -70,26 +70,26 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
   // seu código aqui
-  if (entrants == undefined || Object.keys(entrants).length === 0) {
+  if (entrants === undefined || Object.keys(entrants).length === 0) {
     return 0;
   }
   const totalValue = Object.keys(entrants).map(element => entrants[element] * prices[element]).reduce((prev, next) => prev + next);
   return totalValue;
-};
+}
 
 function animalMap(options) {
-const locations = ['NE', 'NW', 'SE', 'SW'];
+//   const locations = ['NE', 'NW', 'SE', 'SW'];
 
-if (!options) {
-  animalsPerLocation = {};
+//   if (!options) {
+//     animalsPerLocation = {};
 
-  locations.forEach((location) => {
-    const animals = data.animals.filter(animal => animal.location === location).map(animal => animal.name);
+//   locations.forEach((location) => {
+//     const animals = data.animals.filter(animal => animal.location === location).map(animal => animal.name);
 
-    if (animals.length !== 0) animalsPerLocation[location] = animals;
-  });
-  return animalsPerLocation;
-} 
+//     if (animals.length !== 0) animalsPerLocation[location] = animals;
+//   });
+//   return animalsPerLocation;
+// }
 
 }
 // console.log(animals.filter(animal => animal.location === 'NE').map(nome => nome.name))
@@ -97,12 +97,12 @@ if (!options) {
 function schedule(dayName) {
   const allWeek = {};
   const allDays = Object.keys(hours);
-  const allZooDays = allDays.map(element => element !== 'Monday' ? allWeek[element] = `Open from ${hours[element].open}am until ${hours[element].close-12}pm` : allWeek[element] = `CLOSED`);
+  allDays.map(element => element !== 'Monday' ? allWeek[element] = `Open from ${hours[element].open}am until ${hours[element].close-12}pm` : allWeek[element] = 'CLOSED');
   if (!dayName) {
     return allWeek;
-  } const newActual = {[dayName]: allWeek[dayName]};
-    return newActual
-};
+  } const newActual = { [dayName]: allWeek[dayName] };
+  return newActual;
+}
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
@@ -115,16 +115,16 @@ function increasePrices(percentage) {
 function employeeCoverage(idOrName) {
   const result = {};
   employees.forEach((employee) => {
-  const mappedAnimals = employee.responsibleFor.map(
+    const mappedAnimals = employee.responsibleFor.map(
     (animalIdResponsibleFor) => {
-      const foundAnimalName = animals.find((animal) => animal.id === animalIdResponsibleFor).name;
+      const foundAnimalName = animals.find(animal => animal.id === animalIdResponsibleFor).name;
       return foundAnimalName;
-    })
-      result[`${employee.firstName} ${employee.lastName}`] = mappedAnimals;
+    });
+    result[`${employee.firstName} ${employee.lastName}`] = mappedAnimals;
     });
 
   return result;
-  }
+}
 // console.log(employeeCoverage('c1f50212-35a6-4ecd-8223-f835538526c2'))
 
 module.exports = {
