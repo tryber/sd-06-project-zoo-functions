@@ -117,14 +117,24 @@ function oldestFromFirstSpecies(id) {
   return [name, sex, age];
 }
 function increasePrices(percentage) {
-  Object.keys(prices).forEach(client => {
+  Object.keys(prices).forEach((client) => {
     prices[client] = Math.round(prices[client] * ((percentage / 100) + 1) * 100) / 100;
   });
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  if (!idOrName) {
+    return employees.reduce((acc, employee) => {
+      const animalId = employee.responsibleFor.reduce((animalAcc, animalCur) => , [])
+      const name = `${employee.firstName} ${employee.lastName}`;
+      console.log(animalId)
+      return Object.assign(acc, {[name]: [animalId]});
+    }, {})
+  }
 }
+console.log(employeeCoverage())
+
+// animals.filter(animalName => animalName.id === animalCur ? animalName.name : false)).name
 
 module.exports = {
   entryCalculator,
