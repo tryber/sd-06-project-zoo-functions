@@ -74,7 +74,7 @@ function entryCalculator(entrants = {}) {
   if (Object.keys(entrants).toString() !== '') {
     return Object.entries(entrants)
       .map(element => prices[element[0]] * element[1])
-      .reduce(acc, element => element + acc);
+      .reduce((acc, element) => element + acc);
   }
   return 0;
 }
@@ -101,12 +101,12 @@ function getAnimalsByLocation(local) {
 function getAnimalName(specie) {
   return animals
     .filter(animalData => animalData.name === specie)
-    .flatMap(animalObject => animalObject.residents).map((element) => element.name);
+    .flatMap(animalObject => animalObject.residents).map(element => element.name);
 }
 
 function getAnimalNameByGenderAndSpecie(specie, sex) {
   return animals.filter(animal => animal.name === specie)
-    .flatMap(animalObject => animalObject.residents).filter((element) => element.sex === sex)
+    .flatMap(animalObject => animalObject.residents).filter(element => element.sex === sex)
     .map(element => element.name);
 }
 
@@ -146,16 +146,16 @@ function showOnlyProperties(object) {
 
 function setMethods(object) {
   object.includeName = function () {
-    Object.keys(object).filter((property) => typeof object[property] === 'object')
+    Object.keys(object).filter(property => typeof object[property] === 'object')
       .forEach(function (location) { object[location] = includeAnimalName(object[location]); });
   };
   object.filterSex = function (sex) {
-    Object.keys(object).filter((property) => typeof object[property] === 'object')
+    Object.keys(object).filter(property => typeof object[property] === 'object')
       .forEach(function (location) { object[location] = filterSex(sex, object[location]); });
   };
 
   object.sort = function () {
-    Object.keys(object).filter((property) => typeof object[property] === 'object')
+    Object.keys(object).filter(property => typeof object[property] === 'object')
       .forEach(function (location) { object[location] = sorted(object[location]); });
   };
 }
@@ -163,7 +163,7 @@ function setMethods(object) {
 function animalMap(options = {}) {
   const locals = ['NE', 'NW', 'SE', 'SW'];
   const animalMapObject = {};
-  locals.forEach(element => {
+  locals.forEach((element) => {
     animalMapObject[element] = getAnimalsByLocation(element, options);
   });
   setMethods(animalMapObject);
@@ -200,7 +200,7 @@ function schedule(dayName) {
 }
 
 function getSpecieNameById(animalId) {
-  return animals.filter((animal) => animal.id === animalId)[0];
+  return animals.filter(animal => animal.id === animalId)[0];
 }
 
 function getOlder(arrayOfAnimals) {
@@ -210,7 +210,7 @@ function getOlder(arrayOfAnimals) {
       age = animal.age;
     }
   });
-  return arrayOfAnimals.filter((animal) => animal.age === age);
+  return arrayOfAnimals.filter(animal => animal.age === age);
 }
 
 function getAnimalsIdsByEmployeeId(employeeId) {
@@ -227,7 +227,7 @@ function oldestFromFirstSpecies(employeeID) {
 }
 
 function increasePrices(percentage) {
-  Object.entries(prices).forEach(entries => {
+  Object.entries(prices).forEach((entries) => {
     prices[entries[0]] = Math.ceil(entries[1] * (1 + percentage / 100) * 100) / 100;
   });
 }
@@ -237,7 +237,7 @@ function getAnimalsNameByEmployeeName(employeeName) {
     .filter(
       employee => employeeName === `${employee.firstName} ${employee.lastName}`,
     )
-    .flatMap(employee => employee.responsibleFor.flatMap((animalId) => animalsByIds(animalId)
+    .flatMap(employee => employee.responsibleFor.flatMap(animalId => animalsByIds(animalId)
       .flatMap(animal => animal.name)));
 }
 function coverageMap() {
