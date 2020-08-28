@@ -15,12 +15,12 @@ const {
 } = require('./data');
 
 function animalsByIds(...ids) {
-  return data.animals.filter((element) => ids.includes(element.id));
+  return data.animals.filter(element => ids.includes(element.id));
 }
 function animalsOlderThan(animalName, age) {
   return animals
-    .filter((element) => element.name === animalName)[0]
-    .residents.every((resident) => resident.age > age);
+    .filter(element => element.name === animalName)[0]
+    .residents.every(resident => resident.age > age);
 }
 
 function employeeByName(employeeName) {
@@ -38,8 +38,8 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(employeeId) {
   return employees
-    .flatMap((employee) => employee.managers)
-    .some((managerId) => managerId === employeeId);
+    .flatMap(employee => employee.managers)
+    .some(managerId => managerId === employeeId);
 }
 
 function addEmployee(
@@ -54,16 +54,16 @@ function addEmployee(
   employees.push(createEmployee(personalInfo, associatedWith));
 }
 
-function animalCount(species = animals.map((animal) => animal.name)) {
+function animalCount(species = animals.map(animal => animal.name)) {
   if (typeof species === 'string') {
     return animals
-      .filter((animal) => animal.name === species)
-      .map((animal) => animal.residents.length)
+      .filter(animal => animal.name === species)
+      .map(animal => animal.residents.length)
       .toString();
   }
   const animalsCounted = {};
   animals
-    .filter((animal) => species.some((eachAnimalName) => eachAnimalName === animal.name))
+    .filter(animal => species.some(eachAnimalName => eachAnimalName === animal.name))
     .forEach(function (animalName) {
       animalsCounted[animalName.name] = animalName.residents.length;
     });
@@ -73,8 +73,8 @@ function animalCount(species = animals.map((animal) => animal.name)) {
 function entryCalculator(entrants = {}) {
   if (Object.keys(entrants).toString() !== '') {
     return Object.entries(entrants)
-      .map((element) => prices[element[0]] * element[1])
-      .reduce((acc, element) => element + acc);
+      .map(element => prices[element[0]] * element[1])
+      .reduce(acc, element => element + acc);
   }
   return 0;
 }
@@ -93,21 +93,21 @@ function displayConfig(animalMapDisplay, options) {
 
 function getAnimalsByLocation(local) {
   const animalMapDisplay = animals
-    .filter((animal) => animal.location === local)
-    .map((animal) => animal.name);
+    .filter(animal => animal.location === local)
+    .map(animal => animal.name);
   return animalMapDisplay;
 }
 
 function getAnimalName(specie) {
   return animals
-    .filter((animalData) => animalData.name === specie)
-    .flatMap((animalObject) => animalObject.residents).map((element) => element.name);
+    .filter(animalData => animalData.name === specie)
+    .flatMap(animalObject => animalObject.residents).map((element) => element.name);
 }
 
 function getAnimalNameByGenderAndSpecie(specie, sex) {
-  return animals.filter((animal) => animal.name === specie)
-    .flatMap((animalObject) => animalObject.residents).filter((element) => element.sex === sex)
-    .map((element) => element.name);
+  return animals.filter(animal => animal.name === specie)
+    .flatMap(animalObject => animalObject.residents).filter((element) => element.sex === sex)
+    .map(element => element.name);
 }
 
 function includeAnimalName(animalsbyRegion) {
@@ -137,7 +137,7 @@ function sorted(arrayOfanimals) {
 function showOnlyProperties(object) {
   const objectProperties = {};
   Object.entries(object)
-    .filter((entrie) => typeof object[entrie[0]] === 'object')
+    .filter(entrie => typeof object[entrie[0]] === 'object')
     .forEach(function (entrie) {
       objectProperties[entrie[0]] = entrie[1];
     });
@@ -163,7 +163,7 @@ function setMethods(object) {
 function animalMap(options = {}) {
   const locals = ['NE', 'NW', 'SE', 'SW'];
   const animalMapObject = {};
-  locals.forEach((element) => {
+  locals.forEach(element => {
     animalMapObject[element] = getAnimalsByLocation(element, options);
   });
   setMethods(animalMapObject);
@@ -215,8 +215,8 @@ function getOlder(arrayOfAnimals) {
 
 function getAnimalsIdsByEmployeeId(employeeId) {
   return employees
-    .filter((employee) => employee.id === employeeId)
-    .flatMap((employee) => employee.responsibleFor);
+    .filter(employee => employee.id === employeeId)
+    .flatMap(employee => employee.responsibleFor);
 }
 
 function oldestFromFirstSpecies(employeeID) {
@@ -227,7 +227,7 @@ function oldestFromFirstSpecies(employeeID) {
 }
 
 function increasePrices(percentage) {
-  Object.entries(prices).forEach((entries) => {
+  Object.entries(prices).forEach(entries => {
     prices[entries[0]] = Math.ceil(entries[1] * (1 + percentage / 100) * 100) / 100;
   });
 }
@@ -235,14 +235,14 @@ function increasePrices(percentage) {
 function getAnimalsNameByEmployeeName(employeeName) {
   return employees
     .filter(
-      (employee) => employeeName === `${employee.firstName} ${employee.lastName}`,
+      employee => employeeName === `${employee.firstName} ${employee.lastName}`,
     )
-    .flatMap((employee) => employee.responsibleFor.flatMap((animalId) => animalsByIds(animalId)
-      .flatMap((animal) => animal.name)));
+    .flatMap(employee => employee.responsibleFor.flatMap((animalId) => animalsByIds(animalId)
+      .flatMap(animal => animal.name)));
 }
 function coverageMap() {
   const employeees = employees.map(
-    (employee) => `${employee.firstName} ${employee.lastName}`,
+    employee => `${employee.firstName} ${employee.lastName}`,
   );
   const map = {};
   employeees.forEach(
@@ -253,13 +253,13 @@ function coverageMap() {
 
 function getEmployeeFullNameById(id) {
   return employees
-    .filter((employee) => employee.id === id)
-    .map((employee) => `${employee.firstName} ${employee.lastName}`)[0];
+    .filter(employee => employee.id === id)
+    .map(employee => `${employee.firstName} ${employee.lastName}`)[0];
 }
 
 function searchEmployeeInMap(name, map) {
   const [employee, arrayOfanimals] = Object.entries(map)
-    .filter((entrie) => entrie[0] === name)
+    .filter(entrie => entrie[0] === name)
     .flat(1);
   const result = {};
   result[employee] = arrayOfanimals;
