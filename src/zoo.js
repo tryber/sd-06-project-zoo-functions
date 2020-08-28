@@ -155,14 +155,17 @@ function entryCalculator(entrants) {
   if (!entrants || Object.entries(entrants).length === 0) {
     return 0;
   }
-  const adult = prices.Adult * entrants.Adult;
-  const child = prices.Child * entrants.Child;
-  const senior = prices.Senior * entrants.Senior;
+  const { Adult: totalOfAdult = 0, Child: totalOfChild = 0, Senior: totalOfSenior = 0 } = entrants;
+
+  const adult = prices.Adult * totalOfAdult;
+  const child = prices.Child * totalOfChild;
+  const senior = prices.Senior * totalOfSenior;
   const sum = adult + child + senior;
   return sum;
 }
 
 // console.log(entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 }));
+// console.log(entryCalculator({ 'Adult': 1 }))
 // console.log('**********Requisito 8**********');
 
 function animalMap(options) {
