@@ -44,12 +44,12 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
+  const obj = {};
+  function addAminalObj(param) {
+    obj[param.name] = param.residents.length;
+  }
   if (species === undefined || species === '') {
-    const obj = {};
-    function addAminalObj (param) {
-      obj[param.name] = param.residents.length;
-    }
-    data.animals.forEach((animal) => addAminalObj(animal));
+    data.animals.forEach(animal => addAminalObj(animal));
     return obj;
   }
   {
