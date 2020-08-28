@@ -21,5 +21,8 @@
   "homepage": "https://github.com/betrybe/sd-03-block9-project-zoo-functions#readme",
   "devDependencies": {
     "jest": "^25.2.3"
+  },
+  "dependencies": {
+    "node": "^14.8.0"
   }
 }
