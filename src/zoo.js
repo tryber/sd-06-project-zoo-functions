@@ -63,7 +63,7 @@ function animalCount(species) {
     return animals.reduce((acc, current) => {
       acc[current.name] = current.residents.length;
       return acc;
-    }, {})
+    }, {});
   }
   return data.animals.find(animal => animal.name === species)
     .residents.length;
