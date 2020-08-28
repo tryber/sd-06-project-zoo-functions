@@ -92,14 +92,14 @@ function entryCalculator(entrants) {
 
 function createAnimalListByLocation(location) {
   return animals.filter(animal => animal.location === location)
-    .flatMap((filteredAnimal) => filteredAnimal.name);
+    .flatMap(filteredAnimal => filteredAnimal.name);
 }
 
 function createAnimalResidentsList(location) {
   return animals.filter(animal => animal.location === location)
     .map((animal) => {
       const animalObject = {};
-      animalObject[animal.name] = animal.residents.map((resident) => resident.name);
+      animalObject[animal.name] = animal.residents.map(resident => resident.name);
       return animalObject;
     });
 }
@@ -108,7 +108,7 @@ function createSortedAnimalResidentsList(location) {
   return animals.filter(animal => animal.location === location)
     .map((animal) => {
       const animalObject = {};
-      animalObject[animal.name] = animal.residents.map((resident) => resident.name).sort();
+      animalObject[animal.name] = animal.residents.map(resident => resident.name).sort();
       return animalObject;
     });
 }
@@ -127,7 +127,7 @@ function createSortedAnimalResidentsListBySex(location, sex) {
   return animals.filter(animal => animal.location === location)
     .map((animal) => {
       const animalObject = {};
-      animalObject[animal.name] = animal.residents.filter((resident) => resident.sex === sex)
+      animalObject[animal.name] = animal.residents.filter(resident => resident.sex === sex)
         .map(resident => resident.name).sort();
       return animalObject;
     });
