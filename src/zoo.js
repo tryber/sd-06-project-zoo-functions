@@ -33,7 +33,8 @@ function animalsOlderThan(animal, age) {
 function employeeByName(employeeName) {
   if (employeeName === undefined) {
     return {};
-  } return employees.find(emp => emp.firstName === employeeName || emp.lastName === employeeName);
+  }
+  return employees.find(emp => emp.firstName === employeeName || emp.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -78,23 +79,7 @@ function entryCalculator(entrants) {
   return calc;
 }
 
-function animalMap(options) {
-//   const locations = ['NE', 'NW', 'SE', 'SW'];
-
-//   if (!options) {
-//     animalsPerLocation = {};
-
-//   locations.forEach((location) => {
-//     const animals = data.animals.filter(animal => animal.location === location)
-        // .map(animal => animal.name);
-
-//     if (animals.length !== 0) animalsPerLocation[location] = animals;
-//   });
-//   return animalsPerLocation;
-// }
-
-}
-// console.log(animals.filter(animal => animal.location === 'NE').map(nome => nome.name))
+function animalMap(options) {}
 
 function schedule(dayName) {
   const allWeek = {};
@@ -120,32 +105,38 @@ function oldestFromFirstSpecies(id) {
   const findEmployeeId = employees.find(employee => employee.id === id).responsibleFor[0];
   const thisAnimal = animals.find(animal => animal.id === findEmployeeId).residents;
   const olderAnimal = thisAnimal.sort((a, b) => {
-    if (a.age < b.age) { return 1; }
-    if (a.age > b.age) { return -1; } return 0;
+    if (a.age < b.age) {
+      return 1;
+    }
+    if (a.age > b.age) {
+      return -1;
+    }
+    return 0;
   });
   return Object.values(olderAnimal[0]);
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  const increase = (percentage / 100) + 1;
+  prices.Adult = (Math.round(prices.Adult * increase * 100) / 100);
+  prices.Senior = (Math.round(prices.Senior * increase * 100) / 100);
+  prices.Child = (Math.round(prices.Child * increase * 100) / 100);
+  return prices;
 }
 
 function employeeCoverage(idOrName) {
-  // const result = {};
-  // employees.forEach((employee) => {
-  //   const mappedAnimals = employee.responsibleFor.map(
-  //   (animalIdResponsibleFor) => {
-  //     const foundAnimalName = animals.find(animal => animal.id === animalIdResponsibleFor).name;
-  //     return foundAnimalName;
-  //   });
-  //   if (idOrName === employees.firstName
-  //  || idOrName === employees.id || idOrName === employees.lastName) {
-  //     result = mappedAnimals;
-  // }
-  //   // result[`${employee.firstName} ${employee.lastName}`] = mappedAnimals;
-  // };
-  // return result;
-}
+  // const employeeName = {};
+  // employees.forEach(employee => {
+  //   employeeName[`${employee.firstName} ${employee.lastName}`] = employee.responsibleFor.map(animalId => animals.find(animal => animal.id === animalId).name)
+  // }) 
+  // if (!idOrName){
+  //   return employeeName;
+  // } 
+  //   // id or firstName or lastName of employee:
+  //   // retorna o nome do employee e os respectivos animais
+  //   Object.keys(employeeName).find(employee => idOrName === employee.id || idOrName === employee.firstName.firstName || idOrName === employee.lastName)
+  
+  }
 
 module.exports = {
   entryCalculator,
