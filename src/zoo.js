@@ -68,14 +68,55 @@ function entryCalculator(entrants = {}) {
   return 0;
 }
 
-function displayConfig(animalMapDisplay, options) {
+function includeAnimalName(animalsbyRegion) {
+  const name = animalsbyRegion.map(function (animalArray) {
+    const specie = {};
+    specie[animalArray] = getAnimalName(animalArray);
+    return specie;
+  }).flat(1);
+  return name;
+}
+
+function includeNames(object, locals) {
+  locals.forEach(function (local) {
+    object[local] = includeAnimalName(object[local]);
+  });
+}
+
+function filterAnimalsByGender(sex, arrayOfAnimals) {
+  return arrayOfAnimals.flatMap(function (animal) {
+    const animalName = {};
+    animalName[Object.keys(animal)] = getAnimalNameByGenderAndSpecie(Object.keys(animal)[0], sex);
+    return animalName;
+  });
+}
+
+function filterSex(sex, object, locals) {
+  locals.forEach(function (local) { object[local] = filterAnimalsByGender(sex, object[local]); });
+}
+
+function sortAnimals(arrayOfanimals) {
+  return arrayOfanimals.map((animalObject) => {
+    const newObject = {};
+    newObject[Object.keys(animalObject)] = animalObject[Object.keys(animalObject)].sort();
+    return newObject;
+  });
+}
+
+function sorted(object, locals) {
+  locals.forEach(function (local) {
+    object[local] = sortAnimals(object[local]);
+  });
+}
+
+function displayConfig(animalMapDisplay, locals, options) {
   if (options.includeNames) {
-    animalMapDisplay.includeName();
+    includeNames(animalMapDisplay, locals);
     if (options.sex) {
-      animalMapDisplay.filterSex(options.sex);
+      filterSex(options.sex, animalMapDisplay, locals);
     }
     if (options.sorted) {
-      animalMapDisplay.sort();
+      sorted(animalMapDisplay, locals);
     }
   }
 }
@@ -99,65 +140,14 @@ function getAnimalNameByGenderAndSpecie(specie, sex) {
     .map(element => element.name);
 }
 
-function includeAnimalName(animalsbyRegion) {
-  const name = animalsbyRegion.map(function (animalArray) {
-    const specie = {};
-    specie[animalArray] = getAnimalName(animalArray);
-    return specie;
-  }).flat(1);
-  return name;
-}
-
-function filterSex(sex, arrayOfAnimals) {
-  return arrayOfAnimals.flatMap(function (animal) {
-    const animalName = {};
-    animalName[Object.keys(animal)] = getAnimalNameByGenderAndSpecie(Object.keys(animal)[0], sex);
-    return animalName;
-  });
-}
-
-function sorted(arrayOfanimals) {
-  return arrayOfanimals.map((animalObject) => {
-    const newObject = {};
-    newObject[Object.keys(animalObject)] = animalObject[Object.keys(animalObject)].sort();
-    return newObject;
-  });
-}
-function showOnlyProperties(object) {
-  const objectProperties = {};
-  Object.entries(object)
-    .filter(entrie => typeof object[entrie[0]] === 'object')
-    .forEach(function (entrie) {
-      objectProperties[entrie[0]] = entrie[1];
-    });
-  return objectProperties;
-}
-
-function setMethods(object) {
-  object.includeName = function () {
-    Object.keys(object).filter(property => typeof object[property] === 'object')
-      .forEach(function (location) { object[location] = includeAnimalName(object[location]); });
-  };
-  object.filterSex = function (sex) {
-    Object.keys(object).filter(property => typeof object[property] === 'object')
-      .forEach(function (location) { object[location] = filterSex(sex, object[location]); });
-  };
-
-  object.sort = function () {
-    Object.keys(object).filter(property => typeof object[property] === 'object')
-      .forEach(function (location) { object[location] = sorted(object[location]); });
-  };
-}
-
 function animalMap(options = {}) {
   const locals = ['NE', 'NW', 'SE', 'SW'];
   const animalMapObject = {};
   locals.forEach((element) => {
     animalMapObject[element] = getAnimalsByLocation(element, options);
   });
-  setMethods(animalMapObject);
-  displayConfig(animalMapObject, options);
-  return showOnlyProperties(animalMapObject);
+  displayConfig(animalMapObject, locals, options);
+  return animalMapObject;
 }
 
 function setScheduleMap() {
