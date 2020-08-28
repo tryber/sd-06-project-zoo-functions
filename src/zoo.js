@@ -124,8 +124,8 @@ function increasePrices(percentage) {
 function employeeCoverage(idOrName) {
   const employeeResponsibleFor = {};
   if (!idOrName) {
-    employees.forEach(employee => {
-      const animalUnderCare = employee.responsibleFor.map(animalId => {
+    employees.forEach((employee) => {
+      const animalUnderCare = employee.responsibleFor.map((animalId) => {
         const animalNames = animals.find(animal => animal.id === animalId).name;
         return animalNames;
       });
