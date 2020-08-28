@@ -78,7 +78,9 @@ function animalCount(species) {
   // seu código aqui
   if (species === undefined) {
     const obj = {};
-    animals.forEach(element => obj[element.name] = element.residents.length);
+    animals.forEach(element => {
+      obj[element.name] = element.residents.length
+    });
     return obj;
   }
   const num = animals.find(animal => animal.name === species);
@@ -216,8 +218,8 @@ function employeeCoverage(idOrName) {
   if (!idOrName) {
     filteredEmployees = employees;
   } else {
-    filteredEmployees = employees.filter(employee =>
-      employee.id === idOrName || employee.firstName === idOrName || employee.lastName === idOrName);
+    filteredEmployees = employees.filter(e =>
+      e.id === idOrName || e.firstName === idOrName || e.lastName === idOrName);
   }
   filteredEmployees.forEach((employee) => {
     result[`${employee.firstName} ${employee.lastName}`] = [];
