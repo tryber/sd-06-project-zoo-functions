@@ -18,7 +18,7 @@ function animalsByIds(...ids) {
   // const to receive data from filter. I decided use filter after trying many times using if's, with .maps. I read the mozilla documentation on .filter () and identified that the return of this function did exactly what I needed, completely. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
   const animalById = animals.filter(({ id }, index) => id === ids[index]);
   return animalById;
-};
+}
 
 
 function animalsOlderThan(animal, age) {
