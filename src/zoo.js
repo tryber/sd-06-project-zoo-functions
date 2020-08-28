@@ -44,14 +44,14 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  /* if (species === undefined) {
+  if (species === undefined) {
     const object = {};
 
     animals.forEach(element => object[element.name] = element.residents.length);
     return object;
   }
   const animal = animals.find(element => element.name === species);
-  return animal.residents.length;*/
+  return animal.residents.length;
 }
 
 function entryCalculator(entrants) {
@@ -72,12 +72,12 @@ function schedule(dayName) {
     } else {
       const open = data.hours[day].open;// = 8
       const closed = data.hours[day].close - 12;// = 6
-      scheduleObject[day] = `Open from ${open}am until ${closed}pm`;// 'Tuesday': 'Open from 8am until 6pm', ...
+      scheduleObject[day] = `Open from ${open}am until ${closed}pm`;// 'Tuesday': 'Open from 8am until 6pm'
     }
   });
 
-  if (dayName === undefined) return scheduleObject;
-  return { [dayName]: scheduleObject[dayName] };
+  if (dayName === undefined) scheduleObject;
+    return { [dayName]: scheduleObject[dayName] };
 }
 
 function oldestFromFirstSpecies(id) {
