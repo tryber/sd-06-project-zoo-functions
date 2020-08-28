@@ -19,13 +19,15 @@ function animalsByIds(...ids) {
 }
 
 // fui ajudada pelo Ícaro novamente para desenvolver o raciocínio inicial
+// primeiro encontrar os animais com o nome passado em animalName
+// depois verificar se esses animais tem a idade mínima de age
 function animalsOlderThan(animalName, age) {
-  // primeiro encontrar os animais com o nome passado em animalName
-  // depois verificar se esses animais tem a idade mínima de age
   return data.animals.find(animal => animal.name === animalName)
     .residents.every(resident => resident.age >= age);
 }
 
+// consegui implementar sozinha mas precisei de ver no slack o
+// parâmetro undefined para solucionar uma das partes do problema
 function employeeByName(employeeName) {
   if (employeeName === undefined) return {};
   return employees.find(employee =>
@@ -33,35 +35,39 @@ function employeeByName(employeeName) {
     employee.lastName === employeeName);
 }
 
+// plantão com a Letícia, uso do spread operator
 function createEmployee(personalInfo, associatedWith) {
   return { ...personalInfo, ...associatedWith };
 }
 
+// consegui implementar sozinha mas tive uma dificuldade em perceber
+// que precisava utilizar o index de managers para acessar corretamente
+// um funcionário por vez para a comparação
 function isManager(idNumber) {
   return data
     .employees.some((employee, index) =>
       employee.managers[index] === idNumber);
 }
 
+// estava com erro ao chamar a função no console, e tive ajuda do Flávio Sugano, inclusive
+// no uso de uma função mais adequada para a função, (push e não concat)
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   return data.employees
     .push({ id, firstName, lastName, managers, responsibleFor });
 }
 
-
+// animalCount: plantão com Oliva para ajudar na implementação da função
+// mais adequada (reduce) e acessar corretamente as chaves e valor
 function animalCount(species) {
   if (species === undefined) {
-    return data.animals.map(animal => ({
-      animal: animal.name,
-      quantidade: animal.residents.length,
-    }));
+    return animals.reduce((acc, current) => {
+      acc[current.name] = current.residents.length;
+      return acc;
+    }, {})
   }
-      // RETORNA UM ARRAY E NÃO UM OBJETO
   return data.animals.find(animal => animal.name === species)
     .residents.length;
 }
-
-console.log(animalCount());
 
 function entryCalculator(entrants) {
   // seu código aqui
