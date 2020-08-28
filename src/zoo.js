@@ -45,9 +45,7 @@ function addEmployee(
 
 function animalCount(species = animals.map(animal => animal.name)) {
   if (typeof species === 'string') {
-    return animals
-      .filter(animal => animal.name === species)
-      .map(animal => animal.residents.length)
+    return animals.filter(animal => animal.name === species).map(animal => animal.residents.length)
       .toString();
   }
   const animalsCounted = {};
