@@ -68,6 +68,12 @@ function entryCalculator(entrants = {}) {
   return 0;
 }
 
+function getAnimalName(specie) {
+  return animals
+    .filter(animalData => animalData.name === specie)
+    .flatMap(animalObject => animalObject.residents).map(element => element.name);
+}
+
 function includeAnimalName(animalsbyRegion) {
   const name = animalsbyRegion.map(function (animalArray) {
     const specie = {};
@@ -81,6 +87,12 @@ function includeNames(object, locals) {
   locals.forEach(function (local) {
     object[local] = includeAnimalName(object[local]);
   });
+}
+
+function getAnimalNameByGenderAndSpecie(specie, sex) {
+  return animals.filter(animal => animal.name === specie)
+    .flatMap(animalObject => animalObject.residents).filter(element => element.sex === sex)
+    .map(element => element.name);
 }
 
 function filterAnimalsByGender(sex, arrayOfAnimals) {
@@ -126,18 +138,6 @@ function getAnimalsByLocation(local) {
     .filter(animal => animal.location === local)
     .map(animal => animal.name);
   return animalMapDisplay;
-}
-
-function getAnimalName(specie) {
-  return animals
-    .filter(animalData => animalData.name === specie)
-    .flatMap(animalObject => animalObject.residents).map(element => element.name);
-}
-
-function getAnimalNameByGenderAndSpecie(specie, sex) {
-  return animals.filter(animal => animal.name === specie)
-    .flatMap(animalObject => animalObject.residents).filter(element => element.sex === sex)
-    .map(element => element.name);
 }
 
 function animalMap(options = {}) {
