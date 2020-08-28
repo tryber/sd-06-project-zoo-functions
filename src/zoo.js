@@ -72,6 +72,12 @@ function getAnimalName(specie) {
     .flatMap(animalObject => animalObject.residents).map(element => element.name);
 }
 
+function getAnimalNameByGenderAndSpecie(specie, sex) {
+  return animals.filter(animal => animal.name === specie)
+    .flatMap(animalObject => animalObject.residents).filter(element => element.sex === sex)
+    .map(element => element.name);
+}
+
 function includeAnimalName(animalsbyRegion) {
   const name = animalsbyRegion.map(function (animalArray) {
     const specie = {};
@@ -79,18 +85,6 @@ function includeAnimalName(animalsbyRegion) {
     return specie;
   }).flat(1);
   return name;
-}
-
-function includeNames(object, locals) {
-  locals.forEach(function (local) {
-    object[local] = includeAnimalName(object[local]);
-  });
-}
-
-function getAnimalNameByGenderAndSpecie(specie, sex) {
-  return animals.filter(animal => animal.name === specie)
-    .flatMap(animalObject => animalObject.residents).filter(element => element.sex === sex)
-    .map(element => element.name);
 }
 
 function filterAnimalsByGender(sex, arrayOfAnimals) {
@@ -113,20 +107,20 @@ function sortAnimals(arrayOfanimals) {
   });
 }
 
-function sorted(object, locals) {
+function changeObject(object, locals, method) {
   locals.forEach(function (local) {
-    object[local] = sortAnimals(object[local]);
+    object[local] = method(object[local]);
   });
 }
 
 function displayConfig(animalMapDisplay, locals, options) {
   if (options.includeNames) {
-    includeNames(animalMapDisplay, locals);
+    changeObject(animalMapDisplay, locals, includeAnimalName);
     if (options.sex) {
       filterSex(options.sex, animalMapDisplay, locals);
     }
     if (options.sorted) {
-      sorted(animalMapDisplay, locals);
+      changeObject(animalMapDisplay, locals, sortAnimals);
     }
   }
 }
