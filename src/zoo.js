@@ -99,30 +99,33 @@ function increasePrices(percentage) {
   keys.forEach((key) => { prices[key] = Math.round(prices[key] * increase * 100) / 100; });
 }
 
+const getResponseByParam = (param, idOrName, response) => {
+  const employee = employees.find(employ => employ[param] === idOrName);
+  const listAnimalByEployeeId = [];
+  employee.responsibleFor.forEach((animalByEployeeId) => {
+    listAnimalByEployeeId.push(animals
+      .find(animalName => animalByEployeeId === animalName.id).name);
+  });
+  response[`${employee.firstName} ${employee.lastName}`] = listAnimalByEployeeId;
+};
+
 function employeeCoverage(idOrName) {
   const response = {};
-  const getResponseByParam = (param) => {
-    const employee = employees.find(employ => employ[param] === idOrName);
-    const listAnimalByEployeeId = [];
-    employee.responsibleFor.forEach((animalByEployeeId) => {
-      listAnimalByEployeeId.push(animals
-        .find(animalName => animalByEployeeId === animalName.id).name);
-    });
-    response[`${employee.firstName} ${employee.lastName}`] = listAnimalByEployeeId;
-  };
   if (idOrName === undefined) {
-    employees.forEach((employee) => {
-      const getAnimal = employee.responsibleFor;
+    employees.forEach((employ) => {
       const listAnimal = [];
-      getAnimal.forEach((animal) => {
+      employ.responsibleFor.forEach((animal) => {
         listAnimal.push(animals.find(animalName => animal === animalName.id).name);
       });
-      response[`${employee.firstName} ${employee.lastName}`] = listAnimal;
+      response[`${employ.firstName} ${employ.lastName}`] = listAnimal;
     });
+  } else if (employees.some(employee => employee.id === idOrName)) {
+    getResponseByParam('id', idOrName, response);
+  } else if (employees.some(employeeName => employeeName.firstName === idOrName)) {
+    getResponseByParam('firstName', idOrName, response);
+  } else if (employees.some(employeeName => employeeName.lastName === idOrName)) {
+    getResponseByParam('lastName', idOrName, response);
   }
-  employees.some(employee => employee.id === idOrName) ? getResponseByParam('id') : undefined;
-  employees.some(employee => employee.firstName === idOrName) ? getResponseByParam('firstName') : undefined;
-  employees.some(employee => employee.lastName === idOrName) ? getResponseByParam('lastName') : undefined;
   return response;
 }
 
