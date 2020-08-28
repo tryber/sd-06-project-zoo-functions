@@ -34,4 +34,4 @@ describe('Implemente a função employeeCoverage', () => {
     const expected = { 'Ardith Azevado': ['tigers', 'bears'] };
     assert.deepEqual(actual, expected);
   });
-});
+ });

@@ -57,7 +57,8 @@ describe('Implemente a função animalMap', () => {
         { otters: ['Lloyd', 'Margherita', 'Mercedes', 'Neville'] }
       ],
       SW: [
-        { frogs: ['Annice', 'Cathey'] }, { snakes: ['Bill', 'Paulette'] }
+        { frogs: ['Annice', 'Cathey'] }, 
+        { snakes: ['Bill', 'Paulette'] }
       ]
     };
 
