@@ -127,16 +127,19 @@ function increasePrices(percentage) {
 function employeeCoverage(idOrName) {
   // const employeeName = {};
   // employees.forEach(employee => {
-  //   employeeName[`${employee.firstName} ${employee.lastName}`] = employee.responsibleFor.map(animalId => animals.find(animal => animal.id === animalId).name)
-  // }) 
+  //   employeeName[`${employee.firstName}
+  // ${employee.lastName}`] = employee.responsibleFor.map(animalId
+  //  => animals.find(animal => animal.id === animalId).name)
+  // })
   // if (!idOrName){
   //   return employeeName;
-  // } 
+  // }
   //   // id or firstName or lastName of employee:
   //   // retorna o nome do employee e os respectivos animais
-  //   Object.keys(employeeName).find(employee => idOrName === employee.id || idOrName === employee.firstName.firstName || idOrName === employee.lastName)
-  
-  }
+  //   Object.keys(employeeName).
+  // find(employee => idOrName === employee.id ||
+  // idOrName === employee.firstName.firstName || idOrName === employee.lastName)
+ }
 
 module.exports = {
   entryCalculator,
