@@ -139,7 +139,7 @@ function employeeCoverage(idOrName) {
   //   Object.keys(employeeName).
   // find(employee => idOrName === employee.id ||
   // idOrName === employee.firstName.firstName || idOrName === employee.lastName)
- }
+}
 
 module.exports = {
   entryCalculator,
