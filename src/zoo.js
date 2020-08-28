@@ -76,8 +76,8 @@ function schedule(dayName) {
     }
   });
 
-  if (dayName === undefined) scheduleObject;
-    return { [dayName]: scheduleObject[dayName] };
+  if (dayName === undefined) return scheduleObject;
+  return { [dayName]: scheduleObject[dayName] };
 }
 
 function oldestFromFirstSpecies(id) {
