@@ -166,21 +166,24 @@ function increasePrices(percentage) {
 function employeeCoverage(idOrName) {
   // Este requisito foi feito em conjunto com o plantão do Icaro.
   const obj = {};
+  let filteredEmployee;
   if (!idOrName) {
-    employees.forEach((employee) => {
-      const mappedAnimals = employee.responsibleFor.map(animalFromResponsibleFor => {
-        const findAnimal = animals.find((animal) => 
-          animal.id === animalFromResponsibleFor
-        ).name
-        return findAnimal
-      });
-      obj[`${employee.firstName} ${employee.lastName}`] = mappedAnimals;
+    filteredEmployee = data.employees;
+  } else {
+    filteredEmployee = data.employees.filter((employee => employee.id === idOrName ||
+      employee.firstName === idOrName ||
+      employee.lastName === idOrName));
+  }
+  filteredEmployee.forEach((employee) => {
+    const mappedAnimals = employee.responsibleFor.map((animalFromResponsibleFor) => {
+      const findAnimal = animals.find(animal =>
+      animal.id === animalFromResponsibleFor).name;
+      return findAnimal;
     });
-    return obj    
-  };  
-};
-
-console.log(employeeCoverage())
+    obj[`${employee.firstName} ${employee.lastName}`] = mappedAnimals;
+  });
+  return obj;
+}
 
 module.exports = {
   entryCalculator,
