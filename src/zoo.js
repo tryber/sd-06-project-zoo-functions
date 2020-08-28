@@ -70,10 +70,14 @@ function entryCalculator(entrants) {
   return soma;
 }
 
+function filterFunction(localizacao) {
+  const animais = data.animals.filter(animal => animal.location === localizacao);
+  return animais;
+}
 const retornarAnimaisPorLocalizacao = (locations) => {
   const animaisPorLocalizacao = {};
   locations.forEach((localizacao) => {
-    const animais = data.animals.filter(index => index.location === localizacao)
+    const animais = filterFunction(localizacao)
     .map(nomeAnimal => nomeAnimal.name);
     if (animais.length !== 0) animaisPorLocalizacao[localizacao] = animais;
   });
