@@ -1,3 +1,4 @@
+/* eslint-disable arrow-parens */
 /*
 eslint no-unused-vars: [
   "error",
