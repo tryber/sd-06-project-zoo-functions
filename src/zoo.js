@@ -114,9 +114,18 @@ function isManager(id) {
 
 // -----------------------------------------------------------------------
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+// Adiciona um funcionário no fim da lista
+
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  // const sizeEmployees = employees.length
+  // const employeesProperties = Object.keys(employees[0]);
+  // employeesProperties.forEach(element => {
+
+  // });
+  // console.log(employeesProperties)
+  // return sizeEmployees
 }
+// console.log(addEmployee());
 
 // -----------------------------------------------------------------------
 
@@ -290,26 +299,19 @@ function oldestFromFirstSpecies(id) {
 // Ao passar uma porcentagem, incrementa todos os preços, arrendondados em duas casas decimais
 
 function increasePrices(percentage) {
-  // let newPrices = prices;
+  const adultPrice = prices.Adult;
+  const childPrice = prices.Child;
+  const seniorPrice = prices.Senior;
 
-  // const adultPrice = newPrices.Adult;
-  // const childPrice = newPrices.Child;
-  // const seniorPrice = newPrices.Senior;
+  const increasedAdultPrice = adultPrice * (1 + (percentage / 100));
+  prices.Adult = (Math.round(increasedAdultPrice * 100) / 100);
 
-  // const increasedAdultPrice = adultPrice * (1 + percentage / 100);
-  // newPrices['Adult'] = (Math.round(increasedAdultPrice * 100) /100 );
+  const increasedseniorPrice = seniorPrice * (1 + (percentage / 100));
+  prices.Senior = (Math.round(increasedseniorPrice * 100) / 100);
 
-  // const increasedseniorPrice = seniorPrice * (1 + percentage / 100);
-  // newPrices['Senior'] = (Math.round(increasedseniorPrice * 100) /100 );
-
-  // const increasedChildPrice = childPrice * (1 + percentage / 100);
-  // newPrices['Child'] = (Math.round(increasedChildPrice * 100) /100 );
-
-  // return Object.assign(prices, newPrices)
+  const increasedChildPrice = childPrice * (1 + (percentage / 100));
+  prices.Child = (Math.round(increasedChildPrice * 100) / 100);
 }
-
-// console.log(increasePrices(50));
-// console.log(increasePrices(30));
 
 function employeeCoverage(idOrName) {
   // seu código aqui
