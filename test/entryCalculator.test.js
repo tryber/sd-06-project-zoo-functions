@@ -5,7 +5,7 @@ describe('Implemente a função entryCalculator', () => {
   it('Retorna 0 se nenhum argumento for passado', () => {
     assert.equal(zoo.entryCalculator(), 0);
   });
-
+  
   it('Retorna 0 se um objeto vazio for passado', () => {
     assert.equal(zoo.entryCalculator({}), 0);
   });
