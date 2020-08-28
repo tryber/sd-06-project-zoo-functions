@@ -112,7 +112,7 @@ function oldestFromFirstSpecies(id) {
       if (current.age > acc.age) {
         return current;
       }
-    return acc;
+      return acc;
     });
   return [olderAnimal.name, olderAnimal.sex, olderAnimal.age];
 }
