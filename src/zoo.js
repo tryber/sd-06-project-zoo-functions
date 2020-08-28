@@ -45,7 +45,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function animalCount(species) {
   if (species === undefined || species === '') {
     const objVazio = {};
-    data.animals.map((animal) => objVazio[animal.name] = animal.residents.length);
+    data.animals.map((animal) => { objVazio[animal.name] = animal.residents.length });
     return objVazio;
   }
   {
@@ -61,13 +61,13 @@ function entryCalculator(entrants) {
   let totalPrice = 0;
   if (entrants.Adult) {
     totalPrice += (entrants.Adult * data.prices.Adult);
-}
+  }
   if (entrants.Senior) {
     totalPrice += (entrants.Senior * data.prices.Senior);
-}
+  }
   if (entrants.Child) {
     totalPrice += (entrants.Child * data.prices.Child);
-}
+  }
   return totalPrice;
 }
 
