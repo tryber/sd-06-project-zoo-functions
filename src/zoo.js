@@ -112,12 +112,13 @@ const getResponseByParam = (param, idOrName, response) => {
 function employeeCoverage(idOrName) {
   const response = {};
   if (idOrName === undefined) {
-    employees.forEach((employ) => {
+    employees.forEach((employee) => {
+      const getAnimal = employee.responsibleFor;
       const listAnimal = [];
-      employ.responsibleFor.forEach((animal) => {
+      getAnimal.forEach((animal) => {
         listAnimal.push(animals.find(animalName => animal === animalName.id).name);
       });
-      response[`${employ.firstName} ${employ.lastName}`] = listAnimal;
+      response[`${employee.firstName} ${employee.lastName}`] = listAnimal;
     });
   } else if (employees.some(employee => employee.id === idOrName)) {
     getResponseByParam('id', idOrName, response);
