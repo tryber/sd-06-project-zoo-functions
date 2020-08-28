@@ -10,7 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { employees } = require('./data');
+const { employees, prices } = require('./data');
 
 function animalsByIds(...ids) {
   if (!ids) return [];
@@ -55,8 +55,17 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  if (entrants === undefined) {
+    return 0
+  }
+  const keys = Object.keys(entrants);
+  const price = keys.reduce((soma, currentValue) =>
+    soma + (entrants[currentValue] * prices[currentValue]), 0);
+    console.log(price)
+  return price;
 }
+
+entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 })
 
 function animalMap(options) {
   // seu código aqui
