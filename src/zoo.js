@@ -245,9 +245,22 @@ function schedule(dayName) {
 // console.log(schedule('Monday'));
 // console.log(schedule('Tuesday'))
 
+// -----------------------------------------------------------------------
+
+// Passado o id de um funcionário, encontra a primeira espécie de animal gerenciado pelo
+// funcionário, e retorna um array com nome, sexo e idade do animal mais velho dessa espécie
+
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const animalID = employees.find(employee => employee.id === id).responsibleFor;
+  const firstAninalId = animalID[0];
+  const species = animals.find(animal => animal.id === firstAninalId).residents;
+  species.sort((entry1, entry2) => (entry1.age < entry2.age ? 1 : -1));
+  const obj = species.find(animal => animal.age > 0);
+  const result = [obj.name, obj.sex, obj.age];
+  return result;
 }
+
+// console.log(oldestFromFirstSpecies('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
 
 function increasePrices(percentage) {
   // seu código aqui
