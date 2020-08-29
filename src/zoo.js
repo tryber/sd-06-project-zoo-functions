@@ -54,7 +54,6 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  
 }
 
 function employeeCoverage(idOrName) {
