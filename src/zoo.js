@@ -79,11 +79,40 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  // let dia = data.hours[dayName];
+  // function calendarioParaHumanos () {
+  //   const retorno = `{${dia}: Open from ${dia.open}am until ${dia.close}pm}`;
+  //   return retorno;
+  // }
+  // if (dayName === 0 || dayName === undefined || dayName === '') {
+  //   return {
+  //     'Tuesday': 'Open from 8am until 6pm',
+  //     'Wednesday': 'Open from 8am until 6pm',
+  //     'Thursday': 'Open from 10am until 8pm',
+  //     'Friday': 'Open from 10am until 8pm',
+  //     'Saturday': 'Open from 8am until 10pm',
+  //     'Sunday': 'Open from 8am until 8pm',
+  //     'Monday': 'CLOSED'
+  //   }
+  // }
+  // if (dayName.toUpperCase() === 'Monday'.toUpperCase()) {
+  //   return { 'Monday': 'CLOSED' };
+  // }
+  // if (data.hours[dayName] === dayName) {
+  //   calendarioParaHumanos();
+  // }
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const funcionario = data.employees.find((func) => func.id === id);
+  const idDoPrimeiroAnimalGerenciado = funcionario.responsibleFor[0];
+  const objDoAnimal= data.animals.find((animal) => animal.id === idDoPrimeiroAnimalGerenciado);
+  const arreiObjectResidentes = objDoAnimal.residents;
+  const arreiArrayResidents = arreiObjectResidentes.map((obj) => Object.values(obj));
+  const arreiOrdenado = arreiArrayResidents.sort(function(param1, param2) {
+    return param2[2] - param1[2];
+  });
+  return arreiOrdenado[0];
 }
 
 function increasePrices(percentage) {
