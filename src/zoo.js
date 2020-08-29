@@ -87,9 +87,16 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  return employees
+    .reduce((employee, {firstName, lastName, responsibleFor}) => {
+      employee[`${firstName} ${lastName}`] = responsibleFor.map(idAnimalResponsible => {
+        const searchAnimalName = animals.find(animal => animal.id === idAnimalResponsible).name;
+        return searchAnimalName;
+      })
+      return employee         
+    }, {})
 }
-
+console.log(employeeCoverage())
 module.exports = {
   entryCalculator,
   schedule,
