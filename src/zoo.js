@@ -137,8 +137,37 @@ function increasePrices(percentage) {
   // seu código aquiq q ganh
 }
 
+const animalsByIds2 = (...ids) => {
+  const retorno2 = [];
+  ids.forEach(id => retorno2.push(data.animals.find(animal => animal.id === id).name));
+  return retorno2;
+};
+
+let cover = {};
+const listaDeFuncionarios = {};
+employees.forEach((funcionario) => {
+  listaDeFuncionarios[`${funcionario.firstName} ${funcionario.lastName}`] =
+  animalsByIds2(...funcionario.responsibleFor);
+});
+
+const addObj = (name) => {
+  cover[name] = Object.entries(listaDeFuncionarios)
+  .find(func => name === func[0])[1];
+};
+
+const fullName = name =>
+`${employees.find(func => func.id === name).firstName} ${
+  employees.find(func => func.id === name).lastName}`;
+
+
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  if (!idOrName) return listaDeFuncionarios;
+  cover = {};
+  const idDoFunc = employees.find(func => func.id === idOrName ||
+  func.firstName === idOrName || func.lastName === idOrName).id;
+  const emploFullName = fullName(idDoFunc);
+  addObj(emploFullName);
+  return cover;
 }
 
 module.exports = {
