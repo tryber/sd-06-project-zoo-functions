@@ -57,9 +57,20 @@ function entryCalculator(entrants = 0) {
 }
 
 function animalMap(options) {
-  // seu código aqui
+  // const { includeNames, sorted, sex } = options;
+  const locations = ['NE', 'NW', 'SW', 'SE'];
+  if (!options) {
+    const animalPerLocations = {};
+    locations.forEach((location) => {
+      const filterAnimals = animals
+        .filter(animal => animal.location === location)
+        .map(animal => animal.name);
+      if (filterAnimals.length !== 0) animalPerLocations[location] = filterAnimals;
+    });
+    return animalPerLocations;
+  }
 }
-
+console.log(animalMap());
 function schedule(dayName) {
   const scheduleDays = Object.entries(hours);
   if (!dayName) {
