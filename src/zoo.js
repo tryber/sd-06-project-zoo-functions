@@ -83,8 +83,21 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-  // seu código aqui
+  let locations = new Set();
+  animals.map(animal => animal.location).forEach((location) => locations.add(location));
+  locations = Array.from(locations).sort();
+
+  const result = {};
+  locations.forEach((local) => {
+    result[local] = animals
+      .filter((animal) => animal.location === local)
+      .map((individual) => individual.name);
+  });
+
+  return result;
 }
+
+animalMap();
 
 function schedule(...dayName) {
   if (dayName.length === 0) {
