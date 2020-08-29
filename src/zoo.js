@@ -87,13 +87,19 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  return employees
+  let filteredEmployees;
+  if (!idOrName) {
+    filteredEmployees = employees;
+  } else {
+    filteredEmployees = employees.filter(employee => employee.id === idOrName);
+  }
+  return filteredEmployees
     .reduce((employee, {firstName, lastName, responsibleFor}) => {
       employee[`${firstName} ${lastName}`] = responsibleFor.map(idAnimalResponsible => {
         const searchAnimalName = animals.find(animal => animal.id === idAnimalResponsible).name;
         return searchAnimalName;
       })
-      return employee         
+        return employee         
     }, {})
 }
 console.log(employeeCoverage())
