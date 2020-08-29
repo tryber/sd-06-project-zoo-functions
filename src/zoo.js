@@ -26,8 +26,8 @@ function createEmployee(personalInfo, associatedWith) {
 function isManager(id) {
 }
 
-//function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-//}
+function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+}
 
 function animalCount(species) {
 }
