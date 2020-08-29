@@ -128,7 +128,7 @@ function entryCalculator(entrants) {
 // Sem parâmetros, retorna animais categorizados por localização
 // Com a opção includeNames: true especificada, retorna nomes de animais
 // Com a opção sorted: true especificada, retorna nomes de animais ordenados
-// Com a opção sex: 'female' ou sex: 'male' especificada, 
+// Com a opção sex: 'female' ou sex: 'male' especificada,
 // retorna somente nomes de animais macho/fêmea
 // Com a opção sex: 'female' ou sex: 'male' especificada e a opção sort: true especificada,
 // retorna somente nomes de animais macho/fêmea com os nomes dos animais ordenados
