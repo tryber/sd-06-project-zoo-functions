@@ -136,7 +136,7 @@ function oldestFromFirstSpecies(id) {
 function increasePrices(percentage) {
   // seu código aqui
 }
-
+// Resolução retirada do plantão do dia 25/08, feita pelo especialista Ícaro
 function employeeCoverage(idOrName) {
   const result = {};
   let filteredEmployees;
