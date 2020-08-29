@@ -134,7 +134,9 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  return Object.keys(data.prices).forEach((types) => {
+    data.prices[types] = Math.round(data.prices[types] * ((percentage / 100) + 1) * 100) / 100;
+  });
 }
 // Resolução retirada do plantão do dia 25/08, feita pelo especialista Ícaro
 function employeeCoverage(idOrName) {
