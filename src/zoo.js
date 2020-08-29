@@ -184,71 +184,77 @@ function entryCalculator(entrants = {}) {
 
 // -----------------------------------------------------------------------
 
-function animalMap(obj = {}) {
-// // Sem parâmetros, retorna animais categorizados por localização'
+// A solução desse requisito foi baseada na solução guiada realizada pelo Gabriel Oliva.
+// Sem parâmetros, retorna animais categorizados por localização
+// Com a opção includeNames: true especificada, retorna nomes de animais
+// Com a opção sorted: true especificada, retorna nomes de animais ordenados
+// Com a opção sex: \'female\' ou sex: \'male\` especificada,
+// retorna somente nomes de animais macho/fêmea
+// Com a opção sex: \'female\' ou sex: \'male\' especificada e a opção sort: true especificada,
+// retorna somente nomes de animais macho/fêmea com os nomes dos animais ordenados
 
-//   const existLocations = ['NE', 'NW', 'SE', 'SW'];
+function retrieveSpeciesByLocation(regions) {
+  const speciesByLocationObject = {};
 
-//   if (Object.keys(obj).length === 0) {
-//     const animalsByLocation = {};
+  regions.forEach((region) => {
+    const animalsBySpecies = animals
+      .filter(animal => animal.location === region)
+      .map(animal => animal.name);
 
-//     existLocations.forEach (existLocation => {
-//     const animalsByName = animals
-//     .filter(animal => animal.location === existLocation)
-//     .map(animal => {animal.name);
-
-//       if(animalsByName.length !== 0) {
-//         animalsByLocation[existLocation] = animalsByName;
-//       }
-//     })
-//     return animalsByLocation;
-//   }
-
-//   //Com a opção `includeNames: true` especificada, retorna nomes de animais
-//   //     NE: [
-//   //       { lions: ['Zena', 'Maxwell', 'Faustino', 'Dee'] },
-//   //       { giraffes: ['Gracia', 'Antone', 'Vicky', 'Clay', 'Arron', 'Bernard'] }
-//   //     ],
-
-//   const {includeNames, sorted, sex } = obj
-//   // console.log(includeNames, sorted, sex);
-
-// if (includeNames !== undefined && sorted === undefined && sex === undefined){
-//   const animalsByLocation = {};
-
-//   existLocations.forEach (existLocation => {
-//   const animalsByName = animals
-//   .filter(animal => animal.location === existLocation)
-//   .map(animal => animal.name);
-
-//     if(animalsByName.length !== 0) {
-//       animalsByLocation[existLocation] = animalsByName;
-//     }
-//   })
-//   return animalsByLocation;
-
-// }
-
-// {
-//   author: book.author.name,
-//   age: book.releaseYear - book.author.birthYear
-// }
-
-//   let firstOption = includeNames !== undefined && ? totalBottles * priceBottle : 0
-//   let totalPriceCans = totalCans !== undefined ? totalCans * priceCan : 0
-//   let totalPriceLongNecks = totalLongNecks !== undefined ? totalLongNecks * priceLongNeck : 0
+    if (animalsBySpecies.length !== 0) {
+      speciesByLocationObject[region] = animalsBySpecies;
+    }
+  });
+  return speciesByLocationObject;
 }
+
+function retrieveSpecies(regions, sorted, sex) {
+  const speciesAndNamesByLocationObject = {};
+
+  regions.forEach((region) => {
+    const animalsBySpeciesAndNames = animals
+      .filter(animal => animal.location === region)
+      .map((animal) => {
+        const nameKey = animal.name;
+        const nameValues = animal.residents
+        .filter((resident) => {
+          if (sex !== undefined) { // daria para usar operador ternário, mas preferi deixar raiz
+            return resident.sex === sex; // true: retorna array filtrada por sex (male/female).
+          }
+          return true; // false: retorna todo arrau sem filtrar nada (passa-tudo).
+        })
+        .map(resident => resident.name); // map, pois residents = []
+
+        if (sorted) nameValues.sort(); // nameValues é uma [] de strings, assim sort() puro
+
+        return { [nameKey]: nameValues }; // retorna objeto para 'animalsBySpeciesAndNames'
+      });
+
+    if (animalsBySpeciesAndNames.length !== 0) {
+      speciesAndNamesByLocationObject[region] = animalsBySpeciesAndNames;
+    }
+  });
+  return speciesAndNamesByLocationObject;
+}
+
+function animalMap(obj = {}) {
+  const regions = ['NE', 'NW', 'SE', 'SW'];
+  const { includeNames, sorted, sex } = obj; // undefined || true / true / male || female
+
+  if (Object.keys(obj).length === 0 || !includeNames) return retrieveSpeciesByLocation(regions);
+  return retrieveSpecies(regions, sorted, sex);
+}
+
 // console.log(animalMap());
-// const options = { includeNames: true };
+// console.log(animalMap({ includeNames: true }));
+// console.log(animalMap({ includeNames: true, sorted: true}));
+// console.log(animalMap({ includeNames: true, sorted: true}));
+// console.log(animalMap({ includeNames: true, sex: 'female'}));
 
-// console.log(animalMap(options));
-
-// includeNames: true
-// sorted: true
-// sex: 'female'
 
 // -----------------------------------------------------------------------
-// Essa soluução foi baseada na solução guiada realizada pelo Oliva.
+
+// A solução desse requisito foi baseada na solução guiada realizada pelo Gabriel Oliva.
 // Sem parâmetros, retorna um cronograma legível para humanos'
 // Se um único dia for passado, retorna somente este dia em um formato legível para humanos
 
