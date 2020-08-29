@@ -108,7 +108,7 @@ function retrieveAnimalsByLocationWithName(locations, sorted, sex) {
         if (sorted) {
           animalsNames.sort();
         }
-        return {[animalSpecie]: animalsNames};
+        return { [animalSpecie]: animalsNames };
       });
   });
   return AnimalsByLocationWithName;
@@ -121,7 +121,7 @@ function animalMap(options) {
 
   // Demais requisitos
   const { includeNames, sorted, sex } = options;
-  //Com a opção includeNames: true especificada, retorna nomes de animais
+  // Com a opção includeNames: true especificada, retorna nomes de animais
   if (!includeNames) return retrieveAnimalsByLocation(locations);
   return retrieveAnimalsByLocationWithName(locations, sorted, sex);
 }
