@@ -91,18 +91,23 @@ function employeeCoverage(idOrName) {
   if (!idOrName) {
     filteredEmployees = employees;
   } else {
-    filteredEmployees = employees.filter(employee => employee.id === idOrName);
+    filteredEmployees = employees.filter(({ id, firstName, lastName }) =>
+    id === idOrName ||
+    firstName === idOrName ||
+    lastName === idOrName);
   }
   return filteredEmployees
-    .reduce((employee, {firstName, lastName, responsibleFor}) => {
-      employee[`${firstName} ${lastName}`] = responsibleFor.map(idAnimalResponsible => {
-        const searchAnimalName = animals.find(animal => animal.id === idAnimalResponsible).name;
-        return searchAnimalName;
-      })
-        return employee         
-    }, {})
+    .reduce((employee, { firstName, lastName, responsibleFor }) => {
+      employee[`${firstName} ${lastName}`] = responsibleFor
+        .map((idAnimalResponsible) => {
+          const searchAnimalName = animals
+            .find(animal => animal.id === idAnimalResponsible).name;
+          return searchAnimalName;
+        });
+      return employee;
+    }, {});
 }
-console.log(employeeCoverage())
+
 module.exports = {
   entryCalculator,
   schedule,
