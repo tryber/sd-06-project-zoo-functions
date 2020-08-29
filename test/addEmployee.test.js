@@ -24,7 +24,7 @@ describe('Implemente a função addEmployee', () => {
         '210fcd23-aa7b-4975-91b7-0230ebb27b99',
       ]);
     assert.equal(data.employees.length, 10);
-    
+
     lastEmployee = data.employees[9];
     assert.equal(lastEmployee.id, '4141da1c-a6ed-4cf7-90c4-99c657ba4ef3');
     assert.equal(lastEmployee.firstName, 'Jane');
