@@ -104,12 +104,12 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  const funcionario = data.employees.find((func) => func.id === id);
+  const funcionario = data.employees.find(func => func.id === id);
   const idDoPrimeiroAnimalGerenciado = funcionario.responsibleFor[0];
-  const objDoAnimal= data.animals.find((animal) => animal.id === idDoPrimeiroAnimalGerenciado);
+  const objDoAnimal = data.animals.find(animal => animal.id === idDoPrimeiroAnimalGerenciado);
   const arreiObjectResidentes = objDoAnimal.residents;
-  const arreiArrayResidents = arreiObjectResidentes.map((obj) => Object.values(obj));
-  const arreiOrdenado = arreiArrayResidents.sort(function(param1, param2) {
+  const arreiArrayResidents = arreiObjectResidentes.map(obj => Object.values(obj));
+  const arreiOrdenado = arreiArrayResidents.sort(function (param1, param2) {
     return param2[2] - param1[2];
   });
   return arreiOrdenado[0];
