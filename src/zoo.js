@@ -152,10 +152,10 @@ function recoverAnimalsByLocationName(animalLocationName, sorted, sex) {
   animalLocationName.forEach((location) => {
     const animals = data.animals
       .filter(animal => animal.location === location)
-      .map(animal => {
+      .map((animal) => {
         const speciesName = animal.name;
         const animalName = animal.residents
-          .filter(resident => {
+          .filter((resident) => {
             const filterTheSex = sex !== undefined;
             return filterTheSex ? resident.sex === sex : true;
             // if (filterTheSex) {
@@ -185,7 +185,7 @@ function animalMap(options) {
   // const sorted = options.sorted;
   // const sex = options.sex;
 
-  if (!includeNames) return recoverAnimalsByLocation(animalLocation); 
+  if (!includeNames) return recoverAnimalsByLocation(animalLocation);
   // if (includeNames) return recoverAnimalsByLocationName(animalLocation, sorted, sex);
   return recoverAnimalsByLocationName(animalLocation, sorted, sex);
 }
