@@ -9,11 +9,10 @@ eslint no-unused-vars: [
 ]
 */
 
-const data = require("./data");
-const { prices, animals } = require("./data");
+const { animals } = require('./data');
 
 function animalsByIds(...ids) {
-  return animals.filter((animal) => ids.includes(animal.id));
+  return animals.filter(animal => ids.includes(animal.id));
 }
 
 function animalsOlderThan(animal, age) {
@@ -55,9 +54,7 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  return Object.values(prices).map((prices) => {
-    prices * percentage;
-  });
+  
 }
 
 function employeeCoverage(idOrName) {
