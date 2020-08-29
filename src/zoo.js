@@ -133,9 +133,61 @@ function entryCalculator(entrants) {
 // Com a opção sex: 'female' ou sex: 'male' especificada e a opção sort: true especificada,
 // retorna somente nomes de animais macho/fêmea com os nomes dos animais ordenados
 // Só retorna informações ordenadas e com sexo se a opção includeNames: true for especificada
+// A function recoverAnimalsByLocation e foi criada para refturar o código
+// A function recoverAnimalsByLocationName e foi criada para refturar o código
+function recoverAnimalsByLocation(animalLocation) {
+  const animalsByLocation = {};
+  animalLocation.forEach((location) => {
+    const animals = data.animals
+      .filter(animal => animal.location === location)
+      .map(animal => animal.name);
+
+    if (animals.length !== 0) animalsByLocation[location] = animals;
+  });
+  return animalsByLocation;
+}
+
+function recoverAnimalsByLocationName(animalLocationName, sorted, sex) {
+  const animalsByLocationName = {};
+  animalLocationName.forEach((location) => {
+    const animals = data.animals
+      .filter(animal => animal.location === location)
+      .map(animal => {
+        const speciesName = animal.name;
+        const animalName = animal.residents
+          .filter(resident => {
+            const filterTheSex = sex !== undefined;
+            return filterTheSex ? resident.sex === sex : true;
+            // if (filterTheSex) {
+            //   return resident.sex === sex;
+            // } else {
+            //   return true;
+            // }
+          })
+          .map(resident => resident.name);
+
+        if (sorted) animalName.sort();
+
+        return { [speciesName]: animalName };
+      });
+    animalsByLocationName[location] = animals;
+  });
+  return animalsByLocationName;
+}
+
 function animalMap(options) {
   // seu código aqui
+  const animalLocation = ['NE', 'NW', 'SE', 'SW'];
+  if (!options) return recoverAnimalsByLocation(animalLocation);
 
+  const { includeNames, sorted, sex } = options;
+  // const includeNames = options.includeNames;
+  // const sorted = options.sorted;
+  // const sex = options.sex;
+
+  if (!includeNames) return recoverAnimalsByLocation(animalLocation); 
+  // if (includeNames) return recoverAnimalsByLocationName(animalLocation, sorted, sex);
+  return recoverAnimalsByLocationName(animalLocation, sorted, sex);
 }
 
 // 10- Implemente a função schedule:
