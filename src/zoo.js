@@ -14,13 +14,12 @@ const data = require('./data');
 function animalsByIds (...ids) {
 return data.animals.filter(idAnimal => ids.includes(idAnimal.id));
 }
-
+//'Ao passar o nome de uma espécie e uma idade, testa se todos os animais desta espécie possuem a idade mínima especificada'
 function animalsOlderThan(animal, age) {
-  // seu código aqui
   return data.animals.find(nameAnimal => nameAnimal.name === animal)
   .residents.every(resident => resident.age >= age);
 }
-
+//console.log(animalsOlderThan('penguins', 10));
 function employeeByName(employeeName) {
   // seu código aqui
 }
