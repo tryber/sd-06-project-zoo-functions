@@ -36,6 +36,21 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
+  const location = ['NE','NW','SE','SW'];
+
+  if (!options) {
+    const animalPerLocation = {};
+
+    location.forEach((location) => {
+      const animals = data.animals
+      .filter(animal => animal.location === location)
+      .map(animal => animal.name);
+
+      if (animals.length != 0) animalPerLocation[location] = animals;
+    });
+
+    return animalPerLocation;
+  }
 }
 
 function schedule(dayName) {
