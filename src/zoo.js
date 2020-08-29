@@ -10,9 +10,8 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { employees } = require('./data');
 
-const { animals } = data;
+const { animals, employees } = data;
 
 
 // 1- Implemente a função animalsByIds:
@@ -46,25 +45,35 @@ const employeeByName = (employeeName) => {
   if (employeeName) {
     return employees.find(verifyEmployeeName =>
       (verifyEmployeeName.firstName === employeeName) ||
-        (verifyEmployeeName.lastName === employeeName));
+      (verifyEmployeeName.lastName === employeeName));
   }
   return emptyObject;
 };
 
-// 4- Implemente a função createEmployee:
-// Cria um novo colaborador a partir de objetos
-// contendo informações pessoais e gerentes e animais gerenciados.
+  // 4- Implemente a função createEmployee:
+  // Cria um novo colaborador a partir de objetos
+  // contendo informações pessoais e gerentes e animais gerenciados.
 const createEmployee = (personalInfo, associatedWith) =>
   ({ ...personalInfo, ...associatedWith });
 
+  // 5- Implemente a função isManager:
+  // Testa se o id passado é de um gerente
+const isManager = id => employees
+  .some(({ managers }) => managers
+    .some(idManager => idManager === id));
 
-function isManager(id) {
-  // seu código aqui
-}
+  // const managerId = '0e7b460e-acf4-4e17-bcb3-ee472265db83';
+  // return employees.some(idManager => idManager.managers === managerId);
+  // if (id === managerId) {
+  // return true;
+  // }
+  // return false;
 
-// function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
-// }
+  // 6- Implemente a função addEmployee:
+  // Adiciona um funcionário no fim da lista
+const addEmployee = (id, firstName, lastName, managers = [], responsibleFor = []) => {
+  employees.push({ id, firstName, lastName, managers, responsibleFor });
+};
 
 function animalCount(species) {
   // seu código aqui
@@ -102,7 +111,7 @@ module.exports = {
   animalsByIds,
   employeeByName,
   employeeCoverage,
-  // addEmployee,
+  addEmployee,
   isManager,
   animalsOlderThan,
   oldestFromFirstSpecies,
