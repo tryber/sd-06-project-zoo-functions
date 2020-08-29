@@ -138,11 +138,11 @@ function entryCalculator(entrants) {
 function recoverAnimalsByLocation(animalLocation) {
   const animalsByLocation = {};
   animalLocation.forEach((location) => {
-    const animals = data.animals
+    const categorizedAnimals = data.animals
       .filter(animal => animal.location === location)
       .map(animal => animal.name);
 
-    if (animals.length !== 0) animalsByLocation[location] = animals;
+    if (categorizedAnimals.length !== 0) animalsByLocation[location] = categorizedAnimals;
   });
   return animalsByLocation;
 }
