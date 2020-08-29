@@ -117,7 +117,7 @@ function schedule(dayName) {
 }
 
 
-// requisito 11
+// requisito 11 - ok
 function oldestFromFirstSpecies(id) {
   const employee = employees.find(empregado => empregado.id === id);
   const animalId = employee.responsibleFor[0];
@@ -145,8 +145,19 @@ function increasePrices(percentage) {
 
 // requisito 13
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  const result = {};
+  if (!idOrName) {
+    employees.forEach((employee) => {
+      result[`${employee.firstName} ${employee.lastName}`] = [];
+      employee.responsibleFor.forEach((idResponsibleFor) => {
+        const idAnimal = animals.find(animal => animal.id === idResponsibleFor).name;
+        result[`${employee.firstName} ${employee.lastName}`].push(idAnimal);
+      });
+    });
+  }
+  return result;
 }
+
 
 module.exports = {
   entryCalculator,
