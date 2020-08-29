@@ -26,8 +26,8 @@ function createEmployee(personalInfo, associatedWith) {
 function isManager(id) {
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-}
+//function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+//}
 
 function animalCount(species) {
 }
@@ -40,20 +40,22 @@ function animalMap(options) {
 
 function schedule(dayName) {
   const allDays = Object.keys(data.hours);
-  const schedule = {};
+  const schedules = {};
 
   allDays.forEach((day) => {
     if (day === 'Monday') {
-      schedule[day] = 'CLOSED';
+      schedules[day] = 'CLOSED';
     } else {
       const openHours = data.hours[day].open;
       const closeHours = data.hours[day].close - 12;
-      schedule[day] = `Open from ${openHours}am until ${closeHours}pm`;
+      schedules[day] = `Open from ${openHours}am until ${closeHours}pm`;
     }
   });
 
-  if (dayName === undefined) return schedule; 
-  return { [dayName]: schedule[dayName] };
+  if (dayName === undefined) {
+    return schedules;
+  }
+  return { [dayName]: schedules[dayName] };
 }
 
 function oldestFromFirstSpecies(id) {
