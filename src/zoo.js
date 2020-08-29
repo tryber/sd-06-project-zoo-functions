@@ -32,7 +32,11 @@ function createEmployee(personalInfo, associatedWith) {
   return Object.assign(personalInfo, associatedWith);
 }
 
-function isManager(id) {}
+function isManager(id) {
+  return employees
+    .map(element => element.managers[0])
+    .some(element => element === id);
+}
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
