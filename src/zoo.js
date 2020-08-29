@@ -67,10 +67,67 @@ function entryCalculator(entrants) {
   const { Adult = 0, Child = 0, Senior = 0 } = entrants;
   return (Adult * prices.Adult) + (Child * prices.Child) + (Senior * prices.Senior);
 }
+// função que recupera animais por localização
+function retrieveAnimalsPerLocation(arrLocation) {
+  const animalsPerLocation = {};
+  // Para cada localização, filtra o animal que possui tal localização na data
+  arrLocation.forEach((location) => {
+    const animalsNameWithLocation = animals.filter(animal => animal.location === location)
+    // Transforma o retorno do filtro em um array com as localizações por nome
+    .map(animal => animal.name);
+    // Atribui ao obj vazio uma key com a localização e um array com o nome dos animais.
+    if (animalsNameWithLocation.length !== 0) {
+      animalsPerLocation[location] = animalsNameWithLocation;
+    }
+  });
 
-function animalMap(...options) {
-  // seu código aqui
+  return animalsPerLocation;
 }
+// Recebe as localizações ['NE', 'SW', 'NW', 'SE']
+function retrieveAnimals(arrLocation, sorted, sex) {
+  const animalsPerLocationWithName = {};
+
+  arrLocation.forEach((location) => { // Para cada localização
+    // filtra o obj animal pela
+    const animalsLocationWithName = animals.filter(animal => animal.location === location)
+    // localização e retorna o obj inteiro
+    .map((animal) => { // transforma o obj animal
+      const nameKey = animal.name; // cria a chave do obj a partir do obj filtrado
+      const nameValues = animal.residents
+      .filter((resident) => {
+        const isFilteringSex = sex !== undefined;
+        return (isFilteringSex ? resident.sex === sex : true);
+      })
+      .map(resident => resident.name); // retorna um array com o nome dos residentes
+
+      if (sorted) { nameValues.sort(); }
+
+      return { [nameKey]: nameValues }; // retorna o obj transformado
+    });
+    // retorna o obj vazio criado no formato:
+    // 'localização' : [ { [animal]:['nome dos residentes'] } ]
+    animalsPerLocationWithName[location] = animalsLocationWithName;
+    return animalsPerLocationWithName;
+  });
+  // retorna o obj anterior para fora da função
+  return animalsPerLocationWithName;
+}
+
+// Sem parâmetros, retorna animais categorizados por localização'
+function animalMap(options) {
+  const arrLocation = ['NE', 'SW', 'NW', 'SE'];
+  // Se não houver parametros ou se os parametros forem undefined
+  if (!options) {
+    return retrieveAnimalsPerLocation(arrLocation);
+  }
+
+  const { includeNames, sorted, sex } = options;
+
+  if (!includeNames) return retrieveAnimalsPerLocation(arrLocation);
+  // Caso {includeNames:true} retorna os animais por localização e o nome de seus residentes
+  return retrieveAnimals(arrLocation, sorted, sex);
+}
+
 
 function schedule(dayName) {
   const scheduleFormated = {};
