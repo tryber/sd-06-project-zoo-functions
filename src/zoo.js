@@ -30,11 +30,10 @@ function animalsOlderThan(animal, age) {
 }
 
 function employeeByName(employeeName) {
-  const name = employees.find(employee =>
-    employee.firstName === employeeName ||
-    employee.lastName === employeeName ||
-    employee.id === employeeName);
-
+  const name = employees.find(employee => {
+    const { firstName, lastName} = employee;
+    return firstName === employeeName || lastName === employeeName;
+  });
   if (name) {
     return name;
   }
@@ -137,7 +136,10 @@ function employeeCoverage(idOrName) {
   });
 
   if (idOrName) {
-    const employee = employeeByName(idOrName);
+    const employee = employees.find(employee => {
+      const { firstName, lastName, id } = employee;
+      return firstName === idOrName || lastName === idOrName || id === idOrName;
+    });
     const employeeFullName = `${employee.firstName} ${employee.lastName}`;
 
     return { [employeeFullName]: result[employeeFullName] };
