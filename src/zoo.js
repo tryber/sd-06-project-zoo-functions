@@ -14,16 +14,20 @@ const data = require('./data');
 function animalsByIds (...ids) {
 return data.animals.filter(idAnimal => ids.includes(idAnimal.id));
 }
-//'Ao passar o nome de uma espécie e uma idade, testa se todos os animais desta espécie possuem a idade mínima especificada'
+
 function animalsOlderThan(animal, age) {
   return data.animals.find(nameAnimal => nameAnimal.name === animal)
   .residents.every(resident => resident.age >= age);
 }
-//console.log(animalsOlderThan('penguins', 10));
+// Implemente a função employeeByName:
+//Sem parâmetros, retorna um objeto vazio
+//Quando provido o primeiro nome do funcionário, retorna o objeto do funcionário
+//Quando provido o último nome do funcionário, retorna o objeto do funcionário
 function employeeByName(employeeName) {
-  // seu código aqui
-}
-
+    return !employeeName ? {} : data.employees
+    .find(name => name.firstName === employeeName || name.lastName === employeeName);
+  } 
+console.log(employeeByName());
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
 }
