@@ -222,7 +222,8 @@ function oldestFromFirstSpecies(id) {
   const specieResident = animals.find(animal => animal.id === speciesOfAnimal).residents;
   console.log(specieResident);
   const olderAnimal = specieResident
-    .reduce((accumulator, { name, sex, age }) => (age > accumulator.age ? [name, sex, age] : accumulator));
+    .reduce((accumulator, { name, sex, age }) =>
+      (age > accumulator.age ? [name, sex, age] : accumulator));
   return olderAnimal;
 }
 
