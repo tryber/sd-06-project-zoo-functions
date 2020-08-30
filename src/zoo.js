@@ -174,7 +174,7 @@ function retrieveSpecieNames(animalsList) {
   return animalsList
     .map((specieId) => {
       const specieFound = animals.find(animal => animal.id === specieId);
-      return specieFound.name
+      return specieFound.name;
     });
 }
 
