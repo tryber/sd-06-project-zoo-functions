@@ -234,7 +234,7 @@ function increasePrices(percentage) {
   // seu código aqui
   const percent = percentage / 100;
 
-  const adultPrice = (data.prices.Adult + (Math.round(data.prices.Adult * percentage)) / 100);
+  const adultPrice = data.prices.Adult + Math.round(data.prices.Adult * percentage) / 100;
   data.prices.Adult = parseFloat(adultPrice.toFixed(2));
 
   data.prices.Senior = Math.round((data.prices.Senior + (data.prices.Senior * percent)) * 100) / 100;
