@@ -18,17 +18,12 @@ function animalsByIds(...ids) {
   return agoraVaiEmNomeDoPai;
 }
 
-// console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce'));
-
 function animalsOlderThan(animal, age) {
   const ageOfAnimals = data.animals
     .filter(species => species.name === animal)[0].residents
       .every(animalAge => animalAge.age >= age);
   return ageOfAnimals;
 }
-
-// console.log(animalsOlderThan('otters', 7));
-// console.log(animalsOlderThan('penguins', 10));
 
 function employeeByName(employeeName) {
   if (employeeName === undefined) { return {}; }
@@ -37,23 +32,10 @@ function employeeByName(employeeName) {
   return employees;
 }
 
-// console.log(employeeByName());
-// console.log(employeeByName('Emery'));
-// console.log(employeeByName('Wishart'));
-
 function createEmployee(personalInfo, associatedWith) {
   const create = Object.assign(personalInfo, associatedWith);
   return create;
 }
-
-/*
-  Testa se o id passado é de um gerente
-
-  .some(Element => Element.id === id)
-  .find(Element => Element.managers === id);
-
-  .flat()
-*/
 
 function isManager(id) {
   const arr = [];
@@ -69,12 +51,6 @@ function isManager(id) {
   return managerCheck;
 }
 
-// console.log(isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
-// console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
-
-/*
-  Adiciona um funcionário no fim da lista
-*/
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   if (!managers) {
     managers = [];
@@ -112,8 +88,6 @@ function animalCount(species) {
   return getAnimalCount(species);
 }
 
-// console.log(animalCount());
-
 function entryCalculator(entrants) {
   if (entrants === undefined || Object.keys(entrants).length === 0) {
     return 0;
@@ -128,19 +102,73 @@ function entryCalculator(entrants) {
   return total;
 }
 
-// console.log(entryCalculator());
-// console.log(entryCalculator({}));
+function retrieveAnimalsPerLocation(locations) {
+  const animalsPerLocation = {};
 
-// let entrants = { 'Adult': 2, 'Child': 3, 'Senior': 1 };
-// console.log(entryCalculator(entrants));
+  locations.forEach((location) => {
+    const animals = data.animals
+      .filter(animal => animal.location === location)
+      .map(animal => animal.name);
 
+      if (animals.length !== 0) animalsPerLocation[location] = animals;
+  });
 
-function animalMap(options) {
-  // seu código aqui
+  return animalsPerLocation;
 }
 
-function schedule(dayName) {
-  // seu código aqui
+function retrieveAnimals(locations, sorted, sex) {
+  const animalsPerLocationWithName = {};
+
+  locations.forEach((location) => {
+    const animals = data.animals
+      .filter(animal => animal.location === location)
+      .map(animal => {
+        const nameKey = animal.name;
+        const nameValues = animal.residents
+        .filter(resident => {
+          const isFilteringSex = sex !== undefined;
+          return isFilteringSex ? resident.sex === sex : true;
+        })
+        .map(resident => resident.name);
+
+        if(sorted) nameValues.sort();
+
+        return { [nameKey]: nameValues };
+      });
+
+      animalsPerLocationWithName[location] = animals;
+  });
+
+  return animalsPerLocationWithName;
+}
+
+function animalMap(options) { // Resolução Guiada
+  const locations = ['NE', 'NW', 'SE', 'SW'];
+  if (!options) return retrieveAnimalsPerLocation(locations);
+
+  const { includeNames, sorted, sex } = options;
+
+  if (!includeNames) return retrieveAnimalsPerLocation(locations);
+
+  return retrieveAnimals(locations, sorted, sex);
+}
+
+function schedule(dayName) { // Resolução Guiada
+  const allDays = Object.keys(data.hours);
+  const schedule = {};
+
+  allDays.forEach((day) => {
+    if (day === 'Monday') {
+      schedule[day] = 'CLOSED';
+    } else {
+      const openHours = data.hours[day].open;
+      const closeHours = data.hours[day].close - 12;
+      schedule[day] = `Open from ${openHours}am until ${closeHours}pm`;
+    }
+  });
+
+  if (!dayName) return schedule;
+  return { [dayName]: schedule[dayName] };
 }
 
 function oldestFromFirstSpecies(id) {
