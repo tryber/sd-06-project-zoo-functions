@@ -18,7 +18,6 @@ const { animals, employees } = data;
 // Caso receba nenhum parâmetro, necessário retornar um array vazio
 // Ao receber como parâmetro um único id, retorna os animais com este id
 // Ao receber mais de um id, retorna os animais que têm um desses ids
-
 const animalsByIds = (...ids) => {
   const emptyArray = [];
   if (ids) {
@@ -50,14 +49,14 @@ const employeeByName = (employeeName) => {
   return emptyObject;
 };
 
-  // 4- Implemente a função createEmployee:
-  // Cria um novo colaborador a partir de objetos
-  // contendo informações pessoais e gerentes e animais gerenciados.
+// 4- Implemente a função createEmployee:
+// Cria um novo colaborador a partir de objetos
+// contendo informações pessoais e gerentes e animais gerenciados.
 const createEmployee = (personalInfo, associatedWith) =>
   ({ ...personalInfo, ...associatedWith });
 
-  // 5- Implemente a função isManager:
-  // Testa se o id passado é de um gerente
+// 5- Implemente a função isManager:
+// Testa se o id passado é de um gerente
 const isManager = id => employees
   .some(({ managers }) => managers
     .some(idManager => idManager === id));
@@ -69,15 +68,28 @@ const isManager = id => employees
   // }
   // return false;
 
-  // 6- Implemente a função addEmployee:
-  // Adiciona um funcionário no fim da lista
+// 6- Implemente a função addEmployee:
+// Adiciona um funcionário no fim da lista
 const addEmployee = (id, firstName, lastName, managers = [], responsibleFor = []) => {
   employees.push({ id, firstName, lastName, managers, responsibleFor });
 };
 
-function animalCount(species) {
-  // seu código aqui
-}
+// 7- Implemente a função animalCount:
+// - Sem parâmetros, retorna animais e suas quantidades
+// - Com o nome de uma espécie de animal, retorna somente a quantidade
+const animalCount = (species) => {
+  if (!species) {
+    const newObject = { };
+    animals.forEach((dataSpecies) => {
+      newObject[dataSpecies.name] = dataSpecies.residents.length;
+    });
+    return newObject;
+  }
+  return animals.find(speciesQtd =>
+    speciesQtd.name === species).residents.length;
+};
+
+console.log(animalCount('snakes'));
 
 function entryCalculator(entrants) {
   // seu código aqui
