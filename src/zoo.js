@@ -18,8 +18,8 @@ function animalsByIds(...ids) {
     return [];
   }
   ids.forEach(id => {
-    let result = animals.filter(animals => animals.id === id)
-    animalsListForIds.push(result[0])
+    const result = animals.filter(animals => animals.id === id);
+    animalsListForIds.push(result[0]);
   });
   return animalsListForIds;
 }
