@@ -70,9 +70,16 @@ function employeeByName(employeeName) {
 // console.log(employeeByName('Wishart'));
 
 // -----------------------------------------------------------------------
+// Fonte: Mozzila
+// O método Object.assign() é usado para copiar valores de todas as propriedades de UM ou MAIS
+// objetos de origem para UM objeto destino, retornando o objeto de destino
+// Sintaxe: Object.assign(destino, ...origens)
 
 // Cria um novo colaborador a partir de objetos contendo informações pessoais,
 // gerentes e animais gerenciados
+
+// Na função createEmployee UM objeto destino vazio {}, recebe os objetos origens
+// personalInfo && associatedWith recebidos por parâmetro
 
 function createEmployee(personalInfo, associatedWith) {
   return Object.assign({}, personalInfo, associatedWith);
@@ -319,9 +326,47 @@ function increasePrices(percentage) {
   prices.Child = (Math.round(increasedChildPrice * 100) / 100);
 }
 
-function employeeCoverage(idOrName) {
-  // seu código aqui
+// -----------------------------------------------------------------------
+
+// A solução desse requisito foi baseada na solução guiada realizada pelo Icaro Harry.
+// Sem parâmetros, retorna uma lista de funcionários e os animais pelos quais eles são
+// responsáveis.
+// Com o id de um funcionário, retorna os animais pelos quais o funcionário é responsável.
+// Com o primeiro nome de um funcionário, retorna os animais pelos quais o funcionário é
+// responsável.
+// Com o último nome de um funcionário, retorna os animais pelos quais o funcionário é
+// responsável.
+
+function retrieveSpeciesName(speciesIds) {
+  const speciesName = [];
+  speciesIds.forEach(id => speciesName.push(animals.find(animal => animal.id === id).name));
+  return speciesName;
 }
+
+function employeeCoverage(idOrName) {
+  if (!idOrName || idOrName.length === 0) {
+    const obj = {};
+    employees.forEach((employee) => {
+      const nameKey = `${employee.firstName} ${employee.lastName}`;
+      const speciesIds = employee.responsibleFor;
+      const species = retrieveSpeciesName(speciesIds);
+      obj[nameKey] = species;
+    });
+    return obj;
+  }
+  const obj = {};
+  const foundEmployee = employees
+  .find(el => el.id === idOrName || el.firstName === idOrName || el.lastName === idOrName);
+  const nameKey = `${foundEmployee.firstName} ${foundEmployee.lastName}`;
+  const speciesIds = foundEmployee.responsibleFor;
+  const species = retrieveSpeciesName(speciesIds);
+  obj[nameKey] = species;
+  return obj;
+}
+// console.log(employeeCoverage(''));
+// console.log(employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
+// console.log(employeeCoverage('Stephanie'));
+// console.log(employeeCoverage('Azevado'));
 
 module.exports = {
   entryCalculator,
