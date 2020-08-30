@@ -73,22 +73,30 @@ function entryCalculator(entrants = 0) {
 function retrieveAnimalsPerLocation() {
   return animals
     .reduce((locations, { location }) => ({ ...locations,
-      [location]: animals.filter(animal => animal.location === location).map(animal => animal.name) }), {});
+      [location]: animals
+        .filter(animal => animal.location === location)
+        .map(animal => animal.name) }), {});
 }
 
-function animalsPerLocationWithName() {
+function animalsPerLocationWithName(sorted) {
   return animals
     .reduce((locations, { location }) => ({ ...locations,
-      [location]: animals.filter(animal => animal.location === location).map(animal => ({
-        [animal.name]: animal.residents.map(resident => resident.name)})) }), {});
+      [location]: animals
+        .filter(animal => animal.location === location)
+          .map(animal => ({
+            [animal.name]: (sorted) ? animal.residents
+              .map(resident => resident.name).sort() : animal.residents
+              .map(resident => resident.name),
+          })),
+    }), {});
 }
 
 function animalMap(options = false) {
-  const { includeNames } = options;
+  const { includeNames, sorted } = options;
   if (!options) return retrieveAnimalsPerLocation();
-  if (includeNames) return animalsPerLocationWithName();
+  if (includeNames) return animalsPerLocationWithName(sorted);
 }
-console.log(animalMap());
+console.log(animalMap({ includeNames: true, sorted: true }));
 function schedule(dayName) {
   const scheduleDays = Object.entries(hours);
   if (!dayName) {
