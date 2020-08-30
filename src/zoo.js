@@ -236,14 +236,36 @@ function increasePrices(percentage) {
 
   const adultPrice = data.prices.Adult + (Math.round(data.prices.Adult * percentage) / 100);
   data.prices.Adult = parseFloat(adultPrice.toFixed(2));
-
   data.prices.Senior = Math.round((prices.Senior + (data.prices.Senior * percent)) * 100) / 100;
-
   prices.Child = Math.round((prices.Child + (data.prices.Child * percent)) * 100) / 100;
 }
 
+// 13- Implemente a função employeeCoverage:
+// Sem parâmetros, retorna uma lista de funcionários e os animais pelos quais eles são responsáveis
+// Com o id de um funcionário, retorna os animais pelos quais o funcionário é responsável
+// Com o primeiro nome de um funcionário, retorna os animais pelos quais o funcionário é responsável
+// Com o último nome de um funcionário, retorna os animais pelos quais o funcionário é responsável
 function employeeCoverage(idOrName) {
   // seu código aqui
+  const idEmployess = {};
+  let employeesFilter;
+  if (!idOrName) {
+    employeesFilter = data.employees;
+  } else {
+    employeesFilter = data.employees.filter((employee) =>
+      employee.id === idOrName ||
+      employee.firstName === idOrName ||
+      employee.lastName === idOrName);          
+  }
+
+  employeesFilter.forEach((employee) => {
+    const animalMap = employee.responsibleFor.map((idAnimal) => {
+      const animal3 = data.animals.find((animal) => animal.id === idAnimal).name;
+      return animal3;
+    })
+    idEmployess[`${employee.firstName} ${employee.lastName}`] = animalMap;
+  });
+  return idEmployess;
 }
 
 module.exports = {
