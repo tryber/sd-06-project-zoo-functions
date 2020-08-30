@@ -119,30 +119,31 @@ function employeeCoverage(idOrName) {
   const result = {};
   let filteredEmployees;
 
-  if(!idOrName) {
+  if (!idOrName) {
     filteredEmployees = employees;
   } else {
     filteredEmployees = employees.filter(
-      (employee) => (employee.id === idOrName) || (employee.firstName === idOrName) || (employee.lastName === idOrName)
+      employee => 
+      (employee.id === idOrName)
+      || (employee.firstName === idOrName)
+      || (employee.lastName === idOrName)
       );
   }
 
-    filteredEmployees.forEach((employee) => {
+  filteredEmployees.forEach((employee) => {
       result[`${employee.firstName} ${employee.lastName}`] = [];
       employee.responsibleFor.forEach((animalId) => {
         const foundName = animals.find(
-          (animal) => animal.id === animalId
+          animal => animal.id === animalId,
         );
 
         result[`${employee.firstName} ${employee.lastName}`].push(
-          foundName.name
+          foundName.name,
         );
       });
     });
-
-    return result;
-  
-} 
+  return result;
+}
 
 
 module.exports = {
