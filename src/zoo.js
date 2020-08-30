@@ -116,6 +116,7 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
+  //Realizado com a ajuda do plantão realiado pelo Icaro
   const result = {};
   let filteredEmployees;
 
