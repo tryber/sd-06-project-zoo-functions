@@ -116,8 +116,34 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
-}
+  const result = {};
+  let filteredEmployees;
+
+  if(!idOrName) {
+    filteredEmployees = employees;
+  } else {
+    filteredEmployees = employees.filter(
+      (employee) => (employee.id === idOrName) || (employee.firstName === idOrName) || (employee.lastName === idOrName)
+      );
+  }
+
+    filteredEmployees.forEach((employee) => {
+      result[`${employee.firstName} ${employee.lastName}`] = [];
+      employee.responsibleFor.forEach((animalId) => {
+        const foundName = animals.find(
+          (animal) => animal.id === animalId
+        );
+
+        result[`${employee.firstName} ${employee.lastName}`].push(
+          foundName.name
+        );
+      });
+    });
+
+    return result;
+  
+} 
+
 
 module.exports = {
   entryCalculator,
