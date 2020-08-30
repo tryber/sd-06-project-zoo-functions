@@ -13,7 +13,6 @@ const data = require('./data');
 const { employees, prices } = require('./data');
 
 
-
 function animalsByIds(...ids) {
   // Retorna um array vazio, caso não envie nada como parametro
   if (!ids) return [];
@@ -22,7 +21,7 @@ function animalsByIds(...ids) {
 }
 
 function animalsOlderThan(animal, age) {
-  // Retorna um valor boleado todos os animais possuem a idade minima 
+// Retorna um valor boleado todos os animais possuem a idade minima
   return data.animals.find(Element => Element.name === animal)
   .residents.every(Element => Element.age >= age);
 }
@@ -30,7 +29,7 @@ function animalsOlderThan(animal, age) {
 function employeeByName(employeeName) {
   // Retorna um array vazio, caso não envie nada como parametro
   if (!employeeName) return {};
-  // Faz uma bosca no array dos funcionais, fazendo um find no FirstName e Lastname, 
+// Faz uma bosca no array dos funcionais, fazendo um find no FirstName e Lastname,
   return data.employees.find(Element =>
     // retornando o Funcionario em qualquer uma das circunstancias
     Element.firstName === employeeName || Element.lastName === employeeName);
@@ -43,7 +42,7 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  // Testa se o Id passado como parametro é de um gerente, se 
+  // Testa se o Id passado como parametro é de um gerente, se
   return employees.some(Element => Element.managers.includes(id));
 }
 // Pega todos os valores - Managers, responsibleFor = retornam [] caso venham vazios
@@ -106,22 +105,19 @@ function oldestFromFirstSpecies(id) {
 function increasePrices(percentage) {
   // Descostruindo o Array de Objetos
   const { Adult, Senior, Child } = prices;
-  const increasePriceCount = (priceStyle , porcentagem) => {
-    const result = ((Math.round(priceStyle * (1 + (porcentagem / 100)) * 100)) / 100)
-    return result
-  }
-
-  const adulto = (increasePriceCount(Adult,percentage));
-  const criança = (increasePriceCount(Child,percentage));
-  const idoso = (increasePriceCount(Senior,percentage));;
-
+  const increasePriceCount = (priceStyle, porcentagem) => {
+    const result = ((Math.round(priceStyle * (1 + (porcentagem / 100)) * 100)) / 100);
+    return result;
+  };
+  const adulto = (increasePriceCount(Adult, percentage));
+  const criança = (increasePriceCount(Child, percentage));
+  const idoso = (increasePriceCount(Senior, percentage));
   // 'Adult': 74.99,
   prices.Adult = adulto;
   // 'Senior': 37.49,
   prices.Child = criança;
   // 'Child': 31.49
   prices.Senior = idoso;
-  
   return {
     Adult: adulto,
     Senior: idoso,
