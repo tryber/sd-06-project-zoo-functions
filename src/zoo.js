@@ -11,7 +11,7 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-const { animals, employees } = data;
+const { animals, employees, prices } = data;
 
 
 // 1- Implemente a função animalsByIds:
@@ -89,11 +89,41 @@ const animalCount = (species) => {
     speciesQtd.name === species).residents.length;
 };
 
-console.log(animalCount('snakes'));
+// 8- Implemente a função entryCalculator:
+// Retorna 0 se nenhum argumento for passado
+// Retorna 0 se um objeto vazio for passado
+// Retorna o preço total a ser cobrado dado o número de adultos, crianças e idosos
+// function entryCalculator(entrants) {
+//   if (entrants && Object.keys(entrants).length > 0) {
+//     const { Adult, Child, Senior } = { ...entrants };
+//     const a = prices.Adult * Adult;
+//     const b = prices.Child * Child;
+//     const c = prices.Senior * Senior;
+//     return a + b + c;
+//   }
+//   return 0;
+// };
 
-function entryCalculator(entrants) {
-  // seu código aqui
-}
+const entryCalculator = (entrants) => {
+  let sum = 0
+  if (entrants && Object.keys(entrants).length > 0) {
+    const { Adult, Child, Senior } = { ...entrants };
+    if (Adult) {
+      sum += Adult * prices.Adult; 
+    }
+    if (Child) {
+      sum += Child * prices.Child;
+    }
+    if (Senior) {
+      sum += Senior * prices.Senior;
+    }
+  }
+  return sum;
+};
+// entryCalculator()
+console.log(entryCalculator({}));
+console.log(entryCalculator({ 'Adult': 2 }));
+console.log(entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 }));
 
 function animalMap(options) {
   // seu código aqui
