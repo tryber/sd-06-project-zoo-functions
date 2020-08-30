@@ -17,7 +17,7 @@ function animalsByIds(...ids) {
 
 function animalsOlderThan(animal, age) {
   return animals
-    .filter(kind =>(kind.name === animal))[0]
+    .filter(kind => (kind.name === animal))[0]
     .residents.every(animalAge => animalAge.age > age);
 }
 
@@ -55,10 +55,12 @@ function entryCalculator(entrants) {
   if (!entrants || Object.keys(entrants).length === 0) return 0;
   return Object.keys(entrants)
   .reduce((sum, individual) => sum + (entrants[individual] * prices[individual]), 0);
-}//Source: O return fora do if foi atingido olhando o código de mais de um colega, porém não salvei quais foram
+}
 
 function animalMap(options) {
-  // seu código aqui
+  // if (!options) {
+
+  // }
 }
 
 function schedule(dayName) {
