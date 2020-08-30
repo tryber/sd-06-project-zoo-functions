@@ -117,10 +117,6 @@ function increasePrices(percentage) {
 
 function employeeCoverage(idOrName) {
 }
-  // - Sem parâmetros, retorna uma lista de funcionários e os animais pelos quais eles são responsáveis
-  // - Com o id de um funcionário, retorna os animais pelos quais o funcionário é responsável
-  // - Com o primeiro nome de um funcionário, retorna os animais pelos quais o funcionário é responsável
-  // - Com o último nome de um funcionário, retorna os animais pelos quais o funcionário é responsável
 
 
 module.exports = {
