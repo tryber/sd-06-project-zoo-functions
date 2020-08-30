@@ -56,20 +56,6 @@ function entryCalculator(entrants = 0) {
   return sumOfPrices;
 }
 
-// function animalMap(options) {
-//   // const { includeNames, sorted, sex } = options;
-//   const locations = ['NE', 'NW', 'SW', 'SE'];
-//   if (!options) {
-//     const animalPerLocations = {};
-//     locations.forEach((location) => {
-//       const filterAnimals = animals
-//         .filter(animal => animal.location === location)
-//         .map(animal => animal.name);
-//       if (filterAnimals.length !== 0) animalPerLocations[location] = filterAnimals;
-//     });
-//     return animalPerLocations;
-//   }
-// }
 function retrieveAnimalsPerLocation() {
   return animals
     .reduce((locations, { location }) => ({ ...locations,
