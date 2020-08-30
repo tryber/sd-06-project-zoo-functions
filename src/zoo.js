@@ -82,22 +82,59 @@ function entryCalculator(entrants) {
     .reduce((acc, curr) => acc + curr, 0);
 }
 
-function animalMap(options) {
-  let locations = new Set();
-  animals.map(animal => animal.location).forEach((location) => locations.add(location));
-  locations = Array.from(locations).sort();
-
+function animalMapNoOptions(locations) {
   const result = {};
   locations.forEach((local) => {
     result[local] = animals
-      .filter((animal) => animal.location === local)
-      .map((individual) => individual.name);
+      .filter(animal => animal.location === local)
+      .map(individual => individual.name);
   });
 
   return result;
 }
 
-animalMap();
+function animalMapWithOptions(locations, isSorted, definedSex) {
+  const result = {};
+  locations.forEach((local) => {
+    result[local] = animals
+      .filter(animal => animal.location === local)
+      .map((individual) => {
+        const key = individual.name;
+        const value = individual.residents
+          .filter((resident) => {
+            if (definedSex) {
+              return resident.sex === definedSex;
+            }
+            return true;
+          })
+          .map(resident => resident.name);
+
+        if (isSorted) value.sort();
+
+        return { [key]: value };
+      });
+  });
+
+  return result;
+}
+
+function animalMap(options) {
+  let avaiableLocations = new Set();
+  animals.map(animal => animal.location).forEach(local => avaiableLocations.add(local));
+  avaiableLocations = Array.from(avaiableLocations).sort();
+
+  if (!options) {
+    return animalMapNoOptions(avaiableLocations);
+  }
+
+  const { includeNames, sorted, sex } = options;
+
+  if (includeNames) {
+    return animalMapWithOptions(avaiableLocations, sorted, sex);
+  }
+
+  return animalMapNoOptions(avaiableLocations);
+}
 
 function schedule(...dayName) {
   if (dayName.length === 0) {
