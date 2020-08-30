@@ -65,7 +65,7 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-  // seu código aqui
+
 }
 
 function schedule(dayName) {
@@ -91,9 +91,27 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  //Descostruindo o Array de Objetos
+  const { Adult, Senior, Child } = prices;
+        //74.99          49,99          ex:50 -> 1.5  -> 150  -> 1.5
+  const adulto = (Math.round(Adult * (1 + (percentage / 100)) * 100)) / 100;
+          //31.49         20.99          ex:50 -> 1.5  -> 150  -> 1.5
+  const criança = (Math.round(Child * (1 + (percentage / 100)) * 100)) / 100;
+          //37.49          24.99          ex:50 -> 1.5  -> 150  -> 1.5
+  const idoso = (Math.round(Senior * (1 + (percentage / 100)) * 100)) / 100;
+  //'Adult': 74.99,
+  prices.Adult = adulto;
+  //'Senior': 37.49,
+  prices.Child = criança;
+  //'Child': 31.49
+  prices.Senior = idoso;
+  // { 'Adult': 74.99, 'Senior': 37.49, 'Child': 31.49 }
+  return {
+    Adult: adulto,
+    Senior: idoso,
+    Child: criança
+  };
 }
-
 function employeeCoverage(idOrName) {
   // seu código aqui
 }
