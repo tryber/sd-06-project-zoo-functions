@@ -31,7 +31,7 @@ function employeeByName(employeeName) {
 // acho um pouco confuso a utilização desta função,
 // porém, essa implementação atende ao createEmployee.test.js
 function createEmployee(personalInfo, associatedWith) {
-  return { personalInfo, associatedWith };
+  return { ...personalInfo, ...associatedWith };
 }
 
 function isManager(id) {
