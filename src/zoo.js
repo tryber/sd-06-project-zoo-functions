@@ -90,20 +90,39 @@ const schedule = (dayName) => {
 };
 
 
-function oldestFromFirstSpecies(id) {
+const oldestFromFirstSpecies = (id) => {
+  const EmployeObj = employees.find(employeId => employeId.id === id);
+  const firstSpecie = animals.find(animal => animal.id === EmployeObj.responsibleFor[0]);
 
-}
+  let maxAge = 0;
+  let oldResident;
+  const result = [];
+  firstSpecie.residents.map((resident) => {
+    if (resident.age > maxAge) {
+      maxAge = resident.age;
+      oldResident = resident;
+    }
+    return oldResident;
+  });
+  result[0] = oldResident.name;
+  result[1] = oldResident.sex;
+  result[2] = oldResident.age;
+  return result;
+};
 
+const increaseOnePrice = (price, percentage) => {
+  const price1 = price + ((percentage * price) / 100);
+  return Math.round(price1 * 100) / 100;
+};
 const increasePrices = (percentage) => {
-  const percent = number => Math.round(((number + number) * percentage * 0.01) * 100) / 100;
-  prices.Adult = percent(prices.Adult);
-  prices.Senior = percent(prices.Senior);
-  prices.Child = percent(prices.Child);
+  prices.Adult = increaseOnePrice(prices.Adult, percentage);
+  prices.Child = increaseOnePrice(prices.Child, percentage);
+  prices.Senior = increaseOnePrice(prices.Senior, percentage);
+  return prices;
 };
 
 const employeeCoverage = (idOrName) => {
   const result = {};
-
   let filteredEmployes;
   if (!idOrName) {
     filteredEmployes = employees;
@@ -115,7 +134,6 @@ const employeeCoverage = (idOrName) => {
   filteredEmployes.forEach((employe) => {
     const mappedAnimal = employe.responsibleFor.map((idAnimal) => {
       const foundNameAninamal = animals.find(element => element.id === idAnimal).name;
-
       return foundNameAninamal;
     });
     result[`${employe.firstName} ${employe.lastName}`] = mappedAnimal;
