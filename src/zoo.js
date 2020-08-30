@@ -123,25 +123,24 @@ function employeeCoverage(idOrName) {
     filteredEmployees = employees;
   } else {
     filteredEmployees = employees.filter(
-      employee => 
+      employee =>
       (employee.id === idOrName)
       || (employee.firstName === idOrName)
-      || (employee.lastName === idOrName)
+      || (employee.lastName === idOrName),
       );
   }
 
   filteredEmployees.forEach((employee) => {
-      result[`${employee.firstName} ${employee.lastName}`] = [];
-      employee.responsibleFor.forEach((animalId) => {
-        const foundName = animals.find(
-          animal => animal.id === animalId,
-        );
-
-        result[`${employee.firstName} ${employee.lastName}`].push(
-          foundName.name,
-        );
-      });
+    result[`${employee.firstName} ${employee.lastName}`] = [];
+    employee.responsibleFor.forEach((animalId) => {
+      const foundName = animals.find(
+        animal => animal.id === animalId,
+      );
+      result[`${employee.firstName} ${employee.lastName}`].push(
+        foundName.name,
+      );
     });
+  });
   return result;
 }
 
