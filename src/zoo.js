@@ -13,26 +13,35 @@ const data = require('./data');
 const { employees, prices } = require('./data');
 
 function animalsByIds(...ids) {
+  // Retorna um array vazio, caso não envie nada como parametro
   if (!ids) return [];
+  // Retorna os animais com o Id enviado como parametro
   return ids.map(id => data.animals.find(animal => animal.id === id));
 }
 
 function animalsOlderThan(animal, age) {
+  // Retorna um valor boleado todos os animais possuem a idade minima 
   return data.animals.find(Element => Element.name === animal)
   .residents.every(Element => Element.age >= age);
 }
 
 function employeeByName(employeeName) {
+  // Retorna um array vazio, caso não envie nada como parametro
   if (!employeeName) return {};
+  // Faz uma bosca no array dos funcionais, fazendo um find no FirstName e Lastname, 
   return data.employees.find(Element =>
+    // retornando o Funcionario em qualquer uma das circunstancias
     Element.firstName === employeeName || Element.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
+  // O método "Object.assign()" é usado para copiar os valores de todas as propriedades
+  // Tenha Cuidado, Pois ele ira retornar todos os arrays misturados entre sí
   return Object.assign(personalInfo, associatedWith);
 }
 
 function isManager(id) {
+  // Testa se o Id passado como parametro é de um gerente, se 
   return employees.some(Element => Element.managers.includes(id));
 }
 
