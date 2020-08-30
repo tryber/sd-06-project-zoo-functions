@@ -10,7 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { animals } = require('./data');
+const { employees, animals } = require('./data');
 
 function animalsByIds(...ids) {
   return animals.filter(animais => ids.includes(animais.id));
@@ -22,23 +22,33 @@ function animalsOlderThan(animal, age) {
 }
 
 function employeeByName(employeeName) {
-  
+  if (employeeName === undefined) {
+    return {};
+  } return employees.find(employ => employ.firstName === employeeName
+    || employ.lastName === employeeName);
 }
 
+// acho um pouco confuso a utilização desta função,
+// porém, essa implementação atende ao createEmployee.test.js
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  return { personalInfo, associatedWith };
 }
 
 function isManager(id) {
-  // seu código aqui
+  return employees.some(testaManager => testaManager.managers.includes(id));
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
+const listOfAnimals = {};
 function animalCount(species) {
-  // seu código aqui
+  if (species === undefined) {
+    data.animals.forEach(cada => (listOfAnimals[cada.name] = cada.residents.length));
+    return listOfAnimals;
+  }
+  return (data.animals.find(especie => (especie.name === species)).residents.length);
 }
 
 function entryCalculator(entrants) {
