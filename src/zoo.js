@@ -79,28 +79,18 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  // let dia = data.hours[dayName];
-  // function calendarioParaHumanos () {
-  //   const retorno = `{${dia}: Open from ${dia.open}am until ${dia.close}pm}`;
-  //   return retorno;
-  // }
-  // if (dayName === 0 || dayName === undefined || dayName === '') {
-  //   return {
-  //     'Tuesday': 'Open from 8am until 6pm',
-  //     'Wednesday': 'Open from 8am until 6pm',
-  //     'Thursday': 'Open from 10am until 8pm',
-  //     'Friday': 'Open from 10am until 8pm',
-  //     'Saturday': 'Open from 8am until 10pm',
-  //     'Sunday': 'Open from 8am until 8pm',
-  //     'Monday': 'CLOSED'
-  //   }
-  // }
-  // if (dayName.toUpperCase() === 'Monday'.toUpperCase()) {
-  //   return { 'Monday': 'CLOSED' };
-  // }
-  // if (data.hours[dayName] === dayName) {
-  //   calendarioParaHumanos();
-  // }
+  const objCalendar = Object.assign({}, data.hours);
+  const daysKeysArray = Object.keys(objCalendar);
+  daysKeysArray.forEach((day) => {
+    objCalendar[day] = `Open from ${objCalendar[day].open}am until ${objCalendar[day].close - 12}pm`;
+    if (day === 'Monday') objCalendar[day] = 'CLOSED';
+  });
+  if (dayName === undefined) {
+    return objCalendar;
+  }
+  const readableSchedule = {};
+  readableSchedule[dayName] = objCalendar[dayName];
+  return readableSchedule;
 }
 
 function oldestFromFirstSpecies(id) {
@@ -126,8 +116,12 @@ function increasePrices(percentage) {
 
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
 }
+  // - Sem parâmetros, retorna uma lista de funcionários e os animais pelos quais eles são responsáveis
+  // - Com o id de um funcionário, retorna os animais pelos quais o funcionário é responsável
+  // - Com o primeiro nome de um funcionário, retorna os animais pelos quais o funcionário é responsável
+  // - Com o último nome de um funcionário, retorna os animais pelos quais o funcionário é responsável
+
 
 module.exports = {
   entryCalculator,
