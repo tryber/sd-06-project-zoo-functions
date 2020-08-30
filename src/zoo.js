@@ -26,7 +26,7 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  return data.employees = {...personalInfo, ...associatedWith};
+  return { ...personalInfo, ...associatedWith};
 }
 
 function isManager(id) {
