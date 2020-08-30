@@ -29,13 +29,11 @@ function animalsByIds(...ids) { // rest paramenter returns []
 
   return result;
 }
+
 // console.log(animalsByIds());
 // console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce'));
 // console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce',_
 // 'e8481c1d-42ea-4610-8e11-1752cfc05a46'));
-
-// final result: passou nos testes, mas ficou uma dúvida:
-// Por que retorna a palavra objeto ao invés do próprio objeto.
 
 // ----------------------------------------------------------------------
 
@@ -116,6 +114,7 @@ function isManager(id) {
 
   return manager.some(value => value === id);
 }
+
   // console.log(isManager('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
   // console.log(isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
 
@@ -124,15 +123,17 @@ function isManager(id) {
 // Adiciona um funcionário no fim da lista
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  // const sizeEmployees = employees.length
-  // const employeesProperties = Object.keys(employees[0]);
-  // employeesProperties.forEach(element => {
-
-  // });
-  // console.log(employeesProperties)
-  // return sizeEmployees
+  const newObj = {};
+  newObj.id = id;
+  newObj.firstName = firstName;
+  newObj.lastName = lastName;
+  newObj.managers = managers;
+  newObj.responsibleFor = responsibleFor;
+  employees.push(newObj);
+  return employees.length;
 }
-// console.log(addEmployee());
+
+// console.log(addEmployee('39800c14-4b76-454a-858d-2f8d168146a7', 'John', 'Doe'));
 
 // -----------------------------------------------------------------------
 
@@ -257,7 +258,6 @@ function animalMap(obj = {}) {
 // console.log(animalMap({ includeNames: true, sorted: true}));
 // console.log(animalMap({ includeNames: true, sorted: true}));
 // console.log(animalMap({ includeNames: true, sex: 'female'}));
-
 
 // -----------------------------------------------------------------------
 
