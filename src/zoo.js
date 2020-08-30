@@ -118,21 +118,27 @@ function increasePrices(percentage) {
   return null;
 }
 
-
 function employeeCoverage(idOrName) {
+  const { animals, employees } = data;
+  const GET_FULL_NAME = (work => `${work.firstName} ${work.lastName}`);
   if (!idOrName) {
-    const EMPLOYEES_ANIMALS_LIST = data.employees.reduce((e, current) =>
-      ({ ...e, [`${current.firstName} ${current.lastName}`]: current.responsibleFor }), undefined);
-    Object.keys(EMPLOYEES_ANIMALS_LIST).forEach(function (e) {
-      for (let index = 0; index < EMPLOYEES_ANIMALS_LIST[e].length; index += 1) {
-        EMPLOYEES_ANIMALS_LIST[e][index] = data.animals.find(element =>
-          element.id === EMPLOYEES_ANIMALS_LIST[e][index]).name;
-      }
-    });
-    return (EMPLOYEES_ANIMALS_LIST);
+    return employees.reduce((workerList, worker) => ({
+      ...workerList,
+      [GET_FULL_NAME(worker)]:
+      worker.responsibleFor.map(petId => animals.find(animal => animal.id === petId).name),
+    }), {});
   }
-  return null;
+  const { firstName, lastName, responsibleFor } = employees.find(employee =>
+    Object.values(employee).includes(idOrName));
+  return {
+    [`${firstName} ${lastName}`]:
+    responsibleFor.map(beastId => animals.find(beast => beast.id === beastId).name),
+  };
 }
+/* //console.log(employeeCoverage());
+//console.log(employeeCoverage('9e7d4524-363c-416a-8759-8aa7e50c0992'))
+console.log(employeeCoverage('Stephanie'));
+console.log(employeeCoverage('Orloff')); */
 
 module.exports = {
   entryCalculator,
