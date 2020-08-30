@@ -255,15 +255,15 @@ function employeeCoverage(idOrName) {
     employeesFilter = data.employees.filter((employee) =>
       employee.id === idOrName ||
       employee.firstName === idOrName ||
-      employee.lastName === idOrName);          
+      employee.lastName === idOrName);
   }
 
   employeesFilter.forEach((employee) => {
-    const animalMap = employee.responsibleFor.map((idAnimal) => {
+    const mapAnimal = employee.responsibleFor.map((idAnimal) => {
       const animal3 = data.animals.find((animal) => animal.id === idAnimal).name;
       return animal3;
-    })
-    idEmployess[`${employee.firstName} ${employee.lastName}`] = animalMap;
+    });
+    idEmployess[`${employee.firstName} ${employee.lastName}`] = mapAnimal;
   });
   return idEmployess;
 }
