@@ -78,7 +78,7 @@ function retrieveAnimalsPerLocation() {
         .map(animal => animal.name) }), {});
 }
 
-function animalsPerLocationWithName(sorted, sex) {
+function animalsPerLocationWithNameFilterBySexAndSorted(sorted, sex) {
   return animals
     .reduce((locations, { location }) => ({ ...locations,
       [location]: animals
@@ -98,9 +98,10 @@ function animalsPerLocationWithName(sorted, sex) {
 function animalMap(options = false) {
   const { includeNames, sorted, sex } = options;
   if (!options) return retrieveAnimalsPerLocation();
-  if (includeNames) return animalsPerLocationWithName(sorted, sex);
+  if (!includeNames) return retrieveAnimalsPerLocation();
+  return animalsPerLocationWithNameFilterBySexAndSorted(sorted, sex);
 }
-console.log(animalMap({ includeNames: true, sex: 'female' }));
+
 function schedule(dayName) {
   const scheduleDays = Object.entries(hours);
   if (!dayName) {
