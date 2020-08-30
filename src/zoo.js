@@ -141,9 +141,43 @@ const increasePrices = (percentage) => {
   return prices;
 };
 
-function employeeCoverage(idOrName) {
-  // seu código aqui
-}
+// plantão 25.08 requisito 13
+const allEmployeesAndAnimals = () => {
+  const allEmployeesOutput = {};
+
+  employees.forEach((employee) => {
+    allEmployeesOutput[`${employee.firstName} ${employee.lastName}`] = [];
+    employee.responsibleFor.forEach((id) => {
+      const animalName = animals.find(animal => animal.id === id).name;
+      allEmployeesOutput[`${employee.firstName} ${employee.lastName}`].push(animalName);
+    });
+  });
+
+  return allEmployeesOutput;
+};
+
+const employeeCoverage = (idOrName) => {
+  let getEmployeeCoverage = {};
+
+  if (!idOrName) return allEmployeesAndAnimals();
+
+  // filtered employee's id, name or last name
+  const getEmployee = employees.filter(
+    employee => employee.firstName === idOrName ||
+    employee.lastName === idOrName || employee.id === idOrName,
+  );
+
+  // get employee's animals by id's found at responsibleFor array
+  const employeeAnimalsNames = getEmployee[0].responsibleFor.map(
+    animalId => animals.find(animal => animal.id === animalId).name,
+  );
+
+  getEmployeeCoverage = {
+    [`${getEmployee[0].firstName} ${getEmployee[0].lastName}`]: employeeAnimalsNames,
+  };
+
+  return getEmployeeCoverage;
+};
 
 module.exports = {
   entryCalculator,
