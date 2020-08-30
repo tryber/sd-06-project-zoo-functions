@@ -238,8 +238,8 @@ function increasePrices(percentage) {
   data.prices.Adult = parseFloat(adultPrice.toFixed(2));
 
   data.prices.Senior = Math.round((data.prices.Senior + (data.prices.Senior * percent)) * 100) / 100;
-  
-  data.prices.Child = Math.round((data.prices.Child + (data.prices.Child * percent)) * 100) / 100;
+
+  prices.Child = Math.round((prices.Child + (data.prices.Child * percent)) * 100) / 100;
 }
 
 function employeeCoverage(idOrName) {
