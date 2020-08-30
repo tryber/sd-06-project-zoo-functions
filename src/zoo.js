@@ -174,34 +174,32 @@ function retrieveSpecieNames(animalsList) {
   return animalsList
     .map((specieId) => {
       const specieFound = animals.find(animal => animal.id === specieId);
-      return specieFound.name; 
+      return specieFound.name
     });
 }
 
 function retrieveDefaultEmployeeCoverage() {
   const employeesAndSpecies = {};
-    employees.forEach((employee) => {
-      const fullName = `${employee.firstName} ${employee.lastName}`;
-      const speciesAssisted = retrieveSpecieNames(employee.responsibleFor);
-      employeesAndSpecies[fullName] = speciesAssisted;
-    });
-    return employeesAndSpecies;
+  employees.forEach((employee) => {
+    const fullName = `${employee.firstName} ${employee.lastName}`;
+    const speciesAssisted = retrieveSpecieNames(employee.responsibleFor);
+    employeesAndSpecies[fullName] = speciesAssisted;
+  });
+  return employeesAndSpecies;
 }
 
 function employeeCoverage(idOrName) {
   if (idOrName === undefined) {
     return retrieveDefaultEmployeeCoverage();
   }
-  const employeeAndSpecies = {};
-  const employee = employees.find(employee => (
+  const retrievedEmployee = employees.find(employee => (
     idOrName === employee.firstName ||
     idOrName === employee.lastName ||
     idOrName === employee.id
   ));
-  const fullName = `${employee.firstName} ${employee.lastName}`;
-  const speciesAssisted = retrieveSpecieNames(employee.responsibleFor);
-  employeeAndSpecies[fullName] = speciesAssisted;
-  return employeeAndSpecies;
+  const fullName = `${retrievedEmployee.firstName} ${retrievedEmployee.lastName}`;
+  const speciesAssisted = retrieveSpecieNames(retrievedEmployee.responsibleFor);
+  return { [fullName]: speciesAssisted };
 }
 
 module.exports = {
