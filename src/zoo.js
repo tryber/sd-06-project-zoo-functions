@@ -114,10 +114,6 @@ function animalCount(species) {
 
 // console.log(animalCount());
 
-function totalValue(item) {
-  console.log(item);
-}
-
 function entryCalculator(entrants) {
   if (entrants === undefined || Object.keys(entrants).length === 0) {
     return 0;
@@ -127,7 +123,7 @@ function entryCalculator(entrants) {
   const getKeys = Object.keys(entrants);
   const getValues = Object.values(entrants);
 
-  getKeys.forEach((el, index) => { total += data.prices[el] * getValues[index] });
+  getKeys.forEach((el, index) => { total += data.prices[el] * getValues[index]; });
 
   return total;
 }
