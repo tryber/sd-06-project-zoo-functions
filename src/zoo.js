@@ -78,25 +78,29 @@ function retrieveAnimalsPerLocation() {
         .map(animal => animal.name) }), {});
 }
 
-function animalsPerLocationWithName(sorted) {
+function animalsPerLocationWithName(sorted, sex) {
   return animals
     .reduce((locations, { location }) => ({ ...locations,
       [location]: animals
         .filter(animal => animal.location === location)
-          .map(animal => ({
-            [animal.name]: (sorted) ? animal.residents
-              .map(resident => resident.name).sort() : animal.residents
-              .map(resident => resident.name),
-          })),
+        .map((animal) => {
+          const isFilterBySex = animal.residents
+            .filter((resident) => {
+              const isFilteringBySex = sex !== undefined;
+              return (isFilteringBySex) ? resident.sex === sex : true;
+            })
+            .map(resident => resident.name);
+          return { [animal.name]: (sorted) ? isFilterBySex.sort() : isFilterBySex };
+        }),
     }), {});
 }
 
 function animalMap(options = false) {
-  const { includeNames, sorted } = options;
+  const { includeNames, sorted, sex } = options;
   if (!options) return retrieveAnimalsPerLocation();
-  if (includeNames) return animalsPerLocationWithName(sorted);
+  if (includeNames) return animalsPerLocationWithName(sorted, sex);
 }
-console.log(animalMap({ includeNames: true, sorted: true }));
+console.log(animalMap({ includeNames: true, sex: 'female' }));
 function schedule(dayName) {
   const scheduleDays = Object.entries(hours);
   if (!dayName) {
