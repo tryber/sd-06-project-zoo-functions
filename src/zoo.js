@@ -110,7 +110,7 @@ function retrieveAnimalsPerLocation(locations) {
       .filter(animal => animal.location === location)
       .map(animal => animal.name);
 
-      if (animals.length !== 0) animalsPerLocation[location] = animals;
+    if (animals.length !== 0) animalsPerLocation[location] = animals;
   });
 
   return animalsPerLocation;
@@ -122,21 +122,21 @@ function retrieveAnimals(locations, sorted, sex) {
   locations.forEach((location) => {
     const animals = data.animals
       .filter(animal => animal.location === location)
-      .map(animal => {
+      .map((animal) => {
         const nameKey = animal.name;
         const nameValues = animal.residents
-        .filter(resident => {
+        .filter((resident) => {
           const isFilteringSex = sex !== undefined;
           return isFilteringSex ? resident.sex === sex : true;
         })
         .map(resident => resident.name);
 
-        if(sorted) nameValues.sort();
+        if (sorted) nameValues.sort();
 
         return { [nameKey]: nameValues };
       });
 
-      animalsPerLocationWithName[location] = animals;
+    animalsPerLocationWithName[location] = animals;
   });
 
   return animalsPerLocationWithName;
@@ -155,20 +155,20 @@ function animalMap(options) { // Resolução Guiada
 
 function schedule(dayName) { // Resolução Guiada
   const allDays = Object.keys(data.hours);
-  const schedule = {};
+  const objSchedule = {};
 
   allDays.forEach((day) => {
     if (day === 'Monday') {
-      schedule[day] = 'CLOSED';
+      objSchedule[day] = 'CLOSED';
     } else {
       const openHours = data.hours[day].open;
       const closeHours = data.hours[day].close - 12;
-      schedule[day] = `Open from ${openHours}am until ${closeHours}pm`;
+      objSchedule[day] = `Open from ${openHours}am until ${closeHours}pm`;
     }
   });
 
-  if (!dayName) return schedule;
-  return { [dayName]: schedule[dayName] };
+  if (!dayName) return objSchedule;
+  return { [dayName]: objSchedule[dayName] };
 }
 
 function oldestFromFirstSpecies(id) {
