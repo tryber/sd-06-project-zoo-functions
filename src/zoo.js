@@ -170,18 +170,27 @@ function increasePrices(percentage) {
   return prices;
 }
 
-function employeeCoverage(idOrName) {
-  if (idOrName === undefined) {
-    const employeesAndSpecies = {};
+function retrieveSpecieNames(animalsList) {
+  return animalsList
+    .map((specieId) => {
+      const specieFound = animals.find(animal => animal.id === specieId);
+      return specieFound.name; 
+    });
+}
+
+function retrieveDefaultEmployeeCoverage() {
+  const employeesAndSpecies = {};
     employees.forEach((employee) => {
       const fullName = `${employee.firstName} ${employee.lastName}`;
-      employeesAndSpecies[fullName] = employee.responsibleFor
-        .map((specieId) => {
-          const specieFound = animals.find(animal => animal.id === specieId);
-          return specieFound.name; 
-        })
-    })
+      const speciesAssisted = retrieveSpecieNames(employee.responsibleFor);
+      employeesAndSpecies[fullName] = speciesAssisted;
+    });
     return employeesAndSpecies;
+}
+
+function employeeCoverage(idOrName) {
+  if (idOrName === undefined) {
+    return retrieveDefaultEmployeeCoverage();
   }
   const employeeAndSpecies = {};
   const employee = employees.find(employee => (
@@ -190,13 +199,9 @@ function employeeCoverage(idOrName) {
     idOrName === employee.id
   ));
   const fullName = `${employee.firstName} ${employee.lastName}`;
-  const speciesAssisted = employee.responsibleFor
-    .map((specieId) => {
-      const specieFound = animals.find(animal => animal.id === specieId);
-      return specieFound.name; 
-    });
-    employeeAndSpecies[fullName] = speciesAssisted;
-    return employeeAndSpecies;
+  const speciesAssisted = retrieveSpecieNames(employee.responsibleFor);
+  employeeAndSpecies[fullName] = speciesAssisted;
+  return employeeAndSpecies;
 }
 
 module.exports = {
