@@ -9,15 +9,16 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees } = require('./data');
+const { animals, employees, prices } = require('./data');
 
 function animalsByIds(...ids) {
   return animals.filter(animal => ids.includes(animal.id));
 }
 
 function animalsOlderThan(animal, age) {
-  return animals.filter(kind =>
-    (kind.name === animal))[0].residents.every(animalAge => animalAge.age > age);
+  return animals
+    .filter(kind =>(kind.name === animal))[0]
+    .residents.every(animalAge => animalAge.age > age);
 }
 
 function employeeByName(employeeName) {
@@ -51,8 +52,10 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
-}
+  if (!entrants || Object.keys(entrants).length === 0) return 0;
+  return Object.keys(entrants)
+  .reduce((sum, individual) => sum + (entrants[individual] * prices[individual]), 0);
+}//Source: O return fora do if foi atingido olhando o código de mais de um colega, porém não salvei quais foram
 
 function animalMap(options) {
   // seu código aqui
