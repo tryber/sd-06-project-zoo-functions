@@ -18,7 +18,7 @@ function animalsByIds(...ids) {
     return [];
   }
   ids.forEach(id => {
-    const result = animals.filter(animals => animals.id === id);
+    const result = animals.filter(animalss => animalss.id === id);
     animalsListForIds.push(result[0]);
   });
   return animalsListForIds;
@@ -46,21 +46,6 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-  const location = ['NE','NW','SE','SW'];
-
-  if (!options) {
-    const animalPerLocation = {};
-
-    location.forEach((location) => {
-      const animals = data.animals
-      .filter(animal => animal.location === location)
-      .map(animal => animal.name);
-
-      if (animals.length != 0) animalPerLocation[location] = animals;
-    });
-
-    return animalPerLocation;
-  }
 }
 
 function schedule(dayName) {
