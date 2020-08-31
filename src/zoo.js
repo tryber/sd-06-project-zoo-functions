@@ -83,12 +83,10 @@ function schedule(dayName) {
       return (newObj[day[0]] = `Open from ${day[1].open}am until ${day[1].close - 12}pm`);
     });
     return newObj;
-  }
-  
-  return hour.filter((name) => name[0] === dayName).map(day => {
+  }  
+  return hour.filter((name) => name[0] === dayName).map((day) => {
     if (dayName === 'Monday') {
       newObj[dayName] = 'CLOSED';
-
       return newObj;
     }
     newObj[dayName] = `Open from ${day[1].open}am until ${day[1].close - 12}pm`;
