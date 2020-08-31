@@ -103,8 +103,8 @@ function animalsLocalizationAndName(locations, sorted, sex) {
         const nameKey = animal.name;
         const nameValues = animal.residents
           .filter((resident) => {
-             const isFiltering = sex !== undefined;
-             return isFiltering ? resident.sex === sex : true;
+            const isFiltering = sex !== undefined;
+            return isFiltering ? resident.sex === sex : true;
           })
           .map(resident => resident.name);
 
