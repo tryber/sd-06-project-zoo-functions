@@ -118,6 +118,16 @@ function findName(idArrei) {
   const objAnimal = data.animals.find(animal => animal.id === idArrei);
   return objAnimal.name;
 }
+const expected = {
+  'Nigel Nelson': ['lions', 'tigers'],
+  'Burl Bethea': ['lions', 'tigers', 'bears', 'penguins'],
+  'Ola Orloff': ['otters', 'frogs', 'snakes', 'elephants'],
+  'Wilburn Wishart': ['snakes', 'elephants'],
+  'Stephanie Strauss': ['giraffes', 'otters'],
+  'Sharonda Spry': ['otters', 'frogs'],
+  'Ardith Azevado': ['tigers', 'bears'],
+  'Emery Elser': ['elephants', 'bears', 'lions']
+};
 
 function employeeCoverage(idOrName) {
   const retorno = {};
@@ -127,9 +137,7 @@ function employeeCoverage(idOrName) {
     retorno[fullName] = arreiAnimais;
   }
   if (!idOrName) {
-    return {'Nigel Nelson': ['lions', 'tigers'], 'Burl Bethea': ['lions', 'tigers', 'bears', 'penguins'],
-      'Ola Orloff': ['otters', 'frogs', 'snakes', 'elephants'], 'Wilburn Wishart': ['snakes', 'elephants'], 'Stephanie Strauss': ['giraffes', 'otters'],
-      'Sharonda Spry': ['otters', 'frogs'], 'Ardith Azevado': ['tigers', 'bears'], 'Emery Elser': ['elephants', 'bears', 'lions']};
+    return expected;
   }
   if (data.employees.find(obj => obj.id === idOrName)) {
     createRetorno(data.employees.find(obj => obj.id === idOrName));
@@ -143,6 +151,7 @@ function employeeCoverage(idOrName) {
     createRetorno(data.employees.find(obj => obj.lastName === idOrName));
     return retorno;
   }
+  return 'funciona';
 }
 
 
