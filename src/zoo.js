@@ -17,7 +17,6 @@ function animalsByIds(...ids) {
 animalsByIds();
 
 function animalsOlderThan(animal, age) {
-  
 }
 animalsOlderThan();
 function employeeByName(employeeName) {
@@ -58,11 +57,11 @@ function retrieveAnimalByLocationWithName(locations, sorted, sex) {
   const animalByLocationWithName = {};
   locations.forEach((location) => {
     const animal = data.animals
-      .filter(animal => animal.location === location)
+      .filter((animal )=> animal.location === location)
       .map(animal => {
         const animalKey = animal.name;
         const animalValue = animal.residents
-          .filter(resident => {
+          .filter((resident) => {
             const isFilteringSex = sex !== undefined;
             return isFilteringSex ? resident.sex === sex : true;
           })
