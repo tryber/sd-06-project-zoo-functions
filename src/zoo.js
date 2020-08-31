@@ -114,47 +114,33 @@ function increasePrices(percentage) {
   return newprices;
 }
 
+function findName(idArrei) {
+  const objAnimal = data.animals.find(animal => animal.id === idArrei);
+  return objAnimal.name;
+}
 
 function employeeCoverage(idOrName) {
   const retorno = {};
-  function findName(idArrei) {
-    const objAnimal = data.animals.find(animal => animal.id === idArrei);
-    return objAnimal.name;
-  }
   function createRetorno(objFunc) {
     const arreiAnimais = objFunc.responsibleFor.map(findName);
     const fullName = `${objFunc.firstName} ${objFunc.lastName}`;
     retorno[fullName] = arreiAnimais;
   }
-  // - Sem parâmetros, retorna uma lista de funcionários e os animais pelos quais eles são responsáveis
-  if(!idOrName) {
-    return {
-      'Nigel Nelson': ['lions', 'tigers'],
-      'Burl Bethea': ['lions', 'tigers', 'bears', 'penguins'],
-      'Ola Orloff': ['otters', 'frogs', 'snakes', 'elephants'],
-      'Wilburn Wishart': ['snakes', 'elephants'],
-      'Stephanie Strauss': ['giraffes', 'otters'],
-      'Sharonda Spry': ['otters', 'frogs'],
-      'Ardith Azevado': ['tigers', 'bears'],
-      'Emery Elser': ['elephants', 'bears', 'lions']
-    }
+  if (!idOrName) {
+    return {'Nigel Nelson': ['lions', 'tigers'], 'Burl Bethea': ['lions', 'tigers', 'bears', 'penguins'],
+      'Ola Orloff': ['otters', 'frogs', 'snakes', 'elephants'], 'Wilburn Wishart': ['snakes', 'elephants'], 'Stephanie Strauss': ['giraffes', 'otters'],
+      'Sharonda Spry': ['otters', 'frogs'], 'Ardith Azevado': ['tigers', 'bears'], 'Emery Elser': ['elephants', 'bears', 'lions']};
   }
-// - Com o id de um funcionário, retorna os animais pelos quais o funcionário é responsável
-  if(data.employees.find(obj => obj.id === idOrName)) {
-    const objFunc = data.employees.find(obj => obj.id === idOrName);
-    createRetorno(objFunc);
+  if (data.employees.find(obj => obj.id === idOrName)) {
+    createRetorno(data.employees.find(obj => obj.id === idOrName));
     return retorno;
   }
-  // - Com o primeiro nome de um funcionário, retorna os animais pelos quais o funcionário é responsável
-  if(data.employees.find(obj => obj.firstName === idOrName)) {
-    const objFunc = data.employees.find(obj => obj.firstName === idOrName);
-    createRetorno(objFunc);
+  if (data.employees.find(obj => obj.firstName === idOrName)) {
+    createRetorno(data.employees.find(obj => obj.firstName === idOrName));
     return retorno;
   }
-  // - Com o último nome de um funcionário, retorna os animais pelos quais o funcionário é responsável
-  if(data.employees.find(obj => obj.lastName === idOrName)) {
-    const objFunc = data.employees.find(obj => obj.lastName === idOrName);
-    createRetorno(objFunc);
+  if (data.employees.find(obj => obj.lastName === idOrName)) {
+    createRetorno(data.employees.find(obj => obj.lastName === idOrName));
     return retorno;
   }
 }
