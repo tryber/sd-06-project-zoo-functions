@@ -8,6 +8,7 @@ eslint no-unused-vars: [
   }
 ]
 */
+const data = require('./data.js');
 const { animals } = require('./data.js');
 
 function animalsByIds(...ids) {
@@ -15,12 +16,14 @@ animalId = animals.filter(ident => ids.includes(ident.id));
 return animalId;
 }
 const rest = animalsByIds();
-console.log(rest);
 
 function animalsOlderThan(animal, age) {
-  return animals.find(animal, age);
-}
 
+  let animalAge2 = animals.some(ident => animals.includes(ident.name, ident.residents).age);
+  return animalAge2;
+}
+animalAge = animalsOlderThan('lions', 4);
+console.log(animalAge);
 function employeeByName(employeeName) {
   // seu código aqui
 }
@@ -46,7 +49,19 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-  // seu código aqui -Sem parâmetros, retorna animais categorizados por localização
+  const locations = ['NE', 'NW', 'SE', 'SW' ];
+if(!options){
+  const animalPerLocation = {};
+  locations.forEach((location) => {
+    const animal =  animals
+    .filter(animal => animal.location === location)
+    .map(animal => animal.name);
+    console.log(animal);
+    if (animal.length !== 0) animalPerLocation[location] = animal;
+  });
+  return  animalPerLocation;
+}
+
 }
 
 function schedule(dayName) {
@@ -61,6 +76,14 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
+  //nomes e sobrenomes dos funcionarios sem parametros
+if (!id.name) {
+  //juntar nome e sobrenome e usar como propriedade (chave ) do objeto de retorno
+
+ }
+  //com o id
+  // com o nome
+  // com o sobrenome
 }
 
 module.exports = {
