@@ -12,3 +12,4 @@ describe('Implemente a função animalsOlderThan', () => {
     assert.deepEqual(actual, expected);
   });
 });
+  

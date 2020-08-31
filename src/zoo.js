@@ -10,53 +10,113 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
+const { employees, prices, animals } = require('./data');
 
-function animalsByIds(ids) {
-  // seu código aqui
+
+function animalsByIds(...ids) {
+  // Retorna um array vazio, caso não envie nada como parametro
+  if (!ids) return [];
+  // Retorna os animais com o Id enviado como parametro
+  return ids.map(id => data.animals.find(animal => animal.id === id));
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+// Retorna um valor boleado todos os animais possuem a idade minima
+  return data.animals.find(Element => Element.name === animal)
+  .residents.every(Element => Element.age >= age);
 }
 
 function employeeByName(employeeName) {
-  // seu código aqui
+  // Retorna um array vazio, caso não envie nada como parametro
+  if (!employeeName) return {};
+// Faz uma bosca no array dos funcionais, fazendo um find no FirstName e Lastname,
+  return data.employees.find(Element =>
+    // retornando o Funcionario em qualquer uma das circunstancias
+    Element.firstName === employeeName || Element.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  // O método "Object.assign()" é usado para copiar os valores de todas as propriedades
+  // Tenha Cuidado, Pois ele ira retornar todos os arrays misturados entre sí
+  return Object.assign(personalInfo, associatedWith);
 }
 
 function isManager(id) {
-  // seu código aqui
+  // Testa se o Id passado como parametro é de um gerente, se
+  return employees.some(Element => Element.managers.includes(id));
 }
-
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+// Pega todos os valores - Managers, responsibleFor = retornam [] caso venham vazios
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+// Cria um Array de Objetos com as propriedades
+  const array = {
+    id, firstName, lastName, managers, responsibleFor,
+  };
+// Retorna o Array de Objetos
+  return employees.push(array);
 }
 
 function animalCount(species) {
-  // seu código aqui
+  if (species === undefined) {
+    const object = {};
+
+    data.animals.map(element => (object[element.name] = element.residents.length));
+    return object;
+  }
+  const animal = data.animals.find(element => element.name === species);
+  return animal.residents.length;
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  if (entrants === undefined || entrants === null) {
+    return 0;
+  }
+  const keys = Object.keys(entrants);
+  const price = keys.reduce((soma, currentValue) =>
+    soma + (entrants[currentValue] * prices[currentValue]), 0);
+  return price;
 }
 
 function animalMap(options) {
-  // seu código aqui
+
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  const days = Object.keys(data.hours);
+  const scheduleObject = {};
+
+  days.forEach((day) => {
+    if (day === 'Monday') {
+      scheduleObject[day] = 'CLOSED';// 'Monday': 'CLOSED'
+    } else {
+      const open = data.hours[day].open;// = 8
+      const closed = data.hours[day].close - 12;// = 6
+      scheduleObject[day] = `Open from ${open}am until ${closed}pm`;// 'Tuesday': 'Open from 8am until 6pm'
+    }
+  });
+
+  if (dayName === undefined) return scheduleObject;
+  return { [dayName]: scheduleObject[dayName] };
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const responsibleFor = data.employees.find(employe => (employe.id === id)).responsibleFor;
+  const ANIMAL = animals.find(animal => animal.id === responsibleFor[0]);
+  return ANIMAL.residents.reduce((acc, { name, sex, age }) =>
+  (age > acc.age ? [name, sex, age] : acc));
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  // Descostruindo o Array de Objetos
+  const { Adult, Senior, Child } = prices;
+  const increasePriceCount = (priceStyle, porcentagem) => {
+    const result = ((Math.round(priceStyle * (1 + (porcentagem / 100)) * 100)) / 100);
+    return result;
+  };
+  prices.Adult = (increasePriceCount(Adult, percentage));
+  prices.Child = (increasePriceCount(Child, percentage));
+  prices.Senior = (increasePriceCount(Senior, percentage));
+  // Pensei que precisava retornar algo, mas não
+  // return {Adult, Senior, Child,};
 }
 
 function employeeCoverage(idOrName) {
