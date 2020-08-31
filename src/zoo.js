@@ -137,20 +137,16 @@ function employeeCoverage(idOrName) {
   }
   if (!idOrName) {
     return expected;
-  }
-  else if (data.employees.find(obj => obj.id === idOrName)) {
+  } else if (data.employees.find(obj => obj.id === idOrName)) {
     createRetorno(data.employees.find(obj => obj.id === idOrName));
     return retorno;
-  }
-  else if (data.employees.find(obj => obj.firstName === idOrName)) {
+  } else if (data.employees.find(obj => obj.firstName === idOrName)) {
     createRetorno(data.employees.find(obj => obj.firstName === idOrName));
     return retorno;
-  }
-  else if (data.employees.find(obj => obj.lastName === idOrName)) {
+  } else if (data.employees.find(obj => obj.lastName === idOrName)) {
     createRetorno(data.employees.find(obj => obj.lastName === idOrName));
     return retorno;
   }
-  return 'funciona';
 }
 
 
