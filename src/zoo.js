@@ -146,7 +146,7 @@ function employeeCoverage(idOrName) {
   } else if (data.employees.find(obj => obj.lastName === idOrName)) {
     createRetorno(data.employees.find(obj => obj.lastName === idOrName));
     return retorno;
-  } else {}// no return statement
+  }
 }
 
 
