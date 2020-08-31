@@ -60,11 +60,11 @@ function retrieveAnimalByLocationWithName(locations, sorted, sex) {
   const animalByLocationWithName = {};
   locations.forEach((location) => {
     const animal = data.animals
-      .filter(animal => animal.location === location)
-      .map(animal => {
+      .filter((animal) => animal.location === location)
+      .map((animal) => {
         const animalKey = animal.name;
         const animalValue = animal.residents
-          .filter(resident => {
+          .filter((resident ) => {
             const isFilteringSex = sex !== undefined;
             return isFilteringSex ? resident.sex === sex : true;
           })
@@ -72,7 +72,7 @@ function retrieveAnimalByLocationWithName(locations, sorted, sex) {
         if (sorted) animalValue.sort();
         return { [animalKey]: animalValue };
       });
-  animalByLocationWithName[location] = animal;
+    animalByLocationWithName[location] = animal;
   });
   return animalByLocationWithName;
 }
@@ -81,7 +81,7 @@ function animalMap(options) {
   const locations = ['NE', 'NW', 'SE', 'SW'];
   if (!options) { return retrieveAnimalPerLocation(locations); }
   const { includeNames, sorted, sex } = options;
-  if (includeNames === undefined) {return retrieveAnimalPerLocation(locations); }
+  if (includeNames === undefined) { return retrieveAnimalPerLocation(locations); }
   if (includeNames) { return retrieveAnimalByLocationWithName(locations, sorted, sex); }
 }
 
