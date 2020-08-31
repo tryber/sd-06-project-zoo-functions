@@ -9,16 +9,16 @@ eslint no-unused-vars: [
 ]
 */
 const data = require('./data.js');
-const { animals } = require('./data.js');
+//const { animals } = require('./data.js');
 
 function animalsByIds(...ids) {
-  const animalId = animals.filter(ident => ids.includes(ident.id));
+  const animalId = data.animals.filter(ident => ids.includes(ident.id));
   return animalId;
 }
 animalsByIds();
 
 function animalsOlderThan(animal, age) {
-  const animalAge = animals.some(ident => animals.includes(ident.name, ident.residents).age);
+  const animalAge = data.animals.some(ident => dat.animals.includes(ident.name, ident.residents).age);
   return animalAge;
 }
 animalsOlderThan('lions', 4);
@@ -49,7 +49,7 @@ function entryCalculator(entrants) {
 function retrieveAnimalPerLocation(locations) {
   const animalPerLocation = {};
   locations.forEach((location) => {
-    const animal2 = animals
+    const animal = data.animals
       .filter(animal => animal.location === location)
       .map(animal => animal.name);
     if (animal2.length !== 0) animalPerLocation[location] = animal;
@@ -59,7 +59,7 @@ function retrieveAnimalPerLocation(locations) {
 function retrieveAnimalByLocationWithName(locations, sorted, sex) {
   const animalByLocationWithName = {};
   locations.forEach((location) => {
-    const animal = animals
+    const animal = data.animals
       .filter(animal => animal.location === location)
       .map(animal => {
         const animalKey = animal.name;
@@ -79,16 +79,13 @@ function retrieveAnimalByLocationWithName(locations, sorted, sex) {
 
 function animalMap(options) {
   const locations = ['NE', 'NW', 'SE', 'SW'];
-  if (!options) {return retrieveAnimalPerLocation(locations);}
-/* const includeNames = options.includeNames;
-const sorted = options.sorted; destruction em uma linha e passa por parametros na função */
+  if (!options) { return retrieveAnimalPerLocation(locations); }
   const { includeNames, sorted, sex } = options;
   if (includeNames === undefined) {return retrieveAnimalPerLocation(locations); }
   if (includeNames) { return retrieveAnimalByLocationWithName(locations, sorted, sex); }
 }
 
 function schedule(dayName) {
-// seu código aqui - Sem parâmetros, retorna um cronograma legível para humanos
 }
 
 function oldestFromFirstSpecies(id) {
@@ -99,7 +96,6 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-//nomes e sobrenomes dos funcionarios sem parametros //juntar nome e sobrenome e usar como propriedade (chave ) do objeto de retorno
 }
 
 module.exports = {
