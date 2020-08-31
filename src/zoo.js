@@ -98,17 +98,18 @@ function entryCalculator(entrants) {
 // 9th requirement
 
 function animalsPerLocation(locations) {
-  const animalsPerLocation = {};
+  const animalsPerLocationConst = {};
   locations.forEach((location) => {
-    const animals = data.animals
+    const animalsLoc = data.animals
       .filter(animal => animal.location === location)
       .map(animal => animal.name);
-      if (animals.length !== 0)animalsPerLocation[location] = animals;
+    if (animalsLoc.length !== 0)animalsPerLocationConst[location] = animalsLoc;
   });
-  return animalsPerLocation;
+  return animalsPerLocationConst;
 }
 
 function includeName(locations, sorted, sex) {
+  const { animals: animalsObject } = data;
   const animalLocationObject = {};
   locations.forEach((location) => {
     const animalKey = animalsObject
