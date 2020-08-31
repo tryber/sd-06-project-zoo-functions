@@ -12,18 +12,16 @@ const data = require('./data.js');
 const { animals } = require('./data.js');
 
 function animalsByIds(...ids) {
-animalId = animals.filter(ident => ids.includes(ident.id));
-return animalId;
+  const animalId = animals.filter(ident => ids.includes(ident.id));
+  return animalId;
 }
-const rest = animalsByIds();
+animalsByIds();
 
 function animalsOlderThan(animal, age) {
-
-  let animalAge2 = animals.some(ident => animals.includes(ident.name, ident.residents).age);
-  return animalAge2;
+  const animalAge = animals.some(ident => animals.includes(ident.name, ident.residents).age);
+  return animalAge;
 }
-animalAge = animalsOlderThan('lions', 4);
-console.log(animalAge);
+animalsOlderThan('lions', 4);
 function employeeByName(employeeName) {
   // seu código aqui
 }
@@ -76,18 +74,17 @@ locations.forEach((location) => {
     });
     animalByLocationWithName[location] = animal;
 });
-return animalByLocationWithName;
+  return animalByLocationWithName;
 }
-
 
 function animalMap(options) {
   const locations = ['NE', 'NW', 'SE', 'SW' ];
-  if(!options){return retrieveAnimalPerLocation(locations);}
+  if (!options){return retrieveAnimalPerLocation(locations);}
 /* const includeNames = options.includeNames;
 const sorted = options.sorted; destruction em uma linha e passa por parametros na função */
-const { includeNames, sorted, sex } = options;
-if (includeNames === undefined) {return retrieveAnimalPerLocation(locations);}
-if (includeNames){ return retrieveAnimalByLocationWithName(locations, sorted, sex);}
+  const { includeNames, sorted, sex } = options;
+  if (includeNames === undefined) {return retrieveAnimalPerLocation(locations);}
+  if (includeNames){ return retrieveAnimalByLocationWithName(locations, sorted, sex);}
 }
 
 function schedule(dayName) {
@@ -103,10 +100,10 @@ function increasePrices(percentage) {
 
 function employeeCoverage(idOrName) {
   //nomes e sobrenomes dos funcionarios sem parametros
-if (!id.name) {
+
   //juntar nome e sobrenome e usar como propriedade (chave ) do objeto de retorno
 
- }
+
   //com o id
   // com o nome
   // com o sobrenome
