@@ -43,7 +43,9 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  // using spread operator to copy data and create a new object;
+  const newEmployee = { ...personalInfo, ...associatedWith };
+  return newEmployee;
 }
 
 function isManager(id) {
