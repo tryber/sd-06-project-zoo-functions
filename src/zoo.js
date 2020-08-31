@@ -104,6 +104,7 @@ function employeeCoverage(idOrName) {
     };
     employee.responsibleFor.forEach(eachId => pushAnimalName(eachId));
     return listAnimals;
+  }  
 }
 
 module.exports = {
@@ -120,4 +121,4 @@ module.exports = {
   oldestFromFirstSpecies,
   increasePrices,
   createEmployee,
-}};
+};
