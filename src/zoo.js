@@ -11,18 +11,19 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 const { animals, employees, prices, hours } = require('./data');
- //rest agrupa o objeto em um ARRAY
+
 function animalsByIds(...ids) {
   return animals.filter(animal => ids.find(paramFound => paramFound === animal.id));
 }
 
 function animalsOlderThan(animal, age) {
-  return animals.find(animaL => animaL.name === animal).residents.every(allAge => allAge.age >= age);
+  return animals.find(animaL => animaL.name === animal).residents
+  .every(allAge => allAge.age >= age);
 }
 
 function employeeByName(employeeName) {
   if (employeeName === undefined) return {};
-    return employees.find(employee => employee.firstName === employeeName || employee.lastName === employeeName);
+  return employees.find(em => em.firstName === employeeName || em.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -47,7 +48,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function animalCount(species) {
   if (species === undefined) {
     const obj = {};
-    animals.forEach(animal => {
+    animals.forEach((animal) => {
       const key = animal.name;
       const value = animal.residents.length;
       obj[key] = value;
@@ -74,7 +75,7 @@ function schedule(dayName) {
   const newObj = {};
   const hour = Object.entries(hours);
   if (dayName === undefined) {
-    hour.map(day => {
+    hour.map((day) => {
       if (day.includes('Monday')) {
         newObj.Monday = 'CLOSED';
         return newObj;
@@ -83,9 +84,11 @@ function schedule(dayName) {
     });
     return newObj;
   }
-  return hour.filter(name => name[0] === dayName).map(day => {
+  
+  return hour.filter((name) => name[0] === dayName).map(day => {
     if (dayName === 'Monday') {
       newObj[dayName] = 'CLOSED';
+
       return newObj;
     }
     newObj[dayName] = `Open from ${day[1].open}am until ${day[1].close - 12}pm`;
@@ -109,7 +112,7 @@ function increasePrices(percentage) {
 
 function employeeCoverage(idOrName) {
   const obj = {};
-  employees.map(employee => {
+  employees.map((employee) => {
     employee.animalList = employee.responsibleFor.map(idAnimal => animals.find(animal =>
       animal.id === idAnimal).name);
     return employee;
