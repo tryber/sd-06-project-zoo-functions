@@ -130,21 +130,20 @@ const expected = {
 
 function employeeCoverage(idOrName) {
   const retorno = {};
-  function createRetorno(objFunc) {
-    const arreiAnimais = objFunc.responsibleFor.map(findName);
-    const fullName = `${objFunc.firstName} ${objFunc.lastName}`;
-    retorno[fullName] = arreiAnimais;
-    return retorno;
-  }
-  if (!idOrName) {
-    return expected;
-  } else if (data.employees.find(obj => obj.id === idOrName)) {
+  if (data.employees.find(obj => obj.id === idOrName)) {
     return createRetorno(data.employees.find(obj => obj.id === idOrName));
   } else if (data.employees.find(obj => obj.firstName === idOrName)) {
     return createRetorno(data.employees.find(obj => obj.firstName === idOrName));
   } else if (data.employees.find(obj => obj.lastName === idOrName)) {
     return createRetorno(data.employees.find(obj => obj.lastName === idOrName));
   }
+  function createRetorno(objFunc) {
+    const arreiAnimais = objFunc.responsibleFor.map(findName);
+    const fullName = `${objFunc.firstName} ${objFunc.lastName}`;
+    retorno[fullName] = arreiAnimais;
+    return retorno;
+  }
+  return expected;
 }
 
 
