@@ -56,7 +56,7 @@ function animalCount(species) {
   if (!species) {
     return data.animals.reduce(contandoPrimos, {});
   }
-  return (data.animals.find((meuArray) => meuArray.name === species)
+  return (data.animals.find(meuArray => meuArray.name === species)
     .residents.length);
 }
 
@@ -76,8 +76,8 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  const animalId = employees.find(employee => employee.id === id).responsibleFor[0];
-  const animalsInfo = animals.filter(animal => animal.id === animalId)[0].residents;
+  const animalId = data.employees.find(employee => employee.id === id).responsibleFor[0];
+  const animalsInfo = data.animals.filter(animal => animal.id === animalId)[0].residents;
   const oldestAge = animalsInfo.reduce((acc, curr) => Math.max(acc, curr.age), 0);
   const oldestAnimal = animalsInfo.find(animal => animal.age === oldestAge);
   const { name, sex, age } = oldestAnimal;
@@ -86,8 +86,8 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   const percent = (percentage / 100) + 1;
-  Object.keys(prices).forEach((each) => {
-    prices[each] = Math.ceil(prices[each] * (percent * 100)) / 100;
+  Object.keys(data.prices).forEach((each) => {
+    data.prices[each] = Math.ceil(data.prices[each] * (percent * 100)) / 100;
   });
 }
 
@@ -100,9 +100,9 @@ function employeeCoverage(idOrName) {
         if (animal.id === eachId) listAnimals.push(animal.name);
       });
     };
-    employee.responsibleFor.forEach(eachId => pushAnimalName(eachId));
+    data.employee.responsibleFor.forEach(eachId => pushAnimalName(eachId));
     return listAnimals;
-  }
+  };
 }
 
 module.exports = {
