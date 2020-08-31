@@ -48,9 +48,7 @@ function entryCalculator(entrants) {
   // seu código aqui
 }
 
-function animalMap(options) {
-  const locations = ['NE', 'NW', 'SE', 'SW' ];
-if(!options){
+function retrieveAnimalPerLocation(locations){
   const animalPerLocation = {};
   locations.forEach((location) => {
     const animal =  animals
@@ -61,7 +59,13 @@ if(!options){
   });
   return  animalPerLocation;
 }
+function animalMap(options) {
+  const locations = ['NE', 'NW', 'SE', 'SW' ];
+  if(!options){return retrieveAnimalPerLocation(locations);}
+const includeName = options.includeName;
+if (includeName) {
 
+}
 }
 
 function schedule(dayName) {
