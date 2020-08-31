@@ -84,7 +84,7 @@ function schedule(dayName) {
     });
     return newObj;
   }
-  return hour.filter(name => name[0] === dayName).map(day => {
+  return hour.filter(name => name[0] === dayName).map((day) => {
     if (dayName === 'Monday') {
       newObj[dayName] = 'CLOSED';
       return newObj;
