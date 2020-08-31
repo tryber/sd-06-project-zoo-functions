@@ -10,16 +10,15 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { employees } = require('./data');
 
 function animalsByIds(...ids) {
-  return data.animals.filter(({id}, i) => id === ids[i]);
+  return data.animals.filter(({ id }, i) => id === ids[i]);
 }
 
 function animalsOlderThan(animal, age) {
-  return data.animals.filter(({name}) => name === animal)
-  .flatMap((filtered) => filtered.residents)
-  .every((individual) => individual.age > age);
+  return data.animals.filter(({ name }) => name === animal)
+  .flatMap((filtered) => {filtered.residents})
+  .every((individual) => {individual.age > age});
 }
 
 function employeeByName(employeeName) {
@@ -28,15 +27,15 @@ function employeeByName(employeeName) {
   }
 
   return data.employees
-  .find(({firstName, lastName}) => firstName === employeeName || lastName === employeeName);
+  .find(({ firstName, lastName }) => firstName === employeeName || lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  return {...personalInfo, ...associatedWith};
+  return { ...personalInfo, ...associatedWith };
 }
 
 function isManager(id) {
-  return data.employees.some((individual) => individual.managers.includes(id));
+  return data.employees.some((individual) => {individual.managers.includes(id)});
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
@@ -61,7 +60,7 @@ function animalCount(species) {
     return obj;
   }
 
-  return data.animals.find((individual) => individual.name === species).residents.length;
+  return data.animals.find((individual) => {individual.name === species}).residents.length;
 }
 
 function entryCalculator(entrants) {
