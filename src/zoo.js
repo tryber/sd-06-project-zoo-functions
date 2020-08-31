@@ -140,7 +140,7 @@ function increasePrices(percentage) {
 
 function employeeCoverage(idOrName) {
   const listAnimals = [];
-  (employee) => {
+  const aux = (employee) => {
     const pushAnimalName = (eachId) => {
       animals.forEach((animal) => {
         if (animal.id === eachId) listAnimals.push(animal.name);
