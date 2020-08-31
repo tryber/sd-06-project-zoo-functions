@@ -31,11 +31,11 @@ function animalsOlderThan(animal, age) {
 console.log(animalsOlderThan('penguins', 6));
 
 function employeeByName(employeeName) {
-  if (!employeeName) {
-    return [];
-  }
+  // if (!employeeName) {
+  //   return [];
+  // }
 }
-console.log(employeeByName());
+// console.log(employeeByName());
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
