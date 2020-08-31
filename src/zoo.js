@@ -81,11 +81,11 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-   const odest = 0;
+  const odest = 0;
 }
 
 function increasePrices(percentage) {
-    const increase = 0;
+  const increase = 0;
 }
 
 function employeeCoverage(idOrName) {
