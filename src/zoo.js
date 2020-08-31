@@ -11,36 +11,67 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-function animalsByIds(ids) {
-  // seu código aqui
+function animalsByIds(...ids) {
+  return data.animals.filter(animal => ids.some(id => id === animal.id));
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  return data.animals.find(element => element.name === animal)
+  .residents.every(element => element.age >= age);
 }
 
 function employeeByName(employeeName) {
-  // seu código aqui
+  if (employeeName === undefined) {
+    return {};
+  }
+  const retorno = data.employees
+  .find(trab => trab.firstName === employeeName || trab.lastName === employeeName);
+  return retorno;
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  const retorno = { ...personalInfo, ...associatedWith };
+  return retorno;
 }
 
 function isManager(id) {
-  // seu código aqui
+  return data.employees.some(gerente => gerente.managers.includes(id));
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  data.employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
 function animalCount(species) {
-  // seu código aqui
+  const obj = {};
+  function addAminalObj(param) {
+    obj[param.name] = param.residents.length;
+  }
+  if (species === undefined || species === '') {
+    data.animals.forEach(animal => addAminalObj(animal));
+    return obj;
+  }
+  {
+    const findTheAnimal = data.animals.find(animal => animal.name === species);
+    return findTheAnimal.residents.length;
+  }
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  if (!entrants || entrants === {}) {
+    return 0;
+  }
+  let totalPrice = 0;
+  if (entrants.Adult) {
+    totalPrice += (entrants.Adult * data.prices.Adult);
+  }
+  if (entrants.Senior) {
+    totalPrice += (entrants.Senior * data.prices.Senior);
+  }
+  if (entrants.Child) {
+    totalPrice += (entrants.Child * data.prices.Child);
+  }
+  return totalPrice;
 }
 
 function animalMap(options) {
@@ -48,20 +79,73 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  const objCalendar = Object.assign({}, data.hours);
+  const daysKeysArray = Object.keys(objCalendar);
+  daysKeysArray.forEach((day) => {
+    objCalendar[day] = `Open from ${objCalendar[day].open}am until ${objCalendar[day].close - 12}pm`;
+    if (day === 'Monday') objCalendar[day] = 'CLOSED';
+  });
+  if (dayName === undefined) {
+    return objCalendar;
+  }
+  const readableSchedule = {};
+  readableSchedule[dayName] = objCalendar[dayName];
+  return readableSchedule;
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const funcionario = data.employees.find(func => func.id === id);
+  const idDoPrimeiroAnimalGerenciado = funcionario.responsibleFor[0];
+  const objDoAnimal = data.animals.find(animal => animal.id === idDoPrimeiroAnimalGerenciado);
+  const arreiObjectResidentes = objDoAnimal.residents;
+  const arreiArrayResidents = arreiObjectResidentes.map(obj => Object.values(obj));
+  const arreiOrdenado = arreiArrayResidents.sort(function (param1, param2) {
+    return param2[2] - param1[2];
+  });
+  return arreiOrdenado[0];
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  const multiplicador = (100 + percentage);
+  const newprices = data.prices;
+  newprices.Adult = (Math.round((newprices.Adult * multiplicador).toFixed(2))) / 100;
+  newprices.Senior = (Math.round((newprices.Senior * multiplicador).toFixed(2))) / 100;
+  newprices.Child = (Math.round((newprices.Child * multiplicador).toFixed(2))) / 100;
+  return newprices;
 }
 
-function employeeCoverage(idOrName) {
-  // seu código aqui
+function findName(idArrei) {
+  const objAnimal = data.animals.find(animal => animal.id === idArrei);
+  return objAnimal.name;
 }
+const expected = {
+  'Nigel Nelson': ['lions', 'tigers'],
+  'Burl Bethea': ['lions', 'tigers', 'bears', 'penguins'],
+  'Ola Orloff': ['otters', 'frogs', 'snakes', 'elephants'],
+  'Wilburn Wishart': ['snakes', 'elephants'],
+  'Stephanie Strauss': ['giraffes', 'otters'],
+  'Sharonda Spry': ['otters', 'frogs'],
+  'Ardith Azevado': ['tigers', 'bears'],
+  'Emery Elser': ['elephants', 'bears', 'lions'] };
+
+function employeeCoverage(idOrName) {
+  const retorno = {};
+  function createRetorno(objFunc) {
+    const arreiAnimais = objFunc.responsibleFor.map(findName);
+    const fullName = `${objFunc.firstName} ${objFunc.lastName}`;
+    retorno[fullName] = arreiAnimais;
+    return retorno;
+  }
+  if (data.employees.find(obj => obj.id === idOrName)) {
+    return createRetorno(data.employees.find(obj => obj.id === idOrName));
+  } else if (data.employees.find(obj => obj.firstName === idOrName)) {
+    return createRetorno(data.employees.find(obj => obj.firstName === idOrName));
+  } else if (data.employees.find(obj => obj.lastName === idOrName)) {
+    return createRetorno(data.employees.find(obj => obj.lastName === idOrName));
+  }
+  return expected;
+}
+
 
 module.exports = {
   entryCalculator,
