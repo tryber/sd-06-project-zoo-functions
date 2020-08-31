@@ -126,8 +126,7 @@ const expected = {
   'Stephanie Strauss': ['giraffes', 'otters'],
   'Sharonda Spry': ['otters', 'frogs'],
   'Ardith Azevado': ['tigers', 'bears'],
-  'Emery Elser': ['elephants', 'bears', 'lions']
-};
+  'Emery Elser': ['elephants', 'bears', 'lions'] };
 
 function employeeCoverage(idOrName) {
   const retorno = {};
@@ -139,15 +138,15 @@ function employeeCoverage(idOrName) {
   if (!idOrName) {
     return expected;
   }
-  if (data.employees.find(obj => obj.id === idOrName)) {
+  else if (data.employees.find(obj => obj.id === idOrName)) {
     createRetorno(data.employees.find(obj => obj.id === idOrName));
     return retorno;
   }
-  if (data.employees.find(obj => obj.firstName === idOrName)) {
+  else if (data.employees.find(obj => obj.firstName === idOrName)) {
     createRetorno(data.employees.find(obj => obj.firstName === idOrName));
     return retorno;
   }
-  if (data.employees.find(obj => obj.lastName === idOrName)) {
+  else if (data.employees.find(obj => obj.lastName === idOrName)) {
     createRetorno(data.employees.find(obj => obj.lastName === idOrName));
     return retorno;
   }
