@@ -17,11 +17,14 @@ function animalsByIds(...ids) {
 animalsByIds();
 
 function animalsOlderThan(animal, age) {
-  const animalAge = data.animals.some(ident => data.animals
-    .includes(ident.name, ident.residents).age);
+  animals.forEach((animal) =>{
+  const animalAge = data.animals.map(animal => animal.name)
+    .filter(animal => animal.residents.age === age);
   return animalAge;
+  });
+
 }
-animalsOlderThan('lions', 4);
+animalsOlderThan();
 function employeeByName(employeeName) {
 // seu código aqui
 }
@@ -49,7 +52,7 @@ function entryCalculator(entrants) {
 function retrieveAnimalPerLocation(locations) {
   const animalPerLocation = {};
   locations.forEach((location) => {
-    let animal = data.animals
+    const animal = data.animals
       .filter(animal => animal.location === location)
       .map(animal => animal.name);
     if (animal.length !== 0) animalPerLocation[location] = animal;
@@ -59,12 +62,12 @@ function retrieveAnimalPerLocation(locations) {
 function retrieveAnimalByLocationWithName(locations, sorted, sex) {
   const animalByLocationWithName = {};
   locations.forEach((location) => {
-    let animal = data.animals
-      .filter((animal) => animal.location === location)
-      .map((animal) => {
+    const animal = data.animals
+      .filter(animal => animal.location === location)
+      .map(animal => {
         const animalKey = animal.name;
         const animalValue = animal.residents
-          .filter((resident) => {
+          .filter(resident => {
             const isFilteringSex = sex !== undefined;
             return isFilteringSex ? resident.sex === sex : true;
           })
