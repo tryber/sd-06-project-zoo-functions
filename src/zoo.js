@@ -41,10 +41,11 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
+  return { ...personalInfo, ...associatedWith };
 }
 
 function isManager(id) {
-  const result = employees.some(idManager => idManager.managers.includes(id));
+  const result = employees.some(idManager => idManager.managers.includes(id.managers.includes(id)));
   return result;
 }
 
