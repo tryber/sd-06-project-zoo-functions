@@ -49,7 +49,7 @@ function entryCalculator(entrants) {
 function retrieveAnimalPerLocation(locations) {
   const animalPerLocation = {};
   locations.forEach((location) => {
-    const animal = data.animals
+    animal = data.animals
       .filter(animal => animal.location === location)
       .map(animal => animal.name);
     if (animal.length !== 0) animalPerLocation[location] = animal;
@@ -59,12 +59,12 @@ function retrieveAnimalPerLocation(locations) {
 function retrieveAnimalByLocationWithName(locations, sorted, sex) {
   const animalByLocationWithName = {};
   locations.forEach((location) => {
-    const animal = data.animals
+    animal = data.animals
       .filter((animal) => animal.location === location)
       .map((animal) => {
         const animalKey = animal.name;
         const animalValue = animal.residents
-          .filter((resident ) => {
+          .filter((resident) => {
             const isFilteringSex = sex !== undefined;
             return isFilteringSex ? resident.sex === sex : true;
           })
@@ -83,6 +83,7 @@ function animalMap(options) {
   const { includeNames, sorted, sex } = options;
   if (includeNames === undefined) { return retrieveAnimalPerLocation(locations); }
   if (includeNames) { return retrieveAnimalByLocationWithName(locations, sorted, sex); }
+  return retrieveAnimalByLocationWithName;
 }
 
 function schedule(dayName) {
