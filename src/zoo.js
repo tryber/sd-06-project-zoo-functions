@@ -79,6 +79,28 @@ function animalsPerLocation(locations) {
   return animalsPerLocationConst;
 }
 
+function includeName(locations, sorted, sex) {
+  const { animals: animalsObject } = data;
+  const animalLocationObject = {};
+  locations.forEach((location) => {
+    const animalKey = animalsObject
+      .filter(loc => loc.location === location)
+      .map((name) => {
+        const nameKey = name.name;
+        const namevalue = name.residents
+          .filter((gender) => {
+            if (sex) return gender.sex === sex;
+            return true;
+          })
+          .map(item => item.name);
+        if (sorted) namevalue.sort();
+        return { [nameKey]: namevalue };
+      });
+    animalLocationObject[location] = animalKey;
+  });
+  return animalLocationObject;
+}
+
 function animalMap(options) {
   const locations = ['NE', 'NW', 'SE', 'SW'];
   if (!options) return animalsPerLocation(locations);
