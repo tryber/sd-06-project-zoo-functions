@@ -92,7 +92,6 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  const coverage = {};
   const listOfAnimals = (employee) => {
     const listAnimals = [];
     const pushAnimalName = (eachId) => {
@@ -101,7 +100,7 @@ function employeeCoverage(idOrName) {
       });
     };
     data.employee.responsibleFor.forEach(eachId => pushAnimalName(eachId));
-    return listAnimals;
+    return listOfAnimals;
   };
 }
 
