@@ -57,13 +57,18 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function animalCount(species) {
   if (species === undefined) {
     const list = {};
-    animals.forEach(log => list[log.name] = log.residents.length);
+    animals.forEach(log => (list[log.name] = log.residents.length));
     return list;
   }
   return animals.find(animal => (animal.name === species)).residents.length;
 }
 
 function entryCalculator(entrants) {
+  if (entrants === undefined || entrants === {}) {
+    return 0;
+  }
+  const { Adult = 0, Child = 0, Senior = 0 } = entrants;
+  return (Adult * 49.99) + (Child * 20.99) + (Senior * 24.99);
 }
 
 function animalMap(options) {
