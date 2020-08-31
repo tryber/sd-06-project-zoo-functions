@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
 */
 
-const { animals, employees } = require('./data');
+const { animals, employees, residents } = require('./data');
 
 function animalsByIds(...ids) {
   return animals.filter(animal => ids.includes(animal.id));
@@ -38,12 +38,17 @@ function isManager(id) {
     .some(element => element === id);
 }
 
-function addEmployee(id, firstName, lastName, managers =[], responsibleFor = []) {
-  return employees.push({id, firstName, lastName, managers, responsibleFor});
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  return employees.push({ id, firstName, lastName, managers, responsibleFor});
 }
 
 function animalCount(species) {
-  // seu código aqui
+  if (!species) {
+    const qtdAnimals = {};
+    animals.forEach(animal => (qtdAnimals[animal.name] = animal.residents.length));
+    return qtdAnimals;
+  }
+  return animals.find(animal => animal.name === species).residents.length;
 }
 
 function entryCalculator(entrants) {
