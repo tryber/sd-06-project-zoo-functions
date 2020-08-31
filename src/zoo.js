@@ -97,14 +97,16 @@ function entryCalculator(entrants) {
 
 // 9th requirement
 
-const animalsPerLocation = {};
-locations.forEach((location) => {
-  const animals = data.animals
-    .filter(animal => animal.location === location)
-    .map(animal => animal.name);
-    if (animals.length !== 0)animalsPerLocation[location] = animals;
-});
-return animalsPerLocation;
+function animalsPerLocation(locations) {
+  const animalsPerLocation = {};
+  locations.forEach((location) => {
+    const animals = data.animals
+      .filter(animal => animal.location === location)
+      .map(animal => animal.name);
+      if (animals.length !== 0)animalsPerLocation[location] = animals;
+  });
+  return animalsPerLocation;
+}
 
 function includeName(locations, sorted, sex) {
   const animalLocationObject = {};
@@ -135,7 +137,7 @@ function animalMap(options = {}) {
   // sorted: true or false;
   // requisito 01
   // Sem parâmetros, retorna animais categorizados por localização
-  // preciso mapear as localizacoes    
+  // preciso mapear as localizacoes
   const locations = ['NE', 'NW', 'SE', 'SW'];
   if (!options) return animalsPerLocation(locations);
   const { includeNames, sorted, sex } = options;
