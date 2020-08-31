@@ -10,57 +10,124 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
+const { animals, employees, prices, hours } = require('./data');
 
-function animalsByIds(ids) {
-  // seu código aqui
+function animalsByIds(...ids) {
+  return animals.filter(animal => ids.find(paramFound => paramFound === animal.id));
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  return animals.find(animaL => animaL.name === animal).residents
+  .every(allAge => allAge.age >= age);
 }
 
 function employeeByName(employeeName) {
-  // seu código aqui
+  if (employeeName === undefined) return {};
+  return employees.find(em => em.firstName === employeeName || em.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  return Object.assign(personalInfo, associatedWith);
 }
 
 function isManager(id) {
-  // seu código aqui
+  return employees.some(employee => employee.managers.find(manager => manager === id));
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  const otherObject = {
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  };
+  return employees.push(otherObject);
 }
 
 function animalCount(species) {
-  // seu código aqui
+  if (species === undefined) {
+    const obj = {};
+    animals.forEach((animal) => {
+      const key = animal.name;
+      const value = animal.residents.length;
+      obj[key] = value;
+    });
+    return obj;
+  }
+  return animals.find(doubutsu => doubutsu.name === species).residents.length;
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  let result = 0;
+  if (entrants === undefined) return result;
+  if (entrants.Adult) result += entrants.Adult * prices.Adult;
+  if (entrants.Senior) result += entrants.Senior * prices.Senior;
+  if (entrants.Child) result += entrants.Child * prices.Child;
+  return result;
 }
 
 function animalMap(options) {
-  // seu código aqui
+
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  const newObj = {};
+  const hour = Object.entries(hours);
+  if (dayName === undefined) {
+    hour.map((day) => {
+      if (day.includes('Monday')) {
+        newObj.Monday = 'CLOSED';
+        return newObj;
+      }
+      return (newObj[day[0]] = `Open from ${day[1].open}am until ${day[1].close - 12}pm`);
+    });
+    return newObj;
+  }
+  return hour.filter(name => name[0] === dayName).map((day) => {
+    if (dayName === 'Monday') {
+      newObj[dayName] = 'CLOSED';
+      return newObj;
+    }
+    newObj[dayName] = `Open from ${day[1].open}am until ${day[1].close - 12}pm`;
+    return newObj;
+  })[0];
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const idAnimal = employees.find(animal => animal.id === id).responsibleFor[0];
+  const residents = animals.find(resident => resident.id === idAnimal).residents;
+  const onlyValues = residents.map(transformResident => Object.values(transformResident));
+  return onlyValues.sort((a, b) => b[2] - a[2])[0];
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  const perc = percentage / 100;
+  Object.keys(prices).forEach((valor) => {
+    prices[valor] = Math.round((prices[valor] + (prices[valor] * perc)) * 100) / 100;
+  });
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  const obj = {};
+  employees.map((employee) => {
+    employee.animalList = employee.responsibleFor.map(idAnimal => animals.find(animal =>
+      animal.id === idAnimal).name);
+    return employee;
+  });
+  if (idOrName === undefined) {
+    employees.forEach((element) => {
+      const namesValues = `${element.firstName} ${element.lastName}`;
+      obj[namesValues] = element.animalList;
+    });
+    return obj;
+  }
+  const people = employees.find(element => idOrName === element.id ||
+      idOrName === element.firstName || idOrName === element.lastName);
+  const namesValues = `${people.firstName} ${people.lastName}`;
+  obj[namesValues] = people.responsibleFor.flatMap(idA => animals
+    .find(animal => idA === animal.id).name);
+  return obj;
 }
 
 module.exports = {
