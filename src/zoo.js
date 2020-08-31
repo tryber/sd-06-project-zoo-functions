@@ -79,8 +79,58 @@ function entryCalculator(entrants) {
   return (Adult * 49.99) + (Child * 20.99) + (Senior * 24.99);
 }
 
-function animalMap(options) {
+function animalsLocalization(locations) {
+  const animalLocations = {};
 
+  locations.forEach((local) => {
+    const animals = data.animals
+      .filter(animal => animal.location === local)
+      .map(animal => animal.name);
+
+      if (animals.length !== 0) animalLocations[local] = animals;
+  });
+
+  return animalLocations;
+}
+
+function animalsLocalizationAndName(locations, sorted, sex) {
+  const animalLocationWithName = {};
+
+  locations.forEach((location) => {
+    const animals = data.animals
+      .filter(animal => animal.location === location)
+      .map(animal => {
+        const nameKey = animal.name;
+        const nameValues = animal.residents
+          .filter(resident => {
+             const isFiltering = sex !== undefined;
+             return isFiltering ? resident.sex === sex : true;
+          })
+          .map(resident => resident.name);
+
+        if (sorted) nameValues.sort();
+
+        return { [nameKey]: nameValues };
+      });
+
+      animalLocationWithName[location] = animals;
+  });
+
+  return animalLocationWithName;
+}
+
+
+function animalMap(options) {
+  // Exercicio realizado com a ajuda do plantão feito pelo Gabriel Oliva.
+
+  const locations = ['NE', 'NW', 'SE', 'SW'];
+  if (!options) return animalsLocalization(locations);
+
+  const { includeNames, sorted, sex } = options;
+
+  if (!includeNames) return animalsLocalization(locations);
+
+  return animalsLocalizationAndName(locations, sorted, sex);
 }
 
 function schedule(dayName) {
