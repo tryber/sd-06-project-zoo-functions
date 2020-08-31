@@ -11,19 +11,19 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 const { animals, employees, prices, hours } = require('./data');
-//rest agrupa o objeto em um ARRAY
+ //rest agrupa o objeto em um ARRAY
 function animalsByIds(...ids) {
   return animals.filter(animal => ids.find(paramFound => paramFound === animal.id));
-};
+}
 
 function animalsOlderThan(animal, age) {
-  return animals.find(doubutsu => doubutsu.name === animal).residents.every(allAge => allAge.age >= age);
-};
+  return animals.find(animaL => animaL.name === animal).residents.every(allAge => allAge.age >= age);
+}
 
 function employeeByName(employeeName) {
   if (employeeName === undefined) return {};
-    return employees.find(kaishyain => kaishyain.firstName === employeeName || kaishyain.lastName === employeeName);
-};
+    return employees.find(employee => employee.firstName === employeeName || employee.lastName === employeeName);
+}
 
 function createEmployee(personalInfo, associatedWith) {
   return Object.assign(personalInfo, associatedWith);
@@ -34,7 +34,6 @@ function isManager(id) {
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  // seu código aqui
   const otherObject = {
     id,
     firstName,
@@ -55,7 +54,7 @@ function animalCount(species) {
     });
     return obj;
   }
-  return animals.find(doubutsu => doubutsu.name === species).residents.length
+  return animals.find(doubutsu => doubutsu.name === species).residents.length;
 }
 
 function entryCalculator(entrants) {
@@ -68,20 +67,7 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-  const location = ['NE', 'SE', 'SW', 'NW'];
-  if (!option) {
-    const animalsPerLocation = {};
-    
-    locations.forEach((location) => {
-      //conferir se animais sao dessa localizacao
-      const animals = data.animals
-      .filter(animal => animal.location === location)
-      .map(animal => animal.name)
 
-      if (animals.length !== 0) animalsPerLocation[location] = animals;
-    });
-    return animalsPerLocation;
-  }
 }
 
 function schedule(dayName) {
@@ -123,7 +109,7 @@ function increasePrices(percentage) {
 
 function employeeCoverage(idOrName) {
   const obj = {};
-  employees.map((employee) => {
+  employees.map(employee => {
     employee.animalList = employee.responsibleFor.map(idAnimal => animals.find(animal =>
       animal.id === idAnimal).name);
     return employee;
