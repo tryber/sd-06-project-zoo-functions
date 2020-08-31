@@ -17,18 +17,18 @@ function animalsByIds(...entrada) {
   // https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/filtro
   // https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/contains
   /* usando o filtro para selecionar os id que estão incluidos no paramentro */
-  return data.animals.filter((resposta) => entrada.includes(resposta.id));
+  return data.animals.filter(resposta => entrada.includes(resposta.id));
 }
 
 function animalsOlderThan(animal, age) {
   // https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/find
   // https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/every
-  return animals.find((nome) => nome.name === animal).residents
-    .every((resultado) => resultado.age >= age);
+  return animals.find(nome => nome.name === animal).residents
+    .every(resultado => resultado.age >= age);
 }
 
 function employeeByName(employeeName) {
-  const achei = data.employees.find((funcionario) => funcionario.firstName === employeeName
+  const achei = data.employees.find(funcionario => funcionario.firstName === employeeName
     || funcionario.lastName === employeeName);
   return achei || {};
 }
@@ -38,7 +38,7 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  return data.employees.some((employe) => employe.managers.includes(id));
+  return data.employees.some(employe => employe.managers.includes(id));
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
@@ -55,19 +55,17 @@ function animalCount(species) {
   });
   if (!species) {
     return data.animals.reduce(contandoPrimos, {});
-  } else {  
-    return (data.animals.find((meuArray) => meuArray.name === species)
-      .residents.length);
-  }    
+  }
+  return (data.animals.find((meuArray) => meuArray.name === species)
+    .residents.length);
 }
 
 function entryCalculator(entrants) {
   const somarEntradas = (soma, pessoas) => soma + (data.prices[pessoas] * entrants[pessoas]);
   if (!entrants || Object.keys(entrants).length === 0) {
     return 0;
-  } else {
-     Object.keys(entrants).reduce(somarEntradas, 0);
   }
+  return Object.keys(entrants).reduce(somarEntradas, 0);
 }
 
 function animalMap(options) {
@@ -104,7 +102,7 @@ function employeeCoverage(idOrName) {
     };
     employee.responsibleFor.forEach(eachId => pushAnimalName(eachId));
     return listAnimals;
-  }  
+  }
 }
 
 module.exports = {
