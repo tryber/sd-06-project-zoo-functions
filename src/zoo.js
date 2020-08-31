@@ -11,36 +11,81 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-function animalsByIds(ids) {
-  // seu código aqui
+const { animals, employees, prices, hours } = data;
+
+function animalsByIds(...ids) {
+  return animals.filter(animal => ids.find(thoseWhich => thoseWhich === animal.id));
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  const especie = animals.filter(inPut => inPut.name === animal).map(inPut => inPut.residents);
+  let count = 0;
+  for (let index = 0; index < especie[0].length; index += 1) {
+    const eachAge = especie[0][index].age;
+    if (eachAge > age) {
+      count += 1;
+    }
+  }
+  if (count === especie[0].length) {
+    return true;
+  }
+  return false;
 }
 
 function employeeByName(employeeName) {
-  // seu código aqui
+  const empty = {};
+  if (employeeName === undefined) {
+    return empty;
+  }
+  return employees
+    .find(inPut => inPut.firstName === employeeName || inPut.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  const empty = {};
+  if (personalInfo === undefined && associatedWith === undefined) {
+    return empty;
+  }
+  const object = Object.assign(empty, personalInfo, associatedWith);
+  return object;
 }
 
 function isManager(id) {
-  // seu código aqui
+  return employees.some(inPut => inPut.managers.find(inPutTwo => inPutTwo === id));
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  return employees.push(
+    {
+      id,
+      firstName,
+      lastName,
+      managers,
+      responsibleFor,
+    },
+  );
 }
 
 function animalCount(species) {
-  // seu código aqui
+  if (!species) {
+    return animals.reduce((acc, { name, residents }) =>
+      Object.assign(acc, {
+        [name]: residents.length,
+      }), {},
+    );
+  }
+  return animals.find(element => element.name === species).residents.length;
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  if (entrants === {} || entrants === undefined) {
+    return 0;
+  }
+  const visitorId = Object.keys(entrants);
+  const visitorAmount = Object.values(entrants);
+  const totalValue = visitorAmount
+    .reduce((acc, currentValue, index) => acc + (currentValue * prices[visitorId[index]]), 0);
+  return totalValue;
 }
 
 function animalMap(options) {
@@ -48,19 +93,71 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  const daysKey = Object.keys(hours);
+  const openClose = Object.values(hours);
+  const firstObject = openClose.reduce((acc, { open, close }, index) => {
+    if (daysKey[index] !== 'Monday') {
+      return Object.assign(acc, {
+        [daysKey[index]]: `Open from ${open}am until ${(close - 12)}pm`,
+      });
+    }
+    return Object.assign(acc, {
+      [daysKey[index]]: 'CLOSED',
+    });
+  }, {});
+  if (!dayName) {
+    return firstObject;
+  }
+
+  const secondObject = {
+    [dayName]: firstObject[dayName],
+  };
+  return secondObject;
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  let array = [];
+  const trabalhador = employees.find(inPut => inPut.id === id);
+  const retorno = trabalhador.responsibleFor;
+  const x = animals.find(pet => pet.id === retorno[0]);
+  let z = x.residents[0].age;
+  let nomeAnimal;
+  (x.residents).forEach((inPut) => {
+    if (inPut.age > z) {
+      z = inPut.age;
+      nomeAnimal = inPut;
+    }
+  });
+  array = [nomeAnimal.name, nomeAnimal.sex, nomeAnimal.age];
+  return array;
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  prices.Adult = parseFloat((prices.Adult * (1 + (percentage / 100))) + 0.005).toFixed(2);
+  prices.Senior = parseFloat((prices.Senior * (1 + (percentage / 100))) + 0.005).toFixed(2);
+  prices.Child = parseFloat((prices.Child * (1 + (percentage / 100))) + 0.005).toFixed(2);
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  const result = {};
+
+  let filteredEmployees;
+  if (!idOrName) {
+    filteredEmployees = data.employees;
+  } else {
+    filteredEmployees = data.employees
+    .filter(employee => (employee.id === idOrName) || (employee.firstName === idOrName) || (employee.lastName === idOrName));
+  }
+  filteredEmployees.forEach((employee) => {
+    const mappedAnimals = employee.responsibleFor
+    .map((animalIdResponsabibleFor) => {
+      const foundAnimalName = data.animals
+      .find(animal => animal.id === animalIdResponsabibleFor).name;
+      return foundAnimalName;
+    });
+    result[`${employee.firstName} ${employee.lastName}`] = mappedAnimals;
+  });
+  return result;
 }
 
 module.exports = {
