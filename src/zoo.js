@@ -70,9 +70,10 @@ function entryCalculator(entrants) {
 
 function animalMap(options) {
   const locations = ['NE', 'NW', 'SE', 'SW'];
-  if (!options) return retrieveAnimalsPerLocation(locations);
+  if (!options) return animalsPerLocation(locations);
   const { includeNames, sorted, sex } = options;
-  return retrieveAnimals(locations, sorted, sex);
+  if (!includeNames) return animalsPerLocation(locations);
+  return includeName(locations, sorted, sex);
 }
 
 function schedule(dayName) {
