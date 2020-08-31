@@ -7,31 +7,33 @@ function animalsByIds(...ids) {
 animalsByIds();
 
 function animalsOlderThan(animal, age) {
-  const animalsOd = data.animals.find(animalThan => animalThan.name === animal)
+  const animalsOd = data.animals.find(animalThan => animalThan.name === animal);
   return animalsOd.residents.every(ageThan => ageThan.age >= age);
 }
 function employeeByName(employeeName) {
-// seu código aqui
-}
+  const returnEmployee = {};
+  if (employeeName === undefined) { return returnEmployee };
+
 
 function createEmployee(personalInfo, associatedWith) {
-// seu código aqui -Sem parâmetros, retorna um objeto vazio
+  const createInfo = {};
+  if (personalInfo === undefined) { return createInfo };
 }
 
 function isManager(id) {
-// seu código aqui - Testa se o id passado é de um gerente
+  const isId = id;
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-// seu código aqui  - Adiciona um funcionário no fim da lista'
+  const addList = firstName;
 }
 
 function animalCount(species) {
-// seu código aqui - Sem parâmetros, retorna animais e suas quantidades
+  const animalsSpecie = 0;
 }
 
 function entryCalculator(entrants) {
-// seu código aqui
+  const contCalculator = 0;
 }
 
 function retrieveAnimalPerLocation(locations) {
@@ -75,16 +77,19 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
+  const day = 0;
 }
 
 function oldestFromFirstSpecies(id) {
-// seu código aqui
+   const odest = 0;
 }
 
 function increasePrices(percentage) {
+    const increase = 0;
 }
 
 function employeeCoverage(idOrName) {
+  const idName = o;
 }
 
 module.exports = {
