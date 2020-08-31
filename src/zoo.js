@@ -83,11 +83,11 @@ function animalsLocalization(locations) {
   const animalLocations = {};
 
   locations.forEach((local) => {
-    const animals = data.animals
+    const animais = animals
       .filter(animal => animal.location === local)
       .map(animal => animal.name);
 
-      if (animals.length !== 0) animalLocations[local] = animals;
+    if (animals.length !== 0) animalLocations[local] = animais;
   });
 
   return animalLocations;
@@ -97,12 +97,12 @@ function animalsLocalizationAndName(locations, sorted, sex) {
   const animalLocationWithName = {};
 
   locations.forEach((location) => {
-    const animals = data.animals
+    const animais = animals
       .filter(animal => animal.location === location)
-      .map(animal => {
+      .map((animal) => {
         const nameKey = animal.name;
         const nameValues = animal.residents
-          .filter(resident => {
+          .filter((resident) => {
              const isFiltering = sex !== undefined;
              return isFiltering ? resident.sex === sex : true;
           })
@@ -113,7 +113,7 @@ function animalsLocalizationAndName(locations, sorted, sex) {
         return { [nameKey]: nameValues };
       });
 
-      animalLocationWithName[location] = animals;
+    animalLocationWithName[location] = animais;
   });
 
   return animalLocationWithName;
