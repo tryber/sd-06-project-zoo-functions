@@ -58,7 +58,7 @@ function retrieveAnimalPerLocation(locations) {
   });
   return  animalPerLocation;
 }
-function retrieveAnimalByLocationWithName(locations) {
+function retrieveAnimalByLocationWithName(locations, sorted) {
 const animalByLocationWithName = {};
 locations.forEach((location) => {
   const animal = animals
@@ -66,6 +66,7 @@ locations.forEach((location) => {
     .map(animal => {
       const animalKey = animal.name;
       const animalValue = animal.residents.map(resident => resident.name);
+      if(sorted) animalValue.sort();
       return { [animalKey]: animalValue };
     });
     animalByLocationWithName[location] = animal;
@@ -77,8 +78,10 @@ locations.forEach((location) => {
 function animalMap(options) {
   const locations = ['NE', 'NW', 'SE', 'SW' ];
   if(!options){return retrieveAnimalPerLocation(locations);}
-const includeNames = options.includeNames;
-if (includeNames){ return retrieveAnimalByLocationWithName(locations);}
+/* const includeNames = options.includeNames;
+const sorted = options.sorted; destruction em uma linha */
+const { includeNames, sorted } = options;
+if (includeNames){ return retrieveAnimalByLocationWithName(locations, sorted);}
 }
 
 function schedule(dayName) {
