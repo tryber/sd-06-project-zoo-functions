@@ -1,13 +1,13 @@
-/*
-eslint no-unused-vars: [
+
+/* eslint no-unused-vars: [
   "error",
   {
     "args": "none",
     "vars": "local",
     "varsIgnorePattern": "data"
   }
-]
-*/
+]; */
+
 const data = require('./data.js');
 
 function animalsByIds(...ids) {
@@ -47,8 +47,8 @@ function retrieveAnimalPerLocation(locations) {
   const animalPerLocation = {};
   locations.forEach((location) => {
     const animal = data.animals
-      .filter(animal => animal.location === location)
-      .map(animal => animal.name);
+      .filter(animalLoc => animalLoc.location === location)
+      .map(animalLoc => animalLoc.name);
     if (animal.length !== 0) animalPerLocation[location] = animal;
   });
   return animalPerLocation;
@@ -56,11 +56,11 @@ function retrieveAnimalPerLocation(locations) {
 function retrieveAnimalByLocationWithName(locations, sorted, sex) {
   const animalByLocationWithName = {};
   locations.forEach((location) => {
-    const animal = data.animals
-      .filter(animal => animal.location === location)
-      .map((animal) => {
-        const animalKey = animal.name;
-        const animalValue = animal.residents
+    const animalBy = data.animals
+      .filter(animalBy => animalBy.location === location)
+      .map((animalBy) => {
+        const animalKey = animalBy.name;
+        const animalValue = animalBy.residents
           .filter((resident) => {
             const isFilteringSex = sex !== undefined;
             return isFilteringSex ? resident.sex === sex : true;
@@ -69,7 +69,7 @@ function retrieveAnimalByLocationWithName(locations, sorted, sex) {
         if (sorted) animalValue.sort();
         return { [animalKey]: animalValue };
       });
-    animalByLocationWithName[location] = animal;
+    animalByLocationWithName[location] = animalBy;
   });
   return animalByLocationWithName;
 }
