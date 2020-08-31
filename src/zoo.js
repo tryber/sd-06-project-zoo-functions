@@ -48,24 +48,37 @@ function entryCalculator(entrants) {
   // seu código aqui
 }
 
-function retrieveAnimalPerLocation(locations){
+function retrieveAnimalPerLocation(locations) {
   const animalPerLocation = {};
   locations.forEach((location) => {
     const animal =  animals
-    .filter(animal => animal.location === location)
-    .map(animal => animal.name);
-    console.log(animal);
+      .filter(animal => animal.location === location)
+      .map(animal => animal.name);
     if (animal.length !== 0) animalPerLocation[location] = animal;
   });
   return  animalPerLocation;
 }
+function retrieveAnimalByLocationWithName(locations) {
+const animalByLocationWithName = {};
+locations.forEach((location) => {
+  const animal = animals
+    .filter(animal => animal.location ===   location)
+    .map(animal => {
+      const animalKey = animal.name;
+      const animalValue = animal.residents.map(resident => resident.name);
+      return { [animalKey]: animalValue };
+    });
+    animalByLocationWithName[location] = animal;
+});
+  return animalByLocationWithName;
+}
+
+
 function animalMap(options) {
   const locations = ['NE', 'NW', 'SE', 'SW' ];
   if(!options){return retrieveAnimalPerLocation(locations);}
-const includeName = options.includeName;
-if (includeName) {
-
-}
+const includeNames = options.includeNames;
+if (includeNames){ return retrieveAnimalByLocationWithName(locations);}
 }
 
 function schedule(dayName) {
