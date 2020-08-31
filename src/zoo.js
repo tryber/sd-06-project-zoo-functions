@@ -86,6 +86,7 @@ function animalMap(options) {
 /* const includeNames = options.includeNames;
 const sorted = options.sorted; destruction em uma linha e passa por parametros na função */
 const { includeNames, sorted, sex } = options;
+if (includeNames === undefined) {return retrieveAnimalPerLocation(locations);}
 if (includeNames){ return retrieveAnimalByLocationWithName(locations, sorted, sex);}
 }
 
