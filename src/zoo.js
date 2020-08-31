@@ -36,8 +36,9 @@ function employeeByName(employeeName) {
     return {};
   }
   let response;
-  employees.filter(filterNameFun => filterNameFun.firstName === employeeName || filterNameFun.lastName === employeeName )
-    .forEach((position) => {response = position });
+  employees.filter(filterNameFun => filterNameFun.firstName === employeeName
+    || filterNameFun.lastName === employeeName)
+    .forEach((position) => { response = position; });
   return response;
 }
 // console.log(employeeByName('Nigel'));
