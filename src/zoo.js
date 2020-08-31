@@ -68,6 +68,17 @@ function entryCalculator(entrants) {
   return Object.keys(entrants).reduce(somarEntradas, 0);
 }
 
+function animalsPerLocation(locations) {
+  const animalsPerLocationConst = {};
+  locations.forEach((location) => {
+    const animalsLoc = data.animals
+      .filter(animal => animal.location === location)
+      .map(animal => animal.name);
+    if (animalsLoc.length !== 0)animalsPerLocationConst[location] = animalsLoc;
+  });
+  return animalsPerLocationConst;
+}
+
 function animalMap(options) {
   const locations = ['NE', 'NW', 'SE', 'SW'];
   if (!options) return animalsPerLocation(locations);
