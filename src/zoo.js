@@ -53,32 +53,28 @@ function animalCount(species) {
     ...nome,
     [meuArray.name]: meuArray.residents.length,
   });
-  return !species ? data.animals.reduce(contandoPrimos, {}):
-    (data.animals.find((meuArray) => meuArray.name === species)
+  if (!species) {
+    return data.animals.reduce(contandoPrimos, {});
+  } else {  
+    return (data.animals.find((meuArray) => meuArray.name === species)
       .residents.length);
+  }    
 }
 
 function entryCalculator(entrants) {
   const somarEntradas = (soma, pessoas) => soma + (data.prices[pessoas] * entrants[pessoas]);
-  return (!entrants || Object.keys(entrants).length === 0)
-    ? 0 : Object.keys(entrants).reduce(somarEntradas, 0);
+  if (!entrants || Object.keys(entrants).length === 0) {
+    return 0;
+  } else {
+     Object.keys(entrants).reduce(somarEntradas, 0);
+  }
 }
 
 function animalMap(options) {
 }
 
 function schedule(dayName) {
-  const week = ['Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Monday'];
-  const result = {};
-  week.forEach((day) => {
-    if (hours[day].open !== 0) {
-      result[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`;
-    } else {
-      result[day] = 'CLOSED';
-    }
-  });
-  if (week.some(day => dayName === day)) return { [dayName]: result[dayName] };
-  return result;
+
 }
 
 function oldestFromFirstSpecies(id) {
@@ -124,4 +120,4 @@ module.exports = {
   oldestFromFirstSpecies,
   increasePrices,
   createEmployee,
-};
+}};
