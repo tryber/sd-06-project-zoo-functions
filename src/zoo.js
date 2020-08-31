@@ -58,20 +58,25 @@ function retrieveAnimalPerLocation(locations) {
   });
   return  animalPerLocation;
 }
-function retrieveAnimalByLocationWithName(locations, sorted) {
+function retrieveAnimalByLocationWithName(locations, sorted, sex) {
 const animalByLocationWithName = {};
 locations.forEach((location) => {
   const animal = animals
-    .filter(animal => animal.location ===   location)
+    .filter(animal => animal.location === location)
     .map(animal => {
       const animalKey = animal.name;
-      const animalValue = animal.residents.map(resident => resident.name);
+      const animalValue = animal.residents
+        .filter(resident => {
+          const isFilteringSex = sex !== undefined ;
+          return isFilteringSex ? resident.sex === sex : true;
+        })
+        .map(resident => resident.name);
       if(sorted) animalValue.sort();
       return { [animalKey]: animalValue };
     });
     animalByLocationWithName[location] = animal;
 });
-  return animalByLocationWithName;
+return animalByLocationWithName;
 }
 
 
@@ -79,9 +84,9 @@ function animalMap(options) {
   const locations = ['NE', 'NW', 'SE', 'SW' ];
   if(!options){return retrieveAnimalPerLocation(locations);}
 /* const includeNames = options.includeNames;
-const sorted = options.sorted; destruction em uma linha */
-const { includeNames, sorted } = options;
-if (includeNames){ return retrieveAnimalByLocationWithName(locations, sorted);}
+const sorted = options.sorted; destruction em uma linha e passa por parametros na função */
+const { includeNames, sorted, sex } = options;
+if (includeNames){ return retrieveAnimalByLocationWithName(locations, sorted, sex);}
 }
 
 function schedule(dayName) {
