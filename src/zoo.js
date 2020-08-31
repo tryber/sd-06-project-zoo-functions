@@ -17,12 +17,7 @@ function animalsByIds(...ids) {
 animalsByIds();
 
 function animalsOlderThan(animal, age) {
-  animals.forEach((animal) =>{
-  const animalAge = data.animals.map(animal => animal.name)
-    .filter(animal => animal.residents.age === age);
-  return animalAge;
-  });
-
+  
 }
 animalsOlderThan();
 function employeeByName(employeeName) {
