@@ -18,9 +18,9 @@ function animalsByIds(...ids) {
 }
 animalsByIds();
 
-function animalsOlderThan(animal, age) {
-}
-animalsOlderThan();
+f/* unction animalsOlderThan(animal, age) {
+} */
+/* animalsOlderThan();
 function employeeByName(employeeName) {
 // seu código aqui
 }
@@ -43,7 +43,7 @@ function animalCount(species) {
 
 function entryCalculator(entrants) {
 // seu código aqui
-}
+} */
 
 function retrieveAnimalPerLocation(locations) {
   const animalPerLocation = {};
@@ -85,7 +85,7 @@ function animalMap(options) {
   return retrieveAnimalByLocationWithName;
 }
 
-function schedule(dayName) {
+/* function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
@@ -97,7 +97,7 @@ function increasePrices(percentage) {
 
 function employeeCoverage(idOrName) {
 }
-
+ */
 module.exports = {
   entryCalculator,
   schedule,
