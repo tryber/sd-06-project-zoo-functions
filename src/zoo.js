@@ -45,7 +45,7 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  const result = employees.some(idManager => idManager.managers.includes(id.managers.includes(id)));
+  const result = employees.some(idManager => idManager.managers.includes(id));
   return result;
 }
 
