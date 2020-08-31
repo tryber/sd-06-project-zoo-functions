@@ -17,19 +17,19 @@ function animalsByIds(...entrada) {
   // https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/filtro
   // https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/contains
   /* usando o filtro para selecionar os id que estão incluidos no paramentro */
-  return data.animals.filter(resposta => entrada.includes(resposta.id));
+  return data.animals.filter((resposta) => entrada.includes(resposta.id));
 }
 
 function animalsOlderThan(animal, age) {
-// https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/find
-// https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/every
-  return animals.find(nome => nome.name === animal).residents
-  .every(resultado => resultado.age >= age);
+  // https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/find
+  // https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/every
+  return animals.find((nome) => nome.name === animal).residents
+    .every((resultado) => resultado.age >= age);
 }
 
 function employeeByName(employeeName) {
-  const achei = data.employees.find(funcionario => funcionario.firstName === employeeName
-  || funcionario.lastName === employeeName);
+  const achei = data.employees.find((funcionario) => funcionario.firstName === employeeName
+    || funcionario.lastName === employeeName);
   return achei || {};
 }
 
@@ -38,52 +38,76 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  return data.employees.some(employe => employe.managers.includes(id));
+  return data.employees.some((employe) => employe.managers.includes(id));
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  return data.employees.push({ id, firstName, lastName, managers, responsibleFor });
+  return data.employees.push({
+    id, firstName, lastName, managers, responsibleFor,
+  });
 }
 
 function animalCount(species) {
   // https://jrsinclair.com/articles/2019/functional-js-do-more-with-reduce/
-  const contandoPrimos = (nome, meuArray) => ({ ...nome,
-    [meuArray.name]: meuArray.residents.length });
-  return !species ? data.animals.reduce(contandoPrimos, {}) :
-    (data.animals.find(meuArray => meuArray.name === species)
-    .residents.length);
+  const contandoPrimos = (nome, meuArray) => ({
+    ...nome,
+    [meuArray.name]: meuArray.residents.length,
+  });
+  return !species ? data.animals.reduce(contandoPrimos, {}):
+    (data.animals.find((meuArray) => meuArray.name === species)
+      .residents.length);
 }
 
 function entryCalculator(entrants) {
   const somarEntradas = (soma, pessoas) => soma + (data.prices[pessoas] * entrants[pessoas]);
   return (!entrants || Object.keys(entrants).length === 0)
-  ? 0 : Object.keys(entrants).reduce(somarEntradas, 0);
+    ? 0 : Object.keys(entrants).reduce(somarEntradas, 0);
 }
 
 function animalMap(options) {
 }
 
 function schedule(dayName) {
-  const resultado = {};
-  const daysOfWeek = Object.keys(data.hours);
-  daysOfWeek.forEach((day) => {
-    ( day === 'Monday' ) ? resultado[day] = 'CLOSED' :
-      resultado[day] = `Open from ${data.hours[day].open}am until ${data.hours[day].close - 12}pm`;
+  const week = ['Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Monday'];
+  const result = {};
+  week.forEach((day) => {
+    if (hours[day].open !== 0) {
+      result[day] = `Open from ${hours[day].open}am until ${hours[day].close - 12}pm`;
+    } else {
+      result[day] = 'CLOSED';
+    }
   });
-  if (!dayName) { return resultado };
-  return { [dayName]: resultado[dayName] };
+  if (week.some(day => dayName === day)) return { [dayName]: result[dayName] };
+  return result;
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const animalId = employees.find(employee => employee.id === id).responsibleFor[0];
+  const animalsInfo = animals.filter(animal => animal.id === animalId)[0].residents;
+  const oldestAge = animalsInfo.reduce((acc, curr) => Math.max(acc, curr.age), 0);
+  const oldestAnimal = animalsInfo.find(animal => animal.age === oldestAge);
+  const { name, sex, age } = oldestAnimal;
+  return [name, sex, age];
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  const percent = (percentage / 100) + 1;
+  Object.keys(prices).forEach((each) => {
+    prices[each] = Math.ceil(prices[each] * (percent * 100)) / 100;
+  });
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  const coverage = {};
+  const listOfAnimals = (employee) => {
+    const listAnimals = [];
+    const pushAnimalName = (eachId) => {
+      animals.forEach((animal) => {
+        if (animal.id === eachId) listAnimals.push(animal.name);
+      });
+    };
+    employee.responsibleFor.forEach(eachId => pushAnimalName(eachId));
+    return listAnimals;
 }
 
 module.exports = {
