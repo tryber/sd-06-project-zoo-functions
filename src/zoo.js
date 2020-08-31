@@ -69,10 +69,23 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
+  const locations = ['NE', 'NW', 'SE', 'SW'];
+  if (!options) return retrieveAnimalsPerLocation(locations);
+  const { includeNames, sorted, sex } = options;
+  return retrieveAnimals(locations, sorted, sex);
 }
 
 function schedule(dayName) {
-
+  const daysOfTheWeek = (dayName !== undefined && dayName !== '') ? [dayName] : Object.keys(data.hours);
+  const answer = {};
+  daysOfTheWeek.forEach((key) => {
+    let { open, close } = data.hours[key];
+    close = (close > 12) ? close - 12 : close;
+    open = (open > 12) ? open - 12 : open;
+    const hour = (open !== 0 && close !== 0) ? `Open from ${open}am until ${close}pm` : 'CLOSED';
+    answer[key] = hour;
+  });
+  return answer;
 }
 
 function oldestFromFirstSpecies(id) {
@@ -92,15 +105,15 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  const listOfAnimals = (employee) => {
-    const listAnimals = [];
+  const listAnimals = [];
+  (employee) => {
     const pushAnimalName = (eachId) => {
       animals.forEach((animal) => {
         if (animal.id === eachId) listAnimals.push(animal.name);
       });
     };
     data.employee.responsibleFor.forEach(eachId => pushAnimalName(eachId));
-    return listOfAnimals;
+    return listAnimals;
   };
 }
 
