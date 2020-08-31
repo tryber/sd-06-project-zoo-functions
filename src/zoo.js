@@ -10,7 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { animals } = require('./data');
+const { animals, employees } = require('./data');
 
 // build function using spread operator;
 function animalsByIds(...ids) {
@@ -30,7 +30,16 @@ function animalsOlderThan(animalName, animalAge) {
 }
 
 function employeeByName(employeeName) {
-  // seu código aqui
+  // condition to test if have parameter in function;
+  if (!employeeName) {
+    return {};
+  }
+  // create const to receive function to find name by first or last name.
+  // It was necessary to use find because the return needed to be an object;
+  const employeeByFirstOrLastName = employees
+    .find(({ firstName, lastName }) => firstName === employeeName || lastName === employeeName);
+
+  return employeeByFirstOrLastName;
 }
 
 function createEmployee(personalInfo, associatedWith) {
