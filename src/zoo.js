@@ -95,6 +95,13 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
+  const employee = employees.find(species => species.id === id).responsibleFor[0];
+  const animal = animals.find(anima => anima.id === employee);
+  let animalResult = animal.residents[0];
+  animal.residents.forEach((animalss) => {
+    animalResult = (animalss.age > animalResult.age) ? animalss : animalResult;
+  });
+  return [animalResult.name, animalResult.sex, animalResult.age];
 }
 
 function increasePrices(percentage) {
