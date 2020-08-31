@@ -17,8 +17,8 @@ function animalsByIds(...ids) {
 
 function animalsOlderThan(animal, age) {
   return data.animals.filter(({ name }) => name === animal)
-  .flatMap((filtered) => {filtered.residents})
-  .every((individual) => {individual.age > age});
+  .flatMap(filtered => filtered.residents)
+  .every(individual => individual.age > age);
 }
 
 function employeeByName(employeeName) {
@@ -35,7 +35,7 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  return data.employees.some((individual) => {individual.managers.includes(id)});
+  return data.employees.some(individual => individual.managers.includes(id));
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
@@ -60,7 +60,7 @@ function animalCount(species) {
     return obj;
   }
 
-  return data.animals.find((individual) => {individual.name === species}).residents.length;
+  return data.animals.find(individual => individual.name === species).residents.length;
 }
 
 function entryCalculator(entrants) {
