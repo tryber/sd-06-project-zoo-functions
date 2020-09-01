@@ -168,22 +168,22 @@ function employeeAnimals() {
 
 function findByIdOrName(idOrName) {
   const employeeParam = employees
-  .filter(employee =>
-    (employee.id === idOrName || employee.firstName === idOrName || employee.lastName === idOrName))
+    .filter(emp => (emp.id === idOrName || emp.firstName === idOrName || emp.lastName === idOrName))
     .flatMap(animal => [`${animal.firstName} ${animal.lastName}`, animal.responsibleFor]);
   const animalsName = employeeParam[1].flatMap(emp => animals.filter(an => an.id === emp))
       .map(animal => animal.name);
-  return {
+  const finalObject = {
     [employeeParam[0]]: animalsName,
   };
+  return finalObject;
 }
 
 function employeeCoverage(idOrName) {
   // seu código aqui
   if (!idOrName) {
-    employeeAnimals();
+    return employeeAnimals();
   }
-  findByIdOrName(idOrName);
+  return findByIdOrName(idOrName);
 }
 
 module.exports = {
