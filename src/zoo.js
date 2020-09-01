@@ -10,7 +10,6 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { animals } = require('./data');
 
 function animalsByIds(...ids) {
   return data.animals.filter(idAnimal => ids.includes(idAnimal.id));
@@ -38,14 +37,12 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   const newEmployee = { id, firstName, lastName, managers, responsibleFor };
   return data.employees.push(newEmployee);
 }
-//Sem parâmetros, retorna animais e suas quantidades
-//Com o nome de uma espécie de animal, retorna somente a quantidade
+
 function animalCount(species) {
-  if (species === 0) {
-    data.animals.reduce(function (acc, currValue) {
-      currValue 
-    }) 
+  if (!species) {
+    return Object.fromEntries(data.animals.map(animal => [animal.name, animal.residents.length]));
   }
+  return data.animals.find(nameSpecies => nameSpecies.name === species).residents.length;
 }
 
 function entryCalculator(entrants) {
@@ -61,7 +58,7 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  return
 }
 
 function oldestFromFirstSpecies(id) {
