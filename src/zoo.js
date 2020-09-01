@@ -121,7 +121,8 @@ function oldestFromFirstSpecies(id) {
     // First we find the residents from the first Specie
     .find(animal => animal.id === firstSpecie).residents
     // Reduce to find the oldest one between the residents
-    .reduce((accumulator, currentValue) => (accumulator.age > currentValue.age ? accumulator : currentValue));
+    .reduce((accumulator, currentValue) => (accumulator.age > currentValue.age
+      ? accumulator : currentValue));
   // Once we found the oldest animal in the specific specie we return it's values
   return Object.values(oldestAnimal);
 }
