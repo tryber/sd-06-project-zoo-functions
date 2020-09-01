@@ -216,9 +216,21 @@ function oldestFromFirstSpecies(id) {
 // console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'));
 // console.log(oldestFromFirstSpecies('4b40a139-d4dc-4f09-822d-ec25e819a5ad'));
 
+
+/* 12- Implemente a função increasePrices:
+  Ao passar uma porcentagem, incrementa todos os preços, arrendondados em duas casas decimais*/
+
 function increasePrices(percentage) {
-  // seu código aqui
+  const { Adult, Senior, Child } = prices;
+  const calc = percentage / 100;
+  prices.Adult = Math.round(Adult * (calc + 1) * 100) / 100;
+  prices.Senior = Math.round(Senior * (calc + 1) * 100) / 100;
+  prices.Child = Math.round(Child * (calc + 1) * 100) / 100;
+  return prices;
 }
+
+// console.log(increasePrices(50));
+// console.log(increasePrices(30));
 
 function employeeCoverage(idOrName) {
   // seu código aqui
