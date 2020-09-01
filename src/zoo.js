@@ -10,7 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { employees, animals } = require('./data');
+const { employees, animals, hours } = require('./data');
 
 // função animalsByIds implementada com a ajuda do Ícaro no plantão
 function animalsByIds(...ids) {
@@ -69,21 +69,82 @@ function animalCount(species) {
     .residents.length;
 }
 
+
+
+
+
+
+
+
+
 function entryCalculator(entrants) {
-  // seu código aqui
+  if (entrants === undefined ||
+    Object.keys(entrants).length === 0)
+    return 0;
+  // keys são as chaves passadas no obj como param
+  const keys = Object.keys(entrants);
+  const values = Object.values(entrants);
+  //console.log(values);
+  // retornar o preço total a cobrar, conforme n de pessoas
+  console.log(`entrantes.keys ${keys}`)
+
 }
+
+//console.log(entryCalculator({ 'Adult': 1, 'Child': 3, 'Senior': 1}));
+
+
+
+
+
+
+
+
+entryCalculator({ Adult: 2 });
 
 function animalMap(options) {
   // seu código aqui
 }
 
+// assisti a gravação do plantão para conseguir concluir
 function schedule(dayName) {
-  // seu código aqui
+  if (dayName === undefined)
+    return {
+      'Tuesday': 'Open from 8am until 6pm',
+      'Wednesday': 'Open from 8am until 6pm',
+      'Thursday': 'Open from 10am until 8pm',
+      'Friday': 'Open from 10am until 8pm',
+      'Saturday': 'Open from 8am until 10pm',
+      'Sunday': 'Open from 8am until 8pm',
+      'Monday': 'CLOSED'
+    };
+  else if (dayName === 'Monday')
+    return { 'Monday': 'CLOSED' };
+  else
+    return (
+      { [dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm` }
+    );
 }
 
-function oldestFromFirstSpecies(id) {
-  // seu código aqui
+
+
+
+
+
+function oldestFromFirstSpecies(idFunc) {
+  return employees.find(employee => employee.id === idFunc)
+  /* .responsibleFor.forEach(idAnimal => {
+    console.log(idAnimal);
+  }) */
 }
+
+//console.log(oldestFromFirstSpecies('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
+
+
+
+
+
+
+
 
 function increasePrices(percentage) {
   // seu código aqui
