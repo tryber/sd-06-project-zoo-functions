@@ -84,34 +84,33 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-  
+  // abcd
 }
 
 function schedule(dayName) {
-  const obj = {}
+  const obj = {};
   const hours = Object.keys(data.hours);
   hours.forEach((day) => {
     if (data.hours[day].open !== 0) {
-    obj[day] = `Open from ${data.hours[day].open}am until ${data.hours[day].close - 12}pm`;
+      obj[day] = `Open from ${data.hours[day].open}am until ${data.hours[day].close - 12}pm`;
     } else {
-      obj[day] = 'CLOSED'
+      obj[day] = 'CLOSED';
     }
   });
 
   if (!dayName) {
     return obj;
-  } else {
-    return { [dayName]: obj[dayName]};
   }
 
-  return obj;
+  return { [dayName]: obj[dayName] };
+
 }
 
 function oldestFromFirstSpecies(id) {
   const specie = data.employees.find(individual => individual.id === id).responsibleFor[0];
-  const individuals = data.animals.find(individuals => individuals.id === specie).residents;
+  const individuals = data.animals.find(specieID => specieID.id === specie).residents;
   let age = 0;
-  let oldest = [];
+  const oldest = [];
   for (let i = 0; i < individuals.length; i += 1) {
     if (individuals[i].age > age) {
       oldest[0] = individuals[i].name;
@@ -125,10 +124,10 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  percentage = percentage / 100 + 1
-  data.prices.Adult = Math.round((data.prices.Adult * percentage) * 100) / 100
-  data.prices.Child = Math.round((data.prices.Child * percentage) * 100) / 100
-  data.prices.Senior = Math.round((data.prices.Senior * percentage) * 100) / 100
+  percentage = (percentage / 100) + 1;
+  data.prices.Adult = Math.round((data.prices.Adult * percentage) * 100) / 100;
+  data.prices.Child = Math.round((data.prices.Child * percentage) * 100) / 100;
+  data.prices.Senior = Math.round((data.prices.Senior * percentage) * 100) / 100;
 }
 
 function employeeCoverage(idOrName) {
