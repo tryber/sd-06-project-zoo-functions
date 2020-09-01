@@ -68,7 +68,8 @@ function oldestFromFirstSpecies(id) {
 function increasePrices(percentage) {
   const valuePercentage = percentage / 100;
   Object.keys(data.prices).forEach((valor) => {
-    data.prices[valor] = Math.round((data.prices[valor] + (data.prices[valor] * valuePercentage)) * 100) / 100;
+    data.prices[valor] = Math
+    .round((data.prices[valor] + (data.prices[valor] * valuePercentage)) * 100) / 100;
   });
 }
 
