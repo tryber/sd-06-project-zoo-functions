@@ -35,7 +35,7 @@ function employeeByName(employeeName) {
     return {};
   }
   // create const to receive function to find name by first or last name.
-  // It was necessary to use find because the return needed to be an object;
+  // It was necessary to use find because the return needed to be an employeeCoverageObject;
   const employeeByFirstOrLastName = employees
     .find(({ firstName, lastName }) => firstName === employeeName || lastName === employeeName);
 
@@ -43,7 +43,7 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // using spread operator to copy data and create a new object;
+  // using spread operator to copy data and create a new employeeCoverageObject;
   const newEmployee = { ...personalInfo, ...associatedWith };
   return newEmployee;
 }
@@ -59,7 +59,7 @@ function isManager(id) {
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  // cretaing object using parameters;
+  // cretaing employeeCoverageObject using parameters;
   const addNewEmployee = {
     id,
     firstName,
@@ -67,16 +67,16 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
     managers,
     responsibleFor,
   };
-  // adding object in employees array;
+  // adding employeeCoverageObject in employees array;
   const newEmployeeAdded = employees.push(addNewEmployee);
   return newEmployeeAdded;
 }
 
 function animalCount(species) {
   if (!species) {
-    const object = {};
-    animals.forEach(({ name, residents }) => (object[name] = residents.length));
-    return object;
+    const employeeCoverageObject = {};
+    animals.forEach(({ name, residents }) => (employeeCoverageObject[name] = residents.length));
+    return employeeCoverageObject;
   }
   const animalSpecieFilter = animals
   .filter(({ name }) => name === species)
@@ -112,7 +112,28 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  // ideas based on building the solution during Icaro Harry's on-call class;
+  const employeeCoverageObject = {};
+  let employeeFilterByPersonalInfo;
+  // conditions to verify if parameters is empty;
+  if (!idOrName) {
+    employeeFilterByPersonalInfo = employees;
+  } else {
+    employeeFilterByPersonalInfo = employees.filter((({ id, firstName, lastName }) =>
+      id === idOrName ||
+      firstName === idOrName ||
+      lastName === idOrName));
+  }
+  // search animals and your responsible for;
+  employeeFilterByPersonalInfo.forEach((employee) => {
+    const animalsManager = employee.responsibleFor.map((managedAnimals) => {
+      const findManagedAnimal = animals.find(animal => animal.id === managedAnimals).name;
+      return findManagedAnimal;
+    });
+    employeeCoverageObject[`${employee.firstName} ${employee.lastName}`] = animalsManager;
+  });
+
+  return employeeCoverageObject;
 }
 
 module.exports = {
