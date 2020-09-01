@@ -83,7 +83,7 @@ function schedule(dayName) {
     Sunday: 'Open from 8am until 8pm',
     Monday: 'CLOSED',
   };
-  if (dayName === undefined) { return weekSchedule };
+  if (dayName === undefined) { return weekSchedule; }
   daySchedule[dayName] = weekSchedule[dayName];
   return daySchedule;
 }
