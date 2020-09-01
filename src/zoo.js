@@ -113,7 +113,17 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  // Search for first Specie that my 'id' employee take care
+  const firstSpecie = employees
+    .find(employee => employee.id === id).responsibleFor[0];
+  // Find the oldest animal that is in this first specie founded
+  const oldestAnimal = animals
+    // First we find the residents from the first Specie
+    .find(animal => animal.id === firstSpecie).residents
+    // Reduce to find the oldest one between the residents
+    .reduce((accumulator, currentValue) => (accumulator.age > currentValue.age ? accumulator : currentValue));
+  // Once we found the oldest animal in the specific specie we return it's values
+  return Object.values(oldestAnimal);
 }
 
 function increasePrices(percentage) {
