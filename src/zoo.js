@@ -94,22 +94,22 @@ function animalMap(options) {
 // This function I made like resolved in a class by teacher Gabriel Oliva.
 function schedule(dayName) {
   const weekDays = Object.keys(hours);
-  const schedule = {};
+  const result = {};
 
   weekDays.forEach((day) => {
     if (day === 'Monday') {
-      schedule[day] = 'CLOSED';
+      result[day] = 'CLOSED';
     } else {
       const openingHour = hours[day].open;
       const closingHour = hours[day].close - 12;
 
-      schedule[day] = `Open from ${openingHour}am until ${closingHour}pm`;
+      result[day] = `Open from ${openingHour}am until ${closingHour}pm`;
     }
-  });  
+  });
   if (!dayName) {
-    return schedule;
+    return result;
   }
-  return { [dayName]: schedule[dayName] };
+  return { [dayName]: result[dayName] };
 }
 
 function oldestFromFirstSpecies(id) {
