@@ -58,13 +58,13 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  return
+  // seu código aqui
 }
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
 }
-
+//Ao passar uma porcentagem, incrementa todos os preços, arrendondados em duas casas decimais
 function increasePrices(percentage) {
   // seu código aqui
 }
