@@ -128,7 +128,12 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  // First we access our normal entrance prices
+  const normalPrices = Object.keys(prices);
+  // For each normal price we gonna add the passed 'percentage'
+  normalPrices.forEach((price) => {
+    prices[price] = Math.round(((prices[price] * (percentage / 100)) + prices[price]) * 100) / 100;
+  });
 }
 
 function employeeCoverage(idOrName) {
