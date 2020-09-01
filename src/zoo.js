@@ -97,8 +97,23 @@ function schedule(dayName) {
   // seu código aqui
 }
 
-function oldestFromFirstSpecies(id) {
-  // seu código aqui
+function oldestFromFirstSpecies(ids) {
+  const searchEmployee = employees.find(({ id }) => id === ids);
+  const employeeResponsibleFor = searchEmployee.responsibleFor[0];
+  const animalSpeciesInfo = animals.find(({ id }) => id === employeeResponsibleFor);
+  // The 'oldest' was defined to start the comparison;
+  let oldest = 0;
+  // create let to receive final result;
+  let firstSpeciesFound = '';
+  const residentsArray = animalSpeciesInfo.residents;
+  residentsArray.forEach((resident) => {
+    if (resident.age > oldest) {
+      oldest = resident.age;
+      firstSpeciesFound = resident;
+    }
+  });
+  // I used Object.values to return a array just with values of the object 'firstSpeciesFound';
+  return Object.values(firstSpeciesFound);
 }
 
 function increasePrices(percentage) {
