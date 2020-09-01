@@ -70,33 +70,19 @@ function animalCount(species) {
 }
 
 
-
-
-
-
-
-
-
 function entryCalculator(entrants) {
   if (entrants === undefined ||
-    Object.keys(entrants).length === 0)
-    return 0;
+    Object.keys(entrants).length === 0) return 0;
   // keys são as chaves passadas no obj como param
   const keys = Object.keys(entrants);
   const values = Object.values(entrants);
   // console.log(values);
   // retornar o preço total a cobrar, conforme n de pessoas
-  console.log(`entrantes.keys ${keys}`)
-
+  console.log(`entrantes.keys ${keys}`);
+  return values;
 }
 
 // console.log(entryCalculator({ 'Adult': 1, 'Child': 3, 'Senior': 1}));
-
-
-
-
-
-
 
 
 entryCalculator({ Adult: 2 });
@@ -107,7 +93,7 @@ function animalMap(options) {
 
 // assisti a gravação do plantão para conseguir concluir
 function schedule(dayName) {
-  if (dayName === undefined)
+  if (dayName === undefined) {
     return {
       Tuesday: 'Open from 8am until 6pm',
       Wednesday: 'Open from 8am until 6pm',
@@ -115,14 +101,13 @@ function schedule(dayName) {
       Friday: 'Open from 10am until 8pm',
       Saturday: 'Open from 8am until 10pm',
       Sunday: 'Open from 8am until 8pm',
-      Monday: CLOSED
+      Monday: 'CLOSED',
     };
-  else if (dayName === 'Monday') return { Monday: 'CLOSED', };
-  else {
+  }
+  else if (dayName === 'Monday') return { Monday: 'CLOSED' };
     return (
       { [dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm` }
     );
-  }
 }
 
 
