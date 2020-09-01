@@ -60,8 +60,7 @@ function animalMap(options) {
 function schedule(dayName) {
   // seu código aqui
 }
-//Passado o id de um funcionário, encontra a primeira espécie de animal gerenciado pelo funcionário,
-//e retorna um array com nome, sexo e idade do animal mais velho dessa espécie
+
 function oldestFromFirstSpecies(id) {
   let old = 0;
   let result;
