@@ -44,11 +44,11 @@ function employeeByName(employeeName) {
 // console.log(employeeByName('Nigel'));
 
 function createEmployee(personalInfo, associatedWith) {
-  const { id:identifier, firstName:name, lastName:surnName } = personalInfo;
-  const { managers:adm, responsibleFor:responsible } = associatedWith;
+  const { id: identifier, firstName: name, lastName: surnName } = personalInfo;
+  const { managers: adm, responsibleFor: responsible } = associatedWith;
   const newEmploye = {
     id:
-identifier,
+      identifier,
     firstName: name,
     lastName: surnName,
     managers: adm,
