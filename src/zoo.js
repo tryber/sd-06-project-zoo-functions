@@ -64,7 +64,7 @@ function schedule(dayName) {
 function oldestFromFirstSpecies(id) {
   // seu código aqui
 }
-//Ao passar uma porcentagem, incrementa todos os preços, arrendondados em duas casas decimais
+// Ao passar uma porcentagem, incrementa todos os preços, arrendondados em duas casas decimais
 function increasePrices(percentage) {
   // seu código aqui
 }
