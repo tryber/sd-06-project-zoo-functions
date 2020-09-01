@@ -10,7 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { animals, employees, prices } = require('./data');
+const { animals, employees, prices, hours } = require('./data');
 
 // build function using spread operator;
 function animalsByIds(...ids) {
@@ -29,6 +29,7 @@ function animalsOlderThan(animalName, animalAge) {
   return animalByNameAndAge;
 }
 
+
 function employeeByName(employeeName) {
   // condition to test if have parameter in function;
   if (!employeeName) {
@@ -42,11 +43,13 @@ function employeeByName(employeeName) {
   return employeeByFirstOrLastName;
 }
 
+
 function createEmployee(personalInfo, associatedWith) {
   // using spread operator to copy data and create a new employeeCoverageObject;
   const newEmployee = { ...personalInfo, ...associatedWith };
   return newEmployee;
 }
+
 
 function isManager(id) {
   // necessary use .flatmap to transform all data in just one array;
@@ -57,6 +60,7 @@ function isManager(id) {
 
   return findManager;
 }
+
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // cretaing employeeCoverageObject using parameters;
@@ -72,6 +76,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   return newEmployeeAdded;
 }
 
+
 function animalCount(species) {
   if (!species) {
     const employeeCoverageObject = {};
@@ -84,6 +89,7 @@ function animalCount(species) {
 
   return animalSpecieFilter;
 }
+
 
 function entryCalculator(entrants) {
   // verify if entrants is empty;
@@ -101,13 +107,38 @@ function entryCalculator(entrants) {
   return calculate;
 }
 
+
 function animalMap(options) {
   // seu código aqui
 }
 
-function schedule(dayName) {
-  // seu código aqui
+
+function schedule(dayName = 'every') {
+  const wholeWeek = {};
+  // using Object.keys to capture only the days(keys) of the object hours;
+  Object.keys(hours).forEach((day) => { wholeWeek[day] = hours[day]; });
+
+  const isWorking = {};
+
+  const messageCreator = (day) => {
+    if (wholeWeek[day].open === 0) { return 'CLOSED'; }
+    return `Open from ${wholeWeek[day].open}am until ${wholeWeek[day].close - 12}pm`;
+  };
+
+  switch (dayName) {
+    case 'every':
+      Object.keys(wholeWeek).forEach((day) => {
+        isWorking[day] = messageCreator([day]);
+      });
+      break;
+    default:
+      isWorking[dayName] = messageCreator(dayName);
+      break;
+  }
+
+  return isWorking;
 }
+
 
 function oldestFromFirstSpecies(ids) {
   const searchEmployee = employees.find(({ id }) => id === ids);
