@@ -84,13 +84,13 @@ function entryCalculator(entrants) {
   // keys são as chaves passadas no obj como param
   const keys = Object.keys(entrants);
   const values = Object.values(entrants);
-  //console.log(values);
+  // console.log(values);
   // retornar o preço total a cobrar, conforme n de pessoas
   console.log(`entrantes.keys ${keys}`)
 
 }
 
-//console.log(entryCalculator({ 'Adult': 1, 'Child': 3, 'Senior': 1}));
+// console.log(entryCalculator({ 'Adult': 1, 'Child': 3, 'Senior': 1}));
 
 
 
@@ -109,41 +109,31 @@ function animalMap(options) {
 function schedule(dayName) {
   if (dayName === undefined)
     return {
-      'Tuesday': 'Open from 8am until 6pm',
-      'Wednesday': 'Open from 8am until 6pm',
-      'Thursday': 'Open from 10am until 8pm',
-      'Friday': 'Open from 10am until 8pm',
-      'Saturday': 'Open from 8am until 10pm',
-      'Sunday': 'Open from 8am until 8pm',
-      'Monday': 'CLOSED'
+      Tuesday: 'Open from 8am until 6pm',
+      Wednesday: 'Open from 8am until 6pm',
+      Thursday: 'Open from 10am until 8pm',
+      Friday: 'Open from 10am until 8pm',
+      Saturday: 'Open from 8am until 10pm',
+      Sunday: 'Open from 8am until 8pm',
+      Monday: CLOSED
     };
-  else if (dayName === 'Monday')
-    return { 'Monday': 'CLOSED' };
-  else
+  else if (dayName === 'Monday') return { Monday: 'CLOSED', };
+  else {
     return (
       { [dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm` }
     );
+  }
 }
 
 
-
-
-
-
 function oldestFromFirstSpecies(idFunc) {
-  return employees.find(employee => employee.id === idFunc)
+  return employees.find(employee => employee.id === idFunc);
   /* .responsibleFor.forEach(idAnimal => {
     console.log(idAnimal);
   }) */
 }
 
-//console.log(oldestFromFirstSpecies('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
-
-
-
-
-
-
+// console.log(oldestFromFirstSpecies('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
 
 
 function increasePrices(percentage) {
