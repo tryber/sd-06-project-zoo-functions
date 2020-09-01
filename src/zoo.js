@@ -52,7 +52,20 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  let totalEntries = 0;
+  if (entrants === undefined ||
+      Object.entries(entrants).length === 0) {
+    return 0;
+  } else if (entrants.Adult) {
+    totalEntries += entrants.Adult * data.prices.Adult;
+  }
+  if (entrants.Senior) {
+    totalEntries += entrants.Senior * data.prices.Senior;
+  }
+  if (entrants.Child) {
+    totalEntries += entrants.Child * data.prices.Child;
+  }
+  return totalEntries;
 }
 
 function animalMap(options) {
@@ -60,7 +73,19 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  const daySchedule = {};
+  const weekSchedule = {
+    Tuesday: 'Open from 8am until 6pm',
+    Wednesday: 'Open from 8am until 6pm',
+    Thursday: 'Open from 10am until 8pm',
+    Friday: 'Open from 10am until 8pm',
+    Saturday: 'Open from 8am until 10pm',
+    Sunday: 'Open from 8am until 8pm',
+    Monday: 'CLOSED',
+  };
+  if (dayName === undefined) { return weekSchedule };
+  daySchedule[dayName] = weekSchedule[dayName];
+  return daySchedule;
 }
 
 function oldestFromFirstSpecies(id) {
