@@ -10,7 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { animals, employees } = require('./data');
+const { animals, employees, prices } = require('./data');
 
 // build function using spread operator;
 function animalsByIds(...ids) {
@@ -102,7 +102,13 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  const arrayOfKeys = Object.keys(prices);
+  const ObjectOfPrices = {};
+  // solution with Math.round() found after searching this link:
+  // https://stackoverflow.com/questions/11832914/round-to-at-most-2-decimal-places-only-if-necessary
+  arrayOfKeys.map(key => (ObjectOfPrices[key] =
+    Math.round((data.prices[key] + ((data.prices[key] * percentage) / 100)) * 100) / 100));
+  return (data.prices = ObjectOfPrices);
 }
 
 function employeeCoverage(idOrName) {
