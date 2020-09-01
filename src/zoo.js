@@ -1,3 +1,13 @@
+/*
+eslint no-unused-vars: [
+  "erro",
+  {
+    "args": "nenhum",
+    "vars": "local",
+    "varsIgnorePattern": "dados"
+  }
+]
+ */
 const data = require('./data.js');
 
 function animalsByIds(...ids) {
@@ -14,7 +24,7 @@ function employeeByName(employeeName) {
   const returnEmployee = {};
   if (employeeName === undefined) { return returnEmployee };
 
-
+}
 function createEmployee(personalInfo, associatedWith) {
   const createInfo = {};
   if (personalInfo === undefined) { return createInfo };
@@ -106,4 +116,4 @@ module.exports = {
   oldestFromFirstSpecies,
   increasePrices,
   createEmployee,
-};
+}
