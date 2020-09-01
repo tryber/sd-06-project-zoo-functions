@@ -49,12 +49,13 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-   // necessary use .flatmap to transform all data in just one array;
+  // necessary use .flatmap to transform all data in just one array;
   // Using .map the result is a Array of arrays;
   const findManager = employees
     .flatMap(employee => employee.managers)
     .some(manager => manager === id);
-    return findManager;
+
+  return findManager;
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
