@@ -103,7 +103,6 @@ function schedule(dayName) {
   }
 
   return { [dayName]: obj[dayName] };
-
 }
 
 function oldestFromFirstSpecies(id) {
