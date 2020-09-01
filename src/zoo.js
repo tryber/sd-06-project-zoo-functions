@@ -60,9 +60,20 @@ function animalMap(options) {
 function schedule(dayName) {
   // seu código aqui
 }
-
+//Passado o id de um funcionário, encontra a primeira espécie de animal gerenciado pelo funcionário,
+//e retorna um array com nome, sexo e idade do animal mais velho dessa espécie
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  let old = 0;
+  let result;
+  const firstAnimal = data.employees.find(name => name.id === id).responsibleFor[0];
+  data.animals.find(name => name.id === firstAnimal).residents.forEach((pet) => {
+    if (pet.age > old) {
+      old = pet.age;
+      result = pet;
+    }
+  });
+  const oldestAnimal = [result.name, result.sex, result.age];
+  return oldestAnimal;
 }
 // Ao passar uma porcentagem, incrementa todos os preços, arrendondados em duas casas decimais
 function increasePrices(percentage) {
