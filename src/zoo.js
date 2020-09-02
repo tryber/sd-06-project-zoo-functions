@@ -82,20 +82,20 @@ function isManager(id) {
 }
 // console.log(isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  if (!managers) {
-    managers = [];
+function addEmployee(idi, name, surName,adm, respons) {
+  if (!adm) {
+    adm = [];
   }
-  if (!responsibleFor) {
-    responsibleFor = [];
+  if (!respons) {
+    respons = [];
   }
   const newEmployee =
   {
-    id: id,
-    firstName: firstName,
-    lastName: lastName,
-    managers: managers,
-    responsibleFor: responsibleFor,
+    id: idi,
+    firstName: name,
+    lastName: surName,
+    managers: adm,
+    responsibleFor: respons,
   };
   employees.push(newEmployee);
   return newEmployee;
