@@ -38,7 +38,7 @@ function employeeByName(employeeName) {
   let response;
   employees.filter(filterNameFun => filterNameFun.firstName === employeeName
     || filterNameFun.lastName === employeeName)
-    .forEach((position) => { response = position }); // foreach pra retornar so o objeto
+    .forEach((position) => { response = position; }); // foreach pra retornar so o objeto
   return response;
 }
 // console.log(employeeByName('Nigel'));
