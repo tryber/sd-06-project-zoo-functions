@@ -142,8 +142,21 @@ function entryCalculator(entrants) {
 // console.log(entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 }));
 
 function animalMap(options) {
-  // seu código aqui
+  let resultName;
+  let resultLocal = {};
+  let localAnimals;
+  let resultGeneral;
+  if (!options) {
+    animals.forEach((local) => {
+      localAnimals = local.location;
+      resultName = animals.filter(animals => animals.location === localAnimals)
+        .map(animalsName => animalsName.name)
+      resultGeneral = resultLocal[local.location] = resultName;
+    });
+  }
+  return resultLocal;
 }
+console.log(animalMap({ includeNames: true }));
 
 function schedule(dayName) {
   // seu código aqui
@@ -176,3 +189,14 @@ module.exports = {
   increasePrices,
   createEmployee,
 };
+
+
+const test = {
+  id: '0938aa23-f153-4937-9f88-4858b24d6bce',
+  name: 'lions',
+  popularity: 4,
+  location: 'NE',
+  residents: [[Object], [Object], [Object], [Object]]
+}
+
+console.log(Object.values(test.name))
