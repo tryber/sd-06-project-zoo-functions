@@ -119,7 +119,6 @@ function animalCount(species) {
 // console.log(animalCount('lions'));
 
 function entryCalculator(entrants) {
-  let sumPeople;
   let sumAdult = 0;
   let sumSenior = 0;
   let sumChild = 0;
@@ -136,7 +135,8 @@ function entryCalculator(entrants) {
   if (child) {
     sumChild = (prices.Child * child);
   }
-  return sumPeople = sumAdult + sumSenior + sumChild;
+  const sumPeople = sumAdult + sumSenior + sumChild;
+  return sumPeople;
   //console.log(Object.keys(prices))
 }
 // console.log(entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 }));
@@ -176,10 +176,3 @@ module.exports = {
   increasePrices,
   createEmployee,
 };
-
-const neww = {
-  0: 'oi',
-  1: 'hhh'
-};
-//const test = Object.keys(neww).length
-console.log(neww[1]);
