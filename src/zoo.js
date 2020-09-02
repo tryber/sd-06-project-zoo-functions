@@ -137,7 +137,7 @@ function entryCalculator(entrants) {
   }
   const sumPeople = sumAdult + sumSenior + sumChild;
   return sumPeople;
-  //console.log(Object.keys(prices))
+  // console.log(Object.keys(prices))
 }
 // console.log(entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 }));
 
