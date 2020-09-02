@@ -82,15 +82,14 @@ function isManager(id) {
 }
 // console.log(isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
 
-function addEmployee(idi, name, surName,adm, respons) {
+function addEmployee(idi, name, surName, adm, respons) {
   if (!adm) {
     adm = [];
   }
   if (!respons) {
     respons = [];
   }
-  const newEmployee =
-  {
+  const newEmployee = {
     id: idi,
     firstName: name,
     lastName: surName,
