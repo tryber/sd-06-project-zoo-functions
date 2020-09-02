@@ -83,8 +83,25 @@ function isManager(id) {
 // console.log(isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+  if (!managers) {
+    managers = [];
+  }
+  if (!responsibleFor) {
+    responsibleFor = [];
+  }
+  const newEmployee =
+  {
+    id: id,
+    firstName: firstName,
+    lastName: lastName,
+    managers: managers,
+    responsibleFor: responsibleFor,
+  };
+  employees.push(newEmployee);
+  return newEmployee;
 }
+// console.log(addEmployee('39800c14-4b76-454a-858d-2f8d168146a7', 'John', 'Doe'))
+// console.log(employees.length)
 
 function animalCount(species) {
   // seu código aqui
