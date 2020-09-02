@@ -12,6 +12,8 @@ eslint no-unused-vars: [
 const data = require('./data');
 const { animals } = require('./data');
 const { employees } = require('./data');
+const { prices } = require('./data');
+
 
 function animalsByIds(...ids) {
   if (!ids) {
@@ -117,8 +119,27 @@ function animalCount(species) {
 // console.log(animalCount('lions'));
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  let sumPeople;
+  let sumAdult = 0;
+  let sumSenior = 0;
+  let sumChild = 0;
+  if (!entrants || Object.keys(entrants).length === 0) {
+    return 0;
+  }
+  const { Adult: adult, Senior: senior, Child: child } = entrants;
+  if (adult) {
+    sumAdult = (prices.Adult * adult);
+  }
+  if (senior) {
+    sumSenior = (prices.Senior * senior);
+  }
+  if (child) {
+    sumChild = (prices.Child * child);
+  }
+  return sumPeople = sumAdult + sumSenior + sumChild;
+  //console.log(Object.keys(prices))
 }
+// console.log(entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 }));
 
 function animalMap(options) {
   // seu código aqui
@@ -155,3 +176,10 @@ module.exports = {
   increasePrices,
   createEmployee,
 };
+
+const neww = {
+  0: 'oi',
+  1: 'hhh'
+};
+//const test = Object.keys(neww).length
+console.log(neww[1]);
