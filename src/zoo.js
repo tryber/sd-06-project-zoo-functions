@@ -38,7 +38,7 @@ function employeeByName(employeeName) {
   let response;
   employees.filter(filterNameFun => filterNameFun.firstName === employeeName
     || filterNameFun.lastName === employeeName)
-    .forEach((position) => { response = position }); // foreach pra retornar so o objeto
+    .forEach(position => response = position); // foreach pra retornar so o objeto
   return response;
 }
 // console.log(employeeByName('Nigel'));
@@ -73,8 +73,8 @@ function createEmployee(personalInfo, associatedWith) {
 // }));
 
 function isManager(id) {
-  let result = [];
-  employees.forEach((idManager) => idManager.managers.forEach(manager =>
+  const result = [];
+  employees.forEach(idManager => idManager.managers.forEach(manager =>
     result.push(manager)));
   return result.some(postionId => postionId === id);
   // const resultSome = resultMap.forEach(postionId =>console.log(postionId));
