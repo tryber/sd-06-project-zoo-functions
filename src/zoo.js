@@ -105,15 +105,16 @@ function addEmployee(idi, name, surName, adm, respons) {
 function animalCount(species) {
   let result = {};
   if (!species) {
-    animals.forEach(options => result[options.name] = options.residents.length);
-
+    animals.forEach(options => {
+      result[options.name] = options.residents.length
+    });
   } else {
     animals.filter(options => options.name === species)
-      .forEach(amount => result = amount.residents.length);
+      .forEach(amount => { result = amount.residents.length });
   }
   return result;
 }
-// console.log(animalCount('lions'))
+console.log(animalCount('lions'))
 
 function entryCalculator(entrants) {
   // seu código aqui
@@ -154,12 +155,3 @@ module.exports = {
   increasePrices,
   createEmployee,
 };
-
-
-let result = {};
-
-let novo = 'paulo';
-result[novo] = 'nois'
-novo = 'joao';
-result[novo] = 'nois'
-console.log(result)
