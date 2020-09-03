@@ -29,12 +29,16 @@ function employeeByName(employeeName) {
   return returnEmployee;
 }
 function createEmployee(personalInfo, associatedWith) {
-  const createInfo = {};
-  if (personalInfo === undefined) { return createInfo };
+
 }
 
 function isManager(id) {
-  const isId = id;
+  let createInfo = {};
+  if (id === undefined) { return createInfo };
+  createInfo = employees.map(item => item.managers)
+    .map(element => element.includes(id))
+    .some(item2 => item2 === true);
+  return createInfo
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
