@@ -13,6 +13,7 @@ const data = require('./data');
 const { animals } = require('./data');
 const { employees } = require('./data');
 const { prices } = require('./data');
+const { hours } = require('./data');
 
 
 function animalsByIds(...ids) {
@@ -78,11 +79,12 @@ function isManager(id) {
   const result = [];
   employees.forEach(idManager => idManager.managers.forEach(manager =>
     result.push(manager)));
+  //  console.log(result)
   return result.some(postionId => postionId === id);
   // const resultSome = resultMap.forEach(postionId =>console.log(postionId));
   //  return resultSome
 }
-// console.log(isManager('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
+// console.log(isManager('9e7d4524-363c-416a-8759-8aa7e50c0992'));
 
 function addEmployee(idi, name, surName, adm, respons) {
   if (!adm) {
@@ -116,7 +118,7 @@ function animalCount(species) {
   }
   return result;
 }
-// console.log(animalCount('lions'));
+// console.log(animalCount());
 
 function entryCalculator(entrants) {
   let sumAdult = 0;
@@ -142,25 +144,29 @@ function entryCalculator(entrants) {
 // console.log(entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 }));
 
 function animalMap(options) {
-  let resultName;
-  let resultLocal = {};
-  let localAnimals;
-  let resultGeneral;
-  if (!options) {
-    animals.forEach((local) => {
-      localAnimals = local.location;
-      resultName = animals.filter(animals => animals.location === localAnimals)
-        .map(animalsName => animalsName.name)
-      resultGeneral = resultLocal[local.location] = resultName;
-    });
-  }
-  return resultLocal;
 }
-console.log(animalMap({ includeNames: true }));
+// console.log(animalMap());
 
 function schedule(dayName) {
-  // seu código aqui
+  let result = {};
+  if (!dayName) {
+    const hourList = Object.keys(hours);
+    hourList.forEach(propriet => {
+      result[propriet] = `Open from ${hours[propriet].open}am until ${hours[propriet].close - 12}pm`;
+    });
+    result.Monday = 'CLOSED';
+  } else {
+    if (dayName === 'Monday') {
+      result[dayName] = 'CLOSED';
+      return result;
+    }
+    result[dayName] = `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm`;
+    return result;
+  }
+  return result;
 }
+console.log(schedule('Monday'))
+
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
@@ -190,7 +196,7 @@ module.exports = {
   createEmployee,
 };
 
-
+/*
 const test = {
   id: '0938aa23-f153-4937-9f88-4858b24d6bce',
   name: 'lions',
@@ -200,3 +206,76 @@ const test = {
 }
 
 console.log(Object.values(test.name))
+
+
+const test = {
+  id: '01422318-ca2d-46b8-b66c-3e9e188244ed',
+  name: 'giraffes',
+  popularity: 4,
+  location: 'NE',
+  residents: [
+    {
+      name: 'Gracia',
+      sex: 'female',
+      age: 11
+    },
+    {
+      name: 'Antone',
+      sex: 'male',
+      age: 9
+    },
+    {
+      name: 'Vicky',
+      sex: 'female',
+      age: 12
+    },
+    {
+      name: 'Clay',
+      sex: 'male',
+      age: 4
+    },
+    {
+      name: 'Arron',
+      sex: 'male',
+      age: 7
+    },
+    {
+      name: 'Bernard',
+      sex: 'male',
+      age: 6
+    }
+  ]
+}
+
+console.log(Object.values(test.residents))*/
+
+
+// const arreio = [1,2,3]
+
+// console.log(arreio.includes(3))
+
+// var arr = ['foo', 'bar', 'foo'];
+// var novaArr =  arr.indexOf('oi')
+// console.log(novaArr); //dá ['foo', 'bar']
+
+
+// const hours ={
+//     'Tuesday': { open: 8, close: 18 },
+//     'Wednesday': { open: 8, close: 18 },
+//     'Thursday': { open: 10, close: 20 },
+//     'Friday': { open: 10, close: 20 },
+//     'Saturday': { open: 8, close: 22 },
+//     'Sunday': { open: 8, close: 20 },
+//     'Monday': { open: 0, close: 0 },
+//   }
+
+// console.log(hours.Thursday.close)
+
+// const países = {
+//     França: 'Paris',
+//     Brasil: 'Brasília',
+//     Espanha: 'Madrid',
+//     Portugal: 'Lisboa',
+// };
+// const pairKeyValue = Object.entries(países);
+// console.log(pairKeyValue);
