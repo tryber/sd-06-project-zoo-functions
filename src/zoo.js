@@ -9,7 +9,7 @@ eslint no-unused-vars: [
 ]
  */
 const data = require('./data.js');
-const { employees, animals } = require('./data.js');
+const { employees } = require('./data.js');
 
 function animalsByIds(...ids) {
   const animalId = data.animals.filter(ident => ids.includes(ident.id));
@@ -22,11 +22,11 @@ function animalsOlderThan(animal, age) {
   return animalsOd.residents.every(ageThan => ageThan.age >= age);
 }
 function employeeByName(employeeName) {
-  let returnEmployee = {};
-  if (employeeName === undefined) { return returnEmployee };
-  returnEmployee = employees.map(funncionario => funcionario.firstName === employeeByName)
-   || employee.map(funcionario => funcionario.lastName === employeeByName);
-  return returnEmployee
+  const objUnder = {};
+  if (employeeName === undefined) { return objUnder};
+  const returnEmployee = employees
+    .find(employee => employee.firstName === employeeName || employee.lastName === employeeName);
+  return returnEmployee;
 }
 function createEmployee(personalInfo, associatedWith) {
   const createInfo = {};
@@ -102,15 +102,11 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-if (idOrName === undefined) {
-  employees.forEach((employee) => {
-    const responsabelAnimal = data.animals.employees
-    .filter(resp => resp.responsable)
-  })
+ if(idOrName === undefined ) {
+  const nameList = data.employees.map((name) => `${name.firstName} ${name.lastName }` .responsibleFor)
+  return nameList
+ }
 }
-}
-
-
 
 module.exports = {
   entryCalculator,
