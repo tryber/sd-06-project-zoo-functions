@@ -144,10 +144,10 @@ function entryCalculator(entrants) {
 // console.log(entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 }));
 
 function speciesForLocation() {
-  let resultLocal = {};
+  const resultLocal = {};
   animals.forEach((local) => {
     const localAnimals = local.location;
-    let resultName = animals.filter(animals => animals.location === localAnimals)
+    const resultName = animals.filter(animalsLocal => animalsLocal.location === localAnimals)
       .map(animalsName => animalsName.name);
     resultLocal[localAnimals] = resultName;
   });
@@ -155,10 +155,10 @@ function speciesForLocation() {
 }
 
 function speciesForName(location, sorted, sex) {
-  let resultLocal = {};
-  location.forEach(actualLocation => {
-    const animalsForLocation = animals.filter(animalsForLocation =>
-      animalsForLocation.location === actualLocation).map(animal => {
+  const resultLocal = {};
+  location.forEach((actualLocation) => {
+    const animalsForLocation = animals.filter((animalsLocation) =>
+      animalsLocation.location === actualLocation).map(animal => {
         const nameSpecies = animal.name;
         let nameResidentes = animal.residents
           .map(nameResid => nameResid.name);
@@ -179,13 +179,13 @@ function speciesForName(location, sorted, sex) {
 
 function animalMap(options) {
   let resultLocal;
-  const filterLocal = animals.map(local => local.location); //todas coordenadas repetidas
+  const filterLocal = animals.map(local => local.location); // todas coordenadas repetidas
   const locationFilter = filterLocal.filter((nameLocation, index) =>
     filterLocal.indexOf(nameLocation) === index);
   if (!options) return speciesForLocation();
   const { includeNames, sorted, sex } = options;
   if (includeNames) return speciesForName(locationFilter, sorted, sex);
-  else return animals[0].name;
+  return resultLocal = animals[0].name;
 }
 // console.log(animalMap({ sorted: true }));
 
