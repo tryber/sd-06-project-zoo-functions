@@ -118,7 +118,7 @@ function oldestFromFirstSpecies(idFunc) {
   const primeiroId = infoEmployee.responsibleFor[0];
   const objBicho = animals.find(animal => animal.id === primeiroId);
   const maisVelho = objBicho.residents
-    .reduce((acc, current) => acc.age > current.age ? acc : current);
+    .reduce((acc, current) => (acc.age > current.age ? acc : current));
   const dadosAnimal = Object.values(maisVelho);
   return dadosAnimal;
 }
