@@ -231,8 +231,17 @@ function oldestFromFirstSpecies(id) {
 // console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'))
 
 function increasePrices(percentage) {
-  // seu código aqui
+  function calculatorPrices(percentageP, typePrices) {
+    let valuePrices = (prices[typePrices] * percentageP / 100) + prices[typePrices];
+    valuePrices = Math.round(valuePrices * 100) / 100
+    console.log(valuePrices)
+  }
+  prices.Adult = calculatorPrices(percentage, 'Adult');
+  prices.Senior = calculatorPrices(percentage, 'Senior');
+  prices.Child = calculatorPrices(percentage, 'Child');
+  return prices;
 }
+console.log(increasePrices(50));
 
 function employeeCoverage(idOrName) {
   // seu código aqui
@@ -253,3 +262,7 @@ module.exports = {
   increasePrices,
   createEmployee,
 };
+
+// let n= 45.5555
+// console.log(n.toFixed(2));
+
