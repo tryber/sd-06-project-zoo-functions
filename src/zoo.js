@@ -143,12 +143,55 @@ function entryCalculator(entrants) {
 }
 // console.log(entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 }));
 
-function animalMap(options) {
+function speciesForLocation() {
+  let resultLocal = {};
+  animals.forEach((local) => {
+    const localAnimals = local.location;
+    let resultName = animals.filter(animals => animals.location === localAnimals)
+      .map(animalsName => animalsName.name);
+    resultLocal[localAnimals] = resultName;
+  });
+  return resultLocal;
 }
-// console.log(animalMap());
+
+function speciesForName(location, sorted, sex) {
+  let resultLocal = {};
+  location.forEach(actualLocation => {
+    const animalsForLocation = animals.filter(animalsForLocation =>
+      animalsForLocation.location === actualLocation).map(animal => {
+        const nameSpecies = animal.name;
+        let nameResidentes = animal.residents
+          .map(nameResid => nameResid.name);
+        if (sorted) {
+          nameResidentes.sort();
+        }
+        if (sex) {
+          nameResidentes = animal.residents.filter(nameResid => nameResid.sex === sex)
+            .map(animalSex => animalSex.name);
+          if (sex && sorted) nameResidentes.sort();
+        }
+        return { [nameSpecies]: nameResidentes };
+      });
+    resultLocal[actualLocation] = animalsForLocation;
+  });
+  return resultLocal;
+}
+
+function animalMap(options) {
+  let resultLocal;
+  const filterLocal = animals.map(local => local.location); //todas coordenadas repetidas
+  const locationFilter = filterLocal.filter((nameLocation, index) =>
+    filterLocal.indexOf(nameLocation) === index);
+  if (!options) return speciesForLocation();
+  const { includeNames, sorted, sex } = options;
+  if (includeNames) return speciesForName(locationFilter, sorted, sex);
+  else return animals[0].name;
+}
+// console.log(animalMap({ sorted: true }));
 
 function schedule(dayName) {
   const result = {};
+
   if (!dayName) {
     const hourList = Object.keys(hours);
     hourList.forEach((propriet) => {
@@ -195,87 +238,3 @@ module.exports = {
   increasePrices,
   createEmployee,
 };
-
-/*
-const test = {
-  id: '0938aa23-f153-4937-9f88-4858b24d6bce',
-  name: 'lions',
-  popularity: 4,
-  location: 'NE',
-  residents: [[Object], [Object], [Object], [Object]]
-}
-
-console.log(Object.values(test.name))
-
-
-const test = {
-  id: '01422318-ca2d-46b8-b66c-3e9e188244ed',
-  name: 'giraffes',
-  popularity: 4,
-  location: 'NE',
-  residents: [
-    {
-      name: 'Gracia',
-      sex: 'female',
-      age: 11
-    },
-    {
-      name: 'Antone',
-      sex: 'male',
-      age: 9
-    },
-    {
-      name: 'Vicky',
-      sex: 'female',
-      age: 12
-    },
-    {
-      name: 'Clay',
-      sex: 'male',
-      age: 4
-    },
-    {
-      name: 'Arron',
-      sex: 'male',
-      age: 7
-    },
-    {
-      name: 'Bernard',
-      sex: 'male',
-      age: 6
-    }
-  ]
-}
-
-console.log(Object.values(test.residents))*/
-
-
-// const arreio = [1,2,3]
-
-// console.log(arreio.includes(3))
-
-// var arr = ['foo', 'bar', 'foo'];
-// var novaArr =  arr.indexOf('oi')
-// console.log(novaArr); //dá ['foo', 'bar']
-
-
-// const hours ={
-//     'Tuesday': { open: 8, close: 18 },
-//     'Wednesday': { open: 8, close: 18 },
-//     'Thursday': { open: 10, close: 20 },
-//     'Friday': { open: 10, close: 20 },
-//     'Saturday': { open: 8, close: 22 },
-//     'Sunday': { open: 8, close: 20 },
-//     'Monday': { open: 0, close: 0 },
-//   }
-
-// console.log(hours.Thursday.close)
-
-// const países = {
-//     França: 'Paris',
-//     Brasil: 'Brasília',
-//     Espanha: 'Madrid',
-//     Portugal: 'Lisboa',
-// };
-// const pairKeyValue = Object.entries(países);
-// console.log(pairKeyValue);
