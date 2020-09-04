@@ -10,7 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { employees, animals, hours } = require('./data');
+const { employees, animals, hours, prices } = require('./data');
 
 // função animalsByIds implementada com a ajuda do Ícaro no plantão
 function animalsByIds(...ids) {
@@ -69,21 +69,29 @@ function animalCount(species) {
     .residents.length;
 }
 
+/* Retorna 0 se nenhum argumento for passado
+  - Retorna 0 se um objeto vazio for passado
+  - Retorna o preço total a ser cobrado dado o número de adultos, crianças e idosos */
 
 function entryCalculator(entrants) {
   if (entrants === undefined ||
     Object.keys(entrants).length === 0) return 0;
-  // keys são as chaves passadas no obj como param
-  // const keys = Object.keys(entrants);
-  const values = Object.values(entrants);
-  // retornar o preço total a cobrar, conforme n de pessoas
-  // console.log(`entrantes.keys ${keys}`);
-  return values;
+
+  let sumAdults = 0;
+  if (entrants.Adult !== undefined) sumAdults = entrants.Adult * prices.Adult;
+
+  let sumSenior = 0;
+  if (entrants.Senior !== undefined) sumSenior = entrants.Senior * prices.Senior;
+
+  let sumChild = 0;
+  if (entrants.Child !== undefined) sumChild = entrants.Child * prices.Child;
+
+  const totalSum = sumChild + sumSenior + sumAdults;
+  return totalSum;
 }
 
-// console.log(entryCalculator({ 'Adult': 1, 'Child': 3, 'Senior': 1}));
+entryCalculator({ 'Adult': 2, 'Child': 3});
 
-entryCalculator({ Adult: 2 });
 
 function animalMap(options) {
   // seu código aqui
@@ -107,13 +115,9 @@ function schedule(dayName) {
   );
 }
 
-/* - Passado o id de um funcionário, encontra a primeira espécie de animal
-gerenciado pelo funcionário, e retorna um array com nome, sexo e idade do
-animal mais velho dessa espécie */
+
 
 function oldestFromFirstSpecies(idFunc) {
-  // primeiro encontrar qual o é funcionário pelo id
-  // pegaId é um objeto com todas as informações de employee
   const infoEmployee = employees.find(employee => employee.id === idFunc);
   const primeiroId = infoEmployee.responsibleFor[0];
   const objBicho = animals.find(animal => animal.id === primeiroId);
@@ -122,16 +126,6 @@ function oldestFromFirstSpecies(idFunc) {
   const dadosAnimal = Object.values(maisVelho);
   return dadosAnimal;
 }
-
-
-/* .responsibleFor.find(element => {
-      element.match(element[0]).filter(animal => {
-        data.animals.id === element
-      }).find(animal => )
-    }) */
-
-oldestFromFirstSpecies('0e7b460e-acf4-4e17-bcb3-ee472265db83');
-
 
 function increasePrices(percentage) {
   // seu código aqui
