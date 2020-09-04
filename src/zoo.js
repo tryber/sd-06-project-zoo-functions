@@ -215,7 +215,7 @@ function oldestFromFirstSpecies(id) {
   let response;
   employees.filter(employer => employer.id === id)
     .map(responsibleFor => responsibleFor.responsibleFor)
-    .forEach(idPosition => { (result) = idPosition[0] });
+    .forEach((idPosition) => { result = idPosition[0]; });
   animals.filter(animalForEmployee => animalForEmployee.id === result)
     .map(animalRes => animalRes.residents).forEach((animalPosition) => {
       result = animalPosition;
