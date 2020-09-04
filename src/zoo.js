@@ -141,7 +141,7 @@ function entryCalculator(entrants) {
   return sumPeople;
   // console.log(Object.keys(prices))
 }
-console.log(entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 }));
+// console.log(entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 }));
 
 function speciesForLocation() {
   const resultLocal = {};
@@ -231,12 +231,10 @@ function oldestFromFirstSpecies(id) {
 // console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'))
 
 function increasePrices(percentage) {
- 
 }
 // console.log(increasePrices(50));
 
 function employeeCoverage(idOrName) {
-  
 }
 
 module.exports = {
