@@ -157,8 +157,8 @@ function speciesForLocation() {
 function speciesForName(location, sorted, sex) {
   const resultLocal = {};
   location.forEach((actualLocation) => {
-    const animalsForLocation = animals.filter((animalsLocation) =>
-      animalsLocation.location === actualLocation).map(animal => {
+    const animalsForLocation = animals.filter(animalsLocation =>
+      animalsLocation.location === actualLocation).map((animal) => {
         const nameSpecies = animal.name;
         let nameResidentes = animal.residents
           .map(nameResid => nameResid.name);
@@ -178,14 +178,13 @@ function speciesForName(location, sorted, sex) {
 }
 
 function animalMap(options) {
-  let resultLocal;
   const filterLocal = animals.map(local => local.location); // todas coordenadas repetidas
   const locationFilter = filterLocal.filter((nameLocation, index) =>
     filterLocal.indexOf(nameLocation) === index);
   if (!options) return speciesForLocation();
   const { includeNames, sorted, sex } = options;
   if (includeNames) return speciesForName(locationFilter, sorted, sex);
-  return resultLocal = animals[0].name;
+  return animals[0].name;
 }
 // console.log(animalMap({ sorted: true }));
 
