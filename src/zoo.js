@@ -28,8 +28,15 @@ function employeeByName(employeeName) {
     .find(employee => employee.firstName === employeeName || employee.lastName === employeeName);
   return returnEmployee;
 }
-function createEmployee(personalInfo, associatedWith) {
-
+function createEmployee({id, firstName, lastName}, {managers, responsibleFor}) {
+  const newEmployee = {
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  };
+  return newEmployee;
 }
 
 function isManager(id) {
@@ -42,7 +49,7 @@ function isManager(id) {
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  const addList = firstName;
+  
 }
 
 function animalCount(species) {
