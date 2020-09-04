@@ -141,7 +141,7 @@ function entryCalculator(entrants) {
   return sumPeople;
   // console.log(Object.keys(prices))
 }
-// console.log(entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 }));
+console.log(entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 }));
 
 function speciesForLocation() {
   const resultLocal = {};
@@ -231,20 +231,12 @@ function oldestFromFirstSpecies(id) {
 // console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'))
 
 function increasePrices(percentage) {
-  function calculatorPrices(percentageP, typePrices) {
-    let valuePrices = ((prices[typePrices] * percentageP) / 100) + prices[typePrices];
-    valuePrices = Math.round(valuePrices * 100) / 100;
-    console.log(valuePrices);
-  }
-  prices.Adult = calculatorPrices(percentage, 'Adult');
-  prices.Senior = calculatorPrices(percentage, 'Senior');
-  prices.Child = calculatorPrices(percentage, 'Child');
-  return prices;
+ 
 }
-console.log(increasePrices(50));
+// console.log(increasePrices(50));
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  
 }
 
 module.exports = {
