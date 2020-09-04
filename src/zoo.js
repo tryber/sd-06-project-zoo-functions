@@ -69,10 +69,6 @@ function animalCount(species) {
     .residents.length;
 }
 
-/* Retorna 0 se nenhum argumento for passado
-  - Retorna 0 se um objeto vazio for passado
-  - Retorna o preço total a ser cobrado dado o número de adultos, crianças e idosos */
-
 function entryCalculator(entrants) {
   if (entrants === undefined ||
     Object.keys(entrants).length === 0) return 0;
@@ -89,9 +85,6 @@ function entryCalculator(entrants) {
   const totalSum = sumChild + sumSenior + sumAdults;
   return totalSum;
 }
-
-entryCalculator({ 'Adult': 2, 'Child': 3});
-
 
 function animalMap(options) {
   // seu código aqui
@@ -114,8 +107,6 @@ function schedule(dayName) {
     { [dayName]: `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm` }
   );
 }
-
-
 
 function oldestFromFirstSpecies(idFunc) {
   const infoEmployee = employees.find(employee => employee.id === idFunc);
