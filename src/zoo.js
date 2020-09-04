@@ -262,7 +262,3 @@ module.exports = {
   increasePrices,
   createEmployee,
 };
-
-// let n= 45.5555
-// console.log(n.toFixed(2));
-
