@@ -154,7 +154,7 @@ function speciesForLocation() {
   return resultLocal;
 }
 
-function speciesForName(location, sorted, sex) {
+function speciesForNameOrSex(location, sorted, sex) {
   const resultLocal = {};
   location.forEach((actualLocation) => {
     const animalsForLocation = animals.filter(animalsLocation =>
@@ -183,7 +183,7 @@ function animalMap(options) {
     filterLocal.indexOf(nameLocation) === index);
   if (!options) return speciesForLocation();
   const { includeNames, sorted, sex } = options;
-  if (includeNames) return speciesForName(locationFilter, sorted, sex);
+  if (includeNames) return speciesForNameOrSex(locationFilter, sorted, sex);
   return animals[0].name;
 }
 // console.log(animalMap({ sorted: true }));
@@ -209,10 +209,25 @@ function schedule(dayName) {
 }
 // console.log(schedule('Monday'));
 
-
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  let result;
+  let animalAge;
+  let response;
+  const animalForEmployee = employees.filter(employer => employer.id === id)
+    .map(responsibleFor => responsibleFor.responsibleFor).forEach(idPosition => result = idPosition[0]);
+  const animalFilter = animals.filter(animalForEmployee => animalForEmployee.id === result)
+    .map(animalRes => animalRes.residents).forEach((animalPosition) => {
+      result = animalPosition;
+      let listAges = result.map(value => value.age); let ageMax = Math.max(...listAges);
+      animalAge = result.filter(animalAge => animalAge.age === ageMax);
+      //   const { name, sex, age } = animalAge[0];
+      //  response = [name,sex,age];
+      response = Object.values(animalAge[0]);
+    });
+
+  return response;
 }
+// console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'))
 
 function increasePrices(percentage) {
   // seu código aqui
