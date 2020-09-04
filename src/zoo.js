@@ -76,14 +76,12 @@ function entryCalculator(entrants) {
   // keys são as chaves passadas no obj como param
   const keys = Object.keys(entrants);
   const values = Object.values(entrants);
-  // console.log(values);
   // retornar o preço total a cobrar, conforme n de pessoas
-  console.log(`entrantes.keys ${keys}`);
+  // console.log(`entrantes.keys ${keys}`);
   return values;
 }
 
 // console.log(entryCalculator({ 'Adult': 1, 'Child': 3, 'Senior': 1}));
-
 
 entryCalculator({ Adult: 2 });
 
@@ -109,15 +107,33 @@ function schedule(dayName) {
   );
 }
 
+/* - Passado o id de um funcionário, encontra a primeira espécie de animal
+gerenciado pelo funcionário, e retorna um array com nome, sexo e idade do
+animal mais velho dessa espécie */
 
 function oldestFromFirstSpecies(idFunc) {
-  return employees.find(employee => employee.id === idFunc);
-  /* .responsibleFor.forEach(idAnimal => {
-    console.log(idAnimal);
-  }) */
+  // primeiro encontrar qual o é funcionário pelo id
+  // pegaId é um objeto com todas as informações de employee
+  const infoEmployee = employees.find(employee =>
+    employee.id === idFunc
+  );
+  const primeiroId = infoEmployee.responsibleFor[0];
+  const objBicho = animals.find(animal => animal.id === primeiroId);
+  const maisVelho = objBicho.residents.reduce((acc, current) => {
+    return acc.age > current.age ? acc : current;
+  });
+  const dadosAnimal = Object.values(maisVelho);
+  return dadosAnimal;
 }
 
-// console.log(oldestFromFirstSpecies('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
+
+/* .responsibleFor.find(element => {
+      element.match(element[0]).filter(animal => {
+        data.animals.id === element
+      }).find(animal => )
+    }) */
+
+oldestFromFirstSpecies('0e7b460e-acf4-4e17-bcb3-ee472265db83');
 
 
 function increasePrices(percentage) {
