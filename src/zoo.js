@@ -74,7 +74,7 @@ function entryCalculator(entrants) {
   if (entrants === undefined ||
     Object.keys(entrants).length === 0) return 0;
   // keys são as chaves passadas no obj como param
-  const keys = Object.keys(entrants);
+  // const keys = Object.keys(entrants);
   const values = Object.values(entrants);
   // retornar o preço total a cobrar, conforme n de pessoas
   // console.log(`entrantes.keys ${keys}`);
@@ -114,14 +114,11 @@ animal mais velho dessa espécie */
 function oldestFromFirstSpecies(idFunc) {
   // primeiro encontrar qual o é funcionário pelo id
   // pegaId é um objeto com todas as informações de employee
-  const infoEmployee = employees.find(employee =>
-    employee.id === idFunc
-  );
+  const infoEmployee = employees.find(employee => employee.id === idFunc);
   const primeiroId = infoEmployee.responsibleFor[0];
   const objBicho = animals.find(animal => animal.id === primeiroId);
-  const maisVelho = objBicho.residents.reduce((acc, current) => {
-    return acc.age > current.age ? acc : current;
-  });
+  const maisVelho = objBicho.residents
+    .reduce((acc, current) => acc.age > current.age ? acc : current);
   const dadosAnimal = Object.values(maisVelho);
   return dadosAnimal;
 }
