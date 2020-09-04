@@ -119,14 +119,13 @@ function oldestFromFirstSpecies(idFunc) {
 }
 
 function increasePrices(percentage) {
-  let adultPrice = (Math.round(prices.Adult * ((percentage / 100) + 1) * 100) / 100);
-  let seniorPrice = (Math.round(prices.Senior * ((percentage / 100) + 1) * 100) / 100);
-  let childPrice = (Math.round(prices.Child * ((percentage / 100) + 1) * 100) / 100);
-  //x : Math.round(numeroaqui*100)/100,
+  const adultPrice = (Math.round(prices.Adult * ((percentage / 100) + 1) * 100) / 100);
+  const seniorPrice = (Math.round(prices.Senior * ((percentage / 100) + 1) * 100) / 100);
+  const childPrice = (Math.round(prices.Child * ((percentage / 100) + 1) * 100) / 100);
   const newObjPrices = {
-    'Adult': adultPrice,
-    'Senior': seniorPrice,
-    'Child': childPrice
+    Adult: adultPrice,
+    Senior: seniorPrice,
+    Child: childPrice,
   };
   return newObjPrices;
 }
