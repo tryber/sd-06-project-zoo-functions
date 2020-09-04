@@ -211,15 +211,16 @@ function schedule(dayName) {
 
 function oldestFromFirstSpecies(id) {
   let result;
-  let animalAge;
+
   let response;
-  const animalForEmployee = employees.filter(employer => employer.id === id)
-    .map(responsibleFor => responsibleFor.responsibleFor).forEach(idPosition => result = idPosition[0]);
-  const animalFilter = animals.filter(animalForEmployee => animalForEmployee.id === result)
+  employees.filter(employer => employer.id === id)
+    .map(responsibleFor => responsibleFor.responsibleFor)
+    .forEach(idPosition => { (result) = idPosition[0] });
+  animals.filter(animalForEmployee => animalForEmployee.id === result)
     .map(animalRes => animalRes.residents).forEach((animalPosition) => {
       result = animalPosition;
-      let listAges = result.map(value => value.age); let ageMax = Math.max(...listAges);
-      animalAge = result.filter(animalAge => animalAge.age === ageMax);
+      const listAges = result.map(value => value.age); const ageMax = Math.max(...listAges);
+      const animalAge = result.filter(animalAgeMax => animalAgeMax.age === ageMax);
       //   const { name, sex, age } = animalAge[0];
       //  response = [name,sex,age];
       response = Object.values(animalAge[0]);
