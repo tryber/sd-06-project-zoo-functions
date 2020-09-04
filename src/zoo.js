@@ -232,9 +232,9 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   function calculatorPrices(percentageP, typePrices) {
-    let valuePrices = (prices[typePrices] * percentageP / 100) + prices[typePrices];
-    valuePrices = Math.round(valuePrices * 100) / 100
-    console.log(valuePrices)
+    let valuePrices = ((prices[typePrices] * percentageP) / 100) + prices[typePrices];
+    valuePrices = Math.round(valuePrices * 100) / 100;
+    console.log(valuePrices);
   }
   prices.Adult = calculatorPrices(percentage, 'Adult');
   prices.Senior = calculatorPrices(percentage, 'Senior');
