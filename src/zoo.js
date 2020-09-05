@@ -271,8 +271,8 @@ function animalsForEmployee(idOrName) {
     .forEach((employeeForId) => {
       const nameComplete = `${employeeForId.firstName} ${employeeForId.lastName}`;
       const responsibleForId = employeeForId.responsibleFor;
-      const nameAnimals = animals.filter((animalsEvery) => responsibleForId
-        .find(animalsEmployeeId => animalsEmployeeId === animalsEvery.id)
+      const nameAnimals = animals.filter(animalsEvery => responsibleForId
+        .find(animalsEmployeeId => animalsEmployeeId === animalsEvery.id),
       ).map(nameAnimal => nameAnimal.name);
       result[nameComplete] = nameAnimals;
     });
