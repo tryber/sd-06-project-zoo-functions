@@ -9,17 +9,15 @@ eslint no-unused-vars: [
 ]
  */
 const data = require('./data.js');
-const { employees, animals } = require('./data.js');
+const { employees, animals, prices } = require('./data.js');
 
 function animalsByIds(...ids) {
   const animalId = data.animals.filter(ident => ids.includes(ident.id));
   return animalId;
 }
-animalsByIds();
-
 function animalsOlderThan(animal, age) {
-  const animalsOd = data.animals.find(animalThan => animalThan.name === animal);
-  return animalsOd.residents.every(ageThan => ageThan.age >= age);
+  return data.animals.find(animalThan => animalThan.name === animal)
+  .residents.every(ageThan => ageThan.age >= age);
 }
 function employeeByName(employeeName) {
   const objUnder = {};
@@ -69,9 +67,13 @@ function animalCount(species) {
   return numnimal.residents.length;
 }
 
-
 function entryCalculator(entrants) {
-
+ const result = 0;
+  if (entrants === undefined) {
+    return result };
+  const keys = Object.keys(entrants);
+  const price = keys.reduce((cc, current) => cc+(entrants[current] * prices[current]), 0);
+  return price;
 }
 
 function retrieveAnimalPerLocation(locations) {
@@ -104,7 +106,6 @@ function retrieveAnimalByLocationWithName(locations, sorted, sex) {
   });
   return animalByLocationWithName;
 }
-
 function animalMap(options) {
   const locations = ['NE', 'NW', 'SE', 'SW'];
   if (!options) { return retrieveAnimalPerLocation(locations); }
@@ -127,10 +128,12 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
- if(idOrName === undefined ) {
-  const nameList = data.employees.map((name) => `${name.firstName} ${name.lastName }` .responsibleFor)
-  return nameList
- }
+ const objCoverage = {};
+ employees.map((employee) => {
+   employee.animalList = employee.responsibleFor
+   .map(animalId => animals
+   .find(animal.id ===animalId).name);
+ })
 }
 
 module.exports = {
