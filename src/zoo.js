@@ -272,8 +272,8 @@ function animalsForEmployee(idOrName) {
     .forEach((employeeForId) => {
       const nameComplete = `${employeeForId.firstName} ${employeeForId.lastName}`;
       const responsibleForId = employeeForId.responsibleFor;
-      const nameAnimals = animals.filter(animalsEvery => {
-        return responsibleForId.find(animalsEmployeeId => animalsEmployeeId === animalsEvery.id)
+      const nameAnimals = animals.filter((animalsEvery) => {
+        return responsibleForId.find(animalsEmployeeId => animalsEmployeeId === animalsEvery.id);
       }).map(nameAnimal => nameAnimal.name);
       result[nameComplete] = nameAnimals;
     });
@@ -286,7 +286,7 @@ function employeeCoverage(idOrName) {
   if (!idOrName) return animalsForEmployeeGeneral();
   return animalsForEmployee(idOrName);
 }
-console.log(employeeCoverage())
+console.log(employeeCoverage());
 
 module.exports = {
   entryCalculator,
