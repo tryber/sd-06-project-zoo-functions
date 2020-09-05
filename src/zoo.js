@@ -260,7 +260,6 @@ function animalsForEmployeeGeneral() {
             });
         });
       });
-
   });
   return resultAnimalEmployee;
 }
@@ -272,12 +271,11 @@ function animalsForEmployee(idOrName) {
     .forEach((employeeForId) => {
       const nameComplete = `${employeeForId.firstName} ${employeeForId.lastName}`;
       const responsibleForId = employeeForId.responsibleFor;
-      const nameAnimals = animals.filter((animalsEvery) => {
-        return responsibleForId.find(animalsEmployeeId => animalsEmployeeId === animalsEvery.id);
-      }).map(nameAnimal => nameAnimal.name);
+      const nameAnimals = animals.filter((animalsEvery) => responsibleForId
+        .find(animalsEmployeeId => animalsEmployeeId === animalsEvery.id)
+      ).map(nameAnimal => nameAnimal.name);
       result[nameComplete] = nameAnimals;
     });
-
   return result;
 }
 // console.log(animalsForEmployee('b0dc644a-5335-489b-8a2c-4e086c7819a2'))
