@@ -221,8 +221,6 @@ function oldestFromFirstSpecies(id) {
       result = animalPosition;
       const listAges = result.map(value => value.age); const ageMax = Math.max(...listAges);
       const animalAge = result.filter(animalAgeMax => animalAgeMax.age === ageMax);
-      //   const { name, sex, age } = animalAge[0];
-      //  response = [name,sex,age];
       response = Object.values(animalAge[0]);
     });
 
@@ -244,8 +242,49 @@ function increasePrices(percentage) {
 }
 // console.log(increasePrices(50));
 
-function employeeCoverage(idOrName) {
+function animalsForEmployeeGeneral() {
+  const resultAnimalEmployee = {};
+  let result;
+  employees.forEach((listEmployees) => {
+    const nameAnimalForEmployee = [];
+    const nameComplete = `${listEmployees.firstName} ${listEmployees.lastName}`;
+    employees.filter(employeesName => employeesName.firstName === listEmployees.firstName) //ok
+      .map(animalsList => animalsList.responsibleFor)
+      .forEach(animalIdListIds => result = animalIdListIds)
+    result.forEach((animalIdPosition) => {
+      animals.filter(animalForId => animalForId.id === animalIdPosition)
+        .map(nameAnimalPosition => nameAnimalPosition.name)
+        .forEach((onlyNameAnimal) => {
+          nameAnimalForEmployee.push(onlyNameAnimal);
+          resultAnimalEmployee[nameComplete] = nameAnimalForEmployee;
+        });
+    });
+  });
+  return resultAnimalEmployee;
 }
+
+function animalsForEmployee(idOrName) {
+  const result = {};
+  employees.filter(employeesName => employeesName.id === idOrName ||
+    employeesName.firstName === idOrName || employeesName.lastName === idOrName)
+    .forEach((employeeForId) => {
+      const nameComplete = `${employeeForId.firstName} ${employeeForId.lastName}`
+      const responsibleForId = employeeForId.responsibleFor;
+      const nameAnimals = animals.filter((animalsEvery) => {
+        return responsibleForId.find(animalsEmployeeId => animalsEmployeeId === animalsEvery.id)
+      }).map(nameAnimal => nameAnimal.name);
+      result[nameComplete] = nameAnimals;
+    });
+
+  return result;
+}
+// console.log(animalsForEmployee('b0dc644a-5335-489b-8a2c-4e086c7819a2'))
+
+function employeeCoverage(idOrName) {
+  if (!idOrName) return animalsForEmployeeGeneral();
+  else return animalsForEmployee(idOrName);
+}
+// console.log(employeeCoverage('Emery'))
 
 module.exports = {
   entryCalculator,
