@@ -121,25 +121,25 @@ function animalCount(species) {
 // console.log(animalCount());
 
 function entryCalculator(entrants) {
-  // let sumAdult = 0;
-  // let sumSenior = 0;
-  // let sumChild = 0;
-  // if (!entrants || Object.keys(entrants).length === 0) {
-  //   return 0;
-  // }
-  // const { Adult: adult, Senior: senior, Child: child } = entrants;
-  // if (adult) {
-  //   sumAdult = (prices.Adult * adult);
-  // }
-  // if (senior) {
-  //   sumSenior = (prices.Senior * senior);
-  // }
-  // if (child) {
-  //   sumChild = (prices.Child * child);
-  // }
-  // const sumPeople = sumAdult + sumSenior + sumChild;
-  // return sumPeople;
-  // console.log(Object.keys(prices))
+  let sumAdult = 0;
+  let sumSenior = 0;
+  let sumChild = 0;
+  if (!entrants || Object.keys(entrants).length === 0) {
+    return 0;
+  }
+  const { Adult: adult, Senior: senior, Child: child } = entrants;
+  if (adult) {
+    sumAdult = (prices.Adult * adult);
+  }
+  if (senior) {
+    sumSenior = (prices.Senior * senior);
+  }
+  if (child) {
+    sumChild = (prices.Child * child);
+  }
+  const sumPeople = sumAdult + sumSenior + sumChild;
+  return sumPeople;
+  console.log(Object.keys(prices))
 }
 // console.log(entryCalculator({ 'Adult': 2, 'Child': 3, 'Senior': 1 }));
 
@@ -230,12 +230,13 @@ function oldestFromFirstSpecies(id) {
 }
 // console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'))
 
+function calculatorPrices(percentageP, typePrices) {
+  let valuePrices = ((prices[typePrices] * percentageP) / 100) + prices[typePrices];
+  valuePrices = Math.round(valuePrices * 100) / 100;
+  return valuePrices;
+}
+
 function increasePrices(percentage) {
-  function calculatorPrices(percentageP, typePrices) {
-    let valuePrices = ((prices[typePrices] * percentageP) / 100) + prices[typePrices];
-    valuePrices = Math.round(valuePrices * 100) / 100;
-    console.log(valuePrices);
-  }
   prices.Adult = calculatorPrices(percentage, 'Adult');
   prices.Senior = calculatorPrices(percentage, 'Senior');
   prices.Child = calculatorPrices(percentage, 'Child');
