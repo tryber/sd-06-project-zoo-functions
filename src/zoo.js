@@ -13,7 +13,7 @@ const {
   animals,
   employees,
   prices,
-  hours
+  hours,
 } = require('./data');
 
 function animalsByIds(ids) {
@@ -34,7 +34,7 @@ function employeeByName(employeeName) {
 
 function createEmployee(personalInfo, associatedWith) {
 
-  return object.assign(personalInfo, associatedWith);
+  return Object.assign(personalInfo, associatedWith);
 
 }
 
@@ -64,28 +64,57 @@ function animalCount(species) {
   return animals.find(animal => animal.name === species).residents.length;
 }
 
-function entryCalculator(entrants) {
+function entryCalculator(entrants = 0) {
+  const {
+    Adult = 0, Child = 0, Senior = 0
+  } = entrants;
+  const [adultPrice, seniorPrice, childPrice] = Object.values(prices);
+  const sumOfPrices = (Adult * adultPrice) + (Senior * seniorPrice) + (Child * childPrice);
+  return sumOfPrices;
 
 }
 
 function animalMap(options) {
-  // seu código aqui
+  if (!options) return animalMapWithNoParams();
+  if (options.includeNames) return animalMapWithIncludeNames(options);
+
+  return animalMapWithNoParams();
+
 }
 
 function schedule(dayName) {
-  // seu código aqui
+  const scheduleDays = Object.entries(hours);
+  if (!dayName) {
+    return scheduleDays
+      .reduce((accDay, [day, {
+        open,
+        close
+      }]) => ({...accDay,
+        [day]: (day === 'Monday') ? 'CLOSED' : `Open from ${open}am until ${close - 12}pm`
+      }), {});
+  }
+  return {
+    [dayName]: (dayName === 'Monday') ? 'CLOSED' : `Open from ${hours[dayName].open}am until ${hours[dayName].close - 12}pm`,
+  };
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const firstSpecieOfEmployee = employees.find(employee => employee.id === id).responsibleFor[0];
+  const oldestAnimal = animals
+    .find(animal => animal.id === firstSpecieOfEmployee).residents
+    .sort((newest, oldest) => oldest.age - newest.age)[0];
+  return Object.values(oldestAnimal);
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  return Object.entries(prices)
+    .forEach(([people, price]) => {
+      prices[people] = (Math.round(price * (percentage / 100 + 1) * 100) / 100).toFixed(2);
+    })
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+
 }
 
 module.exports = {
