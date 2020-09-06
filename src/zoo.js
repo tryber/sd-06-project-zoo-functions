@@ -61,12 +61,12 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-  // seu código aqui
+  
 }
 
 function quadrohumanos(dia, quadroDehorarios) {
   const { open, close } = hours[dia];
-  if(open === 0) {
+  if (open === 0) {
     quadroDehorarios[dia] = 'CLOSED';
   } else {
     quadroDehorarios[dia] = `Open from ${open}am until ${close - 12}pm`;
@@ -76,7 +76,7 @@ function quadrohumanos(dia, quadroDehorarios) {
 
 function schedule(dayName) {
   const quadroDehorarios = {};
-  if(!dayName){
+  if (!dayName) {
     Object.keys(hours).forEach(element => quadrohumanos(element, quadroDehorarios));
   } else {
     quadrohumanos(dayName, quadroDehorarios);
@@ -86,7 +86,10 @@ function schedule(dayName) {
 
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const idAnimals = employees.filter(element => element.id === id )[0].responsibleFor[0]
+  const oldAnimal = animals.filter(element => element.id === idAnimals)[0].residents
+  .sort((a, b) => b.age - a.age )[0]
+  return Object.values(oldAnimal);
 }
 
 function increasePrices(percentage) {}
