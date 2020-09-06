@@ -84,11 +84,12 @@ function schedule(dayName) {
   return quadroDehorarios;
 }
 
-
 function oldestFromFirstSpecies(id) {
-  const idAnimals = employees.filter(element => element.id === id )[0].responsibleFor[0]
-  const oldAnimal = animals.filter(element => element.id === idAnimals)[0].residents
-  .sort((a, b) => b.age - a.age )[0]
+  const idAnimals = employees
+    .filter(element => element.id === id)[0].responsibleFor[0];
+  const oldAnimal = animals
+    .filter(element => element.id === idAnimals)[0].residents
+    .sort((a, b) => b.age - a.age)[0];
   return Object.values(oldAnimal);
 }
 
