@@ -58,36 +58,21 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-  
-  // if (!options) {
-  //   let locations = ['NE', 'NW', 'SE', 'SW'];
-  //   const animalsLocations = {};
-    
-  //   locations.forEach(section => {
-  //     return animalsLocations[locations] = animals
-  //       .filter(animal => animal.location === section)
-  //       .map(animal => animal.name);
-  //     });
-  //   return animalsLocations;
-  // }
+  //
 }
 
-function calender(day, openingHours) {
-  const { open, close } = hours[day];
-  if (open === 0) {
-    openingHours[day] = 'CLOSED';   
-  } else {
-    openingHours[day] = `Open from ${open}am until ${close - 12}pm`
-  }
-  return openingHours;
+function schedule(dayName) {
+  //
 }
 
 function oldestFromFirstSpecies(id) {
- 
+  let animalId = employees.find(employee => employee.id === id).responsibleFor[0]
+  return Object.values(animals.find(animal => animal.id === animalId).residents
+    .reduce((older, animal) => (older.age > animal.age ? older : animal)));
 }
 
 function increasePrices(percentage) {
-
+  //
 }
 
 function employeeCoverage(idOrName) {
