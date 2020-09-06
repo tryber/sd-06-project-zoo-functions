@@ -61,7 +61,6 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-  
 }
 
 function quadrohumanos(dia, quadroDehorarios) {
