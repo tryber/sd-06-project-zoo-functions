@@ -64,7 +64,7 @@ function animalMap(options) {
 function calender(day, openingHours) {
   const { open, close } = hours[day];
   if (open === 0) {
-    openingHours[day] = 'CLOSED';   
+    openingHours[day] = 'CLOSED';
   } else {
     openingHours[day] = `Open from ${open}am until ${close - 12}pm`;
   }
@@ -72,7 +72,7 @@ function calender(day, openingHours) {
 }
 
 function schedule(dayName) {
-  openingHours = {}
+  const openingHours = {};
   if (!dayName) {
     Object.keys(hours).forEach(elem => calender(elem, openingHours));
   } else {
