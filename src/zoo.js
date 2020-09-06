@@ -33,9 +33,7 @@ function employeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-
   return Object.assign(personalInfo, associatedWith);
-
 }
 
 function isManager(id) {
@@ -43,22 +41,24 @@ function isManager(id) {
     .some(employee => employee.managers.includes(id));
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   const addNewEmployee = {
     id,
     firstName,
     lastName,
     managers,
-    responsibleFor
+    responsibleFor,
   };
   return employees.push(addNewEmployee);
 }
 
+
 function animalCount(species) {
   if (!species) {
     return animals
-      .reduce((acc, current) => ({...acc,
-        [current.name]: current.residents.length
+      .reduce((acc, current) => ({
+        acc,
+        [current.name]: current.residents.length,
       }), {});
   }
   return animals.find(animal => animal.name === species).residents.length;
@@ -66,20 +66,15 @@ function animalCount(species) {
 
 function entryCalculator(entrants = 0) {
   const {
-    Adult = 0, Child = 0, Senior = 0
+    Adult = 0, Child = 0, Senior = 0,
   } = entrants;
   const [adultPrice, seniorPrice, childPrice] = Object.values(prices);
   const sumOfPrices = (Adult * adultPrice) + (Senior * seniorPrice) + (Child * childPrice);
   return sumOfPrices;
-
 }
 
 function animalMap(options) {
-  if (!options) return animalMapWithNoParams();
-  if (options.includeNames) return animalMapWithIncludeNames(options);
-
-  return animalMapWithNoParams();
-
+   // escreva seu código aqui
 }
 
 function schedule(dayName) {
@@ -88,9 +83,9 @@ function schedule(dayName) {
     return scheduleDays
       .reduce((accDay, [day, {
         open,
-        close
-      }]) => ({...accDay,
-        [day]: (day === 'Monday') ? 'CLOSED' : `Open from ${open}am until ${close - 12}pm`
+        close,
+      }]) => ({ ...accDay,
+        [day]: (day === 'Monday') ? 'CLOSED' : `Open from ${open}am until $ {close - 12}pm`,
       }), {});
   }
   return {
