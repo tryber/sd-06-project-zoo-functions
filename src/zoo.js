@@ -55,7 +55,7 @@ function entryCalculator(entrants) {
   if (!entrants || Object.values(entrants).length === 0) {
     return 0;
   }
-    return Object.keys(entrants)
+  return Object.keys(entrants)
     .reduce((val, cal) => val + (entrants[cal] * prices[cal]), 0);
 }
 
