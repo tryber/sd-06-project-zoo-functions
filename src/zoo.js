@@ -99,24 +99,19 @@ function increasePrices(percentage) {
 function employeeCoverage(idOrName) {
   const result = {};
   let employeeByIdOrName;
-  
-  if(!idOrName) {
+  if (!idOrName) {
     employeeByIdOrName = employees;
   } else {
     employeeByIdOrName = employees
       .filter(employee => employee.id === idOrName || employee.firstName === idOrName
         || employee.lastName === idOrName);
   }
-  employeeByIdOrName.forEach(employee => {
+  employeeByIdOrName.forEach((employee) => {
     result[`${employee.firstName} ${employee.lastName}`] =
     employee.responsibleFor.map(animalId => animals.find(animal => animal.id === animalId).name);
   });
   return result;
-  }
-
-
-//const actual = zoo.employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad');
-//const expected = { 'Sharonda Spry': ['otters', 'frogs'] };
+}
 
 module.exports = {
   entryCalculator,
