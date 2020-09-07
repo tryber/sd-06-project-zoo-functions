@@ -266,7 +266,7 @@ function employeeCoverage(idOrName) {
   if (!idOrName) return animalsForEmployeeGeneral();
   return searchAnimalsForEmployee(idOrName);
 }
-console.log(employeeCoverage('Emery'))
+// console.log(employeeCoverage('Emery'));
 
 module.exports = {
   entryCalculator,
