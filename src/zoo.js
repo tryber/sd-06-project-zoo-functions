@@ -10,7 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { animals } = require('./data');
+const { animals, prices, employees } = require('./data');
 
 function animalsByIds(...ids) {
   return data.animals.filter(animal => ids.find(id => id === animal.id));
@@ -51,10 +51,27 @@ function animalCount(species) {
 }
 
 function entryCalculator(entrants) {
-  //  if (!entrants || entrants !== {}) return 0;
+  if (!entrants || Object.values(entrants).length === 0) {
+    return 0;
+  }
+  return Object.keys(entrants)
+    .reduce((acc, curr) => acc + (entrants[curr] * prices[curr]), 0);
 }
 
 function animalMap(options) {
+  // const locations = ['NE', 'NW', 'SE', 'SW'];
+
+  // if (options === undefined) {
+  //   const animalsLocation = {};
+  //   locations.forEach((location) => {
+  //     const animals = data.animals
+  //     .filter(animal => animal.location === location)
+  //     .map(animal => animal.name);
+
+  //    if(animals.length !== 0) animalsLocation[location] = animals;
+  //   });
+  //   return animalsLocation;
+  // }
 }
 
 function schedule(dayName) {
@@ -75,16 +92,15 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
+  const animalId = employees.find(employee => employee.id === id).responsibleFor[0];
+  return Object.values(animals.find(animal => animal.id === animalId).residents
+    .reduce((older, animal) => (older.age > animal.age ? older : animal)));
 }
 
 function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  // sem paramentro retorna todos os animais
-  // com id retorna somente um animal
-  // com nome retorna somente um animal
-  // com sobrenome retorna somente um animal
   // resolução no plantão
   const result = {};
   let filteredEmployees;
