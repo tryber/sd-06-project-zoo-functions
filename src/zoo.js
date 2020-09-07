@@ -86,24 +86,24 @@ function isManager(id) {
 }
 // console.log(isManager('9e7d4524-363c-416a-8759-8aa7e50c0992'));
 
-function addEmployee(idi, name, surName, adm, respons) {
-  if (!adm) {
-    adm = [];
+function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+  if (!managers) {
+    managers = [];
   }
-  if (!respons) {
-    respons = [];
+  if (!responsibleFor) {
+    responsibleFor = [];
   }
   const newEmployee = {
-    id: idi,
-    firstName: name,
-    lastName: surName,
-    managers: adm,
-    responsibleFor: respons,
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
   };
   employees.push(newEmployee);
   return newEmployee;
 }
-// console.log(addEmployee('39800c14-4b76-454a-858d-2f8d168146a7', 'John', 'Doe'))
+// console.log(addEmployee('39800c14-4b76-454a-858d-2f8d168146a7', 'John', 'Doe',['4141da1c-a6ed-4cf7-90c4-99c657ba4ef3','4141da1c-a6ed-4cf7-90c4-99c657ba4ef3']))
 // console.log(employees.length)
 
 function animalCount(species) {
@@ -242,49 +242,30 @@ function increasePrices(percentage) {
 }
 // console.log(increasePrices(50));
 
-function animalsForEmployeeGeneral() {
-  const resultAnimalEmployee = {};
-  let result;
-  employees.forEach((listEmployees) => {
-    const nameAnimalForEmployee = [];
-    const nameComplete = `${listEmployees.firstName} ${listEmployees.lastName}`;
-    employees.filter(employeesName => employeesName.firstName === listEmployees.firstName)
-      .forEach((animalIdListIds) => {
-        result = animalIdListIds.responsibleFor;
-        result.forEach((animalIdPosition) => {
-          animals.filter(animalForId => animalForId.id === animalIdPosition)
-            .map(nameAnimalPosition => nameAnimalPosition.name)
-            .forEach((onlyNameAnimal) => {
-              nameAnimalForEmployee.push(onlyNameAnimal);
-              resultAnimalEmployee[nameComplete] = nameAnimalForEmployee;
-            });
-        });
-      });
-  });
-  return resultAnimalEmployee;
-}
-
-function animalsForEmployee(idOrName) {
-  const result = {};
-  employees.filter(employeesName => employeesName.id === idOrName ||
-    employeesName.firstName === idOrName || employeesName.lastName === idOrName)
-    .forEach((employeeForId) => {
-      const nameComplete = `${employeeForId.firstName} ${employeeForId.lastName}`;
-      const responsibleForId = employeeForId.responsibleFor;
-      const nameAnimals = animals.filter(animalsEvery => responsibleForId
-        .find(animalsEmployeeId => animalsEmployeeId === animalsEvery.id),
-      ).map(nameAnimal => nameAnimal.name);
-      result[nameComplete] = nameAnimals;
+function animalsForEmployeeGeneral(idOrName) {
+  let result = {};
+  if (!idOrName) {
+    employees.forEach((listEmployees) => {
+      const nameComplete = `${listEmployees.firstName} ${listEmployees.lastName}`;
+      let listIdAnimal = listEmployees.responsibleFor
+        .map(animalId => animals.find(findIdAnimal => findIdAnimal.id === animalId).name);
+      result[nameComplete] = listIdAnimal;
     });
+    return result;
+  }
+  const dataEmployee = employees.find(employeesName => employeesName.id === idOrName ||
+    employeesName.firstName === idOrName || employeesName.lastName === idOrName);
+  const listNameAnimals = dataEmployee.responsibleFor
+    .map(animalId => animals.find(findIdAnimal => findIdAnimal.id === animalId).name);
+  result[`${dataEmployee.firstName} ${dataEmployee.lastName}`] = listNameAnimals;
   return result;
 }
-// console.log(animalsForEmployee('b0dc644a-5335-489b-8a2c-4e086c7819a2'))
 
 function employeeCoverage(idOrName) {
   if (!idOrName) return animalsForEmployeeGeneral();
-  return animalsForEmployee(idOrName);
+  return animalsForEmployeeGeneral(idOrName);
 }
-console.log(employeeCoverage());
+// console.log(employeeCoverage('Emery'))
 
 module.exports = {
   entryCalculator,
