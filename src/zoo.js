@@ -61,6 +61,14 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
+  function animalMap(options = {}) {
+    const locals = ['NE', 'NW', 'SE', 'SW'];
+    const animalMapObject = {};
+    locals.forEach((element) => {
+      animalMapObject[element] = getAnimalsByLocation(element, options);
+    });
+    displayConfig(animalMapObject, locals, options);
+    return animalMapObject;
 }
 
 function quadrohumanos(dia, quadroDehorarios) {
@@ -92,10 +100,14 @@ function oldestFromFirstSpecies(id) {
   return Object.values(oldAnimal);
 }
 
-function increasePrices(percentage) {}
+function increasePrices(percentage) {
+  Object.entries(data.prices).forEach((entrance) => {
+    data.prices[entrance[0]] = Math.ceil(entrance[1] * (1 + (percentage / 100)) * 100) / 100;
+  });
+}
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+ 
 }
 
 module.exports = {
