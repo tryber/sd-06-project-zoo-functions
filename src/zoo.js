@@ -103,7 +103,7 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   employees.push(newEmployee);
   return newEmployee;
 }
-// console.log(addEmployee('39800c14-4b76-454a-858d-2f8d168146a7', 'John', 'Doe',['4141da1c-a6ed-4cf7-90c4-99c657ba4ef3','4141da1c-a6ed-4cf7-90c4-99c657ba4ef3']))
+// console.log(addEmployee('39800c14-4b76-454a-858d-2f8d168146a7', 'John', 'Doe'))
 // console.log(employees.length)
 
 function animalCount(species) {
@@ -223,7 +223,6 @@ function oldestFromFirstSpecies(id) {
       const animalAge = result.filter(animalAgeMax => animalAgeMax.age === ageMax);
       response = Object.values(animalAge[0]);
     });
-
   return response;
 }
 // console.log(oldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992'))
@@ -242,17 +241,19 @@ function increasePrices(percentage) {
 }
 // console.log(increasePrices(50));
 
-function animalsForEmployeeGeneral(idOrName) {
-  let result = {};
-  if (!idOrName) {
-    employees.forEach((listEmployees) => {
-      const nameComplete = `${listEmployees.firstName} ${listEmployees.lastName}`;
-      let listIdAnimal = listEmployees.responsibleFor
-        .map(animalId => animals.find(findIdAnimal => findIdAnimal.id === animalId).name);
-      result[nameComplete] = listIdAnimal;
-    });
-    return result;
-  }
+function animalsForEmployeeGeneral() {
+  const result = {};
+  employees.forEach((listEmployees) => {
+    const nameComplete = `${listEmployees.firstName} ${listEmployees.lastName}`;
+    const listIdAnimal = listEmployees.responsibleFor
+      .map(animalId => animals.find(findIdAnimal => findIdAnimal.id === animalId).name);
+    result[nameComplete] = listIdAnimal;
+  });
+  return result;
+}
+
+function searchAnimalsForEmployee(idOrName) {
+  const result = {};
   const dataEmployee = employees.find(employeesName => employeesName.id === idOrName ||
     employeesName.firstName === idOrName || employeesName.lastName === idOrName);
   const listNameAnimals = dataEmployee.responsibleFor
@@ -263,9 +264,9 @@ function animalsForEmployeeGeneral(idOrName) {
 
 function employeeCoverage(idOrName) {
   if (!idOrName) return animalsForEmployeeGeneral();
-  return animalsForEmployeeGeneral(idOrName);
+  return searchAnimalsForEmployee(idOrName);
 }
-// console.log(employeeCoverage('Emery'))
+console.log(employeeCoverage())
 
 module.exports = {
   entryCalculator,
