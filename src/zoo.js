@@ -139,8 +139,6 @@ function employeeCoverage(idOrName) {
   return objEmployee;
 }
 
-console.log(employeeCoverage('Azevado'));
-
 module.exports = {
   entryCalculator,
   schedule,
