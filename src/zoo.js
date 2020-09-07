@@ -126,8 +126,29 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  if (idOrName === undefined) {
+    let objAllEmployees = {};
+    employees.forEach(employee => {
+      objAllEmployees[`${employee.firstName} ${employee.lastName}`] = employee.responsibleFor
+        .map((id) => animals.find(animal => animal.id === id).name);
+    });
+  return objAllEmployees;
+  } else {
+    let objEmployee = {};
+    employees.forEach(employee => {
+      if (employee.firstName === idOrName
+      || employee.lastName === idOrName
+      || employee.id === idOrName) {
+        objEmployee[`${employee.firstName} ${employee.lastName}`] = employee.responsibleFor
+          .map((id) => animals.find(animal => animal.id === id).name);
+      }
+    }
+    );
+    return objEmployee;
+  }
 }
+
+console.log(employeeCoverage('Azevado'));
 
 module.exports = {
   entryCalculator,
