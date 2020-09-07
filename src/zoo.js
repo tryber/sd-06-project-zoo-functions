@@ -137,12 +137,14 @@ function employeeCoverage(idOrName) {
   const objEmployee = {};
   employees.forEach((employ) => {
     if (employ.firstName === idOrName
-    || employ.lastName === idOrName
-    || employ.id === idOrName) {
-      objEmployee[`${employ.firstName} ${employ.lastName}`] = employ.responsibleFor
-        .map(id => animals.find(animal => animal.id === id).name);
+      || employ.lastName === idOrName
+      || employ.id === idOrName) {
+      objEmployee[`${employ.firstName} ${employ.lastName}`] = employ
+        .responsibleFor.map(id => animals
+        .find(animal => animal.id === id).name
+        );
     }
-    });
+  });
   return objEmployee;
 }
 
