@@ -61,14 +61,7 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-  function animalMap(options = {}) {
-    const locals = ['NE', 'NW', 'SE', 'SW'];
-    const animalMapObject = {};
-    locals.forEach((element) => {
-      animalMapObject[element] = getAnimalsByLocation(element, options);
-    });
-    displayConfig(animalMapObject, locals, options);
-    return animalMapObject;
+ 
 }
 
 function quadrohumanos(dia, quadroDehorarios) {
