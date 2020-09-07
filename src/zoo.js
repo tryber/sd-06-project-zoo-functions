@@ -134,16 +134,16 @@ function employeeCoverage(idOrName) {
     });
     return objAllEmployees;
   }
-    const objEmployee = {};
-    employees.forEach((employee) => {
-      if (employee.firstName === idOrName
-      || employee.lastName === idOrName
-      || employee.id === idOrName) {
-        objEmployee[`${employee.firstName} ${employee.lastName}`] = employee.responsibleFor
-          .map(id => animals.find(animal => animal.id === id).name);
-      }
+  const objEmployee = {};
+  employees.forEach((employ) => {
+    if (employ.firstName === idOrName
+    || employ.lastName === idOrName
+    || employ.id === idOrName) {
+      objEmployee[`${employ.firstName} ${employ.lastName}`] = employ.responsibleFor
+        .map(id => animals.find(animal => animal.id === id).name);
+    }
     });
-    return objEmployee;
+  return objEmployee;
 }
 
 console.log(employeeCoverage('Azevado'));
