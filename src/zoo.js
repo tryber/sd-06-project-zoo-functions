@@ -98,9 +98,33 @@ function increasePrices(percentage) {
     data.prices[entrance[0]] = Math.ceil(entrance[1] * (1 + (percentage / 100)) * 100) / 100;
   });
 }
+function employeeList(list) {
+  return data.employees
+    .find((employee) => {
+      const { firstName, lastName, id } = employee;
+      return (firstName === list || lastName === list || id === list);
+    });
+}
+
+function animalList(animal) {
+  return animal.responsibleFor
+    .map(animalId => data.animals
+      .find(animals => animals.id === animalId).name);
+}
+
+function returnObject(employee, object) {
+  object[`${employee.firstName} ${employee.lastName}`] = animalList(employee);
+  return object;
+}
 
 function employeeCoverage(idOrName) {
- 
+  const result = {};
+  if (idOrName) {
+    returnObject(employeeList(idOrName), result);
+  } else {
+    data.employees.forEach(employee => returnObject(employee, result));
+  }
+  return result;
 }
 
 module.exports = {
