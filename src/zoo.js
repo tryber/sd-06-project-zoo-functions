@@ -126,24 +126,24 @@ function increasePrices(percentage) {
 }
 
 function employeeCoverage(idOrName) {
-  if (idOrName === undefined) {
+  /* if (idOrName === undefined) {
     const objAllEmployees = {};
     employees.forEach((employee) => {
       objAllEmployees[`${employee.firstName} ${employee.lastName}`] = employee.responsibleFor
         .map(id => animals.find(animal => animal.id === id).name);
     });
     return objAllEmployees;
-  }
+  } */
   const objEmployee = {};
-  employees.forEach((employ) => {
-    if (employ.firstName === idOrName
-      || employ.lastName === idOrName
-      || employ.id === idOrName) {
-      objEmployee[`${employ.firstName} ${employ.lastName}`] = employ
+  employees.forEach((employee) => {
+    if (idOrName === undefined
+      || employee.firstName === idOrName
+      || employee.lastName === idOrName
+      || employee.id === idOrName) {
+      objEmployee[`${employee.firstName} ${employee.lastName}`] = employee
         .responsibleFor.map(id => animals
         .find(animal => animal.id === id).name
-        );
-    }
+      )}
   });
   return objEmployee;
 }
