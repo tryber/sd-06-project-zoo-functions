@@ -142,7 +142,7 @@ function employeeCoverage(idOrName) {
       || employee.id === idOrName) {
       objEmployee[`${employee.firstName} ${employee.lastName}`] = employee.responsibleFor
         .map(id => animals.find(animal => animal.id === id).name);
-      }
+    }
   });
   return objEmployee;
 }
