@@ -60,9 +60,7 @@ function entryCalculator(entrants) {
     .reduce((val, cal) => val + (entrants[cal] * prices[cal]), 0);
 }
 
-function animalMap(options) {
- 
-}
+function animalMap(options) {}
 
 function quadrohumanos(dia, quadroDehorarios) {
   const { open, close } = hours[dia];
@@ -109,7 +107,7 @@ function employeeList(list) {
 function animalList(animal) {
   return animal.responsibleFor
     .map(animalId => data.animals
-      .find(animals => animals.id === animalId).name);
+      .find(animals1 => animals1.id === animalId).name);
 }
 
 function returnObject(employee, object) {
