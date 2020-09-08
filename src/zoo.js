@@ -116,26 +116,50 @@ function animalMap(options) {
 }
 
 function schedule(dayName) {
-  const day = 0;
+
 }
 
 function oldestFromFirstSpecies(id) {
-  const odest = 0;
+  let objAnimal= {};
+  if(!id) {
+    data.animals.forEach((animal) => objAnimal[animal.name] = animal.residents)
+    return objAnimal;
+  }
+  let olderAnimal = animals.find(animal => animal.age > age )
+  return olderAnimal.residents.age;
 }
+ 
+
 
 function increasePrices(percentage) {
-  const increase = 0;
+
 }
 
 function employeeCoverage(idOrName) {
- const objCoverage = {};
- employees.map((employee) => {
-   employee.animalList = employee.responsibleFor
-   .map(animalId => animals
-   .find(animal.id ===animalId).name);
- })
-}
+  const employeeName = {};
+  if (!idOrName) {
+  employees.forEach(employee => {
+   const key = [`${employee.firstName} ${employee.lastName}`];
+   const animalsByEmployee = employee.responsibleFor
+     .map(animalId => animals
+     .find(animal => animal.id === animalId).name)
+   employeeName[key] = animalsByEmployee;
+   })
+  return employeeName
+ }
 
+  if (idOrName) {
+   employees.filter(employee => {
+    const key = [`${employee.firstName} ${employee.lastName}`];
+    const animalsByEmployee = employee.responsibleFor
+     .map(animalId => animals
+     .find(animal => animal.id === animalId).name)
+   employeeName[idOrName] = animalsByEmployee;
+
+   })
+   return employeeName
+ }
+}
 module.exports = {
   entryCalculator,
   schedule,
