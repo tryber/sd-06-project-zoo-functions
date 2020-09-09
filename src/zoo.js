@@ -1,10 +1,10 @@
 /*
 eslint no-unused-vars: [
-  "erro",
+  "error",
   {
-    "args": "nenhum",
+    "args": "none",
     "vars": "local",
-    "varsIgnorePattern": "dados"
+    "varsIgnorePattern": "data"
   }
 ]
  */
