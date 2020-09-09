@@ -117,6 +117,7 @@ function animalMap(options) {
 
 function schedule(dayName) {
 
+
 }
 
 function oldestFromFirstSpecies(id) {
@@ -128,22 +129,28 @@ function oldestFromFirstSpecies(id) {
   let olderAnimal = animals.find(animal => animal.age > age )
   return olderAnimal.residents.age;
 }
- 
+
 
 
 function increasePrices(percentage) {
-
+  const result = 0;
+  if (percentage === undefined) {
+    return result };
+  let objKeyValue  = Object.entries(prices);
+  const price = objKeyValue.reduce((cc, current) => cc+(`${key[cuurent], value[current]* (percentagem / 100)}`), 0);
+  return (Math.around(price));
 }
+
 
 function employeeCoverage(idOrName) {
   const employeeName = {};
   if (!idOrName) {
   employees.forEach(employee => {
-   const key = [`${employee.firstName} ${employee.lastName}`];
-   const animalsByEmployee = employee.responsibleFor
+    const key = [`${employee.firstName} ${employee.lastName}`];
+    const animalsByEmployee = employee.responsibleFor
      .map(animalId => animals
      .find(animal => animal.id === animalId).name)
-   employeeName[key] = animalsByEmployee;
+    employeeName[key] = animalsByEmployee;
    })
   return employeeName
  }
@@ -155,7 +162,6 @@ function employeeCoverage(idOrName) {
      .map(animalId => animals
      .find(animal => animal.id === animalId).name)
    employeeName[idOrName] = animalsByEmployee;
-
    })
    return employeeName
  }
