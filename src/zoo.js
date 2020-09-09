@@ -26,7 +26,7 @@ function employeeByName(employeeName) {
     .find(employee => employee.firstName === employeeName || employee.lastName === employeeName);
   return returnEmployee;
 }
-function createEmployee({id, firstName, lastName}, {managers, responsibleFor}) {
+function createEmployee({ id, firstName, lastName}, {managers, responsibleFor }) {
   const newEmployee = {
     id,
     firstName,
@@ -43,7 +43,7 @@ function isManager(id) {
   createInfo = employees.map(item => item.managers)
     .map(element => element.includes(id))
     .some(item2 => item2 === true);
-  return createInfo
+  return createInfo;
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
@@ -58,22 +58,21 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  let objAnimal= {};
+  let objAnimal= { };
   if(!species) {
-    data.animals.forEach((animal) => objAnimal[animal.name] = animal.residents.length)
+    data.animals.forEach(animal => objAnimal[animal.name] = animal.residents.length);
     return objAnimal;
   }
-  let numnimal = animals.find(animal => animal.name === species)
+  let numnimal = animals.find(animal => animal.name === species);
   return numnimal.residents.length;
 }
 
 function entryCalculator(entrants) {
- const result = 0;
-  if (entrants === undefined) {
-    return result };
+  const result = 0;
+  if (entrants === undefined) {return result};
   const keys = Object.keys(entrants);
-  const price = keys.reduce((cc, current) => cc+(entrants[current] * prices[current]), 0);
-  return price;
+  const price = keys.reduce((cc, current) => cc+( entrants[current] * prices[current]) , 0);
+    return price;
 }
 
 function retrieveAnimalPerLocation(locations) {
@@ -121,49 +120,45 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  let objAnimal= {};
+  const objAnimal= {};
   if(!id) {
-    data.animals.forEach((animal) => objAnimal[animal.name] = animal.residents)
+    data.animals.forEach(animal => objAnimal[animal.name] = animal.residents)
     return objAnimal;
   }
-  let olderAnimal = animals.find(animal => animal.age > age )
+  const olderAnimal = animals.find(animal => residents.age > age );
   return olderAnimal.residents.age;
 }
-
-
 
 function increasePrices(percentage) {
   const result = 0;
   if (percentage === undefined) {
     return result };
-  let objKeyValue  = Object.entries(prices);
+  const objKeyValue  = Object.entries(prices);
   const price = objKeyValue.reduce((cc, current) => cc+(`${key[cuurent], value[current]* (percentagem / 100)}`), 0);
   return (Math.around(price));
 }
-
-
 function employeeCoverage(idOrName) {
   const employeeName = {};
   if (!idOrName) {
   employees.forEach(employee => {
     const key = [`${employee.firstName} ${employee.lastName}`];
     const animalsByEmployee = employee.responsibleFor
-     .map(animalId => animals
-     .find(animal => animal.id === animalId).name)
+      .map(animalId => animals
+      .find(animal => animal.id === animalId).name)
     employeeName[key] = animalsByEmployee;
    })
-  return employeeName
- }
+  return employeeName;
+}
 
   if (idOrName) {
-   employees.filter(employee => {
-    const key = [`${employee.firstName} ${employee.lastName}`];
-    const animalsByEmployee = employee.responsibleFor
-     .map(animalId => animals
-     .find(animal => animal.id === animalId).name)
-   employeeName[idOrName] = animalsByEmployee;
-   })
-   return employeeName
+    employees.filter(employee => {
+      const key = [`${employee.firstName} ${employee.lastName}`];
+      const animalsByEmployee = employee.responsibleFor
+      .map(animalId => animals
+      .find(animal => animal.id === animalId).name)
+    employeeName[idOrName] = animalsByEmployee;
+    })
+  return employeeName;
  }
 }
 module.exports = {
