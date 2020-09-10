@@ -21,12 +21,12 @@ function animalsOlderThan(animal, age) {
 }
 function employeeByName(employeeName) {
   const objUnder = {};
-  if (employeeName === undefined)  return objUnder ;
+  if (employeeName === undefined)return objUnder;
   const returnEmployee = employees
     .find(employee => employee.firstName === employeeName || employee.lastName === employeeName);
   return returnEmployee;
 }
-function createEmployee({ id, firstName, lastName}, {managers, responsibleFor }) {
+function createEmployee({ id, firstName, lastName }, { managers, responsibleFor }) {
   const newEmployee = {
     id,
     firstName,
@@ -58,11 +58,11 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
- const objAnimal= { };
-  if (!species) {
-    data.animals.forEach(animal => objAnimal[animal.name] = animal.residents.length);
-    return objAnimal;
-  }
+  const objAnimal = { };
+    if (!species) {
+      data.animals.forEach(animal => objAnimal[animal.name] = animal.residents.length);
+      return objAnimal;
+    }
   const numnimal = animals.find(animal => animal.name === species);
   return numnimal.residents.length;
 }
@@ -125,25 +125,25 @@ function oldestFromFirstSpecies(id) {
     data.animals.forEach(animal => objAnimal[animal.name] = animal.residents);
     return objAnimal;
   }
-  const olderAnimal = animals.find(animal => residents.age > age );
+  const olderAnimal = animals.find(animal => residents.age > age);
   return olderAnimal.residents.age;
 }
 
 function increasePrices(percentage) {
   const result = 0;
-  if (percentage === undefined) { return result };
-  const objKeyValue  = Object.entries(prices);
-  const price = objKeyValue.reduce((cc, current) => cc+(`${key[cuurent], value[current]* (percentagem / 100)}`), 0);
+  if (percentage === undefined) return result;
+  const objKeyValue = Object.entries(prices);
+  const price = objKeyValue.reduce((cc, current) => cc+(`${ key[current], value[current]* (percentagem / 100) }`), 0);
   return (Math.around(price));
 }
 function employeeCoverage(idOrName) {
   const employeeName = {};
   if (!idOrName) {
-  employees.forEach(employee => {
-    const key = [`${employee.firstName} ${employee.lastName}`];
-    const animalsByEmployee = employee.responsibleFor
-      .map(animalId => animals
-      .find(animal => animal.id === animalId).name)
+    employees.forEach(employee => {
+      const key = [`${employee.firstName} ${employee.lastName}`];
+      const animalsByEmployee = employee.responsibleFor
+        .map(animalId => animals
+        .find(animal => animal.id === animalId).name);
     employeeName[key] = animalsByEmployee;
     })
   return employeeName;
