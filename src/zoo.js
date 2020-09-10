@@ -71,85 +71,12 @@ function entryCalculator(entrants) {
   const result = 0;
   if (entrants === undefined) return result;
   const keys = Object.keys(entrants);
-  const price = keys.reduce((cc, current) => cc+(entrants[current] * prices[current]), 0);
+  const price = keys.reduce((cc, current) => cc + (entrants[current] * prices[current]), 0);
   return price;
 }
 
-function retrieveAnimalPerLocation(locations) {
-  const animalPerLocation = {};
-  locations.forEach((location) => {
-    const animal = data.animals
-      .filter(animalLoc => animalLoc.location === location)
-      .map(animalLoc => animalLoc.name);
-    if (animal.length !== 0) animalPerLocation[location] = animal;
-  });
-  return animalPerLocation;
-}
-function retrieveAnimalByLocationWithName(locations, sorted, sex) {
-  const animalByLocationWithName = {};
-  locations.forEach((location) => {
-    const animalBy = data.animals
-      .filter(animalBy => animalBy.location === location)
-      .map((animalBy) => {
-        const animalKey = animalBy.name;
-        const animalValue = animalBy.residents
-          .filter((resident) => {
-            const isFilteringSex = sex !== undefined;
-            return isFilteringSex ? resident.sex === sex : true;
-          })
-          .map(resident => resident.name);
-        if (sorted) animalValue.sort();
-        return { [animalKey]: animalValue };
-      });
-    animalByLocationWithName[location] = animalBy;
-  });
-  return animalByLocationWithName;
-}
-function animalMap(options) {
-  const locations = ['NE', 'NW', 'SE', 'SW'];
-  if (!options) { return retrieveAnimalPerLocation(locations); }
-  const { includeNames, sorted, sex } = options;
-  if (includeNames === undefined) { return retrieveAnimalPerLocation(locations); }
-  if (includeNames) { return retrieveAnimalByLocationWithName(locations, sorted, sex); }
-  return retrieveAnimalByLocationWithName;
-}
-
-function schedule(dayName) {
 
 
-}
-
-function oldestFromFirstSpecies(id) {
-  const objAnimal = {};
-  if (!id) {
-    data.animals.forEach(animal => objAnimal[animal.name] = animal.residents);
-    return objAnimal;
-  }
-  const olderAnimal = animals.find(animal => residents.age > age);
-  return olderAnimal.residents.age;
-}
-
-function increasePrices(percentage) {
-  const result = 0;
-  if (percentage === undefined) return result;
-  const objKeyValue = Object.entries(prices);
-  const price = objKeyValue.reduce((cc, current) => cc+(`${ key[current], value[current]* (percentagem / 100) }`), 0);
-  return (Math.around(price));
-}
-function employeeCoverage(idOrName) {
-  const employeeName = {};
-  if (!idOrName) {
-    employees.forEach(employee => {
-      const key = [`${ employee.firstName } ${ employee.lastName }`];
-      const animalsByEmployee = employee.responsableFor
-        .map(animalId => animals)
-        .find(animal => animal.id === animalId).name;
-        employeeName[key] = animalsByEmployee;
-    });
-  };
-  return employeeName;
-}
- 
 module.exports = {
   entryCalculator,
   schedule,
