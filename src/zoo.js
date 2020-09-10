@@ -21,7 +21,7 @@ function animalsOlderThan(animal, age) {
 }
 function employeeByName(employeeName) {
   const objUnder = {};
-  if (employeeName === undefined)return objUnder;
+  if (employeeName === undefined) return objUnder;
   const returnEmployee = employees
     .find(employee => employee.firstName === employeeName || employee.lastName === employeeName);
   return returnEmployee;
@@ -59,10 +59,10 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 function animalCount(species) {
   const objAnimal = { };
-    if (!species) {
-      data.animals.forEach(animal => objAnimal[animal.name] = animal.residents.length);
-      return objAnimal;
-    }
+  if (!species) {
+    data.animals.forEach(animal => objAnimal[animal.name] = animal.residents.length);
+    return objAnimal;
+  }
   const numnimal = animals.find(animal => animal.name === species);
   return numnimal.residents.length;
 }
@@ -140,26 +140,16 @@ function employeeCoverage(idOrName) {
   const employeeName = {};
   if (!idOrName) {
     employees.forEach(employee => {
-      const key = [`${employee.firstName} ${employee.lastName}`];
-      const animalsByEmployee = employee.responsibleFor
-        .map(animalId => animals
-        .find(animal => animal.id === animalId).name);
-    employeeName[key] = animalsByEmployee;
-    })
+      const key = [`${ employee.firstName } ${ employee.lastName }`];
+      const animalsByEmployee = employee.responsableFor
+        .map(animalId => animals)
+        .find(animal => animal.id === animalId).name;
+        employeeName[key] = animalsByEmployee;
+    });
+  };
   return employeeName;
 }
-
-  /* if (idOrName) {
-    employees.filter(employee => {
-      const key = [`${employee.firstName} ${employee.lastName}`];
-      const animalsByEmployee = employee.responsibleFor
-      .map(animalId => animals
-      .find(animal => animal.id === animalId).name)
-    employeeName[idOrName] = animalsByEmployee;
-    })
-  return employeeName;
- }*/
-}
+ 
 module.exports = {
   entryCalculator,
   schedule,
