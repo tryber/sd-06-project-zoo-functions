@@ -21,12 +21,12 @@ function animalsOlderThan(animal, age) {
 }
 function employeeByName(employeeName) {
   const objUnder = {};
-  if (employeeName === undefined) { return objUnder };
+  if (employeeName === undefined)  return objUnder ;
   const returnEmployee = employees
     .find(employee => employee.firstName === employeeName || employee.lastName === employeeName);
   return returnEmployee;
 }
-function createEmployee( { id, firstName, lastName}, {managers, responsibleFor } ) {
+function createEmployee({ id, firstName, lastName}, {managers, responsibleFor }) {
   const newEmployee = {
     id,
     firstName,
@@ -39,7 +39,7 @@ function createEmployee( { id, firstName, lastName}, {managers, responsibleFor }
 
 function isManager(id) {
   let createInfo = {};
-  if (id === undefined) { return createInfo };
+  if (id === undefined) return createInfo;
   createInfo = employees.map(item => item.managers)
     .map(element => element.includes(id))
     .some(item2 => item2 === true);
@@ -58,20 +58,20 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function animalCount(species) {
-  let objAnimal= { };
+ const objAnimal= { };
   if (!species) {
     data.animals.forEach(animal => objAnimal[animal.name] = animal.residents.length);
     return objAnimal;
   }
-  let numnimal = animals.find(animal => animal.name === species);
+  const numnimal = animals.find(animal => animal.name === species);
   return numnimal.residents.length;
 }
 
 function entryCalculator(entrants) {
   const result = 0;
-  if (entrants === undefined) {return result};
+  if (entrants === undefined) return result;
   const keys = Object.keys(entrants);
-  const price = keys.reduce((cc, current) => cc+( entrants[current] * prices[current]), 0);
+  const price = keys.reduce((cc, current) => cc+(entrants[current] * prices[current]), 0);
   return price;
 }
 
@@ -120,7 +120,7 @@ function schedule(dayName) {
 }
 
 function oldestFromFirstSpecies(id) {
-  const objAnimal= {};
+  const objAnimal = {};
   if (!id) {
     data.animals.forEach(animal => objAnimal[animal.name] = animal.residents);
     return objAnimal;
