@@ -21,12 +21,12 @@ function animalsOlderThan(animal, age) {
 }
 function employeeByName(employeeName) {
   const objUnder = {};
-  if (employeeName === undefined) { return objUnder};
+  if (employeeName === undefined) { return objUnder };
   const returnEmployee = employees
     .find(employee => employee.firstName === employeeName || employee.lastName === employeeName);
   return returnEmployee;
 }
-function createEmployee({ id, firstName, lastName}, {managers, responsibleFor }) {
+function createEmployee( { id, firstName, lastName}, {managers, responsibleFor } ) {
   const newEmployee = {
     id,
     firstName,
@@ -59,7 +59,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 function animalCount(species) {
   let objAnimal= { };
-  if(!species) {
+  if (!species) {
     data.animals.forEach(animal => objAnimal[animal.name] = animal.residents.length);
     return objAnimal;
   }
@@ -71,8 +71,8 @@ function entryCalculator(entrants) {
   const result = 0;
   if (entrants === undefined) {return result};
   const keys = Object.keys(entrants);
-  const price = keys.reduce((cc, current) => cc+( entrants[current] * prices[current]) , 0);
-    return price;
+  const price = keys.reduce((cc, current) => cc+( entrants[current] * prices[current]), 0);
+  return price;
 }
 
 function retrieveAnimalPerLocation(locations) {
@@ -121,8 +121,8 @@ function schedule(dayName) {
 
 function oldestFromFirstSpecies(id) {
   const objAnimal= {};
-  if(!id) {
-    data.animals.forEach(animal => objAnimal[animal.name] = animal.residents)
+  if (!id) {
+    data.animals.forEach(animal => objAnimal[animal.name] = animal.residents);
     return objAnimal;
   }
   const olderAnimal = animals.find(animal => residents.age > age );
@@ -131,8 +131,7 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   const result = 0;
-  if (percentage === undefined) {
-    return result };
+  if (percentage === undefined) { return result };
   const objKeyValue  = Object.entries(prices);
   const price = objKeyValue.reduce((cc, current) => cc+(`${key[cuurent], value[current]* (percentagem / 100)}`), 0);
   return (Math.around(price));
@@ -146,11 +145,11 @@ function employeeCoverage(idOrName) {
       .map(animalId => animals
       .find(animal => animal.id === animalId).name)
     employeeName[key] = animalsByEmployee;
-   })
+    })
   return employeeName;
 }
 
-  if (idOrName) {
+  /* if (idOrName) {
     employees.filter(employee => {
       const key = [`${employee.firstName} ${employee.lastName}`];
       const animalsByEmployee = employee.responsibleFor
@@ -159,7 +158,7 @@ function employeeCoverage(idOrName) {
     employeeName[idOrName] = animalsByEmployee;
     })
   return employeeName;
- }
+ }*/
 }
 module.exports = {
   entryCalculator,
