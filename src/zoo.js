@@ -123,9 +123,9 @@ function oldestFromFirstSpecies(id) {
 }
 function increasePrices(percentage) {
   const keys = Object.keys(prices);
-  keys.forEach(chave => {
+  keys.forEach((chave )=> {
     const priceValue = prices[chave];
-    const perceValue = priceValue * ((percentage / 100 ) + 1);
+    const perceValue = priceValue * ((percentage / 100) + 1);
     prices[chave] = (Math.round(perceValue * 100)) / 100;
   });
 }
@@ -133,27 +133,26 @@ function increasePrices(percentage) {
 function employeeCoverage(idOrName) {
   const employeeName = {};
   if (!idOrName) {
-    employees.forEach(employee => {
+    employees.forEach((employee) => {
       const keys = `${employee.firstName} ${employee.lastName}`;
       const animalByEmployee = employee.responsibleFor
         .map(animalId => animals
         .find(animal => animal.id === animalId).name);
       employeeName[keys] = animalByEmployee;
-    })
+    });
     return employeeName;
-  } else {
+  } e
     const idOrNameFilter = employees.find(employee =>
-      employee.id === idOrName || employee.firstName === idOrName || employee.lastName === idOrName);
+      employee.id === idOrName
+      || employee.firstName === idOrName
+      || employee.lastName === idOrName);
     const responsibles = idOrNameFilter.responsibleFor
       .map(animalId => animals
-      .find(animal => animal.id === animalId).name)
-      const keys = `${idOrNameFilter.firstName} ${idOrNameFilter.lastName}`;
-      employeeName[keys] = responsibles;
+      .find(animal => animal.id === animalId).name);
+    const keys = `${idOrNameFilter.firstName} ${idOrNameFilter.lastName}`;
+    employeeName[keys] = responsibles;
     return (employeeName);
-  }
 }
-
-
 
 module.exports = {
   entryCalculator,
