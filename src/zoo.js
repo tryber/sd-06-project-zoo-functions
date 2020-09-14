@@ -123,37 +123,40 @@ function oldestFromFirstSpecies(id) {
 }
 function increasePrices(percentage) {
   const result = 0;
-  if (entrants === undefined) return result;
   const keys = Object.keys(prices)
-  const price = keys.reduce((cc, current) => cc + ( prices[current] * (percentage / 100 + 1)), 0);
-  return price;
+  console.log(keys);
+  keys.forEach(chave => {
+    const priceValue = prices[chave]
+    const perceValue = priceValue * (percentage / 100 + 1)
+    prices[chave] = (Math.round(perceValue * 100)) / 100
+  })
 }
 
 function employeeCoverage(idOrName) {
   const employeeName = {};
-
-  employees.forEach(employee => {
-    const keys = `${employee.firstName} ${employee.lastName}`;
-    const animalByEmployee = employee.responsibleFor
-      .map(animalId => animals
-      .find(animal => animal.id === animalId).name)
-    employeeName[keys] = animalByEmployee
-  return employeeByName;
-  })
   if (!idOrName) {
+    employees.forEach(employee => {
+      const keys = `${employee.firstName} ${employee.lastName}`;
+      const animalByEmployee = employee.responsibleFor
+        .map(animalId => animals
+        .find(animal => animal.id === animalId).name)
+      employeeName[keys] = animalByEmployee
+    })
     return employeeName;
   } else {
-    const idOrNameFilter = employees.find(employee => {
-      idOrName === employee.id || idOrName === employee.firstName || idOrName === employee.lastName
-    });
-    console.log(idOrNameFilter);
+    const idOrNameFilter = employees.find(employee =>
+      employee.id === idOrName || employee.firstName === idOrName || employee.lastName === idOrName);
     const responsibles = idOrNameFilter.responsibleFor
       .map(animalId => animals
       .find(animal => animal.id === animalId).name)
-    console.log(responsibles)
-    return responsibles;
+      const keys = `${idOrNameFilter.firstName} ${idOrNameFilter.lastName}`;
+      employeeName[keys] = responsibles;
+       console.log(employeeName);
+    return (employeeName);
   }
 }
+/* console.log(employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad')); */
+
 
 
 module.exports = {
