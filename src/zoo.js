@@ -122,10 +122,39 @@ function oldestFromFirstSpecies(id) {
 
 }
 function increasePrices(percentage) {
+  const result = 0;
+  if (entrants === undefined) return result;
+  const keys = Object.keys(prices)
+  const price = keys.reduce((cc, current) => cc + ( prices[current] * (percentage / 100 + 1)), 0);
+  return price;
+}
 
-}
 function employeeCoverage(idOrName) {
+  const employeeName = {};
+
+  employees.forEach(employee => {
+    const keys = `${employee.firstName} ${employee.lastName}`;
+    const animalByEmployee = employee.responsibleFor
+      .map(animalId => animals
+      .find(animal => animal.id === animalId).name)
+    employeeName[keys] = animalByEmployee
+  return employeeByName;
+  })
+  if (!idOrName) {
+    return employeeName;
+  } else {
+    const idOrNameFilter = employees.find(employee => {
+      idOrName === employee.id || idOrName === employee.firstName || idOrName === employee.lastName
+    });
+    console.log(idOrNameFilter);
+    const responsibles = idOrNameFilter.responsibleFor
+      .map(animalId => animals
+      .find(animal => animal.id === animalId).name)
+    console.log(responsibles)
+    return responsibles;
+  }
 }
+
 
 module.exports = {
   entryCalculator,
