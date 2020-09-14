@@ -122,14 +122,12 @@ function oldestFromFirstSpecies(id) {
 
 }
 function increasePrices(percentage) {
-  const result = 0;
-  const keys = Object.keys(prices)
-  console.log(keys);
+  const keys = Object.keys(prices);
   keys.forEach(chave => {
-    const priceValue = prices[chave]
-    const perceValue = priceValue * (percentage / 100 + 1)
-    prices[chave] = (Math.round(perceValue * 100)) / 100
-  })
+    const priceValue = prices[chave];
+    const perceValue = priceValue * ((percentage / 100 ) + 1);
+    prices[chave] = (Math.round(perceValue * 100)) / 100;
+  });
 }
 
 function employeeCoverage(idOrName) {
@@ -139,8 +137,8 @@ function employeeCoverage(idOrName) {
       const keys = `${employee.firstName} ${employee.lastName}`;
       const animalByEmployee = employee.responsibleFor
         .map(animalId => animals
-        .find(animal => animal.id === animalId).name)
-      employeeName[keys] = animalByEmployee
+        .find(animal => animal.id === animalId).name);
+      employeeName[keys] = animalByEmployee;
     })
     return employeeName;
   } else {
@@ -151,11 +149,9 @@ function employeeCoverage(idOrName) {
       .find(animal => animal.id === animalId).name)
       const keys = `${idOrNameFilter.firstName} ${idOrNameFilter.lastName}`;
       employeeName[keys] = responsibles;
-       console.log(employeeName);
     return (employeeName);
   }
 }
-/* console.log(employeeCoverage('4b40a139-d4dc-4f09-822d-ec25e819a5ad')); */
 
 
 
