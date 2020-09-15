@@ -152,13 +152,13 @@ function increasePrices(percentage) {
     prices[chave] = (Math.round(perceValue * 100)) / 100;
   });
 }
-
+const mapAnimalId;
 function employeeCoverage(idOrName) {
   const employeeName = {};
   if (!idOrName) {
     employees.forEach((employee) => {
       const keys = `${employee.firstName} ${employee.lastName}`;
-      const animalByEmployee = mapAnimalId(employee.responsibleFor)
+      const animalByEmployee = mapAnimalId(employee.responsibleFor);
       employeeName[keys] = animalByEmployee;
     });
     return employeeName;
@@ -168,17 +168,17 @@ function employeeCoverage(idOrName) {
     employee.id === idOrName
       || employee.firstName === idOrName
       || employee.lastName === idOrName);
-  const responsibles = mapAnimalId(idOrNameFilter.responsibleFor)
+  const responsibles = mapAnimalId(idOrNameFilter.responsibleFor);
   const keys = `${idOrNameFilter.firstName} ${idOrNameFilter.lastName}`;
   employeeName2[keys] = responsibles;
   return employeeName2;
 }
 
-function mapAnimalId (param){
+function mapAnimalId(param) {
   const result = param
   .map(animalId => animals
   .find(animal => animal.id === animalId).name);
- return result;
+  return result;
 }
 module.exports = {
   entryCalculator,
