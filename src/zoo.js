@@ -160,7 +160,7 @@ function employeeCoverage(idOrName) {
       const keys = `${employee.firstName} ${employee.lastName}`;
       const animalByEmployee = employee.responsibleFor
         .map(animalId => animals
-        .find(animal => animal.id === animalId).name);
+        .filter(animal => animal.id === animalId).name);
       employeeName[keys] = animalByEmployee;
     });
     return employeeName;
