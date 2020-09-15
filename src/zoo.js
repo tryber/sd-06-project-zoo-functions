@@ -133,8 +133,8 @@ function increasePrices(percentage) {
   const keys = Object.keys(prices);
   keys.forEach((chave) => {
     const priceValue = prices[chave];
-    const perceValue = priceValue * ((percentage / 100)+1);
-    prices[chave] = (Math.round(perceValue * 100))/100;
+    const perceValue = priceValue * ((percentage / 100) + 1);
+    prices[chave] = (Math.round(perceValue * 100)) / 100;
   });
 }
 
@@ -146,7 +146,7 @@ function employeeCoverage(idOrName) {
       const animalByEmployee = employee.responsibleFor
         .map(animalId => animals
         .find(animal => animal.id === animalId).name);
-  employeeName[keys] = animalByEmployee;
+    employeeName[keys] = animalByEmployee;
     });
   return employeeName;
   }
