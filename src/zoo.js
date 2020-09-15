@@ -116,7 +116,15 @@ function animalMap(options) {
   return retrieveAnimalByLocationWithName;
 }
 function schedule(dayName) {
-
+/* const calendar = {
+  'Tuesday': 'Open from 8am until 6pm',
+  'Wednesday': 'Open from 8am until 6pm',
+  'Thursday': 'Open from 10am until 8pm',
+  'Friday': 'Open from 10am until 8pm',
+  'Saturday': 'Open from 8am until 10pm',
+  'Sunday': 'Open from 8am until 8pm',
+  'Monday': 'CLOSED'
+} */
 }
 function oldestFromFirstSpecies(id) {
 
@@ -138,10 +146,10 @@ function employeeCoverage(idOrName) {
       const animalByEmployee = employee.responsibleFor
         .map(animalId => animals
         .find(animal => animal.id === animalId).name);
-      employeeName[keys] = animalByEmployee;
+    employeeName[keys] = animalByEmployee;
     });
     return employeeName;
-  } e
+  }
     const idOrNameFilter = employees.find(employee =>
       employee.id === idOrName
       || employee.firstName === idOrName
@@ -153,6 +161,7 @@ function employeeCoverage(idOrName) {
     employeeName[keys] = responsibles;
     return (employeeName);
 }
+
 
 module.exports = {
   entryCalculator,
