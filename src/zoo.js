@@ -11,16 +11,31 @@ eslint no-unused-vars: [
 
 const data = require('./data');
 
-function animalsByIds(ids) {
-  // seu código aqui
+function animalsByIds(...ids) {
+  let arrayResults = [];
+  if (ids.length === 0) {
+    return arrayResults;
+  }
+  arrayResults.push(data.animals.find(element => {
+    if (ids === element.id) {
+      return element;
+    }
+  })
+  )
+  return arrayResults;
 }
+// return [1];
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
 }
 
+// resolução abaixo foi consultada no código https://github.com/tryber/sd-06-project-zoo-functions/blob/e1ac4308fc924469c75844fd7de70a0e02311f6a/src/zoo.js
 function employeeByName(employeeName) {
-  // seu código aqui
+  if (!employeeName) {
+    return {};
+  }
+  return data.employees.find((name) => name.firstName === employeeName || name.lastName === employeeName);
 }
 
 function createEmployee(personalInfo, associatedWith) {
