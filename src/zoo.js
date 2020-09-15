@@ -132,8 +132,8 @@ function schedule(dayName) {
 }
 function oldestFromFirstSpecies(id) {
   const employeeOlderThan = employees.find(employee => employee.id === id);
-  const employeeFirstOlderThan = employeeOlderThan.responsibleFor
-    //const older = {};
+  const employeeFirstOlderThan = employeeOlderThan.responsibleFor;
+    // const older = {};
     /* employeeFirstOlderThan.forEach((animals )=> {
       animal.age
       const keys = `${animal.name} ${animal.sexo} ${animal.idade}`
