@@ -152,7 +152,6 @@ function increasePrices(percentage) {
     prices[chave] = (Math.round(perceValue * 100)) / 100;
   });
 }
-const mapAnimalId;
 function employeeCoverage(idOrName) {
   const employeeName = {};
   if (!idOrName) {
