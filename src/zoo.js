@@ -152,6 +152,13 @@ function increasePrices(percentage) {
     prices[chave] = (Math.round(perceValue * 100)) / 100;
   });
 }
+
+function mapAnimalId(param) {
+  const result = param
+  .map(animalId => animals
+  .find(animal => animal.id === animalId).name);
+  return result;
+}
 function employeeCoverage(idOrName) {
   const employeeName = {};
   if (!idOrName) {
@@ -173,12 +180,6 @@ function employeeCoverage(idOrName) {
   return employeeName2;
 }
 
-function mapAnimalId(param) {
-  const result = param
-  .map(animalId => animals
-  .find(animal => animal.id === animalId).name);
-  return result;
-}
 module.exports = {
   entryCalculator,
   schedule,
