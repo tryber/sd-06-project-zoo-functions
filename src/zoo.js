@@ -158,26 +158,28 @@ function employeeCoverage(idOrName) {
   if (!idOrName) {
     employees.forEach((employee) => {
       const keys = `${employee.firstName} ${employee.lastName}`;
-      const animalByEmployee = employee.responsibleFor
-        .map(animalId => animals
-        .filter(animal => animal.id === animalId).name);
+      const animalByEmployee = mapAnimalId(employee.responsibleFor)
       employeeName[keys] = animalByEmployee;
     });
     return employeeName;
   }
+  const employeeName2 = {};
   const idOrNameFilter = employees.find(employee =>
     employee.id === idOrName
       || employee.firstName === idOrName
       || employee.lastName === idOrName);
-  const responsibles = idOrNameFilter.responsibleFor
-    .map(animalId => animals
-    .find(animal => animal.id === animalId).name);
+  const responsibles = mapAnimalId(idOrNameFilter.responsibleFor)
   const keys = `${idOrNameFilter.firstName} ${idOrNameFilter.lastName}`;
-  employeeName[keys] = responsibles;
-  return (employeeName);
+  employeeName2[keys] = responsibles;
+  return employeeName2;
 }
 
-
+function mapAnimalId (param){
+  const result = param
+  .map(animalId => animals
+  .find(animal => animal.id === animalId).name);
+ return result;
+}
 module.exports = {
   entryCalculator,
   schedule,
