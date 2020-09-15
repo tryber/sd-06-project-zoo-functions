@@ -118,30 +118,29 @@ function animalMap(options) {
 function schedule(dayName) {
   const daysOfWeek = {};
   const weekCalendar = {
-  Tuesday: 'Open from 8am until 6pm',
-  Wednesday: 'Open from 8am until 6pm',
-  Thursday: 'Open from 10am until 8pm',
-  Friday: 'Open from 10am until 8pm',
-  Saturday: 'Open from 8am until 10pm',
-  Sunday: 'Open from 8am until 8pm',
-  Monday: 'CLOSED'
-  }
+    Tuesday: 'Open from 8am until 6pm',
+    Wednesday: 'Open from 8am until 6pm',
+    Thursday: 'Open from 10am until 8pm',
+    Friday: 'Open from 10am until 8pm',
+    Saturday: 'Open from 8am until 10pm',
+    Sunday: 'Open from 8am until 8pm',
+    Monday: 'CLOSED',
+  };
   if (dayName === undefined) return weekCalendar;
   daysOfWeek[dayName] = weekCalendar[dayName];
   return daysOfWeek;
-
 }
 function oldestFromFirstSpecies(id) {
   const employeeOlderThan = employees.find(employee => employee.id === id);
   const employeeFirstOlderThan = employeeOlderThan.responsibleFor
-  let older = {}
-    employeeFirstOlderThan.forEach((animals )=> {
-      animal.age === age
-      const keys = `${animal.name} ${animal.sexo} ${animal.idade}`
-      if (older < age) {
-        older[keys] = age;
-      }
-    });
+  //const older = {};
+  /* employeeFirstOlderThan.forEach((animals )=> {
+    animal.age
+    const keys = `${animal.name} ${animal.sexo} ${animal.idade}`
+    if (older < age) {
+      older[keys] = age;
+    }
+  }); */
 }
 
 function increasePrices(percentage) {
