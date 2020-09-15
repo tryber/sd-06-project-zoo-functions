@@ -146,9 +146,9 @@ function employeeCoverage(idOrName) {
       const animalByEmployee = employee.responsibleFor
         .map(animalId => animals
         .find(animal => animal.id === animalId).name);
-    employeeName[keys] = animalByEmployee;
+      employeeName[keys] = animalByEmployee;
     });
-  return employeeName;
+    return employeeName;
   }
   const idOrNameFilter = employees.find(employee =>
     employee.id === idOrName
