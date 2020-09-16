@@ -68,7 +68,6 @@ function schedule(dayName) {
     Monday: 'CLOSED',
   };
   return !dayName ? openingHours : Object.fromEntries([[dayName, openingHours[dayName]]]);
-
 }
 
 function oldestFromFirstSpecies(id) {
