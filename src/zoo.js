@@ -10,6 +10,7 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
+const { animals } = require('./data');
 
 function animalsByIds(...ids) {
   return data.animals.filter(idAnimal => ids.includes(idAnimal.id));
@@ -49,12 +50,32 @@ function entryCalculator(entrants) {
   if (!entrants || Object.keys(entrants).length === 0) {
     return 0;
   }
-  return Object.keys(entrants).reduce((acc, curr) => acc +
-    (entrants[curr] * data.prices[curr]), 0);
+  return Object.keys(entrants).reduce((acc, curr) => acc + (entrants[curr] * data.prices[curr]), 0);
 }
 
 function animalMap(options) {
-  // seu código aqui
+    const locations =['NE', 'NW', 'SE', 'SW'];
+// Com a opção includeNames: true especificada, retorna nomes de animais
+    if (!options) {
+    const animalLocaition = {};
+    locations.forEach((location) => {
+      const animals = data.animals
+        .filter(animal => animal.location === location)
+        .map(animal => animal.name);
+        if (animals.length !== 0) {
+          animalLocaition[location] = animals;
+        }
+          if (options === { includeName: true } ) {
+            locations.map((location) => {
+              const animals = data.animals
+                .filter(animal => animal.location === location)
+                .map(animal => animal.name);
+                
+            })
+          }
+    });
+    return animalLocaition;
+    };
 }
 
 function schedule(dayName) {
@@ -74,17 +95,36 @@ function oldestFromFirstSpecies(id) {
   const oldestAnimal = [result.name, result.sex, result.age];
   return oldestAnimal;
 }
-// Ao passar uma porcentagem, incrementa todos os preços, arrendondados em duas casas decimais
+
 function increasePrices(percentage) {
   const valuePercentage = percentage / 100;
   Object.keys(data.prices).forEach((valor) => {
-    data.prices[valor] = Math
-    .round((data.prices[valor] + (data.prices[valor] * valuePercentage)) * 100) / 100;
+    data.prices[valor] = Math.round((data.prices[valor] + (data.prices[valor] * valuePercentage)) * 100) / 100;
   });
 }
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  const result = {};
+  let filteredEmployees;
+  if (!idOrName) {
+    filteredEmployees = data.employees;
+  } else {
+    filteredEmployees = data.employees.filter(
+      employee => employee.id === idOrName ||
+      employee.firstName === idOrName ||
+      employee.lastName === idOrName,
+    );
+  }
+  filteredEmployees.forEach((employee) => {
+    const mappedAnimals = employee.responsibleFor.map(
+      (animalIdResponsibleFor) => {
+        const foundAnimalName = data.animals.find(
+          animal => animal.id === animalIdResponsibleFor).name;
+        return foundAnimalName;
+      });
+    result[`${employee.firstName} ${employee.lastName}`] = mappedAnimals;
+  });
+  return result;
 }
 
 module.exports = {
