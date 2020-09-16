@@ -10,7 +10,6 @@ eslint no-unused-vars: [
 */
 
 const data = require('./data');
-const { animals } = require('./data');
 
 function animalsByIds(...ids) {
   return data.animals.filter(idAnimal => ids.includes(idAnimal.id));
@@ -54,28 +53,8 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-    const locations =['NE', 'NW', 'SE', 'SW'];
-// Com a opção includeNames: true especificada, retorna nomes de animais
-    if (!options) {
-    const animalLocaition = {};
-    locations.forEach((location) => {
-      const animals = data.animals
-        .filter(animal => animal.location === location)
-        .map(animal => animal.name);
-        if (animals.length !== 0) {
-          animalLocaition[location] = animals;
-        }
-          if (options === { includeName: true } ) {
-            locations.map((location) => {
-              const animals = data.animals
-                .filter(animal => animal.location === location)
-                .map(animal => animal.name);
-                
-            })
-          }
-    });
-    return animalLocaition;
-    };
+  const locations =['NE', 'NW', 'SE', 'SW'];
+  // seu código aqui
 }
 
 function schedule(dayName) {
@@ -99,7 +78,8 @@ function oldestFromFirstSpecies(id) {
 function increasePrices(percentage) {
   const valuePercentage = percentage / 100;
   Object.keys(data.prices).forEach((valor) => {
-    data.prices[valor] = Math.round((data.prices[valor] + (data.prices[valor] * valuePercentage)) * 100) / 100;
+    data.prices[valor] = Math
+    .round((data.prices[valor] + (data.prices[valor] * valuePercentage)) * 100) / 100;
   });
 }
 
