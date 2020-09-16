@@ -53,7 +53,7 @@ function entryCalculator(entrants) {
 }
 
 function animalMap(options) {
-  const locations =['NE', 'NW', 'SE', 'SW'];
+  // const locations =['NE', 'NW', 'SE', 'SW'];
   // seu código aqui
 }
 
