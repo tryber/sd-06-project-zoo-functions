@@ -52,9 +52,48 @@ function entryCalculator(entrants) {
   return Object.keys(entrants).reduce((acc, curr) => acc + (entrants[curr] * data.prices[curr]), 0);
 }
 
+function retrieveAnimalsPerLocation(locations) {
+  const animalsPerLocation = {};
+
+    locations.forEach((location) => {
+      const animals = data.animals
+        .filter(animal => animal.location === location)
+        .map(animal => animal.name);
+
+        if (animals.length !== 0) animalsPerLocation[location] = animals;
+    });
+
+  return animalsPerLocation;
+}
+
+function retrieveAnimalsByLocationWithName(locations) {
+  const animalsPerLocationWithName = {};
+
+  locations.forEach((location) => {
+    const animals = data.animals
+      .filter(animal => animal.location === location)
+      .map(animal => {
+        const nameKey = animal.name;
+        const nameValues = animal.residents.map(resident => resident.name);
+
+        return { [nameKey]: nameValues };
+      });
+
+      animalsPerLocationWithName[location] = animals;
+  });
+  
+  return animalsPerLocationWithName;
+}
+
 function animalMap(options) {
-  // const locations =['NE', 'NW', 'SE', 'SW'];
-  // seu código aqui
+  const locations =['NE', 'NW', 'SE', 'SW'];
+
+  if (!options) return retrieveAnimalsPerLocation(locations);
+
+  const includeNames = options.includeNames;
+
+  if (includeNames) return retrieveAnimalsByLocationWithName(locations);
+    
 }
 
 function schedule(dayName) {
