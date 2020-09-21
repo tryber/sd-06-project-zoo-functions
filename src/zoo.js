@@ -66,7 +66,7 @@ function retrieveAnimalsPerLocation(locations) {
   return animalsPerLocation;
 }
 
-function retrieveAnimalsByLocationWithName(locations) {
+function retrieveAnimalsByLocationWithName(locations, sorted) {
   const animalsPerLocationWithName = {};
 
   locations.forEach((location) => {
@@ -75,7 +75,7 @@ function retrieveAnimalsByLocationWithName(locations) {
       .map(animal => {
         const nameKey = animal.name;
         const nameValues = animal.residents.map(resident => resident.name);
-
+        if (sorted) nameValues.sort();
         return { [nameKey]: nameValues };
       });
 
@@ -90,9 +90,8 @@ function animalMap(options) {
 
   if (!options) return retrieveAnimalsPerLocation(locations);
 
-  const includeNames = options.includeNames;
-
-  if (includeNames) return retrieveAnimalsByLocationWithName(locations);
+  const { includeNames, sorted } = options;
+  if (includeNames) return retrieveAnimalsByLocationWithName(locations, sorted);
     
 }
 
