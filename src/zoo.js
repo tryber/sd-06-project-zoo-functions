@@ -55,12 +55,12 @@ function entryCalculator(entrants) {
 function retrieveAnimalsPerLocation(locations) {
   const animalsPerLocation = {};
 
-    locations.forEach((location) => {
-      const animals = data.animals
-        .filter(animal => animal.location === location)
-        .map(animal => animal.name);
+  locations.forEach((location) => {
+    const animals = data.animals
+      .filter(animal => animal.location === location)
+      .map(animal => animal.name);
 
-        if (animals.length !== 0) animalsPerLocation[location] = animals;
+    if (animals.length !== 0) animalsPerLocation[location] = animals;
     });
 
   return animalsPerLocation;
@@ -72,10 +72,10 @@ function retrieveAnimals(locations, sorted, sex) {
   locations.forEach((location) => {
     const animals = data.animals
       .filter(animal => animal.location === location)
-      .map(animal => {
+      .map((animal) => {
         const nameKey = animal.name;
         const nameValues = animal.residents
-        .filter(resident => {
+        .filter((resident) => {
           const isFilteringSex = sex !== undefined;
           return isFilteringSex ? resident.sex === sex : true;
         })
@@ -84,21 +84,20 @@ function retrieveAnimals(locations, sorted, sex) {
         return { [nameKey]: nameValues };
       });
 
-      animalsPerLocationWithName[location] = animals;
+    animalsPerLocationWithName[location] = animals;
   });
-  
   return animalsPerLocationWithName;
 }
 
 function animalMap(options) {
-  const locations =['NE', 'NW', 'SE', 'SW'];
+  const locations =['NE' , 'NW' , 'SE' , 'SW'];
 
   if (!options) return retrieveAnimalsPerLocation(locations);
 
   const { includeNames, sorted, sex } = options;
   if (!includeNames) return retrieveAnimalsPerLocation(locations);
   return retrieveAnimals(locations, sorted, sex);
-    
+
 }
 
 function schedule(dayName) {
