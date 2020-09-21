@@ -13,7 +13,7 @@ describe('Implemente a função animalMap', () => {
     assert.deepEqual(zoo.animalMap(), expected);
   });
 
-  it('Com a opção `includeNames: true` especificada, retorna nomes de animais', () => {
+   it('Com a opção `includeNames: true` especificada, retorna nomes de animais', () => {
     const options = { includeNames: true };
     const actual = zoo.animalMap(options);
     const expected = {
