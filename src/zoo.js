@@ -97,7 +97,6 @@ function animalMap(options) {
   const { includeNames, sorted, sex } = options;
   if (!includeNames) return retrieveAnimalsPerLocation(locations);
   return retrieveAnimals(locations, sorted, sex);
-
 }
 
 function schedule(dayName) {
