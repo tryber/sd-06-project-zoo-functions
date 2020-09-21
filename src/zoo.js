@@ -61,7 +61,7 @@ function retrieveAnimalsPerLocation(locations) {
       .map(animal => animal.name);
 
     if (animals.length !== 0) animalsPerLocation[location] = animals;
-    });
+  });
 
   return animalsPerLocation;
 }
@@ -90,7 +90,7 @@ function retrieveAnimals(locations, sorted, sex) {
 }
 
 function animalMap(options) {
-  const locations =['NE' , 'NW' , 'SE' , 'SW'];
+  const locations = ['NE', 'NW', 'SE', 'SW'];
 
   if (!options) return retrieveAnimalsPerLocation(locations);
 
